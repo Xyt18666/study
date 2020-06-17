@@ -1,0 +1,10 @@
+GET https://jsonplaceholder.typicode.com/posts
+
+
+###
+
+
+POST https://way.jd.com/jisuapi/search?appkey=79994b160a821f1fcc132083a0172715&keyword=白菜&num=10
+
+
+
