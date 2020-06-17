@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style:none;
+		}
+		body{
+			height: 3000px;
+		}
+		ul{
+			position: absolute;
+			top: 800px;
+			right: 0;
+		}
+		ul li{
+			width: 80px;
+			height: 80px;
+			border:2px solid #0f0;
+		}
+		ol li{
+			width: 1200px;
+			height: 600px;
+			border:2px solid red;
+			margin-bottom: 30px;
+			margin-left: 10px;
+		}
+		ol li:nth-child(1){
+			margin-top: 800px;
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li>侧1</li>
+		<li>侧2</li>
+		<li>侧3</li>
+		<li>侧4</li>
+		<li>侧5</li>
+		<li>侧6</li>
+	</ul>
+	<ol>
+		<li>内容1</li>
+		<li>内容2</li>
+		<li>内容3</li>
+		<li>内容4</li>
+		<li>内容5</li>
+		<li>内容6</li>
+	</ol>
+</body>
+<script type="text/javascript">
+var cl=document.querySelector("ul")
+var cli=document.querySelectorAll("ul li")
+var nr=document.querySelector("ol")
+var nrli=document.querySelectorAll("ol li")
+
+var st=[]
+var xxz=0
+for(var a=0; a<nrli.length; a++){
+	st.push(nrli[a].offsetTop)
+}
+
+window.onscroll=function(){
+	var stz=document.body.scrollTop ||document.documentElement.scrollTop 
+	if(stz>600){
+		cl.style.position="fixed"
+		cl.style.top="100px"
+	}else{
+		cl.style.position="absoulute"
+		cl.style.top="800px"
+	}
+
+
+
+
+	stz+=window.innerHeight/2
+	for(var v=0; v<st.length; v++){
+		if(stz>st[v] && stz<st[v+1]){
+			xxz=v
+		}
+		if(stz>st[st.length-1]){
+			xxz=st.length-1
+		}
+	}
+	for(var i=0;i<cli.length;i++){
+		cli[i].style.background="#fff"
+	}
+	cli[xxz].style.background="red"
+	
+}
+
+for(let u=0; u<cli.length; u++){
+	cli[u].onclick=function(){
+		var stzz=st[u]
+		console.log(stzz)
+		stw(stzz)
+	}
+}
+
+
+function stw(end){
+	clearInterval(dsq)//保证只开启一个
+	var dsq=setInterval(function(){
+		var st=document.body.scrollTop||document.documentElement.scrollTop
+		
+		//缓冲运动
+		var speed=(end-st)/24//定义速度
+
+		//  速度=（终点 减 起点）/倍率
+		speed=speed>0?Math.ceil(speed):Math.floor(speed)
+
+		st+=speed
+
+		if(speed>0&&st>=end || speed<0&&st<=end){
+			st=end
+		}
+
+
+		document.body.scrollTop=document.documentElement.scrollTop=st
+
+		if(st==end){clearInterval(dsq)}//判断是否到达终点
+	},10)
+
+}
+
+</script>
+</html>

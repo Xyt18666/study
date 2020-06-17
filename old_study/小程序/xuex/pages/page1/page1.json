@@ -1,0 +1,7 @@
+{
+    "navigationBarBackgroundColor": "#0f00f0",
+    "navigationBarTitleText": "新闻",
+    "usingComponents":{
+      "myHead":"../../myHead/myHead"
+    }
+}

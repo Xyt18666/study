@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		main{
+			width: 800px;
+			margin: 0 auto;
+		}
+		textarea{
+			width: 800px;
+			height: 200px;
+			border:2px solid #789;
+			margin: 0 auto;
+		}
+		.conList{
+			width: 800px;
+			margin: 0 auto;
+		}
+		.conList li{
+			display: flex;
+			border:1px solid #0f0;
+		}
+		.le .img{
+			width: 80px;
+			height: 80px;
+			background: red;
+			margin-right: 10px;
+		}
+		.button{
+			width: 80px;
+			position: relative;
+			top: -50px;
+			right: -700px;
+			text-align: center;
+			background: #852;
+		}
+	</style>
+</head>
+<body>
+	<main>
+		<textarea name="texts"></textarea>
+		<div class="button">提交</div>
+		<h1>留言数量：<span> </span></h1>
+		<ul class="conList">
+			
+			<!-- <li>
+				<div class="le">
+					<div class="img">img</div>
+				</div>
+				<div class="ri">
+					<div class="name">name</div>
+					<div class="con">cosdddosdddosddd神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞神鼎飞丹砂ddd</div>
+					<time>time</time>
+				</div>
+			</li> -->
+		</ul>
+	</main>
+</body>
+<script>
+	const myMsg = { //我的信息
+		img:"我是一个假的图片路径",
+		name:"小黑"
+	}
+
+	const ls=window.localStorage  //本地存储
+	const times = new Date().toLocaleString()  //时间
+
+	const listmsg=[];   //信息数组
+	const listtime=[];  //时间数组
+
+
+	function sls(){
+		let sl = ls.getItem("sl") || 0 ;
+		ls.setItem("sl",++sl)
+		return sl
+	}
+	function jls(){
+		let sl = ls.getItem("sl") || 0 ;
+		ls.setItem("sl",--sl)
+		return sl
+	}
+
+
+	$(".button").click(()=>{
+		$(`<li>
+				<div class="le">
+					<div class="img">${myMsg.img}</div>
+				</div>
+				<div class="ri">
+					<div class="name">${myMsg.name}</div>
+					<div class="con">${$("textarea").val()}</div>
+					<time>${times}</time>
+					<div class="clear">删除</div>
+				</div>
+			</li>`).prependTo("ul")
+
+
+		let listMsg = ls.getItem("listMsg") || "";
+		let timeMsg = ls.getItem("listtime") || "";
+		
+
+		listmsg.push($("textarea").val())
+		listtime.push(times)
+		// 这里有bug  当页面刷新后，再次输入信息，之前的本地数据会消失
+
+		ls.setItem("listMsg",listMsg +","+ $("textarea").val())
+		ls.setItem("timeMsg",listtime + times)
+
+		console.log(listMsg)
+
+		$("h1 span").text(sls())
+
+	})
+
+
+	try{
+		$("h1 span").text(ls.getItem("sl") || 0)
+		let msgarr = ls.getItem("listMsg").split(",") || []
+		let timearr = ls.getItem("timeMsg").split(" ") || []
+
+		for(let a=0; a<msgarr.length; a++){
+			$(`<li>
+					<div class="le">
+						<div class="img">${myMsg.img}</div>
+					</div>
+					<div class="ri">
+						<div class="name">${myMsg.name}</div>
+						<div class="con">${msgarr[a]}</div>
+						<time>${timearr[a]}</time>
+					</div>
+					<div class="clear">删除</div>
+			</li>`).prependTo("ul")
+		}
+	}catch{
+
+	}
+
+
+	$(".clear").click(function(e){
+		$(e.target).parent().hide()
+		$("h1 span").text(jls())
+
+	})
+	
+</script>
+</html>

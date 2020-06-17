@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+</head>
+<body>
+	<canvas width="800px" height="400px" style="border:2px solid #789;"></canvas>
+</body>
+<script>
+let c = $("canvas")[0].getContext("2d");
+
+let attr = [30,20,30,40,50]
+
+
+//比率 =  单值/总值
+
+// c.beginPath()
+// c.strokeStyle="red"
+// c.lineWidth="200"
+// //线宽为半径的一倍,为饼图角
+// c.arc(200,200,100,0,18/23*Math.PI*2)
+// c.stroke()
+// c.closePath()
+
+// c.beginPath()
+// c.strokeStyle="#789"
+// c.lineWidth="200"
+// //线宽为半径的一倍,为饼图角
+// c.arc(200,200,100,18/23*Math.PI*2,18/23*Math.PI*2+5/23*Math.PI*2)
+// //X坐标,Y坐标,上一次数据的比例位置*整圆,上一次数据的比例位置*整圆+新数据的比例*整圆
+// c.stroke()
+// c.closePath()
+
+let sum=0;//求和
+for(var b=0; b<attr.length; b++){
+	sum+=attr[b]
+}
+
+for(var a=0; a<attr.length; a++){
+	let last = 0 ;//求前几次的和
+	for(j=0; j<a; j++){
+		last += attr[j]
+	}
+	c.beginPath()
+	c.strokeStyle="rgb("+randFn(0,255)+","+randFn(0,255)+","+randFn(0,255)+")"
+	c.lineWidth="200"
+	//线宽为半径的一倍,为饼图角
+	c.arc(200,200,100,last/sum*Math.PI*2,last/sum*Math.PI*2+attr[a]/sum*Math.PI*2)
+	//X坐标,Y坐标,r,之前数据的和/总值*整圆,之前数据的和/总值*整圆+新数据/总值*整圆
+	c.stroke()
+	c.closePath()
+}   
+function randFn(min,max){
+	return parseInt(Math.random()*(max-min+1)+min)
+}
+
+</script>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.box1{
+			height: 20px;
+			width: 20px;
+			background: red;
+		}
+		.box2{
+			height: 20px;
+			width: 40px;
+			background: #789;
+		}
+		.box3{
+			height: 20px;
+			width: 60px;
+			background: #0f0;
+		}
+	</style>
+</head>
+<body>
+	<input type="text" value="">
+	<div></div>
+</body>
+<script>
+//密码：数字 字母 特殊符号
+//
+//单个   
+//双个
+//三个
+var input=document.querySelector("input")
+var box=document.querySelector("div")
+console.log(box)
+input.oninput=function(){
+	box.className="box"+(this.value.length>=6&&this.value.length<=18?getLvl(this.value):0)
+	console.log(box.className)
+} 
+
+function getLvl(text){
+	var lvl=0;
+	if(/[0-9]/.test(text)){
+		lvl++
+	}
+	if(/[a-zA-Z]/.test(text)){
+		lvl++
+	}
+	if(/[^0-9a-zA-Z_]/.test(text)){
+		lvl++
+	}
+	return lvl
+}
+
+</script>
+</html>

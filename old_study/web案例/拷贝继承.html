@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+var obj1={
+	name:"mane",
+	eat:function(){
+		console.log("chi")
+	}
+}
+//拷贝继承1
+// var obj2=obj1
+// console.log(obj2.name)
+
+//拷贝继承2
+// var obj3={};
+// for(key in obj1){
+// 	obj3[key]=obj1[key]
+// }
+// obj3.eat()
+
+
+function Preson(){
+
+}
+Preson.prototype={
+	"constructor":"Preson",
+	age:10,
+	sex:"男",
+	play:function(){
+		console.log("wan")
+	}
+}
+
+var obj4={};
+
+for(key in Preson.prototype){
+	obj4[key]=Preson.prototype[key];
+}
+//把一个对象当中的属性和方法
+//通过 for in 遍历 保存到另一个对象当中
+</script>
+</html>

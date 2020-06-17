@@ -1,0 +1,26 @@
+
+body{
+	width: 100%;
+	background-color: #f2f2f2;
+}
+
+body,p,h1,h2,h3,h4,h5,h6{
+	margin: 0;
+}
+ul,ol,dl,li,dd,input{
+	margin: 0;
+	padding: 0;
+	list-style:none;
+}
+a{
+	text-decoration: none;
+	color: #000;
+}
+img{
+	display: block;
+}
+.clearFloat:after{
+	content:"";
+	display: block;
+	clear:both;
+}

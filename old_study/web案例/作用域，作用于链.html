@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+/*
+变量 ：
+局部变量
+全局变量
+
+局部作用域和全局作用域
+
+函数中定义的变量是局部变量
+
+作用域链：
+从里向外层层搜索，搜索到了直接使用
+
+
+预解析：
+在浏览器解析代码前，把变量和的声明和函数声明提升到该作用域的最上面
+
+*/
+/*
+
+
+闭包：
+
+闭包的概念：
+闭包的作用： 缓存数据，延长作用域量
+优缺点：  缓存数据,不能及时释放
+闭包的模式：函数闭包 对象闭包
+闭包的应用：
+
+
+ */
+
+
+
+// function f1(){
+// 	var num=12;
+// 	return function(){
+// 		console.log(num)
+// 		return num
+// 	}
+// }
+// var ff=f1()
+// var gg=ff()
+// console.log(gg)
+
+// function f3(){
+// 	var age=89;
+// 	return {
+// 		agec:age
+// 	}
+// }
+// var fe=f3()
+// console.log(fe.agec)
+
+
+function f1(){
+	var num=10;
+	return function(){
+		num++
+		return num
+	}
+}
+var ff=f1()
+console.log(ff()//11
+console.log(ff())//12
+
+</script>
+</html>

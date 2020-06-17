@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+/*
+浅拷贝：
+浅拷贝就是复制，就相当于把一个对象中的内容复制给另一个对象，就是把一个对象的地址给另一个对象，他们指向相同，两个对象有公共的属性和方法
+
+深拷贝:
+开辟新空间，存储至里面，当原有对象改变时，不会跟随改变
+ 
+ */
+// var obj1={
+// 	ma:"456",
+// 	mana:"789",
+// 	atta:[1,23,3],
+// 	obj00:{
+// 		ma2:"45699",
+// 		mana2:"78999",
+// 		atta2:[1,23,399],
+// 	},
+// 	eat:function(){
+// 		console.log("chi")
+// 	}
+// }
+// var obj2={};
+// function exyend(a,b){
+// 	for(var key in a){
+// 		b[key]=a[key]
+// 	}
+// }
+// exyend(obj1,obj2)
+// console.dir(obj1)
+// console.dir(obj2)
+// console.log(obj2.obj00.ma2)
+
+//深拷贝
+
+//默认的对象
+var obj1={
+	ma:"456",//标准属性
+	mana:"789",
+	eat:function(){//函数
+		console.log("chi")
+		return function f n2(){//闭包
+			console.log("能输出吗")
+		}
+		
+	},
+	array:[10203,454],//数组
+	dog:{//对象
+		name:"哈皇",
+		sex:12,
+	}
+}
+
+
+obj1.eat.prototype={//给原型添加方法
+
+	newfn:function(){
+		console.log("厉害了")
+	},
+	name2:"oo",
+	array2:["78",23,45],
+	obj88:{
+		niubi:"牛逼",
+	}
+}
+
+var fhz=obj1.eat()//把eat赋值给fhz
+fhz.prototype.newfn2=function(){//fn2 的原型添加方法
+	console.log("厉害了2")
+}
+
+var obj2={};
+
+function exyend(a,b){//深拷贝方法
+	for(var key in a){//键值 in 被复制的键名
+		var itme=a[key]//把键值赋值给itme
+		if(itme instanceof Function){//判断itme为某种类型进行赋值
+			b[key]=itme
+		}else if(itme instanceof Array){
+			b[key]=[]
+			exyend(itme,b[key])
+			//使用递归再次调用执行，复制子内容
+		}else if(itme instanceof Object){
+			b[key]={}
+			exyend(itme,b[key])
+		}else{
+			b[key]=itme
+		}
+ 		
+ 	}
+}
+exyend(obj1,obj2)
+console.dir(obj1)
+console.dir(obj2)
+obj2.eat.prototype.newfn()//可以使用原型方法
+fhz.prototype.newfn2()
+
+console.log(obj2.eat.prototype.name2)
+
+obj1.name="ergou";
+console.log(obj1.name)
+console.log(obj2.name)
+
+</script>
+</html>

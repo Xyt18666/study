@@ -1,0 +1,31 @@
+{
+  "pages": [
+    "pages/page1/page1",
+    "pages/page3/page3",
+    "pages/xuexi/xuexi"
+    
+
+    
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#5e7f811a",
+    "navigationBarTitleText": "全局首页",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/page1/page1",
+      "text": "首页",
+      "iconPath": "",
+      "selectedIconPath": ""
+    },{
+      "pagePath": "pages/xuexi/xuexi",
+      "text": "列表",
+      "iconPath": "",
+      "selectedIconPath": ""
+    }]
+  }
+}

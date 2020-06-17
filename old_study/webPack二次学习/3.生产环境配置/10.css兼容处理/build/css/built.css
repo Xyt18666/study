@@ -1,0 +1,9 @@
+.box1{
+    background-color: bisque;
+}
+.box2{
+    background-color: blue;
+    display: flex;
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>
+	</title>
+	<style>
+		div{
+			width: 180px;
+			height: 160px;
+			border:1px solid #0f0;
+		}
+		img{
+			width: 100px;
+			height: 100px;
+		}
+	</style>
+</head>
+<body>
+	<div class="wraps"></div>
+	
+</body>
+<script type="text/javascript">
+var ooo=document.getElementsByClassName("wraps")[0]
+var obj1={
+	imga:"img/1.jpg",
+	name:"三只松鼠",
+	age:6,
+	sex:"男",
+	qq:function(){
+		console.log("name")
+	}
+}
+var obj2={
+	imga:"img/2.jpg",
+	name:"百草味",
+	age:8,
+	sex:"女",
+	qq:function(){
+		console.log("name")
+	}
+}
+
+var sj=3
+
+
+function su(x){
+	ooo.innerHTML=('<div ><img src='+x.imga+' alt="" ><p>'+x.name+'</p><h2>'+x.age+'</h2><h3>'+x.sex+'</h3></div>')
+}
+su(obj1)
+
+var xxx=setInterval(function(){
+	sj--
+	if(sj<=0){
+		su(obj2)
+		clearInterval(xxx)
+
+	}
+},1000)
+
+
+</script>
+</html>

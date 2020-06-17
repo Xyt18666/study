@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+function Preson(name,sex,age){
+	this.name=name;
+	this.sex=sex;
+	this.age=age;
+}
+Preson.prototype={
+	"constructor":"Preson",
+	eat:function(){
+		console.log("吃东西")
+	},
+	sleep:function(){
+		console.log("睡觉")
+	}
+};
+
+
+function xuesheng(name,sex,age,xx){
+	Preson.call(this,name,sex,age)
+	//通国借用构造函数继承属性
+	//解决原型继承属性值相同的缺陷
+	this.xx=xx;
+
+}
+xuesheng.prototype = new Preson();
+//通过原型继承方法，并未初始化属性
+
+xuesheng.prototype.llz=function(){
+	console.log("41456")
+}
+
+var st1= new xuesheng("name","sex","age","学习")
+var st2= new xuesheng("name2","sex2","age2","学习2")
+console.log(st1.name,st1.xx)
+console.log(st2.name,st2.xx)
+
+st1.eat()
+st1.llz()
+st2.eat()
+st2.llz()
+
+//为了数据共享，改变了原型指向，做到了继承
+//缺点：继承过来的属性值都是一样的
+
+
+</script>
+</html>

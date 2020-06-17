@@ -1,0 +1,112 @@
+<!--pages/xuexi/xuexi.wxml-->
+<view class="scetion">
+  <image src="/images/face.4014.large.png"></image>
+  <text class="Tx" bindtap="onTap">开始</text>
+  <view>
+    <text catchtap="onSubTab">模拟按钮</text>
+  </view>
+  <text>苹果6下： 1px = 1rpx = 0.5pt</text>  
+</view>
+
+先下载微信开发者工具,注册,登录,创建项目
+
+默认文件结构解析：
+顶层文件对象app.xxx
+ .js  脚本文件
+ .json  配置对象
+ .wxss  顶层 css文件
+ project.config.json  项目配置文件
+
+
+ pages文件     组件文件夹
+ 每个组件下都有  4种主要文件   .js  .json .wxml  .wxss
+
+
+常用组件 
+
+view   image   text  swiper    block
+
+
+绑定事件 
+bindtap="onTap"   catchtap="onSubTab"
+
+
+
+js的书写格式
+Page    tab键
+// pages/xuexi/xuexi.js
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+
+  },
+  onTap:function(){
+    console.log("触发")
+    // wx.navigateTo({
+    //   url:"../page1/page1"
+    // });//跳转子级
+    wx.redirectTo({
+      url: "../page1/page1",
+    })//跳转某页面
+
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+      console.log("父级页面被隐藏")
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+    console.log("父级页面被关闭")
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
+})
+

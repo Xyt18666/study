@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+// let [a,b,c] = [1,2,3]
+// console.log(a,b,c)//1,2,3
+// 正常解构两边对等
+
+let arr=[5,6]
+let [a,b,c] = arr
+console.log(a,b,c)//1,2,undefined
+// 缺少则为undefined,多则省略
+
+
+
+
+
+
+
+
+// 嵌套赋值
+let [x,y,[z,d]]=[6,8,[9,5]]
+// 同样对等赋值
+console.log(x,y,z,d)
+
+
+
+
+
+
+// 省略赋值
+let ary=[84,6,48,6,5,88,5,54]
+let [p,,,,l,,]=ary
+console.log(p,l)
+// 使用,空开位置，无需赋值，直接跳过
+
+
+// 不定参数的赋值
+
+let [,,i,,j,...n]=[5,6,59,8,95,22,11,77,521,88]
+console.log(i,j,n)
+// ...必须写到最后一个参数上，他是一个数组
+
+
+
+// 默认值
+let [w=9,u,e=8,h,v,tt,ttt=6666]=[5,4,3,2,1]
+console.log(w,u,e,h,v,tt,ttt)
+// 直接在参数内写 =  赋默认值
+// 当结构位置没有值时，才使用默认值，有值会被替换
+// 如果数组成员中不严格等于undefined , 默认值不会生效
+
+
+
+
+function fn(){
+	console.log("fn")
+	return "return fn"
+}
+
+let [xx=fn(),yy=0]=[,22]
+console.log(xx,yy)//1,0
+
+// 只要变量所占在数组中的位置的值undefined，fn()根本不会执行
+// 反之会执行该函数，并拿到return的返回值
+
+
+</script>
+</html>

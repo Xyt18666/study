@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>111</h1>
+</body>
+<script>
+
+   
+    /*
+    
+     window.onfocus  聚焦窗口
+     window.onblur   失焦窗口 
+
+     但是 多窗口时不好用
+
+
+     切换页面会触发
+     
+    */
+//    window.onfocus=function(){
+//        console.log("聚焦")
+//    }
+//    window.onblur=function(){
+//        console.log("失焦")
+//    }
+
+   /*
+    pageVisibility
+   
+    document.onvisibilitychange  事件
+
+    document.hidden  获取隐藏的状态  true 隐藏 / false 显示
+    document.visibilityState  获取显示的状态   hidden 隐藏/visible  显示
+
+
+    主要用于，当页面不聚焦时 ，让计时器类代码 停止运行，防止错乱
+   */
+    let a = 0;
+   let dsq=null;
+   document.onvisibilitychange=function(){
+       console.log(document.hidden)
+       console.log(document.visibilityState)
+
+       if(document.hidden){
+            clearInterval(dsq)
+       }else{
+            dsq=setInterval(function(){
+                console.log(a++)
+            },1000)
+       }
+   }
+</script>
+</html>

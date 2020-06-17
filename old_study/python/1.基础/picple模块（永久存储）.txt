@@ -1,0 +1,21 @@
+import pickle  引入
+
+永久存储案例：
+
+mylist = [455,[1,8,99],64,4,3]   要存的值
+
+pick = open("my_list","wb")  创建文件
+
+pickle.dump(mylist,pick)    存入值
+
+pick.close()   关闭文件
+
+
+
+读取案例：
+
+pickr = open("my_list","rb")
+
+mylist2 = pickle.load(pickr)
+
+-------------------------------------------

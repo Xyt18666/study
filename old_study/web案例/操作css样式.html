@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h2{
+            background: #852;
+        }
+        h3{
+            border:2px solid #789;
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <h2>22</h2>
+    <h3 band="band">33</h3>
+</body>
+<script>
+
+// css样式
+
+document.querySelector("h2").style.cssText=" border:2px solid #777;"
+console.log(window.getComputedStyle(document.querySelector("h2")).background)
+// console.log(document.querySelector("h2").currentStyle.background)
+
+
+
+
+
+
+
+// --------------------------------------------------------
+
+
+// 属性节点 : ↓ ↓ ↓ 
+console.log(document.querySelector("h3").getAttribute("band"))
+// setAttribute(属性,值)
+// removeAttribute(属性)
+</script>
+</html>

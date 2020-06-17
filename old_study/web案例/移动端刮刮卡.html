@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		img{
+			width: 500px;
+			height: 200px;
+			position: absolute;
+			z-index: -1;
+		}
+	</style>
+</head>
+<body>
+	<img src="2 (1).png" alt="">
+	<canvas width="500px" height="200px" style="border:2px solid #789;"></canvas>
+</body>
+<script>
+let can = $("canvas")[0]
+let c = $("canvas")[0].getContext("2d");
+
+c.beginPath()//设置基础遮罩
+c.fillStyle="#ccc";
+c.fillRect(0,0,500,200)
+c.closePath()
+
+can.ontouchstart=(e)=>{
+	var x= e.touches[0].clientX-can.offsetLeft//获取鼠标位置
+	var y= e.touches[0].clientY-can.offsetTop
+
+
+	console.log(x,y)
+	c.moveTo(x,y)//赋值给开始
+	c.globalCompositeOperation='destination-out';//设置合成样式
+	document.ontouchmove=(e)=>{
+		var x1= e.touches[0].clientX-can.offsetLeft
+		var y1= e.touches[0].clientY-can.offsetTop
+		c.lineTo(x1,y1)//画笔运动赋值
+		c.lineWidth=40;//设置大小
+		c.lineJoin="round";
+		c.lineCap="round";//设置圆角
+		c.stroke()//绘制
+	}
+	document.ontouchend=(e)=>{
+		var datas=c.getImageData(0,0,500,200)//获取像素
+		var num=0;//自定义属性，保存数量
+		for(var a=0; a<datas.data.length; a+=4){
+			var alp=datas.data[a+3]//获取透明色
+			if(alp===0){
+				num++ //假如透明自增
+			}	
+		}
+		if(num>500*200*0.7){//假如数量大于总像素的70%
+			c.clearRect(0,0,500,200)//清空
+		}
+		document.ontouchmove=null//移除事件
+	}
+
+}
+
+
+</script>
+</html>

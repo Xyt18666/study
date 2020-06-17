@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin:0;
+				padding:0;
+			}
+			div{
+				width: 100px;
+				height: 30px;
+				color:#fff;
+				text-align: center;
+			}
+			[data-div-type="warning"]{
+				background:red;
+			}
+			[data-div-type="confirm"]{
+				background: yellow;
+			}
+		</style>
+	</head>
+	<body>
+		<div data-div-type="warning" data-index="2" class="box1">警告</div>
+		<div data-div-type="confirm" class="box2">确认</div>
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		var box1=document.querySelector(".box1")
+		//通过data-设置的自定义属性，保存在dataset这个属性中
+		var index=box1.dataset.index
+		console.log(index);
+		//data-设置的属性，用-的都转成驼峰命名法
+		var type=box1.dataset.divType
+		console.log(type);
+		//更改属性直接调用dataset进行赋值即可
+		box1.dataset.index="12345"
+		
+		//jq中提供了一个方法data(),可以获取对应的data-设置的属性值
+		
+		var type2=$(".box1").data("divType")
+		console.log(type2);
+		
+		var box2=document.querySelector(".box2")
+		//同样也可以使用getAttribute来获取对应的属性值，但是要写全
+		var type3=box2.getAttribute("data-div-type")
+		console.log(type3);
+		box2.setAttribute("data-div-type","123")
+	</script>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.box{
+			width: 200px;
+			height: 160px;
+			background: rgba(142,33,0,0.6);
+			border-radius:5px;
+			box-shadow:0 0 10px 2px #789;
+			left: 50px;
+			top: 50px;
+			position: absolute;
+		}
+		.mask{
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			width: 10px;
+			height: 10px;
+			background: #000;
+			border-radius:0 0 5px 0;
+		}
+		.mask:hover{
+			cursor: se-resize;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="mask"></div>
+	</div>
+</body>
+<script>
+$(function(){
+	$(".mask").mousedown(function(e){
+		e.stopPropagation()
+		$(".box").css({
+			cursor: "se-resize"
+		})
+
+		let csx = e.pageX
+		let csy = e.pageY
+		let boxw = $(".box").width()
+		let boxh = $(".box").height()
+
+		$(document).mousemove(function(e){
+			let x = boxw + (e.pageX-csx)
+			let y = boxh + (e.pageY-csy)
+			x = x<50?50:x
+			y = y<50?50:y
+			$(".box").css({
+				width:x,
+				height:y
+			})
+		})
+		$(document).mouseup(function(){
+			$(document).unbind("mousemove")	
+		})
+	})
+
+	$(".box").mousedown(function(e){
+		let bx = e.pageX
+		let by = e.pageY
+		let bml = $(this).offset().left
+		let bmt = $(this).offset().top
+
+		$(document).mousemove(function(e){
+			let x = e.pageX-(bx-bml)
+			let y = e.pageY-(by-bmt)
+
+
+			x = x<0?0:x
+			y = y<0?0:y
+
+			x = x > $(window).width() - $(".box").width() ? $(window).width() - $(".box").width():x
+			y = y > $(window).height() - $(".box").height() ? $(window).height() - $(".box").height():y
+
+			$(".box").css({
+				left:x,
+				top:y
+			})
+		})
+		$(document).mouseup(function(){
+			$(".box").css({
+				cursor: "default"
+			})
+			$(document).unbind("mousemove")	
+
+			
+		})
+	})
+
+})
+
+
+</script>
+</html>

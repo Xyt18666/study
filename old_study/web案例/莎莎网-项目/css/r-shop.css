@@ -1,0 +1,137 @@
+.r-shop{
+	position: fixed;
+	top: 0;
+	right: 0;
+	height: 100%;
+	width: 38px;
+	background-color: #4c4c4c;
+}
+.r-shop>a {
+	float: left;
+	width: 38px;
+	height: 38px;
+}
+.r-shop>a .ht{
+	opacity:0;
+	width: 0;
+}
+.r-shop .zh{
+	margin-top: 130px;
+	margin-bottom: 10px;
+	background: url(../img/r-shop/zh.png) ;
+}
+.r-shop .gwc{
+	height: 100px;
+	width: 38px;
+	border-top:1px solid #999999;
+	border-bottom:1px solid #999999 ;
+}
+.r-shop .gwc p{
+	width: 12px;
+	margin-left: 13px;
+	font:12px/15px "";
+	color: #fff;
+	margin-bottom: 2px;
+}
+.r-shop .gwc i{
+	float: left;
+	width: 38px;
+	height: 30px;
+	background: url(../img/r-shop/gwc.png) ;
+}
+.r-shop .gwc em{
+	float: left;
+	margin-left: 11px;
+	width: 17px;
+	height: 17px;
+	border-radius:50%;
+	background-color: #ec3e7d;
+	color: #fff;
+	font:12px/17px "";
+	text-align: center;
+}
+.r-shop .sc {
+	margin-top: 10px;
+	background: url(../img/r-shop/sc.png);
+}
+.r-shop .ll {
+	background: url(../img/r-shop/ll.png);
+}
+.r-shop .kf {
+	margin-top: 135px;
+	background: url(../img/r-shop/kf.png);
+}
+.r-shop .wx {
+	margin-bottom: 20px;
+	background: url(../img/r-shop/ew.png);
+}
+.r-shop .totop i{
+	float: left;
+	width: 11px;
+	height: 7px;
+	margin-bottom: 5px;
+	margin-left: 13px;
+	background: url(../img/r-shop/jj.png);
+}
+.r-shop .totop p{
+	font:12px/12px "";
+	height: 12px;
+	color: #fff;
+	width: 38px;
+	text-align: center;
+}
+.r-shop a{
+	position: relative;
+}
+.r-shop .ht{
+	width: 90px;
+	height: 38px;
+	background: #999999;
+	position: absolute;
+	left: -150px;
+}
+.r-shop .ht .rjj{
+	position: absolute;
+	background:url(../img/r-shop/hjj.png);
+	width: 7px;
+	height: 13px;
+	right: -7px;
+	top: 13px;
+}
+.r-shop .ht{
+	font:13px/38px "";
+	text-align: center;
+	color: #fff;
+}
+.r-shop .h-child:hover .ht{
+	opacity:1;
+	width: 90px;
+	left: -90px;
+	transition:0.5s;
+}
+.r-shop .wx{
+	position: relative;
+}
+.r-shop .wx .htz{
+	width: 0px;
+	height: 140px;
+	position: absolute;
+	left: -180px;
+	top: -52px;
+	opacity:0;
+}
+.r-shop .wx .htz .rjj{
+	position: absolute;
+	width: 7px;
+	height: 13px;
+	right: -7px;
+	top: 63px;
+	background:url(../img/r-shop/hjjb.png)
+}
+.r-shop .wx:hover .htz{
+	left: -140px;
+	width: 140px;
+	opacity: 1;
+
+	transition:0.5s;
+}

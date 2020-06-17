@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+class jt {
+    constructor(){
+        this.state = {
+            color:'red'
+        }
+    }
+    
+    static ch = '静态属性'
+    static arr =[12121.2,8778]
+    static obj ={
+        ok:12
+    }
+    fun = ()=> {
+        console.log('方法')
+    }
+}
+var xx = new jt()
+xx.fun()
+// 从此得出结论，我的react 配置有问题
+// 导致我无法使用静态属性
+</script>
+</html>

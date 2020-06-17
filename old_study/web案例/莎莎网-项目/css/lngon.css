@@ -1,0 +1,146 @@
+.wp{
+	width: 100%;
+}
+.wr-c{
+	width: 1090px;
+	height: 800px;
+	margin: 0 auto;
+}
+.wr-c a{
+	margin-top: 21px;
+	display: block;
+	width: 100%;
+	margin-bottom: 70px;
+}
+.wr-c a img{
+	width: 181px;
+	height: 45px;
+}
+.cont{
+	width: 1090px;
+	height: 553px;
+	background:#fff url(../img/logon/ll.png) no-repeat 0 70px ;
+}
+.cont form{
+	width: 350px;
+
+	background: #fff;
+	padding: 35px;
+	margin-left: 600px;
+	box-shadow:0 0 30px 1px #ccc;
+}
+.cont form .top{
+	margin-bottom: 40px;
+}
+.cont form .top p{
+	float: right;
+	font:12px/22px "";
+	color: #5a5d6c;
+}
+.cont form .top p span{
+	color: #ec3e7d;
+}
+.cont form .top h3{
+	float: left;
+	font:20px/22px "";
+	color: #5a5d6c;
+}
+input[placeholder="邮箱/手机"],input[type="password"]{
+	width: 320px;
+	height: 34px;
+	padding-left: 28px;
+	border:1px solid #ccc;
+	margin-bottom: 25px;
+	background: url(../img/logon/txk.png) no-repeat;
+}
+input[placeholder="邮箱/手机"]{
+	background-position:5px -121px ;
+}
+input[type="password"]{
+	background-position:5px -160px ;
+}
+.yzm{
+	overflow: hidden;
+}
+.yzm input{
+	width: 123px;
+	height: 34px;
+	border:1px solid #ccc;
+	float: left;
+	padding-left: 5px;
+	margin-right: 5px;
+}
+.yzm img{
+	width: 80px;
+	height: 36px;
+	float: left;
+	margin-bottom: 3px;
+	margin-right: 7px;
+}
+.yzm p{
+	float: left;
+	font:12px/32px "";
+	color: #666;
+}
+.jz{
+	overflow: hidden;
+	margin-top: 30px;
+}
+.jz label input{
+	margin-right: 13px;
+}
+.jz label,.jz p{
+	float: left;
+	font:12px/12px "";
+}
+.jz label{
+	color: #666;
+	margin-right: 20px;
+
+}
+.jz p{
+	color: #ed3f7e;
+}
+.dl{
+	width: 350px;
+	height: 40px;
+	text-align: center;
+	font:16px/40px "";
+	color: #fff;
+	background: #ec3e7d;
+	margin-top: 35px;
+	margin-bottom: 50px;
+}
+.bbt h5{
+	font:12px/12px "";
+	color: #3e3e3e;
+	margin-bottom: 15px;
+}
+.dsf{
+	overflow: hidden;
+	margin-bottom: 30px;
+}
+
+.dsf .qq,.dsf .wb,.dsf .zfb{
+	margin-right: 25px;
+}
+.dsf img{
+	margin-right: 5px;
+}
+.dsf .qq,.dsf .wb,.dsf .zfb,.dsf img,.dsf p{
+	float: left;
+}
+.dsf p{
+	color: #3e3e3e;
+	font:12px/35px "";
+}
+.dsf .qq img,.dsf .wb img{
+	margin-top: 5px;
+}
+.hor{
+	outline:none;
+}
+.hor:hover{
+	border-color:#fdaac8;
+	box-shadow:0 0 5px 1px #fdaac8;
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style:none;
+		}
+		main{
+			width: 1190px;
+			margin: 0 auto;
+			margin-top: 800px;
+		}
+		ul li{
+			width: 1190px;
+			height: 600px;
+			background: #789;
+			margin-bottom: 20px;
+		}
+		aside{
+			width: 50px;
+			position: absolute;
+			top: 800px;
+			right: 0;
+			
+		}
+		ol li{
+			width: 50px;
+			height: 30px;
+			background: #741;
+			margin-bottom: 5px;
+		}
+	</style>
+</head>
+<body>
+	<main>
+		<ul class="list">
+			<li>d1</li>
+			<li>d2</li>
+			<li>d3</li>
+			<li>d4</li>
+			<li>d5</li>
+			<li>d6</li>
+			<li>d7</li>
+			<li>d8</li>
+		</ul>
+	</main>
+	<aside>
+		<ol>
+			<li>k1</li>
+			<li>k2</li>
+			<li>k3</li>
+			<li>k4</li>
+			<li>k5</li>
+			<li>k6</li>
+			<li>k7</li>
+			<li>k8</li>
+		</ol>
+	</aside>
+</body>
+<script>
+$(window).scroll(function(){
+	var st = $(window).scrollTop()
+	st>600?$("aside").css({position:"fixed",top:200}):$("aside").css({position:"absolute",top:600})
+
+	var max=st+$("ul li").eq(1).height()/2
+	var min=st-$("ul li").eq(1).height()/2
+	console.log(max,min)
+	$("ul li").each(function(index){
+		console.log(index)
+		var objs= $("ul li").eq(index).offset().top
+		if(objs>min && objs<max){
+			$("ol li").eq(index).css("background","red").siblings().css("background","#741")
+		}
+	})
+})
+$("ol li").click(function(){
+	console.log()
+	var stz= $("ul li").eq($(this).index()).offset().top
+	$("html,body").animate({
+		scrollTop:stz
+	},300)
+})
+
+</script>
+</html>

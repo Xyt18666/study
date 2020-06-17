@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js" ></script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		main{
+			width: 1200px;
+			margin: 0 auto;
+			background: #789;
+			padding-top: 20px;
+		}
+		input{
+			border:2px solid #456;
+			display: block;
+			outline: none;
+			width: 600px;
+			height: 50px;
+			font:28px/50px "一纸情书";
+			margin: 0 auto;
+		}
+		h3{
+			width: 300px;
+			position: relative;
+			margin-left: -150px;
+			left: 50%;
+			height: 50px;
+			margin-bottom: 50px;
+			
+		}
+		h3 p{
+			float: left;
+			width: 100px;
+			font:36px/50px "一纸情书";
+		}
+		img{
+			width: 60px;
+			height: 80px;
+		}
+		.imgbox{
+			width: 540px;
+			position: relative;
+			margin-left: -270px;
+			left: 50%;
+		}
+		h2,h4,h5{
+			width: 160px;
+			height: 30px;
+			margin-left: 50px;
+			border:2px solid red;
+			text-align: center;
+			background: #fff;
+			float: left;
+		}
+		.but{
+			height: 50px;
+			position: relative;
+			margin-top: 30px;
+			left: 50%;
+			margin-left: -400px;
+		}
+	</style>
+</head>
+<body>
+	<main>
+		<input type="text">
+		<h3>
+			<p><span>00</span>时</p>
+			<p><span>00</span>分</p>
+			<p><span>00</span>秒</p>
+		</h3>
+		<div class="imgbox">
+			<img src="img/0.jpg" alt="">
+			<img src="img/0.jpg" alt="">
+			<img src="img/10.jpg" alt="">
+			<img src="img/0.jpg" alt="">
+			<img src="img/0.jpg" alt="">
+			<img src="img/10.jpg" alt="">
+			<img src="img/0.jpg" alt="">
+			<img src="img/0.jpg" alt="">
+		</div>
+		<div class="but">
+			<h2>开始</h2>
+			<h4>暂停</h4>
+			<h5>重置</h5>
+		</div>
+		
+	</main>
+</body>
+<script>
+	$("main>input").on("input",function(){
+		var tim= $(this).val()
+		tab(tim)
+	})
+	var dsq=null
+	$("h2").click(function(){
+		var tim= $("input").val()
+		dsq=setInterval(function(){
+			tim<=0?clearInterval(dsq):null
+			tim--
+			$("input").val(tim)
+			tab(tim)
+		},1000)
+	})
+	$("h4").click(function(){
+		clearInterval(dsq)
+	})
+	$("h5").click(function(){
+		clearInterval(dsq)
+		$("input").val("")
+		tab(0)
+	})
+
+
+	function tab(tim){
+		var s,f,m;
+		s=parseInt(tim/3600)
+		f=parseInt((tim%3600)/60)
+		m=parseInt(tim%60)
+		s=s<10?"0"+s:s
+		f=f<10?"0"+f:f
+		m=m<10?"0"+m:m
+		$("p:contains(时)").children("span").text(s)
+		$("p:contains(分)").children("span").text(f)
+		$("p:contains(秒)").children("span").text(m)
+		var sjstr=""+s+f+m
+		for(var a=0; a<sjstr.length; a++){
+			$(".imgbox img:not([src='img/10.jpg'])").eq(a).attr("src","img/"+sjstr[a]+".jpg")
+		}
+	}
+</script>
+</html>

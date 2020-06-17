@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+// Object.is()   判断是否相等
+
+console.log(NaN==NaN)//flase  === false
+console.log(Object.is(NaN,NaN))//true
+
+
+let ary = [1,2,NaN,3,4,NaN,1,2]
+console.log(ary.includes(NaN))//true
+
+// 实现数组去重
+let narr=[]
+ary.forEach((item,index)=>{
+	let f=true
+	for(let i=0; i<narr.length; i++){
+		if(Object.is(item,narr[i])){
+			// 如果这里使用 == 去判断是无法去重NaN的
+			f=false
+		}
+	}
+	if(f){
+		narr.push(item)
+	}
+})
+console.log(narr)
+
+// ---------------------------------------
+
+// Object.assign(obj1,obj2)  将obj2合并到obj1，返回obj1
+
+let obj1={a:"111"},obj2={s:"vvv"}
+
+console.log(Object.assign(obj1,obj2)==obj1)//返回合并后的obj1
+console.log(obj1,obj2)//obj2不变
+
+// ------------------------------------------------
+
+// Object.getOwnPropertyDescriptor()  获取对一个私有属性的描述
+
+
+console.log(Object.getOwnPropertyDescriptor("sdfgdsg","length"))//字符串
+
+/*
+
+configurable: false 能否通过delete删除或修改
+enumerable: false 是否可枚举   
+value: 7     值的数量
+writable: false   是否可写
+__proto__: Object  原型
+
+ */
+
+
+console.log(Object.getOwnPropertyDescriptor([5,2,4,8],"length"))//数组
+
+
+console.log(Object.getOwnPropertyDescriptor({a:"b",c:"d"},"c"))//对象
+
+// ------------------------------
+
+// 属性的遍历
+// for in     
+// Object.keys()  返回数组，包括对象自身所有可枚举属性(私有的)
+
+//Object.getOwnPropertyNames()返回数组，包括对象自身所有属性(私有的),包括不可枚举
+
+
+
+// ----------------------------------------
+
+// 什么是可枚举
+// 可枚举性（enumerable）用来控制所描述的属性，是否将被包括在for...in循环之中。具体来说，如果一个属性的enumerable为false，下面三个操作不会取到该属性。
+// * for..in循环
+// * Object.keys方法
+// * JSON.stringify方法
+
+
+</script>
+</html>

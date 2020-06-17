@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .jd{
+            width: 300px;
+            height: 20px;
+            overflow: hidden;
+            border-radius:20px;
+            position: relative;
+            background: #fff;
+            border:2px solid rgb(112, 6, 233);
+        }
+        .jd .in{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 20px;
+            background: #0f0;
+        }
+        .jd .up{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 20px;
+            z-index: 99;
+            background: transparent;
+        }
+        .volume{
+            border:2px solid #555;
+            width: 150px;
+            height: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .volume .in{
+            width: 150px;
+            height: 5px;
+            background: #00f;
+        }
+        .volume .up{
+            width: 5px;
+            height: 15px;
+            z-index: 88;
+            margin-left: -5px;
+            background: #333;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        音乐封面：
+        <img src="#" alt="">
+    </div>
+    <div class="qm">
+        歌曲名称：
+        <p></p>
+    </div>
+    <audio src="#">
+
+    </audio>
+    <div class="time">时间进度：<i></i>/<em></em></div>
+    <div class="jd">
+        <div class="in"></div>
+        <div class="up"></div>
+    </div>
+
+    <div class="volume">
+        <div class="in"></div>
+        <div class="up"></div>
+    </div>
+
+    <div class="onoff">开关</div>
+    <h2>上一曲</h2>
+    <h3>下一曲</h3>
+    <h4>单曲循环</h4>
+    <h5>随机播放</h5>
+    <h6>列表循环</h6>
+    <div class="bs">
+        倍速：
+        <p>0.5</p>
+        <p>1</p>
+        <p>1.5</p>
+        <p>2</p>
+    </div>
+    <section>拖拽获取音乐文件</section>
+</body>
+<script>
+/*
+实现的 功能：
+1.开始、暂停  *
+2.进度条、点击拖拽  *
+3.输出 进度时间  *
+4.音量的、点击 拖拽  *
+5.通过 获取 json 数据 进行输出 *
+6.上一首 下一首切换 *
+7.播放完毕 自动播放下一首 *
+8.完成 随机播放 单曲循环 列表循环  *
+9.拖拽文件 播放 *
+
+
+10.倍速播放视频 *
+11.全屏播放视频  *
+*/ 
+
+
+/*
+点击时全屏：
+$(".xx").click(function(){
+    //操作全屏事件。并兼容
+    if(video.requestFullScreen){
+            video.requestFullScreen()
+    }else if(video.webkitRequestFullScreen){
+            video.webkitRequestFullScreen()
+    }else if(video.mozRequestFullScreen){
+            video.mozRequestFullScreen()
+    }else if(video.msRequestFullScreen){
+            video.msRequestFullScreen()
+    }
+})
+*/
+
+let Music = [
+    {
+        name:"GUMI - KiLLER LADY",
+        img:"GUMI - KiLLER LADY.mp3.jpg",
+        src:"GUMI - KiLLER LADY.mp3"
+    },
+    {
+        name:"安妮：那个你看见过我的小熊么~",
+        img:"安妮：那个你看见过我的小熊么_&_16a5f92b-2918-4984-9b2d-55dcd665c9bd.mp3.jpg",
+        src:"安妮：那个你看见过我的小熊么_&_16a5f92b-2918-4984-9b2d-55dcd665c9bd.mp3"
+    },
+    {
+        name:"野孩子",
+        img:"杨千嬅 - 野孩子.mp3.jpg",
+        src:"杨千嬅 - 野孩子.mp3"
+    },
+]
+
+function getRandomNumberByRange(start, end) {
+    return Math.floor(Math.random() * (end - start) + start)
+}
+
+
+function getSML(data){   //时间转换 函数
+    var s=Math.floor(data/3600)
+    var f=Math.floor(data%3600/60)
+    var m=Math.floor(data%60)
+    s=s<10?"0"+s:s
+    f=f<10?"0"+f:f
+    m=m<10?"0"+m:m
+    return s+":"+f+":"+m
+}
+var audio,dsq;
+let state = "lbxh";
+
+
+
+$(()=>{
+    let index = 0;
+    plays(index)
+
+    audio = $("audio")[0];//获取播放元素
+	
+
+    function of(){
+        //判断播放状态
+        if(audio.paused){
+            audio.play()//改变状态、样式  开始
+            $(this).css("background","#0f0")
+        }else{
+            audio.pause() //停止
+            $(this).css("background","red")
+        }
+    }
+
+    // 开关
+    $(".onoff").click(function(){
+       of()
+    })
+
+    
+    
+    // 当 音频 视频 可以播放的时候 获取总时长
+    
+    audio.oncanplay = function(){
+       dsq = setInterval(function(){
+            var total=audio.duration//获取总时长
+            var curr=audio.currentTime;	//当前播放的时间
+            $(".time em").text(getSML(total))
+            $(".time i").text(getSML(curr))
+        },1000)//这个定时器为了输出总时长
+    }
+    
+
+    //播放时触发，currentTime改变就会触发
+    audio.ontimeupdate = function(){
+        var curr=audio.currentTime;	//当前播放的时间
+        $(".time i").text(getSML(curr))
+
+        //设置百分百，赋值到元素
+        var bl= curr/audio.duration 
+        //  当前时长/总时长 * 100 + %
+        //     比率   直接放大 100倍 ，就是 进度 百分比
+        $(".jd .in").width(bl * 100 + "%")
+    }
+
+    // 进度点击 拖拽时
+    $(".jd .up").on("mousedown",function(e){
+        audio.pause()
+        let bl = e.offsetX / $(".up").width()
+        var cur = bl * audio.duration //比率*总时长
+        audio.currentTime = cur //赋值给播放的位置
+
+        $(".jd .in").width(bl * 100 + "%")
+  
+        $(".jd .up").on("mousemove",function(e){
+            e.preventDefault()
+            let bl2 = e.offsetX / $(".jd .up").width()
+            $(".jd .in").width(bl2 * 100 + "%")
+            var cur = bl2*audio.duration //比率*总时长
+            audio.currentTime = cur //赋值给播放的位置
+        })
+        $(window).on("mouseup",function(){
+            $(".jd .up").off("mousemove")
+            audio.play()
+        })
+    })
+
+
+
+    //音量调节键，拖动
+    $(".volume .up").on("mousedown",function(){
+        $(document).on("mousemove",function(e){
+            var xx = e.pageX - $(".volume").offset().left
+            //移动时，获取距离文档的位置 - 父级距离文档的位置
+            // console.log(xx)  
+            //获取的是当前位置值，如果不是100px的宽度，需要计算比率
+            // 当前位置值/总长度 = 比率
+            let bl = xx / $(".volume").width() * 100
+
+            // 限制拖动范围
+            bl=bl<0?0:bl
+            bl=bl>100?100:bl
+
+            // console.log(bl)
+            var yi = bl / 100
+            // 运算赋值
+            let tl = yi * $(".volume").width() - $(".volume").width()
+            tl = tl<= -145?-145:tl
+
+            $(".volume .up").css({
+                "transform":`translate(${tl}px,0)`
+            })
+            audio.volume=yi
+        })
+        
+    })
+
+    $(document).on("mouseup",function(){
+        $(document).off("mousemove")
+    })
+
+
+    // 倍速播放
+    for(let a= 0; a<$(".bs p").length; a++){
+        let bs = [0.5,1,1.5,2]
+        $(".bs p").eq(a).click(function(){
+            audio.playbackRate = bs[a]
+            console.log(audio.playbackRate)
+        })
+    }
+
+    // 切换歌曲
+    function plays(index){
+        $(".qm p").text(Music[index].name)
+        $("img").attr("src",`img/${Music[index].img}`)
+        $("audio").attr("src",`audio/${Music[index].src}`)
+    }
+
+    // 上下首
+    $("h2").click(function(){
+        index--
+        index = index<0?Music.length-1:index
+        plays(index)
+        of()
+    })
+    $("h3").click(function(){
+        index++
+        index = index>Music.length-1?0:index
+        plays(index)
+        of()
+    })
+
+    // 结束自动播放 下一曲
+    audio.onended=function(){
+        // 判断处于什么模式
+        // audio.pause()
+        console.log(state)
+        switch (state){
+            case "loop":
+                audio.loop = true;
+                break
+            case "lbxh":
+                index++
+                index = index>Music.length-1?0:index
+                plays(index)
+                break
+            case "sjbf":
+                plays(getRandomNumberByRange(0,Music.length-1))
+                break
+        }
+        of()
+    }
+
+    $("h4").click(function(){  //单曲循环
+        state = "loop"
+    })
+    $("h5").click(function(){ 
+        state = "sjbf"
+    })
+    $("h6").click(function(){ 
+        state = "lbxh"
+    })
+
+
+
+
+    //文件读取封装
+    function read(f){//参数是获取的files
+        var reader= new FileReader() //创建文件读取对象
+        // var files= $("input")[0].files
+        // console.log(files)
+        reader.readAsDataURL(f)//转换data开头的字符串
+        console.log(f)
+        reader.onload=function(){//完成后
+            console.log(reader.result)//获取到result 字符串
+            audio.src=reader.result;//直接赋值给src
+            $(".qm p").text(f.name)//赋值name
+
+            for(let x=0; x<Music.length; x++){
+                console.log(f.name , Music[x].name)
+                if(f.name == Music[x].src){//通过遍历赋值图片
+                    $("img").attr("src","img/"+Music[x].src+".jpg")
+                }else{
+                    $("img").attr("alt","没有所需图片")
+                }
+            }
+            audio.play()//开始播放
+        }
+    }
+
+
+    document.ondragover=function(e){e.preventDefault()}//阻止document的默认事件
+    document.ondrop=function(e){e.preventDefault()}//阻止document的默认事件
+    
+    $("section")[0].ondragover=function(e){e.preventDefault()}//阻止默认事件
+    
+    $("section")[0].ondrop=function(e){//拖拽释放时
+        console.log(e.dataTransfer)
+        var f=e.dataTransfer.files[0]//常用于桌面拖进浏览器的文件信息
+        read(f)//读取被拖入的文件  
+    }
+
+})
+
+</script>
+</html>

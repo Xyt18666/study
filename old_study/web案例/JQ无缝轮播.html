@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.list li{
+			list-style:none;
+			width: 680px;
+			height: 430px;
+			float: left;
+		}
+		img{
+			display: block;
+			width: 680px;
+			height: 430px;
+		}
+		.wrap,.wrap2{
+			overflow: hidden;
+			position: relative;
+			width: 680px;
+			height: 430px;
+			margin: 50px auto;
+		}
+		.list{
+			position: absolute;
+			width: 4760px;
+			height: 430px;
+		}
+		.le,.ri{
+			position: absolute;
+			top: 50%;
+			margin-top: -30px;
+			height: 60px;
+			width: 40px;
+			text-align: center;
+			color: #789;
+			font:bold 80px/60px "一纸情书";
+		}
+		.le{
+			left: 0;
+		}
+		.ri{
+			right: 0;
+		}
+		.dd{
+			bottom: 20px;
+			position: absolute;
+			left: 50%;
+			margin-left: -75px;
+			height: 20px;
+		}
+		.dd li {
+			width: 20px;
+			list-style:none;
+			height: 20px;
+			margin-right: 10px;
+			background: #000;
+			float: left;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<!-- <ul class="list">
+			<li><a href="#"><img src="" alt=""></a></li>
+		</ul>
+		<ol class="dd">
+			<li></li>
+		</ol>
+		<div class="le"><</div>
+		<div class="ri">></div> -->
+	</div>
+	<div class="wrap2">
+	</div>
+	<p>sdfsdf</p>
+</body>
+
+<script>
+
+$.ajax({
+	type:"POST",
+	url:"json/lubo.json",
+	data:"",
+	success:function(e){
+		console.log(e)
+
+
+		$(".wrap").append('<ul class="list"></ul><ol class="dd"></ol><div class="le"><</div><div class="ri">></div>')
+		for(var a=0; a<e.length; a++){
+			$('<li><a href='+e[a].hre+'><img src='+e[a].image+' alt=""></a></li>').appendTo("ul")
+			$('<li></li>').appendTo(".dd")
+		}
+		$($(".list li:first")[0].cloneNode(true)).appendTo(".list")
+		$($(".list li:last").prev()[0].cloneNode(true)).prependTo(".list")
+		$(".list").css({left:-$(".list li:first").width()});
+		var index=1;
+		tab()
+		$(".le").click(function(){
+			index--
+			if(index<1){
+				// index=5
+				index = $(".list li").length-2;
+				$(".list").css({left: -($(".list li").length-1)*($(".list li:first").width())})
+			}
+			tab()
+		})
+		$(".ri").click(function(){
+			index++
+			if(index>$(".list li").length-2){
+				index=1
+				$(".list").css({left:0});
+				// $(".list").css(left, $(".list li img").width() * - $(".list li").length-1)
+			}	
+			tab()
+		})
+		var ds=setInterval(function(){
+			$(".ri").click()
+		},2000)
+		$(".wrap").mouseover(function(){
+			clearInterval(ds)
+		})
+		$(".wrap").mouseout(function(){
+			ds=setInterval(function(){
+				$(".ri").click()
+			},2000)
+		})
+		for(let a=0; a<$(".dd li").length; a++){
+			$($(".dd li")[a]).mouseover(function(){
+				index=a+1
+				tab()
+			})
+		}
+		function tab(){
+			for(var a=0; a< $(".dd li").length; a++){
+				$($(".dd li")[a]).css("background","#000")
+			}
+			$($(".dd li")[index-1]).css("background","red")
+			$(".list").animate({
+				"left":-index* $(".list li:first").width()
+			})
+		}
+
+
+	},
+	dataType:"json"
+})
+
+
+
+</script>
+
+</html>

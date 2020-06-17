@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.box1,.box2{
+			width: 160px;
+			height: 120px;
+		}
+		.box1 .on,.box2 .on{
+			width: 160px;
+			height: 120px;
+			border:5px solid #789;
+			overflow: hidden;
+			position: relative;
+		}
+		.box1 img,.box2 img{
+			width: 160px;
+			height: 120px;
+			display: block;
+			transition:0.5s;
+		}
+		.box1 .but,.box2 .but{
+			border:2px solid #666;
+			text-align: center;
+			margin: 0 auto;
+			width: 80px;
+			margin-top: 60px;
+		}
+		.box1 .in{
+			width: 160px;
+			height: 120px;
+			position: absolute;
+			top: -120px;
+			left: 0;
+			transition:1s;
+			background: rgba(0,0,0,0.3);
+		}
+		.box1:hover .in{
+			top: 0px;
+		}
+		.box1:hover img{
+			transform:scale(1.2);
+		}
+		.box1 .but:hover{
+			background: red;
+		}
+
+		.box2 .in{
+			transition:1s;
+			background: rgba(0,0,0,0.3);
+			width: 0px;
+			height: 0px;
+			position: absolute;
+			overflow: hidden;
+			top: 60px;
+			left: 80px;
+		}
+		.box2 p{
+			text-align: center;
+		}
+		.box2:hover img{
+			transform:scale(1.2);
+		}
+		.box2:hover .in{
+			width: 160px;
+			height: 120px;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+
+
+
+		.box3{
+			width: 160px;
+			height: 120px;
+			background: #789;
+			border:5px solid #789;
+			position: relative;
+			overflow: hidden;
+		}
+		.box3 .on{
+			width: 160px;
+			height: 120px;
+
+			transform-style:preserve-3d;/*flat*/
+			perspective:200px;
+			position: absolute;
+			z-index: 999;
+
+		}
+		.box3 img{
+			width: 160px;
+			height: 120px;
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			transition:1s;
+			
+		}
+		.box3 .in{
+			width: 160px;
+			height: 120px;
+			position: absolute;
+			left: 0;
+			bottom: 120px;
+			transition:1s;
+			background: #0f0;
+		}
+		.box3:hover img{
+			transform:rotateX(75deg);
+			transform-origin:50% 100%;
+		}
+		.box3:hover .in{
+			bottom: 0;
+		}
+
+
+
+		.box4{
+			width: 160px;
+			height: 120px;
+			background: #789;
+			border:5px solid #789;
+			position: relative;
+			overflow: hidden;
+
+			transform-style:preserve-3d;
+			perspective:200px;
+		}
+		.box4 .on{
+			width: 160px;
+			height: 120px;
+			transform-style:preserve-3d;
+			perspective:200px;
+			position: absolute;
+			z-index: 90;
+			transition:1s;
+		}
+		.box4 .in{
+			width: 160px;
+			height: 120px;
+			position: absolute;
+			left: 0;
+			top: 0;
+			transform:rotateX(90deg);
+			transform-origin:50% 0%;
+			transition:1s;
+			background: #0f0;
+			opacity: 0;
+		}
+		.box4 img{
+			width: 160px;
+			height: 120px;
+			display: block;
+			transition:1s;
+		}
+		.box4:hover img{
+			transform:scale(1.2);
+		}
+		.box4:hover .in{
+			transform:rotateX(0deg);
+			transform-origin:50% 0%;
+			
+			opacity: 1;
+			z-index: 99;
+			
+		}
+	
+		.box5{
+			width: 180px;
+			height: 120px;
+			border:3px solid #789;
+
+			transform-style:preserve-3d;
+			perspective:center center;
+		}
+		.box5 .con{
+			position: relative;
+			width: 180px;
+			height: 120px;
+			transform-style:preserve-3d;
+			animation:box5 3s forwards;
+		}
+		.box5 .con span{
+			position: absolute;
+			width: 180px;
+			height: 120px;
+		}
+		.box5 .con span:nth-child(1){
+			background: #741;
+			transform:translateZ(1px);
+		}
+		.box5 .con span:nth-child(2){
+			background: red;
+			transform:rotateX(180deg) rotateZ(360deg);
+		}
+		.box5:hover .con{
+			animation:box52 3s forwards;
+		}
+		@keyframes box5{
+			0%,10%{
+				transform:scale(1) rotateX(180deg);
+				
+			}
+			10%,50%{
+				transform:scale(0.6);
+			}
+			50%,100%{
+				transform: rotateX(360deg) ;
+			}
+		}
+		@keyframes box52{
+			0%,50%{
+				transform:scale(0.6);
+			}
+			50%,100%{
+				transform:rotateX(180deg);
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="box1">
+		<div class="on">
+			<img src="2 (1).png" alt="">
+			<div class="in">
+				<p>文字描述</p>
+				<div class="but">按钮</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="box2">
+		<div class="on">
+			<img src="2 (1).png" alt="">
+			<div class="in">
+				<p>文字描述</p>
+				<div class="but">按钮</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="box3">
+		<div class="on">
+			<img src="2 (1).png" alt="">
+		</div>
+		<div class="in">
+			<p>文字描述</p>
+			<div class="but">按钮</div>
+		</div>
+	</div>
+
+	<div class="box4">
+		<div class="on">
+			<img src="2 (1).png" alt="">
+		</div>
+		<div class="in">
+			<p>文字描述</p>
+			<div class="but">按钮</div>
+		</div>
+	</div>
+
+	<div class="box5">
+		<div class="con">
+			<span>111111111111111</span>
+			<span>222222222222222</span>
+		</div>
+	</div>
+
+
+
+</body>
+<script>
+
+
+</script>
+</html>

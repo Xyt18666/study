@@ -1,0 +1,42 @@
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1581222257358'); /* IE9 */
+  src: url('iconfont.eot?t=1581222257358#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAOAAAsAAAAAB2wAAAM0AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDBgqCTIJBATYCJAMMCwgABCAFhG0HQBuRBhHVm4vIfhbYMW1Ye1zE2T/CzGlxsIy074vggc9N3xfSNFRUZqLpRE0CzI/ip/UK24a9WZshf86oCANdMZ731VM2tGuTy7fo9ol7p03x+SzLaaxJYyz81AUYBxTYWJMCmiAFEpA3jF3QEjdDABYplEA0aNSiAyYas5cAxLDBA3tjZozohnyBicComKgRq3BhysXyGbAy+L74RTlhgsSlMAe2GdCwH3W+5n6tqmb5Z+nmkRBNZwfYNFBACUCD6FHp7ISKIiVQWKpSN6cbaARyKr/fTyDU1MZG/3gShIGZGwRAHoxK+JrrcCHga9UrkAAoAAxAA/2ArZAedahCpIbFpkz1em3H6bD0oPuur8jj6bjNqbFuU3RZ202J6mjf9I2oPmuWp2aHovMVfb4ir7fbhUrWknVRHcpv3BJzwyt83Zt4nKHrnBLHdkVvSoKewoNvE8vvLWedYz3wpsz2xXq9NSJMNeHqzmVyIHu65rYMnhs8YF799kyVe+bL/qEF9twNgwoSOmZYFatur56z/E2FAY3nL5NXd6oJNSsOKs5ZdrXJgFfZw7epSXLCtZ0rdS/bVKP6DC+wStgb1hbYZWT/ffMny0nSexPVX/TeM5+0b2Ua5a9q06eEaHdp/MRze50q31dce5Q6v2/Z4jpF8oztWx9mVKgTWNC6VXd6AeBXt1UGgBovv/+Z3/BPZ9AztMZ/060B+ND/yOjA49d0V5vn7RLwH0QdK7SmAau0InSEhlvR6J7sEiCfq3j7hQARfBmuju6cCwKT6ASSAJKhMMkia3oJuHBTAQYmtWFRSOPpbiIZg0LoQKCA+QCCME5CEsJNKMJ4Ttb0z3ARwx8YhAkFC98uckG3nHZTXzAqFpr+tM/Bs21RE+bfsL7tKGlJwHhB0u6nuqjy8Ss8ZIoh6bM2qkwswdEAtoO1gaKEA7MWm2rsy5KrblTMwWVGfQJGChZk8kd2s8Bjr7Yyhc/fwOrNGkkDocr7AiLZGye1QtWBfFX6ToRbuSb5WDWUYoSJwCEDaAeWFZBY3e4AM1XYBoSiXmlV467KYnm1e791gMUsV63ruS+9JEGruqsup5ie825tlgE=') format('woff2'),
+  url('iconfont.woff?t=1581222257358') format('woff'),
+  url('iconfont.ttf?t=1581222257358') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1581222257358#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-iconset0140:before {
+  content: "\e627";
+  font-size:26px;
+  color: #fff;
+  margin-right: 5px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.icon-iconset01401:before {
+  content: "\e627";
+  font-size:26px;
+  color: #fff;
+}
+.icon-tel-fill:before {
+  content: "\e639";
+  font-size:36px;
+  margin-right: 5px;
+}
+.icon-tel-fill1:before {
+  content: "\e639";
+  font-size:26px;
+  color: #fff;
+}
+
+

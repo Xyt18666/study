@@ -1,0 +1,54 @@
+while 条件:
+	循环体
+
+为true时 就自动进行循环
+
+
+
+
+
+
+list = [8,1,6,3,7]  (列表，类似于数组)
+
+for 目标 in 表达式：
+	循环体
+
+
+for i in list：
+	print(i,len(i))
+
+
+
+i = 列表内的 每个数字
+len() 类似于 length ,计算值的长度
+
+range([strat,]stop[,step=1]) 生成一个 从start参数值起 到 stop 参数 的数字序列
+	起始 ，结束 ，递增值
+
+range(5) == range(0,5) 
+
+list()  转列表
+
+list(range(5)) == [0,1,2,3,4]
+
+
+
+for i in range(2,9,2):
+	print(i)
+
+输出：2,4,6,8
+
+
+
+break:跳出循环体
+
+continue：跳过此次循环
+
+
+
+
+成员关系 操作符： in      not in
+		在其中    不在其中
+	
+
+

@@ -1,0 +1,59 @@
+.l-shop{
+	position: absolute;
+	left: 0;
+	top: 1284px;
+
+}
+.l-shop a{
+	float: left;
+}
+.l-shop li{
+	width: 55px;
+	height: 57px;
+	background-color: #fff;
+	position: relative;
+}
+.l-shop i{
+	float: left;
+	width: 52px;
+	height: 53px;
+	margin: 2px 1.5px;
+	background: url(../img/l-shop/f-ln.png) ;
+	background-position-x: 0px ;
+}
+.l-shop li:hover i{
+	background: url(../img/l-shop/f-lh.png) !important;
+}
+.l-shop  li .icon1{
+	background-position-y: 0px !important;
+}
+.l-shop  li .icon2{
+	background-position-y: -53px !important;
+}
+.l-shop  li .icon3{
+	background-position-y: -106px !important;
+}
+.l-shop  li .icon4{
+	background-position-y: -159px !important;
+}
+.l-shop li p{
+	width: 52px;
+	position: absolute;
+	bottom: 0;
+	text-align: center;
+	color: #3e3e3e;
+	font:10px/10px "";
+	margin-bottom: 10px;
+}
+
+.l-shop li:hover p{
+	color: #fff !important;
+}
+
+
+#sea-f-t{
+	position: fixed;
+	transition:1s;
+	top: -95px;
+	left: 0;
+}

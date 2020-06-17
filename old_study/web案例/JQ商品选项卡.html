@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style:none;
+		}
+		.wrap{
+			width: 780px;
+			height: 440px;
+			position: relative;
+			overflow: hidden;
+			margin: 50px auto;
+			border:2px solid #789;
+		}
+		h2{
+			height: 40px;
+			width: 100%;
+			overflow: hidden;
+		}
+		h2 p{
+			font:34px/40px "一纸情书";
+			margin-right: 20px;
+			width: 150px;
+			height: 40px;
+			text-align: center;
+			float: left;
+		}
+		.list, .list li{
+			float: left;
+		}
+		.box{
+			height: 400px;
+			position: absolute;
+			/*width: 780px;*/
+		}
+		.list{
+			height: 400px;
+			width: 780px;
+		}
+		.list li{
+			width: 100px;
+			margin: 0 10px;
+			height: 200px;
+		}
+		.list li img{
+			width: 100px;
+			height: 80px;
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<h2>
+			<!-- <p></p> -->
+		</h2>
+		<div class="box">
+			<!-- <ul class="list">
+				<li>
+					<img src="" alt="">
+					<h3></h3>
+					<h4></h4>
+					<h5></h5>
+				</li>
+			</ul>
+			<ul class="list">
+				<li></li>
+			</ul>
+			<ul class="list">
+				<li></li>
+			</ul> -->
+		</div>
+	</div>
+</body>
+
+<script>
+$.ajax({
+	type:"POST",
+	url:"json/spxxk.json",
+	data:"",
+	success:function(e){
+		console.log(e)
+
+		var index = 1;
+		tab()
+
+		for(var a=0; a<e.length; a++){
+			$(`<p>${e[a].title}</p>`).appendTo("h2")
+			var oul= $(`<ul class="list"></ul>`).appendTo(".box")
+			var lista=e[a].list
+			for(var i=0; i<lista.length; i++){
+				oul.append(`<li>
+					<img src=${lista[i].img} alt="">
+					<h3>${lista[i].name}</h3>
+					<h4>${lista[i].size}</h4>
+					<h5>${lista[i].moy}</h5>
+				</li>`)
+			}
+		}
+		$(".box").width($(".box").children().length * $(".list").width())
+
+
+		$("h2 p").click(function(){
+			tab.call(this)
+		})
+
+		function tab(){
+			index = $(this).index()
+			console.log(this)
+			$(this).css("background","#789").siblings().css("background","#fff")
+			$(".box").animate({
+				"left":-index * $(".list").width()
+			},500)
+		}
+	},
+	dataType:"json"
+})
+
+</script>
+</html>

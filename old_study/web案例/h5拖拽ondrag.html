@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style:none;
+		}
+		.list{
+			float: left;
+			box-sizing:border-box;
+			padding: 20px;
+			width: 300px;
+			height: 300px;
+			border:2px solid red ;
+		}
+		.list li{
+			box-sizing:border-box;
+			width: 200px;
+			height: 30px;
+			margin-bottom: 3px;
+			border:2px solid red;
+		}
+		.ltow{
+			float: left;
+			box-sizing:border-box;
+			padding: 20px;
+			width: 300px;
+			height: 300px;
+			border:2px solid #0f0 ;
+		}
+		.ltow li{
+			box-sizing:border-box;
+			width: 200px;
+			height: 30px;
+			margin-bottom: 3px;
+			border:2px solid #0f0;
+		}
+	</style>	
+</head>
+<body>
+	<ol class="list">
+		<li>ol1</li>
+		<li>ol2</li>
+		<li>ol3</li>
+		<li>ol4</li>
+		<li>ol5</li>
+	</ol>
+	<ul class="ltow">
+		<li>ul1</li>
+		<li>ul2</li>
+		<li>ul3</li>
+		<li>ul4</li>
+		<li>ul5</li>
+	</ul>
+</body>
+<script>
+	var listli= $("li")//被拖拽地li
+	var ltow= $(".ltow")[0]//释放目标的元素
+	var list= $(".list")[0]//释放目标的元素
+	
+	//遍历被拖拽地元
+	for(let a=0; a<listli.length; a++){
+		listli[a].draggable=true;
+		//拖拽事件设置为true
+
+		listli[a].flag=false;
+		//设置自定义属性，判断拖拽状态
+
+		listli[a].ondragstart=function(e){
+			listli[a].flag=true;
+			// console.log("拖拽开始")
+		}
+		listli[a].ondrag=function(e){
+			listli[a].flag=true;
+			// console.log("拖拽移动")
+		}
+		listli[a].ondragend=function(e){
+			listli[a].flag=false;
+			// console.log("拖拽结束")
+		}
+	}
+
+
+
+	list.ondragenter=function(e){
+		e.preventDefault();
+   		e.stopPropagation();
+		// console.log("拖拽进入其他元素")
+	}
+
+	list.ondragover=function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        // console.log("在元素内移动触发")
+        
+    }
+
+	list.ondragleave=function (e) {
+		// console.log(e.target)
+        e.preventDefault();
+        e.stopPropagation();
+        // console.log("离开时")
+        
+    }
+
+     list.ondrop=function (e) {
+     	// console.log("释放时")
+        e.preventDefault();
+        e.stopPropagation();
+
+        for(var i=0;i<listli.length;i++){
+        	//判断所以被拖拽元素的状态
+            if(listli[i].flag){
+            	//添加被拖拽地元素
+                list.appendChild(listli[i]);
+            }
+        }
+
+         console.log(e.taraget)
+        console.log(e.dataTransfer)
+        //拖拽事件对象下的属性，获取拖拽信息
+    }
+
+
+    ltow.ondragenter=function(e){
+		e.preventDefault();
+   		e.stopPropagation();
+		// console.log("拖拽进入其他元素")
+	}
+
+	ltow.ondragover=function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        // console.log("在元素内移动触发")
+        
+    }
+
+	ltow.ondragleave=function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log("离开时")
+        
+    }
+
+     ltow.ondrop=function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        for(var i=0;i<listli.length;i++){
+            if(listli[i].flag){
+                ltow.appendChild(listli[i]);
+            }
+        }
+    }
+    //练习 笔记写的知识
+    //json 3层循环生成楼层
+    
+</script>
+</html>

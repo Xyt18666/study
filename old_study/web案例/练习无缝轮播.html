@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+		<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li,ol,ul{
+			list-style:none;
+		}
+		img{
+			width: 960px;
+			height: 210px;
+			display: block;
+		}
+		.banner{
+			width: 960px;
+			height: 210px;
+			overflow: hidden;
+			margin: 20px auto;
+			border:2px solid #0f0;
+			position: relative;
+		}
+		ul{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 7720px;
+			height: 210px;
+		}
+		ul li{
+			float: left;
+		}
+		.lef,.rig{
+			width: 60px;
+			height: 60px;
+			position: absolute;
+			top: 75px;
+			font:bold 60px/60px "";
+		}
+		.lef{
+			left: 0;
+		}
+		.rig{
+			right: 0;
+		}
+		ol{
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			margin-left: -100px;
+		}
+		ol li{
+			float: left;
+			width: 20px;
+			height: 20px;
+			margin: 10px;
+			background: #999;
+			border-radius:50%;
+		}
+		.active{
+			background: red;
+		}
+		.opa{
+			width: 300px;
+			height: 300px;
+			opacity: 0.8;
+			background: #0f0;
+		}
+	</style>
+</head>
+<body>
+	<div class="banner">
+		<ul class="tt">
+			<li><a href="#"><img src="img/5.jpg" alt=""></a></li>
+			<li><a href="#"><img src="img/1.jpg" alt=""></a></li>
+			<li><a href="#"><img src="img/2.jpg" alt=""></a></li>
+			<li><a href="#"><img src="img/3.jpg" alt=""></a></li>
+			<li><a href="#"><img src="img/4.jpg" alt=""></a></li>
+			<li><a href="#"><img src="img/5.jpg" alt=""></a></li>
+			<li><a href="#"><img src="img/1.jpg" alt=""></a></li>
+		</ul>
+		<div class="lef"><</div>
+		<div class="rig">></div>
+		<ol class="dd">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ol>
+	</div>
+	<!-- <p class="opa"> 123</p> -->
+</body>
+<script type="text/javascript">
+
+var banner=document.querySelector(".banner")
+var ddli=document.querySelectorAll(".dd li")
+var ttli=document.querySelectorAll(".tt li")
+var ttk=document.querySelector(".tt")
+var le=document.querySelector(".lef")
+var ri=document.querySelector(".rig")
+var ttliw=ttli[0].offsetWidth
+var index=1;
+
+
+tab()
+
+ri.onclick=function(){
+	index++
+	if(index>5){
+		index=1
+		ttk.style.left="0px"
+	}
+	tab()
+}
+le.onclick=function(){
+	index--
+	if(index<1){
+		index=5
+		ttk.style.left= -(ttli.length-1)*ttliw+"px"
+	}
+	tab()
+}
+
+
+var dsq2=setInterval(function(){
+	ri.click()
+},1500)
+
+banner.onmouseover=function(){
+	clearInterval(dsq2)
+}
+
+banner.onmouseout=function(){
+	clearInterval(dsq2)
+	dsq2=setInterval(function(){
+		ri.click()
+	},1500)
+}
+
+for(let t=0; t<ddli.length; t++){
+	ddli[t].onmouseover=function(){
+		index=t+1
+		tab()
+	}
+}
+
+
+
+
+
+function tab(){
+	for(var a=0; a<ddli.length; a++){
+		ddli[a].style.background="#999"
+	}
+	ddli[index-1].style.background="red"
+	move(ttk,{left:-index*ttliw},null)
+}
+
+
+function move(obj,json,fn){
+	clearInterval(obj.dsq)
+
+	var speed=0,thisStyle=0;
+
+	obj.dsq=setInterval(function(){
+		var onOff=true;
+		for(key in json){
+
+			thisStyle=key=="opacity"?parseFloat(getStyle(obj,key))*100:parseInt(getStyle(obj,key));
+			
+			speed=(json[key]-thisStyle)/10
+			speed=speed>0?Math.ceil(speed):Math.floor(speed)
+			
+			if(thisStyle!=json[key]){
+				onOff=false;
+				thisStyle+=speed
+ 
+				if(key=="opacity"){
+					obj.style["opacity"]=thisStyle/100
+					obj.style.filter="alpha(opacity="+thisStyle+")"
+				}else{
+					obj.style[key]=thisStyle+"px"
+				}
+			}
+		}
+		if(onOff){
+			clearInterval(obj.dsq)
+			fn&&fn()
+		}
+	},20)
+}
+
+
+
+function getStyle(obj,attr){
+	return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj,null)[attr]
+} 
+
+
+// trnasintionend事件
+
+</script>
+</html>

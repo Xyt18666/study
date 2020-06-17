@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style:none;
+		}
+		body{
+			display: flex;
+			flex-flow:row wrap;
+		}
+		main{
+			
+			width: 1190px;
+			background: #789;
+			margin: 0 auto;
+		}
+		.list{
+			width: 100%;
+			/*默认充满父级*/
+
+			display: flex;
+			/*定义弹性盒子*/
+
+
+			justify-content:space-around;
+			/*设置子元素的排列方式*/
+
+			/*flex-direction:row;
+			flex-wrap:wrap;*/
+			flex-flow:row wrap;
+			/*设置 主轴 侧轴 反向    和    是否换行*/
+
+
+			align-content:space-around;
+			/*多轴线对齐方式*/
+			
+
+			align-items:stretch;
+			/*侧轴对齐方式*/
+		}
+
+		.list li{
+			box-sizing:border-box;
+			height: 50%;
+			width: 20%;
+			height: 300px;
+			border:5px solid #789;
+			background: #0f0;
+			/*flex-grow:1;
+			flex-shrink:1;*/
+			/*设置占据比例*/
+
+			/*flex:1 1 1;*/
+			/*flex-basis:80px 80px;*/
+
+		}
+		.list li:nth-child(1){
+			width: 100%;
+			order:20;
+			/*定义项目排列位置，越小，越靠前*/
+			align-self:flex-start;
+
+			flex:1 1 auto;
+		}
+		.list li:nth-child(3){
+			order:20;
+		}
+
+	</style>
+</head>
+<body>
+	<header></header>
+	<nav></nav>
+	<main>
+		<ul class="list">
+			<li>卡1</li>
+			<li>卡2</li>
+			<li>卡3</li>
+			<li>卡4</li>
+			<li>卡5</li>
+			<li>卡6</li>
+			<li>卡7</li>
+			<li>卡8</li>
+			<li>卡9</li>
+			<li>卡10</li>
+		</ul>
+
+	</main>
+	<aside></aside>
+	<footer></footer>
+</body>
+</html>

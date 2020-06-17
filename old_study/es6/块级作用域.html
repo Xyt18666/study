@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<ul>
+		<li>1a1</li>
+		<li>2a2</li>
+		<li>3a3</li>
+		<li>4a4</li>
+		<li>5a5</li>
+		<li>6a6</li>
+	</ul>
+</body>
+<script>
+
+function fn (){
+	// 私有作用域
+}
+
+
+
+/*
+ {块级作用域,私有作用域}
+if(){}
+for(){}
+
+ */
+
+
+let a=2;
+if(a){
+	// console.log(a)//报错，当前作用域没有a
+	let a=8;//如果在块级作用域内没有a,则向外层找，所有会输出2
+	console.log(a)
+	// 由于在块级作用域内，此时的a是8
+
+}
+
+
+let liList = document.getElementsByTagName("li")
+
+// for(var v=0; v<liList.length; v++){
+// 	liList[v].onclick=function(){
+// 		console.log(v)
+// 	}
+// }
+
+//每次点击都是最后一个，因为已经循环完成了
+
+
+for(let v=0; v<liList.length; v++){
+	liList[v].onclick=function(){
+		console.log(v)
+	}
+}
+// 而使用let，在私有作用域内
+
+
+
+// 自执行函数
+{
+	let a=100;
+	console.log(a)
+}
+
+
+let obj = {};
+// 注意，eval将字符串转为对象的时候要加一个小括号
+
+var j = "{'aa':11,'bb':22}";
+eval("("+j+")");
+//返回{"aa":11,"bb":22}
+
+eval("({'aa':11,'bb':22})");
+//返回{"aa":11,"bb":22}
+
+/*
+
+eval()方法的参数形式
+如果参数s不是字符串，而是整数或者是Function类型，则直接返回该整数或Function
+
+
+var ff = function(){
+   console.log("1111");
+   return 1;
+};
+var f = eval(ff);//eval()方法返回ff方法
+var s = ff();//执行ff方法  s=1,打印日志"1111"
+
+eval("'true'");//返回字符串"true"
+eval("ture");//返回Boolean类型的true
+eval("1");//返回整数1
+eval("[0,1,2]");//返回数组[0,1,2]
+eval("2+2");//返回整数4
+eval("2+'2'");//返回字符串"22"
+
+var j = "{'aa':11,'bb':22}";
+eval("("+j+")");
+//返回{"aa":11,"bb":22}
+
+eval("({'aa':11,'bb':22})");
+//返回{"aa":11,"bb":22}
+
+eval("({aa:11,bb:22})");
+//js中{aa:11,bb:22}这种格式在解析时会转换成{'aa':11,'bb':22}这种格式
+
+eval("{'aa':11,'bb':22}");
+//抛出异常
+
+
+详细网站：https://blog.csdn.net/weixin_39256994/article/details/81953200
+
+
+*/
+</script>
+</html>

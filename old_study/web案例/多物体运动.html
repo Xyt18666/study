@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+		<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.box{
+			width: 100px;
+			height: 100px;
+			background: #0f0;
+			opacity: 1;
+		}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+</body>
+<script type="text/javascript">
+var box=document.querySelector(".box");
+box.onclick=function(){
+	move(box,"width",500)
+}
+
+// function move(obj,attr,spe,end){
+// 	clearInterval(obj.dsq)
+
+// 	var speed=parseInt(getStyle(obj,attr))>end?-spe:spe
+
+// 	obj.dsq=setInterval(function(){
+// 		var thiswz=parseInt(getStyle(obj,attr))
+// 		thiswz+=speed
+
+// 		if(speed>0&&thiswz>end || speed<0&&thiswz<end){
+// 			thiswz=end
+// 		}
+// 		obj.style[attr]=thiswz+"px"
+// 		if(thiswz==end){
+// 			clearInterval(obj.dsq)
+// 		}
+// 	},20)
+// }
+
+
+function move(obj,attr,end){
+	clearInterval(obj.dsq)
+	obj.dsq=setInterval(function(){
+		var thiswz=parseInt(getStyle(obj,attr))
+		var speed=(end-thiswz)/24
+			speed=speed>0?Math.ceil(speed):Math.floor(speed)
+
+		thiswz+=speed
+
+
+		obj.style[attr]=thiswz+"px"
+		if(thiswz==end){
+			clearInterval(obj.dsq)
+		}
+	},20)
+}
+
+
+
+function getStyle(obj,attr){
+	return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj,null)[attr]
+}
+</script>
+</html>

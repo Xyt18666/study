@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+</head>
+<body>
+	<form action="">
+		<input type="file" multiple>
+	</form>
+	<img src="" alt="">
+</body>
+<script>
+
+
+
+function reda(f){
+	var reader= new FileReader() //创建文件读取对象
+	// var files= $("input")[0].files
+	// console.log(files)
+	reader.readAsDataURL(f)//为文件转码
+	reader.onload=function(){
+		console.log(reader.result)//输出 bs64码
+		$("img").attr("src",reader.result)
+	}
+}
+
+$("input").on("input",function(e){
+	var files= $("input")[0].files[0]
+
+	console.dir($("input")[0])
+	reda(files)
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+//通过dataTransfer.files[0]获取文件信息
+//dataTransfer.files[0]
+//常用于桌面拖进浏览器的文件信息
+
+</script>
+</html>

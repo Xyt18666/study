@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+</head>
+<body>
+	
+</body>
+
+<script>
+//解构赋值，只要两边解构对等，就可以赋值
+//只要等号右边的值不是对象或数组
+//就先转换为对象，null 和 undefined 会报错 因为    他们无法转换
+
+let [a,b,c]=[7,8,9]
+console.log(a,b,c)//7 8 9
+
+let [d,...e]=[0,1,2,3,4,5]
+console.log(d,e)//0 [1,2,3,4,5]
+
+let [x,y="yy"]=["xx"]
+console.log(x,y)//允许指定默认值
+
+let {g,h}={h:12,g:34}//对象也支持解构赋值
+console.log(g,h)
+
+let [xue,yi,teng]="xyt6"//字符串会把一个字符看作为一个变量
+console.log(xue,yi,teng)
+
+
+
+var arr=[95,96,97,98,99]//可以对数组、伪数组的属性进行解构
+let {length:max}=arr
+console.log(max)
+
+let {toString:s}="9452";
+console.log(s)
+
+function jg([o,p]){//函数的参数也支持解构
+	return o+p
+}
+console.log(jg([8,10]))
+
+
+//解构赋值不能使用()
+//1.变量声明语句
+//2.函数参数
+//3.赋值语句中的模式
+
+
+
+
+</script>
+</html>

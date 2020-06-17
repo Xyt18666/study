@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>点名册</title>
+		<!-- <link rel="stylesheet" href="css/animate.css" /> -->
+		<style>
+			li {
+				list-style: none;
+				border: 1px solid #ccc;
+				background-color: deepskyblue;
+				margin: 30px 15px;
+				width: 120px;
+				height: 60px;
+				float: left;
+				text-align: center;
+				line-height: 60px;
+				color: #fff;
+				font-size: 25px;
+			}
+			
+			.clearfix:after {
+				clear: both;
+				display: block;
+				content: "";
+			}
+			
+			ul {
+				width: 760px;
+				margin: 0 auto;
+			}
+			
+			input {
+				outline: none;
+				border: none;
+				margin: 0 20px;
+			}
+			
+			#text {
+				width: 150px;
+				height: 30px;
+				background-color: #ddd;
+				font-size:15px;
+				padding:0 5px;
+			}
+			
+			#btn,
+			#reset {
+				width: 70px;
+				height: 30px;
+				background-color: #6bc5d2;
+				text-align: center;
+				font-size: 15px;
+			}
+			
+			.wrap {
+				width: 700px;
+				margin: 0 auto;
+				text-align: center;
+			}
+			
+			.write {
+				width: 400px;
+				height: 60px;
+				border: 1px solid black;
+				margin: 20px auto;
+			}
+			.animated {
+			  -webkit-animation-duration: 1s;
+			  animation-duration: 1s;
+			  -webkit-animation-fill-mode: both;
+			  animation-fill-mode: both;
+			}
+
+			.animated.infinite {
+			  -webkit-animation-iteration-count: infinite;
+			  animation-iteration-count: infinite;
+			}
+
+			.animated.hinge {
+			  -webkit-animation-duration: 2s;
+			  animation-duration: 2s;
+			}
+
+			.animated.flipOutX,
+			.animated.flipOutY,
+			.animated.bounceIn,
+			.animated.bounceOut {
+			  -webkit-animation-duration: .75s;
+			  animation-duration: .75s;
+			}
+
+			@-webkit-keyframes bounce {
+			  from, 20%, 53%, 80%, to {
+			    -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+			    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+			    -webkit-transform: translate3d(0,0,0);
+			    transform: translate3d(0,0,0);
+			  }
+
+			  40%, 43% {
+			    -webkit-animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+			    animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+			    -webkit-transform: translate3d(0, -30px, 0);
+			    transform: translate3d(0, -30px, 0);
+			  }
+
+			  70% {
+			    -webkit-animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+			    animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+			    -webkit-transform: translate3d(0, -15px, 0);
+			    transform: translate3d(0, -15px, 0);
+			  }
+
+			  90% {
+			    -webkit-transform: translate3d(0,-4px,0);
+			    transform: translate3d(0,-4px,0);
+			  }
+			}
+
+			@keyframes bounce {
+			  from, 20%, 53%, 80%, to {
+			    -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+			    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+			    -webkit-transform: translate3d(0,0,0);
+			    transform: translate3d(0,0,0);
+			  }
+
+			  40%, 43% {
+			    -webkit-animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+			    animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+			    -webkit-transform: translate3d(0, -30px, 0);
+			    transform: translate3d(0, -30px, 0);
+			  }
+
+			  70% {
+			    -webkit-animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+			    animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+			    -webkit-transform: translate3d(0, -15px, 0);
+			    transform: translate3d(0, -15px, 0);
+			  }
+
+			  90% {
+			    -webkit-transform: translate3d(0,-4px,0);
+			    transform: translate3d(0,-4px,0);
+			  }
+			}
+
+			.bounce {
+			  -webkit-animation-name: bounce;
+			  animation-name: bounce;
+			  -webkit-transform-origin: center bottom;
+			  transform-origin: center bottom;
+			}
+		</style>
+	</head>
+
+	<body>
+		<ul class="clearfix">
+
+
+
+
+
+			<li>杨倩倩</li>
+			<li>李慧哲</li>
+			<li>薛翼腾</li>
+			<li>贾岩飞</li>
+			<li>庄建伟</li>
+			<li>霍卫华</li>
+			<li>隋坤洪</li>
+			<li>高志明</li>
+			<li>石春龙</li>
+			<li>郭鹏昌</li>
+			<li>张嘉轩</li>
+			<li>周泊霖</li>
+			<li>赵志伟</li>
+			<li>郑亮</li>
+			<li>王春凯</li>
+			<li>张家浩</li>
+			<li>张红保</li>
+			<li>肖孟豪</li>
+			<li>吉芬奇</li>
+			<li>史江云</li>
+			<li>赵元力</li>
+			<li>邓景良</li>
+			<li>姚文罡</li>
+			<li>薛晓莹</li>
+			<li>高雅琨</li>
+
+
+
+
+
+
+
+
+
+		</ul>
+
+		<div class="wrap">
+			<input type="text" id="text" placeholder="输入要交作业的人数">
+			<input type="button" id="btn" value="提交"><input type="button" id="reset" value="重置">
+			<div class="write"></div>
+		</div>
+
+		<script>
+			var txt = document.getElementById("text");
+			var btn = document.getElementById("btn");
+			var oLi = document.getElementsByTagName("li");
+			var ppl = document.getElementsByClassName("write")[0];
+			var rst = document.getElementById("reset");
+			btn.onclick = function() {
+				var a = txt.value;
+				var txtVal = Number(a);
+
+				var arr = [];
+				while (arr.length < txtVal) {
+					var num = randomFn(oLi.length - 1, 0)
+					
+					var bol = true;
+					for (var i = 0; i < arr.length; i++) {
+						if (arr[i] == num) {
+							bol = false;
+						}
+					}
+					if (bol == true) {
+						arr.push(num);
+					}
+				}
+	
+				for (var i = 0; i < arr.length; i++) {
+					arr[i].style.background = "blueviolet";
+					arr[i].style.animation = "bounce 1.2s linear infinite";
+						
+				}
+				function randomFn(max, min) {
+					var b = parseInt(Math.random() * (max - min + 1) + min);
+					if(b>oLi.length-1){
+						b=6
+					}
+					console.log(b)
+					return oLi[b];
+
+				}
+				var arr2=[]
+				for(var i=0;i<arr.length;i++){
+					arr2.push(arr[i].innerText)
+				}
+				// console.log(arr2)
+				ppl.innerHTML=arr2
+
+			}
+			reset.onclick = function() {
+				var a = txt.value;
+				var txtVal = Number(a);
+				for (var j = 0; j < oLi.length; j++) {
+					oLi[j].style.background = "deepskyblue";
+					oLi[j].style.animation= "";
+					ppl.innerHTML="";
+				}
+			}
+		</script>
+	</body>
+
+</html>

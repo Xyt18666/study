@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+/*
+1.使用构造函数创建一个map的实例
+2.参数是一个数组，数组的每一项都是数组，而这个数组有两项，第一个是键，第二个是值
+3.键可以是任意数据类型
+
+
+ */
+let map1 = new Map([[1,"9"],["2",33],[{name:"xyt"},{ok:"ok"}],[/\d/,"zz"]]);
+console.log(map1)
+
+// 方法
+// .get(键)  获取某个键的值
+// .set(键，值)    设置
+// .delete() 删除某个值，返回布尔值
+// .has() 判断有没有某个值 ，返回布尔值
+// .clear() 清空，没有返回值
+console.log(map1.get(1))  
+console.log(map1.set(1,"1111")) 
+
+
+// 将数组变为map
+let ary = [1,44,5,45,33,4]
+let map2 = new Map();
+ary.forEach((item,index)=>{
+	map2.set(index,item)
+})
+console.log(map2)
+
+
+// 遍历  forEach()  keys()  values()   entries()
+map2.forEach((val,key,map)=>{
+	console.log(key,val,map)
+	//key键   val值   map原对象
+})
+
+for(let key of map2.keys()){
+	console.log(key)
+	// 键
+}
+
+for(let val of map2.values()){
+	console.log(val)
+	// 值
+}
+
+for(let [key,val] of map2.entries()){
+	console.log(key,val)
+	// 键和值
+}
+</script>
+</html>

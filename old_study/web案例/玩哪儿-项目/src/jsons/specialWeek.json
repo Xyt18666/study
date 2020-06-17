@@ -1,0 +1,62 @@
+[
+    {
+        "title":"旅行团",
+        "list":[
+            {
+                "h2":"坎昆出发",
+                "h3":"8.9",
+                "h4":"截止至 2020-01-29",
+                "h5":"$168.21",
+                "img":"https://us-website.wannar.com/scenics_images/2032/2032-2_640x480.jpg?x-oss-process=image/resize,h_258",
+                "text":"一价全含「独家巡游」奇琴伊察、伊克.基尔天坑、粉红湖 一日游（中文服务/可升级VIP小团）"
+            },
+            {
+                "h2":"迈阿密出发",
+                "h3":"7",
+                "h4":"截止至 2020-06-26",
+                "h5":" $227.5",
+                "img":"https://us-website.wannar.com/tours/oneday/MI-T-1278.jpg?x-oss-process=image/resize,h_258",
+                "text":"『佛州精华』大沼泽国家公园、西锁岛、南沙滩、棕榈滩、劳德代尔堡、迈阿密市区 4日游（14人小团出发））"
+            
+            },
+            {
+                "h2":"洛杉矶出发",
+                "h3":"8.5",
+                "h4":"截止至 2020-01-20",
+                "h5":" $488.75",
+                "img":"https://us-website.wannar.com/tours_images/507-1562832861755_640x480.jpg?x-oss-process=image/resize,h_258",
+                "text":"『黄石12-15景』东南双峡、羚羊谷、布莱斯、17哩湾、太浩湖、大提顿、旧金山、拉斯维加斯 8日游（1晚黄石小木屋）"
+            }
+        ]
+    },
+    {   
+        "title":"当地活动",
+        "list":[
+            {
+                "h2":"坎昆出发2",
+                "h3":"8.9",
+                "h4":"截止至 2020-01-29",
+                "h5":"$168.21",
+                "img":"https://us-website.wannar.com/scenics_images/2032/2032-2_640x480.jpg?x-oss-process=image/resize,h_258",
+                "text":"一价全含「独家巡游」奇琴伊察、伊克.基尔天坑、粉红湖 一日游（中文服务/可升级VIP小团）"
+            },
+            {
+                "h2":"迈阿密出发2",
+                "h3":"7",
+                "h4":"截止至 2020-06-26",
+                "h5":" $227.5",
+                "img":"https://us-website.wannar.com/tours/oneday/MI-T-1278.jpg?x-oss-process=image/resize,h_258",
+                "text":"『佛州精华』大沼泽国家公园、西锁岛、南沙滩、棕榈滩、劳德代尔堡、迈阿密市区 4日游（14人小团出发））"
+            
+            },
+            {
+                "h2":"洛杉矶出发2",
+                "h3":"8.5",
+                "h4":"截止至 2020-01-20",
+                "h5":" $488.75",
+                "img":"https://us-website.wannar.com/tours_images/507-1562832861755_640x480.jpg?x-oss-process=image/resize,h_258",
+                "text":"『黄石12-15景』东南双峡、羚羊谷、布莱斯、17哩湾、太浩湖、大提顿、旧金山、拉斯维加斯 8日游（1晚黄石小木屋）"
+            }
+        ] 
+    }
+]

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            border:2px solid #777;
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+        <p>6789</p>
+    </div>
+    
+</body>
+<script>
+ document.querySelector("div").onclick=function(e){
+    console.log(e.target)
+    console.log(e.currentTarget)
+ }
+
+
+</script>
+</html>

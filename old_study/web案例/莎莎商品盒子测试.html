@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.wrap{
+			width: 300px;
+			height: 500px;
+			border:2px solid #0f0;
+			position: static;
+			transition:1s;
+		}
+		.top{
+			position: relative;
+			height: 300px;
+		}
+		.top .i{
+			width: 300px;
+			height: 300px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background: #564;
+		}
+		.top .h{
+			width: 100px;
+			height: 300px;
+			position: absolute;
+			z-index: -10;
+			top: 0;
+			right: 0;
+			background: #789;
+			transition:1s;
+		}
+		p{
+			background: red;
+			height: 80px;
+			margin-top: 20px;
+
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="top">
+			<div class="i"></div>
+			<div class="h"></div>
+		</div>
+		<p>$10.646846</p>
+		<p>阿森纳佛奥收购价案例的款式风格激烈的覅价格拉低房价哥俩地方就够了</p>
+	</div>
+</body>
+<script type="text/javascript">
+var box=document.getElementsByClassName("wrap")[0]
+var hh=document.getElementsByClassName("h")[0]
+s=0
+
+box.onmouseover=function(){
+	box.style="position: relative;width:400px;"
+	var ds=setInterval(function(){
+		s++
+		if(s>=1){
+			s=0
+			hh.style="z-index:50;"
+			clearInterval(ds)
+		}
+		if(s==0){
+			hh.style="z-index:-10;"
+		}
+		
+		
+	},500)
+	
+
+}
+box.onmouseout=function(){
+	box.style="position: static;width:300px;"
+}
+</script>
+</html>

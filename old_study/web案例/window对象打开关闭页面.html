@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>77</p>
+    <h2>99</h2>
+</body>
+<script>
+
+    document.querySelector("p").onclick = function(){
+       qq = window.open("https://voice.baidu.com/act/newpneumonia/newpneumonia/?from=osari_pc_3#tab4","_blank","width:600px")
+        // 使用变量保存这个信息，方便用于 关闭， 由于在 作用域内，未使用 关键字定义变量，所以，当执行后被释放到全局
+    }
+
+    document.querySelector("h2").onclick = function(){
+       qq.close()
+        // 关闭指定的页面
+    }
+
+    console.log(qq)
+
+    
+</script>
+</html>

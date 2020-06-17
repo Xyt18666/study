@@ -1,0 +1,45 @@
+官方下载即可，解压到 wamp/php 中
+windows 64 位
+-------------------------------------------
+php包中 重要的 文件：
+
+php.exe     php程序，用于执行 php脚本代码
+php7apache2_4.dll  供 阿帕奇 使用到的 模块
+ext目录      存放php 中的扩展 模块文件 
+
+
+---------------------------------------------
+
+加载 php 模块 到 apache 中 ：
+
+在 Apache 的 配置文件下 新增 2行 代码
+
+180+行 左右 ：
+LoadModule php7_module D:\工商管理学院\6月\学习\php\wamp\php\php7apache2_4.dll
+
+AddType Application/x-httpd-php .php 
+
+-----------------------------------------------------
+修改php默认时间：
+
+在 php文件包中 将 php 中 php.ini-development  改为  php.ini
+查找到 date.timezone 属性
+去除分号
+并添加值  PRC
+prc 就是 中华人民共和国的缩写
+php.ini-production  这个 是 适用于产品阶段的 ，当使用时也需要改
+
+
+在 Apache 的 配置文件下 新增
+PHPIniDir "D:/工商管理学院/6月/学习/php/wamp/php"
+
+
+-------------------------------------------------------
+
+查看 php 执行环境：
+新建一个 php 文件  写入以下代码
+<?php
+    phpinfo()
+?>
+
+--------------------------------------------------------

@@ -1,0 +1,28 @@
+.qcfc{
+	display:none;//直接属性
+	img{//子级属性
+		width:200px;
+		height:150px;
+		&:hover{//子级的hover
+			width:600px;
+			height:450px;
+		}
+	}
+	&:hover{// & 链接伪类 伪元素
+	border:2px;
+	}
+	&::befor{
+		content:"";
+	}
+	>div{
+		//子代
+		display:block;
+    }
+    + div{//相邻兄弟
+        color: #000;
+    }
+    &:nth-child(1){
+        background: #789;
+    }// 等等 所有 选择器
+
+}

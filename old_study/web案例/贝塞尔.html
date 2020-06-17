@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+</head>
+<body>
+	<canvas width="800px" height="400px" style="border:2px solid #789;"></canvas>
+</body>
+<script>
+let c = $("canvas")[0].getContext("2d");
+// c.beginPath()
+// c.moveTo(20,20)//起始点坐标
+// c.quadraticCurveTo(30,40,100,80)
+// 				//控制点x,y,结束点坐标
+// c.stroke()
+// c.closePath()
+
+c.beginPath()
+c.moveTo(20,20)//起始点坐标
+c.bezierCurveTo(80,180,300,150,500,300)
+				//控制点x,y控制点x,y,结束点坐标x,y
+c.stroke()
+c.closePath()
+</script>
+</html>

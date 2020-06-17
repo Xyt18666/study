@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin:0;
+				padding:0;
+				
+			}
+			.wrap{
+				width:600px;
+				border:1px solid black;
+			}
+			.list{
+				height:100px;
+				padding:10px;
+				border-bottom:1px solid #ccc;
+			}
+			.list img{
+				float: left;
+				width:100px;
+				height: 100px;
+				margin-right:10px;
+			}
+			.list a{
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="text" id="ipt">
+		<input type="button" value="搜索" id="btn">
+		
+		<div class="wrap">
+			<div class="list">
+				<a href="detail.html">
+					<img src="img/银魂1.jpg" alt="">
+					<h3>标题</h3>
+				</a>
+			</div>
+		</div>
+	</body>
+	
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		$("#btn").click(function(){
+			var val=$("#ipt").val()
+			$.ajax({
+				url:"https://way.jd.com/jisuapi/search",
+				type:"get",
+				data:{
+					appkey:"79994b160a821f1fcc132083a0172715",
+					keyword:val,
+					num:10
+				},
+				success:function(res){
+					console.log(res);
+					var list=res.result.result.list
+					$.each(list,function(index,item){
+						console.log(item);
+						$("<div class='list'></div>").html(`
+							<a href="detail.html?id=${item.id}" target="_blank">
+								<img src="${item.pic}" alt="">
+								<h3>${item.name}</h3>
+							</a>
+						`).appendTo($(".wrap"))
+					})
+				}
+			})
+		})
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- --args --disable-web-security --user-data-dir=C:\MyChromeDevUserData -->
+<!-- 改谷歌浏览器 -->
+
+
+
+
+
+
+
+//子页面
+<!-- <!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		var menuid=location.search.split("=")[1]
+		console.log(menuid);
+		$.ajax({
+			url:"https://way.jd.com/jisuapi/detail",
+			type:"get",
+			data:{
+				id:menuid,
+				appkey:"79994b160a821f1fcc132083a0172715"
+			},
+			success:function(res){
+				console.log(res);
+			}
+		})
+	</script>
+</html> -->

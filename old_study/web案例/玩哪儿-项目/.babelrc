@@ -1,0 +1,13 @@
+{
+    "presets": ["@babel/preset-env", "@babel/preset-react", "mobx"],
+    "plugins": [
+        "@babel/plugin-proposal-object-rest-spread",
+        "@babel/plugin-transform-runtime",
+        ["import",{"libraryName":"antd","style":"css"}]
+    ]
+    // "ignore": [
+    //     "./src/js/replaceFont.js"
+    //     // 忽略对第三方文件的严格转码
+    //   ]
+  
+}

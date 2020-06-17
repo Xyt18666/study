@@ -1,0 +1,50 @@
+/* pages/page1/page1.wxss */
+swiper{
+   width:750rpx;
+   height:300rpx;
+}
+image{
+  width:750rpx;
+  height:300rpx;
+}
+.post-con{
+  display: flex;
+  flex-direction: column;
+  margin: 20rpx 0 40rpx 0;
+  background: #fff;
+  border-bottom:1px solid red;
+  border-top:1px solid red;
+}
+.zztr{
+  margin: 20rpx 0 20rpx 10rpx;
+}
+.zztr image{
+  width:60rpx;
+  height:60rpx;
+  vertical-align: middle;
+}
+.zztr text{
+  font:bole 20rpx/20rpx "";
+  color:#789;
+  vertical-align: middle;
+  margin-left: 20rpx;
+}
+.icon image{
+    width:30rpx;
+    height:30rpx;
+}
+
+
+.box1{
+  width:20px;
+  height:20px;
+  background: red;
+}
+.box2{
+  width:20rpx;
+  height:20rpx;
+  background: red;
+}
+.hc{
+  background: #789;
+}

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=
+     no" > 
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.ban{
+			width: 100%;
+			margin: 0 auto;
+			height: 200px;
+			overflow: hidden;
+			position: relative;
+		}
+		ul{
+			width: 1000%;
+			height: 200px;
+			list-style:none;
+			position: absolute;
+		}
+		li{
+			width: 10%;
+			height: 200px;
+			float: left;
+			background: #789;
+		}
+		ol{
+			width: 100%;
+			height: 20px;
+			list-style:none;
+			position: absolute;
+			bottom: 0;
+		}
+		ol li{
+			float: left;
+		}
+		.te{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<div class="ban">
+		<ul>
+			<li>8</li>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+			<li>1</li>
+		</ul>
+		<ol class="dd">
+			<li>dd1</li>
+			<li>dd2</li>
+			<li>dd3</li>
+			<li>dd4</li>
+			<li>dd5</li>
+			<li>dd6</li>
+			<li>dd7</li>
+			<li>dd8</li>
+		</ol>
+	</div>
+</body>
+<script>
+/*
+事件对象
+TouchList         触摸点的集合
+
+changedTouches   改变后的触摸点集合
+targetTouches    当前元素触摸点集合   离开时无法记录
+touches          页面上所有触摸点的集合   离开时无法记录
+
+
+
+
+
+ */
+$(function(){
+	function ban(){
+		var index=1;
+		var timer=setInterval(function(){
+			index++
+			$("ul").css("transition","0.2s")
+			$("ul").css("transform","translateX("+(-index*$(document).width())+"px)")
+
+			$("ol li").removeClass("te")
+			$("ol li").eq(index-1).addClass("te")
+		},3000)
+
+		$("ul").on("transitionend",function(){
+			if(index>=9){
+				index=1;
+				$("ul").css("transition","none")
+				$("ul").css("transform","translateX("+(-index*$(document).width())+"px)")
+			}else if(index<=0){
+				index=8;
+				$("ul").css("transition","none")
+				$("ul").css("transform","translateX("+(-index*$(document).width())+"px)")
+			}
+
+			// 取值范围1-8
+			$("ol li").click(function(){
+				$("ul").css("transform","translateX("+(-($(this).index()+1)*$(document).width())+"px)")
+				$("ol li").removeClass("te")
+				$("ol li").eq($(this).index()).addClass("te")
+			})
+		})
+
+
+		$("ul").on("touchstart",function(e){
+			clearInterval(timer)
+			tcx=e.touches[0].clientX
+			// 拿到第一个触摸点基于可视区的位置
+		})
+		$("ul").on("touchmove",function(e){
+			var tcctc=e.touches[0].clientX
+			dis=tcctc-tcx
+			var tranx=-index*$(document).width()+dis
+			$("ul").css("transition","nune")
+			$("ul").css("left",tranx+"px")
+
+		})
+
+		$("ul").on("touchend",function(e){
+			if(Math.abs(dis)<$(window).width()/3){
+				$("ul").css("transition","0.2s")
+				$("ul").css("left",-index*$(document).width()+"px")
+			}else{
+				if(dis>0){
+					index--
+				}else{
+					index++
+				}
+				$("ul").css("transition","0.2s")
+				$("ul").css("left",-index*$(document).width()+"px")
+			}
+
+		})
+
+
+
+
+	}
+	ban()
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// $(".p").click(function(){
+// 	console.log("click")
+// })
+// 
+
+
+// $(".p").on("touchstart",function(e){
+// 	console.log(e)
+// })
+
+// $(".p").on("touchmove",function(){
+// 	console.log("touchmove")
+// 	alert("99")
+// })
+
+// $(".p").on("touchend",function(){
+// 	console.log("touchend")
+// })
+
+// $(".p").on("touchcancel",function(){
+// 	console.log("touchcancel")
+// })
+
+
+
+
+/*
+1. click事件
+
+单击事件，类似于PC端的click，但在移动端中，连续click的触发有200ms ~ 300ms的延迟
+
+2. touch类事件
+
+触摸事件，有touchstart touchmove touchend touchcancel 四种之分
+
+touchstart：手指触摸到屏幕会触发
+
+touchmove：当手指在屏幕上移动时，会触发
+
+touchend：当手指离开屏幕时，会触发
+
+touchcancel：可由系统进行的触发，比如手指触摸屏幕的时候，突然alert了一下，或者系统中其他打断了touch的行为，则可以触发该事件
+
+
+3. tap类事件
+
+触碰事件，我目前还不知道它和touch的区别，一般用于代替click事件，有tap longTap singleTap doubleTap四种之分
+
+tap: 手指碰一下屏幕会触发
+
+longTap: 手指长按屏幕会触发
+
+singleTap: 手指碰一下屏幕会触发
+
+doubleTap: 手指双击屏幕会触发
+
+4. swipe类事件
+
+滑动事件，有swipe swipeLeft swipeRight swipeUp swipeDown 五种之分
+
+swipe：手指在屏幕上滑动时会触发
+
+swipeLeft：手指在屏幕上向左滑动时会触发
+
+swipeRight：手指在屏幕上向右滑动时会触发
+
+swipeUp：手指在屏幕上向上滑动时会触发
+
+swipeDown：手指在屏幕上向下滑动时会触发
+
+
+ */
+</script>
+</html>

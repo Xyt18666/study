@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        main{
+            width: 100%;
+        }
+        .box{
+            width: 600px;
+            height: 200px;
+            margin: 0 auto;
+            border:1px solid #ccc;
+            display: flex;
+            /* justify-content:  center; */
+            align-items: center;
+            transition:0.5s;
+        }
+        .in{
+            width: 80px;
+            height: 80px;
+            background: #951;
+            border-radius: 50%;
+            margin-left: 50px;
+            transition:0.5s;
+        }
+        .box:hover{
+            box-shadow: 0 0 5px 1px #ccc;
+        }
+        .box:hover .in{
+            transform:scale(2);
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="box">
+            <div class="in"></div>
+        </div>
+    </main>
+</body>
+</html>

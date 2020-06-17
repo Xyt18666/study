@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+	<style>
+		.main{
+			margin:100px auto;
+			width:1000px;
+		}
+		h2{
+			text-align:center;
+			color:red;
+			font-weight:bold;
+			font-family:"黑体";
+			font-size:80px;
+		}
+		.span{
+			float:left;
+			width:90px;
+			height:55px;
+			font-size:30px;
+			line-height:55px;
+			color:#fff;
+			font-weight:blod;
+			background-color:pink;
+			font-family:"黑体";
+			text-align:center;
+			margin:0 10px 10px 0;
+		}
+		.main div{
+			height:50px;
+			margin:20px;
+		}
+		button{
+			outline:none;
+			border:none;
+			width:100px;
+			height:50px;
+			font-size:30px;
+			line-height:50px;
+			color:#fff;
+			font-weight:blod;
+			background-color:000;
+			font-family:"黑体";
+			text-align:center;
+		}
+	</style>
+ </head>
+ <body>
+	<div class="main">
+		<h2>超级点名器</h2>
+		<span class="span">张红保</span>
+		<span class="span">王春凯</span>
+		<span class="span">吉芬奇</span>
+		<span class="span">张嘉轩</span>
+		<span class="span">张家浩</span>
+		<span class="span">刘鹏</span>
+		<span class="span">邓景良</span>
+		<span class="span">薛翼腾</span>
+		<span class="span">赵志伟</span>
+		<span class="span">隋坤洪</span>
+		<span class="span">周渤霖</span>
+		<span class="span">李慧哲</span>
+		<span class="span">刘昕瑜</span>
+		<span class="span">石春龙</span>
+		<span class="span">赵元力</span>
+		<span class="span">高雅琨</span>
+		<span class="span">杨倩倩</span>
+		<span class="span">薛晓莹</span>
+		<span class="span">肖孟豪</span>
+		<span class="span">姚文罡</span>
+		<span class="span">霍卫华</span>
+		<span class="span">庄建伟</span>
+		<span class="span">贾岩飞</span>
+		<span class="span">郭鹏昌</span>
+		<span class="span">史江云</span>
+		<span class="span">高志明</span>
+		<span class="span">郑亮</span>
+		<div ><button id="btn1">开始<button id="btn2">结束<button></div>
+	</div>
+ </body>
+	<script>
+		var arr1=document.getElementsByClassName("span")
+		var arr=[]
+		function ff(){
+			for (var i=0;i<arr1.length ;i++ ){
+				arr1[i].style.backgroundColor="pink"
+				arr1[i].style.color="#fff";
+			}
+				 b=Math.floor(Math.random()*arr1.length)
+				arr1[b].style.backgroundColor="red"
+				arr1[b].style.color="blue"
+			
+		}
+		var timer=setInterval(ff,200)
+		document.getElementById("btn1").onclick=function(){
+			 clearInterval(timer)
+			 timer=setInterval(ff,200)
+			arr.push(arr1[b])
+		}
+		document.getElementById("btn2").onclick=function(){
+			if(arr.indexOf(arr1[b])== -1){
+				clearInterval(timer)
+			}
+		}
+	</script>
+<html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 800px;
+            height: 400px;
+            margin: 50px auto;
+            border:3px solid thistle;
+            position: relative;
+        }
+        .bg{
+            width: 800px;
+            height: 400px;
+            background: linear-gradient(30deg,red, #789, #852, #0f0);
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+
+        }
+        img{
+            width: 80px;
+            height: 80px;
+            border-radius:50%;
+            overflow: hidden;
+        }
+        img:nth-of-type(1){
+            transform:translate(50px,180px);
+        }
+        img:nth-of-type(2){
+            transform:translate(40px,90px);
+        }
+        img:nth-of-type(3){
+            transform:translate(80px,40px);
+        }
+        img:nth-of-type(4){
+            transform:translate(140px,90px);
+        }
+        img:nth-of-type(5){
+            transform:translate(192px,172px);
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="bg"></div>
+        <div class="imgbox">
+            <img src="imgs/banner (1).jpg" alt="">
+            <img src="imgs/banner (2).jpg" alt="">
+            <img src="imgs/banner (3).jpg" alt="">
+            <img src="imgs/banner (4).jpg" alt="">
+            <img src="imgs/banner (5).jpg" alt="">
+        </div>   
+
+    </div>
+</body>
+<script>
+    $("img").mouseover(function(e){
+        return false
+    })
+    $("img").mousemove(function(e){
+        return false
+    })
+
+    $(".box").mousemove(function(e){
+        // console.log(e.offsetX,e.offsetY)
+        let ox = e.offsetX
+        let oy = e.offsetY
+        
+       
+        
+       
+        if(ox<400 && oy<200){
+            $(".imgbox").css({
+                "transform":`translate(${(400-ox)/10}px,${(200-oy)/10}px)`
+            })
+        }
+
+        if(ox>400 && oy>200){
+            $(".imgbox").css({
+                "transform":`translate(${(ox-400)/10}px,${(oy-200)/10}px)`
+            })
+        }
+
+        if(ox<400 && oy>200){
+            $(".imgbox").css({
+                "transform":`translate(${(400-ox)/10}px,${(oy-200)/10}px)`
+            })
+        }
+
+        if(ox>400 && oy<200){
+            $(".imgbox").css({
+                "transform":`translate(${(ox-400)/10}px,${(200-oy)/10}px)`
+            })
+        }
+
+       
+    })
+
+</script>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	//创建构造函数 
+	function Preson(name,esx,age){
+		this.name=name;
+		this.esx=esx;
+		this.age=age;
+		this.fun=function(){
+			console.log("吃")
+			this.fun2()
+		}
+		this.fun2=function(){
+			console.log("玩")
+		}
+	} 
+
+	//通过原型添加属性和方法
+	Preson.prototype={
+		constructor:Preson,//手动添加构造器，不然出错
+		height:"600px",
+		width:"300px",
+		eat:function(){
+			console.log("吃榴莲")
+			this.wan()
+		},
+		wan:function(){
+			console.log("玩玩")
+		}
+	}
+
+	//实例化对象，并初始化
+	var obj= new Preson("谁TM买小米","贱卖","菠菜")
+	console.dir(obj)
+
+	obj.fun()
+	//实例对象的方法是可以相互调用的
+
+	console.dir(Preson)
+
+
+	obj.eat()
+	//原型中的方法是可以相互调用的
+
+
+	Preson.prototype.esx="女"
+	console.log(obj.esx)
+	//先从实例对象中找
+	//再从构造函数的原型对象中找
+	
+
+	//为内置对象添加方法
+	String.prototype.meReverous=function(){
+		for(var i=this.length-1; i>=0; i--){
+			console.log(this[i])
+		}
+	}
+	var str="12345";
+	str.meReverous()
+	console.log(str)
+
+	
+</script>
+</html>

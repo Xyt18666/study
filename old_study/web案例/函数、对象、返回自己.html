@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+var obj={
+	eat:function(){
+		console.log("执行eat")
+		return obj
+	},
+	set:function(){
+		console.log("执行set")
+		return obj
+	},
+}
+obj.eat().set()
+
+
+function fn(){
+	return function fn2 (){
+		console.log("fn2")
+		return fn()
+	}
+}
+var fn1=fn()//返回值为一个函数
+console.log(fn1)//返回值为一个函数
+
+fn()
+fn1()
+</script>
+</html>

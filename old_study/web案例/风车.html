@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>风车</title>
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			.wrap {
+				width: 400px;
+				height: 400px;
+				position: relative;
+			}
+			.btm {
+				position: absolute;
+				bottom: 0;
+				left: 50%;
+				width: 40px;
+				height: 200px;
+				background: lawngreen;
+				border-top-left-radius: 50%;
+				border-top-right-radius: 50%;
+			}
+			.box {
+				position: absolute;
+				left:30%;
+				top: 95px;
+				width: 200px;
+				height: 200px;
+				z-index:10;
+				transform-origin: center center;
+				animation:mymove 1s linear infinite ;
+			}
+			.box1,.box2,.box3 {
+				position: absolute;
+				width: 200px;
+				height: 200px;
+			}
+			.box1 {
+				transform:rotate(60deg);
+			}
+			.box2 {
+				transform:rotate(180deg);
+			}
+			.box3 {
+				transform:rotate(-60deg);
+			}
+			.move {
+				position: absolute;
+				left: 50%;
+				bottom: 0;
+				margin-left:-15px;
+				width: 30px;
+				height: 100px;
+				transform-origin: left top;
+				border-top-left-radius: 50%;
+				border-top-right-radius: 50%;
+				border-bottom-left-radius: 10px;
+				border-bottom-right-radius: 10px;
+			}
+			.move1 {
+				background: yellow;
+			}
+			.move2 {
+				background: pink;
+			}
+			.move3 {
+				background: lightseagreen;
+			}
+			@keyframes mymove {
+				0% {transform:rotate(0deg);}
+				25%{transform:rotate(90deg);}
+				50%{transform:rotate(180deg);}
+				75%{transform:rotate(270deg);}
+				100%{transform:rotate(360deg)}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="box">
+				<div class="box1">
+					<div class="move move1"></div>
+				</div>
+				<div class="box2">
+					<div class="move move2"></div>
+				</div>
+				<div class="box3">
+					<div class="move move3"></div>
+				</div>
+			</div>
+			
+			<div class="btm"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		
+	</script>
+</html>

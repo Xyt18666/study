@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style src="css/reset.css"></style>
+	<script src="js/myjqk.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<style>
+		main{
+			width: 1200px;
+			margin: 0 auto;
+			background: #ccc;
+		}
+		.car{
+			width: 800px;
+			height: 500px;
+			position: relative;
+		}
+		ul{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 800px;
+			height: 500px;
+		}
+		li{
+			float: left;
+			width: 80px;
+			height: 250px;
+		}
+		img{
+			width: 80px;
+			height: 80px;
+			display: block;
+		}
+	</style>
+
+</head>
+<body>
+	<main>
+		<!-- <p><span></span></p>
+		<div class="car">
+			<ul>
+				<li>
+					<img src="" alt="">
+					<a href="">加入购物车</a>
+				</li>
+			</ul>
+		</div> -->
+		<h3>商品数量<span></span></h3>
+		<div class="qc">清空</div>
+		<a href="#" class="gwc" target="_blank">我的购物车</a>
+		
+	</main>
+</body>
+<script>
+
+$.ajax({
+	url:"product.json",
+	data:"",
+	type:"POST",
+	dataType:"json",
+	success:function(d){
+		console.log(d)
+		$(`<p></p><div class="car"></div>`).appendTo("main")
+		for(var a in d){
+			$(`<span>${d[a].title}</span>`).appendTo("p")
+			var ul= $(`<ul></ul>`).appendTo(".car")
+			for(var b=0; b<d[a].list.length; b++){
+				$(`<li>
+					<img src="${d[a].list[b].img}" alt="">
+					<a href="#" ip="${d[a].list[b].pid}">加入购物车</a>
+				</li>`).appendTo(ul)
+				//把商品ip拼接到结构自定义属性中
+			}
+		}
+		$("p span").click(function(){
+			$(this).css("background","red").siblings().css("background","#fff")
+			$(".car ul").eq($(this).index()).css("display","block").siblings().css("display","none")
+		})
+
+		var wls=window.localStorage
+
+		var sps= wls.getItem("sps")||0
+		//获取商品数量输出致页面
+		$("h3 span").text(sps)
+
+	
+
+		//加入购物车点击时
+		$("li a").click(function(e){
+
+			var ip= $(this).attr("ip")
+			//获取商品ip
+
+
+			var sum= wls.getItem("con"+ip)||0
+			//获取商品数量
+			
+			if(wls.getItem("ip"+ip)){
+				//假如有此商品信息
+				wls.setItem("con"+ip,++sum);
+				//设置商品数量
+			}else{
+				//如果没有，就加商品信息和数量
+				wls.setItem("ip"+ip,ip)
+				wls.setItem("con"+ip,++sum);
+			}
+			//设置商品总数
+			var sps= wls.getItem("sps")||0
+			wls.setItem("sps",++sps);
+			
+			$("h3 span").text(sps);
+
+		})
+
+
+
+		$(".qc").click(function(){
+			wls.clear()
+			var sps= wls.getItem("sps")||0
+			$("h3 span").text(sps)
+		})
+
+
+
+		$(".gwc").click(function(){
+			$(this).attr("href","gwc-storage.html")
+		});
+
+
+		$(window).on({
+			storage:function(){
+				var sps= wls.getItem("sps")||0
+				$("h3 span").text(sps);
+			}
+		})
+
+
+	}
+})
+
+
+
+</script>
+</html>

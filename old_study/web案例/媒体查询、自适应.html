@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+		<!-- 移动端视口        视口宽度=自适应                 -->
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=
+     no"> 
+
+    <meta name="Keywords" content="你,我,他,它,..."><!-- 关键字,方便搜索引擎找到这个网站,一般不超过20个词 -->
+	<meta name="Description" content="当前网页的介绍">
+	
+
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		ul,ol,li{
+			list-style:none;
+		}
+		main{
+			width: 1190px;
+			margin: 0 auto;
+			background: #ccc;
+		}
+		ul{
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-between;
+        }
+		li{
+            width: 300px;
+            height: 300px;
+            margin: 5px 5px;
+            background: #789;
+        }
+
+		/*
+		
+	 	定义      除了|指定某种       设备类型         条件同时成立     对设备尺寸的条件
+		@media      not|only    all|screen|print|speech   and (min-width: 1000px) and (max-width: 1190px) {
+	   		满足条件的css样式
+		}
+
+		all 所有媒体
+		screen 屏幕设备：用于电脑 屏幕、手机屏幕.....
+		print 打印设备 
+		speech 类似的媒体类型，屏幕阅读器
+
+
+
+		(orientation:portrait)  竖屏
+		(orientation:landscape)    横屏
+		(min-width: 1000px)  最小宽度
+		(max-width: 1000px)  最大宽度
+		 */
+       /* @media screen and (max-width: 768px) {
+        	main{
+				width: 100%;
+			}
+            ul{
+                background: #852;
+            }
+            li{
+                background: #741;
+            }   
+        }
+        @media only screen and (min-width: 768px) and (max-width: 992px) {
+        	main{
+				width: 750px;
+			}
+            ul{
+                background: #0f0;
+            }
+            li{
+                background: red;
+            }   
+        }
+         @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        	main{
+				width: 970px;
+			}
+            ul{
+                background: #0f0;
+            }
+            li{
+                background: red;
+            }   
+        }
+        @media only screen and (min-width:1200px){
+        	main{
+				width: 1170px;
+			}
+            ul{
+                background: #0f0;
+            }
+            li{
+                background: red;
+            }   
+        }*/
+   
+    	main{
+			width: 100%;
+		}
+        ul{
+            background: #0f0;
+        }
+        li{
+            background: red;
+        }   
+        @media (min-width:768px){
+        	main{
+				width: 750px;
+			}
+            ul{
+                background: #789;
+            }
+            li{
+                background: #ccc;
+            }   
+        }
+        @media (min-width:922px){
+        	main{
+				width: 900px;
+			}
+            ul{
+                background: #222;
+            }
+            li{
+                background: #888;
+            }   
+        }
+         @media (min-width:1200px){
+        	main{
+				width: 1100px;
+			}
+            ul{
+                background: #772;
+            }
+            li{
+                background: #118;
+            }   
+        }
+	</style>
+</head>
+<body>
+	<main>
+		<ul>
+			<li>k1</li>
+			<li>k2</li>
+			<li>k3</li>
+			<li>k4</li>
+			<li>k5</li>
+			<li>k6</li>
+			<li>k7</li>
+			<li>k8</li>
+			<li>k9</li>
+			<li>k10</li>
+			<li>k11</li>
+			<li>k12</li>
+			<li>k13</li>
+			<li>k14</li>
+			<li>k15</li>
+			<li>k16</li>
+			<li>k17</li>
+			<li>k18</li>
+			<li>k19</li>
+			<li>k20</li>
+		</ul>
+	</main>
+</body>
+<script>
+
+</script>
+</html>

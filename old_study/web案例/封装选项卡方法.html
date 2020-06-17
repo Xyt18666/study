@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style:none;
+		}
+		.box{
+			width: 800px;
+			margin: 20px auto;
+			position: relative;
+		}
+		.tabBox{
+			overflow: hidden;
+		}
+		.tabBox span{
+			float: left;
+			padding:30px;
+			font:18px/20px "";
+			background: #ccc;
+		}
+		.list{
+			position: relative;
+			height: 300px;
+		}
+		.list li {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 800px;
+			height: 300px;
+			font:100px/300px "";
+			background: #ddd;
+		}
+		span.active{
+			background: #753;
+		}
+		.next,.previous{
+			position: absolute;
+			top: 50%;
+			color: red;
+			font:36px/40px "";
+		}
+		.next{
+			right: 0;
+		}
+		.previous{
+			left: 0;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="tabBox">
+			<span>选项1</span>
+			<span>选项2</span>
+			<span>选项3</span>
+			<span>选项4</span>
+		</div>
+		<ul class="list">
+			<li>卡片1</li>
+			<li>卡片2</li>
+			<li>卡片3</li>
+			<li>卡片4</li>
+		</ul>	
+		<a href="#" class="next">></a>
+		<a href="#" class="previous"><</a>	
+	</div>			
+</body>
+<script type="text/javascript">
+var aSpa=document.querySelectorAll(".tabBox>span")
+var li=document.querySelectorAll(".list>li")
+
+var ri=document.querySelector(".next")
+var le=document.querySelector(".previous")
+
+var obox=document.querySelector(".box")
+
+//选项卡在打开页面时的效果  初始样式 
+var index=0;
+function tab(){
+	for(var i=0; i<li.length; i++){
+		aSpa[i].classList.remove("active")
+		li[i].style.display="none"
+	}
+	aSpa[index].className="active"
+	li[index].style.display="block"
+}
+tab()
+
+//点击选项 改变 index 值
+
+for(var w=0; w<aSpa.length; w++){
+
+ //let      var 换成 let
+ // 不需要自定义属性  
+ // index=i
+ 
+	aSpa[w].xb=w//自定义属性  保存下标
+	aSpa[w].onclick=function(){
+		index=this.xb
+		tab()
+	}
+}
+
+
+le.onclick=function(){
+	index--
+	index=index<0?3:index
+	tab()
+}
+ri.onclick=function(){
+	index++
+	index=index>3?0:index
+	tab()
+}
+var tt=setInterval(function(){
+	ri.click()//click方法
+},2000)
+
+
+obox.onmouseover=function(){
+	clearInterval(tt)
+}
+obox.onmouseout=function(){
+	clearInterval(tt)
+	tt=setInterval(function(){
+		ri.click()//click方法
+	},2000)
+}
+
+
+
+
+
+
+
+/*
+
+
+let
+
+let 是在代码块内有效，var 是在全局范围内有效
+let 只能声明一次 var 可以声明多次
+let 不存在变量提升，var 会变量提升
+for 循环计数器很适合用 let
+
+
+const
+
+const 声明一个只读变量，声明之后不允许改变。意味着，一旦声明必须初始化，否则会报错。
+
+ES6 明确规定，代码块内如果存在 let 或者 const，代码块会对这些命令声明的变量从块的开始就形成一个封闭作用域。
+
+
+
+
+click() 方法触发 click 事件，
+或规定当发生 click 事件时运行的函数。
+
+
+使用innerHTML直接 +=  添加标签
+
+ */
+
+</script>
+</html>

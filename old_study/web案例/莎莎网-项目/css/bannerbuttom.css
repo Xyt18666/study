@@ -1,0 +1,99 @@
+.column{
+	height: 330px;
+	width: 100%;
+	margin: 0 auto;
+}
+.column ul{
+	width: 1200px;
+	padding:0 54px ;
+	margin: 0 auto;
+}
+.column ul li {
+	position: relative;
+	float: left;
+	margin-right: 15px;
+	margin-top: 20px;
+}
+.column ul li:last-child{
+	margin-right: 0;
+}
+.column ul li .zz{
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 390px;
+	height: 190px;
+	background-color: rgba(255,255,255,0.2);
+}
+.column ul li .zz a{
+	float: left;
+	width: 390px;
+	height: 190px;
+}
+.column ul li:hover .zz{
+	display: block;
+}
+
+
+ .c-b{
+	border-bottom: 1px solid #eeeeee;
+	width: 1200px;
+	margin: 0 auto;
+}
+ .c-b li{
+	width: 180px;
+	height: 40px;
+	padding: 40px 0;
+	margin: 0 33px;
+	float: left;
+}
+ .c-b li:last-child{
+	margin-right: 0;
+}
+ .c-b li .ico, .c-b li .zq{
+	float: left;
+}
+ .c-b li .ico {
+	background: url(../img/column/b-icon.png) no-repeat;
+	background-position-y: 0px;
+	margin-right: 10px;
+	margin-top: 4px;
+}
+ .c-b li .ico1{
+	width: 32px;
+	height: 32px;
+	background-position-x: 0px;
+}
+ .c-b li .ico2{
+	width: 32px;
+	height: 32px;
+	background-position-x: -55px;
+}
+ .c-b li .ico3{
+	width: 38px;
+	height: 32px;
+	background-position-x: -112px;
+}
+ .c-b li .ico4{
+	width: 38px;
+	height: 32px;
+	background-position-x: -176px;
+}
+ .c-b li .ico5{
+	width: 32px;
+	height: 32px;
+	background-position-x: -236px;
+}
+ .c-b li .zq{
+	overflow: hidden;
+}
+ .c-b li .zq .p-t{
+	font:18px/18px "";
+	color: #000;
+	margin-bottom: 12px;
+}
+ .c-b li .zq .p-b{
+	color: #999999;
+	font:12px/12px "";
+}

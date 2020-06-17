@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<label>QQ<input type="text" class="qq"></label>
+	<label>手机<input type="text" class="sj"></label>
+	<label>邮箱<input type="text" class="yx"></label>
+	<label>座机<input type="text" class="zj"></label>
+	<label>姓名<input type="text" class="xm"></label>
+</body>
+<script>
+var qq=document.querySelector(".qq")
+var sj=document.querySelector(".sj")
+var yx=document.querySelector(".yx")
+var zj=document.querySelector(".zj")
+var xm=document.querySelector(".xm")
+
+textIsTrue(qq,/^[1-9][0-9]{4,11}$/)
+textIsTrue(sj,/^\d{11}$/)
+textIsTrue(yx,/^[0-9a-zA-Z_.-]+[@][0-9a-zA-Z_.-]+([.][a-zA-Z]+){1,2}$/)
+
+textIsTrue(zj,/^\d{3,4}[-]\d{7,8}$/)
+
+textIsTrue(xm,/^[\u4e00-\u9fa5]{2,6}$/)
+function textIsTrue(input,reg){
+	input.onchange=function(){
+		if(reg.test(this.value)){
+			this.style.background="#0f0"
+		}else{
+			this.style.background="red"
+		}
+	}
+}
+
+</script>
+</html>

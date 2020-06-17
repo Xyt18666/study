@@ -1,0 +1,22 @@
+if:
+	为真执行
+else:	
+	为假执行
+
+
+if:
+
+elif:
+(就是 else if)
+
+
+
+(三目运算符 )
+small = x if x < y else y
+      x小于y吗，为true small=x ,反之为y
+
+
+
+
+assert:断言
+当条件返回为 false 时，会抛出错误（AssertionError），反之 不会

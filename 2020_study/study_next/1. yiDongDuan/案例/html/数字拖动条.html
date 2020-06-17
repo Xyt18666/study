@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style:none;
+        }
+        .box1,.box3{
+            margin: 50px auto;
+            width: 200px;
+            height: 10px;
+            background: rgb(76, 130, 211);
+            border-radius:10px;
+            display: flex;
+            align-items: center;
+        }
+        .in{
+            width: 25px;
+            height: 25px;
+            background: #0ff;
+            border-radius:25px;
+            margin-left: -5px;
+        }
+        .on{
+            width: 0px;
+            height: 10px;
+            background: rgb(211, 76, 211);
+            border-radius:10px;
+        }
+        .box2{
+            width: 50px;
+            height: 20px;
+            overflow: hidden;
+            border:2px solid #ccc;
+        }
+        .box4{
+            width: 150px;
+            height: 20px;
+            overflow: hidden;
+            border:2px solid #ccc;
+            display: flex;
+        }
+        ul {
+            width: 50px;
+            height: 200px;
+        }
+        ul li{
+            height: 20px;
+            font-size: 20px;
+            text-align: center;
+
+        }
+        .box4 ul{
+            transition: 0.5s;
+        }
+    </style>
+
+</head>
+<body>
+    <main>
+        <div class="box1">
+            <div class="on"></div>
+            <div class="in"></div>
+        </div>
+        <div class="box2">
+            <ul>
+                <li>0</li>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+                <li>7</li>
+                <li>8</li>
+                <li>9</li>
+                <li>10</li>
+            </ul>
+        </div>
+        <div class="box3">
+            <div class="on"></div>
+            <div class="in"></div>
+        </div>
+        <div class="box4">
+            <ul>
+                <li>0</li>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+                <li>7</li>
+                <li>8</li>
+                <li>9</li>
+                <li>10</li>
+            </ul>
+            <ul>
+                <li>0</li>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+                <li>7</li>
+                <li>8</li>
+                <li>9</li>
+                <li>10</li>
+            </ul>
+            <ul>
+                <li>0</li>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+                <li>7</li>
+                <li>8</li>
+                <li>9</li>
+                <li>10</li>
+            </ul>
+        </div>
+    </main>
+</body>
+<script>
+
+let slid = $(".box1 .in")[0]
+
+slid.ontouchstart = function(e){
+
+}
+
+slid.ontouchmove = function(e){
+    let bl = (e.touches[0].clientX-$(".box1").offset().left)/$(".box1").width()*100
+    bl = bl<0?0:bl
+    bl = bl>100?100:bl
+    // console.log(bl)
+    $(".box1 .on").width(bl+"%")
+    
+    $(".box2 ul").css({
+        "transform":`translate(0,-${bl / 100 * $("ul").height()}px)`
+    })
+
+}
+
+
+slid.ontouchend = function(e){
+
+}
+
+// ---------------------------------------------------------------
+
+
+let index =0;
+
+
+let slid2 = $(".box3 .in")[0]
+
+slid2.ontouchstart = function(e){
+
+}
+
+slid2.ontouchmove = function(e){
+    let bl = (e.touches[0].clientX-$(".box3").offset().left)/$(".box3").width()*100
+    bl = bl<0?0:bl
+    bl = bl>100?100:bl
+    console.log(bl)
+    $(".box3 .on").width(bl+"%")
+
+    index = bl*3
+    index = index<=9?"00"+index:index<=99?"0"+index:index.toString()
+  
+    console.log(index)
+
+    setTimeout(function(){
+        seeNum()
+    },300)
+    
+
+}
+
+
+
+function seeNum(){
+    $(".box4 ul:nth-of-type(1)").css({
+        "transform":`translate(0,-${index[0] * $("li").height()}px)`,
+        "background":"red"
+    })
+    $(".box4 ul:nth-of-type(2)").css({
+        "transform":`translate(0,-${index[1] * $("li").height()}px)`,
+        "background":"pink"
+    })
+    $(".box4 ul:nth-of-type(3)").css({
+        "transform":`translate(0,-${index[2] * $("li").height()}px)`,
+        "background":"#ff0"
+    })
+}
+
+
+</script>
+</html>

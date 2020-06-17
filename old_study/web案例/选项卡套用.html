@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js" ></script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.wrap{
+			width: 1000px;
+			height: 600px;
+			border:2px solid #789;
+			margin: 0 auto;
+		}
+		.top{
+			height: 50px;
+		}
+		.top p{
+			float: left;
+			width: 200px;
+			height: 50px;
+			text-align: center;
+		}
+		.top p:nth-child(1){
+			background: red;
+		}
+		.con{
+			position: relative;
+			width: 1000px;
+			height: 550px;
+		}
+		.car{
+			width: 1000px;
+			height: 550px;
+			transition:0.5s;
+			opacity: 0;
+			z-index: 1;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		.car:nth-child(1){
+			opacity: 1;
+			z-index: 20;
+		}
+		.tt{
+			height: 50px;
+		}
+		.tt h3{
+			float: left;
+			width: 200px;
+			height: 50px;
+			text-align: center;
+		}
+		.tt h3:nth-child(1){
+			background: #0f0;
+		}
+		.ccc{
+			position: relative;
+			width: 1000px;
+			height: 500px;
+		}
+		.cct{
+			position: absolute;
+			width: 1000px;
+			height: 500px;
+			top: 0;
+			transition:0.5s;
+			left: 0;
+			opacity: 0;
+			z-index: 1;
+		}
+		.cct:nth-child(1){
+			opacity: 1;
+			z-index: 20;
+		}
+	</style>
+</head>
+<body>
+	<main>
+		<div class="wrap">
+			<div class="top">
+				<p>1</p>
+				<p>2</p>
+				<p>3</p>
+				<p>4</p>
+				<p>5</p>
+			</div>
+			<div class="con">
+				<div class="car">卡1
+					<div class="tt">
+						<h3>子选项1</h3>
+						<h3>子选项2</h3>
+						<h3>子选项3</h3>
+					</div>
+					<div class="ccc">
+						<div class="cct">子卡1</div>
+						<div class="cct">子卡2</div>
+						<div class="cct">子卡3</div>
+					</div>
+				</div>
+				<div class="car">卡2
+					<div class="tt">
+						<h3>子选项1</h3>
+						<h3>子选项2</h3>
+						<h3>子选项3</h3>
+					</div>
+					<div class="ccc">
+						<div class="cct">子卡1</div>
+						<div class="cct">子卡2</div>
+						<div class="cct">子卡3</div>
+					</div>
+				</div>
+				<div class="car">卡3
+					<div class="tt">
+						<h3>子选项1</h3>
+						<h3>子选项2</h3>
+						<h3>子选项3</h3>
+					</div>
+					<div class="ccc">
+						<div class="cct">子卡1</div>
+						<div class="cct">子卡2</div>
+						<div class="cct">子卡3</div>
+					</div>
+				</div>
+				<div class="car">卡4
+					<div class="tt">
+						<h3>子选项1</h3>
+						<h3>子选项2</h3>
+						<h3>子选项3</h3>
+					</div>
+					<div class="ccc">
+						<div class="cct">子卡1</div>
+						<div class="cct">子卡2</div>
+						<div class="cct">子卡3</div>
+					</div>
+				</div>
+				<div class="car">卡5
+					<div class="tt">
+						<h3>子选项1</h3>
+						<h3>子选项2</h3>
+						<h3>子选项3</h3>
+					</div>
+					<div class="ccc">
+						<div class="cct">子卡1</div>
+						<div class="cct">子卡2</div>
+						<div class="cct">子卡3</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+</body>
+
+<script>
+
+$("p").click(function(){
+	$(this).css("background","red").siblings().css("background","#fff")
+	$(".car").eq($(this).index()).css({
+		opacity:1,
+		zIndex:20
+	}).siblings().css({
+		opacity:0,
+		zIndex:1
+	})
+
+})
+
+$("h3").click(function(){
+	$(this).css("background","#0f0").siblings().css("background","#fff")
+	$(this).parents(".tt").siblings(".ccc").find(".cct").eq($(this).index()).css({
+		opacity:1,
+		zIndex:20
+	}).siblings().css({
+		opacity:0,
+		zIndex:1
+	})
+})
+
+// $(".con").children(".car").click(function(e){
+// 	$(this).find("h3").eq($(e.target).index()).css("background","#0f0").siblings().css("background","#fff")
+// 	$(this).find(".cct").eq($(e.target).index()).css({
+// 		opacity:1,
+// 		zIndex:20
+// 	}).siblings().css({
+// 		opacity:0,
+// 		zIndex:1
+// 	})
+// })
+
+</script>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .wrap{
+            width: 800px;
+            height: 500px;
+            margin: 20px auto;
+        }
+        svg{
+            border:2px solid #789;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <svg  id="svg" width="800" height="500">
+
+        </svg>
+    </div>
+</body>
+<script>
+let svg = document.getElementById("svg")
+let wrap = document.getElementsByClassName("wrap")
+
+let state = [0,6,1,7,2,9,2,7]
+
+
+let lineX = document.createElementNS("http://www.w3.org/2000/svg","line") 
+
+lineX.setAttribute("x1",50)
+lineX.setAttribute("y1",450)
+lineX.setAttribute("x2",750)
+lineX.setAttribute("y2",450)
+lineX.setAttribute("stroke","#0f0")
+lineX.setAttribute("stroke-width","4")
+
+
+svg.appendChild(lineX)
+
+
+let lineY = document.createElementNS("http://www.w3.org/2000/svg","line") 
+
+lineY.setAttribute("x1",50)
+lineY.setAttribute("y1",50)
+lineY.setAttribute("x2",50)
+lineY.setAttribute("y2",450)
+lineY.setAttribute("stroke","#0f0")
+lineY.setAttribute("stroke-width","4")
+
+
+svg.appendChild(lineY)
+
+
+let jg = 700/8;
+
+
+for(let a = 1; a<9; a++){
+    let text = document.createElementNS("http://www.w3.org/2000/svg","text") 
+    text.innerHTML = a
+    text.setAttribute("x",jg*a + 50)
+    text.setAttribute("y",470)
+    text.setAttribute("fill","#0f0")
+    svg.appendChild(text)
+}
+
+let c =  15;
+let jjY = 400/15;
+
+for(let b = 0; b<=15; b++){
+    c--
+    console.log(b)
+    let text2 = document.createElementNS("http://www.w3.org/2000/svg","text") 
+    text2.innerHTML = b
+    text2.setAttribute("x",25)
+    text2.setAttribute("y",jjY*c + 50) 
+    text2.setAttribute("fill","#0f0")
+    svg.appendChild(text2)
+}
+
+
+let pointsState = ``
+let polyline = document.createElementNS("http://www.w3.org/2000/svg","polyline") 
+svg.appendChild(polyline)
+
+polyline.setAttribute("stroke","pink")
+polyline.setAttribute("stroke-widht","3")
+polyline.setAttribute("fill","#fff")
+
+polyline.setAttribute("points",pointsState)
+
+
+for(let t = 0 ; t<state.length; t++){
+    console.log(pointsState)
+    if(pointsState == ""){
+        pointsState += `${t*jg+50+jg},${400-state[t]*jjY+50-jjY}`
+    }else{
+        pointsState += ` ${t*jg+50+jg},${400-state[t]*jjY+50-jjY}`
+    }
+    polyline.setAttribute("points",pointsState)
+
+
+}
+
+
+
+    
+
+
+for(let s = 0 ; s<state.length; s++){
+    let circle = document.createElementNS("http://www.w3.org/2000/svg","circle")
+    circle.setAttribute("stroke","red")
+    circle.setAttribute("stroke-width","2")
+    circle.setAttribute("fill","#fff")
+    circle.setAttribute("r","5")
+    circle.setAttribute("cx",s*jg+50+jg)
+    circle.setAttribute("cy",400-state[s]*jjY+50-jjY)
+    svg.appendChild(circle)
+
+
+    let text3 = document.createElementNS("http://www.w3.org/2000/svg","text") 
+    text3.innerHTML = state[s]
+    text3.setAttribute("x",s*jg+50+jg)
+    text3.setAttribute("y",400-state[s]*jjY-jjY) 
+    text3.setAttribute("fill","#0f0")
+    svg.appendChild(text3)
+
+}
+
+
+
+
+
+   
+
+
+</script>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		html{
+			height: 2000px;
+		}
+		aside{
+			width: 600px;
+			height: 400px;
+			background: rgba(65,79,97,0.6);
+			position: fixed;
+			left: 50%;
+			top: 50%;
+			transform:translate(-50%,-50%);
+			display: none;
+			z-index: 999;
+		}
+	</style>
+</head>
+<body>
+	<main>我是主体</main>
+	<aside>弹框<p>关闭</p></aside>
+</body>
+<script>
+let state = true   //设置默认状态
+
+
+$("html").bind("mousemove",(e)=>{
+	 state = false
+	 //处于移动时 无法进入离开模式 ，也可以设置多个 条件
+})
+$(window).scroll(function(){
+	 state = false
+})
+
+
+
+setInterval(function(){  
+		//每隔一段时间检测一次 ，是否能进入 离开模式，如果能，直接进入
+	if(state){
+		$("aside").show()
+	}
+	state = true  //则重新打开 默认设置
+
+	console.log("定时器一直处于工作状态")
+},5000)
+
+
+/*
+
+这是一个 状态 的 反向判断
+
+1. 设置 默认状态
+2. 设置 某些事件 会修改 默认状态
+3. 延时判断 状态值
+4. 当状态为 true 的时候 会进入 离开模式
+5. 当状态为 false 的时候 把默认值还改回 true 
+6. 当没有触发 修改 状态的 事件时 会 进入离开模式
+
+
+
+
+ */ 
+
+
+
+$("p").click(()=>{
+	$("aside").hide()
+	state = true
+})
+
+
+
+
+
+
+
+
+</script>
+</html>

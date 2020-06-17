@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style:none;
+		}
+		html,body{
+			height: 100%;
+		}
+		.top{
+			width: 100%;
+			height: 100%;
+			text-align: center;
+			color: #789;
+		}
+		ol{
+			width: 100%;
+			display: flex;
+			justify-content:space-between;
+		}
+		ol li{
+			flex:1;
+			text-align: center;
+		}
+		.nav{
+			position: relative;
+			height: 50px;
+		}
+		.slid{
+			height: 2px;
+			background: #fff;
+			left: 0;
+			top: 30px;
+			position: absolute;
+		}
+		ul{
+			width: 100%;
+			height: 600%;
+		}
+		ul li{
+			width: 100%;
+			height: 100%;
+		}
+		.st{
+			background: #0f0;
+			position: fixed;
+		}
+	</style>
+</head>
+<body>	
+	<div class="top">
+		top
+	</div>
+	<div class="nav">
+		<ol>
+			<li>li1</li>
+			<li>li2</li>
+			<li>li3</li>
+			<li>li4</li>
+			<li>li5</li>
+			<li>li6</li>
+		</ol>
+		<div class="slid"></div>
+	</div>
+	
+	<ul>
+		<li>项目1</li>
+		<li>项目2</li>
+		<li>项目3</li>
+		<li>项目4</li>
+		<li>项目5</li>
+		<li>项目6</li>
+	</ul>
+</body>
+<script>
+$(()=>{
+	$(".slid").width($("ol li").width())
+
+	$(window).scroll(function(){
+		var st= $(this).scrollTop()
+		st>300? $(".slid").addClass("st"): $(".slid").removeClass("st")
+		st>300? $("ol").css({
+			position:"fixed",
+			top:"0px"
+		}):$("ol").css({
+			position:"static"
+		})
+
+		var stMax=st+ $(window).height()/2
+		var stMin=st- $(window).height()/2
+
+		
+		$("ul li").each(function(i){
+			var ost=$("ul li").eq(i).offset().top
+			if( ost>stMin && ost<stMax){
+				$(".slid").animate({
+					left:i * $("ol li:nth-child(1)").width()
+				},100)
+				console.log(i)
+			}
+		})
+		 
+	})
+
+
+
+
+	
+
+	$("ol li").click(function(){
+		$(".slid").animate({
+				left:$(this).index() * $("ol li:nth-child(1)").width()
+		},300)
+
+
+	})
+
+})
+</script>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		body,html {
+			width: 100%;
+		}
+		.faz {
+			width: 1000px;
+			padding-top: 15px;
+			margin: 0 auto;
+			height: 600px;
+			background-color: #c9e3f0;
+
+			position: relative;
+		}
+		.faz h2 {
+			margin: 0 auto;
+			text-align: center;
+			color: #ff008a;
+			font-size: 24px;
+		}
+		.faz span {
+			font-size: 20px;
+			padding-left: 10px;
+			padding-right: 10px;
+			border:2px solid #ff7800;
+			border-radius:5px;
+			background-color: #ccff00;
+			color: #000;
+
+			position: absolute;
+			right:160px;
+			top: 15px;
+		}
+		.box {
+			float: left;
+			margin-top: 50px;
+			margin-left: 50px;
+			width: 200px;
+			height: 200px;
+			border:2px solid #000;
+		}
+		.szmb {
+			float: right;
+			width: 300px;
+			height: 300px;
+			border:2px solid #000;
+			margin-top: 250px;
+			margin-right: 50px;
+
+			display: none;
+		}
+		#bh {
+			background-color: #ff00f0;
+		}
+		.szmb button {
+			width: 80px;
+			height: 80px;
+			margin: 8px;
+			border:none;
+			font:600 16px/80px "";
+		}
+		.szmb .jzx {
+			background-color: #ff9313;
+		}
+		.szmb .qzl {
+			background-color: #00ff9c;
+		}
+		.szmb .ohx {
+			background-color: #f1aafc;
+		}
+		.szmb .xz,.szmb .ty,.szmb .jbzy,.szmb .n1,.szmb .n2,.szmb .n3{
+			background-color: #ff006c;
+		}
+	</style>
+</head>
+<body>
+	<div class="faz">
+		<h2>请为下面的baby设置样式</h2>
+		<span id="dj">点击变身样式</span>
+		<div class="box" id="bh"></div>
+		<div class="szmb" id="szmb">
+			<button class="jzx" id="jzx">橘之夏</button>
+			<button class="qzl" id="qzl">青之涟</button>
+			<button class="ohx" id="ohx">藕荷炫</button>
+			<button class="xz" id="xzz">旋转</button>
+			<button class="ty" id="tyy">跳跃</button>
+			<button class="jbzy" id="jbzy">紧闭着眼</button>
+			<button class="n1" id="n1">圆方</button>
+			<button class="n2" id="n2">大小</button>
+			<button class="n3" id="n3">no</button>
+		</div>
+	</div>
+</body>
+<script>
+	var a=1;
+	document.getElementById("xzz").onclick=function(){
+		if(a){//如果为真
+			document.getElementById("bh").style.transform="rotate(90deg)"
+			//切换
+			a=0;
+			//同时让变量为假，此时在点击则为false
+
+		}else{
+			document.getElementById("bh").style.transform="rotate(-90deg)"
+			//切换
+			a=1;
+			//同时让变量为真，此时在点击则为true
+			//形成点击循环效果
+		};
+	};
+
+	var b=1;
+	document.getElementById("tyy").onclick=function(){
+		if(b){//如果为真
+			document.getElementById("bh").style.transform="translate(-180px,180px)"
+			
+			document.getElementById("bh").style.transform="slcew(15deg,30deg)"
+			//切换
+			b=0;
+			//同时让变量为假，此时在点击则为false
+
+		}else{
+			document.getElementById("bh").style.transform="translate(180px,-180px)"
+			
+			document.getElementById("bh").style.transform="slcew(30deg,15deg)"
+			//切换
+			b=1;
+			//同时让变量为真，此时在点击则为true
+			//形成点击循环效果
+		};
+	};
+
+var c=1;
+	document.getElementById("jbzy").onclick=function(){
+		if(c){//如果为真
+			document.getElementById("bh").style.transform="skew(15deg,30deg)"
+			
+			//切换
+			c=0;
+			//同时让变量为假，此时在点击则为false
+
+		}else{
+			document.getElementById("bh").style.transform="skew(30deg,15deg)"
+			
+			//切换
+			c=1;
+			//同时让变量为真，此时在点击则为true
+			//形成点击循环效果
+		};
+	};
+
+	var d=1;
+	document.getElementById("n2").onclick=function(){
+		if(d){//如果为真
+			document.getElementById("bh").style.transform="scale(2,2)"
+			
+			//切换
+			d=0;
+			//同时让变量为假，此时在点击则为false
+
+		}else{
+			document.getElementById("bh").style.transform="scale(2,2)"
+			
+			//切换
+			d=1;
+			//同时让变量为真，此时在点击则为true
+			//形成点击循环效果
+		};
+	};
+
+
+var e=1;
+	document.getElementById("n1").onclick=function(){
+		if(e){//如果为真
+			document.getElementById("bh").style.borderRadius="50%"
+			
+			//切换
+			e=0;
+			//同时让变量为假，此时在点击则为false
+
+		}else{
+			document.getElementById("bh").style.borderRadius="0"
+			
+			//切换
+			e=1;
+			//同时让变量为真，此时在点击则为true
+			//形成点击循环效果
+		};
+	};
+
+
+
+
+
+
+
+	document.getElementById("bh").style.transition="1.5s"
+
+	document.getElementById("dj").onclick=function(){
+	document.getElementById("szmb").style.display='block'
+}
+
+	document.getElementById("jzx").onclick=function(){
+	document.getElementById("bh").style.background='#ff9313'
+	}
+
+	document.getElementById("qzl").onclick=function(){
+	document.getElementById("bh").style.background='#00ff9c'
+	}
+
+	document.getElementById("ohx").onclick=function(){
+	document.getElementById("bh").style.background='#f1aafc'
+	}
+
+	document.getElementById("n3").onclick=function(){
+	document.getElementById("szmb").style.display="none"
+	}
+ </script>
+</html>

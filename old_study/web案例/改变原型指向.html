@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div class="div"></div>
+</body>
+<script type="text/javascript">
+function Person(age){
+	this.age=age;
+	console.log(this);
+}
+Person.prototype.eat=function(){
+	console.log(this);
+	console.log("原型中的")
+}
+
+function Person2(name){
+	this.name=name;
+	console.log(this)
+}
+
+
+var pre= new Person(10)
+pre.eat()
+console.log(pre)
+//构造函数中的this 是 实例对象
+//原型对象中的this 是 实例对象
+var obj2={
+	eae:function(){
+		console.log("d")
+	}
+}
+Person2.prototype=obj2//这里改变了原型指向
+Person2.prototype=new Person(10)
+Person2.prototype.set=function(){
+	console.log("原型2中的")
+	console.log(this)
+
+}
+var pre2= new Person2("456")
+pre2.set()//所以无法调用set
+console.log(pre2)
+console.log(pre2.sdfasdas)
+var div=document.querySelector(".div")
+console.log(div.__proto__)
+//原型的指向可以改变
+//实例对象的原型_proto_指向的是该对象的原型对象
+//当构造函数的原型对象（prototype）指向改变时，实例对象的原型_proto_ 也会改变;
+
+
+//实例对象和原型对象之间的关系是通过_proto_联系起来的
+
+
+
+//实例_proto_---->>构造函数prototype---->>构造函数prototype中的_proto_---->>Object.prototype---->>Object.prototype中的_proto_----->>null
+
+
+
+//原型指向改变如何添加方法
+
+//改变原型指向后
+//(可以通过new Person(10)改变指向)
+//(可以直接写入对象{  } 改变指向)
+//
+//再添加方法就可以使用了
+//该方法在实例对象下
+
+
+
+//实例对象和原型对象重名的问题
+//先从实例对象中找，找不到再从原型对象中找
+//
+//如果都没有，结果为undefined
+//因为js是一种动态类型的语言，只要.了 就代表有这个东西
+//但是并没有赋值
+//
+
+//一个div元素的原型链
+//divObj 的 _proto_---->>HTMLDivElement.prototype---->>Element.prototype 的 _proto_---->>Node.prototype 的 _proto_----EventTarget.prototype 的 _proto_---->>Object 中没有_proto_----->>null
+</script>
+</html>

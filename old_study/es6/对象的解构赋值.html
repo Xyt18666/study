@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+// let obj = {
+// 	n1:"p1",
+// 	n2:"p2"
+// }
+// let {n1,n2}=obj
+// console.log(n1,n2)
+// 属性名相等可以省略
+
+
+let {n1:x1,n2:x2}={
+	n1:"p1",
+	n2:"p2"
+}
+console.log(x1,x2)
+// 属性名不同，需要写清楚，要赋值给哪一个
+
+
+
+
+
+
+
+
+
+
+
+// 对象的默认值
+let {x="x",y}={y:2}
+console.log(x,y)
+
+// let {
+// 	m:n 
+// }={} // 结构的时候没发现m 所有  m:undefined
+// console.log(n)//n:undefined
+
+
+// let {
+// 	m:n=66
+// }={} // 结构的时候没发现m 所有  m:undefined
+// console.log(n)//由于得到的是undefined 所以直接 使用默认值 66
+
+
+let {
+	m:n=66 
+}={
+	m:88
+} // 结构的时候没发现 m 为88
+console.log(n)// 有值 88
+
+
+// ps  只有在undefined的时候才会使用默认值替代，其他的都不会
+
+
+
+
+// let {f:{b}}={b:"bb"};
+// f undefined
+// {b}  undefined
+// console.log(b)//Uncaught TypeError: Cannot destructure property `b` of 'undefined' or 'null'.
+
+// 如果结构模式中嵌套的是对象，而且子对象所在的父属性不存在就会报错
+
+
+</script>
+</html>

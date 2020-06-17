@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>缓冲运动</title>
+	<style>
+		body{
+			margin: 0;
+		}
+		.box{
+			position:absolute;
+			top:0;
+			left:0;
+			width: 100px;
+			height: 100px;
+			background: tomato;
+		}
+		.box1{
+			position:absolute;
+			left:0px;
+			top:200px;
+			width: 100px;
+			height: 100px;
+			background: pink;
+		}
+		.end{
+			height: 800px;
+			width: 1px;
+			position:absolute;
+			left:1000px;
+			top:0;
+			background: #000;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+	<div class="box1"></div>
+	<span class="end"></span>
+</body>
+<script>
+	var box=document.querySelector(".box")
+	var box1=document.querySelector(".box1")
+	//var tt=null;
+	
+	var onOff=true;
+	var onOff2=true;
+	box.onclick=function(){
+		if(onOff){
+			onOff=false
+			move(box,"left",800,uu)
+		}else{
+			onOff=true
+			move(box,"left",0,uu)
+		}
+	}
+	box1.onclick=function(){
+		//运动到1000px
+		//left值由0运动到1000px
+		if(onOff2){
+			onOff2=false
+			move(box1,"left",800,uu)
+		}else{
+			onOff2=true
+			move(box1,"left",0,uu)
+		}
+	}
+	function uu(){
+		console.log("被调用的")
+	}
+	function move(obj,attr,end,fn){
+		clearInterval(obj.tt)
+
+		obj.tt=setInterval(function(){
+			//获取当前的left值
+			var ic=parseInt(getStyle(obj,attr)) //取整 本身是带单位
+
+			var sd=(end-ic)/24;
+			//定义缓冲速度
+			sd=sd>0?Math.ceil(sd):Math.floor(sd);
+			//大于向上取整 ,小于向下取整
+
+			ic+=sd; //每隔时刻要改变一次，也要判断一次是否到达终点
+
+			obj.style[attr]=ic+"px"
+			//到达终点要关闭定时器
+			if(ic==end){
+				clearInterval(obj.tt)
+				fn&&fn()
+				//并且 求真 
+				//或者 求假
+			}
+		},10)
+	}
+	//1.如何获取css样式中的left值
+	function getStyle(obj,attr){ //元素和属性
+		return obj.currentStyle?obj.currentSyle[attr]:getComputedStyle(obj,null)[attr]   
+	}
+//短路效果
+// var s=1||12;
+// console.log(s)
+// 当第一个为真时，执行第一个
+// 当第一个为假时，执行第二个
+
+// var s=0&&12;
+// console.log(s)
+//当第一个为假时，执行第一个
+//当第一个为真时，执行第二个
+</script>
+<html>

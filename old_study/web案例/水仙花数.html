@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+/*
+
+三位的水仙花数共有4个：153，370，371，407；
+四位的四叶玫瑰数共有3个：1634，8208，9474；
+五位的五角星数共有3个：54748，92727，93084；
+六位的六合数只有1个：548834；
+七位的北斗七星数共有4个：1741725，4210818，9800817，9926315；
+八位的八仙花数共有3个：24678050，24678051，88593477*/
+
+/*输入一个三位数判断是否为水仙花数*/
+
+// var sxh=prompt("请输入一个三位数")
+// var g=sxh%10
+// var s=parseInt((sxh%100)/10)
+// var b=parseInt((sxh%1000)/100)
+// if(g*g*g+s*s*s+b*b*b==sxh){
+// 	console.log("他是一个水仙花数")
+// }else{
+// 	console.log("他不是一个水仙花数")
+// }
+
+//判断3位数的水仙花
+for(a=100; a<1000; a++){
+	var g=a%10
+	var s=parseInt((a%100)/10)
+	var b=parseInt((a%1000)/100)
+	if(g*g*g+s*s*s+b*b*b==a){
+		console.log(a)
+	}
+
+}
+
+</script>
+</html>

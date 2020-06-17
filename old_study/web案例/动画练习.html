@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.box1{
+			width: 50px;
+			height: 50px;
+			transform-style: preserve-3d;
+			position: relative;
+			perspective:0;
+			perspective-origin:center center;
+			margin: 20px;
+		}
+		.con1{
+			position: absolute;
+			width: 50px;
+			height: 50px;
+			background: #789;
+			transition:1.5s;
+			animation:boxo 1s linear infinite;
+		}
+		@keyframes boxo{
+			0% {
+			    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+			}
+			50% {
+			    transform: perspective(120px) rotateX(-180deg) rotateY(0deg);
+			}
+			100% {
+			    transform: perspective(120px) rotateX(-180deg) rotateY(-180deg);
+			}
+		}
+		.box2{
+			width:50px;
+			height: 50px;
+			position: relative;
+		}
+		.out2,.in2{
+			width: 50px;
+			height: 50px;
+			border-radius:50%;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform:translate(-50%,-50%);
+		}
+		.out2{
+			background: rgba(0,23,234,0.3);
+			animation:boxt 1s linear infinite  alternate;
+		}
+		.in2{
+			background: rgba(234,234,0,0.3);
+			animation:boxt 1s linear 0.5s infinite  alternate;
+		}
+		@keyframes boxt{
+			0% {
+			   width: 0;
+			   height: 0;
+			}
+			100% {
+			    width: 50px;
+			    height: 50px;
+			}
+		}
+		.box3{
+			margin: 20px;
+		}
+		.box3 p{
+			width: 5px;
+			height: 30px;
+			background: #789;
+			margin-right: 3px;
+			float: left;
+			animation:boxs 1s linear infinite  alternate;
+		}
+		@keyframes boxs{
+			0% {
+			   transform:scale(1,0.8);
+			}
+			100% {
+			   transform:scale(1,1.2);
+			}
+		}
+		.box3{
+			width: 100px;
+			height: 100px;
+			margin: 20px;
+		}
+		.box4{
+			width: 50px;
+			height: 50px;
+			margin: 20px;
+			position: relative;
+		}
+		.b41,.b42{
+			width: 10px;
+			height: 10px;
+			background: #789;
+			position: absolute;
+		}
+		.b41{
+			animation:boxdsy 3s linear infinite ;
+		}
+		.b42{
+			animation:boxdsy 3s linear 1.5s infinite ;
+		}
+		@keyframes boxdsy{
+			0% {
+			   transform:translate(0,0) scale(1) rotate(0deg);
+			}
+			25% {
+			   transform:translate(500%,0) scale(2) rotate(90deg);
+			}
+			50% {
+			    transform:translate(500%,500%) scale(1) rotate(180deg);
+			}
+			75% {
+			   transform:translate(0,500%) scale(2) rotate(270deg);
+			}
+			100% {
+			    transform:translate(0,0) scale(1) rotate(360deg);
+			}
+		}
+		.box5{
+			width: 50px;
+			height: 50px;
+			border-radius:50%;
+			position: relative;
+		}
+		.b51,.b52{
+			width: 20px;
+			height: 20px;
+			position: absolute;
+			background: #789;
+			border-radius:50%;
+		}
+		.b51{
+			animation:boxdw 2s linear infinite ;
+		}
+		.b52{
+			animation:boxdw 2s linear 1s infinite ;
+		}
+		@keyframes boxdw{
+			0% {
+			   transform:translate(40px,40px) scale(1.2);
+			}
+			25% {
+			   transform:translate(20px,40px) scale(0.6);
+			}
+			50% {
+			   transform:translate(0,0) scale(0);
+			}
+			75% {
+			    transform:translate(40px,20px) scale(0.6);
+			}
+			100% {
+			   transform:translate(40px,40px) scale(1.2);
+			}
+		}
+		.box6{
+			width: 100px;
+			height: 50px;
+			margin: 20px;
+		}
+		.box6 span{
+			width: 20px;
+			height: 20px;
+			margin-right: 5px;
+			background: #789;
+			float: left;
+			border-radius:50%;
+			animation:boxl 1s linear infinite ;
+		}
+		@keyframes boxl{
+			0% {
+			   transform:scale(0);
+			}
+			100% {
+			   transform:scale(1);
+			}
+		}
+		.box7{
+			width: 100px;
+			height: 100px;
+			position: relative;
+		}
+		.box7 span{
+			width: 100px;
+			height: 20px;
+			position: absolute;
+			top: 50%;
+			transform:translate(0,50%);
+
+		}
+		.box7 span em{
+			width: 20px;
+			height: 20px;
+			float: left;
+			background: #789;
+			border-radius:50%;
+			animation:boxqt 1s linear infinite ;
+		}
+		@keyframes boxq{
+			0% {
+			   transform:scale(0);
+			}
+			25% {
+			   transform:scale(0);
+			}
+			50% {
+			   transform:scale(0.8);
+			}
+			75% {
+			   transform:scale(0.8);
+			}
+			100% {
+			   transform:scale(0);
+			}
+		}
+		@keyframes boxqt{
+			0% {
+			   opacity:1 ;
+			}
+			25% {
+			   opacity:0.6 ;
+			}
+			50% {
+			   opacity:0.2 ;
+			}
+			75% {
+			   opacity:0 ;
+			}
+			100% {
+			   opacity: 0;
+			}
+		}
+		.box9{
+			width: 100px;
+			height: 100px;
+		}
+		.box9 p{
+			width: 33.33%;
+			height: 33.33%;
+			background: #789;
+			float: left;
+			animation:boxj 1s linear infinite alternate;
+		}
+		@keyframes boxj{
+			0%{
+				transform:scale(1)
+			}
+			16%{
+				transform:scale(1)
+			}
+			32%{
+				transform:scale(1)
+			}
+			50%{
+				transform:scale(1)
+			}
+			75% {
+			  transform:scale(0);
+			}
+			100%{
+			  transform:scale(0);
+			}
+		}
+
+		.sk-folding-cube {/*定义大盒子*/
+		  width: 100px;
+		  height: 100px;
+		  position: relative;
+		  margin: auto;
+		  transform: rotateZ(45deg);/*改变形状*/
+		}
+		.sk-folding-cube .sk-cube {/*定义每个小块*/
+		  float: left;/*浮动*/
+		  width: 50%;
+		  height: 50%;
+		  position: relative; /*基于自身定位*/
+		}
+		.sk-folding-cube .sk-cube:before {/*定义伪元素*/
+		  content: '';
+		  position: absolute;/*定位，至自身*/
+		  top: 0;
+		  left: 0;
+		  width: 100%;
+		  height: 100%;
+		  background-color: #337ab7;
+		  animation: boxX 3s infinite linear both;
+		  transform-origin: 100% 100%;
+		}
+		.sk-folding-cube .sk-cube-2 {
+		  transform:rotateZ(90deg);/*旋转坐标系*/
+		}
+		.sk-folding-cube .sk-cube-3 {
+		  transform:rotateZ(180deg);/*旋转坐标系*/
+		}
+		.sk-folding-cube .sk-cube-4 {
+		 transform:rotateZ(270deg);/*旋转坐标系*/
+		}
+		.sk-folding-cube .sk-cube-2:before {
+		 animation-delay: 0.3s;/*设置延迟*/
+		}
+		.sk-folding-cube .sk-cube-3:before {
+		 animation-delay: 0.6s;/*设置延迟*/
+		}
+		.sk-folding-cube .sk-cube-4:before {
+		 animation-delay: 0.9s;/*设置延迟*/
+		}
+		@keyframes boxX {
+		  0%, 10% {
+		    transform: perspective(140px) rotateX(-180deg);
+		    opacity: 0;
+		  }
+		  25%, 75% {
+		    transform: perspective(140px) rotateX(0deg);
+		    opacity: 1;
+		  }
+		  90%, 100% {
+		    transform: perspective(140px) rotateY(180deg);
+		    opacity: 0;
+		  }
+		}
+
+
+	</style>
+</head>
+<body>
+	<div class="box1">
+		<div class="con1"></div>
+	</div>
+	<div class="box2">
+		<div class="out2">
+			<div class="in2"></div>
+		</div>
+	</div>
+	<div class="box3">
+		<p></p>
+		<p style="animation-delay:0.1s;"></p>
+		<p style="animation-delay:0.2s;"></p>	
+		<p style="animation-delay:0.3s;"></p>
+		<p style="animation-delay:0.4s;"></p>
+		<p style="animation-delay:0.5s;"></p>
+	</div>
+	<div class="box4">
+		<div class="b41"></div>
+		<div class="b42"></div>
+	</div>
+	<div class="box5">
+		<div class="b51"></div>
+		<div class="b52"></div>
+	</div>
+	<div class="box6">
+		<span></span>
+		<span style="animation-delay:0.2s;"></span>
+		<span style="animation-delay:0.4s;"></span>
+	</div>
+	<div class="box7">
+		<span><em style="animation-delay:0.1s;"></em></span>
+		<span><em style="animation-delay:0.2s;"></em></span>
+		<span><em style="animation-delay:0.3s;"></em></span>
+		<span><em style="animation-delay:0.4s;"></em></span>
+		<span><em style="animation-delay:0.5s;"></em></span>
+		<span><em style="animation-delay:0.6s;"></em></span>
+		<span><em style="animation-delay:0.7s;"></em></span>
+		<span><em style="animation-delay:0.8s;"></em></span>
+		<span><em style="animation-delay:0.9s;"></em></span>
+		<span><em style="animation-delay:1s;"></em></span>
+		<span><em style="animation-delay:1.1s;"></em></span>
+		<span><em style="animation-delay:1.2s;"></em></span>
+	</div>
+	<div class="box9">
+		<p style="animation-delay:-0.5s;"></p>
+		<p style="animation-delay:-0.25s;"></p>
+		<p></p>
+		<p style="animation-delay:-0.75s;"></p>
+		<p style="animation-delay:-0.5s;"></p>
+		<p style="animation-delay:-0.25s;"></p>
+		<p style="animation-delay:-1s;"></p>
+		<p style="animation-delay:-0.75s;"></p>
+		<p style="animation-delay:-0.5s;"></p>
+	</div>
+	 <div class='sk-folding-cube'>
+	    <div class='sk-cube sk-cube-1'></div>
+	    <div class='sk-cube sk-cube-2'></div>
+	    <div class='sk-cube sk-cube-4'></div>
+	    <div class='sk-cube sk-cube-3'></div>
+	 </div>
+
+</body>
+<script>
+for(var a=0; a<$(".box7 span").length; a++){
+	$(".box7 span").eq(a).css({
+		transform:"rotate("+(a*30)+"deg)"
+	})
+}
+
+
+</script>
+</html>

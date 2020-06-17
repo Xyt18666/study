@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		p{
+			width: 100px;
+			margin: 50px auto ;
+		}
+		span{
+			width: 20px;
+			height: 20px;
+		}
+	</style>
+</head>
+<body>
+	<p>
+		<span>❤</span>
+		<span>❤</span>
+		<span>❤</span>
+		<span>❤</span>
+		<span>❤</span>
+	</p>
+</body>
+
+<script>
+	var ss=0;
+	$("span").mouseover(function(){
+		var xb= $(this).index()+1
+		tab(xb)
+	})
+	$("span").mouseout(function(){
+		ss>0?tab(ss):tab(0)
+	})
+	$("span").click(function(){
+		ss = $(this).index()+1
+		tab(ss)
+	})
+	function tab(zz){
+		$("span").css("color","#000")
+		
+		for(var a=0; a<zz; a++){
+			$("span").eq(a).css("color","red")
+		}
+	}
+</script>
+</html>

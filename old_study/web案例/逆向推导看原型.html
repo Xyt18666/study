@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+function F1(name){
+	this.name=name;
+}
+function F2(name){
+	this.name=name;
+}
+
+F2.prototype=F1("10")
+
+function F3(name){
+	this.name=name;
+}
+
+F3.prototype=F2("20")
+
+var f3= new F3("30")
+
+console.log(f3)//此时的__proto__指向object
+
+
+//函数的角色
+//声明式 和 表达式 的区别
+function fn1(){
+	console.log("我是声明式")
+	console.log(this)
+}
+
+var fn2=function(){
+	console.log("我是表达式")
+	fn1()
+}
+fn2()
+if(true){
+	function fn12(){
+		console.log("我是1")
+	}
+
+}else{
+	function fn12(){
+		console.log("我是2")
+	}
+}//在 ie8 中 执性结果为2
+
+//预解析的的时候声明提前了
+//所以在if判断的时候执行上面的
+
+
+
+//普通函数中的this是谁？  window对象
+//对象的方法中的this是谁？  当前的实例对象
+//定时器方法中的this是谁？  window对象
+//构造函数中的this是谁？  实例对象
+//原型对象中的this是谁？  实例对象
+
+
+//严格模式
+//"use strict"
+</script>
+</html>

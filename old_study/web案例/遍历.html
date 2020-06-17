@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+</head>
+<body>
+	<div class="list" onclick= "arr.forEach(oa)">
+		<li>a1</li>
+		<li>a2</li>
+		<li>a3</li>
+		<li>a4</li>
+		<li>a5</li>
+	</div>
+</body>
+<script>
+var arr=[9,8,4,"w","e"]
+
+var obj={
+	"neme":"ming",
+	"sex":"男",
+	"age":18
+}
+
+var str="789456123"
+
+// for  遍历 元素
+// for(var a=0; a< $("li").length; a++){
+// 	console.log(a+"a是下标，遍历了伪数组的长度")
+// }
+
+
+// for  遍历 数组
+// for(var a=0; a< arr.length; a++){
+// 	console.log(arr[a]+"数组的[a],输出数组的值")
+// }
+
+// for  遍历 对象
+// 无效
+
+
+// for in  遍历 对象
+// for(var i in obj){
+// 	console.log(i+"i是键名",obj[i]+"是键值")
+// }
+
+
+
+//forEach() 方法用于调用数组的每个元素，并将元素传递给回调函数。
+//点击 执行循环函数
+// function nyfn(currentValue, index, arr){
+// 	console.log(currentValue+"值", index+"下标", arr+"数组")
+// }
+
+
+//可以循环字符串
+// function oa(currentValue,index,str){
+// 	console.log(currentValue,index,str)
+// }
+
+//遍历元素
+// $.each($("li"),function(a,b){
+// 	console.log(a+"下标",b+"元素")
+// })
+
+//遍历对象
+// $.each(obj,function(a,b){
+// 	console.log(a+"键名",b+"键值")
+// })
+
+
+// $("li").each(function(a,b){
+// 	console.log(a+"下标",b+"元素")
+// })
+
+
+/*
+
+js:
+
+for(){}
+
+for( in ){}
+
+forEach()
+
+
+jq:
+
+$.each()
+
+$().each()
+
+
+ */
+
+</script>
+</html>

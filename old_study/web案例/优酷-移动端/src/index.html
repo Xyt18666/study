@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="优酷视频-首页"/>
+	<!-- 关键字，方便搜索引擎查找 -->
+
+	<meta name="description" content="优酷视频-首页"/>
+	<!-- 当前网页的介绍，百度搜索右侧的介绍 -->
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"/>
+	<!-- 视口 -->
+
+	<link rel="shortcut icon" href="https://img.alicdn.com/tfs/TB1WeJ9Xrj1gK0jSZFuXXcrHpXa-195-195.png" type="image/x-icon"/>
+	<!-- 引入网页前的小图标 -->
+
+	<!-- <base target="_blank" /> -->
+	<!-- 在新页面打开 -->
+	
+	<title>优酷视频-首页</title>
+
+</head>
+<body>
+<section id="content"></section>
+<!-- 这是一个容器，将来使用react渲染的虚拟dom都会放到这个容器中 -->
+
+</body>
+<script>
+
+function fn(d){
+// 搜索栏回调
+    var arr=d.s
+    var stp=document.querySelectorAll(".searClickBox ul li p")
+    let stpl=stp.length
+    stpl = arr<5?arr:5;
+    for(let a=0; a<stpl; a++){
+        stp[a].innerHTML=arr[a]
+    }
+}
+
+
+
+</script>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+// Array类上的方法
+
+// Array() 将传入的值变为数组返回
+// 只传一个参数 n 的时候，代表返回数组的长度
+
+console.log(Array(5,156,4,8))
+console.log(Array(5))
+
+// Array.of()    与Array相同,解决只传一个参数的问题
+console.log(Array.of(8))
+
+// Array.from() 参数是 数组或者 类数组  , 返回值是一个新的数组
+// 真数组会克隆一份
+// 主要用于 类数组 转 真数组
+console.log(Array.from([5,88,6,2]))
+
+function toArray(){
+	return Array.from(arguments)
+}
+
+console.log(toArray(846,5,4,35))
+
+
+// -------------------------------------
+
+
+// 数组实例的方法
+
+// copyWithin(target,starget,end)  
+// target:从该位置开始替换数据
+// starget: 选填,从该位置读取数据,默认值是0
+// end: 选填,从该位置 前 停止读取数据,默认值是数组的长度
+
+let ary1 = [0,6,4,2,8,9]
+console.log(ary1.copyWithin(0,1,5))//原数组会被覆盖
+// 值全部为数字，下标
+// ary1.copyWithin(被替换开始的位置,替换值起,替换值终之前)
+
+
+// ------------------------------------------
+
+
+// find()  先遍历数组，一项一项的执行，一旦函数返回true，就停止查找，返回当前项,如果一直到最后一项还没返回true，最终返回undefined
+
+console.log(ary1.find(function(item,index,input){
+		return item == 2
+}))
+
+
+
+
+// findIndex() 与 find相同 ，但是 返回值是下标，一直找不到是 -1
+console.log(ary1.findIndex(function(item,index,input){
+		return item == 5
+}))
+
+
+// --------------------------------------
+
+
+// fill(value,start,end)  填充数组
+// value: 必填，填充的值
+// start: 可选，默认值为0，开始填充的位置
+// end: 可选，结束填充的位置
+// 常用于重置数组
+
+let arr2=[8,6,9,8,2]
+console.log(arr2.fill(0,1,3))//原数组会被覆盖
+
+
+// 面试小问题：得到7个0的数组
+console.log(Array(7).fill(0))
+
+// -----------------------------------------
+
+
+
+// includes()   判断是否有某项，返回布尔值
+
+console.log(arr2.includes(2))
+
+
+// ---------------------------------
+
+// 数组的空位   
+// Array(3) 得到的就是3个空位
+
+let arry1 = Array(3);
+let arry2 = [undefined,undefined,undefined]
+let arry3 = [2,,8,,]
+console.log(1 in arry1)//false  没有值
+console.log(1 in arry2)//true   有值
+
+
+console.log(arry3.length)// 4
+arry3.forEach(function(item){
+	console.log(item)//es5 大部分会忽略空位
+})
+
+console.log(arry3.map(function(item){
+	return item
+	//使用 map就不会忽略空位
+}))
+
+arry3.find(function(item){
+	console.log(1)//使用 find 也不会忽略空位
+	console.log(item)
+})
+
+// es6中的方法，会将空位处理为undefined
+
+
+// -----------------------------------------
+
+// 遍历数组   for of
+
+let arr4 = [7,5,3,9,5,1]
+for(let item of arr4){
+	console.log(item)//是当前项
+}
+
+for(let index in arr4){//常用于遍历对象对的属性名
+	console.log(index)//是索引
+}
+
+// 使用 for of   arry.keys() 遍历索引
+
+for(let key of arr4.keys()){
+	console.log(key)//是当前索引
+}
+
+
+// 使用 for of   arry.entries() 遍历索引和值
+// 获取的是一个数组，通过结构的方式，分别拿到两个值
+
+for(let [index,item] of arr4.entries()){
+	console.log(index,item)//分别拿到2个值
+}
+
+</script>
+</html>

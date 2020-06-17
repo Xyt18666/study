@@ -1,0 +1,31 @@
+//设备宽度
+@sbk:750px,640px,540px,480px,360px,320px;
+
+//设计稿尺寸
+@pss:750px;
+
+//预设字体大小
+@yss:100px;
+
+//设备种类 , length 长度
+@len:length(@sbk);
+
+.mixin(@index) when(@index > 0 ){  
+// .mixin     ,是自己定义的方法
+// when()  ,里面的判断条件不一样，当满足条件时，就执行里面的样式；
+// 判断 @index 是否大于 0
+
+	// 创建 media(最小宽度:遍历(列表项，第几个))
+	@media (min-width: extract(@sbk,@index)){
+		html{                   		
+			font-size: @yss / @pss * extract(@sbk,@index);
+			// 预设大小 除以 设计稿宽 乘以 遍历(列表项，第几个)
+		}
+	}
+	.mixin(@index - 1);
+	// 通过函数自调用，实现循环效果
+
+}
+
+.mixin(@len);
+// 调用函数，传入实参@len   ===  @index

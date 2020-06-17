@@ -1,0 +1,27 @@
+[
+       {
+           "img":"https://us-website.wannar.com/images/index/sliders/yellowstone/2019/w_cn_1.jpg",
+           "text":"黄石预售",
+           "url":"1"
+       },
+       {
+            "img":"https://us-website.wannar.com/images/index/sliders/winter/2019/w_cn_2.jpg",
+            "text":"银冬钜惠",
+            "url":"2"
+        },
+        {
+            "img":"https://us-website.wannar.com/images/index/sliders/aurora/2019/w_cn_1.jpg",
+            "text":"激光热销",
+            "url":"3"
+        },
+        {
+            "img":"https://us-website.wannar.com/images/index/sliders/banner-member-20190116.jpg",
+            "text":"Prime会员全新上线",
+            "url":"4"
+        },
+        {
+            "img":"https://us-website.wannar.com/images/index/sliders/private/w2019100901.jpg",
+            "text":"定制行程立减$600",
+            "url":"5"
+        }
+]

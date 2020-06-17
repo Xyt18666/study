@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+//函数是对象，
+//但对象不一定是函数
+
+//对象中有__proto__ 原型,是对象
+//函数中有prototype原型,是对象
+//如果有__proto__ ,又有prototype,说明他是一个函数对象
+
+//所有函数都通过Function()构造函数创建的
+
+var f1= new Function("n1","n2","return n1+n2")
+console.log(f1(10,20))
+console.dir(f1)
+
+
+var obj=[
+	function(){
+		console.log("1")
+	},
+	function(){
+		console.log("12")
+	},
+	function(){
+		console.log("123")
+	}
+];
+
+obj.forEach(
+	function(ele){
+		ele();
+	}
+)
+
+//forEach方法中的function回调有三个参数：第一个参数是遍历的数组内容，第二个参数是对应的数组索引，第三个参数是数组本身
+
+// 对象.forEach(function(value,index,array){
+ 
+//　});
+
+var iop=[
+	"12","45","89"
+]
+iop.forEach(function(value,index,array){
+ 	console.log(value,index,array)
+ 	// 值，下标，数组本身
+});
+
+
+
+</script>
+</html>

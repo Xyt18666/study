@@ -1,0 +1,64 @@
+导入某某 模块：
+import random    随机数模块
+
+random.randint(1,10)  随机 1 - 10
+
+
+----------------------------------------------
+
+OS 模块：对于不同操作系统， os会帮你选择正确的模块 并调用
+
+
+import os:  导入 os
+
+os常用的内置函数：
+
+os.getcwd() :获取当前工作目录
+.chdir("path") : 改变工作目录
+.listdir("") : 列举当前目录的文件名
+.mkdir() :  创建子级目录
+.makedirs() 递归创建对个==多个木目录，如果该目录存在，会报错
+.remove("")  删除一个文件
+.removedirs()   递归删除
+.rename(old,new)  重命名
+.system()  运行系统 的 shell命令
+.curdir()  指当前目录  .
+.pardir()  指上一层目录  ..
+.sep()   输出操作系统路径分隔符
+.linesep()   输出操作系统终止符
+.name()  指代当前操作系统
+ 
+----------------------------------------------------
+
+os.path  模块 
+
+os.path.basename(path)  去除路径 ，返回文件名
+.dirname()   去除 文件名 ，返回路径
+.join(path1,path2)    拼接路径
+.split(path)   分割路径或者 文件名
+.splitext(path)  分离文件名 和 扩展名
+.getsize()    返回 指定文件的 字节值
+
+.getatime()    创建时间
+.getctime()    修改时间
+.getmtime()    最近的访问时间  ，都返回 浮点数
+
+.exists()      判断指定路径是否 存在
+.isabs()        是否为绝对路径
+.isdir()	判断指定路径是否 存在 并且是 目录
+.isfile() 	判断指定路径是否 存在 并且是 文件
+.islink()	判断指定路径是否 存在 并且是 符号链接
+.ismount()	判断指定路径是否 存在 并且是 挂戳点  cd..硬盘 
+.samefile(path1,2)	判断 两个路径是否指向同一个 文件
+
+-----------------------------------------------------
+
+import time   time模块
+
+.localtime()  返回现在的时间
+
+
+
+
+
+

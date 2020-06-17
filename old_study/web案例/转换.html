@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+</head>
+<body>
+	<canvas width="1000px" height="800px" style="border:2px solid #789;"></canvas>
+</body>
+<script>
+let can = $("canvas")[0]
+let c = $("canvas")[0].getContext("2d");
+
+
+c.beginPath()
+c.strokeStyle="red"
+c.lineWidth='1'
+// c.rotate(40*Math.PI/180)//旋转格式
+//c.scale(2,2)//再次输出生效,所有参赛全部放大
+// c.translate(-20,-20)//平移
+c.strokeRect(20,20,50,50)
+
+//save():保存绘制状态
+//restore():恢复保存的绘制状态
+c.beginPath()
+c.strokeStyle = "red"
+c.lineWidth = 10
+c.fillStyle = "yellow"
+c.rect(250,150,200,100)
+c.fill()
+c.stroke()
+c.save()//保存
+c.closePath()
+
+c.beginPath()
+c.strokeStyle = "blue" 
+c.save()
+c.closePath()
+
+</script>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+let a = "aa", b = "bb";
+let obj = {
+	a:"a",
+	[a+b]:"AA"+b,// 这里的 a b 是变量
+	fn(){},
+	fn2:function(){
+		console.log("两个fn函数相同，fn是简写")
+	}
+}
+console.log(obj.a)//obj对象下的 a
+console.log(obj['a'])//obj对象下的 a  以中括号的形式获取，要加''
+console.log(obj[a+b])// obj 对象下的 [a+b]   这里的 a 是变量 a
+console.log(obj)
+
+
+</script>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<script src="js/myjqk.js"></script>
+		<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+		img{
+			width: 100px;
+			height: 100px;
+		}
+		.wrap{
+			width: 1190px;
+			background: #ccc;
+			margin: 0 auto;
+		}
+		.top{
+			margin-top: 50px;
+			margin-bottom: 50px;
+			overflow: hidden;
+		}
+		.top p,.top b,.top h6{
+			float: left;
+		}
+		.top h6{
+			margin-left: 50px;
+			font: 26px/36px "";
+			color: #789;
+		}
+		.top p{
+			margin-right: 100px;
+			font:36px/36px "";
+		}
+		.top b{
+			font:26px/36px "";
+		}
+		.list li{
+			width: 1190px;
+			height: 100px;
+			background: #0f0;
+			margin-bottom: 15px;
+		}
+		.list li>input,.list li>img,.list li>h2,.list li>h3,.list li>.zj,.list li>h4，.list li>h5{
+			float: left;
+		}
+		.list li>h5{
+			width: 100px;
+			font:16px/100px "";
+			margin-left: 800px;
+			color: red;
+		}
+		.list li>input{
+			margin-top: 45px;
+			margin-right: 20px;
+		}
+		.list li>h4{
+			height: 100px;
+			font:26px/100px "";
+			float: right;
+			margin-right: 20px;
+		}
+		.list li>h2,.list li>h3{
+			line-height: 100px;
+			margin-left: 20px;
+		}
+		.zj{
+			margin-left: 20px;
+		}
+		.zj p,.zj input{
+			float: left;
+		}
+		.zj p{
+			font:26px/100px "";
+		}
+		.zj input{
+			border:none;
+			outline:none;
+			background: #789;
+			height: 100px;
+			font:26px/100px "";
+		}
+	</style>
+</head>
+<body>
+		<div class="wrap">
+		<div class="top">
+			<p>所有商品</p>
+			<b><input type="checkbox" class="oo">全选</b>
+			<h6>添加商品</h6>
+		</div>
+		<ul class="list">
+			<!-- <li>
+				<input type="checkbox">
+				<img src="img/1.jpg" alt="">
+				<h2>可口可乐</h2>
+				<h3>单价￥<span>3.00</span></h3>
+				<div class="zj">
+					<p>+</p>
+					<input type="text">
+					<p>-</p>
+				</div>
+				<h4>小结￥<em>3.00</em></h4>
+				<h5>删除商品</h5>
+			</li> -->
+		</ul>
+		<b>总价￥<i>0.00</i></b>
+		<em>商品数量<span></span></em>
+	</div>
+</body>
+<script>
+
+
+$.ajax({
+	url:"product.json",
+	data:"",
+	type:"POST",
+	dataType:"json",
+	success:function(d){
+		console.log(d)
+		var wls=window.localStorage
+		for(var a in d){
+			var arr = d[a].list;
+			for(var b=0; b<arr.length; b++){
+				console.log(arr[b].pid)
+				//通过遍历获取每个商品的ip
+				
+				var nnn = wls.getItem("con"+arr[b].pid)
+				//获取每个ip的商品数量
+
+				//判断所有商品 是否有 数据中的商品 
+				if(arr[b].pid == wls.getItem("ip"+arr[b].pid)){
+					//如果有 通过json生成页面
+
+					$(".list").append(`<li><input type="checkbox" class="xx"><img src=${arr[b].img} alt=""><h2>${arr[b].name}</h2><h3>单价￥<span>${arr[b].price}</span></h3><div class="zj"><p class="zzz">+</p><input type="text" value="${wls.getItem("con"+arr[b].pid)}" class="sizeo"><p class="jjj">-</p></div><h4>小结￥<em>${wls.getItem("con"+arr[b].pid)*arr[b].price}</em></h4><h5 class="scsp" removeId=${arr[b].pid}>删除商品</h5></li>`)
+
+					//数量 value 中拼接 商品数量
+					//删除按键上 拼接 商品 ip
+				}
+			}
+		}
+
+		// for (var i = 0; i <  $(".list li").length; i++) {
+		// 	 // console.log($(".list li")[i])//此时是js对象
+		// 	//第 i 个 li 中的  数量和单价
+		// 	var sl= $($(".list li")[i]).find(".zj input").val()-0//数量
+		// 	var dj= $($(".list li")[i]).find("h3 span").text()-0//单价
+		// 	$($(".list li")[i]).find("h4 em").text(sl*dj)
+		// 	//加载后计算小计、
+		// 	//计算初始值
+		// }
+
+		
+
+		$("p:contains(+)").click(function(){
+			 var dj= $(this).parents("li").find("h3 span").text()-0
+			 var sl= $(this).parents("li").find(".zj input").val()-0
+			 $(this).parents("li").find(".zj input").val(++sl)-0
+			 $(this).parents("li").find("h4 em").text(dj*sl)
+			 getMoy()
+			 var rId = $(this).parents(".list li").find(".scsp").attr("removeId");
+			 //获取当前商品的 ip
+			 wls.setItem("con"+rId,sl);
+			 //设置当前商品的数量
+			
+	 		 var sps= wls.getItem("sps")||0
+			wls.setItem("sps",++sps);
+		})
+		$("p:contains(-)").click(function(){
+			 var dj= $(this).parents("li").find("h3 span").text()-0
+			 var sl= $(this).parents("li").find(".zj input").val()-0
+			 sl--
+			 sl=sl<1?1:sl
+			 $(this).parents("li").find(".zj input").val(sl)-0
+			 $(this).parents("li").find("h4 em").text(dj*sl)
+			 getMoy()
+			 var rId = $(this).parents(".list li").find(".scsp").attr("removeId");
+			 wls.setItem("con"+rId,sl);
+
+			 var sps= wls.getItem("sps")||0
+			 sps--
+			 sps=sps<=0?0:sps
+			 wls.setItem("sps",sps);
+		})
+		$(".oo").click(function(){
+			$("li>input").prop("checked",$(".oo").prop("checked"))
+			getMoy()
+		})
+		$("li>input").click(function(){
+			var inp = $("li>input").length
+			var cinp= $("li>input:checked").length
+			$(".oo").prop("checked",inp==cinp)
+			getMoy()
+		})
+		$("li h5").click(function(){
+			 $(this).parents("li").remove()
+			 getMoy()
+			 var rr = $(this).attr("removeId");
+
+			  var sps= wls.getItem("sps")||0
+			  //获取总数
+			  var tsl= wls.getItem("con"+rr);
+			  //获取当前商品数量
+			 wls.setItem("sps",sps-tsl);
+			  //总数- 当前商品数量
+
+
+			 //删除的时候 删除 当前的商品数据
+			 wls.removeItem("ip"+rr);
+			 wls.removeItem("con"+rr);
+
+		})
+
+		function getMoy(){
+			var xz= $("li>input:checked")
+			var zj=0;
+			var sl=0;
+			for(var a=0; a<xz.length; a++){
+				zj+= $(xz[a]).parents("li").find("h4 em").text()-0
+				sl+= $(xz[a]).parents("li").find(".zj input").val()-0
+			}
+			$("b i").text(zj)
+			$("em span").text(sl)
+		}
+
+
+		$(window).on({
+			storage:function(e){
+				location.reload()
+			}	
+		})
+	}
+})
+
+	
+
+
+
+
+
+</script>
+</html>

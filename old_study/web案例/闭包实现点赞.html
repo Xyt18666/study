@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div class="bunt">赞(0)</div>
+	<div class="bunt">赞(0)</div>
+	<div class="bunt">赞(0)</div>	
+</body>
+
+<script type="text/javascript">
+var but=document.querySelectorAll(".bunt")
+
+function zz(){
+	var num=1;
+	return function(){
+		this.innerHTML="赞("+(num++)+")"
+	}
+}
+
+for(var a=0; a<but.length; a++){
+	but[a].onclick=zz()
+}
+</script>
+</html>

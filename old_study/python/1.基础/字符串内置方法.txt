@@ -1,0 +1,78 @@
+分片: 同样适用于 字符串  :
+
+访问单个字符： str[2]
+
+修改字符串值： 同元组 ,分片 + 拼接
+
+首字母大写： str.capitalize(）  
+
+所有字母转小写： str.casefold()   
+
+居中： str.center(20)    字符串两侧扩展出20 的距离
+
+获取某个值出现的次数： str.count(值[,起][,尾])
+
+指定编码格式： str.encode(encodeing='utf-8',encors='strict')
+
+是否以某某开头： str.startswith(值[,起][,尾])
+
+是否以某某结尾：str.endswith(值[,起][,尾]) 返回布尔值
+
+把 \t 转换 为空格： str.expandtabs(tabsize=8)  默认值为8
+
+检查是否在此字符串中： str.find(值[,起][,尾])  返回 下标，找不到 返回 -1
+
+检测是否都为数字或者字母，并且必须有一个值 ：str.isalnum()
+
+检测是否都为字母，并且必须有一个值：str.isalpha()
+
+检测是否都为十进制数字：str.isdecimal()
+
+检测是否都为数字：str.isdigit()
+
+检测是否都为小写： str.islower()
+
+只包含数字：str.isnumeric()
+
+只包含空格: str.isspace()
+
+判断是否为标题 ：str.istitle()  标题对的定义： 单词首字母大写，其余小写
+
+返回标题 ：  str.titile()
+
+以str为 分隔符 ，分割值：str.join(值)
+
+左对齐： str.ljust(5)
+
+右对齐: str.rjust(5)
+
+转小写： str.lower()
+
+转大写： str.upper()
+
+去除字符串左边的空格： str.lstrip()
+
+删除尾空格： str.rstrip()
+
+把某 子字符串 提取出来，变为元组： str.partition(值)
+
+同上，从右边开始查找： str.rpartition()
+
+把旧字符串换为新字符串： str.replace(old,new[,count]) 不会超过count次
+
+同 find ,从右开始: str.rfind()
+
+同 index ,从右开始: str.rindex()
+
+字符串切片： str.split(sep=,maxsplit=-1) 没有参数，默认以空格进行切片
+
+按照 \n 进行切断： str.splitlines()
+
+去除收尾空格 ： str.strip()
+
+翻转大小写： str.swapcase()
+
+替换某个值 ： str.translate(str.maketrans(旧,新))
+
+返回长度为wid的字符串，原字符串右对齐，前边用0填充： str.zfill(wid)
+

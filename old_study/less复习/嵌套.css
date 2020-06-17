@@ -1,0 +1,26 @@
+.qcfc {
+  display: none;
+}
+.qcfc img {
+  width: 200px;
+  height: 150px;
+}
+.qcfc img:hover {
+  width: 600px;
+  height: 450px;
+}
+.qcfc:hover {
+  border: 2px;
+}
+.qcfc::befor {
+  content: "";
+}
+.qcfc > div {
+  display: block;
+}
+.qcfc + div {
+  color: #000;
+}
+.qcfc:nth-child(1) {
+  background: #789;
+}

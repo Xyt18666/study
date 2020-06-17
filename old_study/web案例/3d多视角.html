@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		img{
+			position: absolute;
+			transition:1.5s;
+		}
+		main{
+			width: 1000px;
+			height: 600px;
+			margin: 50px auto;
+			border:2px solid #789;
+			display: flex;
+			justify-content:center;
+			align-items:center;
+			overflow: hidden;
+			transform-style:preserve-3d;
+			perspective:1000px;
+			perspective-origin:center center;
+
+		}
+		section{
+			flex-shrink:0;
+			width: 800px;
+			height: 500px;
+			/*transition:1.5s;*/
+			position: relative;
+		}
+	/*	section:hover{
+			transform:rotate3d(15,15,0,15deg);
+		}*/
+		img:nth-child(1){
+			width: 800px;
+			height: 500px;
+			box-shadow:0 0 30px 10px #ccc;
+		}
+		img:nth-child(2){
+			left: 200px;
+			top: 200px;
+			width: 400px;
+			height: 200px;
+		}
+	</style>
+</head>
+<body>
+	<main>
+		<section>
+			<img src="img/bg.jpg" alt="">
+			<img src="img/po.png" alt="">
+		</section>
+	</main>
+</body>
+<script>
+let bw=800;
+let bh=500;
+
+$('section').on('mousemove',(e)=>{
+	let x=e.pageX-$('section').offset().left
+	let y=e.pageY-$('section').offset().top
+	
+	if(x<bw/2 && y<bh/2){
+		// x=-x
+		// y=y
+		x=x>200?-200:-x
+		y=y>200?200:y
+	}
+	if(x>bw/2 && y<bh/2){
+		// x=-(bw-x)
+		// y=-y
+		x=x<bw-200?-200:-(bw-x)
+		y=y>200?-200:-y
+
+	}
+	if(x<bw/2 && y>bh/2){
+		// x=x
+		// y=bh-y
+		x=x>200?200:x
+		y=y<bh-200?200:bh-y
+	}
+	if(x>bw/2 && y>bh/2){
+		// x=bw-x
+		// y=-(bh-y)
+		x=x<bw-200?200:bw-x
+		y=y<bh-200?-200:-(bh-y)
+	}
+	console.log(x,y)
+	$('img:nth-child(1)').css({
+		transform:'rotateX('+(x/5)+'deg)'+' rotateY('+(y/5)+'deg)'	
+	})
+	$('img:nth-child(2)').css({
+		transform:'rotateX('+(x/3)+'deg)'+' rotateY('+(y/3)+'deg)'
+	})
+})
+
+$('section').on('mouseout',()=>{
+
+	$('img:nth-child(1)').css({
+		transform:'rotate3d(0,0,0,0deg)'
+	})
+	$('img:nth-child(2)').css({
+		transform:'rotate3d(0,0,0,0deg)'
+	})
+})
+
+
+</script>
+</html>

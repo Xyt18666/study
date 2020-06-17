@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+/*
+概念知识部分：
+
+前端的组成：结构层，表现层，行为层
+
+
+浏览器的额作用：
+识别HTML css 语言，展示出要描述的效果
+识别js脚本语言，让网页实现所需的功能
+
+
+什么是脚本：
+计算机能识别的指令，通过指令达到想要的目的
+
+
+脚本的作用：
+计算机通过脚本一步一步的执行脚本指令，来实现 ，所要达到的目标
+
+
+如何正确使用脚本：
+确定目标
+计划方案步骤
+书写代码细节
+
+
+js组成：
+ECMA script：js核心语法
+DOM（document object model）：文档对象模型   通过js操作html网页元素
+BOM（browser object model）：浏览器对象模型   通过js操作浏览器窗口接口
+
+
+ECMA script 组成：
+语法：规定的方式
+语句：使用正确的语法编写的语句
+变量：临时存放数据的载体
+数据类型：计算机能识别的数据类型
+转换：数据类型之间的转换
+操作符：计算机能识别的符号
+关键词：js语法中有特殊意义和作用的词
+保留词：以后可能会成为关键词的词
+
+
+变量命名规则：
+变量名必须以字母，下划线，$开头
+变量名中不允许使用空格和其他标点符号，首个字母不能为数字
+字符长度不能超过255个字节
+区分大小写
+变量名必须放在一行
+不能使用关键词，保留词
+
+
+数据类型：
+数字 number(纯数字，无任何杂物，可以为数字，小数，正数，负数。。。)
+字符串 string(带有""的都为字符串 ps：如果不带""，也不是数字，默认为变量名，关键词除外)
+布尔值 Boolean true真   false假（用于判断真假）
+未定义变量  undefined （写一个变量，不会值，则为undefined）
+代码段  function （表示方法 功能）
+对象 object  ：null不存在的对象    {}复杂（复杂对象）
+
+
+js的3大结构：
+从上至下流程结构
+分支结构
+循环结构
+
+什么是循环：
+程序反复执行一段代码，当达到某种条件时停止循环。
+
+
+循环的必要条件：
+循环记录者（循环变量 初始值）
+循环最终目的 （循环条件）
+循环变量的迭代（循环变量变化的记录）
+
+
+技术知识部分如下：
+js调试：
+在浏览器控制台中查看js是否报错，以及运行情况步骤
+
+
+点击事件:
+document.getElementById().onclick=function(){}
+获取文档对象id（id名）  点击事件（）{执行内容}
+
+输出方式:
+alert()  警告弹框
+console.log()  控制台输出
+document.write()  输出在页面
+prompt()   接收信息的弹框
+
+
+1.变量
+
+声明变量、赋值、取值
+
+变量会根据运用情况形成 变动 的值
+
+会将 右侧 的 值 赋予给 左侧
+
+var a=" "; //定义空字符串
+var a=0;   //定义数字类型值为0
+var c;    //定义空变量 undefined
+
+//声明
+var a ;  //声明一个变量 空变量  
+a="love" ;  //赋值为 lover
+
+var b=521 ; //声明一个变量，并且赋值为521
+
+//赋值
+b = 521  //变量名 = 值
+
+//取值
+b; //就是表示变量b的值
+a=b; //变量a重新赋值为521
+
+
+
+2.数据类型：
+
+var a=1;	// number 数字
+var b="鸡你太美";	//string  字符串  
+var c;	//  undefined  未定义变量
+
+var d=true;  //boolaen 布尔值
+var e=false;
+
+var f=null; // object 对象
+var g={};  
+
+var h=function(){}; // function 代码串 功能
+
+判断数据类型：
+typeof()
+
+console.log((typeof a),(typeof b),(typeof c),(typeof d),(typeof e),(typeof f),(typeof g),(typeof h))
+
+
+
+
+
+3.运算符：
+
+自增自减运算符：
+//自增++  自减--  在原来数值上自动增加 或 减小 1
+
+//前置型  
+//后置型 第一次出现不进行运算 第二次运算
+
+
+
+
+逻辑运算符：
+&&  且        ：多个条件同时满足时成立
+||   或       ：多个条件中，有一个成立就成立
+ ！ 是非颠倒  ：真是假，假是真
+
+
+赋值运算符：
+=
++= 
+-= 
+*= 
+/=
+%=
+ a=a-8  相同  a-=8
+ 运算并且进行了赋值
+
+
+算术运算符：
+不说了，都会
+
+比较运算符：
+< > <= >=  
+
+重点说一下这几个
+==   ：值相等 是true 
+===  ：数据类型和值都相等  true
+
+
+!=   ：不相等，  值不相等才 是true 
+!==  ：完全不相等，只要数据类型或者值，有一个不等就是 true
+
+		var aa=123;
+		var bb="123";
+	
+		console.log(aa == bb);//true
+		console.log(aa === bb);//false
+
+
+		console.log(aa != bb);//false
+		console.log(aa !== bb);//true
+
+
+
+4.if语句 
+
+	//语法1 if(条件){ 条件成立才会执行的操作  }
+
+
+	语法2  
+	if(条件){条件成立才会执行的操作}else{条件不成立才会执行}
+
+	语法3  多条件
+	if(条件1){
+			条件1成立才执行
+		}else if(条件2){
+			条件2成立才执行
+		}else if(条件3){
+			条件3成立才执行
+		}else{
+			条件1 条件2都不成立 才执行
+		}
+
+ 
+
+5.switch
+
+var num=prompt("请输入星期几")
+  switch(num){  //switch(这里的 值 )  与 case 值  对比
+
+     case "星期一"://要么是周一
+
+     alert("吃");//当 switch值 与 case值 相符时 弹出此框                                               
+
+     break; //阻塞代码继续向下执行(其他地方也可以用)
+
+     case "星期二"://要么是周二
+     alert("喝");
+     break;
+     case "星期三"://要么是周三
+     alert("玩");
+     break;
+      case "星期四"://要么是周四
+     alert("乐");
+     break;
+      case "星期五"://要么是周五
+     alert("休息");
+     break;
+
+      case "星期六"://要么是周六
+     alert("还休息");
+     break;
+      case "星期日"://要么是周日
+     alert("接着休息");
+     break;
+
+     default://都匹配不到 以上 任何case时 显示此值
+     alert("星期八");
+ }
+
+
+
+6.三目运算
+
+条件1?条件1成立时执行的语句:条件2?条件2成立时执行的语句:条件都不成立时执行的语句
+
+
+
+
+7.
+隐式数据转换：
+1 在算数运算中，全部转换为数字类型
+（加法运算 遇到字符串会进行拼接）
+
+2 在比较运算中，全部转换为数字类型
+（ 遇到字符串会  对比 Unicode编码）
+
+3 在if条件中
+非0  和非空字符串   为true
+ 0 空字符串  undefined  null  NaN  都为 false
+ 
+		var n=23;
+		var m="2";
+		var g="wd"
+		console.log(n>m) //true在关系运算中 所有的数据类型会自动转换为Number类型
+
+		console.log(n<m)
+		console.log(n<g)//false关系运算中 所有的数据类型会自动转换为Number类型 g转换为number类型 是NaN; 
+
+		var str1 ="a";
+		var str2 ="z";
+		//但是当字符串与字符串进行对比时   会逐个对比每个字符的unicode值
+		//unicode值 所有字符在计算机中的序号
+		console.log(str1>str2)
+		console.log(str1<str2)
+		//字符 0~9  unicode值 48~57 
+		//字符 A~Z  unicode值 65~90 
+		//字符 a~z  unicode值 97~122
+		//判断 输的是不是 数字 
+		//判断 输的是不是 小写字母 
+		//判断 输的是不是 大写字母
+
+
+
+
+
+
+
+ 8.强制数据类型转换
+
+String（名）(ps:转换null  undefined 时  会变为字符串类型)
+名.toString（）  (ps:不能转换null  undefined  报错)
+名.toFixed(想保留的小数个数)
+四舍五入，保留小数 (ps:会变字符串)
+
+
+ 
+字符串转数字：
+Number(名)
+数字 字符串 转数字：数字（小数保留）
+字符串转数字：非数字NaN
+布尔值   1  0
+null       0
+undefined     NaN
+
+
+parseInt（名）（字符串转数字）
+小数 字符串转数字：向下取整
+数字开头的字符串转数字：只输出数字，去除文字
+非数字开头的字符串转数字：NaN
+布尔值不能转， NaN
+null       NaN
+undefined     NaN
+
+parseFloat（名）
+与parseInt相同
+数字开头的字符串转数字：只输出数字，去除文字
+非数字开头的字符串转数字：NaN
+布尔值不能转， NaN
+null       NaN
+undefined     NaN
+区别：
+小数 字符串转数字：原数字（与Number相同）
+
+
+转布尔值：
+Bollean()
+
+
+
+
+循环：
+
+while循环
+
+while(条件){
+	a++
+	为true时一直循环
+	为false时终止
+}
+
+
+do while 循环
+
+do{
+	先循环
+}while(在判断条件时候是否为true 为true一直循环)
+
+
+
+for循环
+
+for(定义变量;循环条件;循环变量的迭代){
+	循环体
+}
+
+
+ */
+
+</script>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			height: 3000px;
+		}
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.box{
+			width: 300px;
+			height: 500px;
+			border:2px solid #753;
+			margin: 20px auto;
+			overflow: hidden;
+			position: relative;
+		}
+		.in{
+			width: 200px;
+			height: 200px;
+			background: #c66;
+			border-radius:50%;
+			transition:0.5s;
+			transform:translate(-200px,-200px) scale(1,1) ;
+			z-index: 10;
+		}
+		p{
+			color: red;
+			transition:0.5s;
+		}
+		h3{
+			transition:0.5s;
+			transform:translate(0px,0px);
+		}
+		.count{
+			z-index: 20;
+			position: absolute;
+			width: 300px;
+			height: 500px;
+			top: 0;
+			left: 0;
+			background: transparent;
+		}
+
+		.box:hover .in{
+			transform:translate(200px,200px) scale(5,5) ;
+		}
+		.box:hover p{
+			color: #789;
+		}
+		.box:hover h3{
+			transform:translate(20px,0px);
+		}
+
+		.cs{
+			width: 20px;
+			height: 20px;
+			background: #789;
+			transition:5s;
+			transform:translate(200px,200px) scale(1,1) ;
+		}
+		body:hover .cs{
+			transform:translate(800px,800px) scale(5,5) ;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="in"></div>
+		<div class="count">
+			<p>我是字体图标，可以改颜色</p>
+			<h5>我是文字</h5>
+			<h3>右→</h3>
+		</div>
+	</div>
+
+
+	<div class="cs"></div>
+</body>
+</html>

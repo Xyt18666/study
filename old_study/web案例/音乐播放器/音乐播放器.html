@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+
+		.contr{
+			width: 600px;
+			height: 200px;
+			background: #789;
+			margin: 0 auto;
+		}
+		.mame{
+			width: 600px;
+			height: 100px;
+			background: #456;
+			float: left;
+		}
+		.mame img{
+			width: 100px;
+			height: 100px;
+			display: block;
+			float: left;
+		}
+		.mame p{
+			box-sizing:border-box;
+			padding-top: 20px;
+			width: 500px;
+			height: 100px;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
+			float: left;
+			font:24px/100px "";
+		}
+		.tsEn,.time{
+			float: left;
+		}
+		.tsEn{
+			width: 100px;
+			height: 100px;
+			position: relative;
+		}
+		.tsEn p{
+			width: 100px;
+			height: 100px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			text-align: center;
+			font:24px/100px "";
+			background: red;
+			border-radius:50%;
+			display: none;
+		}
+		.tsEn p:nth-child(1){
+			display: block;
+		}
+		.prog div{
+			float: left;
+		}
+		.time {
+			width: 500px;
+			height: 100px;
+		}
+		.prog{
+			width: 500px;
+			height: 80px;
+			position: relative;
+		}
+		time{
+			width: 500px;
+			height: 20px;
+			font:20px/20px "";
+		}
+		.prog div{
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 10px;
+			border-radius:5px;
+			margin-top: 35px;
+		}
+		.prog div:nth-child(1){
+			background: #fff;
+			width: 500px;
+			z-index: 1;
+		}
+		.prog div:nth-child(2){
+			background: #ccc;
+			z-index: 10;
+		}
+		.prog div:nth-child(3){
+			background: transparent;
+			width: 500px;
+			z-index: 50;
+		}
+		.meter{
+			float: left;
+			width: 100px;
+			border-radius:2.5px;
+			height: 5px;
+			position: relative;
+			background: #cc0;
+		}
+		.con{
+			height: 5px;
+			background: #0f0;
+			width: 100px;
+			z-index: 100;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 10;
+		}
+		.cona{
+			height: 5px;
+			width: 100px;
+			background: transparent;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 50;
+		}
+		.la{
+			height: 20px;
+			background: #000;
+			width: 5px;
+			position: absolute;
+			left: 100px;
+			top: 50%;
+			z-index: 100;
+			margin-top: -10px;
+		}
+	</style>
+</head>
+<body>
+	<main>
+		<div class="contr">
+			<audio src="audio/GUMI - KiLLER LADY.mp3"></audio>
+			<div class="mame">
+				<img src="img/GUMI - KiLLER LADY.mp3.jpg" alt="">
+				<p>GUMI - KiLLER LADY.mp3</p>
+			</div>
+			<div class="tsEn">
+				<p>开始</p>
+				<p>暂停</p>
+			</div>
+			<div class="time">
+				<div class="prog">
+					<div class="jz"></div>
+					<div class="sj"></div>
+					<div class="click"></div>
+				</div>
+				<div class="tw">
+					<time><span>00:00</span>/<em>00:00</em></time>
+					<!-- <em>全屏</em> -->
+					<div class="meter">
+						<div class="con"></div>
+						<div class="cona"></div>
+						<div class="la"></div>
+					</div>
+					<h4>上一首</h4>
+					<h5>下一首</h5>
+				</div>
+			</div>
+		</div>
+	</main>
+</body>
+<script>
+	$(function(){
+		//定义播放文件对象，后期可以通过对象获取
+		var mp3=["GUMI - KiLLER LADY.mp3","安妮：那个你看见过我的小熊么_&_16a5f92b-2918-4984-9b2d-55dcd665c9bd.mp3","杨千嬅 - 野孩子.mp3"]
+
+
+
+		var audio=$("audio")[0];//获取播放元素
+
+		//时间转换函数
+		function getSML(data){
+			var s=Math.floor(data/3600)
+			var f=Math.floor(data%3600/60)
+			var m=Math.floor(data%60)
+			s=s<10?"0"+s:s
+			f=f<10?"0"+f:f
+			m=m<10?"0"+m:m
+			return s+":"+f+":"+m
+		}
+
+		//点击播放时
+		$(".tsEn").click(function(){
+			//判断播放状态
+			if(audio.paused){
+				audio.play()//改变状态、样式  开始
+				$(".tsEn p:nth-child(1)").hide().siblings().show()
+			}else{
+				audio.pause() //停止
+				$(".tsEn p:nth-child(2)").hide().siblings().show()
+			}
+		})
+
+		// 当 音频 视频 可以播放的时候触发
+		audio.oncanplay=function(){
+			setInterval(function(){
+				var total=audio.duration//获取总时长
+				$("time span").text(getSML(total))
+			},1000)//这个时器为了输出总时长
+		}
+
+		//播放时触发，currentTime改变就会触发
+		audio.ontimeupdate=function(){
+			var curr=audio.currentTime;	//当前播放的时间
+			$(".tw em").text(getSML(curr))
+
+			//设置百分百，赋值到元素
+			var bl= curr/audio.duration*100+"%"
+			$(".sj").css("width",bl)
+
+		}
+
+		//进度条点击时，
+		$(".click").click(function(e){
+			var osx= e.offsetX//获取当前鼠标距离目标节点的位置，
+
+			var per=osx/$(this).width() //计算比率
+			var cur=per*audio.duration //比率*总时长
+			audio.currentTime=cur //赋值给播放的位置
+		})
+
+		
+		
+		//音量点击时
+		$(".cona").click(function(e){
+			var osx= e.offsetX//同样获取当前鼠标距离目标节点的位置，
+			var per=osx/$(this).width()//计算比率
+			$(".con").css("width",per*100+"%")//赋值给音量进度元素
+			$(".la").css("left",per*100)//赋值给拖动条
+			audio.volume=per//赋值给音量
+			// volume  音量
+			
+
+		})
+
+		//音量调节键，拖动
+		$(".la").on("mousedown",function(){
+			var x=$(this).offset().left-$(this).position().left
+			//获取距离文档的位置-距离定位父级的左侧的位置
+			console.log(x)
+			$(document).on("mousemove",function(e){
+				var xx=e.pageX-x
+				//移动时，获取距离文档的位置- 定位父级距离文档的位置
+
+				xx=xx<0?0:xx
+				xx=xx>100?100:xx
+				//限制拖动范围
+
+				var yi=(xx)/100
+				//运算赋值
+				$(".con").css("width",(xx+5)+"%")
+				audio.volume=yi
+				$(".la").css("left",xx)
+			})
+			
+		})
+
+		$(document).on("mouseup",function(){
+			$(document).off("mousemove")
+		})
+
+		//播放完毕后执行
+		audio.onended=function(){
+			//重置样式
+			reset()
+		}
+
+
+
+		document.ondragover=function(e){e.preventDefault()}//阻止document的默认事件
+		document.ondrop=function(e){e.preventDefault()}//阻止document的默认事件
+		
+
+
+		$(".contr")[0].ondragover=function(e){e.preventDefault()}//阻止默认事件
+		
+
+
+		$(".contr")[0].ondrop=function(e){//拖拽释放时
+			console.log(e.dataTransfer)
+			var f=e.dataTransfer.files[0]//常用于桌面拖进浏览器的文件信息
+			reset()//重置样式
+
+			read(f)//读取被拖入的文件
+
+			
+		}
+
+
+		var k=0;//定义播放列表的下标	
+		
+		$("h4").click(function(){
+			$("h4").css("pointer-events","none")//禁止点击
+			k++//下一首
+			k=k>mp3.length-1?0:k//限制范围
+			audio.src= "audio/"+mp3[k];//输出路径
+			$(".mame p").text(mp3[k])//输出文字
+			$(".mame img").attr("src","img/"+mp3[k]+".jpg")//输出图片
+			reset()//重置样式
+
+			audio.play()//开始播放
+			$(".tsEn p:nth-child(1)").hide().siblings().show()
+
+			setTimeout(function(){//延迟点击
+				$("h4").css("pointer-events","auto")
+			},1000)
+		})
+
+
+
+		$("h5").click(function(){
+			$("h5").css("pointer-events","none")
+			k--
+			k=k<0?mp3.length-1:k
+			audio.src= "audio/"+mp3[k];
+
+			$(".mame p").text(mp3[k])
+			$(".mame img").attr("src","img/"+mp3[k]+".jpg")
+
+			reset()
+
+			audio.play()
+			$(".tsEn p:nth-child(1)").hide().siblings().show()
+
+			setTimeout(function(){
+				$("h5").css("pointer-events","auto")
+			},1000)
+			
+		})
+
+
+
+
+
+
+		//文件读取封装
+		function read(f){//参数是获取的files
+			var reader= new FileReader() //创建文件读取对象
+			// var files= $("input")[0].files
+			// console.log(files)
+			reader.readAsDataURL(f)//转换data开头的字符串
+
+			console.log(f)
+
+			reader.onload=function(){//完成后
+				console.log(reader.result)//获取到result 字符串
+				audio.src=reader.result;//直接赋值给src
+				$(".mame p").text(f.name)//赋值name
+
+				for(var a=0; a<imgs.length; a++){
+					if(f.name == mp3[a]){//通过遍历赋值图片
+						$(".mame img").attr("src","img/"+mp3[a]+".jpg")
+					}
+				}
+
+				audio.play()//开始播放
+				$(".tsEn p:nth-child(1)").hide().siblings().show()
+				
+			}
+		}
+
+
+
+
+		function reset(){//重置样式函数
+			$(".tsEn p:nth-child(2)").hide().siblings().show()
+			$(".sj").css("width",0)
+			$(".tw span").text(getSML(0))
+			$(".tw em").text(getSML(0))
+		}
+
+
+
+
+
+
+		/*
+		//视频全屏
+		//全屏点击时
+		$(".tw em").click(function(){
+			//操作全屏事件。并兼容
+			if(video.requestFullScreen){
+					video.requestFullScreen()
+			}else if(video.webkitRequestFullScreen){
+					video.webkitRequestFullScreen()
+			}else if(video.mozRequestFullScreen){
+					video.mozRequestFullScreen()
+			}else if(video.msRequestFullScreen){
+					video.msRequestFullScreen()
+			}
+		})
+		*/
+
+
+	})
+</script>
+</html>

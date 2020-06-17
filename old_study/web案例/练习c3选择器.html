@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.a~li{
+			/*某个元素后的 同级指定元素*/
+			background: #789;
+		}
+		h3:target{
+			/*被锚点选中时*/
+			background: #123;
+		}
+		.ab{
+			width: 50px;
+		}
+		.ab:first-letter{
+			/*第一个字*/
+			color: red;
+			font:bold 36px/36px "";
+		}
+		.a{
+			width: 80px;
+		}
+		.a:first-line{
+			/*首行*/
+			color: #963;
+			font:bold 21px/36px "";
+		}
+		.rr::selection{
+			/*选中样式*/
+			color: red;
+		}
+		time{
+			color: hsl(120,50%,50%,0.8);
+		}
+	</style>
+</head>
+<body>	
+<a href="#h">aaaaa</a>
+	<ul>
+		<li class="ab">a1单方事故第三方国防生的地方广东省</li>
+		<p>p</p>
+		<li >a2</li>
+		<li>a3</li>
+		<li class="a">阿斯顿发送到a44564564564564564564564564564564564564564564564564564564564564564564132131</li>
+		<h3 id="h">3</h3>
+		<li class="rr">a5</li>
+	</ul>
+	<time>show time</time>
+</body>
+</html>

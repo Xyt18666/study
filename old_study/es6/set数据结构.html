@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+/*
+1.使用构造函数创建一个set的实例
+2.参数是一个数组,返回set实例，去重后的
+
+
+ */
+
+let set1= new Set([8,1,5,"df","Fgh",NaN,8])
+console.log(set1)
+
+// 将set实例变为数组
+// console.log([...set1])
+console.log(Array.from(set1))
+
+
+// 利用Set实现数组去重
+function fn(ary){
+	return [...new Set(ary)]
+} 
+console.log(fn([5,5,2,4,2,45,854]))
+
+
+// set原型的方法
+
+// add: ƒ add()  在最后增加一个值，之前没有的话才能加上，返回当前实例，可以实现链式写法
+// clear: ƒ clear()   清空，没有返回值
+// constructor: ƒ Set()  构造器
+// delete: ƒ delete()   删除某个值，返回布尔值
+// entries: ƒ entries()
+// forEach: ƒ forEach()   遍历
+// has: ƒ has()    判断有没有某个值 ，返回布尔值
+// keys: ƒ values()
+// size: (...)     当前的长度
+// values: ƒ values()
+// Symbol(Symbol.iterator): ƒ values()
+// Symbol(Symbol.toStringTag): "Set"
+// get size: ƒ size()
+// __proto__: Object
+
+console.log(set1.add(555))
+console.log(set1.has(456))
+console.log(set1.delete(555),set1)
+console.log(set1.clear(),set1)
+
+let arr1=[6,4654,615,7,9]
+let arr2=[66,4654,615,777,9]
+
+//并集,  合并去重
+function bj(arr1,arr2){
+	return [...new Set([...arr1,...arr2])];
+}
+console.log(bj(arr1,arr2))
+
+
+//交集  合并，拿到重复 的 值
+function jj(arr1,arr2){
+	return arr1.filter((item)=>{
+		return arr2.includes(item)
+	})
+}
+console.log(jj(arr1,arr2))
+
+// 差集  合并，去掉 到重复 的 值
+function cj(arr1,arr2){
+	return bj(arr1,arr2).filter((item)=>{
+		return !jj(arr1,arr2).includes(item)
+	})
+}
+console.log(cj(arr1,arr2))
+
+
+
+
+</script>
+</html>

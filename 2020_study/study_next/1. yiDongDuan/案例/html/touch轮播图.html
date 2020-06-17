@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <title>Document</title>
+    <style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li,ol,ul{
+			list-style:none;
+		}
+		
+		.banner{
+			width: 960px;
+			height: 210px;
+			overflow: hidden;
+			margin: 20px auto;
+			border:2px solid #0f0;
+			position: relative;
+		}
+
+		ul{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 7000px;
+			height: 210px;
+		}
+		ul li{
+			float: left;
+		}
+		.lef,.rig{
+			width: 60px;
+			height: 60px;
+			position: absolute;
+			top: 75px;
+			font:bold 60px/60px "";
+		}
+		.lef{
+			left: 0;
+		}
+		.rig{
+			right: 0;
+		}
+		ol{
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			margin-left: -100px;
+		}
+		ol li{
+			float: left;
+			width: 20px;
+			height: 20px;
+			margin: 10px;
+			background: #999;
+			border-radius:50%;
+		}
+		.active{
+			background: red;
+		}
+		.opa{
+			width: 300px;
+			height: 300px;
+			opacity: 0.8;
+			background: #0f0;
+		}
+        .tt li{
+            width: 1000px;
+            height: 210px;
+        }
+        .tt li a{
+            /* display: none; */
+            font-size: 80px;
+        }
+        .tt li:nth-child(1){
+            background: #789;
+        }
+        .tt li:nth-child(2){
+            background: rgb(165, 38, 70);
+        }
+        .tt li:nth-child(3){
+            background: rgb(10, 173, 65);
+        }
+        .tt li:nth-child(4){
+            background: rgb(191, 223, 12);
+        }
+        .tt li:nth-child(5){
+            background: rgb(231, 7, 213);
+        }
+        .tt li:nth-child(6){
+            background: rgb(231, 7, 0);
+        }
+        .tt li:nth-child(7){
+            background: rgb(0, 7, 213);
+        }
+	</style>
+</head>
+<body>
+    <div class="banner">
+        <ul class="tt">
+            <li><a href="#">5</a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">1</a></li>
+        </ul>
+        <div class="lef"><</div>
+        <div class="rig">></div>
+        <ol class="dd">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ol>
+    </div>
+
+</body>
+<script>
+
+let box = $(".tt")[0]
+let index = 1
+
+
+tab(index)
+
+box.ontouchstart = function(e){
+
+    $(box).css({
+        "transition":"0s"
+    })
+
+    let moveX1 = parseInt(e.touches[0].clientX)
+    let oneX = $(".tt").css("transform").replace(/[^0-9\-,]/g,'').split(',')[4]
+
+    console.log(moveX1)
+
+    box.ontouchmove = function(e){
+
+        let moveX = parseInt(e.touches[0].clientX)
+
+        $(box).css({
+            "transform":`translateX(${moveX-(moveX1-oneX)}px)`
+        })
+
+    }
+
+
+
+    box.ontouchend = function(e){
+        let endX = parseInt(e.changedTouches[0].clientX)
+
+        oneX = $(".tt").css("transform").replace(/[^0-9\-,]/g,'').split(',')[4]
+        console.log(endX)
+        
+    
+        if(Math.abs(endX-moveX1)<1000/3){
+            tab(index)
+
+        }else{
+            if(endX-moveX1 > 0 ){
+                 // 向右滑动
+                index--
+                
+                if(oneX > -1000){
+                    $(box).css({
+                        "transition":"0s",
+                        "transform":`translateX(${-6000+(endX-moveX1)}px)`
+                    })
+                    index=5
+                }
+                let dsq = setTimeout(function(){
+                    tab(index)
+                    clearTimeout(dsq)
+                },100)
+
+    
+            }else{
+                // 向左滑动
+                index++
+
+
+
+                if(oneX < -5000){
+                    $(box).css({
+                        "transition":"0s",
+                        "transform":`translateX(${0+(endX-moveX1)}px)`
+                    })
+                    index=1
+                    
+                }   
+                let dsq = setTimeout(function(){
+                    tab(index)
+                    clearTimeout(dsq)
+                },100)
+    
+            }
+        }
+    }
+}
+
+function tab(index){
+    $(box).css({
+        "transition":"0.5s",
+        "transform":`translateX(${-index * 1000}px)`
+    })
+
+    $(".dd li").eq(index-1).css({
+        background:"red"
+    }).siblings().css({
+        background:"#ccc"
+    })
+}
+
+
+
+</script>
+</html>

@@ -1,0 +1,125 @@
+
+.div{
+    width: 1070px;
+    height: 30px;
+    margin: 0 auto;
+}
+.IHTF_left_hoverTo{
+    display: none;
+}
+.IHTF_right div{
+    position: relative;
+}
+.IHTF_right div a{
+    position: absolute;
+    display: none;
+    box-shadow:0 0 10px 1px #ccc;
+    border-radius:5px;
+}
+.IHTF_right div:nth-of-type(1) a{
+    top: 30px;
+    right: 0;
+  
+}
+.IHTF_right div:nth-of-type(1) a img{
+    width: 400px;
+   
+}
+.IHTF_right div:nth-of-type(2) a{
+    top: 30px; 
+    right: 0;
+  
+}
+.IHTF_right div:nth-of-type(2) a img{
+    width: 400px;
+}
+.div section{
+    display: flex;
+    justify-content: space-between;
+    font: 14px/30px "";
+}
+.IHTF_left,.IHTF_right{
+    display: flex;
+}
+.IHTF_right p{
+    width: 110px;
+}
+.IHTF_right p span{
+    color: #777;
+}
+.IHTF_right h6{
+    font-weight: 700;
+}
+.IHTF_left_hover p{
+    font-size: 16px;
+    margin-right: 30px;
+}
+.IHTF_left_hover{
+    position: relative;
+}
+.IHTF_left_hover .IHTF_left_hoverTo{
+    position: absolute;
+    top: 30px;
+    left: 0;
+    
+    background: #fff;
+    box-shadow:0 0 10px 1px #ccc;
+    border-radius:5px;
+    display: none;
+    padding: 5px;
+}
+.IHTF_left_hoverTo h5{
+    font:600 18px/30px "";
+    width: 360px;
+}
+.IHTF_left_hoverTo ul{
+    width: 390px;
+    height: auto;
+    margin: 10px;
+    margin-left: 0;
+}
+.IHTF_left_hoverTo ul li{
+    float: left;
+    margin-right: 5px;
+    margin-bottom: 6px;
+    height: 24px;
+    font: 13px/24px "";
+    background: rgba(228, 227, 227, 0.788);
+    color: #333;
+    padding:0 5px;
+    border-radius:5px;
+
+}
+.IHTF_left_hoverTo ul li:nth-child(1){
+    color: #fff;
+    background: #ff3573;
+}
+.IHTF_left_hoverTo ul li:hover{
+    background: rgb(167, 165, 165);
+}
+.IHTF_left_hover:hover .IHTF_left_hoverTo{
+    display: block;
+    z-index: 99;
+}
+.IHTF_left>a:hover{
+    color: #ff3573;
+}
+.IHTF_right p a{
+    color: #ff3573;
+}
+.IHTF_right p a:hover{
+    text-decoration:underline;
+}
+.IHTF_right div:hover a{
+    display: block;
+    z-index: 1000;
+}
+.IHTF_right div:hover b::before,.IHTF_left_hover:hover b::before{
+    color: #000;
+}
+
+.IHTF_left_hover:hover .IHTF_left_hoverTo{
+    display: block;
+    z-index: 99;
+}
+

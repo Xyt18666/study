@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text">
+
+</body>
+<script>
+var input=document.querySelector("input")
+
+input.onchange=function(){
+	var reg=/^[0-9a-zA-Z_.-]+[@][0-9a-zA-Z_.-]+([.][a-zA-Z]+){1,2}$/
+	if(reg.test(this.value)){
+		this.style.background="#0f0"
+	}else{
+		this.style.background="red"
+	}
+}
+</script>
+</html>

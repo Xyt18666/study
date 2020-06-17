@@ -1,0 +1,112 @@
+<!--pages/page1/page1.wxml-->
+<view>
+  <swiper indicator-dots="true" autoplay="true" interval="2000" >
+    <swiper-item><image src="/images/big-3.jpg"></image></swiper-item>
+    <swiper-item><image src="/images/big-4.jpg"></image></swiper-item>
+    <swiper-item><image src="/images/big-5.jpg"></image></swiper-item>
+  </swiper>
+  <!-- <block wx:for="{{posts_key}}" wx:for-item="item" wx:for-index="index" >
+    <view class="post-con">
+      <view class="zztr">
+        <image src="/images/star.gif" ></image>
+        <text>{{item.date}}+ 这是循环的序号 {{index}}</text>
+      </view>
+      <text>{{item.title}}</text>
+      <image src="/images/big-7.jpg"></image>
+      <text>文章简介是否是的发送到发斯蒂芬第三个是否是的发送到发斯蒂芬第三个是否是的发送到发斯蒂芬第三个是否是的发送到发斯蒂芬第三个是否是的发送到发斯蒂芬第三个是否是的发送到发斯蒂芬第三个是否是的发送到发斯蒂芬第三个是否是的发送到发斯蒂芬第三个是否是的发送到发斯蒂芬第三个是否是的发送到发斯蒂芬第三个是否是的发送到发斯蒂芬第三个是否是的发送到发斯蒂芬第三个地方官</text>
+      <view class="icon">
+        <image src="{{item.images.img1}}"></image>
+        <text>{{item.num1}}</text>
+        <image src="{{item.images.img2}}"></image>
+        <text>{{item.num2}}</text>
+      </view>
+
+    </view>
+  </block> -->
+
+</view>
+<view>
+750rpx = 375px = 750物理像素
+1rpx = 0.5px = 1物理像素 
+</view>
+<view class="box1">设计稿最好750</view>
+<view class="box2"></view>
+
+
+<view hover-class="hc">hover-class  ,点击效果</view>
+
+<text selectable> selectable 文本是否可以选中</text>
+
+<text decode >decode 是否解码</text>
+
+<!-- <image></image> -->
+ <!--
+ 默认宽高  320px  240px
+  src 路径    mode 图片裁剪缩放模式    lazy-load  懒加载 -->
+
+
+ <swiper indicator-dots="true" indicator-color="red" indicator-active-color="#0f0" autoplay="true" interval="2000" circular="true">
+  <swiper-item>1</swiper-item>
+  <swiper-item>2</swiper-item>
+  <swiper-item>3</swiper-item>
+ </swiper>
+ <!-- 
+宽默认 100%
+高默认  150px
+
+
+ indicator-dots="true"   是否有点
+ indicator-color="red"   未被选中的点
+ indicator-active-color="#0f0"   选中的点
+ autoplay="true"     是否轮播interval="2000"   切换时间间隔
+ circular="true"       是否为无缝滚动
+ 
+  -->
+
+
+
+  <navigator url="../page3/page3.wxml" open-type="redirect">page3</navigator>
+  <!-- 
+  导航标签
+  target  在哪个目上发生跳转，默认当前小程序
+  url   当前小程序内的跳转链接
+
+  open-type  跳转方式
+  
+  
+  
+   -->
+
+   <!-- <video auto></video> -->
+   <!-- 
+   src  路径
+   duration   指定时长
+   controls   是否显示控制器
+   autoplay    是否自动播放
+   loop   是否循环
+   muted   是否静音
+
+   
+    -->
+    
+
+    <!--
+    创建自定义组件component
+    编写组件基本内容
+    
+    
+    
+     引入自定义组件 
+     在当前 json 中 写入属性
+     "usingComponents":{
+      "组件名":"路径"
+    }
+
+    然后在一页面已标签的形式引入
+
+    
+    
+    -->
+    <view>
+      <myHead>1444444</myHead>
+    </view>

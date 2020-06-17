@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+// Object.getPrototypeOf() 在创建以后改变 Prototype
+
+let a ={
+	getDrink(){
+		return "1"
+	}
+}
+let b ={
+	getDrink(){
+		return "2"
+	}
+}
+
+let c= Object.create(a)
+console.log(c.getDrink())//1
+
+console.log(Object.getPrototypeOf(c) === a)//true   判断c的原型是否是a
+
+
+Object.setPrototypeOf(c,b)//设置Prototype
+console.log(c.getDrink())
+
+
+// 使用__proto__设置Prototype
+// c.__proto__=a;
+c={
+	__proto__:a,
+	getDrink(){
+		return super.getDrink() + "3"
+		// 执行 原型a下的 getDrink() 方法 人后在添加上自己的内容 输出
+	}
+
+}
+console.log(c.getDrink())
+
+
+</script>
+</html>

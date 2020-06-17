@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;	
+		}
+		li{
+			list-style:none;
+			margin-bottom: 20px;
+		}
+		ul{
+			float: left;
+			width: 80px;
+			margin-right: 20px;
+		}
+		img{
+			width: 80px;
+		}
+	</style>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+
+
+
+var imgso=[]
+for(q=0; q<9; q++){
+	var imgo= new Image()
+	imgo.src="img/"+(q+1)+" (1).png"
+	imgso.push(imgo)
+}
+
+imgso[imgso.length-1].onload=function(){
+	var ww=window.innerWidth
+	//获取可视区宽度
+	var s=parseInt(ww/100)
+	//计算出可视区能放几排 ul
+
+	console.log(ww,s)
+	ds(s)
+	//调用函数生成
+}
+window.onresize=function(){
+	location.reload()
+	var ww=window.innerWidth
+	var s=parseInt(ww/100)
+
+	console.log(ww,s)
+	ds(s)
+}
+
+
+function ds(ese){
+	for(var a=0; a<ese; a++){
+		var newul=document.createElement("ul")
+		document.documentElement.append(newul)
+	}
+	var uio=document.getElementsByTagName("ul")
+
+	for(var a=0; a<50; a++){
+		var sj=parseInt(Math.random()*(9-1+1)+1)
+		var newli=document.createElement("li")
+		var newimg=document.createElement("img")
+		newimg.src="img/"+sj+" (1).png"
+		newli.append(newimg)
+
+		var minu=uio[0]
+		var minuh=uio[0].offsetHeight
+
+		for(s=0; s<uio.length; s++){
+			if(uio[s].offsetHeight<minuh){
+				minuh=uio[s].offsetHeight
+				minu=uio[s]
+				console.log(minuh)
+			}
+		}
+		minu.append(newli)
+	}
+}
+
+</script>
+</html>

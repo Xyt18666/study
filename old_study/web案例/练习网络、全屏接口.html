@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+</head>
+<body>
+	<img src="img/杨千嬅 - 野孩子.mp3.jpg" alt="">
+	<p>全屏</p>
+</body>
+<script>
+// 网络监听接口
+window.addEventListener("online",function(){
+	// 网络连通
+	console.log("连接")
+})
+window.addEventListener("offline",function(){
+	// 网络断开
+	console.log("断开")
+})
+
+$("p").click(function(){
+	
+	
+	if(document.fullscreenElement){
+		//没有元素处于全屏模式 返回null
+	
+		document.exitFullscreen()
+		// 退出
+		console.log(2)
+	}else{
+		
+		$("img")[0].requestFullscreen()//打开全屏
+		console.log(1)
+	}
+})
+
+
+</script>
+</html>

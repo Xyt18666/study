@@ -1,0 +1,25 @@
+@a:50px;
+@b:h3;
+@c:.h4;
+@color:#999;
+@width:{width:20px};
+h2{
+    font-size:@a;
+}
+
+// Easy less 转css 插件
+
+// @名字:;  定义变量
+// 使用时  @名字
+
+
+
+// 变量用于字符串拼接 @{名字}
+
+@{b} @{c}{
+    background: @color;
+} 
+
+@{c}{
+    @width();
+}

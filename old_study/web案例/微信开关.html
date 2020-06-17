@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>	
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	.box {
+		width: 109px;
+		height: 58px;
+		background-color: #5f5f5f;
+		position: relative;
+		border-radius:58px;
+		margin: 30px auto ;
+	}
+	.box2 {
+		width: 49px;
+		height: 49px;
+		background-color: #fff;
+		border-radius:50%;
+		position: absolute;
+		top: 4px;
+		left: 5px;
+	}
+	</style>
+</head>
+<body>
+	<div class="box" id="dsa">
+		<div class="box2" id="asd"></div>
+	</div>
+</body>
+<script>
+	var a=true;
+
+
+			document.getElementById("dsa").onclick=function(){
+				if(a){
+					document.getElementById("asd").style.transform="translate(52px,0px)"
+					document.getElementById("asd").style.transition="1s"
+					document.getElementById("dsa").style.background="#07c160"
+					a=false;
+				}else{
+					document.getElementById("asd").style.transform="translate(0px,0px)"
+					document.getElementById("asd").style.transition="1s"
+					document.getElementById("dsa").style.background="#5f5f5f"
+					a=true;
+					};
+				};
+				
+
+
+
+	
+		
+	
+
+		
+					
+
+
+</script>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+</head>
+<body>
+		<input type="text">
+</body>
+</html>
+<script>
+		// sessionStorage	
+		// 存储数据到本地，大小5mb左右
+		// 不可跨页面获取数据
+		// 生命周期为，关闭当前页面
+		// 
+		// setItem(键,值)  设置
+		// getItem(键)  获取
+		// removeItem(键)  删除
+		// clear()  清空所有数据
+		window.sessionStorage.setItem("1","一")
+		console.log(window.sessionStorage.getItem("1"))
+
+
+		// localStorage
+		// 存储数据到本地，大小20mb左右
+		// 不同浏览器不可共享数据，同浏览器可以
+		// 生命周期为，永久，存储 致硬盘上的
+		// 
+		// setItem(键,值)  设置
+		// getItem(键)  获取
+		// removeItem(键)  删除
+		// clear()  清空所有数据
+		// 
+		// 
+		// 
+		// 应用缓存
+		// 在HTML标签中写入属性
+		// manifest="缓存文件名.appcache"
+		// 创建appcache文件
+		// 
+		// CACHE MANIFEST  第一句 必写
+		// 
+		// CACHE:
+		// 需要缓存的列表清单
+		// *代表所有文件
+		// img/1.jpg
+		// 
+		// NETWORK:
+		// 每次配置都需要从服务器重新获取的
+		// img/2.jpg
+		// 
+		// FALLBACK:
+		// 如果找不到某文件 使用某文件替换
+		// img/3.jpg img/4.jpg
+		// /代表所有
+		
+
+</script>

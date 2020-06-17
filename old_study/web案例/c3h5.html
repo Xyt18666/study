@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<style>
+		.cs{
+			width: 200px;
+			height: 200px;
+			border:30px solid #ccc;
+			border-image-source:url(https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3920544522,1042204305&fm=26&gp=0.jpg);
+			border-image-slice:30 30 30 30;
+			border-image-width:30px;
+			border-image-repeat:repeat;
+		}
+		.box2{
+			width: 200px;
+			height: 200px;
+			background: #000;
+			position: absolute;
+			top: 50px;
+			left: 50px;
+		}
+	</style>
+</head>
+<body>
+	<!-- 
+	语义标签
+		兼容：
+		引入H5兼容js包(真正使用的)
+		ie 9 :   加 display:block;
+		ie 8 :  js创建标签后 加 display:block;
+
+	 -->
+
+
+	 <div class="box2">22</div>
+	<header>头部</header>
+	<nav>导航</nav>
+	<main>主体</main>
+	<article>文章</article>
+	<aside>主体以外</aside>
+	<footer>尾部</footer>
+
+
+	<hgroup>页面上的一个标题组合，一个标题和一个子标题，或者标语的组合</hgroup>
+
+	<section>页面上的版块,用于划分页面上的不同区域,或者划分文章里不同的节</section>
+
+	
+<!-- 语义化标签 -->
+
+	<figure>
+		用于对元素进行组合。一般用于图片或视频
+
+		<figcaption>figure的子元素 用于对figure的内容进行说明</figcaption> 
+	</figure>
+        
+
+    <details>
+    	<summary>details 元素的标题</summary> 
+
+		用于描述文档或文档某个部分的细节，该元素用于摘录引用等 应该与页面的主要内容区分开的其他内容
+
+    </details>
+    
+    
+	<address>
+		定义文章或页面作者的详细联系信息
+	</address>
+    
+
+       
+
+
+
+
+	<!--
+	 H5表单新增 type 属性 
+
+
+
+
+
+	-->
+	<form action="#" method="post">
+		<input type="email">
+		<!-- 邮箱 默认必须要写 合格的邮箱
+			如果不满足，阻止提交表单
+		 -->
+		 <input type="tel">
+		 <!-- 电话 
+			为了在移动端打开数字键盘
+			限制用户只能输入数字
+		 -->
+
+		 <input type="url">
+		 <!-- 网址
+			合格的网址
+			如果不满足，阻止提交表单
+		  -->
+
+		  <input type="number" value="50" max="55" min="45">
+		  <!-- 数字
+			只能输入数字 小数点
+			自带上下箭头控制数量
+			value="50"  默认值
+			max="55"   最大值
+			min="45"   最小值
+		   -->
+
+		   <input type="search">
+		   <!-- 商品 
+			自带删除内容键
+			可以提供更人性化的体验
+
+		   -->
+
+		   <input type="range">
+		   <!-- 范围 
+			value="50"  默认值  初始默认值50  
+			max="55"   最大值
+			min="45"   最小值
+			拖动的条，音量等。。
+		   -->
+
+
+		   <input type="color">
+		   <!-- 颜色拾取器 
+			选取颜色
+		   -->
+
+
+
+	
+		   <input type="time">
+		   <!-- 时间 
+			设置时分秒
+		   -->
+
+		   <input type="date">
+		   <!-- 日期   年月日
+			自带日历控件
+		   -->
+
+		   <input type="datetime">
+		   <!-- 获取日期和时间
+				只有苹果浏览器支持
+		    -->
+
+		    <input type="datetime-local">
+		   <!-- 获取日期和时间
+		    -->
+
+			<input type="month">
+			<!-- 月  -->
+
+			<input type="week">
+			<!-- 星期 -->
+
+
+		<!-- 表单新属性
+			placeholder=""  提示文本，占位符
+			autofocus    自动获取焦点
+			required       必填
+
+			autocomplete="on" "off"
+			以前登录成功过的提示框
+			成功提交后才有 必须写name属性
+
+			pattern=""
+			正则表达式验证
+
+
+			multiple
+			选择多个文件
+			在Email中 可以输入多个邮箱 用,分割
+
+
+
+			form="id"
+			当一个元素不在form表单中，又需要提交时
+			使用form属性 绑定 你要提交的form上
+
+
+		 -->
+	</form>
+
+
+	<div class="wrap">
+		<img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2655332531,2463101974&fm=26&gp=0.jpg" alt="">
+	</div>
+	<!-- 测试 -->
+	<div class="cs"></div>
+
+
+</body>
+
+
+
+
+<script>
+$(".box2").animate({
+	"height":300,
+	"top":0
+},2000)
+</script>
+</html>

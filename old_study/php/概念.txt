@@ -1,0 +1,17 @@
+浏览网页的过程：
+
+1. 浏览器 -> [web服务器 -> php (数据库模块)] -> 数据库
+                    [网络服务器]
+
+web服务器：apache
+
+数据库：MySQL 
+
+-------------------------------------------------
+
+php运行环境：
+WAMP: window + apache + MySQL + PHP
+LAMP: Linux + apache + MySQL + PHP
+LNMP: Linux + Nginx + MySQL + PHP
+
+

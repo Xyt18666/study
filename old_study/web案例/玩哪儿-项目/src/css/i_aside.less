@@ -1,0 +1,134 @@
+.Raside{
+    width: 50px;
+    height: 300px;
+    background: rgba(0,0,0,0.6);
+    border-radius:5px;
+    // overflow: hidden;
+}
+.Raside li{
+    width: 50px;
+    height: 50px;
+    position: relative;
+}
+.Raside li:hover{
+    background: #ff3573;
+}
+.Raside li:first-child{
+    border-radius: 5px 5px 0 0;
+}
+.Raside li:last-child{
+    border-radius:0 0 5px 5px ;
+}
+.Raside li p{
+    text-align: center;
+    color: #fff;
+    font:6px/8px "" ;
+}
+.Raside li  i{
+    display: block;
+    width: 26px;
+    margin: 0 auto;
+    margin-bottom: 6px;
+}
+:global(.RasideList li:hover .AHov){
+    display: block;
+}
+:global(.dhho){
+    position: absolute;
+    padding: 10px;
+    left: -161px;
+    z-index: 999;
+    background: rgba(0,0,0,0.6);
+    border-radius:5px;
+    top: -20px;
+    display: none;
+}
+:global(.dhho h6){
+    color:#fff;
+    font:14px/16px "";
+    margin-bottom: 20px;
+}
+:global(.dhho .AHfgx){
+    border-bottom: 1px dotted #fff;
+    margin: 10px 0;
+}
+:global(.yxho){
+    position: absolute;
+    padding: 10px;
+    left: -198px;
+    z-index: 999;
+    background: rgba(0,0,0,0.6);
+    border-radius:5px;
+    top: -20px;
+    display: none;
+}
+:global(.yxho h6){
+    color:#fff;
+    font:16px/20px "";
+
+}
+:global(.yxho h5){
+    color:#fff;
+    font:14px/20px "";
+
+}
+:global(.yxho .AHfgx){
+    border-bottom: 1px dotted #fff;
+    margin: 10px 0;
+}
+:global(.yxho .AsMargin){
+    height: 1px;
+    margin-top: 20px;
+}
+
+
+:global(.wxho){
+    position: absolute;
+    padding: 10px;
+    left: -155px;
+    z-index: 999;
+    background: rgba(0,0,0,0.6);
+    border-radius:5px;
+    top: -20px;
+    display: none;
+}
+:global(.wxho img){
+    width: 130px;
+}
+:global(.wxho h5){
+    color:#fff;
+    text-align: center;
+    font:10px/20px "";
+}
+:global(.RasideList .size){
+    width: 20px;
+    height: 15px;
+    background: #ffa800;
+    text-align: center;
+    border-radius:15px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: #fff;
+    font: 8px/15px "";
+}
+:global(.RasideList li){
+    padding-top: 6px;
+}
+:global(.RasideList li:nth-child(1) b){
+    width: 20px;
+    margin: 0 auto;
+    margin-bottom: 6px;
+    display: none;
+    transform-origin: center center;
+    animation: zhuan 2s linear 0s infinite ;
+}
+
+@keyframes zhuan {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }       
+}

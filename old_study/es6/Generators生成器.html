@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+function* chef(foods){
+	for (let i=0; i<foods.length; i++){
+		yield foods[i]
+	}
+}
+let wh = chef(["xx","ss"]);
+console.log(wh.next());
+console.log(wh.next());
+console.log(wh.next());
+</script>
+</html>

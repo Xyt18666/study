@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=
+    no"> 
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <title>Document</title>
+    <style>
+        html{
+            height: 3000px;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        a{
+            text-decoration: none;
+            color: #000;
+        }
+        li{
+            list-style:none;
+        }
+
+        header{
+            display: none;
+            width: 100%; 
+            background: #454545;
+        }
+        .hr{
+            display: flex; 
+            align-items: center;
+        }
+        .hr .donate{
+            width: 158px;
+            height: 48px;
+            line-height: 48px;
+            color: #fff;
+            font-size: 16px;
+            text-align: center;
+            text-transform: uppercase;
+            background: rgb(14, 233, 80);
+            transition: 0.5s;
+        }
+        .hr .donate:hover{
+            background: rgb(14, 159, 226);
+        }
+        nav{
+            width: 100%;
+            height: 80px;
+            background: rgb(185, 184, 184);
+            display: flex;
+            justify-content: space-between;   
+            align-items: center;
+        }
+        nav>div{
+            margin: 10px;
+        }
+       
+        .navMask{
+            width: 100%;
+            height: 600px;
+            background: rgba(125, 165, 240, 0.6);
+            transform: translate(0,-80px);
+            display: none;
+        }
+        .navbox{
+            display: flex;
+        }
+        .navbox p{
+            margin:0 10px;
+            display: none;
+        }
+        .navbox p:hover,.navbox>div:hover{
+            color: pink;
+        }
+        .navText{
+            display: none;
+        }
+        .navText h3{
+            margin: 0 50px;
+            line-height: 80px;
+        }
+
+
+        .banner{
+            width: 100%;
+            height: 320px;
+            border:2px solid #985
+        }
+        .banner ul{
+            width: 100%;
+            height: 320px;
+        }
+        .banner ul li{
+            width:100% ;
+            height: 316px;
+            transition: 1s;
+        }
+        .banner ul li:nth-of-type(1){
+            background: url("imgs/banner (1).jpg") no-repeat;
+            background-size: cover;
+        }
+        .banner ul li:nth-of-type(2){
+            background: url("imgs/banner (2).jpg") no-repeat;
+            background-size: cover;
+            transform: translate(0,-100%);
+        }
+        .animete{
+            width: 100%;
+            margin: 0 auto;
+            transform: translate(0,-350px);
+        }
+        .animete>*{
+            margin-top: 100px;
+            text-align: center;
+            font-size: 24px;
+            color: #fff;  
+            opacity: 0;      
+        }
+        .animete .button{
+            display: flex;
+            width: 300px;
+            margin: 0 auto;
+            justify-content: space-between;
+        }
+        .animete h4 span{
+            display: inline-block;
+            position: relative;
+        }
+
+        .hoverUp{
+            transform-style: preserve-3d;
+            perspective: 200px;
+        }
+        .inBox{
+            width: 150px;
+            height: 180px;
+            margin: 0 auto;
+            background: #985;
+            transition:0.5s;
+        }
+        .inBox:hover{
+            transform:translateZ(5px);
+            box-shadow: 0 10px 20px 1px red;
+        }
+        .xflin{
+            width: 150px;
+            height: 180px;
+            margin: 0 auto;
+            background: rgb(233, 17, 81);
+            transition:0.5s;
+        }
+        .xflin:hover{
+            transform:rotateZ(45deg) scale(1.2);
+            filter: brightness(0.5);
+        }
+        .fdmb{
+            width: 100px;   
+            height: 100px;
+            /* position: relative; */
+            margin: 0 auto;
+            border:2px solid #465;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .fdmbin{
+            width: 0;
+            height: 0;
+            /* position: absolute;
+            top: 50% ;
+            left: 50%;
+            transform: translate(-50%,-50%); */
+            background: rgba(0,0,0,0.3);
+            transition:0.5s;
+
+        }
+        .fdmb:hover .fdmbin{
+            width: 100px;
+            height: 100px;
+
+        }
+        /* 以上为 xs */
+        @media (min-width: 768px) {
+            /* sm */
+            header{  
+                display: flex;
+                align-items:center;
+                flex-flow: wrap column;
+            }
+            .hl{
+                padding:10px;
+            }
+            .hr div{
+                margin:10px;
+                
+            }
+            .navbox p{
+                display: block;
+            
+            }
+            
+            .banner{
+                height: 420px;
+            }
+            .banner ul{
+                height: 420px;
+            }
+            .banner ul li{
+                height: 416px;
+            }
+            .animete>*{
+                margin-top: -200px;
+           
+            }
+            .animete{
+            transform: translate(0,-450px);
+        }
+                
+        }
+        @media (min-width: 929px) {
+            /* md */
+            header{
+                flex-flow: nowrap;
+                justify-content: space-between;
+            }  
+            .hr div{
+                margin: 0 10px;
+            }
+            .hl{
+                padding: 0 10px;
+            }
+        }
+        @media (min-width: 1200px) {
+            /* lg */
+            nav{
+                justify-content: space-between;
+            }
+            .navText{
+                height: 80px;
+                display: flex;
+                
+            }
+   
+        }
+
+        /* 
+            由于是 逐层检测
+            
+            顺序 为 ： 超小 小 中 大
+
+            只修改 需要 改变的 样式
+
+
+        
+         */
+    </style>
+</head>
+<body>
+    <header>
+        <div class="hl">Welcome to Ademy HTML Template!</div>
+        <div class="hr">
+            <div class="tel"> 
+                <i>字体图标</i>
+                01228899900
+            </div>
+            <div class="mask">
+                <i>字体图标</i>
+                614 Destany Village Apt. 968
+            </div>
+            <div class="donate">donate</div>
+        </div>
+    </header>
+    <nav>
+        <div class="logo">logo</div>
+        <div class="navText">
+            <h3>1</h3>
+            <h3>2</h3>
+            <h3>3</h3>
+            <h3>4</h3>
+            <h3>5</h3>
+        </div>
+        <div class="navbox">
+            <p>1</p>
+            <p>2</p>
+            <p>3</p>
+            <p>4</p>
+            <div>点击展开</div>
+        </div>
+        
+        
+       
+       
+    </nav>
+    <div class="navMask">被展开项</div>
+    <main>
+       <div class="banner">
+           <ul class="banList">
+               <li>1
+
+               </li>
+               <li>2
+
+               </li>
+           </ul>
+           <div class="animete">
+               <p>111</p>
+               <p>222</p>
+               <h4>333  <span>CEDAR LIKE NITE</span>  </h4>
+               <div class="button">
+                   <div class="but1">but1</div>
+                   <div class="but2">but2</div>
+               </div>
+           </div>
+       </div>
+       <div class="hoverUp">
+           <div class="inBox">456789</div>
+       </div>
+       <div class="xfl">
+           <div class="xflin">516546</div>
+       </div>
+       <div class="fdmb">
+           <div class="fdmbin"></div>
+       </div>
+    </main>
+    <footer>
+        footer
+    </footer>
+    
+</body>
+<script>
+    let copyNav = $("nav").clone()
+    copyNav.appendTo($("body"))
+    copyNav.css({
+        position:"fixed",
+        top:"-80px",
+        transition:"0.5s"
+    })
+    
+
+    // console.log(copyNav)
+
+    $(window).scroll(()=>{
+        console.log( $(window).scrollTop())
+
+
+        if($(window).width()>768){
+            if($(window).scrollTop() > 600){
+                copyNav.css({
+                    position:"fixed",
+                    top:"0px"
+                })
+            }else{
+                copyNav.css({
+                    position:"fixed",
+                    top:"-80px"
+                })
+            }
+        }
+    })
+
+
+
+
+    let index =1 ;
+
+    // animations()
+    function tab(){
+        $(".banner ul li").eq(index).css({
+            "z-index":50,
+            "opacity":1,
+        }).siblings().css({
+            "z-index":-1,
+            "opacity":0,
+        })
+
+        $(".animete>*").css({
+            "opacity":0,
+            "marginTop":"200px"
+        },500)
+
+    
+    }
+
+    setInterval(() => {
+        index = index==1?0:1
+        tab()
+        
+        animations()
+
+    }, 5000);
+
+    function animations(){
+        $(".animete p").eq(0).animate({
+            "opacity":1,
+            "marginTop":"50px"
+        },500)
+        $(".animete p").eq(1).delay(1000).animate({
+            "opacity":1,
+            "marginTop":"20px"
+        },500)
+        $(".animete h4").delay(1300).animate({
+            "opacity":1,
+            "marginTop":"10px"
+        },500)
+        $(".animete .button").delay(1600).animate({
+            "opacity":1,
+            "marginTop":"10px"
+        },500)
+
+    
+        textAni()
+    }
+
+    let NText = "胡乱写一通....看的自己都蒙圈";
+    let TIndex = 0;
+    function textAni(){
+        setTimeout(()=>{
+            $(".animete h4 span").css({
+                "background":"#ccc",
+                "color":"red"
+            })
+            setTimeout(()=>{
+                $(".animete h4 span").text("")
+                $(".animete h4 span").css({
+                "background":"transparent",
+                "color":"#fff"
+            })
+            },500)
+        },2000)
+
+        let dsqT = setTimeout(()=>{
+            let dsq = setInterval(() => {
+                TIndex++
+                // TIndex=TIndex>NText.length?NText.length:TIndex
+                $(".animete h4 span").text(NText.slice(0,TIndex))
+                
+                if(TIndex == NText.length){
+                    TIndex=0
+                    $(".animete h4 span").text("CEDAR LIKE NITE")
+                    clearInterval(dsq) 
+                     
+  
+                }
+            },150);
+        },2300)
+       
+    }
+
+
+</script>
+</html>

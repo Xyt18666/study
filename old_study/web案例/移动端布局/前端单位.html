@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+
+        px:
+        rpx:微信小程序的单位  1rpx = 0.5px = 1物理像素
+        em:基于 父级 的 font-size
+        rem:基于 html 的 font-size
+        vw：1vw = 视口宽度的1%
+        vh：1vh = 视口高度的1%
+        vmax：vmax选取vw和vh中最大的那个
+        vmin：vmin选取vw和vh中最小的那个
+        %:基于父级 的 百分百
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+        10px    
+        
+        
+        100%
+        62.5%    
+
+
+
+
+          (function(){
+            var html=document.documentElement
+            var wHtml=html.getBoundingClientRect().width()
+            html.style.fontSize=wHtml/7.5+"px"
+        })()
+        100px = 1rem
+
+
+
+
+    低版本的 ios   iE6 不支持固定定位
+
+    不能使用固定定位，出现bug
+
+    移动端 绝对定位 模拟固定定位
+
+    .wrap{
+        .head{
+
+        }
+        .main{
+
+        }
+        .footer{
+
+        }
+    }
+    1. body html 宽高 100%
+    2. .wrap 加 宽高100% ovf  auto 
+    3. 给main加 边距 防止内容被挡住
+
+     -->
+</body>
+</html>

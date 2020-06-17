@@ -1,0 +1,132 @@
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+		<title>Document</title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.imgb{
+				width: 320px;
+				display: flex;
+				height: 320px;
+				position: absolute;
+				left: 0;
+				top: 0;
+				transition:1s;
+			}
+			.imgb div{
+				width: 160px;
+				height: 320px;
+				transition:1s;
+				opacity: 1;
+			}
+			.imgb div:nth-of-type(2){
+				opacity: 0;
+			}
+			.box1{
+				background: #789;
+			}
+			.box2{
+				background: #0f0;
+			}
+			.imgbox{
+				width: 160px;
+				height: 320px;
+				overflow: hidden;
+				position: relative;
+			}
+			.bot{
+				position: absolute;
+				bottom: 0;
+				display: flex;
+				justify-content:space-around;
+				width: 160px;
+
+				transform-style:preserve-3d;
+				perspective:200px;
+				perspective-origin:center center;
+			}
+			.bot div{
+				background: #000;
+				color: #dff;
+				width: 50px;
+				opacity: 0;
+				transform:rotateX(90deg);
+				transform-origin:bottom center ;
+				transition:1s;
+			}
+			h5{
+				height: 30px;
+				position: relative;
+				overflow: hidden;
+			}
+			h5 i{
+				display: block;
+			}
+			h5 b{
+				position: absolute;
+				opacity: 0;
+				bottom: -30px;
+				transition:1s;
+			}
+
+
+			li:hover h5 i{
+				display: none;
+
+			}
+			li:hover h5 b{
+				bottom: 15px;
+				opacity: 1;
+			}
+
+			li:hover .imgb{
+				left: -160px;
+			}
+			li:hover .imgb div:nth-of-type(1){
+				opacity: 0;
+			}
+			li:hover .imgb div:nth-of-type(2){
+				opacity: 1;
+			}
+
+
+			li:hover .bot div{
+				opacity: 1;
+				transform:rotateX(0deg);
+			}
+			.bot div:hover{
+				text-decoration: underline;
+				background: #951;
+			}
+
+	
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li>
+				<div class="imgbox">
+					<div class="imgb">
+						<div class="box1">1</div>
+						<div class="box2">2</div>
+					</div>	
+					<div class="bot">
+						<div class="le">le</div>
+						<div class="ri">ri</div>
+					</div>
+				</div>	
+				<p>sdfsd</p>
+				<h5>
+					<i>888</i>
+					<b>no no no</b>
+				</h5>
+			</li>
+		</ul>
+	</body>
+
+	</html>

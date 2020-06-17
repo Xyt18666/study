@@ -1,0 +1,29 @@
+// 类混入
+.h1{
+    background: #879;
+}
+.h3{
+    .h1()
+}
+
+
+
+// 函数混入
+// 封装一个函数，写入形参，和属性值，以备调用
+.promise(@css, @args) {
+    @{css}: @args;
+    -webkit-@{css}: @args;
+    -moz-@{css}: @args;
+    -ms-@{css}: @args;
+    -o-@{css}: @args;
+}
+//封装函数，处理兼容
+//各种兼容
+
+.new{
+	.promise(width,60px);
+}
+
+
+
+

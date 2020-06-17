@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div class="box">123</div>
+	<div class="list">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+	</div>
+</body>
+<script type="text/javascript">
+var root=document.documentElement;
+
+function f1(node){
+	console.log("节点的名字"+node.nodeName)
+}
+
+function forDOM(root){//给我一个根节点，返回所有子节点
+	// f1(root);
+	var children=root.children;//获取所有子节点
+	getchildren(children)
+}
+function getchildren(children){
+	for(var i=0; i<children.length; i++){
+		var child=children[i]//给我所有子节点
+		f1(child)//给我节点，我显示节点的名字
+		child.children&&forDOM(child)
+		//现在child是子节点，如果有.children,就在执行一遍forDOM(child)
+	}
+}
+
+forDOM(root)
+</script>
+</html>

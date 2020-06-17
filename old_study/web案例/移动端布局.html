@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+	<!-- <script src="https://cdn.bootcss.com/zepto/1.2.0/zepto.js"></script> -->
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing:border-box;
+		}
+		a{
+			text-decoration: none;
+		}
+		li{
+			list-style:none;
+		}
+		form{
+			width: 100%;
+			height: 250px;
+			background: #798;
+			position: relative;
+		}
+		input{
+			width: 40%;
+			height: 30px;
+			border:none;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			outline:none;
+			transform:translate(-50%,-50%);
+		}
+		.list{
+			/*padding-top: 250px;*/
+			width: 90%;
+			height: 80px;
+			background: #852;
+			display: flex;
+			justify-content:space-around;
+			flex-flow:wrap column;
+			margin: 0 auto;
+		}
+		.list li{
+			width: 20%;
+			margin:  0 2.5%;
+			height: 40px;
+			background: #741;
+			list-style:none;
+			text-align: center;
+		}
+		.imgBox{
+			width: 90%;
+			margin: 0 auto ;
+			background: #951;
+			height: 120px;
+		}
+		.sbgj{
+			width: 90%;
+			display: flex;
+			justify-content:space-between;
+			margin: 0 auto;
+		}
+		.sbgj li{
+			width: 30%;
+			background: #324;
+			height: 60px;
+			text-align: center;
+		}
+		.sbgjt h3{
+			width: 90%;
+			margin: 0 auto;
+		}
+		.rmfwtj{
+			width: 90%;
+			margin: 0 auto;
+			display: flex;
+		}
+		.rmfwtj li{
+			width: 45%;
+			margin: 2.5%;
+		}
+		.rmfwtj img{
+			width: 45%;
+			height: 40px;
+		}
+		.rmfwtj ol li{
+			width: 100%;
+			text-align: center;
+		}
+		.xwzx-top{
+			display: flex;
+			justify-content:space-between;
+		}
+		.xwzx{
+			width: 90%;
+			margin: 0 auto;
+		}
+		.xwzx-top h3{
+			border-right: 1px solid red;
+			padding:0 20px;
+		}
+		.xwzx-top h3:nth-of-type(3){
+			border-right: 0;
+		}
+		.lef{
+			display: flex;
+		}
+		.xwzx-list li{
+			display: flex;
+			width: 100%;
+			height: 120px;
+			margin-bottom: 20px;
+		}
+		.xwzx-list li img{
+			flex:4;
+		}
+		.xlrBox{
+			flex: 6;
+			background: #521;
+			border-bottom: 1px solid red;
+		}
+		.jxsp{
+			width: 90%;
+			margin: 0 auto;
+		}
+		.jxspTop{
+			display: flex;
+			justify-content:space-between;
+		}
+		.jxspTop h3{
+			border-right: 1px solid red;
+			padding:0 20px;
+		}
+		.jxspTop h3:nth-of-type(2){
+			border-right: 0;
+		}
+		.jxspt{
+			display: flex;
+		}
+		.jsxp-list li{
+			display: flex;
+			margin: 20px;
+		}
+		.jsxp-list li img{
+			flex:1;
+		}
+		.jlr{
+			flex:1;
+			padding: 20px;
+			border-left: 1px solid red;
+		}
+		.bott-nav{
+			width: 100%;
+			position: fixed;
+			bottom: 0;
+			display: flex;
+			background: #fcc;
+		}
+		.bott-nav li{
+			margin: 10px;
+			width: 10%;
+			height: 18%;
+			text-align: center;
+			margin: 5%;
+			background: #852;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<form action="#" method="post">
+			<input type="text">
+		</form>
+		<ul class="list">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+		</ul>	
+	</header>
+	<main>
+		<div class="imgBox"></div>
+		<div class="sbgjt">
+			<h3>sbgj</h3>
+			<ul class="sbgj">
+				<li>11</li>
+				<li>22</li>
+				<li>33</li>
+			</ul>
+		</div>
+		<ul class="rmfwtj">
+			<li>
+				<img src="" alt="">
+				<ol>
+					<li>rmfw1</li>
+					<li>rmfw2</li>
+					<li>rmfw3</li>
+				</ol>
+			</li>
+			<li>
+				<img src="" alt="">
+				<ol>
+					<li>rmfw1</li>
+					<li>rmfw2</li>
+					<li>rmfw3</li>
+				</ol>
+			</li>
+		</ul>
+		<div class="xwzx">
+			<div class="xwzx-top">
+				<div class="lef">
+					<h3>1</h3>
+					<h3>2</h3>
+					<h3>3</h3>
+				</div>
+				
+				<i>...</i>
+			</div>
+			<ul class="xwzx-list">
+				<li>
+					<img src="" alt="">
+					<div class="xlrBox"></div>
+				</li>
+				<li>
+					<img src="" alt="">
+					<div class="xlrBox"></div>
+				</li>
+				<li>
+					<img src="" alt="">
+					<div class="xlrBox"></div>
+				</li>
+				<li>
+					<img src="" alt="">
+					<div class="xlrBox"></div>
+				</li>
+			</ul>
+		</div>
+		<div class="jxsp">
+			<div class="jxspTop">
+				<div class="jxspt">
+					<h3>1</h3>
+					<h3>2</h3>
+				</div>
+				<i>...</i>
+			</div>
+			<ul class="jsxp-list">
+				<li>
+					<img src="" alt="">
+					<div class="jlr">1</div>
+				</li>
+				<li>
+					<img src="" alt="">
+					<div class="jlr">2</div>
+				</li>
+				<li>
+					<img src="" alt="">
+					<div class="jlr">3</div>
+				</li>
+			</ul>
+		</div>
+	</main>
+	<aside>
+		<ul class="bott-nav">
+			<li>12</li>
+			<li>23</li>
+			<li>34</li>
+			<li>45</li>
+			<li>56</li>
+		</ul>
+	</aside>
+</body>
+</html>

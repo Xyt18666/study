@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+function chef(foods){
+	let i = 0;
+	return {
+		next(){
+			let done = (i>= foods.length);
+			let value = !done ? foods[i++] : undefined;
+			return {
+				value: value,
+				done: done
+			}
+		}
+	}
+}
+
+let wh = chef(["xx","ss"]);
+
+console.log(wh.next());
+console.log(wh.next());
+console.log(wh.next());
+</script>
+</html>

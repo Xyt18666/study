@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li>no——yes1</li>
+		<li>no——yes2</li>
+		<li>no——yes3</li>
+		<li>no——yes4</li>
+		<li>no——yes5</li>
+		<li>no——yes6</li>
+	</ul>
+</body>
+<script>
+// $("ul").click(function(){
+// 	$("li").each(function(i,ele){
+// 		console.log($(this),ele,i)
+// 	//遍历 所有的 li  this和ele是当前元素   i 是下标
+// 	})
+// })
+
+var li= $("li")
+$.each(li,function(i,ele){
+	console.log($(this),ele,i)
+//遍历 所有的 li  this和ele是当前元素   i 是下标
+})
+</script>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+<!-- 利用meta标签来设置我们的viewport成为ideal viewport 
+既然移动端浏览器的viewport默认是layout viewport为980px（大多数），那么我们怎么修改得到ideal viewport呢，这里我们通过meta标签设置（因为现在移动端有专门的设计稿，所以可以把layout viewport设置成ideal viewport而不用担心排版被破坏）
+
+width 设置layout viewport 的宽度，为一个正整数，或字符串”width-device” 
+initial-scale 设置页面的初始缩放值，为一个数字，可以带小数 
+minimum-scale 允许用户的最小缩放值，为一个数字，可以带小数 
+maximum-scale 允许用户的最大缩放值，为一个数字，可以带小数 
+height 设置layout viewport 的高度，这个属性对我们并不重要，很少使用 
+user-scalable 是否允许用户进行缩放，值为”no”或”yes”, no 代表不允许，yes代表允许 
+
+
+
+ -->
+
+	<!-- 移动端视口        视口宽度=自适应                 -->
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=
+     no"> 
+
+
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.box1{
+			width: 300px;
+			height: 50px;
+			background: #789;
+			margin-bottom: 20px;
+		}
+		.box2{
+			background: #0f0;
+		}
+	</style>
+</head>
+<body>
+	<div class="box1">1</div>
+	<div class="box2">2</div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+
+		}
+		.box {
+			width: 200px;
+			height: 200px;
+			background: #789;
+			position: absolute;
+			opacity: 1;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">123</div>
+</body>
+<script>
+json1={
+	"width":"600",
+	"left":"200",
+	"top":"100",
+	"opacity":"50"
+}
+
+var box= document.querySelector(".box")
+box.onclick=function(){
+	move(box,json1,null)
+}
+
+function move(obj,json,fn){
+	clearInterval(obj.dsq)
+	var speed=0,thisSty=0;
+	obj.dsq=setInterval(function(){
+		var onOff=true;
+		for(var key in json){
+			thisSty=key=="opacity"?parseFloat(getStyle(obj,key))*100:parseInt(getStyle(obj,key))
+			speed=(json[key]-thisSty)/12
+			speed=speed>0?Math.ceil(speed):Math.floor(speed)
+			if(thisSty!=json[key]){
+				onOff=false;
+				thisSty+=speed
+				if(key=="opacity"){
+					obj.style["opacity"]=thisSty/100
+					obj.style.filter="alpha(opacity="+thisSty+")"
+				}else{
+					obj.style[key]=thisSty+"px"
+				}
+			}
+		}
+		if(onOff){
+			clearInterval(obj.dsq)
+			fn&&fn()
+		}
+	},20)
+}
+
+
+// function move(obj,attr,spe,end){
+// 	clearInterval(obj.dsq)
+// 	var speed=parseInt(getStyle(obj,attr))>end?-spe:spe
+// 	obj.dsq=setInterval(function(){
+// 		var thisosl=parseInt(getStyle(obj,attr))
+// 		thisosl+=speed
+// 		if(speed>0&&thisosl>=end || speed<0&&thisosl<=end){
+// 			thisosl=end
+// 		}
+// 		obj.style[attr]=thisosl+"px"
+// 		if(thisosl==end){
+// 			clearInterval(obj.dsq)
+// 		}
+// 	},10)
+// }
+
+function getStyle(obj,attr){
+	return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj,null)[attr]
+}
+</script>
+</html>

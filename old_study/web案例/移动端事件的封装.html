@@ -1,0 +1,410 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+<title>无标题文档</title>
+<style>
+div{width:100px;height:100px;line-height:100px;margin-bottom:10px;background:red;text-align:center;color:#fff;}
+html{
+	touch-action:none;
+}
+/*在html元素下添加样式 touch-action: none; 解决报错*/
+</style>
+<script>
+
+// 事件对象
+// TouchList         触摸点的集合
+
+// changedTouches   改变后的触摸点集合
+// targetTouches    当前元素触摸点集合   离开时无法记录
+// touches          页面上所有触摸点的集合   离开时无法记录
+
+
+
+// touchstart：手指触摸到屏幕会触发
+
+// touchmove：当手指在屏幕上移动时，会触发
+
+// touchend：当手指离开屏幕时，会触发
+
+// touchcancel：可由系统进行的触发，比如手指触摸屏幕的时候，突然alert了一下，或者系统中其他打断了touch的行为，则可以触发该事件
+
+const touchEvent={
+
+	/*单次触摸事件*/
+	tap:function(element,fn){ 
+		var startTx, startTy;
+		// 定义按下起点xy坐标
+		element.addEventListener('touchstart',function(e){
+			console.log(e)
+			var touches = e.touches[0];
+			startTx = touches.clientX;
+			startTy = touches.clientY;
+			// 获取坐标
+		}, false );
+
+		element.addEventListener('touchend',function(e){
+			var touches = e.changedTouches[0],
+			// 获取改变后的坐标,并赋值
+			endTx = touches.clientX,
+			endTy = touches.clientY;
+			// 在部分设备上 touch 事件比较灵敏，导致按下和松开手指时的事件坐标会出现一点点变化
+			if( Math.abs(startTx - endTx) < 6 && Math.abs(startTy - endTy) < 6 ){
+				// 当差值小于6时触发单击函数
+				fn();
+			}
+		}, false );
+	},
+
+
+	/*两次触摸事件*/
+	doubleTap:function(element,fn){
+		var isTouchEnd = false,
+		lastTime = 0,
+		lastTx = null,
+		lastTy = null,
+		firstTouchEnd = true,
+		body = document.body,dTapTimer, startTx, startTy, startTime;
+		// 这里就是定义了body，和其他的变量
+		element.addEventListener( 'touchstart', function(e){
+			if( dTapTimer ){
+				// 点击的时候如果有定时器，就清除
+				clearTimeout( dTapTimer );
+				dTapTimer = null;
+			}
+			var touches = e.touches[0];
+			startTx = touches.clientX;
+			startTy = touches.clientY; 
+			// 获取起始位置
+		}, false );
+		element.addEventListener( 'touchend',function(e){
+			var touches = e.changedTouches[0],
+			endTx = touches.clientX,// 改变后的位置
+			endTy = touches.clientY,
+
+			now = Date.now(),//返回一个毫秒数
+
+			duration = now - lastTime; //获取两次点击差值
+			// 首先要确保能触发单次的 tap 事件
+			
+			if( Math.abs(startTx - endTx) < 6 && Math.abs(startTx - endTx) < 6 ){
+			// 两次 tap 的间隔确保在 300 毫秒以内
+				if(duration < 301){
+				// 本次的 tap 位置和上一次的 tap 的位置允许一定范围内的误差
+					if( lastTx !== null && Math.abs(lastTx - endTx) < 45 && Math.abs(lastTy - endTy) < 45 ){
+						firstTouchEnd = true;
+						lastTx = lastTy = null;
+						fn();//执行函数
+					}
+				}else{
+					lastTx = endTx;
+					lastTy = endTy;
+					// 如果间隔过长。则把新值赋值给初始值
+				}
+
+			}else{
+				// 假如位置偏差过大
+				// 重置初始值
+				firstTouchEnd = true;
+				lastTx = lastTy = null;
+			}
+			lastTime = now;
+			// 获取第一次点击的时间
+
+		}, false );
+			// 在 iOS 的 safari 上手指敲击屏幕的速度过快，
+			// 有一定的几率会导致第二次不会响应 touchstart 和 touchend 事件
+			// 同时手指长时间的touch不会触发click
+		if(~navigator.userAgent.toLowerCase().indexOf('iphone os')){
+			// 假如是os系统
+			body.addEventListener( 'touchstart', function(e){
+				startTime = Date.now();
+				// 获取时间
+			}, true );
+			body.addEventListener( 'touchend', function(e){
+				var noLongTap = Date.now() - startTime < 501;
+				// 获取差值是否可以连续点击
+				if(firstTouchEnd ){//第一次点击结束为true
+					firstTouchEnd = false;
+					if( noLongTap && e.target === element ){
+						// 可以，并且是触发事件的元素
+						dTapTimer = setTimeout(function(){
+							firstTouchEnd = true;
+							lastTx = lastTy = null;
+							fn();
+							// 执行
+						},400);
+					}
+				}else{
+					firstTouchEnd = true;
+				}
+			}, true );
+			// iOS 上手指多次敲击屏幕时的速度过快不会触发 click 事件
+			element.addEventListener( 'click', function( e ){
+				if(dTapTimer){
+					// 如果开启了定时器，就关闭
+					clearTimeout( dTapTimer );
+					dTapTimer = null;
+					firstTouchEnd = true;
+				}
+			}, false );
+		} 
+	},
+
+
+	/*长按事件*/
+	longTap:function(element,fn){
+		var startTx, startTy, lTapTimer;
+		element.addEventListener( 'touchstart', function( e ){
+			if( lTapTimer ){
+				// 假如有定时器，清除
+				clearTimeout( lTapTimer );
+				lTapTimer = null;
+			}
+			var touches = e.touches[0];
+			startTx = touches.clientX; // 起始位置
+			startTy = touches.clientY;
+
+			lTapTimer = setTimeout(function(){
+				fn();//过1秒后执行回调函数
+			}, 1000 );
+			e.preventDefault();
+			// 阻止默认事件
+		}, false );
+
+		element.addEventListener( 'touchmove', function( e ){
+			var touches = e.touches[0],
+			endTx = touches.clientX,
+			endTy = touches.clientY;
+			// 获取移动时的位置
+			
+			if( lTapTimer && (Math.abs(endTx - startTx) > 5 || Math.abs(endTy - startTy) > 5) ){
+				clearTimeout( lTapTimer );
+				// 假如差值大于5 停止计时器
+				lTapTimer = null;
+			}
+		}, false );
+		element.addEventListener( 'touchend', function( e ){
+			if( lTapTimer ){
+				clearTimeout( lTapTimer );
+				lTapTimer = null;
+				// 释放时结束定时器
+			}
+		}, false ); 
+	},
+
+
+	/*滑屏事件*/
+	swipe:function(element,fn){
+		var isTouchMove, startTx, startTy;
+		element.addEventListener( 'touchstart', function( e ){
+			var touches = e.touches[0];
+			startTx = touches.clientX;
+			startTy = touches.clientY;
+			// 获取起始位置
+			isTouchMove = false;
+			// 定义移动为false
+		}, false );
+		element.addEventListener('touchmove',function( e ){
+			isTouchMove = true;
+			// 在移动的时候为true
+			e.preventDefault();
+		}, false );
+		element.addEventListener('touchend',function( e ){
+			if( !isTouchMove ){
+				// 如果为false  return
+				// 也就是说不移动。不触发滑屏事件
+				return;
+			}
+			var touches = e.changedTouches[0],
+			endTx = touches.clientX,
+			endTy = touches.clientY,
+			// 获取终点位置
+			distanceX = startTx - endTx
+			distanceY = startTy - endTy,
+			// 获取差值
+			isSwipe = false;
+			if( Math.abs(distanceX)>20||Math.abs(distanceY)>20 ){
+				fn();// 移动差值大于20触发事件	
+			}
+		}, false ); 
+	},
+
+
+	/*向上滑动事件*/
+	swipeUp:function(element,fn){
+		var isTouchMove, startTx, startTy;
+		element.addEventListener( 'touchstart', function( e ){
+			var touches = e.touches[0];
+			startTx = touches.clientX;
+			startTy = touches.clientY;
+			isTouchMove = false;
+		}, false );
+		element.addEventListener( 'touchmove', function( e ){
+			isTouchMove = true;
+			e.preventDefault();
+		}, false );
+		element.addEventListener( 'touchend', function( e ){
+			if( !isTouchMove ){
+				return;
+			}
+			var touches = e.changedTouches[0],
+			endTx = touches.clientX,
+			endTy = touches.clientY,
+			distanceX = startTx - endTx
+			distanceY = startTy - endTy,
+			isSwipe = false;
+			if( Math.abs(distanceX) < Math.abs(distanceY) ){
+				// 假如向上移动大于左右
+				if( distanceY > 20 ){
+					// Y偏移大于20触发
+					fn(); 
+					isSwipe = true;
+				}
+			}
+		}, false ); 
+	},
+
+	/*向下滑动事件*/
+	swipeDown:function(element,fn){
+		var isTouchMove, startTx, startTy;
+		element.addEventListener( 'touchstart', function( e ){
+			var touches = e.touches[0];
+			startTx = touches.clientX;
+			startTy = touches.clientY;
+			isTouchMove = false;
+		}, false );
+		element.addEventListener( 'touchmove', function( e ){
+			isTouchMove = true;
+			e.preventDefault();
+		}, false );
+		element.addEventListener( 'touchend', function( e ){
+			if( !isTouchMove ){
+				return;
+			}
+			var touches = e.changedTouches[0],
+			endTx = touches.clientX,
+			endTy = touches.clientY,
+			distanceX = startTx - endTx
+			distanceY = startTy - endTy,
+			isSwipe = false;
+			if( Math.abs(distanceX) < Math.abs(distanceY) ){
+				if( distanceY < -20 ){
+					// Y偏移小于-20触发
+					fn(); 
+					isSwipe = true;
+				}
+			}
+		}, false ); 
+	},
+
+	/*向左滑动事件*/
+	swipeLeft:function(element,fn){
+		var isTouchMove, startTx, startTy;
+		element.addEventListener( 'touchstart', function( e ){
+			var touches = e.touches[0];
+			startTx = touches.clientX;
+			startTy = touches.clientY;
+			isTouchMove = false;
+		}, false );
+		element.addEventListener( 'touchmove', function( e ){
+			isTouchMove = true;
+			e.preventDefault();
+		}, false );
+		element.addEventListener( 'touchend', function( e ){
+			if( !isTouchMove ){
+				return;
+			}
+			var touches = e.changedTouches[0],
+			endTx = touches.clientX,
+			endTy = touches.clientY,
+			distanceX = startTx - endTx
+			distanceY = startTy - endTy,
+			isSwipe = false;
+			if( Math.abs(distanceX) >= Math.abs(distanceY) ){
+				if( distanceX > 20 ){
+					fn(); 
+					isSwipe = true;
+				}
+			}
+		}, false ); 
+	},
+
+	/*向右滑动事件*/
+	swipeRight:function(element,fn){
+		var isTouchMove, startTx, startTy;
+		element.addEventListener( 'touchstart', function( e ){
+			var touches = e.touches[0];
+			startTx = touches.clientX;
+			startTy = touches.clientY;
+			isTouchMove = false;
+		}, false );
+		element.addEventListener( 'touchmove', function( e ){
+			isTouchMove = true;
+			e.preventDefault();
+		}, false );
+		element.addEventListener( 'touchend', function( e ){
+			if( !isTouchMove ){
+				return;
+			}
+			var touches = e.changedTouches[0],
+			endTx = touches.clientX,
+			endTy = touches.clientY,
+			distanceX = startTx - endTx
+			distanceY = startTy - endTy,
+			isSwipe = false;
+			if( Math.abs(distanceX) >= Math.abs(distanceY) ){
+				if( distanceX < -20 ){
+					fn(); 
+					isSwipe = true;
+				}
+			}
+		}, false ); 
+	}
+
+}
+</script>
+<script>
+window.onload=function(){
+var aDiv=document.getElementsByTagName("div");
+
+touchEvent.tap(aDiv[0],function(){
+alert("单次触摸");
+})
+
+touchEvent.doubleTap(aDiv[1],function(){
+alert("两次触摸");
+})
+
+touchEvent.longTap(aDiv[2],function(){
+alert("长按");
+})
+
+touchEvent.swipe(document,function(){
+alert("滑屏了");
+})
+
+touchEvent.swipeUp(document,function(){
+alert("向上滑屏了");
+})
+
+touchEvent.swipeDown(document,function(){
+alert("向下滑屏了");
+})
+
+touchEvent.swipeLeft(document,function(){
+alert("向左滑屏了");
+})
+
+touchEvent.swipeRight(document,function(){
+alert("向右滑屏了");
+})
+}
+
+</script>
+</head>
+<body>
+<div class="box1">单次触摸我</div>
+<div class="box2">两次触摸</div>
+<div class="box3">长按我</div>
+<span>试一试在屏幕上任意区域滑动</span>
+</body>
+</html>

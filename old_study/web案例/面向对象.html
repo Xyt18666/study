@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+	<button id="but">按钮</button>
+	<div id="div">div</div>
+</body>
+<script type="text/javascript">
+// function ChangeStyle(buttons,divs,color){
+// 	this.butobj=document.getElementById(buttons);
+// 	this.divobj=document.getElementById(divs);
+// 	this.color=color;
+// }
+// ChangeStyle.prototype.init=function(){
+// 	// console.log(this)
+// 	var that=this;
+// 	//this 是实例对象 当前对象、
+// 	//cs 调用的这个方法 所以 this是 cs
+
+// 	this.butobj.onclick=function(){
+// 		that.divobj.style.background=that.color;
+// 	}
+
+// }
+// var cs= new ChangeStyle("but","div","red")
+// cs.init()
+
+function ChangeStyle(butObj,divObj,json){
+	this.butObj=butObj;
+	this.divObj=divObj;
+	this.json=json;
+}
+ChangeStyle.prototype.init=function(){
+	var that=this;
+	this.butObj.onclick=function(){
+		for(var key in that.json){
+			that.divObj.style[key]=that.json[key];
+		}
+	}
+}
+
+//实例化对象
+var json={"width":"300px","background":"red","height":"300px"};
+
+var but=document.querySelector("#but")
+var div=document.querySelector("#div")
+
+var sc= new ChangeStyle(but,div,json);
+sc.init()
+
+</script>
+</html>

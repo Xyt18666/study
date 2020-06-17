@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>	
+class Chef {
+	constructor(food){
+		this.food = food;
+		this.dish = [];
+	}
+	get menu(){
+		return this.dish
+	}
+	set menu(dish){
+		this.dish.push(dish);
+	}
+
+	static cook(food){  //静态方法
+		console.log(food);
+	}
+	cook2(food){ 
+		console.log(food);
+	}
+}
+
+
+
+class Per extends Chef{//继承 class
+	constructor(food,n,b){
+		super(food);  //调用父类
+		this.b = b;
+		this.n = n;
+	}
+
+}
+let wh = new Chef();
+console.log(wh.menu="111")
+console.log(wh.menu="2221")
+console.log(wh.menu)
+
+Chef.cook("xxxxxx")
+
+let wh2 = new Per("xm",3,18)
+console.log(wh2.cook2("s"))
+
+</script>
+</html>

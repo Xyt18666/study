@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style:none;
+		}
+		.box,.box2{
+			width: 800px;
+			margin: 20px auto;
+			position: relative;
+		}
+		.tabBox,.tabBox2{
+			overflow: hidden;
+		}
+		.tabBox span,.tabBox2 span{
+			float: left;
+			padding:30px;
+			font:18px/20px "";
+			background: #ccc;
+		}
+		.list,.list2{
+			position: relative;
+			height: 300px;
+		}
+		.list li,.list2 li {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 800px;
+			height: 300px;
+			font:100px/300px "";
+			background: #ddd;
+		}
+		span.active{
+			background: #753;
+		}
+		.next,.previous,.next2,.previous2{
+			position: absolute;
+			top: 50%;
+			color: red;
+			font:36px/40px "";
+		}
+		.next,.next2{
+			right: 0;
+		}
+		.previous,.previous2{
+			left: 0;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+	</div>
+
+	<div class="box2">
+		<div class="tabBox2">
+			<span>选项1</span>
+			<span>选项2</span>
+			<span>选项3</span>
+			<span>选项4</span>
+		</div>
+		<ul class="list2">
+			<li>卡片1</li>
+			<li>卡片2</li>
+			<li>卡片3</li>
+			<li>卡片4</li>
+		</ul>	
+		<a href="#" class="next2">></a>
+		<a href="#" class="previous2"><</a>	
+	</div>			
+</body>
+<script type="text/javascript">
+
+var obox=document.querySelector(".box")
+
+
+obox.innerHTML+='<a href="#" class="next">></a><a href="#" class="previous"><</a>'
+
+var obox1=document.createElement("div")
+obox1.className="tabBox"
+obox.append(obox1)
+
+var obox2=document.createElement("ul")
+obox2.className="list"
+obox.append(obox2)
+
+
+
+for(var j=0; j<4; j++){
+	obox1.innerHTML+="<span>选项"+(j+1)+"</span>"
+	obox2.innerHTML+="<li>卡片"+(j+1)+"</li>"
+}
+
+
+fts(".tabBox>span",".list>li",".next",".previous",".box")
+fts(".tabBox2>span",".list2>li",".next2",".previous2",".box2")
+function fts(a,b,c,d,e){
+	var aSpa=document.querySelectorAll(a)
+	var li=document.querySelectorAll(b)
+
+	var ri=document.querySelector(c)
+	var le=document.querySelector(d)
+
+	var obox=document.querySelector(e)
+
+	//选项卡在打开页面时的效果  初始样式
+	var index=0;
+	function tab(){
+		for(var i=0; i<li.length; i++){
+			aSpa[i].classList.remove("active")
+			li[i].style.display="none"
+		}
+		aSpa[index].className="active"
+		li[index].style.display="block"
+	}
+	tab()
+
+	//点击选项 改变 index 值
+
+	for(var w=0; w<aSpa.length; w++){
+
+	 //let      var 换成 let
+	 // 不需要自定义属性  
+	 // index=i
+	 
+		aSpa[w].xb=w//自定义属性  保存下标
+		aSpa[w].onclick=function(){
+			index=this.xb
+			tab()
+		}
+	}
+
+
+	le.onclick=function(){
+		index--
+		index=index<0?3:index
+		tab()
+	}
+	ri.onclick=function(e){
+		var e=e||window.event
+		e.preventDefault()
+		index++
+		index=index>3?0:index
+		tab()
+	}
+	var tt=setInterval(function(){
+
+		ri.click()//click方法
+
+	},2000)
+
+
+	obox.onmouseover=function(){
+		clearInterval(tt)
+	}
+	obox.onmouseout=function(){
+		clearInterval(tt)
+		tt=setInterval(function(){
+			ri.click()//click方法
+		},2000)
+	}
+
+}
+
+</script>
+</html>

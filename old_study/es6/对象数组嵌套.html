@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+let obj={
+	a1:[1,2,3],
+	a2:"789"
+}
+
+// console.log(a1,a2)
+// 此时并无法获取到 a1 a2, 必须使用obj.a1
+
+
+let {
+	a1:[x,y],
+	a2:a3
+}=obj
+// 通过结构的方式拿到a3 
+// 把obj 原有的 a1 a2  重新赋值给 a3 x y
+
+
+
+{
+	var p=0840
+	// 单独的块级作用域会暴露到全局
+}
+
+console.log(a3,x,y,p)
+
+
+
+
+let obj1 = {
+	s:{
+		n:"sn"
+	},
+	n:[1,"n2",3,"n4"],
+	m:[[33,34,35],22,28]
+}
+
+
+let {
+	s:{n},
+	n:[,...nlist],
+	m:[[...q],w,e,r="rrr"],
+}=obj1
+console.log(q,"-----",w,"-----",e,"-----",r,"-----",nlist)
+// (3) [33, 34, 35] "-----" 22 "-----" 28 "-----" "rrr" "-----" (3) ["n2", 3, "n4"]
+
+// 同样逐层对等结构
+</script>
+</html>

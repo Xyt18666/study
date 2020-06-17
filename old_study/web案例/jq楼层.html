@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0px;
+		}
+		main{
+			width: 1190px;
+			margin: 0 auto;
+			background: #789;
+			margin-top: 1500px;
+			margin-bottom: 800px;
+		}
+		li{
+			list-style:none;
+		}
+		ul{
+			width: 1000px;
+			margin: 0 auto;
+		}
+		.list li{
+			width: 1000px;
+			margin-bottom: 30px;
+			background: #741;
+			height: 600px;
+
+		}
+		aside{
+			position: absolute;
+			top: 1500px;
+			right: 0;
+		}
+		ol li{
+			margin: 10px;
+			width: 50px;
+			height: 50px;
+			background: #0f0;
+		}
+		.st{
+			position: fixed;
+			top: 100px;
+			right: 0;
+		}
+	</style>
+</head>
+<body>
+	<main>
+		<ul class="list">
+			<li>楼层1</li>
+			<li>楼层2</li>
+			<li>楼层3</li>
+			<li>楼层4</li>
+			<li>楼层5</li>
+			<li>楼层6</li>
+			<li>楼层7</li>
+			<li>楼层8</li>
+		</ul>
+	</main>	
+	<aside>
+		<ol>
+			<li>按钮1</li>
+			<li>按钮2</li>
+			<li>按钮3</li>
+			<li>按钮4</li>
+			<li>按钮5</li>
+			<li>按钮6</li>
+			<li>按钮7</li>
+			<li>按钮8</li>
+		</ol>
+		<p>返回顶部</p>
+	</aside>
+</body>
+<script>
+
+$(window).scroll(function(){
+	var st= $(this).scrollTop()
+	st>1300? $("aside").addClass("st"): $("aside").removeClass("st")
+	
+
+	var stMax=st+ $(window).height()/2
+	var stMin=st- $(window).height()/2
+	console.log(stMax,st,stMin)
+
+	
+	$("ol li").each(function(i){
+		var ost=$(".list li").eq(i).offset().top
+		if( ost>stMin && ost<stMax){
+			$("ol li").eq(i).css("background","red").siblings().css("background","#0f0")
+		}
+	})
+	 
+})
+
+	
+$("ol li").click(function(){
+	var stoz=$(".list li").eq($(this).index()).offset().top
+	$("html,body").animate({
+		"scrollTop":stoz-100
+	},300)
+})
+
+$("aside p").click(function(){
+	$("html,body").animate({
+		"scrollTop":0
+	},300)
+})
+
+console.log(Object.assign([1, 2, 3], [4, 5]))
+</script>
+</html>

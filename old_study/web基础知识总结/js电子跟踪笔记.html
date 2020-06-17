@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+/*
+前端的组成：结构层，表现层，行为层
+
+浏览器的额作用：
+识别HTML css 语言，展示出要描述的效果
+识别js脚本语言，让网页实现所需的功能
+
+什么是脚本：
+计算机能识别的指令，通过指令达到想要的目的
+
+脚本的作用：
+计算机通过脚本一步一步的执行脚本指令，来实现 ，所要达到的目标
+
+如何正确使用脚本：
+确定目标
+计划方案步骤
+书写代码细节
+
+js组成：
+ECMA script：js核心语法
+DOM（document object model）：文档对象模型   通过js操作html网页元素
+BOM（browser object model）：浏览器对象模型   通过js操作浏览器窗口接口
+
+
+ECMA script 组成：
+语法：规定的方式
+语句：使用正确的语法编写的语句
+变量：临时存放数据的载体
+数据类型：计算机能识别的数据类型
+转换：数据类型之间的转换
+操作符：计算机能识别的符号
+关键词：js语法中有特殊意义和作用的词
+保留词：以后可能会成为关键词的词
+
+变量命名规则：
+变量名必须以字母，下划线，$开头
+变量名中不允许使用空格和其他标点符号，首个字母不能为数字
+字符长度不能超过255个字节
+区分大小写
+变量名必须放在一行
+不能使用关键词，保留词
+
+
+数据类型：
+数字 number(纯数字，无任何杂物，可以为数字，小数，正数，负数。。。)
+字符串 string(带有""的都为字符串 ps：如果不带""，也不是数字，默认为变量名，关键词除外)
+布尔值 Boolean true真   false假（用于判断真假）
+未定义变量  undefined （写一个变量，不会值，则为undefined）
+代码段  function （表示方法 功能）
+对象 object  ：null不存在的对象    {}复杂（复杂对象，没学）
+
+undefined==null 结果为true
+
+
+运算过程中的数据类型自动转换：
+在 +法 运算中数字与带有文字的字符串相加时进行字符串拼接 
+与纯数字字符串计算时 进行运算
+
+其他任何运算结果非数字则为NaN（NaN是数字类型，但他不是一个数字）
+
+判断是否为NaN：    isNaN(名)
+
+在除法运算中 当0当做被除数时 结果为无限大
+
+
+
+获取数据类型：
+typeof(变量名)
+typeof 变量名
+alert(typeof(变量名))
+alert(typeof 变量名)
+
+
+运算符的种类：
+算数运算符： + % - * /（数学运算，基本都会 %符号是求余数）
+赋值运算符：= += -= *= /= %= （赋值运算符，把右边的值赋给左方，累加累减...）
+
+自增自减运算符：++  -- （自增自减 默认一次加或减1    a++ 和 ++a 的区别为 先赋值后运算 和先运算后赋值  ps：后运算的 第一次赋值无效）
+
+逻辑运算符：&&且   ||或   ！非  （&&并且  两个条件都满足为true
+   ||或者  两个条件有一个满足为true
+      ！ 是非颠倒  真是假 假是真 
+      ）
+关系运算符：< > <= >= == === != !== （< > <= >=这几个不用说了，都懂）
+（==和===的区别
+==   相似  值相同 数据类型可以不同
+===   恒等于   值和数据类型都要相同）
+
+（！=  ！== 的区别
+！= 不等于 值不相等就不相等
+！== 完全不等 值和数据类型不等就不等）
+
+
+var a=0||1  //1
+找真值，如果第一个是真，直接赋值，如果是假值接赋值第二个
+var a=2&&1  //1
+找假值，如果第一个是假，直接赋值，如果是真值接赋值第二个
+
+
+引入js的三种方法：
+行内：写js
+内部：<script type="text/javascript"></s cript>
+外链：<script type="text/javascript" csr="路径"></s cript>
+
+
+五种输出方式：
+alert（）
+console.log（）
+document.write()
+prompt()
+confirm（）
+
+
+
+变量：
+var   定义一个变量 
+a=3   赋值（把右方值赋给左方变量名）
+取值 当用到a时 ，就表示取值 此时的a为3
+
+定义变量可以 重新赋值：
+a=50 a=100
+此时a=100
+
+
+三目运算符：
+（与if相似，各有优点缺点
+if优点：执行的事件可以有很多个，三目只能执行一个
+
+三目优点：书写简单便捷
+）
+
+条件？真值：假值
+
+多条件三目运算：
+
+条件一？条件一成立执行：条件二？条件二成立执行：条件三？条件三成立执行：都不成立执行
+
+
+if 条件语句：
+
+if（条件）{为true执行}
+else{为false执行}
+
+多条件if：
+if（条件一）{条件一成立执行}
+else if(条件二){条件二成立执行}
+else if(条件三){条件三成立执行}
+else{都不成立执行}
+
+if嵌套：
+if判断中 在进行判断
+
+if（条件一）{
+条件一成立执行
+	if（当的达成条件一时在进行判断）{
+	
+	} else if（多条件判断）{
+	
+	}
+}
+else if(条件二){
+条件二成立执行
+}
+else if(条件三){
+条件三成立执行
+}
+else{
+都不成立执行
+}
+
+switch 语句（还没学）：
+var a=prompt（“值”）  //接收一个值
+switch（a）{          //switch 获取该值
+	case “值1” ：    //判断case的值是否与switch的值相等
+	alert（）；      //相等则输出此值
+	break           //结束语句的进行，其他的地方也可用
+
+	case “值2” ：   //判断case的值是否与switch的值相等
+	alert（）；     //相等则输出此值
+	break
+	default：     //结果与以上case都不相符时
+	alert（）；  //输出此值
+	break
+	};
+
+
+数据类型强制转换（没学）：
+转字符串：
+
+String（名）
+名.toString（）
+名.toFixed（保留的小数位数）
+数字转字符串很好理解，只是变了数据类型，没有任何复杂的东西
+
+
+
+转数字：
+Number(名)
+数字 字符串 转数字：数字（小数保留）
+字符串转数字：非数字NaN
+
+
+parseInt（名）
+小数 字符串转数字：向下取整
+数字开头的字符串转数字：只输出数字，去除文字
+非数字开头的字符串转数字：NaN
+
+parseFloat（名）
+与parseInt相同
+
+区别：
+小数 字符串转数字：原数字（与Number相同）
+
+
+数字 字符串 转布尔值：Boolean
+自动转换 隐式转换
+
+	在if 语句中 所有的数据自动转换为布尔类型
+
+	非0的数字、非空字符串、都为true
+	null、undefined、0 、NaN、空字符串、都为false
+
+	if的条件：关系运算、逻辑运算、布尔值 真/假
+
+
+
+	在关系运算中 一切类型都转换为 数字类型，
+
+	字母字符串与字母字符串比较时会逐个比较 字母的大小   Unicode（所有字符的排序规则）ascd...
+	先比较第一位，如果第一位一样，则比较第二位
+	小写>大写  （z>a）  字母串>数字串 
+	首位如果是数字的比较数字
+	字符0-9：    48-57  
+	大写字母A-Z：    65-90
+	小写字母a-z：    97-122
+	
+
+	字符串与数字比较时 为false
+	字符串转为NaN  NaN和任何值比都是false
+	
+
+
+
+
+
+计算小技巧：
+个位 %10 ： 
+所有位  ：
+先取余（假如取十位数 就 膜100 ，百位就 膜1000）
+再除以（假如取十位数 就 除10 ，百位就 除100）
+例子：
+qw=parseInt((sz%10000)/1000);
+bw=parseInt((sz%1000)/100);
+sw=parseInt((sz%100)/10); 
+
+
+
+
+js的3大结构：
+从上至下流程结构
+分支结构
+循环结构
+
+什么是循环：
+程序反复执行一段代码，当达到某种条件时停止循环。
+
+
+循环的必要条件：
+循环记录者（循环变量 初始值）
+循环最终目的 （循环条件）
+循环变量的迭代（循环变量变化的记录）
+
+
+while循环
+
+while(条件){
+	为true时一直循环
+	为false时终止
+}
+
+do while 循环
+
+do{
+	先循环
+}while(在判断条件时候是否为true 为true一直循环);
+ps:最后一定要写分号
+
+
+for循环
+
+for(循环变量;循环条件;循环变量的迭代){
+	循环体
+}
+for(;;)    分号必须写，不管你写不写循环变量和循环迭代
+
+break continue 的使用与区别
+continue 跳出此次循环
+break 跳出当前循环体
+
+
+书写字符串内容有引号的  单引号双引号交替使用
+
+js自带函数（内置函数）：
+alert()
+prompt() 
+isNaN()
+typeof()
+
+
+什么是函数？
+函数是具有一个小功能的代码段，随时可以拿来使用的工具
+
+
+函数的参数 什么是形参 实参？
+形参为 定义函数时，所需要的参数()
+实参为 调用函数时，将要输入的参数()
+
+
+三种方式 ：
+
+普通函数：
+function 名(形参){函数体}
+调用 名(实参)
+
+匿名函数:
+function(形参){函数体}
+调用 (function(实参){函数体})(实参)
+
+储存至变量：
+var hs=function(形参){函数体}
+调用  变量名(实参)
+
+关于形参、实参：
+形参是函数体内假设的值，用于函数体的构建
+实参是即将要调用函数体时，进行运算的值
+一个形参对应一个实参，位置不能发生变化
+
+
+
+return 的使用与含义：
+
+函数体尾部默认有一个return
+用于结束函数体
+此时输出return 为undefined  
+因为 输出为空
+
+如果在函数体尾部输入return 
+后面书写想要获得的结果
+
+在调用时 显示的则是 return后的值
+
+如何把return的返回值储存？
+
+使用var 变量 储存 return的返回值
+然后方便使用
+
+
+
+
+定义数组:
+是一个复杂的数据类型，一组数据的集合，取一个名字，对这组数据进行操作
+
+字面量创建法
+ var 名=[值,值,值,值,值,值]
+ 名[0]=2
+
+
+ 构造法
+ var 名= new Array(值,值,值,值,值)
+
+
+var ss=[4,5,6,7]
+//      0,1,2,3
+//下标序列号从0开始
+console.log(ss[0])
+console.log(ss[3])
+console.log(ss[4])//undefined
+
+// ss.length=0  //清空数组
+// ss.length=10  //数组长度为10
+
+ss[ss.length]=8
+//使用length获取数组长度数进行赋值
+//此时长度为4,下标只到3 ，4为undefined 
+//对undefined进行赋值
+console.log(ss)
+// ss.length=0//清空一个数组
+// console.log(ss)
+
+
+// 数组的遍历  读取每一个数据
+var uio=[5,4,9,2,8]
+
+for (a=0; a<uio.length; a++){
+        console.log(uio[a])
+}
+
+
+ss.pop()//删除 并且 返回 数组中最后一个值
+console.log(ss)//被删除后的数组
+console.log(ss.pop())//被删除后的数组的最后一个值
+
+
+
+ss.shift()//删除 并且 返回 数组中最前面的一个值
+console.log(ss)//被删除后的数组
+console.log(ss.shift())//被删除后的数组的最前面一个值
+        
+
+ss.push(9,10,11)//在后方添加新值，返回新的长度
+console.log(ss.push())
+console.log(ss)
+
+
+ss.unshift(1,2,3)//在前方添加新值，返回新的长度
+console.log(ss)
+console.log(ss.unshift())
+
+
+
+var art2=["d5",8,7]//用于拼接的数组
+var art3=ss.concat(art2);//拼接数组
+console.log(art3)
+
+
+art4=art3.join("&");//通过指定的字符合并为字符串
+console.log(art4)
+
+alert(Array.isArray(art3))//判断是否为数组
+
+console.log(art3.indexOf(8))//从前向后找到数组中某个值得下标
+//如果找不到则为-1
+
+console.log(arr.indexOf("4",2))
+//值  起始下标
+
+console.log(art3.lastIndexOf(8))
+从后向前找到数组中某个值得下标
+
+console.log(art3)
+art3.reverse()//颠倒数组的顺序
+console.log(art3)
+
+
+var qwe=art3.slice(0,5)//截取 0-5下标的 数组
+console.log(qwe)
+
+var plm=art3.splice(0) 
+//清空数组
+
+var plm=art3.splice(0,2)  //删除0-2下标之间的数组  并保存到变量
+console.log(art3)
+console.log(plm)
+
+var plk=art3.splice(2,0,"lck")  //在下标2后面添加一个数组
+//插入位置，删除长度，新增数组内容
+console.log(plk) //空数组 ，不用写变量储存也行
+console.log(art3)
+
+
+art3.splice(5,1,"lcc")  //在下标5后面替换一个数组
+//替换位置，替换长度，替换数组的内容
+console.log(art3)
+
+
+var hyu=art3.splice(3,0,"l","u","t")  //在下标3后面添加多个数组
+//插入位置，删除长度，新增数组内容
+console.log(hyu)//添加新数组返回为空
+console.log(art3)
+
+// var ujm=art3.splice(3)  //截取下标3之前的内容
+// console.log(art3)  //下标012
+// console.log(ujm) //下标3456...
+
+console.log(art3.sort())//数组的值排序
+
+
+
+
+
+对象：
+一种复杂的数据类型，通过属性和方法描述复杂事物
+
+
+
+三种创建方式：
+
+字面量创建
+var 名={
+	name：,
+	值：,
+	ff：,
+	函数名：function(){}
+}
+使用变量、花括号 储存，里面书写值: ,（切记逗号分开）
+
+
+构造法创建
+var 名= new Object()
+	名.值= ;
+	名.值= ;
+	名.函数名=function(){}
+	
+对象的读取：
+名.值
+名['值']  这个更不容易错
+
+对象值的修改：
+名.值=新值
+名['值']=新值
+
+对象值达到添加：
+名.新值名字=新值
+名['新值名字']=新值
+
+对象值的删除：
+delete 名.值=新值
+delete 名['值']=新值
+
+
+定时器：
+setInterval(function(){},1000)
+clearInterval(定时器名字)
+
+kj.onclick=function(){
+	clearInterval(jjj)
+}
+kjj.onclick=function(){
+	clearInterval(jjj)
+	//点击开始时关闭上一个定时器，防止无法关闭定时器
+	dm()
+}
+
+
+
+
+
+获取class  ：
+document.getElementsByClassName("")
+
+
+时间对象：
+定义： 
+var sj= new Date()
+sj.getFullYear()   年
+sj.getMonth()+1 月
+sj.getDate()  日
+sj.getHours()   时
+sj.getMinutes()  分
+sj.getSeconds()  秒
+sj.getDay()  星期
+sj.getTime() 毫秒数
+
+自定义时间对象：
+var sj2= new Date("2019-10-1 00:00:00")
+
+
+
+math对象：
+Math.random()  随机数
+Math.floor()    2.645   2  下舍入
+Math.ceil()    2.1866    3   上舍入
+Math.round()   四舍五入
+Math.pow(,)    平方
+Math.max(,)  最大值
+Math.min(,) 最小值
+Math.abs()  绝对值	
+
+
+
+
+
+
+              BOM
+navigator   导航
+location    地址、定位
+history     历史
+screen      屏幕
+sync         同步
+async         异步
+
+
+浏览器内核：
+Firefox    gecko
+Safari     webkit
+Chrome      blink
+IE          trident
+
+
+window对象：
+
+window.screenX（Y）   窗口距离屏幕左上角的距离
+
+window.innerHeight（Width） 可视区的宽高
+
+window.outerHeight（Width）  浏览器的宽高
+
+window.scrollX（Y）      页面滚动距离  pageX（Y）Offset
+
+window.open(地址,名字,参数)
+
+打开的方式 可以是"_self"或"_blank"
+
+参数可为: 浏览器 宽高等...
+
+
+.close() 关闭窗口
+
+想关闭某个 窗口 
+起个名字 
+myWindow.close();
+
+.stop  停止加载
+
+scrollTo(X,Y)   滚动到指定位置  
+
+可为 对象 :
+{	
+	top:0,
+	left:,
+	behavior:"smooth"
+	平滑滚动  
+}
+
+
+screen  对象
+window.screen.orientation    返回一个对象，表示屏幕的方向
+
+landscape-primary   横向
+landscape-secondary
+颠倒
+portrait-secondary   
+portrait-primary    纵向
+
+
+
+
+navigator  对象 
+
+navigator.userAgent    返回浏览器信息
+
+
+
+history 对象
+
+.go(0)   跳转至
+.back()   后退
+.forward()  前进
+.length   浏览的数量
+
+
+location  对象
+
+.href  完整url
+.search  查询字符串
+.hash   片段标识符
+.reload   重载页面
+
+
+
+
+
+
+              DOM 
+	
+node 节点
+
+document   文档节点
+element    元素节点
+attribute  属性节点
+text       文本节点
+comment    注释节点
+
+
+nodeType    返回节点类型
+
+1 2 3 8 9 10   ...
+元素 属性 文本 注释 文档
+
+
+nodeName    返回节点名
+元素 和 属性 会返回  名称  大写的标签名
+其他的都返回 #节点名
+
+
+nodeValue       返回节点的文本值
+
+nodeContent     返回文本值 包后代 忽略标签
+
+
+nextSibling    上一个兄弟节点
+previousSibling   下一个兄弟节点
+
+parentNode   返回父级节点
+parentElement  返回父级元素节点
+
+firstChild     第一个子节点
+lastChild 		最后一个子节点
+childNode    所有子节点
+
+
+
+节点的方法:
+
+document.createElement("")   创建元素节点
+document.createComment("")   创建注释节点
+document.createTextNode("")   创建文本节点
+
+document.createAttribute("")   创建属性节点
+名.值= 
+ .setAttributeNode()
+
+
+append()   appendChild()  向后插入节点
+prepend()				向前插入节点
+remove()   		删除节点
+cloneNode()   	克隆节点
+
+
+befor()      在某个节点前插入多个节点
+after()		 在某个节点后插入多个节点
+
+
+.id           获取id
+.tagName      标签名
+.className    获取class名
+
+
+classList    获取所有标签名
+.add()       添加一个类名
+.removr()    删除一个类名
+.toggle()    添加或删除一个类名
+
+
+clientWidth（Height）   获取元素宽高  不计算边框和边框
+offsetWidth（Height）   获取元素宽高  不计算外边距
+
+
+scrollTop（Left）   获取 距离顶部 滚动距离 
+
+
+offsetParent   获取定位父级
+offsetLeft（Top） 距离 定位父级的位置
+
+
+css操作：
+style.cssText
+
+
+获取 非行内样式：
+.getComputedStyle(元素名,可以获取伪类).属性
+
+IE：
+元素.currentStyle.属性
+
+
+
+nextElementSibling    上一个元素兄弟节点
+previousElementSibling   下一个元素兄弟节点
+
+
+
+firstElementChild     第一个元素子节点
+lastElementChild 		最后一个元素子节点
+children       所有元素子节点
+
+属性节点的获取、设置、删除
+
+标准属性： 元素.属性=值
+getAttribute(可以获取自定义属性)
+
+setAttribute("属性","值")
+
+removeAttribute(移出指定属性)
+
+
+dom事件：
+
+事件模型：
+捕获阶段  目标阶段   冒泡阶段
+
+事件绑定与删除：
+
+0级事件：
+元素.事件=function(){}
+元素.事件=null
+
+
+二级事件：
+元素.addEventListener("事件名",函数,false)
+事件名不用写on , false代表冒泡阶段执行 true为捕获阶段执行
+
+元素.removeEventListener("事件名",函数,false)
+
+
+IE：
+元素.attachEvent("事件名",函数)
+事件名写on
+元素.detachEvent("事件名",函数) 
+
+this指向 的区别
+标准： 指向当前绑定事件的元素
+IE：  指向window
+
+
+
+
+
+
+事件对象：
+兼容： var e=e||window.event
+
+e.target  			返回目标节点
+e.currentTarget     返回触发事件节点 
+
+
+阻止冒泡：
+e.stopPropagation()
+
+IE：
+e.canselBubble=ture
+
+事件委托(给新创建的元素添加事件时，要使用到)：
+把事件添加给父级，由父级统一处理
+
+父级触发事件 ， 找到目标节点执行
+
+
+
+鼠标事件：
+onmouse down           按下
+		move           移动
+		up             松开
+		over           移入
+		out            移出
+		enter          移入
+		leave          移出
+		click          单击
+		dblclick       双击
+		contextmenu    右键
+
+
+鼠标事件的属性：
+clientX（Y）    获取当前鼠标距离 可视窗口 的距离
+pageX（Y）    	获取当前鼠标距离 文档 的距离
+offsetX（Y）	获取当前鼠标距离 目标节点 的距离
+
+
+
+
+键盘事件：
+onkeypress   按下抬起
+onkeydowm    按下
+onkeyup      抬起
+
+键盘属性：
+e.keycode    按键编号
+e.key        按键名
+
+
+
+表单事件:
+
+onblur      失去焦点
+onfocus     聚焦
+ 
+oninput     实时监控
+onchange    失去焦点时触发
+
+onreset     重置表单时触发
+onsubmit    提交表单时触发
+
+onselect    input内容被选中时触发
+
+
+
+
+
+
+滚轮事件：
+onmousewheel
+
+detail  判断是向上还是向下滚动(大于0 向上)
+
+
+火狐：
+DOMMouseScroll  必须使用二级事件
+
+wheelDelta     判断是向上还是向下滚动(大于0 向下)
+
+
+其他事件：
+onload        加载完成后触发
+onerror       资源加载失败时触发（常用于img加载）
+
+window.onscroll      页面滚动事件
+window.onresize      改变窗口大小时触发
+
+
+
+
+取消默认事件：
+e.preventDefault()
+
+IE：
+return false
+
+
+
+
+禁用按钮：
+disabled=true
+
+c3禁止点击
+pointer-events:none;
+               aute
+
+
+js选中：
+.checked=true
+
+
+图片预加载：
+var ss=[]
+for（）{
+	var  xx= new Image()
+	xx.src=""
+	ss.push(xx)
+}
+
+ss[ss.length-1].onload=function(){
+	
+}
+
+
+
+拓展：
+
+拖拽(这里的拖拽是拖拽元素的，不用于写放大镜等)
+
+H5新属性  draggable    
+
+ondrag事件：
+
+在拖动目标上触发:
+ondragtart   开始
+ondrag       移动
+ondragend    结束
+
+释放目标时触发：
+ondragenter   拖入时
+ondragover    在另一个容器移动时
+ondragleave	  拖出时
+ondrop        释放时
+
+
+待续......
+
+ */
+
+
+</script>   
+</html>

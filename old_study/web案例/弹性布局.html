@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.box{
+			width: 800px;
+			height: 100px;
+			/*设置父容器盒子，把每一个子元素变为伸缩项*/
+			display: flex;
+			border:2px solid #456;
+
+			/*设置子元素的排列方式
+				flex-start 从左向右排列
+				flex-end   从右向左排列
+				center      中间紧密排列
+				space-between 左右对齐，中间平局分布
+				space-around  每个盒子相同的外边距，平局分布
+		
+			*/
+			justify-content:center;
+		}
+		.box>div,.box2>div,.box3>div,.box4>div,.box5>div{
+			width: 100px;
+			height: 100px;
+			background: #789;
+		}
+
+
+		.box2{
+			width: 400px;
+			height: 600px;
+			/*设置父容器盒子，把每一个子元素变为伸缩项*/
+			display: flex;
+
+			justify-content:center;
+
+			flex-wrap:nowrap;
+			/*	不换行  nowrap
+				换行  wrap
+				反转排列  wrap-reverse
+			*/
+			
+
+			flex-direction:row-reverse;
+			/*设置子元素在主轴上的排列方式
+				row  主轴方向  x
+				row-reverse  反向
+				column	侧轴方向 Y
+				column-reverse  反向
+
+			*/
+
+			/*flex-flow:row wrap ;
+				以上两个的综合写法
+
+
+			*/
+			
+
+
+			justify-content:space-around;
+
+			border:2px solid #456;
+
+		
+		}
+
+
+		.box3{
+			width: 900px;
+			height: 600px;
+			/*设置父容器盒子，把每一个子元素变为伸缩项*/
+			display: flex;
+			border:2px solid #456;
+
+
+		
+		}
+		.box3 .a1a {
+			flex-grow:1;
+			/*扩展子元素宽度
+			默认值是1
+			按照份数 计算比例值
+
+			*/
+		}
+		.box3 .a2a {
+			flex-grow:2;
+			/*扩展子元素宽度*/
+		}
+
+		.box4{
+			width: 300px;
+			height: 600px;
+			/*设置父容器盒子，把每一个子元素变为伸缩项*/
+			display: flex;
+			border:2px solid #456;
+			
+		}
+		
+		.box4 .a1a {
+			flex-shrink:0;
+			/*收缩子元素宽度
+			默认值是1
+			写0 会保持盒子原始大小
+			按照份数 计算比例值
+
+			*/
+		}
+		.box4 .a2a {
+			flex-shrink:1;
+			/*扩展子元素宽度*/
+
+			/*
+			
+			flex:;
+			以上两个的组合
+			设置伸缩子项占据的比例
+
+			*/
+		}
+
+		.box5{
+			width: 900px;
+			height: 600px;
+			/*设置父容器盒子，把每一个子元素变为伸缩项*/
+			display: flex;
+			border:2px solid #456;
+
+			align-items:center;
+			/*侧轴对齐方式
+
+			center   居中
+			flex-start 顶部对齐
+			flex-end 底部对齐
+			stretch  拉伸子级 填充满侧轴
+			baseline 基线对齐
+
+
+
+			设置单个元素在侧轴的对齐方式
+			align-self:;
+			*/
+			
+		}
+		
+		
+
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="1a">1</div>
+		<div class="2a">2</div>
+		<div class="3a">3</div>
+		<div class="4a">4</div>
+		<div class="5a">5</div>
+		<div class="6a">6</div>
+	</div>
+	<div class="box2">
+		<div class="1a">1</div>
+		<div class="2a">2</div>
+		<div class="3a">3</div>
+		<div class="4a">4</div>
+		<div class="5a">5</div>
+		<div class="6a">6</div>
+	</div>
+	<div class="box3">
+		<div class="a1a">1</div>
+		<div class="a2a">2</div>
+		<div class="3a">3</div>
+		<div class="4a">4</div>
+		<div class="5a">5</div>
+		<div class="6a">6</div>
+	</div>
+	<div class="box4">
+		<div class="a1a">1</div>
+		<div class="a2a">2</div>
+		<div class="3a">3</div>
+		<div class="4a">4</div>
+		<div class="5a">5</div>
+		<div class="6a">6</div>
+	</div>
+
+	<div class="box5">
+		<div class="a1a">1</div>
+		<div class="a2a">2</div>
+		<div class="3a">3</div>
+		<div class="4a">4</div>
+		<div class="5a">5</div>
+		<div class="6a">6</div>
+	</div>
+</body>
+</html>

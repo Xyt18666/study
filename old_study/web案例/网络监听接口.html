@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div class="box">123</div>
+</body>
+<script>	
+// 网络监听接口
+window.addEventListener("online",function(){
+	// 网络连通
+})
+window.addEventListener("offline",function(){
+	// 网络断开
+})
+
+
+
+
+// 全屏接口
+
+requestFullScreen()
+// 全屏显示
+cancelFullScreen()
+// 退出全屏
+
+fullscreenElement
+// 判断是否是全屏状态
+// ps：退出和判断的时候是 document在触发，打开的时候是当前元素打开
+
+
+
+var fil= new FileReader()
+// 创建文件读取对象
+
+// 读取方法
+readAsText()
+// 读取文本文件，返回字符串，默认utf-8
+readAsBinaryString()
+// 读取任意格式文件，返回二进制字符串
+readAsDateURL()
+// 读取任意格式文件，返回一段data开头的字符串
+// DateURL是一种将文件嵌入文档的方案
+// 将资源转换为base64编码的字符串形式
+
+abort()
+// 中段读取
+
+onabort  
+// 读取文件中断时触发
+
+onerror
+// 读取文件错误时触发
+
+onload
+// 读取完成触发
+
+onloadend 
+// 读取完成时触发，不论成功失败
+
+onloadstart
+// 开始读取时触发
+
+onprogress
+// 读取文件过程中持续触发
+
+
+// 地理定位接口
+navigator.geolocation
+// 判断是否支持定位
+navigator.geolocation.getCurrentPosition(
+	,,)
+// 获取当前定位
+// 参数
+// success   成功回调
+// error     失败回调
+// option    获取当前地址信息的方式
+
+
+//{}
+// option 可以设置获取数据方式
+// enableHighAccuracy:true/faluse
+// 是否使用高精度
+// 
+// timeout 设置超时时间
+// 
+// maximumAge 可以设置重新获取地理信息的间隔
+
+
+
+
+
+
+// 成功后的回调参数
+// e.coords.latitude 纬度
+// e.coords.longitude 经度
+// e.coords.accuracy 精度
+// e.coords.altitude 海拔
+// 
+// 错误信息 
+// e.code
+// 
+// e.PERMISSION_DENIED 用户未开启定位
+// e.POSITION_UNAVAILABLE  定位信息不可用
+// e.TIMEOUT   请求超时
+// e.UNKNOWN_ERROR   位置错误
+// 
+// 
+
+</script>
+</html>

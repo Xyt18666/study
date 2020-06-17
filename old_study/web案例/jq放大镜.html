@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.le{
+			width: 330px;
+			height: 330px;
+			float: left;
+			margin-right: 50px;		
+
+		}
+		.ri{
+			width: 600px;
+			height: 400px;
+		}
+		.le{
+			border:2px solid red;
+			position: relative;
+		}
+		.le img{
+			width: 330px;
+			height: 330px;
+			display: block;
+		}
+		.le .mask{
+/*			width: 100px;
+			height: 100px;*/
+			background: rgba(0,0,0,0.3);
+			position: absolute;
+			display: none;
+		}
+		.ri{
+			border:2px solid #0f0;
+			overflow: hidden;
+			position: relative;
+			display: none;
+		}
+		.ri img{
+			width: 1000px;
+			height: 1000px;
+			display: block;
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+	<div class="le">
+		<div class="mask"></div>
+		<img src="img/1.jpg" alt="">
+	</div>
+	<div class="ri">
+		<img src="img/1.jpg" alt="">
+	</div>
+</body>
+<script type="text/javascript">
+
+$(".le").mouseover(function(){
+	$(".le .mask").css("display","block")
+	$(".ri").css("display","block")
+
+	var w= ($(".ri").width()/$(".ri img").width()) * $(".le").width()
+	var h= ($(".ri").height()/$(".ri img").height()) * $(".le").height()
+
+
+	$(".le .mask").css({
+		width:w,
+		height:h
+	})
+
+	$(document).mousemove(function(e){
+		var x= e.pageX- $(".le").offset().left - $(".le .mask").width()/2
+		var y= e.pageY- $(".le").offset().top - $(".le .mask").height()/2
+
+		x=x<0?0:x
+		y=y<0?0:y
+
+		x= x> $(".le").width() - $(".mask").width() ? $(".le").width() - $(".mask").width():x
+
+		y= y> $(".le").height() - $(".mask").height() ? $(".le").height()-$(".mask").height():y
+
+		$(".le .mask").css({
+			left:x,
+			top:y
+		})
+
+		var xbl=($(".ri img").width() - $(".ri").width())/($(".le").width() - $(".le .mask").width())
+		var ybl=($(".ri img").height() - $(".ri").height())/($(".le").height() - $(".le .mask").height())
+
+		console.log($(".le .mask").width())
+
+		var blx=  -x*xbl
+
+		var bly=  -y*ybl
+		
+
+		$(".ri img").css({
+			left:blx,
+			top:bly
+		})
+
+
+	
+	})
+	$(".le").mouseout(function(){
+		$(".le .mask").css("display","none")
+		$(".ri").css("display","none")
+	
+	})
+})
+
+
+
+</script>
+</html>

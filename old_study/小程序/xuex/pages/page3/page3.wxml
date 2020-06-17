@@ -1,0 +1,6 @@
+<!--pages/page3/page3.wxml-->
+<view>hello word || {{msg}} </view>
+<view>
+  <checkbox checked="{{isChecked?true:false}}"></checkbox>
+</view> 
+<view>运算 {{1+6}}</view>

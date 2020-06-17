@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>46</h1>
+</body>
+<script>
+    /*
+        直接弹到 桌面的 信息 窗口
+
+
+        服务器环境 运行
+
+    */
+    let n = Notification.permission
+    //获取 是否已开启通知 的 状态
+    // granted  同意
+    // default  未询问过
+    // denied   禁止
+
+
+
+    // console.log(n)
+
+    
+
+    if(n==="default"){
+        window.Notification.requestPermission()
+        //弹出 是否开启通知的  窗口
+    }else{
+        let not = new Notification("微博热热搜榜",{
+            icon:"imgs/banner (1).jpg", // 通知左边的小图片
+            body:"最新讯息",
+            dir:"rtl",  //从右到左        ltr  左到右
+            tag:1,//这条通知 的id
+            silent:true,//通知是否静音,默认不静音
+            requireInteraction:false, //是否允许交互,默认不允许  ，提示窗口多一个 关闭按键
+        })
+
+        not.onclose=function(){
+            console.log("通知被关闭")
+        }
+
+        not.onshow=function(){
+            console.log("通知以显示")
+        }
+
+        not.onclick=function(){
+           location.href="https://s.weibo.com/top/summary"
+        }
+        
+    }
+   
+   /*
+   事件
+     onshow   弹出 触发
+     onclose  关闭触发
+     onclick  点击触发
+     onerror   错误时 触发
+   */
+
+</script>
+</html>

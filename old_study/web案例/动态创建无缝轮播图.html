@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+		<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li,ol,ul{
+			list-style:none;
+		}
+		img{
+			width: 960px;
+			height: 210px;
+			display: block;
+		}
+		.banner{
+			width: 960px;
+			height: 210px;
+			overflow: hidden;
+			margin: 20px auto;
+			border:2px solid #0f0;
+			position: relative;
+		}
+		ul{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 7720px;
+			height: 210px;
+		}
+		ul li{
+			float: left;
+		}
+		.lef,.rig{
+			width: 60px;
+			height: 60px;
+			position: absolute;
+			top: 75px;
+			font:bold 60px/60px "";
+		}
+		.lef{
+			left: 0;
+		}
+		.rig{
+			right: 0;
+		}
+		ol{
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			margin-left: -100px;
+		}
+		ol li{
+			float: left;
+			width: 20px;
+			height: 20px;
+			margin: 10px;
+			background: #999;
+			border-radius:50%;
+		}
+		.active{
+			background: red;
+		}
+		.opa{
+			width: 300px;
+			height: 300px;
+			opacity: 0.8;
+			background: #0f0;
+		}
+	</style>
+</head>
+<body>
+	<div class="banner">
+<!-- 		<ul class="tt">
+			<li><a href="#"><img src="img/5.jpg" alt=""></a></li>
+			<li><a href="#"><img src="img/1.jpg" alt=""></a></li>
+			<li><a href="#"><img src="img/2.jpg" alt=""></a></li>
+			<li><a href="#"><img src="img/3.jpg" alt=""></a></li>
+			<li><a href="#"><img src="img/4.jpg" alt=""></a></li>
+			<li><a href="#"><img src="img/5.jpg" alt=""></a></li>
+			<li><a href="#"><img src="img/1.jpg" alt=""></a></li>
+		</ul>
+		<div class="lef"><</div>
+		<div class="rig">></div>
+		<ol class="dd">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ol> -->
+	</div>
+	<!-- <p class="opa"> 123</p> -->
+</body>
+<script type="text/javascript">
+//有一部分是没教的
+//运动函数的封装不是完美运动函数
+//不是缓冲版
+
+
+var imgarr=["img/1.jpg","img/2.jpg","img/3.jpg","img/4.jpg","img/5.jpg"]
+//把图片放入数组，模拟ajax所调用的json数据
+
+
+
+var banner=document.querySelector(".banner")
+//获取banner 轮播图盒子
+
+
+cretaBanner(banner,imgarr,".tt")
+//调用方法，创建轮播图结构
+
+
+
+var ddli=document.querySelectorAll(".dd li")//小圆点
+var ttli=document.querySelectorAll(".tt li")//图片
+var ttk=document.querySelector(".tt")//图片ul
+var le=document.querySelector(".lef")//左
+var ri=document.querySelector(".rig")//右
+var ttliw=ttli[0].offsetWidth//获取一个图片li的宽度
+var index=1;//默认下标1
+
+
+tab(ddli)//初始化样式
+
+le.onclick=function(){
+	//左箭头点击
+	index--
+	//下标--
+	if(index<1){
+		//假如小于1，就等于5
+		index=5
+		ttk.style.left= -(ttli.length-1)*ttliw+"px"
+		//把ul的定位拉到6张图的宽度的位置
+	}
+	tab(ddli)
+	//调用初始化样式方法，进行运动
+}
+ri.onclick=function(){
+	//和上面的一样
+	index++
+	if(index>5){
+		index=1
+		ttk.style.left="0px"
+	}
+	tab(ddli)
+}
+var dsq2=setInterval(function(){
+	//大定时器，每1.5s执行一次  右键的点击事件
+	ri.click()
+},1500)
+
+banner.onmouseover=function(){
+	clearInterval(dsq2)
+	//大盒子移入停止定时
+}
+
+banner.onmouseout=function(){
+	clearInterval(dsq2)
+	//移出重启定时器
+	dsq2=setInterval(function(){
+		ri.click()
+	},1500)
+}
+
+for(let t=0; t<ddli.length; t++){
+	ddli[t].onmouseover=function(){
+		//小圆旦移入时，把t+1赋值给index
+		//因为差一张图
+		index=t+1
+		tab(ddli)
+		//继续调用方法，进行运动
+	}
+}
+
+
+
+//运动函数封装
+//            对象，属性，速度，终点，json对象
+function move(obj,attr,spe,end,json){
+	//清除定时
+	clearInterval(obj.dsq)
+	var speed=parseInt(getStyle(obj,attr))>end?-spe:spe
+	//定义速度=当前速度>终点吗？ 大于就- ：小于就+
+
+	//启动内部运动
+	obj.dsq=setInterval(function(){
+		stopClick(le,"none")
+		stopClick(ri,"none")
+		//禁止点击
+
+		var thisosl=parseInt(getStyle(obj,attr))
+		//获取当前位置
+
+		thisosl+=speed
+		//递增
+
+		if(speed>0&&thisosl>=end || speed<0&&thisosl<=end){
+			thisosl=end
+		}
+		//无论是正 还是反 到达终点  
+		//当前都等于终点
+
+
+		obj.style[attr]=thisosl+"px"
+		//把当前属性赋值给ul的left
+
+		//假如当前等于终点
+		if(thisosl==end){
+			stopClick(le,"auto")
+			stopClick(ri,"auto")
+			clearInterval(obj.dsq)
+			//停止定时器
+		}
+	},10)
+}
+
+
+//创建HTML结构
+function cretaBanner(fbox,imgarr,cli){
+	var cretul=document.createElement("ul")//创建ul
+		cretul.className="tt"
+	var credol=document.createElement("ol")//创建ol
+		credol.className="dd"
+
+		for(var a=0; a<5; a++){//通过遍历添加li内部结构
+			cretul.innerHTML+='<li><a href="#"><img src='+imgarr[a]+' alt=""></a></li>'
+			credol.innerHTML+='<li></li>'
+		}
+		
+		fbox.append(cretul,credol)
+		//把创建好的添加进结构
+
+		var tulo=document.querySelector([cli])
+		cretul.prepend(clNode(tulo.lastElementChild))
+		cretul.append(clNode(tulo.firstElementChild.nextElementSibling))
+		//克隆两个li，分别放入最前和最后
+
+		//添加两个左右按钮
+		fbox.innerHTML+='<div class="lef"><</div><div class="rig">></div>'
+}
+
+
+//禁止点击 
+function stopClick(obj,tpz){
+	obj.posinterEvents=tpz
+}
+
+
+//初始化样式
+function tab(obj){
+	//去除所有小圆点样式
+	for(var a=0; a<obj.length; a++){
+		obj[a].className=""
+	}
+	//通过index改变当前小圆点样式
+	obj[index-1].className="active"//这里为啥-1，因为差一张图
+	move(ttk,"left",20,-index*ttliw)
+	//调用运动函数
+}
+
+
+//克隆
+function clNode(obj){
+	return obj.cloneNode(true)
+}
+
+
+//获取某个元素的css样式函数
+function getStyle(obj,attr){
+	return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj,null)[attr]
+}	
+
+
+// trnasintionend事件
+
+</script>
+</html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<!--
+2013-9-30: Created.
+-->
+<svg>
+<metadata>
+Created by iconfont
+</metadata>
+<defs>
+
+<font id="iconfont" horiz-adv-x="1024" >
+  <font-face
+    font-family="iconfont"
+    font-weight="500"
+    font-stretch="normal"
+    units-per-em="1024"
+    ascent="896"
+    descent="-128"
+  />
+    <missing-glyph />
+    
+    <glyph glyph-name="email-s" unicode="&#58974;" d="M523.0592 329.3184L871.424 552.7552000000001V637.952c0 22.6304-18.3296 40.96-40.96 40.96H193.536c-22.6304 0-40.96-18.3296-40.96-40.96v-85.1968l348.3648-223.4368c6.7584-4.3008 15.36-4.3008 22.1184 0zM534.1184 287.744c-13.5168-8.6016-30.72-8.6016-44.2368 0L152.576 504.1152V130.048c0-22.6304 18.3296-40.96 40.96-40.96h636.928c22.6304 0 40.96 18.3296 40.96 40.96V504.1152L534.1184 287.744z"  horiz-adv-x="1024" />
+
+    
+    <glyph glyph-name="youshangjiao-" unicode="&#58976;" d="M313-43a100 100 0 0 0-71 29L115 114a100 100 0 0 0 0 141l270 271-127 127a40 40 0 0 0 23 68l544 78h2a100 100 0 0 0 109-111v-2l-86-535a40 40 0 0 0-68-22L654 257 384-13a100 100 0 0 0-71-30z m58 696l99-99a40 40 0 0 0 0-57L172 199a20 20 0 0 1 0-28l127-128a20 20 0 0 1 28 0l299 299a40 40 0 0 0 57 0l100-101 73 457a20 20 0 0 1-21 22z m525 40z"  horiz-adv-x="1024" />
+
+    
+
+
+  </font>
+</defs></svg>

@@ -1,0 +1,35 @@
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1581246551604'); /* IE9 */
+  src: url('iconfont.eot?t=1581246551604#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAANQAAsAAAAAB0AAAAMCAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDBgqCHIF8ATYCJAMMCwgABCAFhG0HQRtNBsgekiSCZDUjBLENgYGiCKo1smd3H9EhKZYEDigKQehER4WFAzIiHsuTZSPuJ736dwCrOWlVHaTkwGAmm9VscHYrfQhFA3a/uv+LSo5x+z7DSIPAIuf/ce/0r4bgfJbltNa2takLMA4o0LEGRVnABRKQN4xd4BL2E2jUL5fHZm1zN/grrGGBuCtLHPjn9EpLZqgXamvmFvGIj/r0IH0GHobfj/8wF/4kNZk1dv96jQjlv4Z/jebFKgZ9hGA+K9giMmaBQpyvtZ/jFcdneWnUpN56IahVhDRXqKoI+bqydqd/vETUstKbwSRMJH6dd9kEvy7Ok0AGtV4jeQjcQOrusW+SW1oH5aEJHkvv0kNvvAG49DxvdzuW91x8mxZ2+71HvrT9Kpa9t5QjsfvHJ7fj6O2XD8/iYfDZ4Y1bsay4+2KE2VuMDqmLMbSdOOlgZ42Bg/3AvcD6gd9MBwmfDScRjCy76f34/faf46WXjUP+dHTr5fz9b21fQ1rvzU/U4JCnQy3c+f+NJyY28Qd7PLGwEBLys23sNc+/T3qflcWEM/MLnjY72+gniPUf/D8HfISLrIH5pudtUDW/z8O//TdeTBxdHwkrfj0L+Ha9oSf0Vi36OUH9TTmCnyzo2VR0kWXIReW7fNOZLd+wNQG53KWC5e70a7yyp3c6oV5PCkmdPsjqjaKFNAs1mixArXor0GhG3eImXVReojRg2hqA0O4xJK0+QNbuK1pIl1Cj1x+o1R5e0Og0otZsMh5yYJWKOR2LiJ9CskBdxDHpgVFmJ5bGHJyaFYU0FquaHEJmg6mYqsMurM4xQRuXLLpOEFGpE9WCw7DDQZFbpTYs6AarrrsLjUZS9ySDQJ0QaIMK4+gwEcKbgsgElAvx2+sCS5/vhEnGOHDUloYaJwtTaeTuETMDUw+0Tu7q1XAvj2jGSSx0OgIhVJQTUgusmMOOU4i7vpcNJtAZWEdE3QoZUSvSV25YX+n8vh3QyLo6R4ocRd01Jyc78rSQKTqmWTmXZJM5mgcAAAA=') format('woff2'),
+  url('iconfont.woff?t=1581246551604') format('woff'),
+  url('iconfont.ttf?t=1581246551604') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1581246551604#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-email-s1:before {
+  content: "\e65e";
+  font-size: 16px;
+}
+.icon-email-s2:before {
+  content: "\e65e";
+  font-size: 18px;
+}
+.icon-email-s3:before {
+  content: "\e65e";
+  color:#fff;
+  font-size: 26px;
+}
+
+.icon-youshangjiao-:before {
+  content: "\e660";
+}
+

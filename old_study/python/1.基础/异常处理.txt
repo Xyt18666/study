@@ -1,0 +1,54 @@
+常见异常：
+
+AssetlonError     断言语句assert 失败 
+
+AttributeError  尝试访问 未知对象属性
+
+EOFEError    input()读取到 EOF缺没有接受任何数据时
+
+indexErroe    索引值超出，索引范围
+
+keyError     查找一个 不存在的 关键字
+
+NameError   尝试访问一个不存在的变量
+
+OSError    操作系统 产生的异常
+
+OverflowError     数值运算 超出最大限制
+
+SyntaxError     python语法错误
+
+TypeError     类型错误
+
+ZeroDivisionError   当除数等于 0 时
+
+--------------------------------------------------------
+
+异常检测：
+
+try:
+	检测范围
+
+except OSError as reason:
+	print("文件出错啦")
+
+except TypeError as reason:
+	print("类型出错啦")
+
+
+except （TypeError,OSError）:
+	print("出错啦")
+
+
+
+
+finnally:
+	无论任何都会执行这里
+
+
+-------------------------------------
+
+
+rasie ZeroDivisionError
+
+rasie 一个异常类型（）      引出一个 异常

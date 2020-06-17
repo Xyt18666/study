@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+</head>
+<body>
+	
+</body>
+<script>
+	if(navigator.geolocation){
+		console.log(navigator.geolocation)
+		navigator.geolocation.getCurrentPosition(function(e){
+			console.log("成功回调")
+			console.log(e.coords.latitade)
+			console.log(e.coords.latitude)
+			console.log(e.coords.longitude)
+			console.log(e.coords.accuracy)
+			console.log(e.coords.altitude)
+		},function(e){
+			console.log("失败回调")
+			console.log(e.code)
+			console.log(e.PERMISSION_DENIED)
+			console.log(e.POSITION_UNAVAILABLE)
+			console.log(e.TIMEOUT)
+			console.log(e.UNKNOWN_ERROR)
+		},{
+			enableHighAccuracy:true,
+			timeout:10,
+			maximumAge:10
+		})
+	}
+
+</script>
+</html>

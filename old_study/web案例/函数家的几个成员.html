@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+function f1(x,y){
+	console.log(f1.name)
+	console.log(f1.arguments)
+	console.log(f1.caller)
+}
+f1.name="s2"
+//函数.name  只读不可写  是函数名
+
+f1(1,2)
+//函数.arguments 写在函数内才生效
+//获取传入的实参，是一个伪数组
+
+//函数.caller  调用者
+console.dir(f1)
+
+
+
+//函数作为参数
+function fn0(){
+	console.log("oo")
+}
+function fn1(fn){
+	fn()
+}
+
+//定时器中传入参数
+function fn2(fn){
+	setInterval(function(){
+		fn()
+	},200)
+}
+// fn2(fn0)
+
+
+//函数作为返回值使用
+
+function yy(){
+	console.log("我是函数 ")
+	return function(){
+		console.log("我是返回值 ")
+	}
+	console.log("我是函数end ")
+}
+yy()//直接调用不执行 return
+var yys=yy() //保存到变量，此时就有了返回值
+yys()
+
+//判断某个元素是什么类型
+// typeof  获取数据类型
+// instanceof  判断这个对象是不是某种类型
+
+console.log(Object.prototype.toString.call([]))
+
+//获取某个对象的类型 是不是 你传入的类型
+function getType(type){
+	return function(obj){
+		return Object.prototype.toString.call(obj)==type;
+	}
+}
+var hh=getType("[object Array]")
+var gg=hh([12,13])
+
+console.log(hh)
+//hh的返回值是 function(obj)函数
+//调用hh传入参数，赋值给gg
+//gg的返回值是 Object.prototype.toString.call(obj)==type;
+
+
+
+</script>
+</html>

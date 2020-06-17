@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body,html{
+			height: 100%;
+			transition:0.5s;
+		}
+		html{
+			overflow: hidden;
+			/*去除滚动条*/
+		}
+		.tt{
+			width: 100%;
+			height: 100%;
+		}
+		.tt:nth-child(1n){ /*odd基数*/
+			background-color: #0f0;
+		}
+		.tt:nth-child(2n){ /*even偶数*/
+			background-color: pink;
+		}
+	</style>
+</head>
+<body>
+	<div class="tt">1</div>
+	<div class="tt">2</div>
+	<div class="tt">3</div>
+	<div class="tt">4</div>
+	<div class="tt">5</div>
+	<div class="tt">6</div>
+</body>
+<script type="text/javascript">
+	var sj=new Date()
+	var s=0 
+	document.onmousewheel=function(e){
+		var e=e||window.event
+		var nsj=new Date()
+		if(nsj-sj>2000){
+		//当现在的 时间-初始获取的时间 
+		//大于2面时才可在滚动
+			if(e.wheelDelta>0){
+				s--
+				s=s<0?0:s
+				document.body.style.marginTop= -s*window.innerHeight+"px"
+				//body的margin 为
+				//负的 s*可视区高度
+			}else{
+				console.log("向下滚")
+				s++
+				s=s>5?5:s
+				document.body.style.marginTop= -s*window.innerHeight+"px"
+			}
+			sj=new Date()
+			//执行完一次
+			//重新定格时间
+		}
+	}
+</script>
+</html>

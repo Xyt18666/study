@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    <!-- 移动端视口        视口宽度=自适应                 -->
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=
+     no"> 
+  <title>Document</title>
+
+  <!-- 引入 Bootstrap核心 css -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- 引入jq	 -->
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  <style>
+      
+  </style>
+
+</head>
+<body>
+<!-- 栅格布局 -->
+  <div class="container"><!-- 定义盒子 -->
+		<div class="row"><!-- 定义列 -->
+			<div class="col-xs-12 text-center">我是12个</div><!-- 定义行占据数量。对齐 -->
+			<div class="row">
+				<div class="col-xs-8 text-center">我是8个</div><!-- 每行最多12个 -->
+				<div class="col-xs-4 text-center">我是4个</div>
+			</div>
+		</div>
+  </div>
+
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- 引入 Bootstrap  jq库	 -->
+
+</body>
+<script>
+/*
+
+超小屏
+768px
+小
+992px
+中
+1200px
+大
+
+normalize.css   自带的重置样式
+
+
+
+container  响应式容器   默认 15px左右内边距
+container-fluid  流式布局容器
+row  定义行   不可写内容 默认 -15px左右内边距
+
+col-屏幕大小-分等份
+
+大屏 lg      以上生效含本身
+中屏 md      以上生效含本身
+小屏  sm     以上生效含本身
+超小屏 xs    以上生效含本身
+
+每一行分的等分，默认分成12等份，数字代表多少份
+
+
+需要自适应的盒子分别写 4个 类名 从而实现响应式的变化
+
+行和列互相嵌套形成布局
+
+列的偏移
+col-屏幕大小-offset-偏移的格子数
+
+
+列的排序
+col-屏幕大小-push-格子   向后推
+col-屏幕大小-pull-格子   向前拉
+
+
+btn  按钮  很多样式
+
+table 条状表格  很多样式
+
+
+响应式工具
+visible-屏幕大小     某屏显示其他隐藏 即将废弃
+hidden-屏幕大小    某屏显示其他隐藏  建议使用
+ 
+
+
+
+自定义 字体图标
+@font-face{
+  font-family:"xyt";  声明名称
+  src:引入字体文件，约束某一段字符是什么图案
+      url() format(""),
+      url() format(""),
+      url() format("");
+}
+创建css样式，引入字体图标
+.zdy_icon{
+  font-family:"xyt"
+}
+.zdy_icon_phone::before{
+  content:"想要图标的字符"
+}
+
+使用组件：
+1.复制html框架，进行解读分解
+2.修改致所需结构
+3.复制进项目文件
+
+如果组件的样式不满足所需，
+1.拷贝源码的的样式，放入index下 进行修改
+2.针对功能进行覆盖，更改模块名称
+3.删除没有修改的样式，进行优化
+
+ */
+
+</script>
+<html>

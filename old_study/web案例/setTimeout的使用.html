@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<style>
+	input{
+		color: red;
+		font-weight: 600;
+	}
+</style>
+<head>
+	<title></title>
+	
+</head>
+<body>
+	<input type="text" name="vv">
+</body>
+<script type="text/javascript">
+		window.onload = function(){
+		// tInterval()
+		// ttimeout()
+		// console.log(getTime())
+		
+		// getTime()
+		// var tt
+		// clearInterval(tt);//只能清除一个
+
+		// tt = setInterval(getTime,1000)//普通定时器 调用
+
+		// clearInterval(tt);//定时器的 返回值 是 序号 
+		// //定时器数量 从上至下 的序号
+		// tt = setInterval(function(){var i = 0;console.log(++i)},1000)
+		// console.log(tt);
+		// clearInterval(tt);
+
+		// console.log(tt);
+		// function getTime(){
+		// 	var d = new Date();
+		// 	var str = d.getFullYear()+"/"+(d.getMonth()+1)+"/"+d.getDate()+"-"+d.getSeconds();
+		// 	document.body.innerHTML = str;	
+		// }
+	
+
+		/*function getTime(){
+			var d = new Date();
+			var str = d.getFullYear()+"/"+(d.getMonth()+1)+"/"+d.getDate()+"-"+d.getSeconds();
+			document.body.innerHTML = str;
+			setTimeout(getTime,1000)  //延时执行
+			
+		}
+		getTime()*/
+
+
+		var inp = document.querySelector("input")
+		inp.placeholder = "123"  //js dom对象的属性
+		console.log(inp.attributes) //HTML标签的属性节点
+
+
+		
+	}
+
+	</script>
+<html>

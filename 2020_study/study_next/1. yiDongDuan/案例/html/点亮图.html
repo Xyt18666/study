@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        img{
+            filter:grayscale(1);
+            width:400px;
+            display: block;
+            margin: 50px auto;
+            transition: 1.5s;
+            
+        }
+    </style>
+</head>
+<body>
+    <img src="imgs/banner (1).jpg" alt="">
+</body>
+<script>
+    $("img").click(()=>{
+        $("img").css({
+            "filter":`grayscale(0)`
+        })
+    })
+
+
+</script>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.box{
+			position: relative;
+			border:5px solid #789;
+			width: 500px;
+			height: 500px;
+			overflow: hidden;
+			margin: 20px auto;
+		}
+		.list{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 500px;
+			height: 3600px;
+		
+		}
+		li{
+			width: 500px;
+			height: 300px;
+		}
+		li:nth-child(1),li:nth-child(7){
+			background: #741;
+		}
+		li:nth-child(2),li:nth-child(8){
+			background: #927;
+		}
+		li:nth-child(3),li:nth-child(9){
+			background: #711;
+		}
+		li:nth-child(4),li:nth-child(10){
+			background: pink;
+		}
+		li:nth-child(5),li:nth-child(11){
+			background: #729;
+		}
+		li:nth-child(6),li:nth-child(10){
+			background: #0f0;
+		}
+	</style>
+</head>
+<body>
+<div class="box">
+	<ul class="list">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+	</ul>
+</div>
+</body>
+<script>
+$(".box").mouseover(function(e){
+	console.log(e.pageY,$(".box").offset().top)
+	
+})
+
+
+$(".box").mousemove(function(e){
+	let thisTop = parseInt($(".list").css("top"))
+
+	if((e.pageY - $(".box").offset().top) > ($(".box").height()/2)){
+		console.log("向上滚动")
+		scrollFn({
+			zf:true,
+			end:-1300
+		})
+	}else{
+		console.log("向下滚动")
+		scrollFn({
+			zf:false,
+			end:0
+		})
+	}
+})
+
+
+$(".box").mouseout(function(e){
+	clearInterval(window.ds)
+})
+
+function scrollFn(bool){
+	let thisTop = parseInt($(".list").css("top"))
+	clearInterval(window.ds)
+
+	window.ds = setInterval(function(){
+		bool.zf ? thisTop-- : thisTop++
+		$(".list").css("top",thisTop+"px")
+		thisTop = parseInt($(".list").css("top"))
+
+		// if( bool.zf ? thisTop <= bool.end : thisTop >= bool.end ){
+		// 	$(".list").css("top", bool.end+"px")
+		// 	clearInterval(window.ds)
+		// }
+		
+	
+		if(thisTop <= -1800){
+			$(".list").css("top", "0px")
+			thisTop = parseInt($(".list").css("top"))
+		}
+		if(thisTop >= 0){
+			$(".list").css("top", "-1800px")
+			thisTop = parseInt($(".list").css("top"))
+		}
+	
+	},10)
+
+
+}
+
+</script>
+</html>

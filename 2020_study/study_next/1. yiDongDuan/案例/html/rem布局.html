@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=
+    no"> 
+    <script src="js/rem.js"></script>
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style:none;
+        }
+        a{
+            text-decoration: none;
+            font-size:0.26rem ;
+        }
+        img,a{
+            display:block;
+        }
+        header{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding:0 5%;
+            height: 1rem;
+            border-bottom: 1px solid #ccc;
+        }
+        .l,.r{
+            height: 0.36rem;
+            display: flex;
+        }
+        .l img{
+            width: 1rem;
+            height: 0.36rem;
+        }
+        .r img{
+            width: 0.36rem;
+            margin: 0 0.05rem;
+            height: 0.36rem;
+        }
+        nav{
+            padding:0 5%;
+            display: flex;
+            height: 1rem;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+        .list{
+        width:calc(100% - 1rem) ;
+           display: flex;
+           flex-flow: row  wrap;
+           text-align: center;
+        }
+        .jt{
+            width: 1rem;
+            font-size: 0.54rem;
+            line-height: 1rem;
+            text-align: center;
+        }
+        .list li{
+            width: calc(100% / 5);
+            text-align: left;
+            font-size: 0.24rem;
+            line-height: 1rem;
+            height: 1rem;
+        }
+        .ban{
+            width: 100%;
+            overflow: hidden;
+        }
+        .banList{
+            width: 700%;  
+            display: flex; 
+            /* transform: translate( -100%,0); */
+        }
+        .banList li{
+            width: 100%;   
+        }
+        .banList li img{
+            width: 100%;
+        }
+        .banDD{
+            width:3rem;
+            margin: 0 auto;
+            display: flex;
+            transform: translate(0,-0.4rem);
+            justify-content: space-between;
+        }
+        .banDD li{
+            width: 0.2rem;
+            height: 0.2rem;
+            border-radius:50%;
+            background: rgb(233, 7, 7);
+        }
+        .banNext{
+            width: 100%;
+            overflow: hidden;
+        }
+        .bNLlist{
+            width: 15rem;
+            display: flex;
+            justify-content: space-between;
+        }
+        .bNLlist li{
+            width: calc(3rem - 0.2rem);
+            height: 1.6rem;
+            margin: 0.1rem;
+            font-size: 0.18rem;
+            border:2px solid red;
+        }
+        .floor{
+            padding: 0 5%;
+        }
+        .t{
+            display: flex;
+            justify-content: space-between;
+        }
+        /* .contentList{
+            
+        } */
+        .contentList li{
+            display: flex;
+            justify-content: start;
+            height: 1.2rem;
+        }
+        .contentList .imgBox{
+           width: 30%;
+        }
+        .contentList .imgBox img{
+            width: 100%;
+            height: 100%;
+        }
+        .contentList .cLR{
+           width: 70%;
+        }
+        .cLR {
+            font-size: 0.18rem;
+            height: 0.4rem;
+            text-align-last: left;
+        }
+        .cLR h3{
+            /* 多行溢出 省略号 */
+
+            -webkit-line-clamp:2; 
+            /* （用来限制在一个块元素显示的文本的行数,2表示最多显示2行。 为了实现该效果，它需要组合其他的WebKit属性） */
+
+            display: -webkit-box; 
+            /* （和1结合使用，将对象作为弹性伸缩盒子模型显示 ） */
+
+            -webkit-box-orient:vertical;
+            /* （ 和1结合使用 ，设置或检索伸缩盒对象的子元素的排列方式 。） */
+
+            overflow:hidden;
+             /* （顾名思义超出限定的宽度就隐藏内容） */
+
+            text-overflow: ellipsis;
+            /* （规定当文本溢出时显示省略符号来代表被修剪的文本） */
+
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="l">
+            <a href="#"><img src="imgs/banner (1).jpg" alt=""></a>
+        </div>
+        <div class="r">
+            <a href="#"><img src="imgs/banner (1).jpg" alt=""></a>
+            <a href="#"><img src="imgs/banner (1).jpg" alt=""></a>
+            <a href="#"><img src="imgs/banner (1).jpg" alt=""></a>
+        </div>
+    </header>
+    <main>
+        <nav>
+            <ul class="list">
+                <li>内容1</li>
+                <li>内容2</li>
+                <li>内容3</li>
+                <li>内容4</li>
+                <li>内容5</li> 
+                <li>内容6</li>
+                <li>内容7</li> 
+            </ul>
+            <div class="jt">↓</div>
+        </nav>
+        <div class="ban">
+            <ol class="banList">
+                <li><a href="#"><img src="imgs/banner (5).jpg" alt=""></a></li>
+                <li><a href="#"><img src="imgs/banner (1).jpg" alt=""></a></li>
+                <li><a href="#"><img src="imgs/banner (2).jpg" alt=""></a></li>
+                <li><a href="#"><img src="imgs/banner (3).jpg" alt=""></a></li>
+                <li><a href="#"><img src="imgs/banner (4).jpg" alt=""></a></li>
+                <li><a href="#"><img src="imgs/banner (5).jpg" alt=""></a></li>
+                <li><a href="#"><img src="imgs/banner (1).jpg" alt=""></a></li>
+            </ol>
+            <ol class="banDD">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ol>
+        </div>
+        <div class="banNext">
+            <ul class="bNLlist">
+                <li>bnl1</li>
+                <li>bnl2</li>
+                <li>bnl3</li>
+                <li>bnl4</li>
+                <li>bnl5</li>
+            </ul>
+        </div>
+        <div class="floor">
+            <div class="f1">
+                <div class="t">
+                    <div class="tl"><a href="#"><i>i</i>热门</a></div>
+                    <div class="tr"><a href="#">更多 ></a></div>
+                </div>
+                <ul class="contentList">
+                    <li>
+                        <div class="imgBox">
+                            <img src="imgs/banner (3).jpg" alt="">
+                        </div>  
+                        
+                        <div class="cLR">
+                            <h2>h2</h2>
+                            <h3>诞节佛佛圣寺的佛杀是否胡搜返回搜啊佛撒搜ID返回搜啊哦你说的时都会发敖师傅欧尼桑大哦撒旦法欧萨佛山的地方手打</h3>
+                            <h4>h4</h4>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+    <footer></footer>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+function f1(a,b){
+	console.log("结果是"+(a+b)+this)
+	// return "1000"
+}	
+f1(10,20)
+console.log("================")
+f1.apply()
+f1.call()
+console.log("================")
+f1.apply(null)
+f1.call(null)
+console.log("================")
+f1.apply(null,[10,10])
+f1.call(null,10,10)
+console.log("================")
+
+var resd1=f1.apply(null,[10,10])
+var resd2=f1.call(null,10,10)
+console.log(resd1)
+console.log(resd2)
+console.log("================")
+
+var obj={
+	sex:"nan",
+	age:15
+}
+f1.apply(obj,[10,10])
+f1.call(obj,10,10)
+
+console.dir(obj)
+console.log("================")
+
+function Preson(name,oo){
+	this.name=name;
+	this.oo=oo;
+}
+Preson.prototype.eat=function(x,y){
+	console.log("chi"+this.oo)
+}
+var np = new Preson("xiaomo","18")
+np.eat();
+console.log("================")
+
+function Preson2(name2,oo2){
+	this.name2=name2;
+	this.oo2=oo2;
+}
+var std= new Preson2("name2","oo2")
+np.eat.apply(std,[10,23])
+np.eat.call(std,10,23)
+
+
+console.log("================")
+var ff1=f1.bind(std)
+ff1(20,30)
+
+//改变了this指向
+
+//apply的使用方式：
+// 名.apply(对象,[参数1,参数2,...])
+
+//call的使用方式：
+// 名.acll(对象,参数1,参数2,...)
+
+//区别：传递参数的方式不同
+
+//bind的使用方式：
+// 名.bind(对象,参数1,参数2,...)
+// 返回值是复制后的方法
+
+
+//bind是复制的 意思，参数可以在复制的时候传进去，
+//也可以复制后调用传进去
+
+//apply和call 是调用的时候改变
+//bind是复制的时候改变
+</script>
+</html>

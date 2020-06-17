@@ -1,0 +1,50 @@
+@charset "UTF-8";
+@sbk:750px,720px,640px,540px,480px,424px,414px,400px,384px,375px,360px,320px;
+// 设备宽
+
+@sjw:750px;
+// 设计稿宽
+
+@yss:100px;
+//预设基准值
+
+@len:length(@sbk);
+//设备种类
+
+.fn(@index) when (@index > 0){
+	@media(min-width:extract(@sbk,@index)){
+		html{
+			font-size:@yss / @sjw * extract(@sbk,@index)
+		}
+	}
+	.fn(@index - 1)
+}
+.fn(@len);
+
+
+
+*{
+	box-sizing:border-box;
+	margin: 0;
+	padding: 0;
+}
+img{
+	display: block;
+}
+body{
+	font-size:14px;
+}
+li{
+	list-style: none;
+}
+.clearFolat:after{
+	content:" ";
+	display: block;
+	clear: both;
+}
+a{
+	text-decoration: none;
+}
+html{
+	height: 2000px;
+}

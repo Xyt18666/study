@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>手风琴</title>
+  <style type="text/css">
+	body,h2{margin:0}
+	ul,li,ol{margin:0;padding:0;list-style:none}
+	a{text-decoration:none;color:black}
+	.box{
+		width:200px;
+	 	margin-top:50px; 
+		background:#0080ff;
+		float:left;
+	}
+	.listBox h2{
+		background:#ff9900;
+		text-align:center;
+		color:#000;
+		height:40px;
+	}
+
+	.list{
+		height:0px;
+		overflow:hidden;
+	}
+	.list li{
+		height:30px;
+		line-height:30px;
+		text-align:center;
+		background:#ccc;
+	}
+
+	#tabBox{
+		width:600px;
+		height:430px;
+		background:#66ff00;
+		float:left;
+		margin-top:50px;
+		position:relative;
+	}
+	.tabList{
+		width:600px;
+		height:430px;
+		background:#333;
+		color:#FFF;
+		font:100px/430px "微软雅黑";
+		text-align:center;
+		display:none;
+		position:absolute;
+		left:0;
+		top:0;
+	}
+
+	
+  </style>
+ </head>
+ <body>
+	<div id="bigBox">
+		<div class="box">
+			<div class="listBox">
+				<h2>我的好友</h2>
+				<ul class="list">
+					<li><a href="#">张三</a><>
+					<li><a href="#">李四</a><>
+					<li><a href="#">王五</a><>
+					<li><a href="#">赵六</a><>
+					<li><a href="#">刘七</a><>
+				</ul>
+			</div>
+			<div class="listBox">
+				<h2>我的损友</h2>
+				<ul class="list">
+					<li><a href="#">张三三</a><>
+					<li><a href="#">李四四</a><>
+					<li><a href="#">王五五</a><>
+					<li><a href="#">赵六六</a><>
+					<li><a href="#">刘七七</a><>
+				</ul>
+			</div>
+			<div class="listBox">
+				<h2>我的同学</h2>
+				<ul class="list">
+					<li><a href="#">张大三</a><>
+					<li><a href="#">李大四</a><>
+					<li><a href="#">王大五</a><>
+					<li><a href="#">赵大六</a><>
+					<li><a href="#">刘大七</a><>
+				</ul>
+			</div>
+			<div class="listBox">
+				<h2>我的亲戚</h2>
+				<ul class="list">
+					<li><a href="#">张大叔</a><>
+					<li><a href="#">李大叔</a><>
+					<li><a href="#">王大叔</a><>
+					<li><a href="#">赵大叔</a><>
+					<li><a href="#">刘大叔</a><>
+				</ul>
+			</div>
+			<div class="listBox">
+				<h2>黑名单1</h2>
+				<ul class="list">
+					<li><a href="#">张大</a><>
+					<li><a href="#">李大</a><>
+					<li><a href="#">王大</a><>
+					<li><a href="#">赵大</a><>
+					<li><a href="#">刘大</a><>
+				</ul>
+			</div>
+
+			<div class="listBox">
+				<h2>黑名单2</h2>
+				<ul class="list">
+					<li><a href="#">张大</a><>
+					<li><a href="#">李大</a><>
+					<li><a href="#">王大</a><>
+					<li><a href="#">赵大</a><>
+					<li><a href="#">刘大</a><>
+				</ul>
+			</div>
+
+			<div class="listBox">
+				<h2>黑名单3</h2>
+				<ul class="list">
+					<li><a href="#">张大</a><>
+					<li><a href="#">李大</a><>
+					<li><a href="#">王大</a><>
+					<li><a href="#">赵大</a><>
+					<li><a href="#">刘大</a><>
+				</ul>
+			</div>
+		</div>
+		
+	</div>
+ </body>
+ <script type="text/javascript">
+	var aH=document.querySelectorAll("h2")
+	var aList=document.querySelectorAll(".list")
+	var aTab=document.querySelectorAll(".tabList")
+
+	//初始化
+	var a=0
+	//var tt = null;
+	tab()
+
+	function tab(){
+		if(aH[a].className){
+			aH[a].className='';
+			//aList[a].style.height=0;
+			move(aList[a],"height",0)
+			
+		}else{
+			for (var i=0;i<aList.length ;i++ ){
+				aH[i].className='';
+				//aList[i].style.height=0;
+				move(aList[i],"height",0)
+			}
+			aH[a].className='on';
+			//aList[a].style.height=aList[0].children[0].offsetHeight*aList[a].children.length+"px"
+			var oH = aList[0].children[0].offsetHeight*aList[a].children.length;
+			move(aList[a],"height",oH)
+
+		}
+	}
+	//通过判断h2标签是否带有className  
+	//来判断是否要打开或关闭对应 ul
+		
+	//给每个h2 添加点击事件
+	for (var i=0;i<aH.length;i++){ 
+		aH[i].index=i;
+		aH[i].onclick=function(){
+			a=this.index;
+			tab();
+		}
+	}
+
+
+	//
+	function move(obj,attr,end){
+		clearInterval(obj.tt)
+		obj.tt= setInterval(function(){
+			//获取当前的left值
+			var iC = parseInt( getStyle(obj,attr) )
+			var speed = (end-iC)/10;
+			speed = speed>0?Math.ceil(speed):Math.floor(speed)
+
+			iC += speed;  //每隔时刻要改变一次
+			
+			obj.style[attr] = iC +"px"
+
+			//到达终点要关闭定时器
+			if(iC==end){clearInterval(obj.tt)}
+		},10)
+	}
+
+	//1-如何获取css样式中的 left值
+	function getStyle(obj,attr){
+		//return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj)[attr]
+		if(obj.currentStyle){
+			return obj.currentStyle[attr]
+		}else{
+			return getComputedStyle(obj)[attr]
+		}
+	}
+ </script>
+<ml>

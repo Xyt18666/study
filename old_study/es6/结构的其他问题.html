@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+let {x,y,__proto__}=1;//{__proto__}
+console.log(x,y,__proto__)
+// 结构赋值的值 不是一个对象，会把他转为对象
+// 所有 把 1  Object(1)    转换为了对象
+// 此对象下只有一个 __proto__ 原型,所以只能输出原型对象
+
+
+
+let {w,e,length}=[55,99];
+console.log(Object([55,99]))
+// console.log(w,e)
+// 数组转为对象,会便为 有下标 有length 有——proto—— 的对象
+console.log(w,e,length)
+
+// null 和 undefined 无法转为对象
+// 所有会报错,他们无法进行解构赋值
+
+let a;
+// {a}={a:"Aaa"}
+console.log(a);//报错
+// js会把 {a} 解析为一个代码块
+// {}  花括号不能写在行首
+
+// 如果非要写在首行 使用 () 包起来
+({a}={a:"Aaa"});
+console.log(a)
+
+
+
+// eval("{a:'vv',b:'dd'}")//这样不对
+let ev = eval("({a:'vv',b:'dd'})")//同样加()
+console.log(ev)
+
+
+
+
+
+
+
+</script>
+</html>

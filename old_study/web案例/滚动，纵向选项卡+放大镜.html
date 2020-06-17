@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		img{
+			display: block;
+		}
+		.fd{
+			width: 520px;
+			height: 420px;
+			position: relative;
+			margin: 50px auto;
+		}
+		.le,.ri{
+			float: left;
+		}
+		.le{
+			width: 400px;
+			height: 400px;
+			border:2px solid #0f0;
+			position: relative;
+		}
+		.le .kk{
+			width: 100px;
+			height: 100px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background: rgba(0,0,0,0.6);
+			display: none;
+		}
+		.le img{
+			width: 400px;
+			height: 400px;
+		}
+		.ri{
+			width: 100px;
+			height: 400px;
+			border:2px solid #789;
+			position: relative;
+		}
+		.ri img{
+			width: 100px;
+			height: 100px;
+		}
+		.ri .to{
+			position: absolute;
+			top: 0;
+			left: 20px;
+			color: red;
+			font:bold 40px/40px "";
+		}
+		.ri .bt{
+			position: relative;
+			bottom: 50px;
+			left: 20px;
+			color: red;
+			font:bold 40px/40px "";
+		}
+		.hov{
+			position: absolute;
+			right: -400px;
+			width: 400px;
+			height: 400px;
+			border:2px solid red;
+			overflow: hidden;
+			display: none;
+		}
+		.hov img{
+			width: 1200px;
+			height: 1200px;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+		li{
+			list-style:none;
+		}
+	</style>
+</head>
+<body>
+	<div class="fd">
+		<div class="le">
+			<img src="img/1.jpg" alt="">
+			<div class="kk"></div>
+		</div>
+		<div class="ri">
+			<ol class="ritpk">
+				<li><img src="img/1.jpg" alt=""></li>
+				<li><img src="img/2.jpg" alt=""></li>
+				<li><img src="img/3.jpg" alt=""></li>
+				<li><img src="img/4.jpg" alt=""></li>
+			</ol>
+			<div class="to">上</div>
+			<div class="bt">下</div>
+		</div>
+
+		<div class="hov"><img src="img/1.jpg" alt=""></div>
+	</div>
+	
+</body>
+<script>
+var imgarr=["img/1.jpg","img/2.jpg","img/3.jpg","img/4.jpg"]
+var fd=document.querySelector(".fd")
+var lek=document.querySelector(".le")
+var lekimg=document.querySelector(".le img")
+var kk=document.querySelector(".kk")
+var hov=document.querySelector(".hov")
+var hovimg=document.querySelector(".hov img")
+var ritpkli=document.querySelectorAll(".ritpk li")
+var to=document.querySelector(".to")
+var bt=document.querySelector(".bt")
+var that= new Date()
+var index=0;
+
+lek.onmouseover=function(){
+	kk.style.display="block"
+	hov.style.display="block"
+	document.onmousemove=function(e){
+		var e= e||window.event
+		var xx=e.pageX-lek.offsetLeft-fd.offsetLeft-kk.offsetWidth/2
+		var yy=e.pageY-lek.offsetTop-fd.offsetTop-kk.offsetHeight/2
+
+		xx=xx<0?0:xx
+		yy=yy<0?0:yy
+		xx=xx>lek.clientWidth-kk.offsetWidth?lek.clientWidth-kk.offsetWidth:xx
+		yy=yy>lek.clientHeight-kk.offsetHeight?lek.clientHeight-kk.offsetHeight:yy
+
+		kk.style.left=xx+"px"
+		kk.style.top=yy+"px"
+
+		var xbx=(hovimg.offsetWidth-hov.clientWidth)/(lek.clientWidth-kk.offsetWidth)
+
+		var xby=(hovimg.offsetHeight-hov.clientHeight)/(lek.clientHeight-kk.offsetHeight)
+
+		hovimg.style.left=-xx*xbx+"px"
+		hovimg.style.top=-yy*xby+"px"
+	}
+	lek.onmouseout=function(){
+		kk.style.display="none"
+		hov.style.display="none"
+	}
+}
+
+function tab(index){
+	hovimg.src=imgarr[index]
+	lekimg.src=imgarr[index]
+	for(var a=0; a<ritpkli.length; a++){
+		ritpkli[a].style.border="2px solid #fff"
+	}
+	ritpkli[index].style.border="2px solid red"
+}
+
+
+
+for(let a=0; a<ritpkli.length; a++){
+	ritpkli[a].onclick=function(){
+		hovimg.src=imgarr[a]
+		lekimg.src=imgarr[a]
+		index=a
+		tab(index)
+	}
+}
+tab(index)
+
+to.onclick=function(){
+	index--
+	index=index<0?3:index
+	tab(index)
+}
+bt.onclick=function(){
+	index++
+	index=index>3?0:index
+	tab(index)
+}
+
+
+
+
+
+lek.onmousewheel=function(e){
+	var e=e||window.event
+	var time= new Date()
+	if(time-that>2000){
+		console.log(time+2)
+		if(e.wheelDelta>0){
+			index--
+			index=index<0?3:index
+			tab(index)
+		}else{
+			index++
+			index=index>3?0:index
+			tab(index)
+		}
+		that= new Date()
+	}
+}
+</script>
+</html>

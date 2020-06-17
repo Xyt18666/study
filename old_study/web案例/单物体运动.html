@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.box{
+			width: 100px;
+			height: 100px;
+			background: red;
+			position: absolute;
+			top: 0;	
+			left: 0;
+		}
+		.box3{
+			width: 100px;
+			height: 100px;
+			background: red;
+			position: absolute;
+			top: 100px;	
+			left: 0;
+		}
+		.box2{
+			position: absolute;
+			width: 2px;
+			height: 800px;
+			background: #789;
+			top: 0;
+			left: 800px;
+		}
+		.reset{
+			width: 50px;
+			height: 50px;
+			background: #456;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">123</div>
+	<div class="box3">456</div>
+	<div class="box2"></div> 
+	<div class="reset">reset</div>
+</body>
+<script type="text/javascript">
+var box=document.querySelector(".box")
+var box3=document.querySelector(".box3")
+var reseta=document.querySelector(".reset")
+var timer =null;
+//默认定时器为 null
+
+var onOff=true;
+//开关 实现往复运动
+
+
+function getStyle(obj,att){
+//获取属性得到方法
+	return obj.currentStyle?obj.currentStyle[att]:getComputedStyle(obj,null)[att];
+}
+
+function move(obj,att,att2,spe,end,end2){
+//移动函数方法
+	clearInterval(dsq)
+	//开启前先清除定时器
+
+	//判断起点的位置是 大于还是小于 终点
+	//大于的时候 --  递减
+	//小于的时候 ++  递增
+
+
+	var speed=parseInt(getStyle(obj,att))>end?-spe:spe
+
+	// if(parseInt(getStyle(obj,att))>end){
+	// 	var speed= -spe
+	// }else{
+	// 	var speed= spe
+	// }
+
+	var dsq=setInterval(function(){
+	//启动定时器
+		reseta.style.pointerEvents="none"
+		box.style.pointerEvents="none"
+		//禁止点击
+
+		var boxL=parseInt(getStyle(obj,att))
+		//获取当前位置
+
+		boxL+=speed
+		//递增 或者 递减
+
+		if(speed>0&&boxL>=end || speed<0&&boxL<=end){
+		//无论 正反 都赋值终点
+			boxL=end
+		}
+		obj.style[att]=boxL+"px"
+		//给元素赋值
+
+		if(boxL==end){
+		//关闭定时器
+			obj.style[att2]=end2
+			//执行结束后 进行赋值
+
+			reseta.style.pointerEvents="auto"
+			box.style.pointerEvents="auto"
+			//开启点击
+			clearInterval(dsq)
+		}
+	},10)
+}
+
+function dw(){
+	move(box,"left","background",5,200,"#0f0")
+	move(box,"top","opacity",5,200,"0.3")
+	move(box3,"width",null,5,600,null)
+	move(box3,"left",null,5,300,null)
+}
+function resets(){
+	move(box,"left","background",5,0,"red")
+	move(box,"top","opacity",5,0,"1")
+	move(box3,"width",null,5,100,null)
+	move(box3,"left",null,5,0,null)
+}
+
+box.onclick=function(){
+	if(onOff){
+		dw()
+		onOff=false;
+	}else{
+		resets()
+		onOff=true;
+	}	
+}
+
+reseta.onclick=function(){
+	resets()
+}
+
+////遍历对象 
+// json={
+// 	"width":"300px",
+// 	"background":"red",
+// 	"height":"300px"
+// };
+// for(var i in json){
+// 	console.log(i,json[i])
+// }
+</script>
+</html>

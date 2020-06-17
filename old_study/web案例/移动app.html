@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+/*
+
+移动app开发
+
+原生开发
+苹果 
+安卓
+
+
+混合开发
+application
+
+
+
+
+
+web 与 app 的区别
+app:稳定、流畅、大多数可以断网使用
+缺点不能跨平台
+
+web:基于浏览器的网页
+优点：跨平台
+缺点：不流畅、不稳定
+
+
+
+三种开发方式：
+native 原生
+
+web web
+
+hybrid 混合
+1. web网页，套一层壳
+2.react native
+
+
+
+企业项目开发流程：
+1.需求调研：产品定位、受众群体、市场需求、开发价值。（产出:需求文档）
+2.产品设计:功能模块、流程逻辑，（产出：设计文档、交互稿），确定项目的基本功能
+3.项目开发：项目架构、美工、前端、后台、测试
+4.运营维护：上线试着运行、调bug、微调功能模块、产品迭代
+
+
+
+
+企业技术选型：
+1.angular    ionic 提供命令行 打包成app
+2.vue        weex  提供命令行 打包成app
+3.react		 react native  提供命令行 打包成app
+
+
+
+5.使用HBuilder  h5+可以打包有个app   云打包，不是很安全
+
+原理 
+
+1、5相同     
+	1.要有一个web网站
+	2.在网站的基础上使用  提供的打包技术，把网站打包成应用
+	3.把网站包装成一个可以安装到手机运行的app（为了能安装到手机，为了调用硬件底层设备
+	）
+	4.打包好了以后得到一个app。（运行的 其实是一个网站）
+
+	好处：开发效率高
+	缺点：内部本质是一个网站（效率不好）
+
+
+
+
+
+2、3相同
+	1.需要一个完整的项目（模板项目，半成品）
+	2.打包 ，转换成 原生码
+	3.打包后得到一个原生app
+
+	优点：流程、性能好
+	缺点：可用组件少（会越来越优化）
+
+
+
+
+
+
+本地打包环境配置:
+1.安装JDK包
+2.修改环境变量，新增 JAVA_HOME  值为jdk文件路径
+3.修改系统环境变量，在path后新增 %JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;(ps: 系统不一样需要配置的不一样)
+4.新建系统环境变量 CLASSPATH ，值为 .;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar
+
+
+还需要配置
+node.js
+c++
+Git
+
+
+Python
+以管理员身份安装
+next
+被×的选项，选择到 第一个  
+
+
+配置安卓环境：
+1.安装 installer    Android SDK Teels Setup(安装目录到c:\andreid)
+2.把 安卓 23 24 25 解压到 platform
+3.把platform-tools 解压到 根目录
+4.新建 build-tools 解压 build-tools 23.0.1 .2 .3（改名为版本号） 到  这里
+5.新建 extras 在新建一个子级 Android  解压 Android_m2 到这里
+6.新建环境变量 ANDROID_HOME ,值为 Android SDK Manager 的安装路径
+7.在puth中新增 %ANDROID_HOME%\tools; %ANDROID_HOME%\platform-tools;
+
+
+
+
+
+
+
+
+使用如下命令安装：
+
+npm install -g nrm
+
+nrm是一个npm源管理工具，使用它可以快速切换npm源。
+
+使用 nrm ls 查看所有源
+
+ nrm -V ：查看当前nvm版本。
+ nrm -h ：显示所有命令。
+ nrm current ：显示当前源名称。
+ nrm use <registry> ：切换源。
+ nrm add <registry> <url> [home] ：添加一个源。比如公司自己的私有源等。
+ nrm set-auth <registry> <value> [always] ：设置自定义源的授权信息。
+ nrm set-email <registry> <value> ：给自定义源设置路径。
+ nrm set-hosted-repo <registry> <value> ：设置发布到自定义源的npm托管仓储。
+ nrm del <registry> ：删除自定义源。
+ nrm home <registry> [browser] ：浏览器中打开源首页。
+ nrm publish [options] [<tarball>|<folder>] ：发布包到自定义源，如果没有使用自定义源，则直接发布到npm。
+ nrm test [registry] ：测试源的访问速度。不加registry时，测试所有的。
+
+
+
+安装 yarn RN 
+npm install -g yarn react-native-cli
+
+设置yarn镜像地址
+
+yarn config set registry https://registry.npe.taobao.org --glooal
+
+yarn config set disturl https://npm.taobao.org/dist --glooal
+
+
+
+
+
+rn打包
+react-native init 名   创建一个项目
+
+
+adb devices     验证是否有设备连接
+
+
+react-native run-android  运行在某种设备
+
+
+
+
+weex打包
+
+npm install -g weex-toolkit   安装weex脚手架
+
+创建一个项目
+weex create 名
+
+weex platform add android  运行在某种设备
+
+weex run android    打包 
+
+ */
+
+</script>
+</html>

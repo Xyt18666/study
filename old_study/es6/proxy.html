@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+// proxy(被代理的对象,对象代理对象的操作)
+
+let obj = {
+	name:"xxx"
+}
+
+let newobj = new Proxy(obj,{
+	get(target,property){
+		console.log(`你访问了${property}`)
+		return target[property]
+	}
+
+})
+console.log(newobj.name)
+
+// --------------------------------------------
+
+// 实现访问一个对象身上的属性，默认不存在的时候返回undefined，如果不存在给一个警告信息
+
+let nobj = new Proxy(obj,{
+	get(target,property){
+		if(property in target){
+			return target[property]
+		}else{
+			console.warn("访问的属性不在此对象中")
+			return ""
+		}
+		
+	}
+})
+
+console.log(nobj.name)
+console.log(nobj.age)
+
+// --------------------------------------------
+
+// 简单模拟创建div 
+
+
+const DOM = new Proxy({},{
+	get(target,property){
+		console.log(target,property)
+
+		return function(attr={},...children){
+			const el = document.createElement(property)
+			for(let key of Object.keys(attr)){
+				el.setAttribute(key,attr[key]);
+			}
+			for(let child of children){
+				if(typeof child == "string"){
+					child = document.createTextNode(child)
+				}
+				el.appendChild(child);
+			}
+			return el
+		}
+	}
+});
+
+
+let odiv = DOM.div({id:"Div"},"这是div")
+console.log(odiv)
+</script>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.list li{
+			list-style:none;
+			width: 680px;
+			height: 430px;
+			float: left;
+		}
+		img{
+			display: block;
+			width: 680px;
+			height: 430px;
+		}
+		.wrap,.wrap2{
+			overflow: hidden;
+			position: relative;
+			width: 680px;
+			height: 430px;
+			margin: 50px auto;
+		}
+		.list{
+			position: absolute;
+			width: 4760px;
+			height: 430px;
+		}
+		.le,.ri{
+			position: absolute;
+			top: 50%;
+			margin-top: -30px;
+			height: 60px;
+			width: 40px;
+			text-align: center;
+			color: #789;
+			font:bold 80px/60px "一纸情书";
+		}
+		.le{
+			left: 0;
+		}
+		.ri{
+			right: 0;
+		}
+		.dd{
+			bottom: 20px;
+			position: absolute;
+			left: 50%;
+			margin-left: -75px;
+			height: 20px;
+		}
+		.dd li {
+			width: 20px;
+			list-style:none;
+			height: 20px;
+			margin-right: 10px;
+			background: #000;
+			float: left;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<!-- <ul class="list">
+			<li><a href="#"><img src="" alt=""></a></li>
+		</ul>
+		<ol class="dd">
+			<li></li>
+		</ol>
+		<div class="le"><</div>
+		<div class="ri">></div> -->
+	</div>
+	<div class="wrap2">
+	</div>
+	<p>sdfsdf</p>
+</body>
+
+<script>
+
+$.ajax({
+	type:"POST",
+	url:"json/lubo.json",
+	data:"",
+	success:function(e){
+		banner($(".wrap"),e)
+	},
+	dataType:"json"
+})
+
+
+$.ajax({
+	type:"POST",
+	url:"json/lubo.json",
+	data:"",
+	success:function(e){
+		banner($(".wrap2"),e)
+	},
+	dataType:"json"
+})
+
+
+
+function banner(pars,e){
+	var oul=$('<ul class="list"></ul>')
+	var dd=$('<ol class="dd"></ol>')
+	var lr=$('<div class="le"><</div><div class="ri">></div>')
+	//创建 ul ol 左右键
+
+	pars.append(oul,dd,lr)
+	//添加到父级
+	
+	var cuo=pars.find(".list")
+	var cdd=pars.find(".dd")
+	//获取到 ul ol 标签
+
+	for(var a=0; a<e.length; a++){
+		$('<li><a href='+e[a].hre+'><img src='+e[a].image+' alt=""></a></li>').appendTo(cuo)
+		$('<li></li>').appendTo(cdd)
+		//遍历添加到标签
+	}
+
+
+	var cul=pars.find(".list li")
+	//获取li
+	
+	console.log(cul)
+	cul.first().clone().appendTo(cuo)
+	cul.last().prev().clone().prependTo(cuo)
+	//克隆li 添加
+
+	cuo.css({left: - cul.first().width()});
+
+
+
+	var lij=pars.find(".le")
+	var rij=pars.find(".ri")
+	var dli=pars.find(".dd li")
+	var uli=pars.find(".list li")
+	var ulo=pars.find(".list")
+	//获取父级下的元素
+
+
+
+	//操作
+
+	var index=1;
+	tab()
+
+	lij.click(function(){
+		index--
+		if(index<1){
+			// index=5
+			index = uli.length-2;
+			ulo.css({left: -(uli.length-1)*(uli.last().width())})
+		}
+		tab()
+	})
+	rij.click(function(){
+		index++
+		if(index>uli.length-2){
+			index=1
+			ulo.css({left:0});
+			// $(".list").css(left, $(".list li img").width() * - $(".list li").length-1)
+		}	
+		tab()
+	})
+	var ds=setInterval(function(){
+		rij.click()
+	},2000)
+	pars.mouseover(function(){
+		clearInterval(ds)
+	})
+	pars.mouseout(function(){
+		ds=setInterval(function(){
+			rij.click()
+		},2000)
+	})
+
+	for(let a=0; a<dli.length; a++){
+		$(dli[a]).mouseover(function(){
+			index=a+1
+			tab()
+		})
+	}
+	function tab(){
+		for(var a=0; a< dli.length; a++){
+			$(dli[a]).css("background","#000")
+		}
+		$(dli[index-1]).css("background","red")
+		ulo.animate({
+			"left":-index* uli.last().width()
+		})
+	}
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</html>

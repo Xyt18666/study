@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<script type="text/javascript" src="js/requestAnimationFrame.js"></script>
+
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.box{
+			width: 50px;
+			height: 50px;
+			position: absolute;
+			background: #789;
+		}
+		p{
+			padding-top: 50px;
+/*perspective*/
+/*transfor`m-style: preserve-3d;preserve-3d*/
+		}
+	</style>
+</head>
+<body>
+	<div class="box">123</div>
+	<p>关1111111111</p>
+	<h3>开22222222222</h3>
+</body>
+
+<script>
+
+
+
+
+// 在web动画、app动画中，我们经常通过setInterval或setTimeout定时修改DOM、CSS实现动画，如下面代码所示。
+ 
+// var timer=setInterval(function(){
+//    //一些动画
+// },1000/60)
+// //清除动画
+// clearInterval(timer);
+
+
+
+// requestAnimationFrame的方式的优势如下：
+
+// 1.经过浏览器优化，动画更流畅
+
+// 2.窗口没激活时，动画将停止，省计算资源
+
+// 3.更省电，尤其是对移动终端
+var i=50;
+var globalID;
+function animate() {
+  // Do whatever
+  requestAnimationFrame(animate);
+  // Do something animate
+  $('.box').css({
+  	width:i+=1
+  })
+  
+}
+//go->
+
+
+// var globalID=requestAnimationFrame(animate);//像定时器一样，储存，方便停止
+
+
+// globalID=requestAnimationFrame(animate);
+
+$('p').click(()=>{
+	cancelAnimationFrame(globalID);
+})
+
+
+
+</script>
+</html>

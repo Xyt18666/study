@@ -1,0 +1,113 @@
+.Advertisement{
+    position: relative;
+}
+.Advertisement a img{
+    width: 100%;
+}
+.Advertisement div{
+    position: absolute;
+    width: 80px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    border:1px solid #fff;
+    color: #fff;
+    right: 50px;
+    top: 20px;
+}
+.Advertisement div:hover{
+    background: rgba(255,255,255,0.2);
+}
+.IHSearch{
+    width: 1070px;
+    height: 100px;
+    margin: 0 auto;
+    background: #fff;
+    display: flex;
+    align-items: center;
+}
+.IHSearch h1{
+    background: url("../images/logo_red_w180.png");
+    background-size: 120px 60px;
+    width:120px;
+    height: 60px;
+    margin-right: 40px;
+}
+.IHSearch form{
+    width: 500px;
+    height: 37px;
+    border:2px solid #ddd;
+    border-radius:10px;
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+}
+.IHSearch form input{
+    border-radius:10px;
+    border:none;
+    outline:none;
+    width: 450px;
+    height: 30px;
+    padding-left: 10px;
+    font: 18px/30px "";
+    color: #ddd;
+}
+.IHSearch form i{
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    margin-right: 10px;
+}
+.IHSearch>div:nth-of-type(1){
+    height: 37px;
+    width: 250px;
+    margin: 0 20px;
+    display: flex;
+    border-radius:5px;
+    align-items: center;
+    position: relative;
+    z-index: 999;
+    background: #fff;
+}
+.IHSearch>div:nth-of-type(1) i,.IHSearch>div:nth-of-type(1) b{
+    align-self: flex-start;
+}
+.IHSearch>div:nth-of-type(1) ul{
+    height: 37px;
+    overflow: hidden;
+}
+.IHSearch>div:nth-of-type(1) ul li{
+    margin-bottom: 5px;
+}
+.IHSearch>div:nth-of-type(2){
+    width: 122px;
+    height: 37px;
+    border-radius:37px;
+    background: #ffc233;
+    box-shadow:0 3px 0px 0px #e9af27;
+    line-height: 37px;
+    color: #fff;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+}
+.IHSearch>div:nth-of-type(2) b{
+    display: none;
+    transform-origin: center center;
+    animation: zhuan 2s linear 0s infinite ;
+    margin-left: 10px;
+}
+.IHSearch>div:nth-of-type(2) span{
+    margin-right: 10px;
+}
+
+
+
+@keyframes zhuan {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }       
+}

@@ -1,0 +1,17 @@
+/* pages/xuexi/xuexi.wxss */
+.scetion{
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+}
+image{
+  width:200rpx;
+  height:200rpx;
+  margin-bottom: 50rpx;
+}
+text{
+  /* font:bold 30rpx/30rpx "一纸情书"; */
+}
+.Tx{
+  margin-bottom: 200rpx;
+}

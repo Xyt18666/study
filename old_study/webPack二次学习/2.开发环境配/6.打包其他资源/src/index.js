@@ -1,0 +1,1 @@
+import './font_6nzanaidj2u/iconfont.css'

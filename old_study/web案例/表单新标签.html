@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+</head>
+<body>
+	<form action="#" method="post">
+		<input type="text" list="snb">
+		<!-- 使用list绑定 -->
+
+		<input type="password">
+
+		<!-- 二次加密 -->
+		<keygen></keygen>
+
+		<input type="text" class="in" pattern="/d">
+
+		<input type="submit">
+	</form>
+	<!-- 可选择可输入下拉列表 -->
+	<datalist id="snb">
+	<!-- value具体值。label提示信息 -->
+		<option value="123" label="789"></option>
+		<option value="456" label="078"></option>
+	</datalist>
+	<!-- ps:url下拉列表项必须写http:// -->
+
+
+	<output>总价：100</output>
+	<!-- 显示输出信息，不能修改 语义更强 -->
+	
+
+
+</body>
+<script>
+// 新增事件
+// 内容改变时触发
+$(".in").on("input",function(){
+	console.log(1)
+}) 
+
+$(".in").on("invalid",function(){
+	console.log("不通过时触发")
+	this.setCustomValidity("设置提示信息")
+})
+
+</script>
+</html>

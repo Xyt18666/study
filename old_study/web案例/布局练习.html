@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;padding: 0;
+			}
+			.wrap1{
+				width:670px;
+			}
+			h2{
+				border-bottom:1px solid #DDDDDD;
+				line-height:64px;
+			}
+			.list li{
+				height:160px;
+				border:1px dashed #ddd;
+				display:flex;
+				align-items:center;
+				justify-content: space-around;
+			}
+			.list li img{
+				width:120px;
+				height: 120px;
+			}
+			.list li .product-intr{
+				display:flex;
+				width:420px;
+			}
+			.list li input{
+				width: 35px;
+				height: 35px;
+				
+			}
+			.product-detail h3{
+				height:60px;
+				line-height:30px;
+				overflow: hidden;
+			}
+			.price span:nth-child(1){
+				color:red;
+				font-size:30px;
+			}
+			.price span:nth-child(2){
+				color:#ccc;
+				font-size:20px;
+				text-decoration:line-through;
+			}
+			.list button{
+				border-radius:50%;
+				border:1px #e6e6e6 solid;
+				width: 50px;
+				height: 50px;
+				background:#fff;
+			}
+			.list button+span{
+				margin:0 10px;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<section class="wrap1">
+			<h2>便利店</h2>
+			<ul class="list">
+				<li>
+					<input type="radio" />
+					<section class="product-intr">
+						<img src="img/2.jpg" alt="" />
+						<section class="product-detail">
+							<h3>商品名称</h3>
+							<p class="price">
+								<span>￥654.00</span>
+								<span>￥659.00</span>
+							</p>
+						</section>
+					</section>
+					<section>
+						<button>-</button>
+						<span>1</span>
+						<button>+</button>
+					</section>
+				</li>
+				<li>
+					<input type="radio" />
+					<section class="product-intr">
+						<img src="img/1.jpg" alt="" />
+						<section class="product-detail">
+							<h3>商品名称</h3>
+							<p class="price">
+								<span>￥654.00</span>
+								<span>￥659.00</span>
+							</p>
+						</section>
+					</section>
+					<section>
+						<button>-</button>
+						<span>1</span>
+						<button>+</button>
+					</section>
+				</li>
+			</ul>
+		</section>
+	</body>
+</html>

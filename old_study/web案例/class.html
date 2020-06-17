@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+
+// 在ES6中，class (类)作为对象的模板被引入，可以通过 class 关键字定义类。
+
+// class 的本质是 function。
+
+// 它可以看作一个语法糖，让对象原型的写法更加清晰、更像面向对象编程的语法。
+
+
+
+
+
+
+// 类定义
+// 类表达式可以为匿名或命名。
+
+// 匿名类
+let Example = class {
+    constructor(a) {
+        this.a = a;
+    }
+}
+// 命名类
+let Example = class Example {
+    constructor(a) {
+        this.a = a;
+    }
+}
+// 类声明
+class Example {
+    constructor(a) {
+        this.a = a;
+    }
+}
+
+// 注意要点：不可重复声明。
+
+// 类定义不会被提升，这意味着，必须在访问前对类进行定义，否则就会报错。
+// 
+// 类中方法不需要 function 关键字。
+
+// 方法间不能加分号。
+
+// 属性
+
+// prototype
+// name
+
+// constructor 方法是类的默认方法，创建类的实例化对象时被调用。
+
+// class 的实例化必须通过 new 关键字。
+
+
+
+
+// 第一个参数 target，指向类本身。
+
+
+
+// 方法修饰
+// 3个参数：target（类的原型对象）、name（修饰的属性名）、descriptor（该属性的描述对象）。
+
+// 通过 extends 实现类的继承。
+
+
+super
+// 子类 constructor 方法中必须有 super ，且必须出现在 this 之前。
+// 调用父类方法, super 作为对象，在普通方法中，指向父类的原型对象，在静态方法中，指向父类
+
+// getter / setter
+
+
+
+
+
+</script>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+let p="ppppp"
+let span="spanspan"
+let str1 = `<h1>
+	<p>${p}</p>
+	<span>${span}\` 1+2 </span>
+	<i>${1-2 + fn("yes") }</i>
+</h1>`
+
+function fn(x){
+	return "学习"+x
+}
+
+console.log(str1)
+
+let s3 = 'return'+'`hello ${xx}`'
+let fun = new Function('xx',s3);
+console.log(fun("世界"))
+console.log(s3)//return`hello ${xx}`
+// 都为字符串,会进行拼接
+
+
+
+
+
+
+// ``  表示模板字符串
+//   ${}  括号内可以 写变量、进行运算、调用函数
+
+//   保留换行和空格
+//   如果想用 `  需要转义 \`
+
+</script>
+</html>

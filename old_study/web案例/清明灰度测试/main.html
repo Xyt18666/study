@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .mask{
+            width:100%;
+            height:100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            text-align: center;
+            background: rgba(173, 74, 206, 0.3);
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+</head>
+<body>
+    <h1>这是主页，即将跳转至 new </h1>
+    <!-- <div class="mask"></div> -->
+</body>
+<script>
+    $('<div class="mask">遮罩</div>').appendTo($('body'))
+    $('body,html').contextmenu(function(e){
+        e.preventDefault()
+    })
+
+
+    $(function(){
+        setTimeout(()=>{
+             $(window)[0].open('index.html',"_self")
+        },1000)
+    })
+
+</script>
+</html>

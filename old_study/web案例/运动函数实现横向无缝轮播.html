@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.wrap{
+			width: 600px;
+			height: 200px;
+			border:2px solid #789;
+			margin: 50px auto;
+			position: relative;
+			overflow: hidden;
+		}
+		.list{
+			height: 200px;
+			width: 2200px;
+			left: -800px;
+			position: absolute;
+		}
+		.list li{
+			list-style:none;
+			background: #753;
+			color: #032;
+			width: 200px;
+			height: 200px;
+			font:160px/200px "";
+			text-align: center;
+			float: left;
+		}
+		.le,.ri{
+			position: absolute;
+			top: 50%;
+			height: 60px;
+			margin-top: -30px;
+			font:bold 48px/60px "";
+		}
+		.le{
+			left: 0;
+		}
+		.ri{
+			right: 0;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="list">
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+		</div>
+		<div class="le"><</div>
+		<div class="ri">></div>
+	</div>
+</body>
+<script type="text/javascript">
+
+
+var le=document.querySelector(".le")
+var ri=document.querySelector(".ri")
+var list=document.querySelector(".list")
+var lli=document.querySelector(".list li")
+var dsq=null;
+var index=4;
+
+
+function ff1(obj,attr,s){
+	s
+	console.log(index)
+	if(index>8){
+		index=2;
+		obj.style[attr]="-300px"
+	}
+	if(index<0){
+		index=6;
+		obj.style[attr]="-1400px"
+	}
+
+	var osl=obj.offsetLeft
+	var sjz=index*-200
+	var dsq=setInterval(function(){
+		osl=osl>sjz?osl-=10:osl<sjz?osl+=10:osl
+
+		osl=osl==sjz?osl=sjz:osl
+
+		obj.style[attr]=osl+"px"
+
+		if(osl==sjz){
+			clearInterval(dsq)
+		}
+	},20)
+}
+
+le.onclick=function(){
+	ff1(list,"left",index--)
+}
+ri.onclick=function(){
+	ff1(list,"left",index++)
+}
+
+
+</script>
+</html>

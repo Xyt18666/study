@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+ function Person(name,sex,age){
+ 	this.name=name;
+ 	this.sex=sex;
+ 	this.age=age;
+ 	this.place=function(){
+ 		console.log("(๑′ᴗ‵๑)Ｉ Lᵒᵛᵉᵧₒᵤ❤")
+ 	}
+ }
+
+ var pre= new Person("大蛇丸","男","18")
+
+ console.log(pre)
+ console.log(pre instanceof Person)
+ // console.log(pre.constructor Person)
+ // instanceof 测试它左边的对象是否是它右边的类
+ // constructor 构造器 与上一样
+ // 可以准确的知道是某个函数
+
+
+ console.dir(pre)//把这个对象的结构显示出来
+ console.dir(Person)
+
+ 
+
+ //实例对象是通过构造函数创建的
+
+
+
+//通过原型来添加方法
+//解决数据共享，节省内存空间
+Person.prototype.eat=function(){
+	console.log("吃")
+	//给自定义构造函数添加相同的方法
+}
+var pre2= new Person("大蛇丸2","男2","182")
+
+console.log(pre2.eat==pre.eat)
+
+
+
+ //工厂模式
+ function createObj(name,sex,age){
+ 	var obj= new Object()
+ 	obj.name=name;
+ 	obj.sex=sex;
+ 	obj.age=age;
+ 	obj.place=function(){
+ 		console.log("(๑′ᴗ‵๑)Ｉ Lᵒᵛᵉᵧₒᵤ❤ 2")
+ 	}
+ 	return obj
+ }
+ var pre1=createObj("波妞","女","18")
+
+ console.log(pre1)
+
+//共同点：
+//都是函数，都可以创建对象，都可以传入参数
+
+
+//工厂模式:
+//函数名是小写
+//有new 有返回值
+//new之后的对象 就是当前对象
+//直接调用函数就可以创建对象
+//
+
+//自定义构造函数:
+//函数名是大写（首字母）
+//没有new 没有返回值
+//this是当前对象
+//通过new 的方式 创建对象
+</script>
+</html>

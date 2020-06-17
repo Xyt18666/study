@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>遮罩的小效果</title>
+	<style>
+		*{
+			padding:0;
+			margin:0;
+		}
+		body{
+			height: 969px;
+		}
+		.main{
+			width:1920px;
+			height: 969px;
+			background:url("D:/1902A/A第四个月JavaScript/DOM文档对象模型/1.1.jpg") no-repeat 0 0;
+			position:relative;
+		}
+		.main p{
+			width: 190px;
+			height:159px;
+			border:1px solid red;
+			float:left;
+			background:#fff;
+			position:relative;
+
+		}
+	</style>
+</head>
+<body>
+	<div class="main">
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+	</div>
+</body>
+	<script>
+	console.log(window.innerHeight)
+		var aP=document.querySelectorAll("p")
+		
+		for(var j=0;j<aP.length;j++){
+				aP[j].index=j
+				aP[j].setAttribute("top",aP[j].offsetTop)
+				aP[j].setAttribute("left",aP[j].offsetLeft)
+				aP[j].onclick=function(ev){
+					var e=ev||window
+					var b=aP[this.index]
+					fn1(b,window.innerHeight,10)	
+				}
+			}
+		window.onload=function(){
+			for(var i=0;i<aP.length;i++){
+					aP[i].style.position="absolute"
+					aP[i].style.top=aP[i].getAttribute("top")+"px"
+					aP[i].style.left=aP[i].getAttribute("left")+"px"
+			}
+		}
+		function fn1(b,end,speed){
+		 b.timer=setInterval(function(){
+				b.style.top=(window.innerHeight-b.offsetTop)/speed+b.offsetTop+"px"
+				b.style.zIndex="999"
+				b.style.background="url(D:/1902A/A第四个月JavaScript/DOM文档对象模型/1.jpg)"
+				b.style.backgroundPosition=b.getAttribute("top")+"px"+" "+b.getAttribute("left")+"px"
+				b.style.transform="skewY(20deg)"
+				console.log(window.innerHeight-b.offsetTop)
+				if(b.offsetTop+b.offsetHeight>window.innerHeight){
+					b.remove()
+					clearInterval(b.timer)
+				}
+			},500)
+
+		}	
+	</script>
+</html>

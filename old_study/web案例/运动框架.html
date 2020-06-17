@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script><!-- 引入jQ库 -->
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			height: 3000px;
+		}
+		.st{
+			width: 30px;
+			height: 100px;
+			position: fixed;
+			right: 0;
+			bottom: 50px;
+			background: red;
+		}
+	</style>
+</head>
+<body>
+	<div class="st">返回顶部</div>
+</body>
+<script type="text/javascript">
+var st=document.querySelector(".st")
+
+window.onscroll=function(){
+	var stz=document.body.scrollTop||document.documentElement.scrollTop
+	if(stz>1000){
+		st.style.display="block"
+	}else{
+		st.style.display="none"
+	}
+}
+
+var dsq=null;
+
+st.onclick=function(){
+	clearInterval(dsq)//先清除定时，防止冲突
+
+	var dsq=setInterval(function(){
+
+		var stz=document.body.scrollTop||document.documentElement.scrollTop
+		//获取当前滚动的距离
+
+		var speed=(0-stz)/24
+		//定义速度=(终点-起点)/自定义速度倍率
+
+		if(speed>0){
+		//假如speed 大于 0
+			speed=Math.ceil(speed)
+			//给speed 向上取整
+			//防止 停不下来
+		}
+
+		stz+=speed
+		//此时位置 + 一个负数
+		//意味着减少
+
+		if(stz<=0){
+			stz=0
+			//假如stz 小于等于0 他就等于0 
+		}
+		document.body.scrollTop=document.documentElement.scrollTop=stz
+		//把stz 赋值给 滚动距离
+
+		if(stz==0){
+			clearInterval(dsq)
+		}
+		//stz==0 时 关闭定时器
+
+	},10)
+	
+}
+
+</script>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text" value="">
+</body>
+<script>
+var input=document.querySelector("input")
+
+input.onchange=function(){
+	var reg=/^[\u4e00-\u9fa5]{2,6}$/
+	if(reg.test(this.value)){
+		this.style.background="#0f0"
+	}else{
+		this.style.background="red"
+	}
+}
+</script>
+</html>

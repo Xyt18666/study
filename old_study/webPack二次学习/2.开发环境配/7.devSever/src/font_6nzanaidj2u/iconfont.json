@@ -1,0 +1,30 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "13554530",
+      "name": "蛋糕",
+      "font_class": "dangao",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "13554531",
+      "name": "广州",
+      "font_class": "guangzhou",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "13554532",
+      "name": "大理",
+      "font_class": "dali",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    }
+  ]
+}

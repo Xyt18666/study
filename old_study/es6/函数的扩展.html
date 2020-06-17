@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="box">	we</div>
+</body>
+<script>
+
+// 函数的参数添加默认值
+function fn1(x=4,y=5){
+	console.log(x,y)
+}
+fn1()//不传参数的时候才会使用默认值
+
+
+function fn2({x=0,y=0}={}){
+	console.log(x,y)
+}
+fn2({x:999});//999 0
+// 因为他写了默认值，所以y=0
+
+function fn3({x,y}={x:0,y:0}){
+	console.log(x,y)
+}
+fn3({x:666})// 666  undefined
+// 解构赋值 的 y=0  但是并未设置默认值   所以y是undefined
+
+// 一般会把默认值放到后面
+
+
+// ----------------------------------------
+
+// 参数集合
+
+function fn5(r,p,q=9,u,e){
+	console.log(arguments,arguments.length)
+	// 传入的实参，和 实参的长度
+	
+	console.log([...arguments])//把类数组转为真数组
+}
+fn5(1,2,3,4)
+
+console.log(fn5.length)//2
+//没有默认值  的情况下 形参的长度
+//有默认值   当前默认值参数 的位置
+
+// ---------------------------------
+
+// 参数作用域的问题
+// 
+let n=20,m=80
+function fn6(x=n,y=m){
+	let n=2,m=8
+	console.log(x,y)
+}
+fn6()//此时的 n m 找的是外面的作用域
+
+let x=888;
+function fn7(x=1,y=x){
+	// let x=890; 这里会报错,因为参数里声明了 x
+	console.log(x,y) 
+}
+fn7()//1 1
+// 形参所在的小括号是一个单独的作用域,遇到变量，先看自己作用域有没有，如果没有，才向上级找 
+// 所有 y 是 1
+
+
+// ---------------------------------------
+
+// 扩展运算符  ...
+
+// 可以将数组变为非数组，反之
+let ary=[1,2,3];
+console.log(...ary)//此时变为了非数组
+console.log([...ary])//此时变为了数组
+console.log({...ary})//此时变为了对象
+
+
+// 应用求最大值
+let ary89=[3,4,6,451,34,543,0,1];
+console.log(eval("Math.max("+ary89+")"));//方法1
+console.log(Math.max.apply(null,ary89));//方法2
+console.log(Math.max(...ary89));//方法3
+
+// ----------------------------------------
+
+// 数组的拼接
+console.log(ary.concat(ary89))
+console.log([...ary,...ary89])
+
+// ------------------------------------------
+
+// 函数的name
+let fn8 = function(){};
+function fn9(){}
+
+console.log(fn8.name)//函数的声明 名
+console.log(fn9.name)//函数的声明 名
+
+console.log((function(){}).name) // 匿名函数的函数名 为 空
+
+
+// 特殊的
+let obj = {};
+let fn10 = fn9.bind(obj)
+fn10()
+console.log(fn10.name)// bound fn9
+//  由bind 改变this指向后的 fn9
+
+
+let fn11 = new Function("n","return n");
+
+console.log(fn11.name)  // anonymous
+
+// ------------------------------------
+
+// 箭头函数
+
+let fn12=()=>{
+	console.log("箭头函数")
+}
+fn12();
+
+// x=>x  如果函数体只有一行代码，而且是return，可以简写成这样
+
+// 自执行函数   this指向     window
+// 事件绑定                  给谁绑的就是谁
+// 对象下的fn                对象
+
+// 箭头函数中this的问题   
+// 箭头函数没有this指向，他的this是他的上一级作用域的this指向(ps:上一级作用域不是箭头函数)
+
+
+box.onclick=()=>{
+	console.log(this);
+}
+
+
+</script>
+</html>

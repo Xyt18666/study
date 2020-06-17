@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		div{
+			float: left;
+			width: 200px;
+			height: 300px;
+			border:2px solid #789;
+			transition:0.5s;
+			background: #fff;
+			margin: 10px;
+		}
+		main{
+			width: 900px;
+			margin: 80px auto;
+		}
+		div:hover{
+			z-index: 999;
+			transform:scale(1.2,1.2);
+		}
+		p,h2,h3,h4{
+			text-align: center;
+			margin:0 6px;
+		}
+		p{
+			margin-top: 80px;
+			color: red;
+			transition:1.5s;
+		}
+		div:hover p{
+			margin-top: 10px;
+			color: #0f0;
+		}
+	</style>
+</head>
+<body>
+	<main>
+		<div>
+			<p>p1</p>
+			<h2>ewqrwerwqer</h2>
+			<h3>fasdfasf</h3>
+			<h4>sadfsdfsd</h4>
+		</div>
+		<div>
+			<p>p2</p>
+			<h2>sdfasd</h2>
+			<h3>sdfasd</h3>
+			<h4>fsdafa</h4>
+		</div>
+		<div>
+			<p>p3</p>
+			<h2>asfdf</h2>
+			<h3>sdfa</h3>
+			<h4>sdfasfsa</h4>
+		</div>
+		<div>
+			<p>p4</p>
+			<h2>asdfaasdfa</h2>
+			<h3>asdfasdf</h3>
+			<h4>sadf</h4>
+		</div>
+	</main>
+</body>
+</html>

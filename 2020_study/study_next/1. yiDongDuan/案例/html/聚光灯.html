@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin:0;padding:0;
+			}
+			/* div{
+				font-size:100px;
+				font-weight: bold;
+				background-image: url(img/银魂1.jpg);
+				background-clip:text;
+				使用背景图填充文字，需要给文字设置透明
+				-webkit-background-clip:text;
+				color:transparent;
+			}
+			 */
+			
+			body{
+				height:100vh;
+				background:#999;
+			}
+			div{
+				font-size:150px;
+				font-weight: bold;
+				text-align: center;
+				margin-top:200px;
+				color:#333;
+				position: relative;
+				line-height: 150px;
+			}
+			div::after{
+				content:"BLACK MIRROR";
+				position: absolute;
+				left:0;
+				top:0;
+				width:100%;
+				text-align: center;
+				color:transparent;
+				background-image: url(img/timg.jpg);
+				-webkit-background-clip:text;
+				clip-path:circle(75px at 0% 50%);
+				animation: light 6s infinite;
+			}
+			
+			
+			@keyframes light{
+				0%{clip-path:circle(75px at 0% 50%);}
+				50%{clip-path:circle(75px at 100% 50%);}
+				100%{clip-path:circle(75px at 0% 50%);}
+			}
+			/* clip-path:裁剪元素 
+				circle(70px at 0% 50%)
+				裁剪的形状（圆的半径 at 圆心横向的位置 圆心纵向的位置）
+			*/
+		</style>
+	</head>
+	<body>
+		<div>
+			BLACK MIRROR
+		</div>
+	</body>
+</html>

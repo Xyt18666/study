@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>通过原生js检测CSS3的动画结束</title>
+  <style>
+  *{padding: 0;margin: 0;}
+  .test{
+    width: 200px;
+    height: 200px;
+    border: 1px soli black;
+    background: red;
+    transition-property:width;
+    transition-duration: 3s;
+  }
+  /* 动画 */
+  .test.move{
+    width:600px;
+  }
+  button{
+    width: 80px;
+    height: 25px;
+    font-size: 16px;
+    text-align: center;
+    line-height: 25px;
+  }
+  </style>
+</head>
+<body>
+  <div class="test" id="main">
+  </div>
+  <button id="play">开始运动</button>
+</body>
+<script>
+  // 示例动画主要是改变div的宽度
+  // 主要是通过检测transition的值是否为transitionend
+  function init() {
+    var main = document.getElementById('main');
+    var play = document.getElementById('play');
+    var test = document.getElementsByClassName('test')[0];
+    // 兼容性写法
+    transitions = {
+      // 兼容IE
+      'transition': 'transitionend',
+      // 兼容Opera
+      'OTransition': 'oTransitionEnd',
+      // 兼容Firefox
+      'MozTransition': 'transitionend',
+      // 兼容Google
+      'WebkitTransition': 'webkitTransitionEnd'
+    };
+    function getTransitions() {
+      var t;
+      for (t in transitions) {
+        // t即transition，OTransition，MozTransition，WebkitTransition
+
+        console.log(transitions[t])//这 输出 是 一个 动画 完成后的事件名
+        if (main.style[t] !== undefined) {
+          return transitions[t];
+        }
+      }
+    }
+    // 按钮添加click事件
+    play.onclick = function () {
+      main.classList.add('move');
+    };
+    // 接收返回的当前浏览器的transition的值
+    var setTransitions = getTransitions();
+    // 添加监听事件
+    setTransitions && main.addEventListener(setTransitions,function (params) {
+    // && 第一个为假时，执行第一个，然而 一般都会拿到值，所以会只执行后面的函数
+      alert('动画结束');
+      // 删除类名move
+      main.classList.remove('move');
+    },false)
+  }
+  init();
+</script>
+</html>

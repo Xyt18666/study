@@ -1,0 +1,49 @@
+.footer{
+	width: 100%;
+	border-bottom: 33px solid #000;
+	border-top: 1px solid #dddddd;
+	background-color: #fff;
+}
+.footer .f-content{
+	
+	width: 1200px;
+	margin: 0 auto;
+	height: 392px;
+}
+.footer .f-b{
+	overflow: hidden;
+	padding-top: 22px;
+}
+.fb-l,.fb-l dl,.fbr-l,.fbr-r{
+	float: left;
+}
+.fb-r{
+	float: right;
+}
+.fb-l dl{
+	margin-right: 105px;
+}
+.fb-l dl:last-chlid{
+	margin-right: 0;
+}
+.fb-l dl dt a{
+	font:12px/20px "";
+	font-weight: bold;
+	color: #000;
+}
+.fb-l dl dd a{
+	color: #999;
+	font:12px/20px "";
+}
+.fb-l img {
+	margin-top: 25px;
+}
+.fb-r img {
+	width: 128px;
+	height: 128px;
+}
+.fb-r p{
+	font: bold 12px/22px "";
+	color: #000;
+	text-align: center;
+}

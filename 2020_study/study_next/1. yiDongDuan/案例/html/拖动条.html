@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .Progress{
+            width: 300px;
+            height: 20px;
+            border:1px solid #999;
+            border-radius:20px;
+            margin: 50px auto;
+            position: relative;
+        }
+        .lower,.in,.up{
+            width: 300px;
+            height: 20px;
+            border-radius:20px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .lower{
+            background: #ccc;
+            z-index: 6;
+        }
+        .in{
+            background: #0f0;
+            width: 0%;
+            z-index: 7;
+        }
+        .up{
+            background: transparent;
+            z-index: 8;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="Progress">
+      <div class="lower"></div>  <!--  最底层，未播放的进度 灰色 -->
+        <div class="in"></div>  <!--  中层，播放的进度  深灰色-->
+        <div class="up"></div>   <!--  上层，用于 拖拽 跳播的 遮罩层 -->
+    </div>
+</body>
+<script>
+
+$(".up").on("mousedown",function(e){
+    // console.log("down")
+
+    /*
+        前鼠标位置/获取盒子总宽度=比例
+        in的宽度 = in 的 总宽度 * 比例
+--------------------------------------------
+        第二种：
+        直接把点击的点 进行 赋值 即可
+
+        但是 在复杂的 环境下 是 不建议使用的
+        因为时间长度不一，所以 需要计算比例
+
+    */ 
+    let osX = e.offsetX
+    let upW = $(".up").width()
+    let bl = osX/upW
+
+
+    $(".in").width(bl*upW)
+    // console.log($(".in").width(),osX)
+
+    $(".up").text(`${bl*100}%`)
+    $(".up").on("mousemove",function(e){
+        e.preventDefault()
+        // console.log("move")
+        let osX2 = e.offsetX
+        let upW2 = $(".up").width()
+        let bl2 = osX2/upW2
+        $(".up").text(`${bl2*100}%`)
+        $(".in").width(bl2*upW2<=upW2?bl2*upW2:upW2)
+
+    })
+    $(window).on("mouseup",function(){
+        // console.log("up")
+        $(".up").off("mousemove")
+
+
+    })
+})
+
+
+</script>
+</html>

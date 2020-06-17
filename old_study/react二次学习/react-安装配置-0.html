@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+</head>
+<body>
+
+<div id="like_button_container"></div>
+
+
+
+
+
+<!-- 
+    
+    
+    
+
+
+
+    
+    创建react 的两种方式:
+
+    1.像 jq 一样 引入文件  （仅用于学习和调试）
+
+    2.通过react的脚手架创建项目
+        npx create-react-app my-app         构建项目
+        cd my-app                           进入项目
+        npm start                           启动项目
+
+
+
+    文件分析：
+    node_modules       node相关的包
+    public             放置静态资源的文件
+        manifest.json      就像pwa渐进式框架，当把网页放桌面的时候的json 
+        robots.txt         防 君子 爬虫的 协议
+        index.html         页面主页
+    src                所有的文件
+        index.xxx      主页面 js css
+        App.xxx        App组件的 js css
+    .gitignore         自动忽视 某些 node_modules 文件
+    package.json       原生目录依赖文件（下面为对象参数）
+        dependencies       依赖文件
+        scripts            命令
+        eslintConfig       扩展
+        browserslist       浏览器适配
+    README.md          热部署
+
+
+
+    git标识:
+
+        A: 增加的文件.
+        C: 文件的一个新拷贝.
+        D: 删除的一个文件.
+        M: 文件的内容或者mode被修改了.
+        R: 文件名被修改了。
+        T: 文件的类型被修改了。
+        U: 文件没有被合并(你需要完成合并才能进行提交)
+        X: 未知状态。(很可能是遇到git的bug了，你可以向git提交bug report)
+
+
+
+        git命令列表:
+        ctrl+shift+P，输入git，会看到VS CODE支持的所有git命令。
+
+        1. git stash   暂存当前工作状态
+        2. git stash list 查看暂存列表
+        3. git stash save 'title' 暂存工作状态并添加说明
+        4. git stash apply [ stash{n} ] 应用某一个暂存
+        5. git stash pop [ stash{n} ] 应用并删除某一个暂存
+        6. git stash drop [ stash {n} ] 删除某个暂存
+        7. git stash clear 清除所有暂存
+
+
+        代码提交：
+        代码管理器 => 点击加号暂存 => 点击... => 点击全部提交
+
+
+
+-->
+
+
+ <!-- 加载 React。-->
+<!-- 注意: 部署时，将 "development.js" 替换为 "production.min.js"。-->
+<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+<!-- 加载我们的 React 组件。-->
+<script src="like_button.js"></script>    
+
+</body>
+
+
+
+</html>

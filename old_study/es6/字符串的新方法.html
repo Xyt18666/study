@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+
+// indexOf()  判断字符串中有没有指定字符，有返回下标，没有返回-1
+
+//includes() 判断字符串中有没有指定字符，有返回true，没有返回false
+
+//第二个参数是查找开始的索引 不写 默认是0
+
+let str1="d5sf4sd4f35"
+
+console.log(str1.indexOf("b",3))
+console.log(str1.includes("5",5))
+
+
+//startsWith()   是不是以某个字符开头
+//endsWith()                      结尾
+//第二个参数是查找开始的索引 不写 默认是0
+
+console.log(str1.startsWith("5",1))
+console.log(str1.startsWith("d"))
+console.log(str1.endsWith("5"))
+console.log(str1.endsWith("d"))
+
+
+//repeat(数字)  将字符串重复n次返回，并且原有字符串不变
+// 如果填入小数，会向下取整
+// 负数、Infinity 会报错
+// 0到-1 先向下取整 在执行函数  并不会报错
+// NaN  也是0   也不会报错  同样会得到 空字符串
+// 其他数据类型会转换为数字类型，在执行函
+console.log(str1.repeat("3"))
+console.log(str1)
+</script>
+</html>

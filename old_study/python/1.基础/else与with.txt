@@ -1,0 +1,25 @@
+else的用法：
+
+配合 if使用： 如果为真执行，如果为假 执行else
+
+配合 while for循环： 循环全部完成后，中途没有退出， 才会执行else
+
+配合 try 异常处理： 如果try 里面的正常运行结束，就会 运行else 
+
+
+-----------------------------------------------
+
+with语句： 会自动关闭文件，简化文件操作
+
+例：whith open("xxx.txt","w") as f
+    whith  打开文件   as  文件标签 ，此时 就不需要在手动关闭文件了
+
+try:
+	whith open("xxx.txt","w") as f
+	for item in f:
+		print(item)
+except OSError as reason:
+	print("no" + str(reason))
+# funally:
+#	f.close()
+

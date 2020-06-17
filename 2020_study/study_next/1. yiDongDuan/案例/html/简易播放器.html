@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .jdt{
+            width: 300px;
+            height: 20px;
+            background: #ccc;
+            position: relative;
+        }
+        .in{
+            width: 0;
+            height: 20px;
+            position: absolute;
+            background: #0f0;
+            top: 0;
+            left: 0;
+        }
+        .up{
+            width: 300px;
+            height: 20px;
+            position: absolute;
+            z-index: 8;
+        }
+    </style>
+</head>
+<body>
+    <video width="300px" muted>
+        <source src="OV/VID_20200508_205744.mp4" type="audio/mp4" ></source>
+    </video>
+    <p>开关</p>
+    <div class="qp">全屏</div>
+
+    <div class="jdt">
+        <div class="in"></div> 
+        <div class="up"></div>
+    </div>
+</body>
+<script>
+/*
+
+属性：
+.controls 设置或者返回 是否显示控件
+.autoplay 设置或者返回 是否自动播放
+.currentSrc     获取视频路径
+.currentTime    返回 或者 设置 当前播放的秒数
+.duration 总时长  秒数
+.ended   播放是否结束   true/false
+.loop  是不是 循环    true/false
+.muted  是不是 静音  true/false
+.paused    是处于否暂停 true/false
+.playbackReat   设置或者返回 当前 播放 速率   0-2 
+.volume  设置当前 音量   0-1
+
+方法：
+
+play()   播放
+pause()   暂停
+load()   重新加载 当前视频
+
+
+事件：
+
+timeupdate   当前 播放 更改 时触发
+ended      结束触发
+play      播放的时候触发
+pause    暂停时触发
+
+
+
+
+
+
+//视频全屏：
+$(".qp").click(function(){
+    //操作全屏事件。并兼容
+    if(video.requestFullScreen){
+            video.requestFullScreen()
+    }else if(video.webkitRequestFullScreen){
+            video.webkitRequestFullScreen()
+    }else if(video.mozRequestFullScreen){
+            video.mozRequestFullScreen()
+    }else if(video.msRequestFullScreen){
+            video.msRequestFullScreen()
+    }
+})
+
+*/ 
+let v = $("video")[0]
+console.log(v)
+
+// 开关
+$("p").click(function(){
+    if(v.paused){
+        v.play()//改变状态、样式  开始  
+    }else{
+        v.pause() //停止
+    }
+})
+
+// 全屏
+$(".qp").click(function(){
+    //操作全屏事件。并兼容
+    if(v.requestFullScreen){
+            v.requestFullScreen()
+    }else if(v.webkitRequestFullScreen){
+            v.webkitRequestFullScreen()
+    }else if(v.mozRequestFullScreen){
+            v.mozRequestFullScreen()
+    }else if(v.msRequestFullScreen){
+            v.msRequestFullScreen()
+    }
+})
+
+let up = $(".up");
+let ino = $(".in");
+
+v.ontimeupdate = function(){
+    console.log(v.currentTime)  //当前播放的时间
+    console.log(v.duration)  //总时长
+    let bl = v.currentTime/v.duration  //比率
+
+    ino.width(bl*up.width())
+
+}
+
+// up.click(function(e){
+//     var osx= e.offsetX//获取当前鼠标距离目标节点的位置，
+//     var per=osx/$(this).width() //计算比率
+//     var cur=per*v.duration //比率*总时长
+//     v.currentTime=cur //赋值给播放的位置
+// })
+
+
+$(".up").on("mousedown",function(e){
+    // console.log("down")
+
+    /*
+        前鼠标位置/获取盒子总宽度=比例
+        in的宽度 = in 的 总宽度 * 比例
+--------------------------------------------
+        第二种：
+        直接把点击的点 进行 赋值 即可
+
+        但是 在复杂的 环境下 是 不建议使用的
+        因为时间长度不一，所以 需要计算比例
+
+    */ 
+    let osX = e.offsetX
+    let upW = $(".up").width()
+    let bl = osX/upW
+    var cur=bl*v.duration //比率*总时长
+    v.currentTime=cur //赋值给播放的位置
+
+    $(".in").width(bl*upW)
+    // console.log($(".in").width(),osX)
+
+    $(".up").text(`${bl*100}%`)
+    $(".up").on("mousemove",function(e){
+        e.preventDefault()
+        // console.log("move")
+        let osX2 = e.offsetX
+        let upW2 = $(".up").width()
+        let bl2 = osX2/upW2
+        $(".up").text(`${bl2*100}%`)
+        $(".in").width(bl2*upW2<=upW2?bl2*upW2:upW2)
+
+        var cur=bl2*v.duration //比率*总时长
+        v.currentTime=cur //赋值给播放的位置
+
+    })
+    $(window).on("mouseup",function(){
+        // console.log("up")
+        $(".up").off("mousemove")
+
+
+    })
+})
+
+
+
+</script>
+</html>

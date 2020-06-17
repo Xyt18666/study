@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=
+     no" > 
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			/*当改变盒子宽度的时候，内边距和内容会自适应*/
+		}
+		body{
+			height: 2000px;
+		}
+		.search{
+			min-width:320px;
+			max-width:680px;
+			position: fixed;
+			height: 50px;
+			width: 100%;
+			left: 0;
+			top: 0;
+			z-index: 999;
+		}
+		.m{
+			min-width:320px;
+			max-width:680px;
+			width: 100%;
+			height: 50px;
+			background: #ccc;
+			margin: 0 auto;
+			position: relative;
+		}
+		.logle{
+			position: absolute;
+			left: 0;
+			top: 0;
+			height: 50px;
+			width: 60px;
+			background: #852;
+		}
+		.login{
+			position: absolute;
+			right: 0;
+			top: 0;
+			height: 50px;
+			width: 80px;
+			background: #852;
+		}
+		form{
+			width: 100%;
+			padding-left: 60px;
+			padding-right: 80px;
+		}
+		input{
+			width: 100%;
+			outline: none;
+			height: 40px;
+			margin-top: 5px;
+			border-radius:6px;
+
+		}
+		.ban{
+			width: 100%;
+			height: 300px;
+			position: relative;
+		}
+		ol,ul{
+			list-style:none;
+		}
+		ul{
+			position: absolute;
+			width: 1000%;
+			top: 0;
+			left: 0;
+		}
+		ul li{
+			width: 10%;
+			height: 300px;
+			float: left;
+		}
+		ul li:nth-child(1){
+			background: #789;
+		}
+		ul li:nth-child(2){
+			background: #789;
+		}
+		ul li:nth-child(3){
+			background: #783459;
+		}
+		ul li:nth-child(4){
+			background: #723289;
+		}
+		ul li:nth-child(5){
+			background: #189;
+		}
+		ul li:nth-child(6){
+			background: #719;
+		}
+		ul li:nth-child(7){
+			background: #759;
+		}
+		ul li:nth-child(8){
+			background: #783;
+		}
+		ul li:nth-child(9){
+			background: #c89;
+		}
+		ul li:nth-child(10){
+			background: #7c9;
+		}
+		ol{
+			position: absolute;
+			bottom: 0;
+		}
+		ol li{
+			margin-right: 20px;
+			float: left;
+		}
+	</style>
+</head>
+<body>
+	<div class="search">
+		<div class="m">
+			<div class="logle">logle</div>
+			<form action="#">
+				<input type="search">
+			</form>
+			<div class="login">login</div>	
+		</div>
+	</div>
+	<div class="ban">
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+			<li>9</li>
+			<li>10</li>
+		</ul>
+		<ol class="dd">
+			<li>d1</li>
+			<li>d2</li>
+			<li>d3</li>
+			<li>d4</li>
+			<li>d5</li>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+		</ol>
+	</div>
+</body>
+<script>
+
+/*
+二倍精灵图解决失真问题
+压缩精灵图
+
+
+
+根据滚动大小改变透明度
+ */
+
+
+
+
+
+
+
+
+</script>
+</html>

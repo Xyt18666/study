@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.wrap{
+			width: 300px;
+			height: 100px;
+			border:2px solid red;
+			margin: 80px auto;
+			position: relative;
+			overflow: hidden;
+		}
+		.box{
+			width: 46px;
+			height: 96px;
+			overflow: hidden;
+			border:2px solid #0f0;
+			float: left;
+			position: relative;
+			top: 0;
+			transition:0.5s;
+		}
+		.box:nth-child(1) .f{
+			left: -46px;
+		}
+		.box .f{
+			position: absolute;
+			width: 150px;
+			height: 98px;
+			transition:0.5s;
+		}
+		.box:nth-child(1){
+			width: 96px;
+		}
+		.box p:nth-child(1){
+			width: 46px;
+			height: 96px;
+			background: #789;
+			float: left;
+		}
+		.box p:nth-child(2){
+			float: left;
+			width: 96px;
+			height: 96px;
+			background: #741;
+		}
+	</style>
+</head>
+<body>
+<div class="wrap">
+	<div class="box">
+		<div class="f">
+			<p>1</p>
+			<p>2</p>
+		</div>
+	</div>
+	<div class="box">
+		<div class="f">
+			<p>1</p>
+			<p>2</p>
+		</div>
+	</div>
+	<div class="box">
+		<div class="f">
+			<p>1</p>
+			<p>2</p>
+		</div>
+	</div>
+	<div class="box">
+		<div class="f">
+			<p>1</p>
+			<p>2</p>
+		</div>
+	</div>
+	<div class="box">
+		<div class="f">
+			<p>1</p>
+			<p>2</p>
+		</div>
+	</div>
+</div>
+</body>
+<script type="text/javascript">
+var box=document.getElementsByClassName("box")
+var f=document.getElementsByClassName("f")
+let onof = true
+
+for(let a=0; a<box.length; a++){
+
+	box[a].onmouseenter=function(){
+		if(onof == true){
+			onof = false
+			
+			for(s=0; s<box.length; s++){
+				f[s].style="left:0px;"
+				box[s].style="width:46px"
+			}
+			f[a].style="left:-46px;"
+			this.style="width:96px"
+
+			let dsq = setTimeout(function(){
+				onof = true
+				clearTimeout(dsq)
+			},400)
+
+		}
+	}
+
+
+}
+
+
+
+</script>
+</html>

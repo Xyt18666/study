@@ -1,0 +1,23 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "554035",
+      "name": "微信",
+      "font_class": "iconset0140",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "9512649",
+      "name": "电话",
+      "font_class": "tel-fill",
+      "unicode": "e639",
+      "unicode_decimal": 58937
+    }
+  ]
+}

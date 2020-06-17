@@ -1,0 +1,527 @@
+
+/* 轮播图 */
+.bannerAndSideNav{
+    width: 100%;
+    height: 480px;
+    position: relative;
+}
+.BanList{
+    position: relative;
+    width: 100%;
+    height: 480px;
+}
+.BanList li{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 480px;
+    transition: 1s;
+}
+.BanList li a{
+    width: 100%;
+    height: 480px;
+    display: block;
+    background-repeat: no-repeat;
+    background-position: center center ;
+}
+.BanDian{
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-20%,0);
+    display: flex;
+    z-index: 999;
+}
+.BanDian li{
+    display: block;
+    height: 24px;
+    text-align: center;
+    font:normal 12px/24px "";
+    color: #fff;
+    border-radius:24px;
+    margin-right: 30px;
+    padding: 0 10px;
+    background: rgba(0,0,0,0.7);
+    transition: 1s;
+}
+.nextBan,.preverBan{
+    position: absolute;
+    width: 27px;
+    z-index: 999;
+    height: 44px;
+    top: 50%;
+    transform: translate(-50%,0);
+    color: #fff;
+    font-size: 48px;
+}
+.nextBan{
+    left:50%;
+    transform: translate(600px,0);
+}
+.preverBan{
+    left:50%;
+    transform: translate(-600px,0);
+}
+
+
+
+.sideNav{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform:translate(-50%,0);
+    width: 1070px;
+    height: 480px;
+   
+    z-index: 1000;
+
+  
+}
+
+
+
+/* 轮播图下 */
+
+.bAS_button{
+    width: 1070px;
+    margin: 0 auto;
+    padding: 30px 0;
+}
+.BBLImgBox{
+    background: url("https://us-website.wannar.com/images/index/advantage/icons.png") no-repeat;
+    width: 52px;
+    height: 52px;
+    margin-right: 15px;
+}
+.BBList{
+    display: flex;
+    justify-content: space-between;
+}
+.BBList li{
+    padding:0 30px ;
+    display: flex;
+    border-right: 1px solid #999;
+}
+.BBList li:last-child{
+    border-right: none;
+}
+.BBList li:nth-child(1) .BBLImgBox{
+    background-position: 0 0;
+}
+.BBList li:nth-child(2) .BBLImgBox{
+    background-position: -52px 0;
+}
+.BBList li:nth-child(3) .BBLImgBox{
+    background-position: -104px 0;
+}
+.BBList li:nth-child(4) .BBLImgBox{
+    background-position: -156px 0;
+}
+.BBList li h4{
+    font:500 18px/18px "";
+    color: #333;
+    margin-bottom: 10px;
+}
+.BBList li h5{
+    font:500 14px/14px "";
+    color: rgb(119, 117, 117);
+}
+
+/* 轮播图上导航 */
+/* .BNavList{
+    display: flex;
+    justify-content: space-around;
+    flex-flow:nowrap column ;
+} */
+.navLCon{
+    width: 300px;
+    height: 480px;
+    position: absolute;
+    top: 0;
+    left: 0px;
+    background: rgba(0,0,0,0.7);
+    z-index: 1000;
+    padding: 15px;
+}
+.banMask{
+    display:block;
+    height: 430px;
+    margin-left: 300px;
+    width: 770px;
+}
+.navLCon h2{
+    text-align: center;
+    font:26px/36px "";
+    color: #ffffff;
+    border-bottom: 2px solid #fff;
+}
+.BNItem{
+    padding: 15px 0px;
+}
+.BNItem h3{
+    display: flex;
+    align-content:center;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.BNItem h3 p{
+    font:18px/30px "";
+    color: #ffffff;
+    display: flex;
+}
+.BNItem{
+    border-bottom: 1px solid rgb(172, 168, 168);
+    position: relative;
+}
+.BNItem3{
+    border-bottom:none;
+}
+.BNItem h3 span{
+    height: 18px;
+    align-self: center;
+    display: inline-block;
+    background:  #ff3573;
+    border-radius:3px;
+    font:12px/18px "";
+    color: #fff;
+    margin-left: 5px;
+    padding:  0 3px ;
+}
+.BNItem h3 i{
+    align-self: center;
+}
+.BNItem ul {
+    display: flex;
+    justify-content: flex-start;
+    flex-flow: wrap row;
+}
+.BNItem>ul>li>a{
+    display: block;
+    width: 90px;
+    color: #fff;
+    font:14px/24px "";
+}
+
+.BNavHov{
+    position: absolute;
+    width: 800px;
+    height: 400px;
+    top: 0;
+    left: 285px;
+    background: #fff;
+    border:1px solid #ccc;
+    border-radius:0 3px 3px 0;
+    display: flex;
+}
+
+.BNavHovJ{
+    position: absolute;
+    width: 0;
+    height: 0;
+    border:15px solid transparent;
+    border-right: 15px solid #fff;
+    left: -30px;
+}
+.BNH li>p{
+    font:  20px/20px "";
+    color: #333;
+    margin: 10px 0;
+}
+
+.BNH li> ol{
+    display: flex;
+    justify-content: space-between;
+    flex-flow:wrap row;
+    margin-bottom: 10px;
+}
+.BNH li> ol li{
+    width: 110px;
+}
+.BNH li> ol li a{
+    display: block;
+    color: #555;
+    font:14px/14px "" ;
+    padding:  5px 0;
+}
+.BNH>li>a{
+    font:14px/14px "" ;
+    display: block;
+    float: left;
+    color: #555;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+.BNH{
+    padding: 10px;
+}
+.BNItem1 .BNavHov{
+    top:-30px;
+}
+.BNItem1 .BNavHovJ{
+    top: 77px;
+}
+
+.BNItem2 .BNavHov{
+    top:-30px;
+    width: 400px;
+}
+.BNItem2 .BNavHovJ{
+    top: 77px;
+}
+.BNItem3 .BNavHov{
+    top:-30px;
+}
+.BNItem3 .BNavHovJ{
+    top: 77px;
+}
+
+
+.BNItem>ul li a:hover{
+    color: #ccc !important;
+}
+.BNH>li p:hover{
+    text-decoration:underline;
+}
+.BNH a:hover{
+    color: #333 !important;
+}
+
+
+
+/* 本周特卖 */
+
+
+.specialWeek{
+    width: 100%;
+    background: #f8f9fb;
+    padding-top: 60px;
+}
+.specialWeek>section{
+    margin: 0 auto;
+    width: 1070px;
+    padding-bottom: 60px;
+}
+.SWTop{
+    display: flex;
+    justify-content: space-between;
+}
+.SWTop h3,.SWTRButt{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.SWTop h3 i{
+    display: block;
+    background:url(https://us-website.wannar.com/images/index/ui/icon-weekly-promotion.png);
+    background-size: 36px 36px;
+    width: 36px;
+    height: 36px;
+    margin-right: 10px;
+}
+.SWTop h3 p{
+    font:26px/26px "";
+    color: #333;
+}
+.SWTop h3 span{
+    font:18px/18px "";
+    color: #555;
+    margin-left: 10px;
+}
+.SWTRButt div{
+    font:20px/26px "";
+    padding:10px 10px ;
+    margin: 0 10px;
+ 
+}
+
+.SWTRButtCli{
+    color: #ff3570;
+    border-bottom:2px solid #ff3573;
+}
+.SWTRButtHov{
+    color: #555;
+    border-bottom:2px solid transparent;
+}
+.SWTRButtHov:hover{
+    border-bottom:2px solid #555;
+}
+
+
+.SWTRItemBox{
+    position: relative;
+    height: 300px;
+}
+.SWTRItemBox>div{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1070px;
+    height: 300px;
+    display: flex;
+    justify-content: space-between;
+}
+.SWTRItemBox>div:nth-child(2){
+    display: none;
+}
+.SWTRItemBox>div ul{
+    width: 1070px;
+    height: 300px;
+    display: flex;
+    padding-top: 20px;
+    justify-content: space-between;
+}
+.SWTRItemBox>div ul li{
+    width: 348px;
+    height: 278px;
+    box-shadow:0 0 1px 1px #ccc;
+    background: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.SWTRItemBox>div ul li:hover{
+    box-shadow:0 0 6px 3px #ccc;
+}
+.SWTRUBL h2{
+    font:14px/14px "";
+    color: #666;
+    padding-left: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.SWTRUBL h3{
+    font:16px/16px "";
+    color: #666;
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
+.SWTRUBL h3 span{
+    font:600 38px/38px "";
+    color:#000;
+}
+.SWTRUBL h4 {
+    font: 12px/12px "";
+    color:#ccc;
+    margin-bottom: 20px;
+    padding-left: 10px;
+}
+.SWTRUBL h5 {
+    font: 12px/12px "";
+    padding-left: 10px;
+    color:#ccc;
+    margin-bottom: 5px;
+}
+.SWTRUBL h5 span{
+    font: 18px/25px "";
+    color:#ff3573;
+    margin-right: 5px;
+}
+.SWTRUBL s{
+    font: 14px/14px "";
+    padding-left: 10px;
+    margin-top: 10px;
+}
+.SWTRUBR{
+    position: relative;
+}
+.SWTRUBR img{
+    width: 200px;
+    height: 258px;
+}
+.SWTRUBR>div{
+    position: absolute;
+    bottom: 0;
+    width: 200px;
+    height: 100px;
+    padding: 10px;
+    background: rgba(0,0,0,0.6);
+    color: #ffffff;
+    font: 14px/16px "";
+}
+
+.SWTRItemBox>div ul li:nth-child(1) .SWTRUBL b{
+    position: absolute;
+    background: #ff3573;
+    color: #fff;
+    left: 0;
+    top: 80px;
+    height: 26px;
+    font:14px/26px "";
+    padding-left: 10px;
+}
+.SWTRItemBox>div ul li:nth-child(1) .SWTRUBL b i{
+    float: right;
+    border:13px solid #f76390;
+    border-left: 13px solid #ff3573;
+    border-right: 13px solid #fff;
+}
+.SWTRItemBox>div ul li:nth-child(1) .SWTRUBL h5{
+    margin-top: 95px;
+}
+
+
+
+
+/* 必玩景点 */
+.placeMust{
+    width: 100%;
+    padding: 30px 0;
+    background: #f8f9fb;
+}
+
+.PMcon{
+    width: 1070px;
+    margin: 0 auto;
+}
+
+.PMCT h3 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.PMCT h3 i{
+    display: block;
+    background:url(https://us-website.wannar.com/images/index/ui/icon-scenic.png);
+    background-size: 36px 36px;
+    width: 36px;
+    height: 36px;
+    margin-right: 10px;
+}
+.PMCT h3 p{
+    font:26px/26px "";
+    color: #333;
+}
+.PMItems{
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+.PMItems .PMIL,.PMItems .PMIR{
+    font:bold 48px/320px "";
+    margin:  0 10px;
+}
+.PMItems ul{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3792px;
+}
+.PMItems ul li{
+    float: left;
+    padding:0 13.5px;
+}
+.PMItems ul li img{
+    width: 210px;
+}
+.PMItems ul li p{
+    font:16px/26px "" ;
+}
+.PMListBox{
+    position: relative;
+    width: 1100px;
+    overflow: hidden;
+}
+

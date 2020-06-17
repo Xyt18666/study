@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script charset="utf-8" src="https://map.qq.com/api/js?v=2.exp&key=O35BZ-SOQWX-7KE4L-7YSNU-RHYKZ-DKBO2"></script><!-- 引入地图 -->
+
+
+</head>
+<body>
+    <div id="container" style="width:800px; height:350px"></div><!-- 插入地图元素 -->
+    <h3>定位到自己</h3>
+</body>
+<script>
+
+
+    if(navigator.geolocation){//判断是否支持定位
+        console.log(navigator.geolocation)
+        navigator.geolocation.getCurrentPosition((succ)=>{
+            console.log("ok")
+            console.log(succ.coords)//对象
+            
+
+            var map = new qq.maps.Map(document.getElementById('container'),{
+                center: new qq.maps.LatLng(0,0),
+                                //地图定位的位置(纬度，精度)
+                zoom:14  //放大比例
+            });
+
+            // map.panTo(new qq.maps.LatLng(succ.coords.longitude,succ.coords.latitude));
+            // 
+           
+
+            $('h3').click(()=>{
+                map = new qq.maps.Map(document.getElementById('container'),{
+                center: new qq.maps.LatLng(succ.coords.latitude,succ.coords.longitude),
+                                    //地图定位的位置(纬度，精度)
+                    zoom:20  //放大比例
+                });
+
+                var marke = new qq.maps.Marker({//标记
+                    position:new qq.maps.LatLng(succ.coords.latitude,succ.coords.longitude),
+                    map:map
+               })
+
+                var Label = new qq.maps.Label({//文字
+                    position:new qq.maps.LatLng(succ.coords.latitude,succ.coords.longitude),
+                    map:map,
+                    content:'文字'
+                })
+            })
+        },(error)=>{
+            console.log("NO")
+            console.log(error.code)//错误码
+            console.log(error.message)//错误提示
+        },{
+            enableHighAccuracy:true,
+            timeOut:20,
+            maximumAge:60
+        })
+    }else{
+        console.log('none')
+    }
+
+
+
+
+
+/*
+
+JavaScript API
+基础入门  
+key管理
+快速入门
+
+
+*/
+</script>
+</html>

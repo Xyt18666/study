@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.box{
+			width: 100px;
+			height: 100px;
+			background: #0f0;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">123</div>
+</body>
+<script type="text/javascript">
+var boxs=document.querySelector(".box")
+boxs.onclick=function(){
+	move(boxs,"width",500)
+}
+
+
+function move(obj,attr,end){
+	clearInterval(obj.dsq)
+
+	obj.dsq=setInterval(function(){
+		var thisattr=parseInt(getStyle(obj,attr))
+
+		var speed=(end-thisattr)/10
+		
+		speed=speed>0?Math.ceil(speed):Math.floor(speed)
+
+		
+		console.log(speed,thisattr)//199
+		thisattr+=speed
+ 	
+		console.log(speed,thisattr)//200
+
+		obj.style[attr]=thisattr+"px"
+
+		if(thisattr==end){
+			clearInterval(obj.dsq)
+		}
+		
+	},20)
+}
+
+function getStyle(obj,attr){
+	return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj,null)[attr]
+}
+</script>
+</html>

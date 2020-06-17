@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=
+    no"> 
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .search{
+            width: 90%;
+            margin: 0 auto;
+            height: 35px;
+            background: #778899;
+            z-index: 99;
+        }
+        header{
+            position: relative;
+            z-index: 99;
+        }
+        form{
+            display: flex;
+        }
+        form i{
+            width: 30px;
+            height: 30px;
+            background: #0f0;
+        }
+        form input{
+            width:calc(100% - 30px);
+        }
+        .ban{
+            width: 100%;
+            height: 240px;
+            background: rgb(240, 167, 167);
+            transform: translate(0,-35px);
+        }
+        nav ul{
+            display: flex;
+            justify-content: space-around;
+        }
+        nav ul li{
+            display: flex;
+            flex-flow:column wrap;
+            background: #045;
+        }
+        nav ul li h6{
+            text-align: center;
+        }
+        .content{
+            width: 90%;
+            margin: 0 auto;
+        }
+        .top{
+            display: flex;
+            justify-content: space-between;
+        }
+        .list{
+            display: flex;
+            justify-content: space-around;
+        }
+        .list li{
+            width: 45%;
+        }
+        .list li div{
+            display: flex;
+            justify-content: space-between;
+        }
+        .list2 ol li{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .list2 ol li .l{
+            flex:4
+        }
+        .list2 ol li .r{
+            flex:6
+        }
+        .list2 ol li h4{
+            display: flex;
+            justify-content: space-between;
+        }
+        .list2 ol li h4 span{
+            transform: translate(-10px,10px);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="search">
+            <form action="#">
+                <input type="text">
+                <i>图标</i>
+            </form>
+        </div>
+       
+    </header>
+    <main>
+        <div class="ban">
+            banner
+        </div>
+        <nav>
+            <ul>
+                <li>
+                    <p>图片1</p>
+                    <h6>文字1</h6>
+                </li>
+                <li>
+                    <p>图片2</p>
+                    <h6>文字2</h6>
+                </li>
+                <li>
+                    <p>图片3</p>
+                    <h6>文字3</h6>
+                </li>
+                <li>
+                    <p>图片4</p>
+                    <h6>文字4</h6>
+                </li>
+            </ul>
+        </nav>
+        <div class="content">
+            <div class="top">
+                <div class="l"><img src="#" alt="#">标题</div>
+                <div class="r">></div>
+            </div>
+            <ol class="list">
+                <li>
+                    <img src="#" alt="">
+                    <h2>标题2</h2>
+                    <div>
+                        <div class="mor">$$$</div>
+                        <p>123人</p>
+                    </div>
+                </li>
+                <li>
+                    <img src="#" alt="">
+                    <h2>标题2</h2>
+                    <div>
+                        <div class="mor">$$$</div>
+                        <p>123人</p>
+                    </div>
+                </li>
+            </ol>
+            <div class="list2">
+                <div class="top">
+                    <div class="l"><img src="#" alt="#">标题</div>
+                    <div class="r">></div>
+                </div>
+                <ol>
+                    <li>
+                        <div class="l">
+                            <img src="" alt="">
+                        </div>
+                        <div class="r">
+                            <h2>h2</h2>
+                            <h3>h3</h3>
+                            <h4><i>i</i><span>span</span></h4>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="l">
+                            <img src="" alt="">
+                        </div>
+                        <div class="r">
+                            <h2>h2</h2>
+                            <h3>h3</h3>
+                            <h4><i>i</i><span>span</span></h4>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="l">
+                            <img src="" alt="">
+                        </div>
+                        <div class="r">
+                            <h2>h2</h2>
+                            <h3>h3</h3>
+                            <h4><i>i</i><span>span</span></h4>
+                        </div>
+                    </li>
+                </ol>
+            </div> 
+        </div>
+        
+    </main>
+    <footer></footer>
+</body>
+</html>

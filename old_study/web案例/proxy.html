@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+</head>
+<body>
+	<div id="test">a</div>
+	<button>1</button>
+	<p></p>
+</body>
+<script>
+
+
+// var test=function(){
+// 	this.txt="这是一个对象属性";
+// 	$("div").click($.proxy(this.myClick,this));
+// 	//想要改变的函数  改变到
+// };
+
+// test.prototype.myClick = function(event){
+// 	console.log(this.txt);
+// 	console.log(event.currentTarget.nodeName);
+// };
+
+// var x = new test();
+
+
+
+
+// var objPerson = {
+// 	name: "John Doe",
+// 	age: 32,
+// 	test: function(){
+// 	  $("p").after("Name: " + this.name + "<br> Age: " + this.age);
+// 	}
+// };
+// $("button").click($.proxy(objPerson,"test"));
+
+var obj={
+	aa:"5",
+	b:this,
+	a:function(){
+		return 	console.log(9)
+	},
+	f:function(){
+		console.log(this.aa)
+	}
+}
+var obj2={
+	aa:"666",
+	a:function(){
+		return 	console.log(888)
+	}
+}
+
+// var a= function(){
+// 	var aa="1"
+// 	console.log(aa,this.aa)
+// 	this.a()
+// 	console.log(this.b)
+// };
+// $("div").click($.proxy(a,obj))
+
+ $("div").click($.proxy(obj.f,obj2))
+obj.f()
+// a.call(obj)
+
+
+
+
+</script>
+</html>

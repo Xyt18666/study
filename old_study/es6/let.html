@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+console.log(a)//undefined
+var a=1;
+console.log(a)// 1
+// var定义的变量会变量提升，先声明但并没赋值
+// function 定义的函数 会变量提升 并赋值
+
+
+//console.log(b)// b is not defined 
+let b=2;
+console.log(b)// 2
+// let声明的不存在变量提升
+
+
+function fn(){
+	console.log(c)// c is not defined 
+	let c=3;
+	console.log(c)// 3
+}
+// fn()
+
+
+
+var d = 12;
+var d = 13;
+
+function d(){
+	console.log(d)
+}
+console.log(d)//13
+
+//d()//报错  d is not a function 
+// d识别为变量，而非函数，此时就非常的不好用
+
+let e = 14;
+// let e = 15;
+
+// function e(){}
+
+console.log(e)//报错
+// let定义的变量不能重复定义,函数也不能重名
+
+
+console.log(f)
+let f=0;
+let f=1;//报错，之前所有的代码都不会执行
+
+
+
+// 虽然不进行预解析，但是代码执行 也是想将变量提前过滤一遍，一旦发现错误，就报错
+
+</script>
+</html>

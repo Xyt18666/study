@@ -1,0 +1,60 @@
+self是什么：在定义 函数的 时候 ，把 self 写进第一个参数就好了，当调用时，会指向实例对象
+
+class Ball:
+	def setName(self,name):
+		self.name = name
+
+	def kick(self):
+		print("我叫%s," % self.name)
+
+
+self : 与 js中的 this 相同 
+
+a = Ball()
+a.setName(a,"aaa")
+
+b = Ball()
+b.setName(b,"bbb")
+
+
+----------------------------------------------
+
+__init__(self)  魔法方法，类似于 js中的 构造函数
+
+
+
+class Ball:
+	def __init__(self,name)：
+		self.name = name
+	
+	def kick(self):
+		print("我叫%s," % self.name)
+
+-----------------------------------------------
+公有 和 私有 变量： 
+
+加上 双下划线 ，变为 私有变量，被实例后无法访问
+
+class Ball:
+	__name = "name"
+	def getName(self):  通过 函数 把私有变量暴露出去
+		return self.__name
+
+
+
+d = Ball()
+d.name    报错 ，找不到
+
+d.getName()  此时才能获取到 
+
+d._类名__变量  也可以使用这种方法获得
+
+
+
+
+
+
+
+
+
+

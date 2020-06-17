@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./src/test.js"],"names":["fn","a","b","console","log"],"mappings":"yFAIO,SAASA,EAAGC,EAAGC,GACpB,OAAOD,EAAIC,EAJb,0CACAC,QAAQC,IAAI","file":"js/tests.959a95e7f0.js","sourcesContent":["\n// eslint-disable-next-line\nconsole.log(\"222\")\n\nexport function fn(a, b) {\n  return a + b;\n}\n"],"sourceRoot":""}

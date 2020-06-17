@@ -1,0 +1,7 @@
+<view class="myH" >
+  {{cDate}}
+  <text> json中  usingComponents 是否引用第三方组件</text>   
+  <view>
+    <slot></slot>
+  </view>
+</view>

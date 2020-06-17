@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">    
+	<script src="https://unpkg.com/swiper/js/swiper.js"></script>
+	<script src="http://code.jquery.com/jquery-3.4.1.js"></script>
+	<style>
+		.swiper-container{
+			width: 800px;
+			height: 300px;
+			margin: 0 auto;
+		}
+		.swiper-slide img{
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+</head>
+<body>
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="img/1.jpg" alt=""></div>
+        <div class="swiper-slide"><img src="img/2.jpg" alt=""></div>
+        <div class="swiper-slide"><img src="img/3.jpg" alt=""></div>
+        <div class="swiper-slide"><img src="img/4.jpg" alt=""></div>
+        <div class="swiper-slide"><img src="img/5.jpg" alt=""></div>
+    </div>
+    <!-- 如果需要分页器 -->
+    <div class="swiper-pagination"></div>
+    
+    <!-- 如果需要导航按钮 -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    
+    <!-- 如果需要滚动条 -->
+    <div class="swiper-scrollbar"></div>
+</div>
+</body>
+<script>
+var sw= new Swiper(".swiper-container",{
+	loop:true,
+	autoplay:{
+		autoplay:true,
+		delay:1000,
+	},
+	pagination:{
+		el:".swiper-pagination",
+		clickable:true,
+	},
+	navigation:{
+		nextEl:".swiper-button-next",
+		prevEl:".swiper-button-prev",
+	},
+}) 
+
+$(".swiper-container").hover(function(){
+	sw.autoplay.stop()
+},function(){
+	sw.autoplay.start()
+
+})
+
+</script>
+</html>

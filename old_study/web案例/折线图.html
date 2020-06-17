@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+</head>
+<body>
+	<canvas width="800px" height="320px"></canvas>
+</body>
+<script>
+let c=$('canvas')[0].getContext('2d')
+
+var array1=[24,26,0,10,-15]
+var array2=[2,6,15,18,-5]
+
+let xjz=50;
+let yjz=100;
+let xjj=50;
+let yjj=3;
+
+c.beginPath()
+	c.strokeStyle="#000";
+	c.lineWidth='2';
+	c.moveTo(xjz,yjz-(-20-array1[0])*yjj)
+	c.lineTo(700,yjz-(-20-array1[0])*yjj)
+	c.stroke()
+c.closePath()
+
+for(var a=0; a<array1.length; a++){
+	c.beginPath()
+	c.strokeStyle="red";
+	c.lineWidth='2';
+	c.moveTo(xjz+xjj*a,yjz-(array1[a]-array1[0])*yjj)
+	c.lineTo(xjz+xjj*(a+1),yjz-(array1[a+1]-array1[0])*yjj)
+	c.stroke()
+	c.closePath()
+
+	c.beginPath()
+	c.strokeStyle="#0f0";
+	c.lineWidth='2';
+	c.moveTo(xjz+xjj*a,yjz-(array2[a]-array1[0])*yjj)
+	c.lineTo(xjz+xjj*(a+1),yjz-(array2[a+1]-array1[0])*yjj)
+	c.stroke()
+	c.closePath()
+
+
+
+	c.beginPath()
+	c.strokeStyle="red"
+	c.lineWidth="2"
+	c.fillStyle="#fff"
+	c.arc(xjz+xjj*a,yjz-(array1[a]-array1[0])*yjj,5,0,2*Math.PI)
+	c.fill()
+	c.stroke()
+	c.closePath()
+	
+	c.beginPath()
+	c.strokeStyle="#0f0"
+	c.lineWidth="2"
+	c.fillStyle="#fff"
+	c.arc(xjz+xjj*a,yjz-(array2[a]-array1[0])*yjj,5,0,2*Math.PI)
+	c.fill()
+	c.stroke()
+	c.closePath()
+
+
+	c.beginPath()	
+	c.font="12px/12px 微软雅黑";
+	c.textAlign="center";
+	c.fillStyle="#000";
+	c.fillText(array1[a]+"度",xjz+xjj*a,yjz-(array1[a]-array1[0])*yjj-15)
+	c.closePath()
+
+	c.beginPath()	
+	c.font="12px/12px 微软雅黑";
+	c.textAlign="center";
+	c.fillStyle="#000";
+	c.fillText(array2[a]+"度",xjz+xjj*a,yjz-(array2[a]-array1[0])*yjj-15)
+	c.closePath()
+
+}
+
+</script>
+</html>

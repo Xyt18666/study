@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+		
+</body>
+<script>
+/*
+
+git
+
+安装：
+1. 在官方网页下载 window 64位 版本
+2. 傻瓜式安装包，无脑下一步即可
+
+
+初始化git仓库：(这个仓库会存放对我们项目进行备份的文件)
+1.在项目内右键 Git Bash 
+2. git init
+3.此时在项目文件夹下生产一个隐藏文件 .git
+
+
+配置个人信息：
+1. git config --global user.name "mingzi"   用户名
+2.git config --global user.email "419473930@qq.com"   邮箱
+
+把代码保存到仓库：
+1. git add ./git.html（放到大门口）(./不写文件名,会直接把当前目录下的直接放到 大门口)
+2. git commit -m "说明,文件名,改动"（放入仓库内）
+
+简化版,放入仓库：git commit --all -m ""
+
+
+
+当代码更新后,把代码提交到仓库：
+1.再次使用以上两个代码
+2.此时仓库内就有2个版本的文件
+
+
+查看状态：(当放到大门口，却未移至仓库时)
+1. git status （随时都能看,执行后会进行比较,工作区和仓库的文件）
+2. 在执行 git commit -m ""
+
+git中忽略文件：
+1. 以 / 开头写一个路径,这些路径所对应的文件都会被忽略,不会被提交到仓库中。（也可以写指定文件）
+
+
+查看日志：
+1. git log   (提交记录)
+简化版的信息：git log --oneline
+
+
+版本回退：
+git reset --hard Head~0  (尾数字可以改,退回多个版本)
+
+通过版本号切换版本：
+git reset --hard 版本号   (git log --oneline 输出的版本号)
+
+当版本号找不见时： git reflog  版本切换记录
+
+
+创建分支,切换分支：
+1. git branch dev (创建分支 名为 dev)
+2. git branch (显示所有分支,带有*的是当前分支)
+3. git checkout dev (切换到 dev 这个分支)
+4. git merge dev (合并分支)
+5. git branch -d dev （删除 dev 分支,当前分支不能删除当前分支）
+6. 如果出现冲突,需要手动选择需要的代码,然后重新提交到仓库
+
+
+
+GitHup:
+1. 是一个网站，提供了允许Git上传代码的功能
+
+提交代码到 GitHup:
+1. 注册登录GitHup
+2. 点击 页面 + 按钮 选择第一个 创建仓库
+3. 输入 名字 和 描述 , 选择公开
+4. 创建完成后 跳转到新页面,点击https 并 复制 网址
+5. git push 复制的网址 master（把本地的master 传输到 服务器的 master）
+
+
+获取服务器上的文件：
+方法一：
+1. 在其他人的项目上打开 Git Bash 
+2. git init 创建仓库
+3. git pull 复制的网址 master  （不一定是master,是某个分支）
+
+方法二：
+1. git clone 复制的网址  （会得到远程仓库的数据,如果多次执行会覆盖本地的内容）
+
+
+ssh方式上传代码：
+1. 公钥 和 私钥 两者之间是有关联的。
+2. 生成公钥和私钥： ssh-keygen -t rsa -c "419473930@qq.com"
+3. 此时用户目录下生成 .ssh 文件    里面有两个 id文件   id_rsa 是公钥   .pub是私钥
+4. 在GitHub上 点击右上角 Settings  SSH and GPG 选项
+5. 点击 New SSH key   粘贴公钥 到key上 写个名字 my_window
+6. 此时点 + 按钮 创建一个仓库
+7. 点击 SSH 复制 网址
+8. 5. git push 复制的SSH网址 master（把本地的master 传输到 服务器的 master）
+
+
+模拟多人开发流程：
+1. 修改后先 在 本地 提交 , 然后在Push到服务器
+2. 别人从服务器上 Pull 下载下来
+3. 小红想要把最新的数据拿回来,在本地提交之前, 先pull 下载 在 push 上传（有冲突先解决冲突，在上传到服务器）
+ps: 上传之前先 下载  
+
+
+push 和 pull 简写
+1. 先配置 git remote add origin 仓库地址  (添加一个远程地址)（相当于用 origin 当做一个变量存储了 地址）
+2. git push origin -u master  (关联)
+3. 在下次 上传时 直接 git push 就可以了
+
+
+
+
+
+
+ 
+git status  查看本地仓库状态   红色则未放入暂存区   绿色在暂存区
+git remote -v   查看是否与远程有链接
+git remote rm  origin           删除链接
+
+
+
+A: 增加的文件.
+
+C: 文件的一个新拷贝.
+
+D: 删除的一个文件.
+
+M: 文件的内容或者mode被修改了.
+
+R: 文件名被修改了。
+
+T: 文件的类型被修改了。
+
+U: 文件没有被合并(你需要完成合并才能进行提交)
+
+X: 未知状态。(很可能是遇到git的bug了，你可以向git提交bug report)
+
+
+
+储存过程：
+1.添加到暂存更改 区
+2.提交已暂存的 文件
+3.推送到远程仓库
+
+
+
+
+*/
+</script>
+</html>
