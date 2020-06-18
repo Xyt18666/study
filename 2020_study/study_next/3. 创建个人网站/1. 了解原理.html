@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+
+        1.前期准备：邮箱（任意）、支付工具(微信、支付宝)
+
+        2.购买域名：就是 www.*.*    （world wide web , 万维网）（ps:买.cn需要备案一个月）
+            后缀意义：
+                .com    公司
+                .cn     中国
+                .gov    政府
+                .edu    教育
+                .net    互联网普通单位
+                ...     很多 很多
+
+            谁在卖域名： 需要找ISP(Internet services provieder , 互联网服务提供商)，国内最大的就是：阿里云
+
+            去阿里云 购买 域名： 
+                www.aliyun.com
+                首选注册为会员、登陆
+                点击域名注册，选择想要的域名
+                购买，填写信息模板，验证邮箱
+                完成支付
+                我新购买的 域名 ： www.xueyiteng.com
+
+
+
+
+
+        3.购买服务器 （ps:买大陆服务器，需要备案一个月，所以建议买国外的或者港澳台）
+            这里推荐一个 香港的 服务器 售卖网站： www.henghost.com
+
+            注册
+                我的账号、密码是：
+                    18733678267
+                    xyt456517.
+
+            点击新云主机，选择服务器，买最便宜的就行
+
+            此时有了 ip地址
+
+
+        4.域名解析（就是让域名能够指向服务器）
+
+            来到 阿里云 后台
+            域名列表 -> 解析 -> 新手引导
+
+            填入 刚才 购买的 服务器 ip , 确定 即可 
+
+            此时访问 www.xueyiteng.com 即可显示成功
+
+
+        5.网页的创建、上传、管理
+
+            服务器管理软件： 使用 FTP (file Transfer Protocal, 文件传输协议) 软件 来管理服务器，FTP协议就是专门让网页制作人员将网页传输到服务器上的 协议
+
+            我们使用 : 8uFTP (百度下载即可)  （苹果使用 FileZilla）
+
+            这里需要 ip、用户名、密码... ,所以打开恒创服务器的 产品管理 ，找到用户名、密码：43.240.30.173、xueyiten、g0r768fyAS 
+
+            输入这些 信息后 ，就能够 访问到 服务器 文件
+
+
+            服务器这个路径下就是网站的根目录： /domains/xueyiteng.com/public_html/
+
+            通过 url链接 只能 访问到 index.htnl 
+            而想要访问 其余的 网页 ，需要 跳转子页面
+
+
+
+        6.SSL认证
+            一般分为：
+                DV 适用于个人网站 博客 小程序  （我们使用最普通的 dv）
+                EV 、OV Ov和ev用于大型企业 金融机构 银行
+                
+            
+            购买ssl认证：
+
+                西部数码 -> ssl证书服务 -> 购买 -> 补全资料
+                输入域名、勾选DNS验证
+                此时拿到：下面的TXT记录
+
+
+            添加 记录 TXT ：
+                阿里云 -> 域名 ->  解析 -> 添加记录 
+
+                    我的TXT记录：
+                        主机记录:_dnsauth 
+                        记录值:2020061711050759qiy1qq7zou4z4rzfr4peswcy0btrgm5ham6xxk2xvt2o9uf9 
+                        记录类型:TXT
+
+
+            回到西部数码，完成验证信息检测：
+                完 成后，拿到一个 证书和密匙
+                记事本 打开 这两个 文件 ， 粘贴到一起
+                
+
+            
+
+            绑定 ssl:
+            进入 恒创 -> 产品管理 -> 登陆DirectAdmin
+            ssl认证
+
+            勾选：使用一个符号链接从private_html到public_html - 允许同样的数据在http和https中 ， 然后保存
+
+            勾选：粘贴事前准备好的证书和密匙 的 内容文本 ， 粘贴 并 保存
+
+            把 .htaccess 放入 服务器目录下 ， 完成 自动跳转https
+
+            (.htaccess
+            因为我的虚拟主机是apache环境
+            这个就是一个重定向代码
+            把http强制到https)
+
+
+
+
+
+        
+     -->
+    hello word!
+  </body>
+</html>
