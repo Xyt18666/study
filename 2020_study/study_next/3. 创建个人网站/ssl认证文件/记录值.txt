@@ -1,3 +1,4 @@
+xueyiteng.com 
 主机记录:_dnsauth 
-记录值:2020061711050759qiy1qq7zou4z4rzfr4peswcy0btrgm5ham6xxk2xvt2o9uf9 
+记录值:202006180754410wls91n1h5lo9l8mr21mq5e8loq4aj80stu35e4rggcijbidv3 
 记录类型:TXT
