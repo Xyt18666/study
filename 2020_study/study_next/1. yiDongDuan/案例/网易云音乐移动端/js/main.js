@@ -107,7 +107,6 @@ $(function () {
 
     $(".r").click(() => {
       index++;
-      console.log(index);
       if (index > 5) {
         $(ban).css({
           transition: "0s",
@@ -119,7 +118,6 @@ $(function () {
     });
     $(".l").click(() => {
       index--;
-      console.log(index);
       if (index < 1) {
         $(ban).css({
           transition: "0s",
