@@ -7,4 +7,9 @@ GET https://jsonplaceholder.typicode.com/posts
 POST https://way.jd.com/jisuapi/search?appkey=79994b160a821f1fcc132083a0172715&keyword=白菜&num=10
 
 
+###
 
+GET https://api.imjad.cn/cloudmusic/?type=playlist&id=309390784
+
+###
+GET http://musicapi.leanapp.cn/personalized/newsong
