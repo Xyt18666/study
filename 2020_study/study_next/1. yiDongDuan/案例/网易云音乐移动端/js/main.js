@@ -55,7 +55,7 @@ $(function () {
       ban.ontouchend = function (e) {
         let endX = parseInt(e.changedTouches[0].clientX);
 
-        if (Math.abs(endX - startX) < parseInt($(".ban").width()) / 3) {
+        if (Math.abs(endX - startX) < parseInt($(".ban").width()) / 6) {
           tab(index);
         } else {
           if (endX - startX > 0) {
