@@ -277,6 +277,7 @@ $(function () {
     $("input").val("");
     $(".ssL h2 span").text("");
     $(".ssL").hide();
+    $(".rmSear").show();
   });
 
   $("form i,.ssL h2").click(function () {
