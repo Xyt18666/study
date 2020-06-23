@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      ul li {
+        width: 150px;
+        height: 50px;
+        background: #789;
+
+        display: flex;
+        justify-content: space-around;
+      }
+      li i {
+        display: none;
+        width: 50px;
+        height: 50px;
+      }
+      li p {
+        width: 120px;
+        transition: 1s;
+      }
+      ol {
+        width: 400px;
+
+        height: 240px;
+        border: 2px solid #456;
+      }
+    </style>
+  </head>
+  <body>
+    <ul>
+      <li>
+        <i>></i>
+        <p>1</p>
+      </li>
+      <li>
+        <i>></i>
+        <p>12</p>
+      </li>
+      <li>
+        <i>></i>
+        <p>13</p>
+      </li>
+    </ul>
+    <ol>
+      <li>12</li>
+      <li>13</li>
+      <li>14</li>
+    </ol>
+  </body>
+  <script>
+    $("ul li").on("mouseover", function () {
+      $("ol li").eq($(this).index()).show().siblings().hide();
+      $("li")
+        .eq($(this).index())
+        .children("i")
+        .show()
+        .siblings()
+        .children("i")
+        .hide();
+      $("ul li p").css({
+        background: "#789",
+        width: "120px",
+      });
+      $("ul li").eq($(this).index()).children("p").css({
+        background: "red",
+        width: "80px",
+      });
+    });
+    $("ul li").on("mouseout", function () {
+      $("ol li").hide();
+    });
+  </script>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <script src="js/rem.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.4.1.js"></script> -->
+    <script src="js/zepto.min.js"></script>
+    <link rel="stylesheet" href="css/main.css" />
+
+    <meta name="keywords" content="网易云音乐" />
+    <!-- 关键字，方便搜索引擎查找 -->
+
+    <meta name="description" content="网易云音乐" />
+    <!-- 当前网页的介绍，百度搜索右侧的介绍 -->
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
+    />
+    <!-- 视口 -->
+
+    <link
+      rel="shortcut icon"
+      href="//s1.music.126.net/style/favicon.ico?v20180823"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      .contr {
+        width: 600px;
+        height: 200px;
+        background: #789;
+        margin: 0 auto;
+      }
+      .mame {
+        width: 600px;
+        height: 100px;
+        background: #456;
+        float: left;
+      }
+      .mame img {
+        width: 100px;
+        height: 100px;
+        display: block;
+        float: left;
+      }
+      .mame p {
+        box-sizing: border-box;
+        padding-top: 20px;
+        width: 500px;
+        height: 100px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        float: left;
+        font: 24px/100px "";
+      }
+      .tsEn,
+      .time {
+        float: left;
+      }
+      .tsEn {
+        width: 100px;
+        height: 100px;
+        position: relative;
+      }
+      .tsEn p {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        text-align: center;
+        font: 24px/100px "";
+        background: red;
+        border-radius: 50%;
+        display: none;
+      }
+      .tsEn p:nth-child(1) {
+        display: block;
+      }
+      .prog div {
+        float: left;
+      }
+      .time {
+        width: 500px;
+        height: 100px;
+      }
+      .prog {
+        width: 500px;
+        height: 80px;
+        position: relative;
+      }
+      time {
+        width: 500px;
+        height: 20px;
+        font: 20px/20px "";
+      }
+      .prog div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 10px;
+        border-radius: 5px;
+        margin-top: 35px;
+      }
+      .prog div:nth-child(1) {
+        background: #fff;
+        width: 500px;
+        z-index: 1;
+      }
+      .prog div:nth-child(2) {
+        background: #ccc;
+        z-index: 10;
+      }
+      .prog div:nth-child(3) {
+        background: transparent;
+        width: 500px;
+        z-index: 50;
+      }
+      .meter {
+        float: left;
+        width: 100px;
+        border-radius: 2.5px;
+        height: 5px;
+        position: relative;
+        background: #cc0;
+      }
+      .con {
+        height: 5px;
+        background: #0f0;
+        width: 100px;
+        z-index: 100;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+      }
+      .cona {
+        height: 5px;
+        width: 100px;
+        background: transparent;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 50;
+      }
+      .la {
+        height: 20px;
+        background: #000;
+        width: 5px;
+        position: absolute;
+        left: 100px;
+        top: 50%;
+        z-index: 100;
+        margin-top: -10px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="contr">
+        <audio src=""></audio>
+        <div class="mame">
+          <img src="" alt="" />
+          <p></p>
+        </div>
+        <div class="tsEn">
+          <p>开始</p>
+          <p>暂停</p>
+        </div>
+        <div class="time">
+          <div class="prog">
+            <div class="jz"></div>
+            <div class="sj"></div>
+            <div class="click"></div>
+          </div>
+          <div class="tw">
+            <time><span>00:00</span>/<em>00:00</em></time>
+            <!-- <em>全屏</em> -->
+            <div class="meter">
+              <div class="con"></div>
+              <div class="cona"></div>
+              <div class="la"></div>
+            </div>
+            <h4>上一首</h4>
+            <h5>下一首</h5>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+  <script src="js/music.js"></script>
+</html>
