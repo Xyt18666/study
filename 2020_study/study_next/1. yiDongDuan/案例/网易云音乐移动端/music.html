@@ -32,170 +32,88 @@
         margin: 0;
         padding: 0;
       }
-
-      .contr {
-        width: 600px;
-        height: 200px;
-        background: #789;
-        margin: 0 auto;
-      }
-      .mame {
-        width: 600px;
-        height: 100px;
-        background: #456;
-        float: left;
-      }
-      .mame img {
-        width: 100px;
-        height: 100px;
-        display: block;
-        float: left;
-      }
-      .mame p {
-        box-sizing: border-box;
-        padding-top: 20px;
-        width: 500px;
-        height: 100px;
-        text-overflow: ellipsis;
+      .jd {
+        width: 300px;
+        height: 20px;
         overflow: hidden;
-        white-space: nowrap;
-        float: left;
-        font: 24px/100px "";
-      }
-      .tsEn,
-      .time {
-        float: left;
-      }
-      .tsEn {
-        width: 100px;
-        height: 100px;
+        border-radius: 20px;
         position: relative;
-      }
-      .tsEn p {
-        width: 100px;
-        height: 100px;
-        position: absolute;
-        top: 0;
-        left: 0;
-        text-align: center;
-        font: 24px/100px "";
-        background: red;
-        border-radius: 50%;
-        display: none;
-      }
-      .tsEn p:nth-child(1) {
-        display: block;
-      }
-      .prog div {
-        float: left;
-      }
-      .time {
-        width: 500px;
-        height: 100px;
-      }
-      .prog {
-        width: 500px;
-        height: 80px;
-        position: relative;
-      }
-      time {
-        width: 500px;
-        height: 20px;
-        font: 20px/20px "";
-      }
-      .prog div {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 10px;
-        border-radius: 5px;
-        margin-top: 35px;
-      }
-      .prog div:nth-child(1) {
         background: #fff;
-        width: 500px;
-        z-index: 1;
+        border: 2px solid rgb(112, 6, 233);
       }
-      .prog div:nth-child(2) {
-        background: #ccc;
-        z-index: 10;
-      }
-      .prog div:nth-child(3) {
-        background: transparent;
-        width: 500px;
-        z-index: 50;
-      }
-      .meter {
-        float: left;
-        width: 100px;
-        border-radius: 2.5px;
-        height: 5px;
-        position: relative;
-        background: #cc0;
-      }
-      .con {
-        height: 5px;
-        background: #0f0;
-        width: 100px;
-        z-index: 100;
+      .jd .in {
         position: absolute;
         top: 0;
         left: 0;
-        z-index: 10;
-      }
-      .cona {
-        height: 5px;
-        width: 100px;
-        background: transparent;
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 50;
-      }
-      .la {
+        width: 0;
         height: 20px;
-        background: #000;
-        width: 5px;
+        background: #0f0;
+      }
+      .jd .up {
         position: absolute;
-        left: 100px;
-        top: 50%;
-        z-index: 100;
-        margin-top: -10px;
+        top: 0;
+        left: 0;
+        width: 300px;
+        height: 20px;
+        z-index: 99;
+        background: transparent;
+      }
+      .volume {
+        border: 2px solid #555;
+        width: 150px;
+        height: 15px;
+        display: flex;
+        align-items: center;
+      }
+      .volume .in {
+        width: 150px;
+        height: 5px;
+        background: #00f;
+      }
+      .volume .up {
+        width: 5px;
+        height: 15px;
+        z-index: 88;
+        margin-left: -5px;
+        background: #333;
       }
     </style>
   </head>
   <body>
-    <main>
-      <div class="contr">
-        <audio src=""></audio>
-        <div class="mame">
-          <img src="" alt="" />
-          <p></p>
-        </div>
-        <div class="tsEn">
-          <p>开始</p>
-          <p>暂停</p>
-        </div>
-        <div class="time">
-          <div class="prog">
-            <div class="jz"></div>
-            <div class="sj"></div>
-            <div class="click"></div>
-          </div>
-          <div class="tw">
-            <time><span>00:00</span>/<em>00:00</em></time>
-            <!-- <em>全屏</em> -->
-            <div class="meter">
-              <div class="con"></div>
-              <div class="cona"></div>
-              <div class="la"></div>
-            </div>
-            <h4>上一首</h4>
-            <h5>下一首</h5>
-          </div>
-        </div>
-      </div>
-    </main>
+    <div>
+      音乐封面：
+      <img src="#" alt="" />
+    </div>
+    <div class="qm">
+      歌曲名称：
+      <p></p>
+    </div>
+    <audio src="#"></audio>
+    <div class="time">时间进度：<i></i>/<em></em></div>
+    <div class="jd">
+      <div class="in"></div>
+      <div class="up"></div>
+    </div>
+
+    <div class="volume">
+      <div class="in"></div>
+      <div class="up"></div>
+    </div>
+
+    <div class="onoff">开关</div>
+    <h2>上一曲</h2>
+    <h3>下一曲</h3>
+    <h4>单曲循环</h4>
+    <h5>随机播放</h5>
+    <h6>列表循环</h6>
+    <div class="bs">
+      倍速：
+      <p>0.5</p>
+      <p>1</p>
+      <p>1.5</p>
+      <p>2</p>
+    </div>
+    <section>拖拽获取音乐文件</section>
   </body>
   <script src="js/music.js"></script>
 </html>

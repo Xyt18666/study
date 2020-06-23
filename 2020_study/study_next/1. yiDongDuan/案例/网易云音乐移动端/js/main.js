@@ -202,7 +202,7 @@ $(function () {
         $(`<li>
             <div class="top">${a + 1 < 10 ? "0" + (a + 1) : a + 1}</div>
             
-            <a href="music.html?id=${data[a].id}>
+            <a href="music.html?id=${data[a].id}">
                 <div class="conM">
                     <div class="mState">
                     <p>${data[a].name}</p>

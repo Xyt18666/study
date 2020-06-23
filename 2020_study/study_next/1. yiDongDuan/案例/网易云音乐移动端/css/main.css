@@ -257,7 +257,7 @@ footer {
   margin-top: -12px;
   background: url("https://s3.music.126.net/mobile-new/img/recommand_bg_2x.png?d045fafc60e017b653f8065a87496922=")
     no-repeat;
-  background-size: contain;
+  background-size: 100% 100%;
 }
 .Gligo {
   width: 100%;
@@ -314,6 +314,10 @@ footer {
 }
 .hotList li .top {
   flex: 1;
+}
+.conM {
+  display: flex;
+  justify-content: space-between;
 }
 
 .hotList li > a {
