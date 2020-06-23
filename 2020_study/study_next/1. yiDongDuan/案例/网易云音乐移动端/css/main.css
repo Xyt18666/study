@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   font: 14px/1.5 Helvetica, sans-serif, STHeiTi;
 }
@@ -58,6 +59,8 @@ nav ul {
   justify-content: space-around;
 }
 nav ul li {
+  flex: 1;
+
   text-align: center;
 }
 nav ul li span {
@@ -117,4 +120,292 @@ nav ul li:nth-of-type(1) span {
 }
 .r {
   right: 0;
+}
+
+.navList > li {
+  width: 100%;
+  display: none;
+}
+.navList > li:nth-of-type(1) {
+  display: block;
+}
+
+.recommendMusicList {
+  display: flex;
+  justify-content: space-around;
+  flex-flow: wrap row;
+}
+.recommendMusicList li {
+  width: 32%;
+}
+.recommendMusicList li a {
+  position: relative;
+}
+.recommendMusicList li img {
+  width: 100%;
+}
+.recommendMusicList li p {
+  font-size: 0.22rem;
+}
+.recommendMusicList li span {
+  position: absolute;
+  top: 0.05rem;
+  right: 0.05rem;
+  font-size: 0.22rem;
+  color: #fff;
+}
+
+.navList > li > h2 {
+  border-left: 2px solid #d43c33;
+  font-size: 0.3rem;
+  height: 0.3rem;
+  line-height: 0.3rem;
+  padding-left: 0.1rem;
+  margin: 0.2rem 0;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "iconfont";
+  src: url("iconfont.eot?t=1592883777787"); /* IE9 */
+  src: url("iconfont.eot?t=1592883777787#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */
+      url("data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAMIAAsAAAAABtAAAAK6AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCCcAqBWIFWATYCJAMICwYABCAFhG0HMRv9BREVlBtkPw+ys8VZE/MTxqd9E6rGfg+eJ7vq/aqanloJEaCDECnuzU5QulB+oRDL6XXyafXVRaHfd2mKrdAAXcN7fvHqW/5c6bOT9jzGIQpgAPPHvdO/Ou8Cme+8y3HtzZ+6AONACnDMTVZAAXAqsIvYg7EZAgSSSjHS1tE3D4sBvQSQbZs3rsbmfBiMlLQITs1EgxzBh1V71VPgcPh9+UKlWFD4NCgb2tC+jqaPKU27nssyH4E/nwWQpoEGigEDMq82NoBGJJomMGbIhH0VC3zseb4B2eufhzigMBiAZJZ3T3xXcKucCgADjaELWDjqSNDlwcE79k3Ec3Zy/3SSvHyxYOrFvmd1z57Nxy09Q2RkKnffnehrL1unX+5/Xj/7PP3UvVUjp/efBPfEvlMScsK3xMppdtGY6TWJkQFHbGR1pJ1fsTh+urNrz+ai3c6APR1dcVMVi+YnZlRlJB7hHuJGzG7/n/nPqnLWL83J+pnJ8+RGTcBo2D17JOBu2Lj/jmWo950j8Xt+mkBAl6kbP/Y35H6/Ur8yrO6fDTIAvHW+OdQY+jnAnt4u8Bv5PSuMKYReGZ1fm1J0oW9PEkhB8IArkg9jVTH3nBIsMXfu8JOSgsaSjRpKMfgIohocLI0QSBGd04N8RCHsERMAFPJmQAjnA4pQpkETzhc1lB/4iOUPDuGyh0AWSNSCQeRKa1oFVhHIvaj188SOUU1UfER9G6xkhSH9ColtkPIkKyYPmCBzDIn3ulBlYplHqpjtMAwzLTJ38Jo0qkuZplz3psTP48bQigAsCggQjhdEi2dmgv3aiil9/giouTFgkRZSg/sKECJt80ROQtYDPcimXqR7uSZyp6ZAURiCEWZGiIqxgIFiM8RS364DeJSEZkRkoSTlqnFfWbK+Yvy6dUAgUCuhlhr/JtgQoZsNAAA=")
+      format("woff2"),
+    url("iconfont.woff?t=1592883777787") format("woff"),
+    url("iconfont.ttf?t=1592883777787") format("truetype"),
+    /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+      url("iconfont.svg?t=1592883777787#iconfont") format("svg"); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #fff;
+}
+
+.icon-headset:before {
+  width: 100%;
+  content: "\e885";
+  font-size: 0.26rem;
+}
+
+.newMusic li a {
+  width: 95%;
+  margin: 0 auto;
+  border-bottom: 1px solid rgb(223, 223, 223);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.05rem;
+  padding-bottom: 0.05rem;
+}
+
+@font-face {
+  font-family: "iconfont";
+  src: url("iconfont.eot?t=1592885189049"); /* IE9 */
+  src: url("iconfont.eot?t=1592885189049#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */
+      url("data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAALYAAsAAAAABoQAAAKLAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCCcAqBEIEnATYCJAMICwYABCAFhG0HMBvNBcguMRUZ6a6kiM25d3A3mO9cKixTLPAjgmoN67ndEICMB5KAKorAiERGsXExAh6M+vJoxF2t6QZQmNqzpRCpEqmgKjzsXfh+7rdAMqo2U122QMaAIxCuwlFPyPAMyd6HhW4Ig67XX3vD6+oH0Cfunf7fAApkvvMulzEGjTVpUhdgHEgBjrUoshLJvGHsghd4nECtQQMcaxNzRfDL7HGBuK0JDfwFnyyzZLVQ2bA0iycVqouH4g7AY/T9+A+xqKZQkdhl2+fjJgz9Tjtprruyo4DgJ6DVFUiYBzKx3xjb5BKM4VIbcxsFxyoOfqf/y8AqjmoS7K+zC+tBPxQ/k8STPipvATLdmQU2Ju1Bqq9v9emp/PxceXwsPTzEwrwAKorwClHsnnTuhuv+vWuno3S8390tyT8/mSMIhH5NlpY7SC8vLqg4wEIox9N6x2+3bzo3EwFpKUB0yvz5szAEUH4m5zdD4EDwdj/c1WXwq2fvZ+QpPzMMc4Dq89iD/yUZ2JQNmW0psiZpTBVmue6jolYtStjV6muqvuPmUqFaxy06qgxkSKqNk5k+jwp1FlCp2iJqzZlcXaeN4hK5BrM6AKHZKQqNPpA0uycz/RMVOn2jUnMk1DoMtqwzGVfBFWqEJtPXWc2Qbe7aKBgX51EsNzWVl0XMMiq7FmTRUKScnMQ2qiVm2CsiRsQZV7LFJsBp2GxKZilZR4NCVSIrFw7zpjeFDNmCoFUK0hBkYnTrmBqD1MaD9iRY+XweEpY1aVRHQ52/DCm2Wu9MVEhkADmpbg9qeJRXbCuEGEI4hlOkFmYCDEJNTRJjNQ+qQwYSUp0QseSEnVZ8qDq0vbb1dzuglm0owumXVB5LrrUFAAA=")
+      format("woff2"),
+    url("iconfont.woff?t=1592885189049") format("woff"),
+    url("iconfont.ttf?t=1592885189049") format("truetype"),
+    /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+      url("iconfont.svg?t=1592885189049#iconfont") format("svg"); /* iOS 4.1- */
+}
+
+.icon-bofang:before {
+  content: "\e737";
+  color: rgb(209, 209, 209);
+  font-size: 0.5rem;
+}
+.play {
+  width: 0.5rem;
+}
+.mState p {
+  font-size: 0.26rem;
+  width: 5rem;
+  color: rgb(85, 85, 85);
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mState span {
+  display: block;
+  font-size: 0.2rem;
+  color: rgb(141, 141, 141);
+}
+.mState span i {
+  transform: scale(0.8);
+  font-size: 0.16rem;
+  display: inline-block;
+  font-style: normal;
+  text-align: center;
+  height: 0.2rem;
+  line-height: 0.2rem;
+  border-radius: 2px;
+  border: 1px solid rgb(250, 72, 18);
+  color: rgb(250, 72, 18);
+  margin-right: 0.1rem;
+}
+footer {
+  width: 100%;
+  margin-top: -12px;
+  background: url("https://s3.music.126.net/mobile-new/img/recommand_bg_2x.png?d045fafc60e017b653f8065a87496922=")
+    no-repeat;
+  background-size: contain;
+}
+.Gligo {
+  width: 100%;
+  margin-top: 1rem;
+  height: 1rem;
+  background: url(../imgs/网易云音乐-01.png) no-repeat 50% 50%;
+}
+.openapp {
+  width: 70%;
+  text-align: center;
+  margin: 0.5rem auto;
+  height: 0.5rem;
+  color: rgb(248, 35, 7);
+  border: 1px solid rgb(248, 35, 7);
+  padding: 0 0.3rem;
+  border-radius: 0.5rem;
+  line-height: 0.5rem;
+}
+.copyright {
+  color: rgb(175, 175, 175);
+  font-size: 0.12rem;
+  text-align: center;
+}
+.hotM {
+  width: 100%;
+  height: 2.5rem;
+  background: url("https://s3.music.126.net/mobile-new/img/hot_music_bg_2x.jpg?f01a252389c26bcf016816242eaa6aee=")
+    no-repeat;
+  background-size: 100%;
+  padding-top: 0.3rem;
+  overflow: hidden;
+}
+.hot {
+  width: 3rem;
+  height: 1.5rem;
+  background: url("https://s3.music.126.net/mobile-new/img/index_icon_2x.png?5207a28c3767992ca4bb6d4887c74880=")
+    no-repeat -10px -20px;
+  background-size: 3rem 1.5rem;
+}
+.time {
+  color: #fff;
+  font-size: 0.22rem;
+  margin-left: 0.4rem;
+}
+.hotList {
+  width: 95%;
+  margin: 0 auto;
+}
+.hotList li {
+  height: 0.8rem;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+.hotList li .top {
+  flex: 1;
+}
+
+.hotList li > a {
+  flex: 9;
+  display: flex;
+
+  justify-content: space-between;
+  border-bottom: 1px solid rgb(196, 196, 196);
+}
+.hotList .top {
+  text-align: center;
+  color: #ccc;
+  font-size: 0.36rem;
+  line-height: 0.8rem;
+}
+.hotList li:nth-of-type(1) .top {
+  color: red;
+}
+.hotList li:nth-of-type(2) .top {
+  color: rgb(255, 136, 0);
+}
+.hotList li:nth-of-type(3) .top {
+  color: rgb(255, 230, 0);
+}
+.search {
+  width: 80%;
+  margin: 0.25rem auto;
+  height: 0.5rem;
+  background: rgb(226, 225, 225);
+  border-radius: 0.5rem;
+  display: flex;
+}
+.search i {
+  display: block;
+  width: 0.5rem;
+  height: 0.5rem;
+  background: url("../imgs/搜索.png") no-repeat center center;
+  background-size: 0.3rem 0.3rem;
+}
+.search input {
+  background: rgb(226, 225, 225);
+  border: none;
+  width: 80%;
+  outline: none;
+  color: rgb(122, 122, 122);
+}
+.search b {
+  display: block;
+  float: right;
+  width: 0.5rem;
+  height: 0.5rem;
+  background: url("../imgs/差号.png") no-repeat center center;
+  background-size: 0.3rem 0.3rem;
+  display: none;
+}
+.rmSear {
+  width: 90%;
+  margin: 0 auto;
+}
+.rmSear ol {
+  margin: 0 auto;
+  display: flex;
+  flex-flow: wrap row;
+  justify-content: start;
+}
+.rmSear p {
+  color: rgb(180, 180, 180);
+  font-size: 0.18rem;
+  margin-top: 0.25rem;
+}
+.rmSear ol li {
+  height: 0.5rem;
+  line-height: 0.5rem;
+  padding: 0 0.2rem;
+  margin: 0.05rem 0.15rem;
+  border: 1px solid rgb(179, 178, 178);
+  color: rgb(99, 97, 97);
+  border-radius: 0.25rem;
+}
+.searchList {
+  width: 100%;
+  border-top: 1px solid rgb(235, 233, 233);
+}
+.ssL {
+  width: 95%;
+  margin: 0 auto;
+  display: none;
+}
+.ssL h2 {
+  height: 0.8rem;
+  line-height: 0.8rem;
+  color: rgb(58, 120, 156);
+  font-size: 0.28rem;
+  font-weight: normal;
+  border-bottom: 1px solid rgb(235, 233, 233);
 }

@@ -1,0 +1,29 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<!--
+2013-9-30: Created.
+-->
+<svg>
+<metadata>
+Created by iconfont
+</metadata>
+<defs>
+
+<font id="iconfont" horiz-adv-x="1024" >
+  <font-face
+    font-family="iconfont"
+    font-weight="500"
+    font-stretch="normal"
+    units-per-em="1024"
+    ascent="896"
+    descent="-128"
+  />
+    <missing-glyph />
+    
+    <glyph glyph-name="bofang" unicode="&#59191;" d="M512-64C264.576-64 64 136.576 64 384S264.576 832 512 832s448-200.576 448-448-200.576-448-448-448z m0 64c212.077 0 384 171.923 384 384S724.077 768 512 768 128 596.077 128 384s171.923-384 384-384z m134.51 329.505L442.78 204.04c-15.048-9.267-34.76-4.58-44.028 10.468a32 32 0 0 0-4.752 16.78V536.712c0 17.673 14.327 32 32 32a32 32 0 0 0 16.78-4.752l203.73-125.465c30.097-18.535 39.47-57.958 20.935-88.055a64 64 0 0 0-20.935-20.935z"  horiz-adv-x="1024" />
+
+    
+
+
+  </font>
+</defs></svg>

@@ -76,8 +76,46 @@
       </div>
     </header>
     <main>
-      1.写个头部 2.写个轮播图 3.通过 api 创建 音乐列表 4.写一个 播放器
-      /personalized?limit=1 推荐歌单
+      <ul class="navList">
+        <li>
+          <h2>推荐歌单</h2>
+          <ul class="recommendMusicList"></ul>
+          <h2>最新音乐</h2>
+          <ol class="newMusic"></ol>
+          <footer>
+            <div class="Gligo"></div>
+            <div class="openapp">打开APP，发现更多好音乐 &gt;</div>
+            <p class="copyright">
+              网易公司版权所有©1997-2020 杭州乐读科技有限公司运营
+            </p>
+          </footer>
+        </li>
+        <li>
+          <div class="hotM">
+            <div class="hot"></div>
+            <div class="time"></div>
+          </div>
+          <ul class="hotList"></ul>
+        </li>
+        <li>
+          <form action="#" method="get" class="search">
+            <i></i>
+            <input type="text" placeholder="搜索歌曲、歌手、专辑" />
+            <!-- 找不到对的接口，先不写 -->
+            <b></b>
+          </form>
+          <div class="searchList">
+            <div class="ssL">
+              <h2>搜索“<span></span>”</h2>
+              <ul></ul>
+            </div>
+            <div class="rmSear">
+              <p>热门搜索</p>
+              <ol></ol>
+            </div>
+          </div>
+        </li>
+      </ul>
     </main>
   </body>
   <script src="js/main.js"></script>
