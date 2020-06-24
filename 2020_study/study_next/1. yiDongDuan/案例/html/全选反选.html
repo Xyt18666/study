@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <p>全选<input type="checkbox" /></p>
+    <h3>反选</h3>
+    <ul>
+      <li>1<input type="checkbox" /></li>
+      <li>2<input type="checkbox" /></li>
+      <li>3<input type="checkbox" /></li>
+      <li>4<input type="checkbox" /></li>
+      <li>5<input type="checkbox" /></li>
+    </ul>
+  </body>
+  <script>
+    $("p").click(function () {
+      console.log($("li input:checkbox"));
+      $("ul li input:checkbox").prop(
+        "checked",
+        $("p input:checkbox").prop("checked")
+      );
+    });
+
+    $("ul li input:checkbox").click(function () {
+      let inp = $("li input").length;
+      let cinp = $("li input:checked").length;
+      $("p input").prop("checked", inp == cinp);
+    });
+
+    $("h3").click(function () {
+      for (let a = 0; a < $("ul li").length; a++) {
+        if ($("ul li").eq(a).children("input").prop("checked")) {
+          $("ul li").eq(a).children("input").prop("checked", false);
+        } else {
+          $("ul li").eq(a).children("input").prop("checked", true);
+        }
+      }
+    });
+  </script>
+</html>
