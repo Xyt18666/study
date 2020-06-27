@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    //   请求本地数据
+    $.ajax({
+      url: "leaveserver测试.json",
+      data: "",
+      type: "get",
+      dataType: "json",
+      success: function (d) {
+        console.log(d);
+      },
+    });
+
+    // 通过api获取数据
+    $.ajax({
+      url: "http://musicapi.leanapp.cn/personalized?limit=6",
+      type: "get",
+      dataType: "json",
+      data: "",
+      success: function (e) {
+        console.log(e.result);
+      },
+    });
+  </script>
+</html>
