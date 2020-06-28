@@ -1,29 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-</head>
-<body>
-	
-</body>
-<script>
-/* http://suggestion.baidu.com/su?wd=关键词&cb=fn*/
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  </head>
+  <body></body>
+  <script>
+    function fnc(e) {
+      console.log(e);
+    }
+  </script>
+  <script>
+    /* http://suggestion.baidu.com/su?wd=关键词&cb=fn*/
 
-$.ajax({
-	url:"http://suggestion.baidu.com/su?",//路径
-	type:"POST",
-	dataType:"jsonp",
-	jsonpCallback:"fnc",//指定回调函数名，不写默认为callback
-	data:{//参数
-		wd:"love",
-		cb:"fnc",
-	},
-	success:function(d){//成功的回调
-		console.log(d)
-	},
-})
-
-</script>
+    $.ajax({
+      url: "http://suggestion.baidu.com/su?", //路径
+      type: "POST",
+      dataType: "jsonp",
+      jsonpCallback: "fnc", //指定回调函数名，不写默认为callback
+      data: {
+        //参数
+        wd: "love",
+        cb: "fnc",
+      },
+      success: function (d) {
+        //成功的回调
+        // console.log(d)
+      },
+    });
+  </script>
 </html>

@@ -136,7 +136,11 @@ $(function () {
       for (let a = 0; a < e.result.length; a++) {
         $(`<li>
               <a href="music.html?id=${e.result[a].id}">
-                  <img src=${e.result[a].picUrl} alt="" />
+                  <img src=${
+                    e.result[a].picUrl.split(":")[0] +
+                    "s:" +
+                    e.result[a].picUrl.split(":")[1]
+                  } alt="" />
                   <p>${e.result[a].name}</p>
                   <span class="iconfont icon-headset">${
                     gitSize(e.result[a].playCount).value
@@ -296,4 +300,7 @@ $(function () {
       },
     });
   });
+
+  console.log($(".banList li img").height());
+  console.log($(".dl a").height());
 });
