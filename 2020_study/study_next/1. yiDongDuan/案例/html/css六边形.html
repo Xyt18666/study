@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .box {
+        width: 45px;
+        height: 80px;
+        background: rgb(17, 221, 248);
+        margin: 80px auto;
+        position: relative;
+      }
+      .box:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -80px;
+        width: 0;
+        height: 0;
+        border: 40px solid transparent;
+        border-right: 40px solid rgb(27, 12, 238);
+      }
+      .box:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: -80px;
+        width: 0;
+        height: 0;
+        border: 40px solid transparent;
+        border-left: 40px solid rgb(27, 12, 238);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      input {
+        border: 1px solid #333;
+        /* animation:animations 1.5s infinite ; */
+      }
+      @keyframes animations {
+        0%,100% {
+          border: 1px solid #0f0;
+          box-shadow: 0 0 0px 0px #0f0;
+        }
+        50%{
+            border: 1px solid #0f0;
+          box-shadow: 0 0 15px 2px #0f0;
+        }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" />
+  </body>
+  <script>
+    $("input").on("focus", function () {
+      console.log("聚焦");
+      $("input").css({
+        animation: "animations 1.5s infinite ",
+      });
+    });
+    $("input").on("blur", function () {
+      console.log("失焦");
+      $("input").css({
+        animation: "none",
+      });
+    });
+  </script>
+</html>

@@ -127,7 +127,7 @@ $(function () {
   }
 
   $.ajax({
-    url: "http://musicapi.leanapp.cn/personalized?limit=6",
+    url: "https://musicapi.leanapp.cn/personalized?limit=6",
     type: "get",
     dataType: "json",
     data: "",
@@ -148,7 +148,7 @@ $(function () {
   });
 
   $.ajax({
-    url: "http://musicapi.leanapp.cn/top/song?type=0",
+    url: "https://musicapi.leanapp.cn/top/song?type=0",
     type: "get",
     dataType: "json",
     data: "",
@@ -189,7 +189,7 @@ $(function () {
   }
 
   $.ajax({
-    url: "http://musicapi.leanapp.cn/top/list?idx=1",
+    url: "https://musicapi.leanapp.cn/top/list?idx=1",
     type: "get",
     dataType: "json",
     data: "",
@@ -218,7 +218,7 @@ $(function () {
   });
 
   $.ajax({
-    url: "  http://musicapi.leanapp.cn/search/hot/detail",
+    url: "https://musicapi.leanapp.cn/search/hot/detail",
     type: "get",
     dataType: "json",
     data: "",
@@ -282,7 +282,7 @@ $(function () {
 
   $("form i,.ssL h2").click(function () {
     $.ajax({
-      url: `http://musicapi.leanapp.cn/search/multimatch?keywords=${$(
+      url: `https://musicapi.leanapp.cn/search/multimatch?keywords=${$(
         "form input"
       ).val()}`,
       type: "get",
