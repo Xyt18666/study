@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      li {
+        list-style: none;
+      }
+      .ban {
+        position: relative;
+        width: 800px;
+        height: 200px;
+        border: 2px solid #895;
+        margin: 50px auto;
+        overflow: hidden;
+      }
+      ul {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 200px;
+        width: 3200px;
+      }
+      ul li {
+        float: left;
+        width: 199px;
+        height: 200px;
+        border: 1px solid #444;
+      }
+      p {
+        width: 50px;
+        height: 50px;
+        background: #0f0;
+        transition: 1.5s;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ban">
+      <ul>
+        <li state="true">
+          8
+          <p>pp</p>
+        </li>
+        <li state="false">
+          9
+          <p>pp</p>
+        </li>
+        <li state="true">
+          10
+          <p>pp</p>
+        </li>
+        <li state="false">
+          1
+          <p>pp</p>
+        </li>
+        <li state="true">
+          2
+          <p>pp</p>
+        </li>
+        <li state="false">
+          3
+          <p>pp</p>
+        </li>
+        <li state="true">
+          4
+          <p>pp</p>
+        </li>
+        <li state="false">
+          5
+          <p>pp</p>
+        </li>
+        <li state="true">
+          6
+          <p>pp</p>
+        </li>
+        <li state="false">
+          7
+          <p>pp</p>
+        </li>
+        <li state="true">
+          8
+          <p>pp</p>
+        </li>
+        <li state="false">
+          9
+          <p>pp</p>
+        </li>
+        <li state="true">
+          10
+          <p>pp</p>
+        </li>
+        <li state="false">
+          1
+          <p>pp</p>
+        </li>
+        <li state="true">
+          2
+          <p>pp</p>
+        </li>
+        <li state="false">
+          3
+          <p>pp</p>
+        </li>
+      </ul>
+    </div>
+  </body>
+  <script>
+    let index = 3;
+    tab();
+    setInterval(function () {
+      index++;
+
+      if (index > 12) {
+        $("ul").animate().stop();
+        $("ul").css({
+          left: -2 * 200 + "px",
+        });
+        index = 3;
+      }
+      tab();
+    }, 1500);
+
+    function tab() {
+      $("ul").animate(
+        {
+          left: -index * 199 + "px",
+        },
+        1500
+      );
+      $.each($("ul li"), function (i, t) {
+        if ($(t).attr("state") == "true") {
+          $(this).attr("state", "flase");
+          $(this).children("p").css({
+            background: "red",
+            width: "150px",
+            height: "150px",
+          });
+        } else {
+          $(this).attr("state", "true");
+          $(this).children("p").css({
+            background: "#0f0",
+            width: "50px",
+            height: "50px",
+          });
+        }
+      });
+    }
+  </script>
+</html>

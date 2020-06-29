@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../js/zepto.min.js"></script>
+    <title>Document</title>
+    <style>
+      html {
+        height: 3000px;
+      }
+      p {
+        position: fixed;
+        bottom: 20px;
+        right: 0;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <p>返回顶部</p>
+  </body>
+  <script>
+    $(window).scroll(function () {
+      if ($("html,body").scrollTop() > 1000) {
+        $("p").show();
+      } else {
+        $("p").hide();
+      }
+    });
+
+    $("p").on("touchend", function () {
+      console.log(222);
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+    });
+  </script>
+</html>
