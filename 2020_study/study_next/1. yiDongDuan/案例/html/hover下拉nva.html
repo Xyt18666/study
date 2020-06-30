@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      li {
+        list-style: none;
+      }
+      nav {
+        width: 80%;
+        height: 60px;
+        border: 2px solid turquoise;
+        margin: 80px auto;
+        overflow: hidden;
+      }
+      ul {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        height: 60px;
+      }
+      .list li {
+        flex: 1;
+        line-height: 60px;
+        text-align: center;
+        transition: 1s;
+        position: relative;
+      }
+      p {
+        position: absolute;
+        background: #0f0;
+        top: 0;
+        width: 100%;
+        left: 0;
+      }
+      i {
+        position: absolute;
+        background: red;
+        left: 0;
+        width: 100%;
+        top: -60px;
+        transition: 0.5s;
+        z-index: 99;
+      }
+      li:hover i {
+        top: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <ul class="list">
+        <li>
+          <p>p</p>
+          <i>i</i>
+        </li>
+        <li>
+          <p>p</p>
+          <i>i</i>
+        </li>
+        <li>
+          <p>p</p>
+          <i>i</i>
+        </li>
+        <li>
+          <p>p</p>
+          <i>i</i>
+        </li>
+        <li>
+          <p>p</p>
+          <i>i</i>
+        </li>
+        <li>
+          <p>p</p>
+          <i>i</i>
+        </li>
+      </ul>
+    </nav>
+  </body>
+  <script></script>
+</html>

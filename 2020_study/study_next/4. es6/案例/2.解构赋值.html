@@ -31,6 +31,11 @@
     /*
 
     对象的解构赋值：根基键名进行解构，无匹配值时，则无法显示
+    若设置了默认值，解构时并未找到结果，则会使用默认值
+
+    在{}中 使用对象解构 要用()包裹，不然会解析错误
+
+    优化了对象的书写方法
 
 
     */
@@ -38,6 +43,38 @@
       j: 33,
       l: 66,
     });
-    console.log(obj);
+    console.log(obj); //{j: 33, l: 66}
+
+    let { aa: aa = "22", bb: bb = "33", cc: cc = "44" } = {
+      aa: "aa",
+      bs: "bb",
+    };
+    console.log(aa, bb, cc); //aa 33 44
+
+    {
+      let { x: y = 6 } = { y: 5 };
+      //                 由于后面没有x,所以x无法进行解构
+      console.log(y); //6
+      // console.log(x)  报错
+      //等号两边的y毫无关系，一个是键，一个是值
+    }
+    {
+      let x;
+      ({ x } = { x: 10 });
+      console.log(x);
+    }
+    {
+      let a = "aaa";
+      let b = "bbb";
+
+      let obj = {
+        a,
+        b,
+        fn() {
+          console.log("fnn");
+        },
+      };
+      console.log(obj);
+    }
   </script>
 </html>
