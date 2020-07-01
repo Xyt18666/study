@@ -76,5 +76,35 @@
       };
       console.log(obj);
     }
+    /*
+    字符串的解构：与数组相同
+    
+    
+    */
+    {
+      let str = "asdfgh";
+      [q, w, , , e, r = "88"] = str;
+      console.log(q, w, e, r);
+    }
+
+    /*
+    类对象上的属性进行解构：包括伪数组，布尔值，数字
+    
+    */
+    {
+      let { toString: size } = "123";
+      console.log(size);
+    }
+
+    /*
+    函数参数的解构：
+
+    */
+    {
+      function box([a, s = 6]) {
+        console.log(a + s);
+      }
+      box([9]);
+    }
   </script>
 </html>
