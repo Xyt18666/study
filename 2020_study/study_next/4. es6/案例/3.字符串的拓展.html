@@ -8,18 +8,44 @@
   <body></body>
   <script>
     /*
-        允许使用 unicode值 输出
-    
-    
-    
-    
-    */
+            允许使用 unicode值 表示字符
+
+
+
+        */
     let str = "\u4e00";
+    // console.log(str);
+
     /*
-    模板字符串：`` ${}
-    需要使用${}时 ，使用反斜杠转义
-    
-    
-    */
+        模板字符串：`` ${}
+        需要使用${}时 ，使用反斜杠转义
+
+        标签函数：
+        alert`abc`  等同于 alert([abc])
+    11111111111
+        */
+    function fn(a) {
+      return a;
+    }
+    console.log(fn`aavc`);
+
+    // .raw()   返回一个斜杠都被转义的字符串
+    let o = `31asdffs \n \# sdf`;
+    console.log(o);
+    console.log(String.raw`31asdffs \n \# sdf`);
+
+    let t = "123456789";
+    // indexOf()  是否包含某值 。返回 下标 或者 -1，第二个参数是从哪里开始,传空字符串，必定返回true
+    console.log(t.indexOf(3));
+
+    // includes() 表示是否找到了某值 ，返回布尔值，第二个参数是从哪里开始
+    console.log(t.includes(3));
+
+    //是否在字符串的开头，第二个参数是从哪里开始
+    console.log(t.startsWith(4, 5));
+
+    //是否在字符串的尾部，第二个参数是从哪里开始
+    console.log(t.endsWith(9, 9));
   </script>
 </html>
+111
