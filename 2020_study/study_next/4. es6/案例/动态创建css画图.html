@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <title>Document</title>
+    <style id="styleS">
+      * {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="box1"></div>
+      <div class="box2"></div>
+    </div>
+  </body>
+  <script>
+    styleTxt = ` .box{
+            width: 100%;
+            height: 600px;
+            background: #789;
+        }
+        .box1{
+            width: 80%;
+            height: 600px;
+            background: #0f0;
+        }
+        .box2{
+            width: 40%;
+            height: 600px;
+            background: #729;
+        }`;
+    let i = 0;
+    let css = document.getElementById("styleS");
+    setInterval(function () {
+      i++;
+
+      css.innerHTML += styleTxt.substr(i, 1);
+    }, 10);
+  </script>
+</html>
