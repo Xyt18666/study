@@ -47,9 +47,54 @@
       // 求立方根  5*5*5
       console.log(Math.cbrt(125)); //5
 
-      // 箭头函数：
+      /*
+
+      箭头函数：
+      一个参数 （）可以省略
+      没有参数和多个参数（）不可省略
+      => 后 不写{} 表示直接 return后面的值
+
+      箭头函数没有this指向，他的this是他的上一级作用域的this指向(ps:上一级作用域不是箭头函数)
+      
+      arguments关键字:function关键字 声明的 函数被调用时传入的参数
+
+
+      回调函数：
+      一个函数被作为参数传递给另一个函数时，就叫做 回调函数
+
+
+
+
+
+      */
+
       let fn = (x) => x * 2;
       console.log(fn(5));
     }
+
+    let fn2 = (a, b) => ({ w: a, e: b });
+    console.log(fn2(3, 4));
+
+    {
+      /*
+      
+      
+      
+      */
+
+      var obj = {
+        say: function () {
+          var f1 = () => {
+            console.log(this); // obj
+            setTimeout(() => {
+              console.log(this); // obj
+            });
+          };
+          f1();
+        },
+      };
+      obj.say();
+    }
+    // 因为f1定义时所处的函数 中的 this是指的 obj, setTimeout中的箭头函数this继承自f1,所以不管有多层嵌套,都是 obj
   </script>
 </html>
