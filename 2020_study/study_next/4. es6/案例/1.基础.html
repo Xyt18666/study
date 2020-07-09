@@ -43,5 +43,17 @@
     
     
     */
+
+    {
+      var arr2 = [];
+      for (let a = 0; a < 2; a++) {
+        arr2[a] = function () {
+          console.log(a); //这里的a是作用域内的a
+        };
+      }
+      //   console.log(a); a无值
+      arr2[0](); //0
+      arr2[1](); //1
+    }
   </script>
 </html>

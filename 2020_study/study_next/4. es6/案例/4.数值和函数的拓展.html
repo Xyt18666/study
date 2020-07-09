@@ -95,6 +95,21 @@
       };
       obj.say();
     }
+
     // 因为f1定义时所处的函数 中的 this是指的 obj, setTimeout中的箭头函数this继承自f1,所以不管有多层嵌套,都是 obj
+
+    {
+      // rest 参数 ，表示其余的参数，是一个数组,必须是最后一个 参数
+      function fn(x, ...res) {
+        console.log(res); //[1, 5, 8]
+        console.log(...res); //释放数组  1 5 8
+      }
+      fn("x", 1, 5, 8);
+
+      // 函数的name属性 返回函数名
+      // 关键声明的 匿名函数 返回 变量名（如果函数有名，则name返回函数名）
+
+      console.log(fn.name);
+    }
   </script>
 </html>
