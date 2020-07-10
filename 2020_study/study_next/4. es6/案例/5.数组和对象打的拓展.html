@@ -21,5 +21,55 @@
       let arr = [1, 153, 43, 6, 5];
       console.log(...arr); //把数字的中括号去除
     }
+    {
+      // 数组新增的方法
+      // forEach();  遍历
+
+      let arr = [56, 34, 4, 354, 38];
+      arr.forEach(function (item, index, arr) {
+        console.log(item, index, arr);
+        arr[index] = item * 2;
+        console.log(arr);
+        //值 下标 当前数组
+      });
+    }
+    {
+      // 数组新增的方法
+      // map();  遍历,返回新数组，不会改变之前的数组
+
+      let arr = [56, 34, 4, 354, 38];
+      let arr2 = arr.map((item) => item / 2);
+      console.log(arr2);
+    }
+
+    {
+      // 数组新增的方法
+      // some();  只有一个真，就是真 ，返回布尔值  , ||
+      // every();  只要有一个假，就是假， 返回布尔值  &
+
+      let arr = [56, 34, 4, 354, 38];
+      let bol1 = arr.some((item) => item > 56);
+      console.log(bol1);
+
+      let bol2 = arr.every((item) => item > 56);
+      console.log(bol2);
+    }
+    {
+      // 数组新增的方法
+      // filter();  筛选符合的子项
+      let arr = [56, 34, 4, 354, 38];
+      let arr2 = arr.filter((item) => item > 38);
+      console.log(arr2);
+    }
+    {
+      // 数组新增的方法
+      // reduce(回调,初始值);  累加，累减，。。
+      let arr = [1, 2, 3, 4, 5, 6];
+      let num = arr.reduce((vl, item) => {
+        console.log(vl, item); //回调的返回值，数组中的值
+        return vl * item;
+      }, 2);
+      console.log(num);
+    }
   </script>
 </html>
