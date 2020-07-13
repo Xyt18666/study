@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+  </head>
+  <body>
+    <div><input type="checkbox" class="checkAll" />全选</div>
+    <div><input type="checkbox" class="check" /><span>选项1</span></div>
+    <div><input type="checkbox" class="check" /><span>选项2</span></div>
+    <div><input type="checkbox" class="check" /><span>选项3</span></div>
+    <div><input type="checkbox" class="check" /><span>选项4</span></div>
+    <div><input type="checkbox" class="check" /><span>选项5</span></div>
+  </body>
+  <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(".checkAll").click(() => {
+      var checked = $(".checkAll").prop("checked");
+      $(".check").prop("checked", checked);
+    });
+    var checks = document.querySelectorAll(".check");
+
+    $(".check").click(function () {
+      let eleArr = [...checks];
+      let bol = eleArr.every((item) => item.checked);
+      $(".checkAll").prop("checked", bol);
+    });
+  </script>
+</html>
