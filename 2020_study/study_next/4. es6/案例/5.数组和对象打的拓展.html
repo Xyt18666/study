@@ -5,7 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body></body>
+  <body>
+    <p>1</p>
+    <p>2</p>
+    <p>3</p>
+    <p>4</p>
+    <p>5</p>
+  </body>
   <script>
     /*
 
@@ -70,6 +76,28 @@
         return vl * item;
       }, 2);
       console.log(num);
+    }
+    {
+      // from() 将伪数组和我可便利对象转为 真数组 ，包括 Map对象和 Set 对象（必须有length属性，才能转）
+      let p = document.querySelectorAll("p");
+      let str = "sadfsdf";
+      let obj = {
+        0: 7,
+        1: "2",
+        length: 4,
+      };
+      console.log(Array.from(str));
+      console.log(Array.from(p));
+      console.log(Array.from(obj));
+    }
+    {
+      // of()  将一组值，转为数组
+      let str = "abcdefghigklmnopqrstuvwxyz";
+      console.log(Array.of(str, 88));
+
+      // 与 new Array()的区别
+      let newA = new Array(5); //单参数 数值 表示数组长度，多参数为值
+      console.log(newA); //[empty × 5]
     }
   </script>
 </html>
