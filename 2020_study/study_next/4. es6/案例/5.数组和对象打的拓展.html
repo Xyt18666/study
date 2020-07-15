@@ -99,5 +99,16 @@
       let newA = new Array(5); //单参数 数值 表示数组长度，多参数为值
       console.log(newA); //[empty × 5]
     }
+    {
+      //find() 满足条件的第一个子选项
+
+      let arr = [56, 34, 4, 354, 38];
+      let bol1 = arr.find((item) => item > 56);
+      console.log(bol1);
+
+      //findIndex() 满足条件的第一个子选项 的 下标，indexOf()相同
+      let bol2 = arr.findIndex((item) => item > 56);
+      console.log(bol2);
+    }
   </script>
 </html>
