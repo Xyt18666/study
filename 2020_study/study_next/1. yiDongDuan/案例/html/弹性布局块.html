@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <!-- <script src="../js/zepto.min.js"></script> -->
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script src="js/rem.js"></script>
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      li {
+        list-style: none;
+      }
+      img {
+        display: block;
+      }
+      .banner {
+        width: 100%;
+        height: 11rem;
+        overflow: hidden;
+      }
+      ul {
+        width: 400%;
+        height: 10rem;
+        display: flex;
+      }
+      ul > li {
+        width: calc(100% / 4);
+        height: 10rem;
+      }
+      ol {
+        width: 100%;
+        height: 10rem;
+        display: flex;
+        justify-content: space-around;
+        flex-flow: wrap row;
+      }
+      ol > li {
+        width: calc(100% / 4);
+        /* background: #c9c; */
+        display: flex;
+        flex-flow: wrap column;
+        justify-content: center;
+        align-items: center;
+      }
+      ol > li img {
+        width: 60%;
+        border-radius: 50%;
+      }
+      .banD {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 1.5rem;
+        margin-top: -0.5rem;
+      }
+      .banD p {
+        width: 0.5rem;
+        height: 0.5rem;
+        background: #000;
+        border-radius: 50%;
+        margin: 0 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="banner">
+      <ul>
+        <li>
+          <ol>
+            <li>
+              <img src="../imgs/微信图片_20200717120831.png" />
+              <span>文字2</span>
+            </li>
+            <li>
+              <img src="../imgs/微信图片_20200717120840.png" />
+              <span>文字</span>
+            </li>
+            <li>
+              <img src="../imgs/微信图片_20200717120849.png" />
+              <span>文字</span>
+            </li>
+            <li>
+              <img src="../imgs/微信图片_20200717120859.png" />
+              <span>文字</span>
+            </li>
+            <li>
+              <img src="../imgs/微信图片_20200717120910.png" />
+              <span>文字</span>
+            </li>
+            <li>
+              <img src="../imgs/微信图片_20200717120919.png" />
+              <span>文字</span>
+            </li>
+            <li>
+              <img src="../imgs/微信图片_20200717120929.png" />
+              <span>文字</span>
+            </li>
+            <li>
+              <img src="../imgs/微信图片_20200717120940.png" />
+              <span>文字</span>
+            </li>
+          </ol>
+        </li>
+        <li>
+          <ol>
+            <li>
+              <img src="../imgs/微信图片_20200717120831.png" />
+              <span>文字1</span>
+            </li>
+            <li>
+              <img src="../imgs/微信图片_20200717120840.png" />
+              <span>文字</span>
+            </li>
+            <li>
+              <img src="../imgs/微信图片_20200717120849.png" />
+              <span>文字</span>
+            </li>
+            <li>
+              <img src="../imgs/微信图片_20200717120859.png" />
+              <span>文字</span>
+            </li>
+            <li>
+              <img src="../imgs/微信图片_20200717120910.png" />
+              <span>文字</span>
+            </li>
+            <li>
+              <img src="../imgs/微信图片_20200717120919.png" />
+              <span>文字</span>
+            </li>
+            <li>
+              <img src="../imgs/微信图片_20200717120929.png" />
+              <span>文字</span>
+            </li>
+            <li>
+              <img src="../imgs/微信图片_20200717120940.png" />
+              <span>文字</span>
+            </li>
+          </ol>
+        </li>
+        <li>
+          <ol>
+            <li>
+              <img src="../imgs/微信图片_20200717120831.png" />
+              <span>文字2</span>
+            </li>
+            <li>
+              <img src="../imgs/微信图片_20200717120840.png" />
+              <span>文字</span>
+            </li>
+            <li>
+              <img src="../imgs/微信图片_20200717120849.png" />
+              <span>文字</span>
+            </li>
+            <li>
+              <img src="../imgs/微信图片_20200717120859.png" />
+              <span>文字</span>
+            </li>
+            <li>
+              <img src="../imgs/微信图片_20200717120910.png" />
+              <span>文字</span>
+            </li>
+            <li>
+              <img src="../imgs/微信图片_20200717120919.png" />
+              <span>文字</span>
+            </li>
+            <li>
+              <img src="../imgs/微信图片_20200717120929.png" />
+              <span>文字</span>
+            </li>
+            <li>
+              <img src="../imgs/微信图片_20200717120940.png" />
+              <span>文字</span>
+            </li>
+          </ol>
+        </li>
+        <li>
+          <ol>
+            <li>
+              <img src="../imgs/微信图片_20200717120831.png" />
+              <span>文字1</span>
+            </li>
+            <li>
+              <img src="../imgs/微信图片_20200717120840.png" />
+              <span>文字</span>
+            </li>
+            <li>
+              <img src="../imgs/微信图片_20200717120849.png" />
+              <span>文字</span>
+            </li>
+            <li>
+              <img src="../imgs/微信图片_20200717120859.png" />
+              <span>文字</span>
+            </li>
+            <li>
+              <img src="../imgs/微信图片_20200717120910.png" />
+              <span>文字</span>
+            </li>
+            <li>
+              <img src="../imgs/微信图片_20200717120919.png" />
+              <span>文字</span>
+            </li>
+            <li>
+              <img src="../imgs/微信图片_20200717120929.png" />
+              <span>文字</span>
+            </li>
+            <li>
+              <img src="../imgs/微信图片_20200717120940.png" />
+              <span>文字</span>
+            </li>
+          </ol>
+        </li>
+      </ul>
+      <div class="banD">
+        <p></p>
+        <p></p>
+      </div>
+    </div>
+  </body>
+  <script>
+    $(function () {
+      let ban = $(".banner>ul")[0];
+      let index = 1;
+      let lateX = null;
+
+      tab(index);
+
+      ban.ontouchstart = function (e) {
+        let startX = parseInt(e.touches[0].clientX);
+        lateX = parseInt(
+          $(".banner>ul")
+            .css("transform")
+            .replace(/[^0-9\-.,]/g, "")
+            .split(",")[4]
+        );
+
+        $(ban).css({
+          transition: "0s",
+          transform: `translateX(${lateX}px)`,
+        });
+
+        ban.ontouchmove = function (e) {
+          let moveX = parseInt(e.touches[0].clientX);
+
+          $(ban).css({
+            transform: `translateX(${lateX - (startX - moveX)}px)`,
+          });
+        };
+
+        ban.ontouchend = function (e) {
+          let endX = parseInt(e.changedTouches[0].clientX);
+
+          if (Math.abs(endX - startX) < parseInt($(".banner").width()) / 6) {
+            tab(index);
+          } else {
+            if (endX - startX > 0) {
+              // 向右滑动
+              index--;
+              console.log(index, lateX, -parseInt($(".banner").width()));
+              if (lateX >= -parseInt($(".banner").width())) {
+                $(ban).css({
+                  transition: "0s",
+                  transform: `translateX(${
+                    -parseInt($(".banner").width()) * 3 + (endX - startX)
+                  }px)`,
+                });
+                index = 2;
+              }
+              tab(index);
+            } else {
+              // 向左滑动
+              index++;
+              if (lateX < -parseInt($(".banner").width()) * 1) {
+                $(ban).css({
+                  transition: "0s",
+                  transform: `translateX(${0 + (endX - startX)}px)`,
+                });
+                index = 1;
+              }
+              tab(index);
+            }
+          }
+        };
+      };
+
+      function tab(index) {
+        $(ban).css({
+          transition: "0.5s",
+          transform: `translateX(${-index * parseInt($(".banner").width())}px)`,
+        });
+
+        $(".banD p")
+          .eq(index - 1)
+          .css({
+            background: "pink",
+          })
+          .siblings()
+          .css({
+            background: "rgb(44, 195, 241)",
+          });
+      }
+      setInterval(function () {
+        index++;
+        if (index > 2) {
+          $(ban).css({
+            transition: "0s",
+            transform: `translateX(${-parseInt($(".banner").width()) * 0}px)`,
+          });
+          index = 1;
+        }
+        tab(index);
+      }, 2000);
+    });
+  </script>
+</html>

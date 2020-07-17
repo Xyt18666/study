@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    {
+      // 对象的简介写法
+      let a = "aaa";
+      let b = "bbb";
+      let obj = {
+        a,
+        b,
+        fun() {
+          console.log(a, b);
+        },
+      };
+      obj.fun();
+    }
+    {
+      // 伪属性,不能和普通属性重名
+      let obj = {
+        get a() {
+          //获取a时，触发事件
+          console.log("Sdfasfas");
+          return "a143243";
+        },
+        set a(val) {
+          //设置a时，触发事件
+          console.log("设置了a" + val);
+        },
+      };
+      console.log(obj.a);
+      obj.a = "佩奇";
+    }
+    {
+      // 允许字面量定义对象
+      let a = "bb";
+      let g = "sdfd8888";
+      let obj = {
+        ["s" + "f"]: "sssfff",
+        [a]: "bbb",
+        g: "gg", //es5之前的键，本质就是一个字符串
+      };
+      console.log(obj); //{sf: "sssfff", bb: "bbb", g: "gg"}
+    }
+    {
+      // Object.defineProperty(需要定义属性的对象,属性名，{属性描述对象})对
+      let obj = {};
+      Object.defineProperty(obj, "data", {
+        value: "hksdf", //值
+        writable: true, //是否可写
+        configurable: false, //描述属性是否可以配置，以及是否可以删除
+        enumerable: true, //是否可枚举(遍历)
+      });
+      console.log(obj);
+      for (i in obj) {
+        console.log(obj[i]);
+      }
+
+      obj.data = "dssss";
+      console.log(obj.data);
+      //   writable: true,configurable: false,  可以重新赋值
+      //   writable: false,configurable:true,  不可以重新赋值,但是可以使用defineProperty()重新定义
+    }
+  </script>
+</html>
