@@ -66,5 +66,60 @@
       //   writable: true,configurable: false,  可以重新赋值
       //   writable: false,configurable:true,  不可以重新赋值,但是可以使用defineProperty()重新定义
     }
+    {
+      //Object.defineProperty定义 伪属性 get set
+      let obj = {};
+      Object.defineProperty(obj, "data", {
+        get() {
+          console.log("输出值");
+          return "值";
+        },
+        set(val) {
+          obj.data = val;
+          console.log("设置了" + val);
+        },
+      });
+      console.log(obj.data);
+    }
+    {
+      //Object.is()  用来判断两个值是否严格相等 ===
+      console.log(Object.is(NaN, NaN)); //true  结果与===不同
+      console.log(Object.is(+0, -0)); //false   结果与===不同
+      console.log(Object.is("7", 7)); //false
+    }
+    {
+      // Object.assign(目标对象，源对象) 合并对象
+      let a = {
+        a: "ddsaf",
+      };
+      let d = {
+        r: "df",
+      };
+      let s = {
+        t: "ddf",
+      };
+      Object.assign(a, s, d);
+      console.log(a);
+      a.a = "56";
+      console.log(a);
+    }
+    {
+      // Object.getOwnPropertyDescriptors(对象) 返回指定对象的所有自身属性的描述对象
+    }
+    {
+      // Object.keys()  返回对象的键    数组形式，不含继承
+      // Object.values()  值  数组形式，不含继承
+      // Object.entries()  键值  数组形式，不含继承
+      //Object.fromEntries() 数组转对象 ，与Object.entries() 相反
+      let obj = {
+        a: "879",
+        b: 741,
+        c: true,
+      };
+      console.log(Object.keys(obj), Object.values(obj), Object.entries(obj));
+      let newArray = Object.entries(obj);
+
+      console.log(Object.fromEntries(newArray));
+    }
   </script>
 </html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas
+      width="800px"
+      height="600px"
+      style="border: 2px solid #789;"
+    ></canvas>
+  </body>
+  <script>
+    let c = $("canvas")[0].getContext("2d");
+
+    let attr = [4655612, 3308305, 3464499, 2689700, 740016, 712];
+    let txt = ["北美", "南美", "亚", "欧", "非", "其他"];
+
+    let sum = 0; //求和
+    for (var b = 0; b < attr.length; b++) {
+      sum += attr[b];
+    }
+
+    for (let a = 0; a < attr.length; a++) {
+      let last = 0; //求前几次的和
+      for (let j = 0; j < a; j++) {
+        last += attr[j];
+      }
+      c.beginPath();
+      c.strokeStyle =
+        "rgb(" +
+        randFn(0, 255) +
+        "," +
+        randFn(0, 255) +
+        "," +
+        randFn(0, 255) +
+        ")";
+      c.lineWidth = "200";
+      //线宽为半径的一倍,为饼图角
+      //   console.log((last / sum) * Math.PI * 2, (attr[a] / sum) * Math.PI * 2);
+      c.arc(
+        400,
+        300,
+        100,
+        (last / sum) * Math.PI * 2,
+        (last / sum) * Math.PI * 2 + (attr[a] / sum) * Math.PI * 2
+      );
+      //X坐标,Y坐标,r,之前数据的和/总值*整圆,之前数据的和/总值*整圆+新数据/总值*整圆
+      c.stroke();
+      c.closePath();
+
+      //绘制文字;
+
+      //计算文字要放的坐标位置
+      var x, y;
+
+      x =
+        400 +
+        Math.cos((last / sum) * Math.PI * 2 + (attr[a] / sum) * Math.PI) * 100;
+      //圆心x + Math.cos((之前数据的和/总值)*整圆+(新数据/总值)*整圆/2)*圆半径
+      y =
+        300 +
+        Math.sin((last / sum) * Math.PI * 2 + (attr[a] / sum) * Math.PI) * 100;
+
+      //文字绘制到扇形旁边
+      c.fillText(txt[a], x, y);
+    }
+    function randFn(min, max) {
+      return parseInt(Math.random() * (max - min + 1) + min);
+    }
+  </script>
+</html>
