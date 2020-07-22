@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+
+  <script>
+    {
+      //Symbol数据类型   （独一无二的值,常用于对象的键名）
+      let a = Symbol("a");
+      let b = Symbol("b");
+      let c = Symbol("b");
+      console.log(a); //Symbol(a)
+      console.log(typeof a); //symbol
+
+      let obj = { [Symbol("q1")]: "333" };
+      obj[a] = "sq";
+      obj[b] = "qw";
+      obj[c] = "qw2";
+      console.log(obj); //{Symbol(q1): "333", Symbol(a): "sq", Symbol(b): "qw", Symbol(b): "qw2"}
+      console.log(obj[b]); //qw
+      //不能与其他数据类型运算，不可以转数字，可以转换为布尔值。
+    }
+  </script>
+</html>
