@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    {
+      //new  set() 类似于数组，成员值都是唯一的，不会重复
+
+      //   add()  在最后增加一个值，之前没有的话才能加上，返回当前实例，可以实现链式写法
+      // clear: ƒ clear()   清空，没有返回值
+      // delete: ƒ delete()   删除某个值，返回布尔值
+      // entries: ƒ entries() 获取键和值
+      // forEach: ƒ forEach()   遍历
+      // has: ƒ has()    判断有没有某个值 ，返回布尔值
+      // keys: ƒ values()   遍历键
+      // size: (...)     当前的长度
+      // values: ƒ values()  遍历值
+      // Symbol(Symbol.iterator): ƒ values()
+      // Symbol(Symbol.toStringTag): "Set"
+      // get size: ƒ size()
+
+      let set1 = new Set([8, 1, 5, "df", "Fgh", NaN, 8]);
+      console.log(set1);
+      set1.add("ss");
+      console.log(set1);
+      console.log(set1.entries()); //SetIterator {8 => 8, 1 => 1, 5 => 5, "df" => "df", "Fgh" => "Fgh", …}
+      console.log(set1.keys()); //SetIterator {8, 1, 5, "df", "Fgh", …}
+      console.log(set1.values()); //SetIterator {8, 1, 5, "df", "Fgh", …}
+    }
+  </script>
+</html>
