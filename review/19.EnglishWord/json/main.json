@@ -1,0 +1,53 @@
+[
+  {
+    "zhonglei": "aaa111",
+    "list": [
+      {
+        "eng": "en123g",
+        "purpose": "purpose"
+      },
+      {
+        "eng": "e324234ng",
+        "purpose": "purpose"
+      },
+      {
+        "eng": "e234ng",
+        "purpose": "purpose"
+      }
+    ]
+  },
+  {
+    "zhonglei": "aaa22",
+    "list": [
+      {
+        "eng": "en890890g",
+        "purpose": "purpose"
+      },
+      {
+        "eng": "en890890890g",
+        "purpose": "purpose"
+      },
+      {
+        "eng": "en89089089g",
+        "purpose": "purpose"
+      }
+    ]
+  },
+  {
+    "zhonglei": "aaa333",
+    "list": [
+      {
+        "eng": "eng",
+        "purpose": "pur567567pose"
+      },
+      {
+        "eng": "eng",
+        "purpose": "purp756756ose"
+      },
+      {
+        "eng": "eng",
+        "purpose": "purp5675ose"
+      }
+    ]
+  }
+]
