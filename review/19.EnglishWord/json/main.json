@@ -1,52 +1,1402 @@
 [
   {
-    "zhonglei": "aaa111",
+    "zhonglei": "HTML",
     "list": [
       {
-        "eng": "en123g",
-        "purpose": "purpose"
+        "eng": "meta name='viewport'content='width=device-width,initial-scale=1,user-scalable=no'",
+        "purpose": "移动端视口"
       },
       {
-        "eng": "e324234ng",
-        "purpose": "purpose"
+        "eng": "meta name='description' content='' ",
+        "purpose": "当前网页的介绍，百度搜索右侧的介绍"
       },
       {
-        "eng": "e234ng",
-        "purpose": "purpose"
+        "eng": "meta name='keywords' content=''",
+        "purpose": "关键字，方便搜索引擎查找"
+      },
+      {
+        "eng": " meta charset='UTF-8' ",
+        "purpose": "编码格式"
+      },
+      {
+        "eng": "link href='xx.css' type='text/css' rel='stylesheet' ",
+        "purpose": "引入css"
+      },
+      {
+        "eng": "link rel='icon' href='' type='image/x-icon' ",
+        "purpose": "引入浏览器前小图标"
+      },
+      {
+        "eng": "base target='_blank' ",
+        "purpose": "所有连接全部在新窗口打开"
+      },
+      {
+        "eng": "script  src=''  script",
+        "purpose": "引入js"
+      },
+      {
+        "eng": "header",
+        "purpose": "头部"
+      },
+      {
+        "eng": "nav",
+        "purpose": "导航"
+      },
+      {
+        "eng": "main",
+        "purpose": "主体"
+      },
+      {
+        "eng": "section",
+        "purpose": "版块"
+      },
+      {
+        "eng": "aside",
+        "purpose": "主题以外"
+      },
+      {
+        "eng": "footer",
+        "purpose": "尾部"
+      },
+      {
+        "eng": "article",
+        "purpose": "文章"
+      },
+      {
+        "eng": "hgroup",
+        "purpose": "组合标题"
+      },
+      {
+        "eng": "address",
+        "purpose": "作者"
+      },
+      {
+        "eng": "mark",
+        "purpose": "标记"
+      },
+      {
+        "eng": "time",
+        "purpose": "时间"
+      },
+      {
+        "eng": "canvas",
+        "purpose": "画布"
+      },
+      {
+        "eng": "progress      属性： max  value",
+        "purpose": "进度条    属性： 最大值  当前值"
+      },
+      {
+        "eng": "meter       属性：high low max  min  value",
+        "purpose": "度量器  属性：较高 较低 最大值 最小值 当前值"
+      },
+      {
+        "eng": "audio  属性：src controls autoplay loop",
+        "purpose": "音频  属性：路径 控制台 自动播放 循环"
+      },
+      {
+        "eng": "video 属性：同audio  poster width/heighr",
+        "purpose": "视频  属性：同audio 默认封面 宽/高"
+      },
+      {
+        "eng": "soucer 属性：src type",
+        "purpose": "音频视频下的子标签，用于存放各种格式的视频"
+      },
+      {
+        "eng": "div p h1-h6 span i b em s u sub sup ul ol li dl dt dd ",
+        "purpose": "常用基本标签"
+      },
+      {
+        "eng": "table tr td ",
+        "purpose": "表格"
+      },
+      {
+        "eng": "form input select option textarea lable",
+        "purpose": "表单"
+      },
+      {
+        "eng": "text radio checkbox button file email tel url number search range color time",
+        "purpose": "表单input type属性"
+      },
+
+      {
+        "eng": "placeholder autofocus required  autocomplete multiple pattern form disabled",
+        "purpose": "input 标签属性"
+      },
+      {
+        "eng": "pre",
+        "purpose": "输出空格"
+      },
+      {
+        "eng": "iframe",
+        "purpose": "内部是另一个网页"
+      },
+      {
+        "eng": "",
+        "purpose": ""
       }
     ]
   },
   {
-    "zhonglei": "aaa22",
+    "zhonglei": "CSS",
     "list": [
       {
-        "eng": "en890890g",
-        "purpose": "purpose"
+        "eng": " . # > 空格 + * ",
+        "purpose": "常用选择器"
       },
       {
-        "eng": "en890890890g",
-        "purpose": "purpose"
+        "eng": "div[属性 = '值']  ^=   $=   *=      |=     ~=",
+        "purpose": "属性选择器    开头 结尾 包含 等于或者开头 包含 "
       },
       {
-        "eng": "en89089089g",
-        "purpose": "purpose"
+        "eng": ":nth-child(数字n+数字)",
+        "purpose": "几的倍数，从几开始"
+      },
+      {
+        "eng": ":nth-of-type(标签)",
+        "purpose": "同类 同级 元素"
+      },
+      {
+        "eng": ":not()",
+        "purpose": "除了某某"
+      },
+      {
+        "eng": "~",
+        "purpose": "某某~同级指定元素"
+      },
+      {
+        "eng": ":target",
+        "purpose": "被锚点选中时"
+      },
+      {
+        "eng": "first-letter",
+        "purpose": "首字母"
+      },
+      {
+        "eng": "first-line",
+        "purpose": "首行"
+      },
+      {
+        "eng": "::selection",
+        "purpose": "选中样式"
+      },
+      {
+        "eng": ":checked",
+        "purpose": "选中状态"
+      },
+      {
+        "eng": ":enable",
+        "purpose": "可以使用的表单"
+      },
+      {
+        "eng": "calc()",
+        "purpose": "计算数值"
+      },
+      {
+        "eng": "filter",
+        "purpose": "过滤"
+      },
+      {
+        "eng": "font: weight style size/line-height family",
+        "purpose": "文字样式:粗 斜 字号/行高 字体"
+      },
+      {
+        "eng": "text-transform:   uppercase 、 lowercase",
+        "purpose": "字体转换:  大小写 "
+      },
+      {
+        "eng": "text-decration: underline、none",
+        "purpose": "下划线"
+      },
+      {
+        "eng": "text-indent",
+        "purpose": "文本缩进"
+      },
+      {
+        "eng": "a :linke :visited :hover :active",
+        "purpose": "a链接效果: 默认 访问后 移入时 长按时"
+      },
+      {
+        "eng": "background:url() x y repeat attachment",
+        "purpose": ""
+      },
+      {
+        "eng": ":befor :after",
+        "purpose": "伪元素，必须写 content属性"
+      },
+      {
+        "eng": "solid dotted dashed",
+        "purpose": "实线 点线 虚线"
+      },
+      {
+        "eng": "outline",
+        "purpose": "去除轮廓线"
+      },
+      {
+        "eng": "vertical-align",
+        "purpose": "行内元素 垂直对齐方式"
+      },
+      {
+        "eng": "positin:static",
+        "purpose": "普通流定位"
+      },
+      {
+        "eng": "opacity",
+        "purpose": "透明"
+      },
+      {
+        "eng": "transparent",
+        "purpose": "透明色"
+      },
+      {
+        "eng": "border-radius",
+        "purpose": "圆角"
+      },
+      {
+        "eng": "box-shadow: x y blur spread color inset ",
+        "purpose": "阴影 x y 模糊 范围  颜色 内部"
+      },
+      {
+        "eng": "text-shadow",
+        "purpose": "文字阴影"
+      },
+      {
+        "eng": "linerar-gradient()",
+        "purpose": "线性渐变"
+      },
+      {
+        "eng": "radial-gradient()",
+        "purpose": "放射渐变"
+      },
+      {
+        "eng": "letter-spacing  word-spacing",
+        "purpose": "文字间距  中 英"
+      },
+      {
+        "eng": "overflow: hidden;text-overflow:ellipsis;white-space: nowrap;",
+        "purpose": "溢出省略号"
+      },
+      {
+        "eng": "display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 3;overflow: hidden;",
+        "purpose": "多行溢出省略号"
+      },
+      {
+        "eng": "transition:;",
+        "purpose": "过度"
+      },
+      {
+        "eng": "transform: rotate() scale()  skew() translate(); ",
+        "purpose": "旋转 放大 倾斜 平移"
+      },
+      {
+        "eng": "transform-origin:;",
+        "purpose": "定义基准点"
+      },
+      {
+        "eng": "@keyframes{}",
+        "purpose": "定义动画"
+      },
+      {
+        "eng": "animation:name duration timing-function delay infinite direction fill-mode play-state ;",
+        "purpose": "动画"
+      },
+      {
+        "eng": "steps(,)",
+        "purpose": "动画，阶跃函数"
+      },
+      {
+        "eng": "corsor:move pointer default prograss crosshair wait ;",
+        "purpose": "光标样式:拖动 手指 普通 沙漏 十字 圆圈;"
+      },
+      {
+        "eng": "pointer-events:none;",
+        "purpose": "禁止点击"
+      },
+      {
+        "eng": "hsl(色,饱和度,明度,透明)",
+        "purpose": " 0-360,%,%,0-1"
+      },
+      {
+        "eng": "box-sizing:;content-box 、border-box",
+        "purpose": "盒子模型"
+      },
+      {
+        "eng": "box-reflect:方向 间隔 效果;",
+        "purpose": "倒影:left  px%...  url()color  ;"
+      },
+      {
+        "eng": "background-size:contain  cover ;",
+        "purpose": "背景图大小:包含    自适应;"
+      },
+      {
+        "eng": "background-origin:",
+        "purpose": "从某处填充"
+      },
+      {
+        "eng": "background-clip:;",
+        "purpose": "裁切"
+      },
+      {
+        "eng": "clip-path:circle(r at x y);",
+        "purpose": "裁切元素:圆(半径 at 宽 高);"
+      },
+      {
+        "eng": "border-imge:;slice/width/outset repeat",
+        "purpose": ""
+      },
+      {
+        "eng": "translate3d() scale3d() rotate3d()",
+        "purpose": "3d移动 缩放 旋转"
+      },
+      {
+        "eng": "transform-style:preserve-3d;",
+        "purpose": "保留子元素3d效果"
+      },
+      {
+        "eng": "perspectiove:;",
+        "purpose": "添加景深效果"
+      },
+      {
+        "eng": "perspectiove-origin:;",
+        "purpose": "观察角度"
+      },
+      {
+        "eng": "display:flex;",
+        "purpose": "弹性盒子"
+      },
+      {
+        "eng": "@media (min-width:){}",
+        "purpose": "自媒体查询"
+      },
+      {
+        "eng": "display:grid;",
+        "purpose": "网格布局"
+      },
+      {
+        "eng": "",
+        "purpose": ""
       }
     ]
   },
   {
-    "zhonglei": "aaa333",
+    "zhonglei": "JS",
     "list": [
       {
-        "eng": "eng",
-        "purpose": "pur567567pose"
+        "eng": "prompt()",
+        "purpose": "弹框"
       },
       {
-        "eng": "eng",
-        "purpose": "purp756756ose"
+        "eng": "confirm()",
+        "purpose": "返回 true false"
       },
       {
-        "eng": "eng",
-        "purpose": "purp5675ose"
+        "eng": "document.write",
+        "purpose": "页面输出"
+      },
+      {
+        "eng": "console.log()  .dir()",
+        "purpose": "输出内容    输出对象的结构"
+      },
+      {
+        "eng": "typeof()",
+        "purpose": "判断数据类型"
+      },
+      {
+        "eng": "switch(){case : break default:break}",
+        "purpose": "要么 要么"
+      },
+      {
+        "eng": "String() obj.toString()",
+        "purpose": "转字符串"
+      },
+      {
+        "eng": "Boolean()",
+        "purpose": "转布尔值"
+      },
+      {
+        "eng": "Number()",
+        "purpose": "转数字"
+      },
+      {
+        "eng": "parseInt()",
+        "purpose": "向下取整"
+      },
+      {
+        "eng": "parseFloat()",
+        "purpose": "与Number()相同"
+      },
+      {
+        "eng": "toFixed()",
+        "purpose": "四舍五入，自定义保留小数位，但是它是 字符串类型"
+      },
+      {
+        "eng": "Math.ceil()",
+        "purpose": "上舍入"
+      },
+      {
+        "eng": "Math.floor()",
+        "purpose": "下舍入"
+      },
+      {
+        "eng": "Math.max()",
+        "purpose": "最大"
+      },
+      {
+        "eng": "Math.min()",
+        "purpose": "最小"
+      },
+      {
+        "eng": "Math.random()",
+        "purpose": "0-1之间的随机数"
+      },
+      {
+        "eng": "Math.round()",
+        "purpose": "四舍五入"
+      },
+      {
+        "eng": "Math.abs()",
+        "purpose": "绝对值"
+      },
+      {
+        "eng": "Math.PI()",
+        "purpose": "3.1415926"
+      },
+
+      {
+        "eng": "whild(){}",
+        "purpose": "循环"
+      },
+      {
+        "eng": "for(){}",
+        "purpose": ""
+      },
+      {
+        "eng": "break",
+        "purpose": "跳出循环体"
+      },
+      {
+        "eng": "continue",
+        "purpose": "跳过此次循环"
+      },
+      {
+        "eng": "concat()",
+        "purpose": "合并数组"
+      },
+      {
+        "eng": "join()",
+        "purpose": "以某符号分隔数组"
+      },
+      {
+        "eng": "pop()",
+        "purpose": "删除数组中最后一值"
+      },
+      {
+        "eng": "push()",
+        "purpose": "添加一个到最后"
+      },
+      {
+        "eng": "shift()",
+        "purpose": "删前1"
+      },
+      {
+        "eng": "unshift()",
+        "purpose": "前1添加"
+      },
+      {
+        "eng": "Array.isArray()",
+        "purpose": "判断是否为数组"
+      },
+      {
+        "eng": "indexOf()",
+        "purpose": "找到某个值的下标"
+      },
+      {
+        "eng": "lastIndexOf()",
+        "purpose": "找到某个值的下标"
+      },
+      {
+        "eng": "split(,,)",
+        "purpose": "替换位置 替换长度，"
+      },
+      {
+        "eng": "slice()",
+        "purpose": "截取两个下标的值"
+      },
+      {
+        "eng": "reverse()",
+        "purpose": "反转"
+      },
+      {
+        "eng": "forEach(function(item,index,arr){})",
+        "purpose": "遍历"
+      },
+      {
+        "eng": "map(()=>x)",
+        "purpose": "对数组操作返回新数组"
+      },
+      {
+        "eng": "some(()=>x)     every(()=>x)",
+        "purpose": "有真就true   有假就false"
+      },
+      {
+        "eng": "filter(()=>x)",
+        "purpose": "返回满足回调函数的子项"
+      },
+      {
+        "eng": "reduce(()=>x,初始值) ",
+        "purpose": "累 + - * / ..."
+      },
+      {
+        "eng": "setInterval()  setTimeout()",
+        "purpose": "定时器"
+      },
+      {
+        "eng": "delete obj.x",
+        "purpose": "对象中删除某值"
+      },
+      {
+        "eng": "arguments",
+        "purpose": "函数调用时获取的实参"
+      },
+      {
+        "eng": "retuen",
+        "purpose": "返回值，默认为undefined"
+      },
+      {
+        "eng": "new Date()",
+        "purpose": "时间对象"
+      },
+      {
+        "eng": "getFullYear()",
+        "purpose": "年"
+      },
+      {
+        "eng": "getMonth()+1",
+        "purpose": "月"
+      },
+      {
+        "eng": "getDate()",
+        "purpose": "日"
+      },
+      {
+        "eng": "getHours()",
+        "purpose": "时"
+      },
+      {
+        "eng": "getMinutes()",
+        "purpose": "分"
+      },
+      {
+        "eng": "getSeconds()",
+        "purpose": "秒"
+      },
+      {
+        "eng": "getDay()",
+        "purpose": "星期几"
+      },
+      {
+        "eng": "getTime()",
+        "purpose": "毫秒"
+      },
+      {
+        "eng": "charAt()",
+        "purpose": "字符串查找某个下标的值"
+      },
+      {
+        "eng": "toLowerCase()",
+        "purpose": "小写"
+      },
+      {
+        "eng": "toUpperCase()",
+        "purpose": "大写"
+      },
+      {
+        "eng": "split()",
+        "purpose": "分割成数组"
+      },
+      {
+        "eng": "charCodeAt()",
+        "purpose": "返回unicode值"
+      },
+      {
+        "eng": "String.formcharCode()",
+        "purpose": "unicode转字符"
+      },
+      {
+        "eng": "replace(//gi,)",
+        "purpose": "内容替换"
+      },
+      {
+        "eng": "substring(,)",
+        "purpose": "截取，参数可颠倒，不可为负数，截取两个下标之间"
+      },
+      {
+        "eng": "slice(,)",
+        "purpose": "截取，参数不可颠倒，可以为负数（负数就倒着数）"
+      },
+      {
+        "eng": "substr(,)",
+        "purpose": "截取，不可颠倒，可为负数，起始下标，截取长度"
+      },
+      {
+        "eng": "document.querselector('')",
+        "purpose": "获取一个元素"
+      },
+      {
+        "eng": "window.screenX  Y",
+        "purpose": "获取距离屏幕左上角的距离"
+      },
+      {
+        "eng": "window.innerHeight   Width",
+        "purpose": "可视窗口的宽高"
+      },
+      {
+        "eng": "window.outerHeight   Width",
+        "purpose": "浏览器的宽高"
+      },
+      {
+        "eng": "window.scrollX Y",
+        "purpose": "页面的滚动距离"
+      },
+
+      {
+        "eng": "window.open('地址','_blank','参数')",
+        "purpose": "打开网页"
+      },
+      {
+        "eng": "close()",
+        "purpose": "关闭网页"
+      },
+      {
+        "eng": "stop()",
+        "purpose": "停止加载"
+      },
+      {
+        "eng": "scrollTo({top:0,left:0,behavior:'smooth'})",
+        "purpose": "滚动到指定位置"
+      },
+      {
+        "eng": "scrollBy(x,y)",
+        "purpose": "滚动多少px"
+      },
+      {
+        "eng": "window.screen.orientation",
+        "purpose": "返回屏幕的方向"
+      },
+      {
+        "eng": "window.navigor.userAgent",
+        "purpose": "返回浏览器信息"
+      },
+      {
+        "eng": "history.length",
+        "purpose": "浏览器过往个数"
+      },
+      {
+        "eng": "history.back()",
+        "purpose": "后退"
+      },
+      {
+        "eng": "history.forward()",
+        "purpose": "前进"
+      },
+      {
+        "eng": "history.go()",
+        "purpose": "跳转到第几个"
+      },
+      {
+        "eng": "window.location",
+        "purpose": "访问URL信息"
+      },
+      {
+        "eng": "window.location.reload()",
+        "purpose": "重载网页"
+      },
+      {
+        "eng": "clientWidth Height",
+        "purpose": "获取元素宽高（不包括边框）"
+      },
+      {
+        "eng": "offsetWidth Height",
+        "purpose": "获取元素宽高（包括边框）"
+      },
+      {
+        "eng": "scrollTop Left",
+        "purpose": "获取距离顶部的 滚动距离"
+      },
+      {
+        "eng": "offsetLeft  Top",
+        "purpose": "获取距离定位父级的距离"
+      },
+      {
+        "eng": "window.getComputedStyle(元素,可选伪类).属性",
+        "purpose": "获取非行内样式"
+      },
+      {
+        "eng": "getAttribute()  setA...   removeA...",
+        "purpose": "获取 添加 修改 删除 某个属性节点"
+      },
+      {
+        "eng": "元素.addEventListener('事件名',fn,布尔值)   remove...",
+        "purpose": "二级事件绑定 移除 "
+      },
+      {
+        "eng": "e.stopPropagation()    e.cancelBubble=true",
+        "purpose": "阻止冒泡    IE阻止冒泡"
+      },
+      {
+        "eng": "e.target",
+        "purpose": "返回目标节点"
+      },
+      {
+        "eng": "e.currentTarget",
+        "purpose": "获取 绑定元素触发事件的节点"
+      },
+      {
+        "eng": "onmouse  down  move up over out click  dblclick  enter leave  contextmenu",
+        "purpose": "鼠标事件 按下 移动 松开 移入 移出  单击 双击 移入 移出 右键"
+      },
+      {
+        "eng": "ondrag   start   emd",
+        "purpose": "拖拽移动时  开始  结束 "
+      },
+      {
+        "eng": "onderagenter",
+        "purpose": "被拖动的元素进入其他容器时"
+      },
+      {
+        "eng": "onderagover",
+        "purpose": "在另一个容器移动时"
+      },
+      {
+        "eng": "onderagleave",
+        "purpose": "离开时"
+      },
+      {
+        "eng": "ondrop",
+        "purpose": "释放时"
+      },
+      {
+        "eng": "e.preventDefault()   return false",
+        "purpose": "阻止默认事件"
+      },
+      {
+        "eng": "onmouseWheel    e.wheelDelta",
+        "purpose": "滚轮事件    判断方向大于0向上"
+      },
+      {
+        "eng": " DOMMouseScroll  e.detail ",
+        "purpose": "火狐滚动事件  大于0下    "
+      },
+      {
+        "eng": "e.clientX  Y",
+        "purpose": "获取当前鼠标距离 可视区 的距离"
+      },
+      {
+        "eng": "e.pageX  Y",
+        "purpose": "获取当前鼠标距离 文档 的距离"
+      },
+      {
+        "eng": "e.offsetX Y",
+        "purpose": "获取当前鼠标距离 目标节点 的距离"
+      },
+      {
+        "eng": "onkeypress",
+        "purpose": "键盘按下抬起事件"
+      },
+      {
+        "eng": "onkeydowm",
+        "purpose": "键盘按下"
+      },
+      {
+        "eng": "onkeyup",
+        "purpose": "键盘抬起"
+      },
+      {
+        "eng": "e.key  e.keycode",
+        "purpose": "按键编号  按键名"
+      },
+      {
+        "eng": "onblur   onfocus",
+        "purpose": "失焦  聚焦  事件"
+      },
+      {
+        "eng": "oninput",
+        "purpose": "实时监控input"
+      },
+      {
+        "eng": "onchange",
+        "purpose": "失去焦点时触发"
+      },
+      {
+        "eng": "onreset   onsubmit",
+        "purpose": "重置   提交  时触发"
+      },
+      {
+        "eng": "onselect",
+        "purpose": "文本框中的文本被选中时触发"
+      },
+      {
+        "eng": "onload   onerror",
+        "purpose": "加载完成  失败 触发"
+      },
+      {
+        "eng": "window.onscroll",
+        "purpose": "页面滚动时触发"
+      },
+      {
+        "eng": "window.onresize",
+        "purpose": "窗口改变大小时触发"
+      },
+      {
+        "eng": "onbeforeunload",
+        "purpose": "刷新页面时触发"
+      },
+      {
+        "eng": "instanceof",
+        "purpose": "判断 它在的对象是否 是它右边的 类"
+      },
+      {
+        "eng": "constructor",
+        "purpose": "构造器"
+      },
+      {
+        "eng": "prototype",
+        "purpose": "原型"
+      },
+      {
+        "eng": "'use strict'",
+        "purpose": "严格模式"
+      },
+      {
+        "eng": "fn.apply(obj,[参数])",
+        "purpose": "把某些参数的this指向obj"
+      },
+      {
+        "eng": "fn.call(obj,参数,...)",
+        "purpose": "把某些参数的this指向obj"
+      },
+      {
+        "eng": "fn.bind(obj,参数,...)",
+        "purpose": "返回值是复制后的方法（无法向以上2种一样直接改变this指向，他需要赋值）"
+      },
+      {
+        "eng": "new RegExp(//)",
+        "purpose": "创建正则"
+      },
+      {
+        "eng": "//.test('')",
+        "purpose": "字面量创建"
+      },
+      {
+        "eng": "字符串.math(//)",
+        "purpose": "返回一个伪数组"
+      },
+      {
+        "eng": "正则.exec(字符串)",
+        "purpose": "返回伪数组，与mach相反"
+      },
+      {
+        "eng": "ajax请求",
+        "purpose": "详见整体代码"
+      },
+      {
+        "eng": "try{}catch{}",
+        "purpose": "尝试执行{}执行错误执行{}"
+      },
+      {
+        "eng": "document.cookie",
+        "purpose": "设置 获取 修改 cookie详见 代码"
+      },
+      {
+        "eng": "window.performance,now()",
+        "purpose": "前端性能监控api"
+      },
+
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      }
+    ]
+  },
+  {
+    "zhonglei": "JQ",
+    "list": [
+      {
+        "eng": ":contains()  :empty",
+        "purpose": "含有某文本  内容为空"
+      },
+      {
+        "eng": ":has()  :parent ",
+        "purpose": "选取有某某的  有内容的"
+      },
+      {
+        "eng": "val()  attr()  text()",
+        "purpose": "value  标签属性  文本"
+      },
+      {
+        "eng": "addClass()  removeClass()",
+        "purpose": "添加删除 类名"
+      },
+      {
+        "eng": "hasClass() toggleClass()",
+        "purpose": "有没有此类  加删类"
+      },
+      {
+        "eng": "find()  has() ",
+        "purpose": "所有后代中的元素  包含某某后代"
+      },
+      {
+        "eng": "filter()  not()",
+        "purpose": "筛选出指定元素  除了某某元素 "
+      },
+      {
+        "eng": "parent()  parentS()",
+        "purpose": "父级 组先级"
+      },
+      {
+        "eng": "eq()  index()  siblings()",
+        "purpose": "某一个 下标   同胞兄弟"
+      },
+      {
+        "eng": "$().get()   $()[0]",
+        "purpose": "jq转js"
+      },
+      {
+        "eng": "append()   prepend()",
+        "purpose": "向后添加元素   向前"
+      },
+      {
+        "eng": "appendTo()   prependTo()",
+        "purpose": "同上，  书写方式不同"
+      },
+      {
+        "eng": "after()  befor()",
+        "purpose": "添加下一个兄弟  上一个"
+      },
+      {
+        "eng": "clone()",
+        "purpose": "克隆"
+      },
+      {
+        "eng": "html()",
+        "purpose": "html内容"
+      },
+      {
+        "eng": ".empty()   .remove()",
+        "purpose": "移除元素"
+      },
+      {
+        "eng": "is()",
+        "purpose": "是否匹配某某选择器"
+      },
+      {
+        "eng": "bind()  on()    unbind()  off()",
+        "purpose": "事件绑定 绑定者  触发者   移除事件"
+      },
+      {
+        "eng": "wrap()",
+        "purpose": "加一个父级"
+      },
+      {
+        "eng": "$.each() each()",
+        "purpose": "遍历"
+      },
+      {
+        "eng": "width()  innerWidth()  ouerWidthn() Height同",
+        "purpose": "获取元素大小，无边框，有边框，有外边距"
+      },
+      {
+        "eng": "offset().left .top",
+        "purpose": "获取元素距离 文档 的位置"
+      },
+      {
+        "eng": "position().top  .left",
+        "purpose": "距离定位父级的 位置"
+      },
+      {
+        "eng": "scrollLeft()   scrollTop()",
+        "purpose": "滚动条距离"
+      },
+      {
+        "eng": "show()  hide()  toggle()",
+        "purpose": "显示消失"
+      },
+      {
+        "eng": "fadeIn()  fadeOut()  fadeTo()",
+        "purpose": "透明度显示消失"
+      },
+      {
+        "eng": "slideUp()  slideDown() slideToggle()",
+        "purpose": "高度显示消失"
+      },
+      {
+        "eng": "animate()",
+        "purpose": "动画"
+      },
+      {
+        "eng": "stop()",
+        "purpose": "停止动画"
+      },
+      {
+        "eng": "delay()",
+        "purpose": "延时"
+      },
+      {
+        "eng": "e.pageX Y",
+        "purpose": "鼠标相对于文档的位置"
+      },
+      {
+        "eng": "e.clientX Y",
+        "purpose": "鼠标相对于可视区的位置"
+      },
+      {
+        "eng": "$.ajax({})",
+        "purpose": "详细见代码"
+      },
+      {
+        "eng": "$.type()",
+        "purpose": "获取数据类型"
+      },
+      {
+        "eng": "$.trim()",
+        "purpose": "去除空白符"
+      },
+      {
+        "eng": "$.parseJSON()",
+        "purpose": "json转js对象"
+      },
+      {
+        "eng": "$.markArray()",
+        "purpose": "类数组转真数组"
+      },
+      {
+        "eng": "$.pproxy(,)",
+        "purpose": "改变this指向"
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      },
+      {
+        "eng": "",
+        "purpose": ""
+      }
+    ]
+  },
+  {
+    "zhonglei": "SVG",
+    "list": [
+      {
+        "eng": "circle  cx cy r fill  strole stroke-width",
+        "purpose": "圆  x y  r 填充色  边框 边框宽"
+      },
+      {
+        "eng": "rect x y w h rx ry",
+        "purpose": "矩形 x y w h 圆角x y"
+      },
+      {
+        "eng": "ellipse cx cy rx ry",
+        "purpose": "椭圆 x  y 半径x y"
+      },
+      {
+        "eng": "line x1 y2  x2  y2",
+        "purpose": "直线 第一个点xy 第二个点xy"
+      },
+      {
+        "eng": "polygon posints='x,y x,y x,y x,y'",
+        "purpose": "多边形 坐标"
+      },
+      {
+        "eng": "polyline",
+        "purpose": "与上一个相同，区别是最后一条线不闭合"
+      },
+      {
+        "eng": "text x y transform=''",
+        "purpose": ""
       }
     ]
   }
