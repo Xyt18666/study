@@ -913,96 +913,265 @@
       },
 
       {
-        "eng": "",
-        "purpose": ""
+        "eng": "online   offline",
+        "purpose": "网络连通  断开 事件"
       },
       {
-        "eng": "",
-        "purpose": ""
+        "eng": "document.fullscreenElement",
+        "purpose": "判断是否为全屏"
       },
       {
-        "eng": "",
-        "purpose": ""
+        "eng": "元素.requesrFullScreen()",
+        "purpose": "全屏显示"
       },
       {
-        "eng": "",
-        "purpose": ""
+        "eng": "document.Fullscreen()    exitFullscreen()",
+        "purpose": "退出全屏"
       },
       {
-        "eng": "",
-        "purpose": ""
+        "eng": "new FileReader()",
+        "purpose": "创建文件读取对象"
       },
       {
-        "eng": "",
-        "purpose": ""
+        "eng": "readAsText()",
+        "purpose": "读取文本文件，返回字符串，默认utf-8"
       },
       {
-        "eng": "",
-        "purpose": ""
+        "eng": "readAsDataURL()",
+        "purpose": "返回data开头的字符串，会将资源转为base64"
       },
       {
-        "eng": "",
-        "purpose": ""
+        "eng": "readAsBinaryString()",
+        "purpose": "读取任意格式，返回二进制"
       },
       {
-        "eng": "",
-        "purpose": ""
+        "eng": "e.dataTransfer.files",
+        "purpose": "用来保存被拖动的数据"
       },
       {
-        "eng": "",
-        "purpose": ""
+        "eng": "navigator.geolocation",
+        "purpose": "判断是否支持定位"
       },
       {
-        "eng": "",
-        "purpose": ""
+        "eng": "navigator.geolocation.getcurrentPosition(成功回调，失败回调，{参数})",
+        "purpose": "获取地理定位信息"
       },
       {
-        "eng": "",
-        "purpose": ""
+        "eng": "position.coords.latitude",
+        "purpose": "纬度"
       },
       {
-        "eng": "",
-        "purpose": ""
+        "eng": "position.coords.lingitude",
+        "purpose": "经度"
       },
       {
-        "eng": "",
-        "purpose": ""
+        "eng": "window.sessionStorage",
+        "purpose": "web临时存储"
       },
       {
-        "eng": "",
-        "purpose": ""
+        "eng": "window.localStorage",
+        "purpose": "web长期存储"
       },
       {
-        "eng": "",
-        "purpose": ""
+        "eng": "storage     e.key  e.newvalue  e.oldvalue .url  .storageArea",
+        "purpose": "web存储触发的事件 设置修改键 新值  旧值 触发事件的url 发生变化的storage"
       },
       {
-        "eng": "",
-        "purpose": ""
+        "eng": "setItem(键,值)  getItem(键) removeItem(键) clear()",
+        "purpose": "设置 获取 删除 清空"
       },
       {
-        "eng": "",
-        "purpose": ""
+        "eng": "在html标签中写入属性  manifest='某某.appache'",
+        "purpose": "使用应用缓存"
       },
       {
-        "eng": "",
-        "purpose": ""
+        "eng": "CACHE MANIFEST  CACHE:需要缓存的列表清单  NETWOPK:需要重新获取的   FALLBACK:找不到使用某某代替的",
+        "purpose": "某某.appache的书写格式"
       },
       {
-        "eng": "",
-        "purpose": ""
+        "eng": "audio.paused",
+        "purpose": "判断播放状态"
       },
       {
-        "eng": "",
-        "purpose": ""
+        "eng": "play()  pause()",
+        "purpose": "打开  关闭"
       },
       {
-        "eng": "",
-        "purpose": ""
+        "eng": "oncanplay",
+        "purpose": "视频可播放时触发"
       },
       {
-        "eng": "",
-        "purpose": ""
+        "eng": "duration",
+        "purpose": "获取总时长"
+      },
+      {
+        "eng": "ontimeuodate",
+        "purpose": "视频播放时触发，currentTime改变就会触发"
+      },
+      {
+        "eng": "currentTime",
+        "purpose": "当前播放的时间进度"
+      },
+      {
+        "eng": "onended",
+        "purpose": "播放完成的事件"
+      },
+      {
+        "eng": "audio.volume",
+        "purpose": "音量调节"
+      },
+      {
+        "eng": "audio.playbackRate",
+        "purpose": "设置播放倍速"
+      },
+
+      {
+        "eng": "JSON.stringify()",
+        "purpose": "返回合法的utf-8字符"
+      },
+      {
+        "eng": "String.formCodePoint()",
+        "purpose": "可以识别大于0xFFFF的字符"
+      },
+      {
+        "eng": "codePointAt()",
+        "purpose": "能够正确处理4个字节的字符"
+      },
+      {
+        "eng": "String.raw()",
+        "purpose": "返回一个斜杠都被转义的字符串"
+      },
+      {
+        "eng": "normalize()",
+        "purpose": "用于将字符不同的表示方法统一为同样的形式"
+      },
+      {
+        "eng": "includes(值,起始下标,结束下标)",
+        "purpose": "返回布尔值，表示是否找到了参数字符串"
+      },
+      {
+        "eng": "startsWidth(值,起始下标)     endWith(值,起始下标)",
+        "purpose": "返回布尔值，表示参数是否在字符串的 开头  结尾"
+      },
+      {
+        "eng": "repeat(次数)",
+        "purpose": "返回新字符串，表示重复n次"
+      },
+      {
+        "eng": "trimStart()  trimEnd()",
+        "purpose": "消除空格  首 尾"
+      },
+      {
+        "eng": "padStart()  padEnd()",
+        "purpose": "补全字符串 向前  向后"
+      },
+      {
+        "eng": "function ``",
+        "purpose": "标签函数"
+      },
+      {
+        "eng": "Number.isFinite()",
+        "purpose": "是否为finite"
+      },
+      {
+        "eng": "Number.isNaN()",
+        "purpose": "是否为NaN"
+      },
+      {
+        "eng": "Number.isInteger()",
+        "purpose": "是否为整数"
+      },
+      {
+        "eng": "Math.trunc()",
+        "purpose": "去除小数"
+      },
+      {
+        "eng": "Math.sqrt()  Math.cbrt()",
+        "purpose": "平方根  立方根"
+      },
+      {
+        "eng": "Math.sin() Math.cos() Math.tan()",
+        "purpose": "三角函数"
+      },
+      {
+        "eng": "Array.of()",
+        "purpose": "将一组值转为数组"
+      },
+      {
+        "eng": "Array.from()",
+        "purpose": "将可便利对象和伪数组转真数组"
+      },
+      {
+        "eng": "find(()=>)  findIndex(() =>)",
+        "purpose": "找出第一个符合条件的值 返回值  返回下标"
+      },
+      {
+        "eng": " fill(替换值,替换的起始位置,结束位置) ",
+        "purpose": "给定值，填充到数组"
+      },
+      {
+        "eng": "for of ",
+        "purpose": "遍历数组"
+      },
+      {
+        "eng": "keys()  values()  entries() ",
+        "purpose": "遍历 下标  值  [下标 ，值]"
+      },
+      {
+        "eng": "flat(展开的层数)",
+        "purpose": "展开多维数组，默认只能展开一层"
+      },
+      {
+        "eng": "flatMap()",
+        "purpose": "先执行一次map(),在执行 flat()，只能展开一层"
+      },
+      {
+        "eng": "get set ",
+        "purpose": "对象中的伪属性,不能和普通属性重名 取值器 赋值器"
+      },
+      {
+        "eng": "Object.defineProperty(需要定义属性的对象,属性名,属性描述对象})",
+        "purpose": "定义对象属性和描述"
+      },
+      {
+        "eng": " value writable configurable enumerable ",
+        "purpose": "值 是否可写 描述属性是否可以配置以及是否可以删除 是否可枚举(遍历)"
+      },
+      {
+        "eng": "Object.is()",
+        "purpose": "用来判断两个值是否严格相等 ==="
+      },
+      {
+        "eng": "Object.assign(目标对象，源对象)",
+        "purpose": "合并对象"
+      },
+      {
+        "eng": "Object.getOwnPropertyDescriptors(对象) ",
+        "purpose": "返回指定对象的所有自身属性的描述对象"
+      },
+      {
+        "eng": "Object.keys() .values()   .entries()  .fromEntries() ",
+        "purpose": "返回对象的键，数组形式，不含继承  值，数组形式，不含继承  键值，数组形式，不含继承  数组转对象 ，与Object.entries() 相反"
+      },
+      {
+        "eng": "Symbol()",
+        "purpose": "独一无二的值,常用于对象的键名"
+      },
+      {
+        "eng": "new  Set()",
+        "purpose": "类似于数组，成员值都是唯一的，不会重复"
+      },
+      {
+        "eng": "new  WeakSet()",
+        "purpose": "与 new set() 相同，成员只能是对象"
+      },
+      {
+        "eng": "new Map()",
+        "purpose": "类似于对象，可以接受一个数组，成员一个表示键，一个表示值，键的参数可以是任意类型"
+      },
+      {
+        "eng": "new  Weak Map()",
+        "purpose": "与 new  Map() 相同，成员只能是对象"
       },
       {
         "eng": "",
