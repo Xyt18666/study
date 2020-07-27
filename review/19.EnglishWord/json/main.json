@@ -353,11 +353,11 @@
         "purpose": "保留子元素3d效果"
       },
       {
-        "eng": "perspectiove:;",
+        "eng": "perspective:;",
         "purpose": "添加景深效果"
       },
       {
-        "eng": "perspectiove-origin:;",
+        "eng": "perspective-origin:;",
         "purpose": "观察角度"
       },
       {
@@ -463,7 +463,7 @@
       },
 
       {
-        "eng": "whild(){}",
+        "eng": "while(){}",
         "purpose": "循环"
       },
       {
@@ -516,7 +516,7 @@
       },
       {
         "eng": "split(,,)",
-        "purpose": "替换位置 替换长度，"
+        "purpose": "替换位置, 替换长度,新值"
       },
       {
         "eng": "slice()",
