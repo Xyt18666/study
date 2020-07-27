@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .wrap {
+        width: 400px;
+        padding: 20px;
+        box-shadow: 5px 5px 10px #ddd;
+        margin: 40px;
+        border-radius: 10px;
+      }
+      .screen {
+        width: calc(100% - 40px);
+        height: 60px;
+        border-radius: 10px;
+        background: #ccc;
+        padding: 0 20px;
+        line-height: 60px;
+        font-size: 25px;
+      }
+      .screen span {
+        float: right;
+      }
+      .buttons button {
+        width: 70px;
+        height: 70px;
+        border-radius: 35px;
+        border: 0;
+        background: linear-gradient(to right bottom, #f1f2f3, #f8f9fa);
+        outline: 0;
+        box-shadow: 3px 3px 5px #ddd;
+        font-size: 25px;
+      }
+      .buttons button.active {
+        box-shadow: inset 3px 3px 5px #ddd;
+      }
+      .buttons .rows {
+        margin: 20px 0;
+        display: flex;
+        justify-content: space-between;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="screen"><span>1</span></div>
+      <div class="buttons">
+        <div class="rows">
+          <button>AC</button>
+          <button>±</button>
+          <button>%</button>
+          <button class="cal">÷</button>
+        </div>
+        <div class="rows">
+          <button class="num">1</button>
+          <button class="num">2</button>
+          <button class="num">3</button>
+          <button class="cal">×</button>
+        </div>
+        <div class="rows">
+          <button class="num">4</button>
+          <button class="num">5</button>
+          <button class="num">6</button>
+          <button class="cal">-</button>
+        </div>
+        <div class="rows">
+          <button class="num">7</button>
+          <button class="num">8</button>
+          <button class="num">9</button>
+          <button class="cal">+</button>
+        </div>
+        <div class="rows">
+          <button style="flex-grow: 0.5;" class="num">0</button>
+          <button>.</button>
+          <button class="equal">=</button>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+  <script type="text/javascript">
+    $("button").mousedown(function () {
+      $(this).addClass("active");
+    });
+    $("button").mouseup(function () {
+      $(this).removeClass("active");
+    });
+    var num = 0;
+    var str = "";
+    var result = 0;
+    var start = true;
+    var sym = "";
+    $("button").click(function () {
+      var current = $(this).text();
+      if (start) {
+        if ($(this).hasClass("num")) {
+          str += current;
+          num = parseFloat(num + current);
+          $(".screen span").text(str);
+        } else if ($(this).hasClass("cal")) {
+          str += current;
+          $(".screen span").text(str);
+          start = false;
+          result = num;
+          sym = current;
+          num = 0;
+        }
+      } else {
+        if ($(this).hasClass("equal")) {
+          $(".screen span").text(result);
+          result = 0;
+        } else if ($(this).hasClass("num")) {
+          str += current;
+          num = parseFloat(num + current);
+          symbol(sym, num);
+          $(".screen span").text(str);
+        }
+      }
+    });
+
+    function symbol(str, num) {
+      if (str === "+") {
+        result += num;
+      } else if (str === "-") {
+        result -= num;
+      } else if (str === "×") {
+        result *= num;
+      } else if (str === "÷") {
+        result /= num;
+      }
+    }
+  </script>
+</html>

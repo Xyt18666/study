@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+
+    <title>Document</title>
+  </head>
+  <body>
+    <h2></h2>
+    <p>1</p>
+    <p>2</p>
+    <p>3</p>
+    <p>4</p>
+    <p>5</p>
+    <p>6</p>
+    <p>7</p>
+    <h3>*</h3>
+    <h4>计算</h4>
+  </body>
+  <script>
+    var oueSize = "";
+    var fh = "";
+    var size2 = "";
+    $("p").click(function (e) {
+      //   console.log($(this).text());
+
+      if (oueSize.length > 0) {
+        $("h2").text($("h2").text() + $(this).text());
+      } else {
+        $("h2").text($("h2").text() + $(this).text());
+        size2 = parseInt($("h2").text().split(fh)[1]);
+      }
+    });
+    $("h3").click(function () {
+      oueSize = parseInt($("h2").text());
+      console.log(oueSize);
+      $("h2").text($("h2").text() + $(this).text());
+      fh = $(this).text();
+    });
+    $("h4").click(function () {
+      console.log(eval(oueSize + fh + size2));
+    //   eval()
+    //把 字符串的运算公式 ，直接输出结果
+    });
+  </script>
+</html> 
+
+
+
