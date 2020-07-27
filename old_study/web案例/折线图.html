@@ -4,95 +4,124 @@
     <meta charset="UTF-8" />
     <title>Document</title>
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      canvas {
+        border: 2px solid #999;
+        position: absolute;
+        top: 50px;
+        left: 50%;
+        transform: translate(-50%, 0);
+      }
+    </style>
   </head>
   <body>
-    <canvas width="800px" height="320px"></canvas>
+    <canvas width="800px" height="600px"></canvas>
   </body>
   <script>
     let c = $("canvas")[0].getContext("2d");
 
-    var array1 = [24, 26, 0, 10, -15];
-    var array2 = [2, 6, 15, 18, -5];
+    var array1 = [24, 26, 0, 10, 30];
+    var array2 = [2, 6, 15, 18, 10];
+    let size = [0, 10, 20, 30, 40];
+    let data = [0, 1, 2, 3, 4];
 
-    let xjz = 50;
-    let yjz = 100;
-    let xjj = 50;
-    let yjj = 3;
+    let xqd = 50; //x起点
+    let yqd = 550; //y起点
+    let xjg = 150; //x间隔
+    let yjg = 100; //y间隔
+    let yrz = 100; //y轴100像素10人
 
-    c.beginPath();
+    c.beginPath(); //横向基准线
     c.strokeStyle = "#000";
     c.lineWidth = "2";
-    c.moveTo(xjz, yjz - (-20 - array1[0]) * yjj);
-    c.lineTo(700, yjz - (-20 - array1[0]) * yjj);
+    c.moveTo(xqd, yqd);
+    c.lineTo(750, 550);
+    c.stroke();
+    c.closePath();
+
+    c.beginPath(); //纵向基准线
+    c.strokeStyle = "#000";
+    c.lineWidth = "2";
+    c.moveTo(xqd, yqd);
+    c.lineTo(50, 50);
     c.stroke();
     c.closePath();
 
     for (var a = 0; a < array1.length; a++) {
-      c.beginPath();
+      c.beginPath(); //纵向字
+      c.font = "12px/12px 微软雅黑";
+      c.textAlign = "center";
+      c.fillStyle = "#000";
+      c.fillText(size[a] + "人", xqd - 20, yqd - a * yjg);
+      c.closePath();
+      c.beginPath(); //横向字
+      c.font = "12px/12px 微软雅黑";
+      c.textAlign = "center";
+      c.fillStyle = "#000";
+      c.fillText(data[a] + "天", xqd + a * xjg, yqd + 20);
+      c.closePath();
+
+      c.beginPath(); //线1
       c.strokeStyle = "red";
       c.lineWidth = "2";
-      c.moveTo(xjz + xjj * a, yjz - (array1[a] - array1[0]) * yjj);
-      c.lineTo(xjz + xjj * (a + 1), yjz - (array1[a + 1] - array1[0]) * yjj);
+      c.moveTo(xqd + xjg * a, yqd - (yrz / 10) * array1[a]);
+      //x起点+x间隔*第几个,y起点-(y轴100像素/10个人)*人数
+      c.lineTo(xqd + xjg * (a + 1), yqd - (yrz / 10) * array1[a + 1]);
+      //x起点+x间隔*(第几个+1),y起点-(y轴100像素/10个人)*下一个值人数
       c.stroke();
       c.closePath();
 
-      c.beginPath();
+      c.beginPath(); //线2
       c.strokeStyle = "#0f0";
       c.lineWidth = "2";
-      c.moveTo(xjz + xjj * a, yjz - (array2[a] - array1[0]) * yjj);
-      c.lineTo(xjz + xjj * (a + 1), yjz - (array2[a + 1] - array1[0]) * yjj);
+      c.moveTo(xqd + xjg * a, yqd - (yrz / 10) * array2[a]);
+      c.lineTo(xqd + xjg * (a + 1), yqd - (yrz / 10) * array2[a + 1]);
       c.stroke();
       c.closePath();
 
-      c.beginPath();
+      c.beginPath(); //圆点1
       c.strokeStyle = "red";
       c.lineWidth = "2";
       c.fillStyle = "#fff";
-      c.arc(
-        xjz + xjj * a,
-        yjz - (array1[a] - array1[0]) * yjj,
-        5,
-        0,
-        2 * Math.PI
-      );
+      c.arc(xqd + xjg * a, yqd - (yrz / 10) * array1[a], 5, 0, 2 * Math.PI);
+      //x,y,r,起始角，结束角
       c.fill();
       c.stroke();
       c.closePath();
 
-      c.beginPath();
+      c.beginPath(); //圆点2
       c.strokeStyle = "#0f0";
       c.lineWidth = "2";
       c.fillStyle = "#fff";
-      c.arc(
-        xjz + xjj * a,
-        yjz - (array2[a] - array1[0]) * yjj,
-        5,
-        0,
-        2 * Math.PI
-      );
+      c.arc(xqd + xjg * a, yqd - (yrz / 10) * array2[a], 5, 0, 2 * Math.PI);
       c.fill();
       c.stroke();
       c.closePath();
 
-      c.beginPath();
+      c.beginPath(); //文字1
       c.font = "12px/12px 微软雅黑";
       c.textAlign = "center";
       c.fillStyle = "#000";
       c.fillText(
         array1[a] + "度",
-        xjz + xjj * a,
-        yjz - (array1[a] - array1[0]) * yjj - 15
+        xqd + xjg * a,
+        yqd - (yrz / 10) * array1[a] - 20
       );
+      //文字，x,y
       c.closePath();
 
-      c.beginPath();
+      c.beginPath(); //文字2
       c.font = "12px/12px 微软雅黑";
       c.textAlign = "center";
       c.fillStyle = "#000";
       c.fillText(
-        array2[a] + "度",
-        xjz + xjj * a,
-        yjz - (array2[a] - array1[0]) * yjj - 15
+        array1[a] + "度",
+        xqd + xjg * a,
+        yqd - (yrz / 10) * array2[a] - 20
       );
       c.closePath();
     }
