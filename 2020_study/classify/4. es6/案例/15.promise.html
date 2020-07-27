@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    /*
+    1、概念
+       Promise是异步编程的一种解决方案。
+    2、异步
+        之前实现异步操作的方式  ①回调函数      ②事件触发
+    3、作用：解决异步操作问题，区别于上述两种方法
+    4、特点：
+    （1）对象的状态不受外界影响，Promise对象代表一个异步操作，有三种状态：pending（进行中）、fulfilled（已成功）和rejected（已失败）。只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态。
+
+    
+    */
+    {
+      function ajax() {
+        console.log("1111");
+        return new Promise(function (resolve, reject) {
+          setTimeout(function () {
+            resolve();
+          }, 2000);
+        });
+      }
+      ajax().then(function () {
+        console.log("2222");
+      });
+    }
+  </script>
+</html>

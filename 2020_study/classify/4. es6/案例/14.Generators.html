@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    /*
+    生成器(Generator)看起来像是一种函数，对吗？它确实被称之为生成器函数，且与函数有很多相似之处。但是两者有以下两点区别：
+
+    普通函数用 function 声明。生成器函数则用 function *。
+    在生成器函数内部，关键词 yield 是一种类似 return 的语法。区别就在于函数（甚至生成器函数）只能返回一次，但是生成器函数可以 yield 多次。yield 表达式将生成器的执行过程挂起，随后可以被恢复。
+    所以这是一个普通函数与生成器函数之间比较大的区别。普通函数无法暂停自身的执行，而生成器函数可以。
+
+    
+    
+    */
+    function* quips(name) {
+      yield "hello " + name + "!";
+      yield "i hope you are enjoying the blog posts";
+      if (name.startsWith("X")) {
+        yield "it's cool how your name starts with X, " + name;
+      }
+      yield "see you later!";
+    }
+    let gen = quips("111");
+    gen.next();
+    gen.next();
+    gen.next();
+    gen.next();
+  </script>
+</html>
