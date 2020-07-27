@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .box {
+        margin: 50px auto;
+        transform-style: preserve-3d;
+        perspective: 200px;
+      }
+      .con {
+        width: 180px;
+        height: 60px;
+        transform-style: preserve-3d;
+        margin: 0 auto;
+        position: relative;
+        transform-origin: center;
+        transition: 1s;
+      }
+      .item {
+        position: absolute;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background: rgb(20, 231, 231);
+        border-radius: 5px;
+        width: 180px;
+        height: 60px;
+      }
+      .item2 {
+        transform: translateZ(-1px) rotateY(180deg);
+      }
+      /* ------------------------------------- */
+      .box2 {
+        background: #ccc;
+        width: 160px;
+        height: 160px;
+        margin: 300px auto;
+        position: relative;
+        transform-style: preserve-3d;
+        perspective: 200px;
+      }
+      .box2 p {
+        width: 100%;
+        height: 80%;
+        background: rgb(131, 131, 131);
+        position: absolute;
+        bottom: -20px;
+        text-align: center;
+        transition: 0.5s;
+        transform: translateZ(100px) scale(0.6);
+      }
+      .box2 p span {
+        width: 100%;
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        transition: 0.5s;
+      }
+      .in {
+        width: 100%;
+        height: 90%;
+        position: absolute;
+        transform-style: preserve-3d;
+        transform: translateZ(25px);
+      }
+      .silde {
+        width: 80px;
+        height: 100px;
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transition: 0.5s;
+        transform: translate(-50%, 0);
+      }
+      .s1 {
+        background: red;
+      }
+      .s2 {
+        background: rgb(1, 4, 190);
+        transform: translate(-50%, 4px);
+      }
+      .s3 {
+        background: rgb(214, 160, 11);
+        transform: translate(-50%, 8px);
+      }
+
+      /* .box2:hover p {
+        transform: translateZ(50px) scale(0.8) rotateX(-25deg);
+      } */
+      /* .box2:hover p span {
+        transform: rotate(45deg) scale(1.2);
+      } */
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="con">
+        <div class="item1 item">
+          <p class="jia">+</p>
+          <span>0</span>
+          <p class="jian">-</p>
+        </div>
+        <div class="item2 item">
+          <p class="jia">+</p>
+          <span>0</span>
+          <p class="jian">-</p>
+        </div>
+      </div>
+    </div>
+    <!-- --------------------------------------------------------------- -->
+
+    <div class="box2">
+      <div class="in">
+        <div class="silde s1"></div>
+        <div class="silde s2"></div>
+        <div class="silde s3"></div>
+      </div>
+      <p><span>×</span></p>
+    </div>
+  </body>
+  <script>
+    $(function () {
+      let size = 0;
+      $(".jia").click(() => {
+        size++;
+        $(".item span").text(size);
+        $(".con").css({
+          transform: `rotateY(${size * 180}deg)`,
+        });
+      });
+      $(".jian").click(() => {
+        size--;
+        $(".item span").text(size);
+        $(".con").css({
+          transform: `rotateY(${size * 180}deg)`,
+        });
+      });
+    });
+    // -----------------------------------------------------------
+    {
+      let onof = true;
+      $(".box2").click(() => {
+        if (onof) {
+          onof = false;
+          $(".box2 p").css({
+            transform: `translateZ(50px) scale(0.8) rotateX(-25deg)`,
+            "transition-delay": "0s",
+          });
+          $(".box2 p span").css({
+            transform: `rotate(45deg) scale(1.2)`,
+            "transition-delay": "0s",
+          });
+          $(".s1").css({
+            transform: `translate(-150px,-100px) rotateY(180deg) rotateX(180deg)`,
+            "transition-delay": "0.3s",
+          });
+          $(".s2").css({
+            transform: `translate(70px,-100px) rotateY(180deg) rotateX(180deg)`,
+            "transition-delay": "0.3s",
+          });
+          $(".s3").css({
+            transform: `translate(-40px,-200px) rotateY(180deg) rotateX(180deg)`,
+            "transition-delay": "0.3s",
+          });
+        } else {
+          onof = true;
+          $(".box2 p").css({
+            transform: `translateZ(50px) scale(0.8) `,
+            "transition-delay": "0.3s",
+          });
+          $(".box2 p span").css({
+            transform: `rotate(0deg) scale(1)`,
+            "transition-delay": "0.3s",
+          });
+          $(".s1").css({
+            transform: `translate(-50%,0) rotateY(0) rotateX(0)`,
+            "transition-delay": "0s",
+          });
+          $(".s2").css({
+            transform: `translate(-50%,4px) rotateY(0) rotateX(0)`,
+            "transition-delay": "0s",
+          });
+          $(".s3").css({
+            transform: `translate(-50%,8px) rotateY(0) rotateX(0)`,
+            "transition-delay": "0s",
+          });
+        }
+      });
+    }
+  </script>
+</html>

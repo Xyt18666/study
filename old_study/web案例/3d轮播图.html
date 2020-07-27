@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      ul {
+        margin: 50px auto;
+        width: 600px;
+        height: 400px;
+        perspective: 0px;
+        transform-style: preserve-3d;
+        /* border: 2px solid #789; */
+        transform: rotate3d(20, 60, 20, 20deg);
+      }
+      li {
+        list-style: none;
+        width: 100px;
+        height: 400px;
+        float: left;
+        transition: 0.5s;
+        position: relative;
+        transform-style: preserve-3d;
+      }
+      li p {
+        position: absolute;
+        width: 100px;
+        height: 400px;
+      }
+      li p:nth-child(1) {
+        background: red;
+        transform: translateZ(200px);
+      }
+      li p:nth-child(2) {
+        background: #f0f;
+        transform: translateZ(-200px);
+      }
+      li p:nth-child(3) {
+        background: #0f0;
+        transform: translateY(200px) rotateX(-90deg);
+      }
+      li p:nth-child(4) {
+        background: #854;
+        transform: translateY(-200px) rotateX(90deg);
+      }
+    </style>
+  </head>
+  <body>
+    <ul>
+      <li>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+      </li>
+      <li>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+      </li>
+      <li>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+      </li>
+      <li>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+      </li>
+      <li>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+      </li>
+      <li>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+      </li>
+    </ul>
+    <h2>上</h2>
+    <h3>下</h3>
+  </body>
+  <script>
+    let index = 0;
+
+    for (var a = 0; a < $("li").length; a++) {
+      $("li")
+        .eq(a)
+        .css({
+          "transition-delay": a / 10 + "s",
+        });
+    }
+
+    $("h2").click(() => {
+      stopClick();
+      $("ul li").css({
+        transform: `rotateX(${(index += 90)}deg) `,
+      });
+    });
+    $("h3").click(() => {
+      stopClick();
+      $("ul li").css({
+        transform: `rotateX(${(index -= 90)}deg) `,
+      });
+    });
+
+    function stopClick() {
+      $("h2,h3").css({
+        "pointer-events": "none",
+      });
+      setTimeout(() => {
+        $("h2,h3").css({
+          "pointer-events": "auto",
+        });
+      }, 800);
+    }
+  </script>
+</html>

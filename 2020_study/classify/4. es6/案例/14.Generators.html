@@ -18,12 +18,12 @@
     
     */
     function* quips(name) {
-      yield "hello " + name + "!";
-      yield "i hope you are enjoying the blog posts";
+      yield console.log("hello " + name + "!");
+      yield console.log("i hope you are enjoying the blog posts");
       if (name.startsWith("X")) {
-        yield "it's cool how your name starts with X, " + name;
+        yield console.log("it's cool how your name starts with X, " + name);
       }
-      yield "see you later!";
+      yield console.log("see you later!");
     }
     let gen = quips("111");
     gen.next();
