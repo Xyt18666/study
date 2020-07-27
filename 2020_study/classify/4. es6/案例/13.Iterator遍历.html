@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    /*
+    1、什么是Iterator接口
+    来处理所有不同的数据结构（Array、Object、Set、Map）提供统一的访问机制。任何数据结构只要部署 Iterator 接口，就可以完成遍历操作
+
+    2、基本用法
+    ES6 规定，默认的 Iterator 接口部署在数据结构的Symbol.iterator属性
+    说明：原生具备 Iterator 接口的数据结构有：
+        Array、Map、Set、String、TypedArray、函数的 arguments 对象、NodeList 对象
+
+        
+    */
+
+    let arr = ["safd", "8465"];
+    let ite = arr[Symbol.iterator]();
+    console.log(ite.next());
+    console.log(ite.next());
+    console.log(ite.next());
+  </script>
+</html>

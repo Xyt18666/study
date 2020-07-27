@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form oninput="x.value=parseInt(a.value)+parseInt(b.value)">
+      <input type="text" id="a" value="50" />
+      +
+      <input type="text" id="b" value="50" />
+      =
+      <output name="x" for="a b"></output>
+      <!--
+           <output></output>  
+   表示不同类型的输出，比如脚本的输出应用到几乎所有 HTML 元素，但最常用在 form 元素中
+
+
+   for	element-id	定义输出域相关的一个或多个元素
+    form	form-id	定义输入字段所属的一个或多个表单
+    name	name值	定义对象的唯一名称。（表单提交时使用）
+ -->
+    </form>
+  </body>
+</html>

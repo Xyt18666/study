@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .box {
+        width: 300px;
+        height: 300px;
+        margin: 50px auto;
+        background: #777;
+        border: 15px solid;
+        /* 使用边框图，必须有边框 */
+
+        border-image-source: url("../imgs/微信图片_20200717120831.png");
+        /* 必须有img */
+
+        border-image-width: 15px;
+        /* 边框宽度 
+        1个值	同时设定四边宽度
+        2个值	设定“上下”和“左右”的宽度
+        3个值	设定“上”、“左右”和“下”的宽度
+        4个值	设定上，右，下，左，的宽度
+         */
+
+        border-image-slice: 5 10 15 20;
+        /* 切割图片,图像的边界向内偏移     */
+
+        border-image-outset: 15px;
+        /* 规定边框图像超过边框盒的量 */
+
+        border-image-repeat: round;
+        /*图片的排列方式: （round-平铺    repeat-重复    stretch-拉伸）
+ */
+      }
+      .box2 {
+        width: 300px;
+        height: 300px;
+        margin: 50px auto;
+        background: #777;
+        border: 15px solid;
+        border-image: url("../imgs/微信图片_20200717120831.png") 5 10 15 20/15px/15px
+          round;
+        /* 简写
+            border-image: source slice width outset repeat|initial|inherit;
+        
+         */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">2123</div>
+    <img src="../imgs/微信图片_20200717120831.png" alt="" />
+
+    <div class="box2">2123</div>
+  </body>
+</html>
