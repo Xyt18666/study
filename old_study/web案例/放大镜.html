@@ -1,178 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-	<style>
-		*{
-			margin: 0;
-			padding: 0;
-		}
-		img{
-			display: block;
-		}
-		.fd{
-			width: 520px;
-			height: 420px;
-			position: relative;
-			margin: 50px auto;
-		}
-		.le{
-			width: 400px;
-			height: 400px;
-			border:2px solid #0f0;
-			position: relative;
-		}
-		.le .kk{
-			width: 100px;
-			height: 100px;
-			position: absolute;
-			top: 0;
-			left: 0;
-			background: rgba(0,0,0,0.6);
-			display: none;
-		}
-		.le img{
-			width: 400px;
-			height: 400px;
-		}
-		.ri{
-			width: 400px;
-			height: 100px;
-			border:2px solid #789;
-			position: relative;
-		}
-		.ri img{
-			width: 100px;
-			height: 100px;
-		}
-		.ri .to{
-			position: absolute;
-			top: 0;
-			left: 20px;
-			color: red;
-			font:bold 40px/40px "";
-		}
-		.ri .bt{
-			position: relative;
-			bottom: 50px;
-			left: 20px;
-			color: red;
-			font:bold 40px/40px "";
-		}
-		.hov{
-			position: absolute;
-			top: 0;
-			right: -300px;
-			width: 400px;
-			height: 400px;
-			border:2px solid red;
-			overflow: hidden;
-			display: none;
-		}
-		.hov img{
-			width: 1200px;
-			height: 1200px;
-			position: absolute;
-			left: 0;
-			top: 0;
-		}
-		li{
-			list-style:none;
-		}
-		ol li{
-			float: left;
-			width: 100px;
-			box-sizing:border-box;
-		}
-	</style>
-</head>
-<body>
-	<div class="fd">
-		<div class="le">
-			<img src="D:\工商管理学院\6月\学习\玩哪儿-项目\src\images/1.jpg" alt="">
-			<div class="kk"></div>
-		</div>
-		<div class="ri">
-			<ol class="ritpk">
-				<li><img src="D:\工商管理学院\6月\学习\玩哪儿-项目\src\images/1.jpg" alt=""></li>
-				<li><img src="D:\工商管理学院\6月\学习\玩哪儿-项目\src\images/36-1544510440102_1016x597.jpg" alt=""></li>
-				<li><img src="D:\工商管理学院\6月\学习\玩哪儿-项目\src\images/1.jpg" alt=""></li>
-				<li><img src="D:\工商管理学院\6月\学习\玩哪儿-项目\src\images/1.jpg" alt=""></li>
-			</ol>
-		</div>
-		<div class="hov"><img src="D:\工商管理学院\6月\学习\玩哪儿-项目\src\images/1.jpg" alt=""></div>
-	</div>
-	
-</body>
-<script>
-$(function(){
-	$(".le").mouseover(function(){
-		$(".le .kk").css("display","block")
-		$(".hov").css("display","block")
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      img {
+        display: block;
+      }
+      .fd {
+        width: 520px;
+        height: 420px;
+        position: relative;
+        margin: 50px auto;
+      }
+      .le {
+        width: 400px;
+        height: 400px;
+        border: 2px solid #0f0;
+        position: relative;
+      }
+      .le .kk {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.6);
+        display: none;
+      }
+      .le img {
+        width: 400px;
+        height: 400px;
+      }
+      .ri {
+        width: 400px;
+        height: 100px;
+        border: 2px solid #789;
+        position: relative;
+      }
+      .ri img {
+        width: 100px;
+        height: 100px;
+      }
+      .ri .to {
+        position: absolute;
+        top: 0;
+        left: 20px;
+        color: red;
+        font: bold 40px/40px "";
+      }
+      .ri .bt {
+        position: relative;
+        bottom: 50px;
+        left: 20px;
+        color: red;
+        font: bold 40px/40px "";
+      }
+      .hov {
+        position: absolute;
+        top: 0;
+        right: -300px;
+        width: 400px;
+        height: 400px;
+        border: 2px solid red;
+        overflow: hidden;
+        display: none;
+      }
+      .hov img {
+        width: 1200px;
+        height: 1200px;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      li {
+        list-style: none;
+      }
+      ol li {
+        float: left;
+        width: 100px;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="fd">
+      <div class="le">
+        <img src="imgs/36-1544510440102_1016x597.jpg" alt="" />
+        <div class="kk"></div>
+      </div>
+      <div class="ri">
+        <ol class="ritpk">
+          <li>
+            <img src="imgs/36-1544510440102_1016x597.jpg" alt="" />
+          </li>
+          <li>
+            <img src="imgs/64-1542768899948_2117x1417.jpg" alt="" />
+          </li>
+          <li>
+            <img src="imgs/94-1542957129189_1806x1200.jpg" alt="" />
+          </li>
+          <li>
+            <img src="imgs/68-3_640x480.jpg" alt="" />
+          </li>
+        </ol>
+      </div>
+      <div class="hov">
+        <img src="imgs/36-1544510440102_1016x597.jpg" alt="" />
+      </div>
+    </div>
+  </body>
+  <script>
+    $(function () {
+      $(".le").mouseover(function () {
+        $(".le .kk").css("display", "block");
+        $(".hov").css("display", "block");
 
-		var w= ($(".hov").width()/$(".hov img").width()) * $(".le").width()
-		var h= ($(".hov").height()/$(".hov img").height()) * $(".le").height()
+        var w = ($(".hov").width() / $(".hov img").width()) * $(".le").width();
+        var h =
+          ($(".hov").height() / $(".hov img").height()) * $(".le").height();
 
+        $(".le .kk").css({
+          width: w,
+          height: h,
+        });
 
-		$(".le .kk").css({
-			width:w,
-			height:h
-		})
+        $(document).mousemove(function (e) {
+          var x = e.pageX - $(".le").offset().left - $(".le .kk").width() / 2;
+          var y = e.pageY - $(".le").offset().top - $(".le .kk").height() / 2;
 
-		$(document).mousemove(function(e){
-			var x= e.pageX- $(".le").offset().left - $(".le .kk").width()/2
-			var y= e.pageY- $(".le").offset().top - $(".le .kk").height()/2
+          x = x < 0 ? 0 : x;
+          y = y < 0 ? 0 : y;
 
-			x=x<0?0:x
-			y=y<0?0:y
+          x =
+            x > $(".le").width() - $(".kk").width()
+              ? $(".le").width() - $(".kk").width()
+              : x;
 
-			x= x> $(".le").width() - $(".kk").width() ? $(".le").width() - $(".kk").width():x
+          y =
+            y > $(".le").height() - $(".kk").height()
+              ? $(".le").height() - $(".kk").height()
+              : y;
 
-			y= y> $(".le").height() - $(".kk").height() ? $(".le").height()-$(".kk").height():y
+          $(".le .kk").css({
+            left: x,
+            top: y,
+          });
 
-			$(".le .kk").css({
-				left:x,
-				top:y
-			})
+          var xbl =
+            ($(".hov img").width() - $(".hov").width()) /
+            ($(".le").width() - $(".le .kk").width());
+          var ybl =
+            ($(".hov img").height() - $(".hov").height()) /
+            ($(".le").height() - $(".le .kk").height());
 
-			var xbl=($(".hov img").width() - $(".hov").width())/($(".le").width() - $(".le .kk").width())
-			var ybl=($(".hov img").height() - $(".hov").height())/($(".le").height() - $(".le .kk").height())
+          //   console.log($(".le .kk").width());
 
-			console.log($(".le .kk").width())
+          var blx = -x * xbl;
 
-			var blx=  -x*xbl
+          var bly = -y * ybl;
 
-			var bly=  -y*ybl
-			
+          $(".hov img").css({
+            left: blx,
+            top: bly,
+          });
+        });
+        $(".le").mouseout(function () {
+          $(".le .kk").css("display", "none");
+          $(".hov").css("display", "none");
+        });
+      });
 
-			$(".hov img").css({
-				left:blx,
-				top:bly
-			})
-
-
-		
-		})
-		$(".le").mouseout(function(){
-			$(".le .kk").css("display","none")
-			$(".hov").css("display","none")
-		
-		})
-	})
-
-
-	$(".ritpk li").click(function(){
-	
-		$(".le,.hov").children("img").attr("src",$(this).children("img").attr("src"))
-		$(this).css({
-			border:"2px solid red"
-		}).siblings().css({
-			border:"2px solid #fff"
-		})
-	})
-
-})
-</script>
+      $(".ritpk li").click(function () {
+        $(".le,.hov")
+          .children("img")
+          .attr("src", $(this).children("img").attr("src"));
+        $(this)
+          .css({
+            border: "2px solid red",
+          })
+          .siblings()
+          .css({
+            border: "2px solid #fff",
+          });
+      });
+    });
+  </script>
 </html>
