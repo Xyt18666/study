@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .jd {
+        width: 300px;
+        height: 20px;
+        overflow: hidden;
+        border-radius: 20px;
+        position: relative;
+        background: #fff;
+        border: 2px solid rgb(112, 6, 233);
+      }
+      .jd .in {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 20px;
+        background: #0f0;
+      }
+      .jd .up {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 300px;
+        height: 20px;
+        z-index: 99;
+        background: transparent;
+      }
+      .volume {
+        border: 2px solid #555;
+        width: 150px;
+        height: 15px;
+        display: flex;
+        align-items: center;
+      }
+      .volume .in {
+        width: 150px;
+        height: 5px;
+        background: #00f;
+      }
+      .volume .up {
+        width: 5px;
+        height: 15px;
+        z-index: 88;
+        margin-left: -5px;
+        background: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <audio src="./杨千嬅 - 野孩子.mp3"></audio>
+    <div class="time">时间进度：<i></i>/<em></em></div>
+    <div class="jd">
+      <div class="in"></div>
+      <div class="up"></div>
+    </div>
+    <div class="onoff">开关</div>
+  </body>
+  <script>
+    function getSML(data) {
+      //时间转换 函数
+      var s = Math.floor(data / 3600);
+      var f = Math.floor((data % 3600) / 60);
+      var m = Math.floor(data % 60);
+      s = s < 10 ? "0" + s : s;
+      f = f < 10 ? "0" + f : f;
+      m = m < 10 ? "0" + m : m;
+      return s + ":" + f + ":" + m;
+    }
+    var audio;
+
+    $(() => {
+      audio = $("audio")[0];
+
+      function of() {
+        if (audio.paused) {
+          audio.play();
+          $(".onoff").css("background", "#0f0");
+        } else {
+          audio.pause();
+          $(".onoff").css("background", "red");
+        }
+      }
+
+      $(".onoff").click(function () {
+        of();
+      });
+
+      audio.oncanplay = function () {
+        dsq = setInterval(function () {
+          var total = audio.duration;
+          var curr = audio.currentTime;
+          $(".time em").text(getSML(total));
+          $(".time i").text(getSML(curr));
+        }, 1000);
+      };
+
+      audio.ontimeupdate = function () {
+        var curr = audio.currentTime;
+        $(".time i").text(getSML(curr));
+
+        var bl = curr / audio.duration;
+
+        $(".jd .in").width(bl * 100 + "%");
+      };
+
+      $(".jd .up").on("mousedown", function (e) {
+        audio.pause();
+        let bl = e.offsetX / $(".up").width();
+        var cur = bl * audio.duration;
+        audio.currentTime = cur;
+
+        $(".jd .in").width(bl * 100 + "%");
+
+        $(".jd .up").on("mousemove", function (e) {
+          e.preventDefault();
+          let bl2 = e.offsetX / $(".jd .up").width();
+          $(".jd .in").width(bl2 * 100 + "%");
+          var cur = bl2 * audio.duration;
+          audio.currentTime = cur;
+        });
+        $(window).on("mouseup", function () {
+          $(".jd .up").off("mousemove");
+          audio.play();
+        });
+      });
+    });
+  </script>
+</html>

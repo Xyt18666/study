@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      canvas {
+        border: 2px solid #999;
+        position: absolute;
+        top: 50px;
+        left: 50%;
+        transform: translate(-50%, 0);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas width="800px" height="600px"></canvas>
+  </body>
+  <script>
+    let c = $("canvas")[0].getContext("2d");
+
+    var array1 = [80, 85, 90, 60, 88, 77];
+    let size = [0, 25, 50, 75, 100, 125];
+    let data = ["微博", "视频", "电话", "拍照", "游戏", "音乐"];
+
+    let xqd = 50;
+    let yqd = 550;
+    let xjg = 100;
+    let yjg = 100;
+    let yrz = 100;
+
+    c.beginPath();
+    c.strokeStyle = "#000";
+    c.lineWidth = "2";
+    c.moveTo(xqd, yqd);
+    c.lineTo(750, 550);
+    c.stroke();
+    c.closePath();
+
+    c.beginPath();
+    c.strokeStyle = "#000";
+    c.lineWidth = "2";
+    c.moveTo(xqd, yqd);
+    c.lineTo(50, 50);
+    c.stroke();
+    c.closePath();
+
+    for (var a = 0; a < array1.length; a++) {
+      c.beginPath();
+      c.font = "12px/12px 微软雅黑";
+      c.textAlign = "center";
+      c.fillStyle = "#000";
+      c.fillText(size[a] + "%", xqd - 20, yqd - a * yjg);
+      c.closePath();
+      c.beginPath();
+      c.font = "12px/12px 微软雅黑";
+      c.textAlign = "center";
+      c.fillStyle = "#000";
+      c.fillText(data[a], xqd + a * xjg, yqd + 20);
+      c.closePath();
+
+      c.beginPath();
+      c.strokeStyle = "red";
+      c.lineWidth = "2";
+      c.moveTo(xqd + xjg * a, yqd - (yrz / 25) * array1[a]);
+
+      c.lineTo(xqd + xjg * (a + 1), yqd - (yrz / 25) * array1[a + 1]);
+
+      c.stroke();
+      c.closePath();
+
+      c.beginPath();
+      c.strokeStyle = "red";
+      c.lineWidth = "2";
+      c.fillStyle = "#fff";
+      c.arc(xqd + xjg * a, yqd - (yrz / 25) * array1[a], 5, 0, 2 * Math.PI);
+
+      c.fill();
+      c.stroke();
+      c.closePath();
+
+      c.beginPath();
+      c.font = "12px/12px 微软雅黑";
+      c.textAlign = "center";
+      c.fillStyle = "#000";
+      c.fillText(
+        array1[a] + "%",
+        xqd + xjg * a,
+        yqd - (yrz / 25) * array1[a] - 20
+      );
+
+      c.closePath();
+    }
+  </script>
+</html>

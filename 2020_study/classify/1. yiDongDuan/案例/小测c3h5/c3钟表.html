@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .clock {
+        width: 300px;
+        height: 300px;
+        margin: 50px auto;
+        border-radius: 50%;
+        border: 2px solid #789;
+        position: relative;
+      }
+      .hours {
+        position: absolute;
+        left: 50%;
+        top: 90px;
+        margin-left: -2.5px;
+        width: 5px;
+        height: 60px;
+        background: red;
+        transform-origin: center bottom;
+      }
+      .minutes {
+        position: absolute;
+        left: 50%;
+        top: 50px;
+        margin-left: -1.5px;
+        width: 3px;
+        height: 100px;
+        background: #456;
+        transform-origin: center bottom;
+      }
+      .seconds {
+        position: absolute;
+        left: 50%;
+        top: 30px;
+        margin-left: -1px;
+        width: 2px;
+        transform-origin: center bottom;
+        height: 120px;
+        background: #852;
+      }
+      span {
+        position: absolute;
+        width: 300px;
+        /*border:1px solid #852;*/
+        line-height: 30px;
+        top: 50%;
+        margin-top: -15px;
+        left: 0;
+        font-size: 25px;
+      }
+      a {
+        display: inline-block;
+        text-decoration: none;
+      }
+      p {
+        position: absolute;
+        transform-origin: center;
+        width: 100%;
+        left: 0;
+        top: 50%;
+      }
+      p i {
+        display: block;
+        width: 10px;
+        height: 4px;
+        background: rgb(245, 124, 11);
+        float: left;
+      }
+      p b {
+        display: block;
+        width: 10px;
+        height: 4px;
+        background: rgb(245, 124, 11);
+        float: right;
+      }
+      /* 1 6 11 */
+      p:nth-child(5n + 1) i,
+      p:nth-child(5n + 1) b {
+        width: 30px;
+        background: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="clock">
+      <div class="hours"></div>
+      <div class="minutes"></div>
+      <div class="seconds"></div>
+      <!-- <span><a href="#">1</a></span>
+      <span><a href="#">2</a></span>
+      <span><a href="#">3</a></span>
+      <span><a href="#">4</a></span>
+      <span><a href="#">5</a></span>
+      <span><a href="#">6</a></span>
+      <span><a href="#">7</a></span>
+      <span><a href="#">8</a></span>
+      <span><a href="#">9</a></span>
+      <span><a href="#">10</a></span>
+      <span><a href="#">11</a></span>
+      <span><a href="#">12</a></span> -->
+    </div>
+  </body>
+  <script>
+    function time() {
+      var date = new Date();
+      var h = date.getHours();
+      var m = date.getMinutes();
+      var s = date.getSeconds();
+      //   console.log(h, m, s);
+      $(".hours").css({
+        //   30/60=0.5
+        transform: "rotate(" + (h * 30 + m * 0.5 + (s * 0.5) / 60) + "deg)",
+      });
+      console.log(m * 6 + s * 0.1);
+      $(".minutes").css({
+        transform: "rotate(" + (m * 6 + s * 0.1) + "deg)",
+        //    360/60=6          6/60=0.1
+      });
+      $(".seconds").css({
+        transform: "rotate(" + s * 6 + "deg)",
+      });
+    }
+    setInterval(time, 1000);
+
+    for (let a = 0; a < 30; a++) {
+      $(`<p><i></i><b></b></p>`).appendTo(".clock");
+    }
+    for (var a = 0; a < $("p").length; a++) {
+      $("p")
+        .eq(a)
+        .css({
+          transform: "rotate(" + a * 6 + "deg)",
+        });
+    }
+
+    // for (var a = 0; a < $("span").length; a++) {
+    //   $("span")
+    //     .eq(a)
+    //     .css({
+    //       transform: "rotate(" + 120 + a * 30 + "deg)",
+    //     });
+    //   $("span a")
+    //     .eq(a)
+    //     .css({
+    //       transform: "rotate(" + (-120 - a * 30) + "deg)",
+    //     });
+    // }
+  </script>
+</html>

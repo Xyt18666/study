@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      li {
+        list-style: none;
+      }
+      .ban {
+        width: 800px;
+        height: 150px;
+        border: 2px solid #888;
+        margin: 50px auto;
+        overflow: hidden;
+        position: relative;
+      }
+      ul {
+        padding-top: 25px;
+        width: calc(7200px / 3);
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform-style: preserve-3d;
+      }
+      ul li {
+        border-radius: 10px;
+        float: left;
+        width: calc(800px / 3);
+        transition: 0.5s;
+        height: 100px;
+      }
+      ul li:nth-child(1) {
+        background: red;
+      }
+      ul li:nth-child(2) {
+        background: #741;
+      }
+
+      ul li:nth-child(3) {
+        background: #0f0;
+      }
+      ul li:nth-child(4) {
+        background: pink;
+      }
+      ul li:nth-child(5) {
+        background: rgb(233, 135, 8);
+      }
+      ul li:nth-child(6) {
+        background: red;
+      }
+      ul li:nth-child(7) {
+        background: #741;
+      }
+
+      ul li:nth-child(8) {
+        background: #0f0;
+      }
+      ul li:nth-child(9) {
+        background: pink;
+      }
+      ol li {
+        width: 20px;
+        height: 5px;
+        background: #000;
+        float: left;
+        margin: 5px;
+        transition: 0.5s;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ban">
+      <ul>
+        <li>4</li>
+        <li>5</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>1</li>
+        <li>2</li>
+      </ul>
+    </div>
+
+    <ol>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ol>
+    <h2><</h2>
+    <h3>></h3>
+  </body>
+  <script>
+    let index = 1;
+    tab();
+    $("h3").click(function () {
+      index++;
+      index = index > 5 ? 1 : index;
+      tab();
+    });
+    $("h2").click(function () {
+      index--;
+      index = index < 1 ? 5 : index;
+      tab();
+    });
+    function tab() {
+      $("ul").css({
+        left: (-index * 800) / 3 + "px",
+      });
+      $("ul li")
+        .eq(index + 1)
+        .css({
+          transform: "scale(1.4) translateZ(10px)",
+          transition: "0.6s",
+          "z-index": 999,
+        })
+        .siblings()
+        .css({
+          transform: "scale(0.9) translate(0px)",
+          transition: "0.5s",
+          "z-index": -1,
+        });
+      $("ol li")
+        .eq(index - 1)
+        .css({
+          background: "red",
+          width: "30px",
+        })
+        .siblings()
+        .css({
+          background: "#000",
+          width: "20px",
+        });
+    }
+  </script>
+</html>

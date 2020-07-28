@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    {
+      //（1）编写一段程序将数字转换成中文大写，如：输入24，转换成贰拾肆输出；
+      let sz = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+      let hz = ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九"];
+      let num = 1009;
+      let str = num.toString();
+      let con = "";
+      let ok = "";
+      if (str.length == 4) {
+        let qq = hz[str[0]] + "千";
+        let bb = str[1] == 0 ? hz[str[1]] : hz[str[1]] + "百";
+        let ss = str[2] == 0 ? hz[str[2]] : hz[str[2]] + "拾";
+        let gg = str[3] == 0 ? "" : hz[str[3]];
+        con = qq + bb + ss + gg;
+      }
+      if (str.length == 3) {
+        let bb = hz[str[0]] + "百";
+        let ss = str[1] == 0 ? hz[str[1]] : hz[str[1]] + "拾";
+        let gg = str[2] == 0 ? "" : hz[str[2]];
+        con = bb + ss + gg;
+      }
+      if (str.length == 2) {
+        let ss = hz[str[0]] + "拾";
+        let gg = str[1] == 0 ? "" : hz[str[1]];
+        con = ss + gg;
+      }
+      if (str.length == 1) {
+        let gg = hz[str[0]];
+        con = gg;
+      }
+      let newarr1 = [];
+      let arr = [...con];
+      for (var a = 0; a < arr.length; a++) {
+        if (newarr1.indexOf(arr[a]) == -1) {
+          newarr1.push(arr[a]);
+        }
+      }
+      newarr1.map((item) => (ok += item));
+      console.log(ok);
+    }
+    {
+      // （2）编写程序实现字符串的加密操作，要求：输入字符串，字符串的奇数位抽出来做前半部分，偶数位倒序后做后半部分拼接起来形成一个新的字符串输出；
+
+      let str = "1a2s3d4f5g6h";
+      let js = "";
+      let os = "";
+      let nos = "";
+      let strz = "";
+
+      for (let a = 0; a < str.length; a++) {
+        if (isNaN(Number(str[a]))) {
+          strz += str[a];
+        } else if (Number(str[a]) % 2 == 0) {
+          js += str[a];
+        } else if (Number(str[a]) % 2 != 0) {
+          os += str[a];
+        }
+      }
+      [...os].reverse().map((item) => (nos += item));
+      let newStr = js + strz + nos;
+      console.log(newStr);
+    }
+    {
+      // （3）编写程序找出一段英文字符串中出现次数最多的单词；
+      // 如var str = "hello thank funny hello what suck it dick thank hello"; 输出hello
+      // let str = "hello thank funny hello what suck it dick thank hello";
+      // let stro;
+      // let arr = str.split(" ");
+      // let arr2 = [];
+      // let arr3 = [];
+      // for (var a = 0; a < arr.length; a++) {
+      //   for (var b = a + 1; b < arr.length; b++) {
+      //     if (arr[a] == arr[b]) {
+      //       arr2.push(arr[a]);
+      //     }
+      //   }
+      // }
+      // for (var a = 0; a < arr2.length; a++) {
+      //   for (var b = a + 1; b < arr2.length; b++) {
+      //     if (arr2[a] == arr2[b]) {
+      //       arr3.push(arr2[a]);
+      //     }
+      //   }
+      // }
+      // console.log(arr3);
+    }
+    {
+      // let str =
+      //   "hello thank funny hello what suck it dick thank hello";
+      // let stro;
+      // let arr = str.split(" ");
+      // let arr2 = [];
+      // let arr3 = [];
+      // let arr4 = [];
+      // let arr5 = [];
+      // for (let a = 0; a < arr.length; a++) {
+      //   if (arr2.indexOf(arr[a]) === -1) {
+      //     arr2.push(arr[a]);
+      //   } else {
+      //     arr3.push(arr[a]);
+      //   }
+      // }
+      // for (let a = 0; a < arr3.length; a++) {
+      //   if (arr4.indexOf(arr3[a]) === -1) {
+      //     arr4.push(arr3[a]);
+      //   } else {
+      //     arr5.push(arr3[a]);
+      //   }
+      // }
+      // console.log(arr5);
+    }
+    {
+      let str = "hello thank funny hello what suck it dick thank hello";
+      function more(str) {
+        let arr = str.split(" "); //字符分割成数组
+        let obj = []; //定义数组储存单词个数值
+
+        arr.forEach((items, index) => {
+          //遍历数组
+          let indexs = 0; //定义数量
+
+          console.log("一");
+          console.log(obj);
+          obj.forEach((item) => {
+            console.log("二");
+            //遍历空数组
+
+            console.log(item.name, items);
+            if (item.name == items) {
+              //重复的值
+              indexs = item.num; //把数值给indexs
+              console.log(indexs + "====");
+            }
+          });
+          // console.log(arr);
+          if (arr.indexOf(items) != -1) {
+            indexs++; //每有一个重复值，自增一次
+            console.log(indexs + "-----");
+          }
+          obj.push({
+            //把值和对对应的个数储存到obj
+            name: items,
+            num: indexs,
+          });
+        });
+        obj.sort((a, b) => {
+          //sort按数字大小排序
+          return b.num - a.num;
+        });
+        return obj[0].name; //输出出现最多次数的值
+      }
+      console.log(more(str));
+    }
+    {
+      //   （4）编写程序输出字符串中所有的叠词；
+      // 如：输入：晴川历历汉阳树，芳草萋萋鹦鹉洲  输出：'历历', '萋萋'
+      let str = "晴川历历汉阳树，芳草萋萋鹦鹉洲";
+      let arr = [...str];
+      let newarr = [];
+      for (var a = 0; a < arr.length; a++) {
+        if (arr[a] == arr[a + 1]) {
+          console.log(arr[a], arr[a + 1]);
+          newarr.push(arr[a] + arr[a + 1]);
+        }
+      }
+      console.log(newarr);
+    }
+
+    {
+      // （5）至少利用三种方式为Array对象添加一个去除重复项的方法。
+      let arr = [6, 1, 5, 42, 54, 5, 5, 4];
+
+      //  //方法1
+      //   Array.prototype.fn1 = function () {
+      //     let arr = [...this];
+      //     console.log(arr);
+      //     var newarr1 = [];
+      //     for (var a = 0; a < arr.length; a++) {
+      //       if (newarr1.indexOf(arr[a]) == -1) {
+      //         newarr1.push(arr[a]);
+      //       }
+      //     }
+      //     return newarr1;
+      //   };
+      //   console.log(arr.fn1());
+
+      // //方法2
+
+      //   Array.prototype.fn2 = function () {
+      //     let arr = [...this];
+      //     let newarr2 = new Set();
+      //     for (var a = 0; a < arr.length; a++) {
+      //       newarr2.add(arr[a]);
+      //     }
+      //     return newarr2;
+      //   };
+      //   console.log(arr.fn2());
+
+      //
+      //方法3
+
+      //   Array.prototype.fn3 = function () {
+      //     let arr = [...this];
+      //     arr.sort();
+      //     let newArr = [arr[0]];
+      //     console.log(newArr, arr);
+      //     for (var i = 1; i < arr.length; i++) {
+      //       if (arr[i] !== newArr[newArr.length - 1]) {
+      //         newArr.push(arr[i]);
+      //       }
+      //     }
+      //     return newArr;
+      //   };
+      //   console.log(arr.fn3());
+
+      //方法4
+      //   Array.prototype.fn4=function(){
+      //     let len=[...this]
+      //   for(let i=0;i<this.length;i++){
+      //     for(let b=i;b<this.length;b++){
+      //         if(this[i]==this[b]){
+      //             len.splice(b,1)
+      //         }
+      //     }
+      //   }
+    }
+  </script>
+</html>

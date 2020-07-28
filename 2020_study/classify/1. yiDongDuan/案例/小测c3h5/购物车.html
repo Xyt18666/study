@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      ul {
+        display: flex;
+        justify-content: space-around;
+        flex-flow: row wrap;
+      }
+      li {
+        width: 45%;
+        list-style: none;
+      }
+      img {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <ul>
+        <!-- <li>
+          <img src="1801A模拟考/images/1.png" alt="" />
+          <h3>sdfsd</h3>
+          <p>sdf</p>
+          <p>sdf</p>
+          <h4>sdfs <s>sdf</s></h4>
+        </li>
+        <li>
+          <img src="1801A模拟考/images/1.png" alt="" />
+          <h3>sdfsd</h3>
+          <p>sdf</p>
+          <p>sdf</p>
+          <h4>sdfs <s>sdf</s></h4>
+        </li>
+        <li>
+          <img src="1801A模拟考/images/1.png" alt="" />
+          <h3>sdfsd</h3>
+          <p>sdf</p>
+          <p>sdf</p>
+          <h4>sdfs <s>sdf</s></h4>
+        </li>
+        <li>
+          <img src="1801A模拟考/images/1.png" alt="" />
+          <h3>sdfsd</h3>
+          <p>sdf</p>
+          <p>sdf</p>
+          <h4>sdfs <s>sdf</s></h4>
+        </li> -->
+      </ul>
+      <a href="child.html">购物车</a>
+    </div>
+  </body>
+  <script>
+    $.ajax({
+      url: "1801A模拟考/data.js",
+      data: "",
+      type: "get",
+      datatype: "js",
+      success: function (e) {
+        var ls = window.localStorage;
+
+        console.log(JSON.parse(e));
+        let data = JSON.parse(e);
+        for (let a = 0; a < data.length; a++) {
+          $("ul").append(`<li id=${data[a].id}>
+          <img src=${"1801A模拟考/" + data[a].img} alt="" />
+          <h3>${data[a].name}</h3>
+          <p>${data[a].info}</p>
+          <p>${data[a].weight}</p>
+          <h4>￥${data[a].price} </h4>
+        </li>`);
+        }
+        $("li").click(function () {
+          var id = $(this).attr("id");
+          //获取商品id
+
+          var sum = ls.getItem("con" + id) || 0;
+          //获取商品数量
+
+          if (ls.getItem("id" + id)) {
+            //假如有此商品信息
+            ls.setItem("con" + id, ++sum);
+            //设置商品数量
+          } else {
+            //如果没有，就加商品信息和数量
+            ls.setItem("id" + id, id);
+            ls.setItem("con" + id, ++sum);
+          }
+          //设置商品总数
+          var sps = ls.getItem("sps") || 0;
+          ls.setItem("sps", ++sps);
+        });
+
+        $(window).on({
+          storage: function () {
+            var sps = ls.getItem("sps") || 0;
+            // $("h3 span").text(sps);
+          },
+        });
+      },
+    });
+  </script>
+</html>

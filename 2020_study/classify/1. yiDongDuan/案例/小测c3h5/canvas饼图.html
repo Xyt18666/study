@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas
+      width="800px"
+      height="600px"
+      style="border: 2px solid #789;"
+    ></canvas>
+  </body>
+  <script>
+    let c = $("canvas")[0].getContext("2d");
+
+    let attr = [10, 15, 25, 30, 20];
+    let cit = ["广州", "深圳", "杭州", "北京", "上海"];
+
+    let sum = 0;
+    for (var b = 0; b < attr.length; b++) {
+      sum += attr[b];
+    }
+
+    for (var a = 0; a < attr.length; a++) {
+      let last = 0;
+      for (j = 0; j < a; j++) {
+        last += attr[j];
+      }
+      c.beginPath();
+      c.strokeStyle =
+        "rgb(" +
+        randFn(0, 255) +
+        "," +
+        randFn(0, 255) +
+        "," +
+        randFn(0, 255) +
+        ")";
+      c.lineWidth = "200";
+
+      c.arc(
+        300,
+        300,
+        100,
+        (last / sum) * Math.PI * 2,
+        (last / sum) * Math.PI * 2 + (attr[a] / sum) * Math.PI * 2
+      );
+      c.stroke();
+      c.closePath();
+
+      var x, y;
+
+      x =
+        300 +
+        Math.cos((last / sum) * Math.PI * 2 + (attr[a] / sum) * Math.PI) * 220;
+
+      y =
+        300 +
+        Math.sin((last / sum) * Math.PI * 2 + (attr[a] / sum) * Math.PI) * 220;
+
+      c.fillText(cit[a], x, y);
+    }
+    function randFn(min, max) {
+      return parseInt(Math.random() * (max - min + 1) + min);
+    }
+  </script>
+</html>
