@@ -16,19 +16,19 @@
   </body>
   <script>
     /*
-    
-    变量：
-    var：全局作用域
-    let：块级作用域（{}内就是块级作用域），不存在变量提升，不可重复声明
-    const：常量，不可改变，不存在变量提升，不可重复声明，
-        声明和赋值必须一起写，不可以先声明后赋值,
-        const声明的对象，可以改变对象内部的值，因为内存指向的是同一个对象
 
-    什么是块级作用域:{}内就是块级作用域
-    什么是变量提升：使用var声明的变量，会变量提升，把变量的声明提升到当前作用域的顶层
-    什么是暂时性死区：在定义赋值之前访问变量，变量名存在，但是未赋值
-    
-    */
+            变量：
+            var：全局作用域
+            let：块级作用域（{}内就是块级作用域），不存在变量提升，不可重复声明
+            const：常量，不可改变，不存在变量提升，不可重复声明，
+                声明和赋值必须一起写，不可以先声明后赋值,
+                const声明的对象，可以改变对象内部的值，因为内存指向的是同一个对象
+
+            什么是块级作用域:{}内就是块级作用域
+            什么是变量提升：使用var声明的变量，会变量提升，把变量的声明提升到当前作用域的顶层
+            什么是暂时性死区：在定义赋值之前访问变量，变量名存在，但是未赋值
+
+            */
     {
       for (var i = 0; i < $("ul li").length; i++) {
         // $("ul li")
@@ -54,122 +54,124 @@
       //   console.log(i + "let 外");
     }
     {
+      let a = "a";
       const obj = {
-        a: "a",
+        a,
       };
       obj.b = "b";
       console.log(obj);
     }
     //-----------------------------------------------------------------------------------------------------------------
     /*
-数据类型：
-基本数据类型： 
-    undefined  ：声明了，但未赋值
-    Null: 空对象，占位符
-    Boolean： true  false 
-    Number: 包括 数字 和 NaN    
-        Number()  : 看整体，如果不能转成数字就是NaN
-        parseInt()  :逐个看， 字符串转 整数
-        parseFloat() ： 逐个看， 字符串转 小数
-        isFinite():  判断一个数在不在数值范围内
-        isNaN(): 判断是否为NaN,本该返回一个数值，但是不能正确计算，所以返回NaN
-
-    
-        es6新增：
-            提供了 新的进制写法
-
-            2进制  (0b):逢2进1
-            8进制 (0o)：逢8进1
-            16进制 (0x) :逢16进1  ,0-9,a-f
-
-            10进制转任何进制，短除法，除以进制，取余
-            例子： 105 转 8进制
-                    105/8
-                    13----1
-                    13/8
-                    1---5
-                    1/8
-                    0--1
-                       151
+        数据类型：
+        基本数据类型：
+            undefined  ：声明了，但未赋值
+            Null: 空对象，占位符
+            Boolean： true  false
+            Number: 包括 数字 和 NaN
+                Number()  : 看整体，如果不能转成数字就是NaN
+                parseInt()  :逐个看， 字符串转 整数
+                parseFloat() ： 逐个看， 字符串转 小数
+                isFinite():  判断一个数在不在数值范围内
+                isNaN(): 判断是否为NaN,本该返回一个数值，但是不能正确计算，所以返回NaN
 
 
-            2进制、8按进制转10进制，按权展开求和
-            例子：1101001  转10进制
-                  2的6次方   2的5次方   2的3次方    2的0次方
-                     64     +    32      +    8     +      1    =105
+                es6新增：
+                    提供了 新的进制写法
 
-            
-            2进制转8进制：每3个值代表一个 8进制，不够时高位补0
-                1 101 001
-                1   5    1
-                         
+                    2进制  (0b):逢2进1
+                    8进制 (0o)：逢8进1
+                    16进制 (0x) :逢16进1  ,0-9,a-f
 
-            2进制转16进制：每4个值代表一个 16进制，不够时高位补0
-              0101 1011 1011
-              4+1  8+2+1 8+2+1
-              5    11     11
-              5    b      b
-                
-
-
-            ------------------
-
-            Number.isInteger()  判断是否为一个整数
-
-            ** 指数运算符 ，几的几次方
-
-    
-
-引用数据类型：
+                    10进制转任何进制，短除法，除以进制，取余
+                    例子： 105 转 8进制
+                            105/8
+                            13----1
+                            13/8
+                            1---5
+                            1/8
+                            0--1
+                               151
 
 
-*/
+                    2进制、8按进制转10进制，按权展开求和
+                    例子：1101001  转10进制
+                          2的6次方   2的5次方   2的3次方    2的0次方
+                             64     +    32      +    8     +      1    =105
+
+
+                    2进制转8进制：每3个值代表一个 8进制，不够时高位补0
+                        1 101 001
+                        1   5    1
+
+
+                    2进制转16进制：每4个值代表一个 16进制，不够时高位补0
+                      0101 1011 1011
+                      4+1  8+2+1 8+2+1
+                      5    11     11
+                      5    b      b
+
+
+
+                    ------------------
+
+                    Number.isInteger()  判断是否为一个整数
+
+                    ** 指数运算符 ，几的几次方
+
+
+
+
+
+
+        */
     {
       console.log(Number.isInteger(-0)); //true
       console.log(Number.isInteger(+0)); //true
       console.log(Number.isInteger(2.0)); //true
       console.log(Number.isInteger(2)); //true
+      console.log(Number.isInteger(-0.52)); //false
       console.log(Number.isInteger(2.5)); //false
       console.log(2 ** 3); //8
     }
     //------------------------------------------------------------------------------------
     /*
-    
-    string: 
-        String() 全局函数
-        .toString() 每个对象身上都有这个方法,Null undefined不可以 调用
 
-        .length  长度
+            string:
+                String() 全局函数
+                .toString() 每个对象身上都有这个方法,Null undefined不可以 调用
 
-        charAt()  返回某个下标的 值
-        charCodeAt() 返回某个下标字符的 unicode值
-        String.fromCharCode()  返回某个 字符编码的 字符
-        indexOf()  寻找有没有某个值，返回下标，找不到返回 -1
-        lastIndexOf() 倒着找
-        split()  以某个值 分割字符串
-        concat() 拼接字符串
-        trim()  删除首尾空格
-        search()  寻找在字符串中的位置，返回下标，找不到返回 -1
-        replace() 替换
-        toLowerCase() 转小写
-        toUpperCase() 转大写
-        substr(起始下标,截取长度)截取，不可颠倒，可为负数
-        slice(起始下标,结束下标前)截取，参数不可颠倒，可以为负数
-        substring(起始下标,结束下标前)截取，参数可颠倒，不可为负数
+                .length  长度
 
-         es6新增：
-          for of 遍历字符串
+                charAt()  返回某个下标的 值
+                charCodeAt() 返回某个下标字符的 unicode值
+                String.fromCharCode()  返回某个 字符编码的 字符
+                indexOf()  寻找有没有某个值，返回下标，找不到返回 -1
+                lastIndexOf() 倒着找
+                split()  以某个值 分割字符串
+                concat() 拼接字符串
+                trim()  删除首尾空格
+                search()  寻找在字符串中的位置，返回下标，找不到返回 -1
+                replace() 替换
+                toLowerCase() 转小写
+                toUpperCase() 转大写
+                substr(起始下标,截取长度)截取，不可颠倒，可为负数
+                slice(起始下标,结束下标前)截取，参数不可颠倒，可以为负数
+                substring(起始下标,结束下标前)截取，参数可颠倒，不可为负数
 
-          `` 模板字符串  ${}
+                 es6新增：
+                  for of 遍历字符串
 
-          codePointAt() 返回某个下标字符的 unicode值,识别的更广泛
-          String.fromCodePoint() 返回某个 字符编码的 字符,识别的更广泛
-          includes() 寻找有没有某个值，返回布尔值
-          startsWith(值,起始下标) 返回布尔值，表示参数是否在字符串的 开头 
-          endWith(值,起始下标) 结尾
-          repeat(次数)  把某个字符串 重复几次
+                  `` 模板字符串  ${}
 
-    */
+                  codePointAt() 返回某个下标字符的 unicode值,识别的更广泛
+                  String.fromCodePoint() 返回某个 字符编码的 字符,识别的更广泛
+                  includes() 寻找有没有某个值，返回布尔值
+                  startsWith(值,起始下标) 返回布尔值，表示参数是否在字符串的 开头
+                  endWith(值,起始下标) 结尾
+                  repeat(次数)  把某个字符串 重复几次
+
+            */
     {
       let str = "qwer123";
       console.log(str.charAt(3)); //r
@@ -185,6 +187,268 @@
       console.log(str.includes(3)); //true
       console.log(str.startsWith(2)); //true
       console.log(str.repeat(2)); //qwer123qwer123
+    }
+    /*
+
+            Symbol("描述")   独一无二的值，不能使用new创建
+
+            1.Symbol函数的参数仅仅是对当前Symbol值的描述，因此相同参数的的Symbol函数的返回值不同
+            2.不能与其他类型运算
+            3.Symbol可以转换为字符串或者布尔值，但不能转为数字
+
+
+            用途一：消除魔术字符串
+                什么是魔术字符串：就是在代码中多次出现就，与代码强耦合的 数字和字符串为魔术字符串
+                解决：使用变量代替，使用Symbol(),生成一个 独一无二的值
+
+            用途二：作为对象的属性名，防止覆盖
+
+            用途三：模拟类的私有方法
+
+
+
+            */
+    {
+      let a = Symbol("aa");
+      let b = Symbol("aa");
+      console.log(a == b); //false
+      //   console.log(a + 1); // Uncaught TypeError: Cannot convert a Symbol value to a number
+
+      console.log(String(a)); //Symbol(aa)
+      console.log(b.toString()); //Symbol(aa)
+      console.log(Boolean(b)); //true
+
+      const name = Symbol("a");
+      const obj = {
+        [name]: "ss",
+      };
+      console.log(obj[name]);
+    }
+
+    //--------------------------------------------------------------------------------------
+    /*
+            引用数据类型：
+
+            一种存在堆中，叫做引用数据类型，做等号赋值操作进行的是址传递
+            一种存在栈中，叫做基本数据类型，做等号赋值操作进行的是值传递
+
+            引用数据类型：把内存地址指向同一个区域，当原有值改变时，他也会随之改变
+            基本数据类型：赋值以后，不再和原有对象相关
+
+            存在堆中：引用数据类型（object、array、function）
+            存在栈中：基本数据类型（number、string、boolean、null、unedfined、Symbol（ES6））
+
+            */
+    {
+      var a = 1;
+      var b = a;
+      a++;
+      console.log(a, b); //2 1
+
+      var str1 = "str1";
+      var str2 = str1;
+      str1 = "#3333";
+      console.log(str1, str2); //#3333 str1
+    }
+    {
+      var arr1 = ["123"];
+      var arr2 = arr1;
+      console.log(arr1, arr2); //["123"]["123"]
+      arr1[0] = "465";
+      console.log(arr1, arr2); //["465"]["465"]
+    }
+    {
+      var a = {};
+      var b = a;
+      a.name = "aname";
+      console.log(a, b); //{name: "aname"}
+      b.age = 12;
+      console.log(a, b); //{name: "aname", age: 12}
+      console.log(a == b); //true
+    }
+
+    //--------------------------------------------------------------------
+
+    /*
+            数组：
+            创建的方法：
+                构造函数法：new Array()  , 一个数字参数为空多少个位置
+                字面量创建：[]
+
+            数组的访问：下标
+
+            数组的遍历： for in  for of
+
+            方法：
+                push() ：向后添加
+                pop():删除末尾
+                shuift(): 向前添加
+                unshift(): 删除首个
+                reverse():翻转数组
+                sort() : 排序的规则是字符串的排序，从首位开始比较unicode值
+                cancat():拼接数组
+                join():数组拼接成字符串
+                slice():截取
+                splice(起始,删除,添加):操作数组
+                indexOf()  寻找有没有某个值，返回下标，找不到返回 -1
+                lastIndexOf() 倒着找
+
+                Array.isArray(): 判断是不是一个 数组
+                forEach()：数组的遍历，function回调
+                map(): 遍历数组，返回新数组 ，(item,index,arr)=>{}
+                filter():遍历，筛选 (item,index,arr)=>{}
+                some():遍历，只要有一个符合条件，就返回 true (item,index,arr)=>{}
+                every():遍历，只要有一个不符合条件，就返回 false (item,index,arr)=>{}
+                reduce():累 /*-+计算
+                reduceRight():倒着，累/*-+计算
+
+
+            */
+    {
+      let arr = [1, 5, 9, 2, 4, 8, 2];
+      //   arr.sort((a, b) => a - b) //改造sort,完成数字的排序
+      arr.sort(function (a, b) {
+        //排序的机制是，返回是正数 就是从小到大排列，反之
+        // console.log(a, b, a - b, arr);
+        return a - b;
+      });
+    }
+    {
+      let arr = [8, 1, 4, 5, 68, 4];
+      console.log(arr.every((item) => item > 8)); //flase
+      console.log(arr.some((item) => item > 8)); //true
+      arr.forEach(function (item, index, array) {
+        // console.log(...arguments);
+      });
+
+      let narr = arr.filter((item, index, arr) => item < 5);
+      console.log(narr, arr);
+    }
+    {
+      // 数组去重方法
+      let arr = [6, 1, 5, 42, 54, 5, 5, 4];
+
+      //  //方法1
+      //   Array.prototype.fn1 = function () {
+      //     let arr = [...this];
+      //     // console.log(arr);
+      //     var newarr1 = [];
+      //     for (var a = 0; a < arr.length; a++) {
+      //       if (newarr1.indexOf(arr[a]) == -1) {
+      //         newarr1.push(arr[a]);
+      //       }
+      //     }
+      //     return newarr1;
+      //   };
+      //   console.log(arr.fn1());
+
+      // //方法2
+
+      //   Array.prototype.fn2 = function () {
+      //     let newarr2 = new Set(this);
+      //     return newarr2;
+      //   };
+      //   console.log(arr.fn2());
+
+      //方法3
+
+      //   Array.prototype.fn3 = function () {
+      //     let arr = [...this];
+      //     arr.sort((a, b) => a - b);
+      //     let newArr = [arr[0]];
+      //     // console.log(newArr, arr);
+      //     for (var i = 1; i < arr.length; i++) {
+      //       console.log(arr[i], newArr[newArr.length - 1]);
+      //       if (arr[i] !== newArr[newArr.length - 1]) {
+      //         newArr.push(arr[i]);
+      //       }
+      //     }
+      //     return newArr;
+      //   };
+      //   console.log(arr.fn3());
+
+      //方法4
+      //   Array.prototype.fn4 = function () {
+      //     let len = [...this];
+      //     for (let i = 0; i < len.length; i++) {
+      //       for (let b = i + 1; b < len.length; b++) {
+      //         if (len[i] == len[b]) {
+      //           len.splice(b, 1);
+      //           b--;
+      //         }
+      //       }
+      //     }
+      //     return len;
+      //   };
+      //   console.log(arr, arr.fn4());
+
+      //方法6
+      //   Array.prototype.fn6 = function () {
+      //     let arr = [...this];
+
+      //     var newarr1 = [];
+      //     for (var a = 0; a < arr.length; a++) {
+      //       if (!newarr1.includes(arr[a])) {
+      //         newarr1.push(arr[a]);
+      //       }
+      //     }
+      //     return newarr1;
+      //   };
+      //   console.log(arr.fn6());
+
+      //方法7
+      //   Array.prototype.fn7 = function () {
+      //     let arr = [...this];
+      //     return arr.filter((item, index, arr) => {
+      //       return arr.indexOf(item, 0) === index;
+      //     });
+      //   };
+      //   console.log(arr.fn7());
+    }
+    {
+      //数组排序方法
+
+      let arr = [1, 5, 9, 2, 4, 8, 2];
+      let fruits = ["Banana", "Orange", "Apple", "Mango"];
+
+      //方法一  sort()
+      // fruits.sort(); //默认升序　　Apple,Banana,Mango,Orange
+      // fruits.sort().reverse(); //降序　　Orange,Mango,Banana,Apple
+      //   arr.sort((a, b) => a - b) //改造sort,完成数字的 升序, b-a降序
+
+      //   方法二  冒泡
+      //   for (a = 0; a < arr.length; a++) {
+      //     for (q = a + 1; q < arr.length; q++) {
+      //       console.log(a, q);
+      //       if (arr[a] > arr[q]) {
+      //         [arr[a], arr[q]] = [arr[q], arr[a]];
+      //       }
+      //     }
+      //   }
+      //   console.log(arr);
+
+      //   方法三 快速
+      //   function quickSort(arr) {
+      //     if (arr.length <= 1) {
+      //       //如果数组只有一个数，就直接返回；
+      //       return arr;
+      //     }
+      //     var num = Math.floor(arr.length / 2); //找到中间数的索引值，如果是浮点数，则向下取整
+      //     var newValue = arr.splice(num, 1); //找到中间数的值
+      //     var left = [],
+      //       right = [];
+      //     for (var i = 0; i < arr.length; i++) {
+      //       if (arr[i] < newValue) {
+      //         left.push(arr[i]); //基准点的左边的数传到左边数组
+      //       } else {
+      //         right.push(arr[i]); //基准点的右边的数传到右边数组
+      //       }
+      //     }
+      //     return quickSort(left).concat(newValue, quickSort(right)); //递归不断重复比较
+      //   }
+      //   console.log(quickSort(arr));
+
+       //   方法四 希尔排序
     }
   </script>
 </html>
