@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+    </ul>
+  </body>
+  <script>
+    /*
+    
+    变量：
+    var：全局作用域
+    let：块级作用域（{}内就是块级作用域），不存在变量提升，不可重复声明
+    const：常量，不可改变，不存在变量提升，不可重复声明，
+        声明和赋值必须一起写，不可以先声明后赋值,
+        const声明的对象，可以改变对象内部的值，因为内存指向的是同一个对象
+
+    什么是块级作用域:{}内就是块级作用域
+    什么是变量提升：使用var声明的变量，会变量提升，把变量的声明提升到当前作用域的顶层
+    什么是暂时性死区：在定义赋值之前访问变量，变量名存在，但是未赋值
+    
+    */
+    {
+      for (var i = 0; i < $("ul li").length; i++) {
+        // $("ul li")
+        //   .eq(i)
+        //   .click(() => {
+        //     console.log(i);
+        //   });
+        // console.log(i + "var 内");
+        //因为i是全局变量，for循环不会等待点击事件，所以，i=4,不能实现循环点击
+      }
+      //   console.log(i + "var 外");
+    }
+    {
+      for (let i = 0; i < 3; i++) {
+        // console.log(i + "let 内");
+        $("ul li")
+          .eq(i)
+          .click(() => {
+            console.log(i);
+          });
+        //因为i 在块级作用域内，所有每次循环绑定的下标是不同的，所以不存在问题
+      }
+      //   console.log(i + "let 外");
+    }
+    {
+      const obj = {
+        a: "a",
+      };
+      obj.b = "b";
+      console.log(obj);
+    }
+    //-----------------------------------------------------------------------------------------------------------------
+    /*
+数据类型：
+基本数据类型： 
+    undefined  ：声明了，但未赋值
+    Null: 空对象，占位符
+    Boolean： true  false 
+    Number: 包括 数字 和 NaN    
+        Number()  : 看整体，如果不能转成数字就是NaN
+        parseInt()  :逐个看， 字符串转 整数
+        parseFloat() ： 逐个看， 字符串转 小数
+        isFinite():  判断一个数在不在数值范围内
+        isNaN(): 判断是否为NaN,本该返回一个数值，但是不能正确计算，所以返回NaN
+
+    
+        es6新增：
+            提供了 新的进制写法
+
+            2进制  (0b):逢2进1
+            8进制 (0o)：逢8进1
+            16进制 (0x) :逢16进1  ,0-9,a-f
+
+            10进制转任何进制，短除法，除以进制，取余
+            例子： 105 转 8进制
+                    105/8
+                    13----1
+                    13/8
+                    1---5
+                    1/8
+                    0--1
+                       151
+
+
+            2进制、8按进制转10进制，按权展开求和
+            例子：1101001  转10进制
+                  2的6次方   2的5次方   2的3次方    2的0次方
+                     64     +    32      +    8     +      1    =105
+
+            
+            2进制转8进制：每3个值代表一个 8进制，不够时高位补0
+                1 101 001
+                1   5    1
+                         
+
+            2进制转16进制：每4个值代表一个 16进制，不够时高位补0
+              0101 1011 1011
+              4+1  8+2+1 8+2+1
+              5    11     11
+              5    b      b
+                
+
+
+            ------------------
+
+            Number.isInteger()  判断是否为一个整数
+
+            ** 指数运算符 ，几的几次方
+
+    
+
+引用数据类型：
+
+
+*/
+    {
+      console.log(Number.isInteger(-0)); //true
+      console.log(Number.isInteger(+0)); //true
+      console.log(Number.isInteger(2.0)); //true
+      console.log(Number.isInteger(2)); //true
+      console.log(Number.isInteger(2.5)); //false
+      console.log(2 ** 3); //8
+    }
+    //------------------------------------------------------------------------------------
+    /*
+    
+    string: 
+        String() 全局函数
+        .toString() 每个对象身上都有这个方法,Null undefined不可以 调用
+
+        .length  长度
+
+        charAt()  返回某个下标的 值
+        charCodeAt() 返回某个下标字符的 unicode值
+        String.fromCharCode()  返回某个 字符编码的 字符
+        indexOf()  寻找有没有某个值，返回下标，找不到返回 -1
+        lastIndexOf() 倒着找
+        split()  以某个值 分割字符串
+        concat() 拼接字符串
+        trim()  删除首尾空格
+        search()  寻找在字符串中的位置，返回下标，找不到返回 -1
+        replace() 替换
+        toLowerCase() 转小写
+        toUpperCase() 转大写
+        substr(起始下标,截取长度)截取，不可颠倒，可为负数
+        slice(起始下标,结束下标前)截取，参数不可颠倒，可以为负数
+        substring(起始下标,结束下标前)截取，参数可颠倒，不可为负数
+
+         es6新增：
+          for of 遍历字符串
+
+          `` 模板字符串  ${}
+
+          codePointAt() 返回某个下标字符的 unicode值,识别的更广泛
+          String.fromCodePoint() 返回某个 字符编码的 字符,识别的更广泛
+          includes() 寻找有没有某个值，返回布尔值
+          startsWith(值,起始下标) 返回布尔值，表示参数是否在字符串的 开头 
+          endWith(值,起始下标) 结尾
+          repeat(次数)  把某个字符串 重复几次
+
+    */
+    {
+      let str = "qwer123";
+      console.log(str.charAt(3)); //r
+      console.log(str.charCodeAt(3)); //114
+      console.log(String.fromCharCode(114)); //r
+      console.log(str.trim()); //qwer123
+      console.log(str.search(2)); //5
+      console.log(str.substr(4, 1)); //1
+      console.log(str.substring(4, 6)); //12
+      console.log(str.slice(4, 6)); //12
+      console.log(str.codePointAt(3)); //114
+      console.log(String.fromCodePoint(114)); //r
+      console.log(str.includes(3)); //true
+      console.log(str.startsWith(2)); //true
+      console.log(str.repeat(2)); //qwer123qwer123
+    }
+  </script>
+</html>

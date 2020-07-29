@@ -1050,7 +1050,7 @@
         "purpose": "返回布尔值，表示是否找到了参数字符串"
       },
       {
-        "eng": "startsWidth(值,起始下标)     endWith(值,起始下标)",
+        "eng": "startsWith(值,起始下标)     endWith(值,起始下标)",
         "purpose": "返回布尔值，表示参数是否在字符串的 开头  结尾"
       },
       {
