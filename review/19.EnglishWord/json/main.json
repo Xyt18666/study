@@ -684,7 +684,7 @@
         "purpose": "返回屏幕的方向"
       },
       {
-        "eng": "window.navigor.userAgent",
+        "eng": "window.navigator.userAgent",
         "purpose": "返回浏览器信息"
       },
       {
@@ -756,7 +756,7 @@
         "purpose": "鼠标事件 按下 移动 松开 移入 移出  单击 双击 移入 移出 右键"
       },
       {
-        "eng": "ondrag   start   emd",
+        "eng": "ondrag   start   end",
         "purpose": "拖拽移动时  开始  结束 "
       },
       {
@@ -908,7 +908,7 @@
         "purpose": "设置 获取 修改 cookie详见 代码"
       },
       {
-        "eng": "window.performance,now()",
+        "eng": "window.performance.now()",
         "purpose": "前端性能监控api"
       },
 
@@ -1005,7 +1005,7 @@
         "purpose": "获取总时长"
       },
       {
-        "eng": "ontimeuodate",
+        "eng": "ontimeupdate",
         "purpose": "视频播放时触发，currentTime改变就会触发"
       },
       {
