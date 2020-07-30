@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    /*
+    对象：
+        创建方法： 
+            new Object()
+            字面量
+        增：obj.xx=xx
+        删: delete obj.xx
+        改: obj.xx=xx
+        查: obj.xx
+
+        对象的遍历：
+        for in (i是键名)
+        Object.keys(obj)  返回键数组 + for of遍历
+        Object.values(obj) 返回值数组 + for of遍历
+        Object.entries()  返回键值数组 + for of遍历
+
+
+        []: 对象中使用读取对象的值，[]有解析变量的能力 
+            例： obj[xx]
+
+        instanceof： 判断 某某是否为 某某的实例
+        .__proto__.constructor.name ： 获取构造函数的名字 
+        console.log()    输出内容
+        console.dir()  输出结构
+
+
+
+
+        es6新增：
+        对象的简洁表示法
+
+        可以使用表达式作为属性名
+
+        ... ：拓展运算符
+
+
+
+
+
+        对象新增的方法：
+
+            Object.is(,): 判断两个值是否严格相等 与====相同，两个不同的 +0 ！= -0 ， NaN === NaN
+
+            Object.assign(目标对象,源对象,源对象...):
+            用于对象合并，将原有的 可枚举属性（可遍历） ，复制到目标对象,
+            返回值是目标对象,
+            这个方法实行的是浅拷贝（即如果源对象某个属性的值是对象，那么目标对象拷贝得到的是这个对象的引用）
+
+
+            Object.keys():  键，遍历对象的补充手段，可以使用for of
+            Object.values(): 值，遍历对象的补充手段，可以使用for of
+            Object.entries(): 键值对，遍历对象的补充手段，可以使用for of
+
+            Object.fromEntries():把键值对数组，转为对象，可以把Map数据结构转对象
+
+        
+
+
+    */
+    {
+      let name = "name22";
+      let size = 3;
+      let obj = {
+        //对象的简洁表示法
+        name,
+        fn() {
+          cnsole.log("简洁表示法的函数");
+        },
+        ["item" + size]: "3", //表达式作为属性名
+      };
+      console.log(obj);
+      console.log(obj["item" + size]); //访问时也可以使用
+
+      console.log({ ...obj }); //拓展运算符
+    }
+    {
+      // Object.assign()
+      let obj1 = {
+        a: "11",
+      };
+      let obj2 = {
+        s: "22",
+      };
+      Object.assign(obj1, obj2);
+      console.log(obj1, obj2);
+      obj2.s = "sssss"; // 合并后修改 源对象的属性值，并不会影响目标对象
+      console.log(obj1, obj2);
+    }
+    {
+      //   Object.assign();
+      let obj1 = {
+        a: "11",
+      };
+      let obj2 = {
+        s: "22",
+        obj3: {
+          obj33: 3,
+        },
+      };
+      let obj3 = Object.assign(obj1, obj2); //赋值与不赋值没有任何关系，Object.assign()会返回目标对象，也就是 obj1
+      console.log(obj1, obj2, obj3);
+      console.log(obj1 == obj3); //true
+      obj2.w = "www"; // 合并后修改 源对象的属性值，并不会影响目标对象
+      obj1.q = "sqqq"; // 合并后修改目标对象，会影响目标对象
+      obj2.obj3.k = "kkk"; // 合并后修改源对象的对象的属性，会影响目标对象
+      console.log(obj1, obj2, obj3);
+    }
+    {
+      // 遍历对象
+      let obj = {
+        a: "aa",
+        b: "22",
+        c: "33",
+      };
+      for (let key of Object.keys(obj)) {
+        // console.log(key);
+      }
+      for (let value of Object.values(obj)) {
+        // console.log(value);
+      }
+      for (let [key, value] of Object.entries(obj)) {
+        // console.log([key, value]);
+      }
+
+      console.log(Object.entries(obj));
+    }
+    {
+      // fromEntries()
+      let arr = [
+        ["a", "ss"],
+        ["b", "ww"],
+        ["q", "ee"],
+      ];
+      let obj = Object.fromEntries(arr);
+      //   console.log(obj);
+
+      let map = new Map(); //Map数据结构转对象
+      map.set("a", 1).set("bat", "222");
+      let obj2 = Object.fromEntries(map);
+      //   console.log(obj2);
+    }
+    //------------------------------------------------------------
+    /*
+        日期对象：
+
+        创建日期对象：
+            new Date()  获取当前时间
+            new Date("2020-1-1")  自定义时间
+
+    
+        方法：
+        d.getFullYear()   年
+        getMonth()+1    月
+        getDate()      日
+        getHours()     时
+        getMinutes()   分
+        getSeconds()    秒
+        getDay()    星期几
+        getTime()   返回距 1970 年 1 月 1 日之间的毫秒数
+        getMilliseconds() 毫秒
+
+    
+    */
+    {
+      let d = new Date();
+      console.log(d instanceof Date); //true
+      console.log(d.__proto__.constructor.name); // Date
+      //返回 d的 构造函数是谁
+
+      console.dir(d); //输出 结构
+    }
+  </script>
+</html>
