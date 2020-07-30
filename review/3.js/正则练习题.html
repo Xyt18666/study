@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    {
+      let str1 = "A ghost boooooed";
+      let str2 = "A bird warbled";
+      let reg = /bo*/; //出现0次或者多次
+      console.log(str1.match(reg)); //booooo
+      console.log(str2.match(reg)); //b
+    }
+    {
+      let str1 = "candy";
+      let str2 = "cndy";
+      let reg = /a+/; //出现1次或者多次
+      console.log(str1.match(reg)); //a
+      console.log(str2.match(reg)); //null
+    }
+    {
+      let str1 = "angle";
+      let str2 = "oslo";
+      let reg = /e?le?/; //出现0次或1次
+      console.log(str1.match(reg)); //le
+      console.log(str2.match(reg)); //l
+    }
+    {
+      let str1 = "nay,an apple in on the tree";
+      let reg = /.n/; //任意字符后面为n
+      console.log(str1.match(reg)); //an
+    }
+    {
+      let str1 = "javascript hello world";
+      let reg = /o(?=\w)/; //后面为字符的o
+      console.log(str1.match(reg)); //o index:18
+    }
+    {
+      console.log(/\d+(?!\.)/.exec("3.1415")); //1415
+      //数字后面不是.的值
+    }
+    {
+      console.log(/(?<!-)\d+/.exec("3")); //3
+      //数字前面不是-时
+      console.log(/(?<!-)\d+/.exec("-3")); //null
+    }
+    {
+      let str = "Loho Smith";
+      let reg = /(\w+)\s(\w+)/g;
+      var newstr = str.replace(reg, " $2 $1");
+      console.log(newstr); //Smith Loho
+    }
+    {
+      let reg = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
+      /*
+            /^ 严格模式
+
+            <尖括号(分组 [字母a-z] [不能有 转义的/ 空字符 > : 空格 制表符 回车 换行 换页 ]0次或多次 ) [空格 制表符 回车 换行 换页]0次或多 /0次或1次>
+            (?:不捕获 <转义的/ 第一组>|)
+
+            $/i 不区分大小写
+
+
+        */
+    }
+    {
+      let names =
+        "Orange Trump; Fred Barney; Gelen Rigby; Bill Abel; Chris Hand";
+      let reg = /([A-Z]{1}\w+)\s([A-Z]{1}\w+)/g;
+      let str = names.replace(reg, "$2 $1");
+      console.log(str);
+    }
+  </script>
+</html>

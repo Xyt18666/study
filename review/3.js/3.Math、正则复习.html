@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    /*
+    MAth对象：
+        函数：
+        Math.PI ： 返回圆周率
+
+        Math.max(): 获取一组数的最大值
+        Math.min(): 最小值
+
+        Math.ceil():向上取整
+        Math.floor():向下取整
+        Math.round():四舍五入
+        Math.trunc(): 取整,去除小数点后面的值
+
+        Math.random():随机数
+        
+        Math.pow(,): 几的几次方
+        Math.sqre(): 平方根
+        Math.cbrt(): 立方根
+        
+        Math.hypot():返回所有参数 平方和 平方根
+
+        勾股定理： a*a + b*b = c*c
+
+
+
+    */
+    {
+      console.log(Math.trunc(-3.6)); //-3
+      console.log(Math.ceil(-3.6)); //-3
+      console.log(Math.floor(-3.6)); //-4
+
+      function sj(max, min) {
+        //随机数
+        return Math.floor(Math.random() * (max + 1 - min) + min);
+      }
+      console.log(sj(1, 100));
+
+      console.log(Math.hypot(5, 12)); //13
+    }
+
+    //---------------------------------------------------------------------
+    /*
+    正则：
+        创建： 
+            new RegExp()
+            字面量
+
+        修饰符：
+            g 全局
+            i 不区分大小写
+            m 多行搜索
+
+        正则的方法：
+            //.test()： 返回布尔值，检测一个字符串是否匹配某个模式
+            //.exec()：返回数组，数组的值是，匹配到的第一个值的参数，匹配不到返回 null
+
+        字符串的方法：
+            match(//)：  返回数组，数组成员为搜索结果
+            search(//):  返回第一个匹配值的下标
+
+            replace(//,"替换成xx"): 替换匹配的值，返回新字符串 
+    
+            split():匹配值，切割字符串，返回数组
+
+        特殊字符：
+        \  转义
+        \d 任意数字
+        \D 非数字
+        \w 非特殊符号
+        \W 特殊符号
+        \s 空白符
+        \S 非空白符
+        \r 换行
+        \n 回车
+        \0 匹配null字符
+        \b 检测某个值是否为 一个单词开头的边界
+        \u unicode值
+        \t tab
+        \f 换页
+        
+
+        .  除了 /n 以外的任意字符
+        | 或者
+
+        [] 表示一个范围 
+            [.]:就是一个.
+            [^]: 取反
+        
+
+        () 分组，提升优先级
+            (?:)：不捕获组
+            $数字 :字符串替换时，提取第几组
+            \数字：在正则中 提取组
+
+            x(?=y): 匹配x后面为y的x , 先行断言
+            (?<=y)x: 匹配X前面为y的x , 后行断言
+
+            x(?!y): 当x后面不是y时，匹配x ，正向否定
+            (?<!y)x: 当x前面不是y时，匹配x , 反向否定
+
+        * 0或多次
+        ? 0或1次 （阻止贪婪模式）
+        + 1或多次
+
+        {} 限定次数
+            {n,} 最少出现n次
+            {n,m} 最少出现n次,最多出现m次
+            {n,m}? 尽量匹配n次，为了满足条件可以匹配m次
+
+
+        ^ 以什么开头
+        $ 以什么结尾
+            ^[]$: 严格模式
+
+       
+
+        
+
+        
+        
+
+
+
+
+    */
+    {
+      let str = "qwear789sdf7sAdf";
+      let reg = /7/gi;
+      console.log(str.match(reg));
+      console.log(str.search(reg));
+
+      console.log(str.replace(/7/gi, "替换成xx"));
+
+      console.log(str.split(/a/gi));
+      console.log(/123/gi.exec("dfg123df123g"));
+    }
+    {
+      let reg = /(abc)\w+/gi;
+      let reg1 = /(?:abc)\w+/gi;
+      let str = "as26dfabcs56df";
+      //   console.log(str.match(reg));
+      console.log(str.match(reg1));
+    }
+  </script>
+</html>
