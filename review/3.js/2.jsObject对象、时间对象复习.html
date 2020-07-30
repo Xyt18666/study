@@ -42,7 +42,8 @@
 
         ... ：拓展运算符
 
-
+        get 取值器
+        set 赋值器
 
 
 
@@ -61,6 +62,10 @@
             Object.entries(): 键值对，遍历对象的补充手段，可以使用for of
 
             Object.fromEntries():把键值对数组，转为对象，可以把Map数据结构转对象
+
+            Object.defineProperty(obj, "data", {描述对象}) 在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象
+            Object.getOwnPropertyDescriptor(obj,"data")  获取该属性的描述对象
+            
 
         
 
@@ -148,6 +153,31 @@
       let obj2 = Object.fromEntries(map);
       //   console.log(obj2);
     }
+    {
+      let obj = {
+        get a() {
+          //获取a时，触发事件
+          console.log("Sdfasfas");
+          return "a143243";
+        },
+        set a(val) {
+          //设置a时，触发事件
+          console.log("设置了a" + val);
+        },
+      };
+      console.log(obj.a);
+      obj.a = "new a";
+    }
+    {
+      let obj = {};
+      Object.defineProperty(obj, "data", {
+        value: "hksdf", //值
+        writable: true, //是否可写
+        configurable: false, //描述属性是否可以配置，以及是否可以删除
+        enumerable: true, //是否可枚举(遍历)
+      });
+      console.log(Object.getOwnPropertyDescriptor(obj, "data"));
+    }
     //------------------------------------------------------------
     /*
         日期对象：
@@ -167,7 +197,7 @@
         getMilliseconds() 毫秒
 
         getDay()    星期几
-        
+
         getTime()   返回距 1970 年 1 月 1 日之间的毫秒数
 
     

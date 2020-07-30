@@ -14,6 +14,7 @@
 
         Math.max(): 获取一组数的最大值
         Math.min(): 最小值
+        MAth.abs(): 绝对值
 
         Math.ceil():向上取整
         Math.floor():向下取整
@@ -58,6 +59,12 @@
             g 全局
             i 不区分大小写
             m 多行搜索
+            u 用来正确处理大于\uFFFF的字符
+          
+        es6新增：
+            {} 表示unicode值
+
+            
 
         正则的方法：
             //.test()： 返回布尔值，检测一个字符串是否匹配某个模式
@@ -149,6 +156,11 @@
       let str = "as26dfabcs56df";
       //   console.log(str.match(reg));
       console.log(str.match(reg1));
+    }
+
+    {
+      let scripts = `<script><\/script>`; //不转义/就会报错，因为浏览器会错以为他是script结束标签的
+      console.log(scripts);
     }
   </script>
 </html>
