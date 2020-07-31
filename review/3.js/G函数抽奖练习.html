@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="#" method="get">
+      <input type="button" value="抽奖" />
+      <p>次数 <span>5</span></p>
+    </form>
+  </body>
+  <script>
+    /*
+    
+    
+    
+    
+    */
+    function* cs() {
+      yield;
+      yield;
+      yield;
+      yield;
+    }
+    let gen = cs();
+    $("input").click(function () {
+      let text = parseInt($("span").text());
+      text--;
+      $("span").text(text);
+      if (gen.next().done) {
+        $("input").css({
+          "pointer-events": "none",
+        });
+      }
+    });
+  </script>
+</html>
