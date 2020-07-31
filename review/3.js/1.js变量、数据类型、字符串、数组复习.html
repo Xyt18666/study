@@ -134,13 +134,13 @@
       逻辑运算符：&& ||  !
       赋值运算符：= += -= *= /= %=
       三目运算符：?:
-    
-    
+
+
     短路效果：
     && ：第一个为假，赋值第一个，反之第二个
     || : 第一个为真，赋值第一个，反之第二个
     ?? ：这个和 || 很像，但是它不会屏蔽掉 false和 0 和NaN
-    
+
     */
 
     {
@@ -163,7 +163,7 @@
         for
     in
     of
-    while  
+    while
     do
     this
     new
@@ -189,13 +189,16 @@
     import   导入模块
     exports  导出模块
 
-    
 
-  
-    
-    
     */
 
+    /*
+    常用检测：
+    alert()  弹框
+    console.log()  控制台输出内容
+    console.dir()  输出结构
+
+    */
     {
       console.log(Number.isInteger(-0)); //true
       console.log(Number.isInteger(+0)); //true
@@ -290,6 +293,17 @@
 
             用途三：模拟类的私有方法
 
+            方法：
+              Symbol.for()：
+                有时候我们希望能够重用一个Symbol值，这时候我们可以使用Symbol.for()，
+                该方法能够接受一个参数，然后会在一个“登记表”中搜索使用该参数作为描述的Symbol值是否存在，
+                如果存在，则返回已经存在的Symbol值，
+                如果不存在就用该参数作为描述生成一个新的Symbol值。
+                该方法和Symbol()方法的区别是，该方法会将生成的Symbol登记在全局环境中，而Symbol()不会。
+
+              Symbol.keyFor()：
+              可以返回一个已经登记的Symbol值的描述，即key值
+
 
 
             */
@@ -308,6 +322,23 @@
         [name]: "ss",
       };
       console.log(obj[name]);
+    }
+
+    {
+      let s1 = Symbol("a");
+      let s2 = Symbol.for("a");
+      let s3 = Symbol.for("a");
+
+      console.log(s1 === s2); // false
+      console.log(s3 === s2); // true
+    }
+    {
+      let s1 = Symbol.for("foo");
+
+      console.log(Symbol.keyFor(s1), "======"); // "foo"
+
+      let s2 = Symbol("foo2");
+      console.log(Symbol.keyFor(s2)); // undefined
     }
 
     //--------------------------------------------------------------------------------------
@@ -362,7 +393,7 @@
 
             数组的访问：下标
 
-            数组的遍历： 
+            数组的遍历：
             for in  (i是下标)
             for of  (i是值)
             forEach()
@@ -406,7 +437,7 @@
 
                 ... 拓展运算符
 
-                Array.prototype.copyWithin(从该位置开始替换数据,[从该位置开始读取数据，默认为 0 。如果为负值，表示倒数。,][到该位置前停止读取数据，默认等于数组长度。如果为负值，表示倒数。]) 
+                Array.prototype.copyWithin(从该位置开始替换数据,[从该位置开始读取数据，默认为 0 。如果为负值，表示倒数。,][到该位置前停止读取数据，默认等于数组长度。如果为负值，表示倒数。])
                 在数组内部，将指定位置成员复制到其他位置，返回当前数组
 
 

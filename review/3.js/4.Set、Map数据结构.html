@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    /*
+    set数据结构：
+    类似于数组，成员值都是唯一的
+
+    创建： new Set()
+
+    属性：
+        size: 成员个数，类似于length
+
+    方法：
+        add() ： 添加
+        delete() ：删除
+        clear()  ：清除
+        has()  ：查找有没有某个成员,返回布尔值
+
+        keys()  :  没有键，只有值和源set
+        values()  : 没有键，只有值和源set
+        entries() ： 没有键，只有值和源set
+        forEach() ：没有键，只有值和源set ，要用回调的方式获取
+
+    */
+    {
+      let set = new Set([1, 2, 5, 4, 7]);
+      console.log(set.has(2));
+      set.delete(2);
+      console.log(set);
+      set.add(2);
+      console.log(set);
+      //   set.clear();
+      //   console.log(set);
+
+      // set.forEach((...arguments) => {
+      //   console.log(...arguments);
+      // });
+      console.log(set.entries(), "--------------------------");
+    }
+    //------------------------------------------------------------
+
+    /*
+    map结构
+
+      类似于对象，可以接受一个键值对的数组，键可以是任意类型
+
+    创建： new Map()
+
+    属性：
+        size: 成员个数，类似于length
+
+    方法：
+        set(键,值) ： 设置键值
+        get(键): 获取某值
+        delete() ：删除
+        clear()  ：清除
+        has()  ：查找有没有某个成员,返回布尔值
+
+        keys()  :   值
+        values()  :  键
+        entries() ：  键 值  map对象
+        forEach() ：  键 值 map对象
+
+
+    */
+    {
+      let map = new Map();
+      map.set("jian", "值");
+      map.set(
+        {
+          a: "aa",
+        },
+        "2"
+      );
+
+      map.forEach((a, b, c) => {
+        console.log(a, b, c);
+      });
+    }
+    //---------------------------------------------------------
+    /*
+    set 和 数组 的对比： set操作起来比 数组更简单
+
+
+     map 和 数组 的对比： map 更简单
+
+    */
+    {
+      let set = new Set();
+      let map = new Map();
+      let arr = new Array();
+
+      let obj = { a: 1 };
+
+      //增加：
+      set.add(obj);
+      arr.push(obj);
+      map.set("a", 1);
+
+      console.log(set, arr, map);
+
+      //查找 ：
+      console.log(set.has(obj));
+      console.log(arr.includes(obj));
+      console.log(map.has("a"));
+
+      console.log(set, arr, map);
+
+      //修改：
+      set.forEach((item) => {
+        item.a = item.a ? 2 : null;
+      });
+
+      arr.forEach((item) => {
+        item.a = item.a ? 2 : null;
+      });
+
+      map.set("a", 2);
+      console.log(set, arr, map);
+
+      //删除：
+      set.delete(obj);
+
+      let index = arr.findIndex((item) => {
+        return item.a == 2;
+      });
+      arr.splice(index, 1);
+
+      map.delete("a");
+
+      console.log(set, arr, map);
+    }
+
+    /*
+    set 和 对象 的对比：
+
+    map 和 对象的 对比：
+
+    */
+    {
+      let item = { t: 1 };
+      let map = new Map();
+      let set = new Set();
+      let obj = {};
+
+      //增
+      map.set("t", 1);
+      set.add(item);
+      obj["t"] = 1;
+      console.log("map-set-object增", map, set, obj);
+
+      //查找
+      console.log({
+        map_exsit: map.has("t"),
+        set_exist: set.has(item),
+        obj_exist: "t" in obj,
+      });
+
+      //修改
+      map.set("t", 2);
+      // item.t = 2; //如果是在外部声明的对象，set可以通过修改onj实现
+      set.forEach((item) => {
+        item.t = item.t ? 2 : null;
+      });
+
+      obj["t"] = 2;
+      console.log("map-set-object改", map, set, obj);
+
+      //删除
+      // map.delete("t");
+      // set.delete(item);
+      // delete obj["t"];
+      // console.log("map-set-object删", map, set, obj);
+    }
+    //-----------------------------------------------------------------------------
+    /*
+    set map 数组的 互相转换：
+
+    数组转set: Set(数组)
+    set转数组:  [...set]  、 Array.from(set)
+
+    数组转 map:  for遍历  map.set(i, arr[i])
+    map转数组：[...map] 
+
+    */
+    {
+      let arr = [1, 648, "sdf", 6684, { as: 5, fn: "qq" }, [5, 5, 5, 44]];
+      let set = new Set(arr);
+      let map = new Map();
+      // console.log(set); //数组转set
+
+      // console.log([...set]); //set转数组
+      // console.log(Array.from(set)); //set转数组
+
+      for (let i = 0; i < arr.length; i++) {
+        map.set(i, arr[i]);
+      }
+      console.log(map); //数组转 map
+
+      let newArr = [...map]; //map转数组
+      for (i of newArr) {
+        i.splice(0, 1);
+      }
+      console.log(newArr.flat());
+    }
+    //--------------------------------------------------------------------------------
+    /*
+    对象 和 map 的互相转换：
+
+    map转obj : Object.fromEntries(map)
+    obj转map : for of  Object.keys(obj)遍历obj ,map.set(k,obj[k])
+
+    */
+    {
+      let map = new Map();
+      let obj = {
+        ss: "ss",
+        p: "uo",
+      };
+
+      for (let k of Object.keys(obj)) {
+        map.set(k, obj[k]);
+      }
+      console.log(map); //对象转 map
+
+      console.log(Object.fromEntries(map)); // map转obj
+    }
+  </script>
+</html>

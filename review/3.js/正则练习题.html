@@ -59,7 +59,7 @@
             /^ 严格模式
 
             <尖括号(分组 [字母a-z] [不能有 转义的/ 空字符 > : 空格 制表符 回车 换行 换页 ]0次或多次 ) [空格 制表符 回车 换行 换页]0次或多 /0次或1次>
-            (?:不捕获 <转义的/ 第一组>|)
+            (?:不捕获 <转义的/ 第一组> 或者 空)
 
             $/i 不区分大小写
 
@@ -68,10 +68,15 @@
     }
     {
       let names =
-        "Orange Trump; Fred Barney; Gelen Rigby; Bill Abel; Chris Hand";
+        "Orange Trump ； Fred Barney;Gelen Rigby; Bill Abel ;Chris Hand";
       let reg = /([A-Z]{1}\w+)\s([A-Z]{1}\w+)/g;
       let str = names.replace(reg, "$2 $1");
       console.log(str);
+
+      let newStr = str.replace(/\；{1}/g, ";");
+      console.log(newStr);
+      let newStr1 = str.replace(/S{1}/g, "");
+      console.log(newStr1);
     }
   </script>
 </html>

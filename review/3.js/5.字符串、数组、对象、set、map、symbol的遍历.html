@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    {
+      /*
+        字符串的遍历:
+            for :  i是下标（数字，类型），str[i] 访问字符串的每个值
+            for in : i是下标(字符串类型)，str[i] 访问字符串的每个值
+            for of ：  i是字符串的每个值
+
+            Object.keys() : 返回数组 ，键
+            Object.values() : 返回数组 ，值
+            Object.entries() : 返回数组 ，键值数组
+
+        */
+
+      let str = "asdf456";
+
+      for (let i = 0; i < str.length; i++) {
+        console.log(i, str[i]);
+      }
+
+      for (let i in str) {
+        console.log(i, str[i]);
+      }
+
+      for (let i of str) {
+        console.log(i);
+      }
+
+      console.log(Object.entries(str));
+    }
+    //------------------------------------------------------
+
+    /*
+        数组的遍历:
+            for :  i是下标（数字，类型），arr[i] 访问字符串的每个值
+            for in : i是下标(字符串类型)，arr[i] 访问字符串的每个值
+            for of ：  i是字符串的每个值
+
+            for of 遍历 arr.keys() : 返回 键
+            for of 遍历 arr.values() : 返回 值
+            for of 遍历 arr.entries() : 返回 键值数组,通过解构[index,item]拿到单独的值
+
+            arr.forEach((item, index, arr) => {}): 回调的形式 获取  键 值 原数组
+
+
+        */
+    {
+      let arr = ["6", 4, 65, 8, 7];
+
+      for (let i = 0; i < arr.length; i++) {
+        console.log(i, arr[i]);
+      }
+
+      for (let i in arr) {
+        console.log(i, arr[i]);
+      }
+
+      for (let i of arr) {
+        console.log(i);
+      }
+
+      for (let i of arr.entries()) {
+        console.log(i);
+      }
+      arr.forEach((item, index, arr) => {
+        console.log(item, index, arr);
+      });
+    }
+
+    //---------------------------------------------------------------------
+    /*
+        对象的遍历:
+
+            for in : i是键名，obj[i] 键值
+            for of : 配合以下方法
+
+
+            for of 遍历 Object.keys() : 返回 键
+            for of 遍历 Object.values() : 返回 值
+            for of 遍历 Object.entries() : 返回 键值数组,通过解构[index,item]拿到单独的值
+
+        */
+    {
+      let obj = { a: "aa", b: "ww" };
+
+      for (let i in obj) {
+        console.log(i, obj[i]);
+      }
+
+      for (let i of Object.keys(obj)) {
+        console.log(i);
+      }
+    }
+    //---------------------------------------------------------------------
+    /*
+        set的遍历:
+
+            for of : 配合以下方法
+
+            keys()  :  返回遍历器，数组成员为值，可以通过 for of 遍历
+            values()  : 返回遍历器，数组成员为值，可以通过 for of 遍历
+            entries() ：返回遍历器，数组成员为数组[值，值]，可以通过 for of 遍历
+            forEach() ：键值都是值，要用回调的方式获取 键 值 原set
+
+        */
+    {
+      let set = new Set([1, 2, 5, 4, 7]);
+
+      console.log(set.keys(), "------------------------");
+
+      set.forEach((...arguments) => {
+        console.log(...arguments);
+      });
+
+      for (let i of set.entries()) {
+        console.log(i);
+      }
+    }
+    //---------------------------------------------------------------------
+    /*
+        map的遍历:
+
+            for of : 配合以下方法
+
+            keys()  :  返回遍历器，数组成员为值，可以通过 for of 遍历
+            values()  : 返回遍历器，数组成员为值，可以通过 for of 遍历
+            entries() ： 返回遍历器，数组成员为数组[key,value]，可以通过 for of 遍历
+            forEach() ：键值都是值，要用回调的方式获取  值 键 map
+
+        */
+    {
+      let map = new Map([
+        ["a11", "aa"],
+        ["bb", "22"],
+      ]);
+
+      console.log(map.keys());
+
+      for (i of map.keys()) {
+        console.log(i);
+      }
+      map.forEach((...arguments) => {
+        console.log(...arguments);
+      });
+
+      for (let [key, value] of map.entries()) {
+        console.log(key, value);
+      }
+    }
+
+    /*
+       遍历获取 symbol:
+
+            symbol作为属性名。
+            该属性不会出现在for...in ，for...of 循环中，也不会被Object.keys() 和 Object.getOwnPropertyNames() 、JSON.stringify()返回。
+            但是它不是私有属性。
+
+            获取方法：
+              Object.getOwnPropertySymbols()  : 返回数组，数组成员是 指定对象的所有Symbol属性名。
+              Reflect.ownKeys() :返回数组，数组成员是 所有类型的键名
+
+
+        */
+    {
+      const obj = {};
+      let a = Symbol("a");
+      let b = Symbol("b");
+      obj[a] = "Hello";
+      obj[b] = "World";
+      const objectSymbols = Object.getOwnPropertySymbols(obj);
+      console.log(objectSymbols);
+    }
+    {
+      let obj = {
+        [Symbol("my_key")]: 1,
+        enum: 2,
+        nonEnum: 3,
+      };
+
+      console.log(Reflect.ownKeys(obj));
+    }
+  </script>
+</html>
