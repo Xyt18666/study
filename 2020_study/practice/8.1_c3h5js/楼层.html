@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        height: 3000px;
+      }
+      .ban {
+        margin-top: 200px;
+        height: 500px;
+        width: 100%;
+        background: pink;
+      }
+      .floor {
+        width: 85%;
+        margin: 0 auto;
+      }
+
+      li {
+        list-style: none;
+      }
+      .floor > div h2 {
+        text-align: center;
+      }
+      .floor > div .hovLst {
+        display: flex;
+        justify-content: space-around;
+      }
+      .hovLst p {
+        width: 200px;
+        text-align: center;
+      }
+      .floor > div ul {
+        position: relative;
+        width: 100%;
+        height: 580px;
+      }
+      .floor > div > ul > li {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: none;
+      }
+      .floor > div ul > li:nth-child(1) {
+        display: block;
+      }
+      .floor > div ul > li .le {
+        width: 40%;
+        float: left;
+      }
+      .floor > div ul > li ol {
+        width: 60%;
+        float: right;
+        display: flex;
+        justify-content: space-around;
+        flex-flow: wrap row;
+      }
+      .hovLst p:nth-child(1) {
+        background: red;
+      }
+      /* ===================== */
+
+      section {
+        display: flex;
+        justify-content: space-between;
+      }
+      .limg {
+        flex: 2;
+        overflow: hidden;
+      }
+      .lst {
+        flex: 8;
+        display: flex;
+        justify-content: space-between;
+        flex-flow: wrap row;
+      }
+
+      .lst li {
+        width: calc(100% / 4);
+        order: 3;
+      }
+      .lst li:nth-child(1) {
+        order: 1;
+      }
+      .lst .bigimg {
+        width: calc(100% / 2);
+        overflow: hidden;
+        order: 2;
+      }
+      .lst .bigimg img {
+        transform: scale(5);
+      }
+      aside {
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 700px;
+      }
+      aside li {
+        width: 20px;
+        height: 20px;
+        background: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ban"></div>
+    <div class="floor">
+      <!-- <div class="qqtm">
+        <h2>qqtm</h2>
+        <div class="hovLst">
+          <p>1</p>
+          <p>2</p>
+          <p>3</p>
+          <p>4</p>
+          <p>5</p>
+        </div>
+
+        <ul>
+          <li>
+            <div class="le">
+              <img src="" alt="" />
+            </div>
+            <ol class="ri">
+              <li>
+                <img src="" alt="" />
+                <div class="name"></div>
+                <div class="mm">
+                  <div class="q">钱</div>
+                  <div class="m">买</div>
+                </div>
+              </li>
+            </ol>
+          </li>
+        </ul>
+      </div> -->
+
+      <!-- <div class="limg"><img src="" alt="" /></div>
+      <ul class="lst">
+        <li>
+          <img src="" alt="" />
+          <p></p>
+          <h4></h4>
+        </li>
+      </ul> -->
+    </div>
+    <aside>
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+      </ul>
+    </aside>
+  </body>
+  <script>
+    $(function () {
+      $.ajax({
+        url: "data.json",
+        type: "get",
+        dataType: "json",
+        success: function (e) {
+          for (let a = 0; a < e.length; a++) {
+            $(".floor").append(
+              `<div title=${e[a].title}><h2>${e[a].title}</h2> </div> `
+            );
+          }
+          {
+            let [{ list }, , , ,] = e;
+            console.log(list);
+            $(".floor")
+              .children()
+              .eq(0)
+              .append(` <div class="hovLst"> </div><ul></ul>`);
+            for (let b = 0; b < list.length; b++) {
+              $(".floor")
+                .children()
+                .eq(0)
+                .children(".hovLst")
+                .append(` <p>${list[b].hov}</p>`);
+
+              let olCon = "";
+              let rlst = list[b].rlst;
+
+              for (let c = 0; c < rlst.length; c++) {
+                olCon += `<li>
+                <img src=${rlst[c].img} alt="" />
+                <div class="name">${rlst[c].name}</div>
+                <div class="mm">
+                  <div class="q">${rlst[c].q}</div>
+                  <div class="m">买</div>
+                </div>
+              </li>`;
+              }
+              $(".floor").children().eq(0).children("ul").append(` <li>
+                    <div class="le">
+                    <img src=${list[b].limg} alt="" />
+                    </div>
+                    <ol class="ri">
+                    ${olCon}
+                    </ol>
+                </li>`);
+            }
+          }
+          $(".hovLst p").click(function () {
+            $(this).css({ background: "red" }).siblings().css({
+              background: "#fff",
+            });
+
+            $(".floor>div:nth-child(1)>ul>li")
+              .eq($(this).index())
+              .show()
+              .siblings()
+              .hide();
+            // console.log($(".floor>div:nth-child(1)>ul>li"));
+          });
+
+          //-------------------------------------------------------------
+
+          {
+            let [, ...list] = e;
+            console.log(list);
+
+            for (let a = 0; a < list.length; a++) {
+              let li = ``;
+              for (let b = 0; b < list[a].rlst.length; b++) {
+                if (list[a].rlst[b].name) {
+                  li += `  <li>
+                    <img src=${list[a].rlst[b].img} alt="" />
+                    <p>${list[a].rlst[b].name}</p>
+                    <h4>${list[a].rlst[b].q}</h4>
+                    </li>`;
+                } else {
+                  li += `  <li class="bigimg">
+                    <img src=${list[a].rlst[b].img} alt="" />
+                    </li>`;
+                }
+              }
+              $(".floor>div").eq(a + 1)
+                .append(` <section class="box"><div class="limg"><img src=${list[a].limg} alt="" /></div>
+                    <ul class="lst">
+                        ${li}
+                    </ul></section>`);
+            }
+          }
+          //   -------------------------------------------
+          {
+            $(window).scroll(function () {
+              var st = $(window).scrollTop();
+              st > 500
+                ? $("aside").css({
+                    position: "fixed",
+                    top: 200,
+                    display: "block",
+                  })
+                : $("aside").css({
+                    position: "absolute",
+                    top: 500,
+                    display: "none",
+                  });
+
+              var max = st + $(".floor>div").eq(1).height() / 2;
+              var min = st - $(".floor>div").eq(1).height() / 2;
+              console.log(max, min);
+              $(".floor>div").each(function (index) {
+                console.log(index);
+                var objs = $(".floor>div").eq(index).offset().top;
+                if (objs > min && objs < max) {
+                  $("aside li")
+                    .eq(index)
+                    .css("background", "red")
+                    .siblings()
+                    .css("background", "#741");
+                }
+              });
+            });
+            $("aside li").click(function () {
+              console.log();
+              var stz = $(".floor>div").eq($(this).index()).offset().top;
+              $("html,body").animate(
+                {
+                  scrollTop: stz,
+                },
+                300
+              );
+            });
+          }
+        },
+      });
+    });
+  </script>
+</html>

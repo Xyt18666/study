@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      canvas {
+      }
+      .size {
+        width: 2px;
+        top: 0;
+        height: 100px;
+        background: red;
+        position: absolute;
+        left: 100px;
+        z-index: 999;
+      }
+      .size2 {
+        width: 100px;
+        top: 100px;
+        height: 2px;
+        left: 0;
+        background: red;
+        position: absolute;
+
+        z-index: 999;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas
+      width="800px"
+      height="400px"
+      style="border: 2px solid #789;"
+    ></canvas>
+    <div class="size"></div>
+    <div class="size2"></div>
+  </body>
+  <script>
+    $(function () {
+      // Math.cos(x)    x 的余弦值。返回的是 -1.0 到 1.0 之间的数；
+      // 这两个函数中的X 都是指的“弧度”而非“角度”，弧度的计算公式为： 2*PI/360*角度；
+      // 30° 角度 的弧度 = 2*PI/360*30
+
+      // let c = $("canvas")[0].getContext("2d");
+      // let hd = ((Math.PI * 2) / 360) * 72; //弧度
+      // let hd2 = ((Math.PI * 2) / 360) * 144; //弧度
+      // let hd3 = ((Math.PI * 2) / 360) * 216; //弧度
+      // let hd4 = ((Math.PI * 2) / 360) * 288; //弧度
+
+      // c.beginPath();
+      // c.strokeStyle = "red";
+      // c.lineWidh = 2;
+      // c.moveTo(100, 100);
+      // c.lineTo(200, 100);
+      // c.lineTo(200 + Math.cos(hd) * 100, 100 + Math.sin(hd) * 100);
+      // c.lineTo(
+      //   200 + Math.cos(hd) * 100 + Math.cos(hd2) * 100,
+      //   100 + Math.sin(hd) * 100 + Math.sin(hd2) * 100
+      // );
+      // c.lineTo(
+      //   200 + Math.cos(hd) * 100 + Math.cos(hd2) * 100 + Math.cos(hd3) * 100,
+      //   100 + Math.sin(hd) * 100 + Math.sin(hd2) * 100 + Math.sin(hd3) * 100
+      // );
+      // c.lineTo(
+      //   200 +
+      //     Math.cos(hd) * 100 +
+      //     Math.cos(hd2) * 100 +
+      //     Math.cos(hd3) * 100 +
+      //     Math.cos(hd4) * 100,
+      //   100 +
+      //     Math.sin(hd) * 100 +
+      //     Math.sin(hd2) * 100 +
+      //     Math.sin(hd3) * 100 +
+      //     Math.sin(hd4) * 100
+      // );
+
+      // c.stroke();
+      // c.closePath();
+
+      function creatShape(x, y, l, size) {
+        let c = $("canvas")[0].getContext("2d");
+        let preX = x;
+        let preY = y;
+        let hd;
+        c.beginPath();
+        c.strokeStyle = "red";
+        c.lineWidh = 2;
+        c.moveTo(x, y);
+        for (i = 1; i <= size; i++) {
+          hd = ((Math.PI * 2) / 360) * (i * (360 / size)); //弧度
+          preX += Math.cos(hd) * l;
+          preY += Math.sin(hd) * l;
+          c.lineTo(preX, preY);
+        }
+        c.stroke();
+        c.closePath();
+      }
+      creatShape(100, 100, 50, 6);
+    });
+  </script>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    /*
+      编写函数判断一个数是否为素数？（素数：只能被1和本身整除的数），并且计算前20个素数的和
+
+      */
+    function sushu(num) {
+      let count = 0; //统计因子个数
+      for (var i = 1; i <= num; i++) {
+        if (num % i == 0) {
+          //因子
+          count++;
+        }
+      }
+      //循环结束后 如果 count == 2  一定是素数
+      if (count == 2) {
+        return num;
+      }
+    }
+    // console.log(shshu(7));
+    // console.log(sushu(6));
+
+    let arr = [];
+    console.log(arr);
+    for (let a = 0; a < 100; a++) {
+      if (arr.length == 20) {
+        break;
+      } else {
+        if (sushu(a) != undefined) {
+          arr.push(sushu(a));
+        }
+      }
+    }
+    console.log(arr);
+  </script>
+</html>

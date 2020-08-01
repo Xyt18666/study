@@ -208,10 +208,11 @@
         },
       };
       // console.log(a.toString());
-      // console.log(1 == "1" && 2 == "2" && 3 == "3");
-      // if (a == "1" && a == "2" && a == "3") {
-      //   console.log("true");
-      // }
+
+      if (a == "1" && a == "2" && a == "3") {
+        console.log("true");
+        //隐式调用了 a.toString()
+      }
     }
   </script>
 </html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    /*
+       标出下列正则表达式的含义:
+        /^[A-Z]:\\{1,2}[^/:\*\?<>\|]+\.(jpg|gif|png|bmp)$/i
+
+
+         /^ 严格模式
+
+          [A-Z]:\\{1,2}[^/:\*\?<>\|]+\.(jpg|gif|png|bmp)
+
+         [A-Z] :转义\{最少一次,最多2次}[取反 不能出现 / : \* \? <> \|]  一次或者多次 转义. (其中一个都行 jpg|gif|png|bmp)
+
+
+         $/i 严格模式，不区分大小写
+
+    */
+    let reg = /^[A-Z]:\\{1,2}[^/:\*\?<>\|]+\.(jpg|gif|png|bmp)$/i;
+    let str = "C:\\Users\\Desktop\\MINote.jpg";
+    console.log(str.match(reg));
+  </script>
+</html>

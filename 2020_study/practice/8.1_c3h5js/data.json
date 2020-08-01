@@ -1,0 +1,382 @@
+[
+  {
+    "title": "全球特卖",
+    "list": [
+      {
+        "hov": 1,
+        "limg": "1.jpg",
+        "rlst": [
+          {
+            "img": "2.jpg",
+            "name": "name111111",
+            "q": "99"
+          },
+          {
+            "img": "2.jpg",
+            "name": "name",
+            "q": "99"
+          },
+          {
+            "img": "2.jpg",
+            "name": "name",
+            "q": "99"
+          },
+          {
+            "img": "2.jpg",
+            "name": "name",
+            "q": "99"
+          },
+          {
+            "img": "2.jpg",
+            "name": "name",
+            "q": "99"
+          },
+          {
+            "img": "2.jpg",
+            "name": "name",
+            "q": "99"
+          }
+        ]
+      },
+      {
+        "hov": 2,
+        "limg": "1.jpg",
+        "rlst": [
+          {
+            "img": "2.jpg",
+            "name": "name2222",
+            "q": "99"
+          },
+          {
+            "img": "2.jpg",
+            "name": "name",
+            "q": "99"
+          },
+          {
+            "img": "2.jpg",
+            "name": "name",
+            "q": "99"
+          },
+          {
+            "img": "2.jpg",
+            "name": "name",
+            "q": "99"
+          },
+          {
+            "img": "2.jpg",
+            "name": "name",
+            "q": "99"
+          },
+          {
+            "img": "2.jpg",
+            "name": "name",
+            "q": "99"
+          }
+        ]
+      },
+      {
+        "hov": 3,
+        "limg": "1.jpg",
+        "rlst": [
+          {
+            "img": "2.jpg",
+            "name": "name333",
+            "q": "99"
+          },
+          {
+            "img": "2.jpg",
+            "name": "name",
+            "q": "99"
+          },
+          {
+            "img": "2.jpg",
+            "name": "name",
+            "q": "99"
+          },
+          {
+            "img": "2.jpg",
+            "name": "name",
+            "q": "99"
+          },
+          {
+            "img": "2.jpg",
+            "name": "name",
+            "q": "99"
+          },
+          {
+            "img": "2.jpg",
+            "name": "name",
+            "q": "99"
+          }
+        ]
+      },
+      {
+        "hov": 4,
+        "limg": "1.jpg",
+        "rlst": [
+          {
+            "img": "2.jpg",
+            "name": "na4444me",
+            "q": "99"
+          },
+          {
+            "img": "2.jpg",
+            "name": "name",
+            "q": "99"
+          },
+          {
+            "img": "2.jpg",
+            "name": "name",
+            "q": "99"
+          },
+          {
+            "img": "2.jpg",
+            "name": "name",
+            "q": "99"
+          },
+          {
+            "img": "2.jpg",
+            "name": "name",
+            "q": "99"
+          },
+          {
+            "img": "2.jpg",
+            "name": "name",
+            "q": "99"
+          }
+        ]
+      },
+      {
+        "hov": 5,
+        "limg": "1.jpg",
+        "rlst": [
+          {
+            "img": "2.jpg",
+            "name": "n555ame",
+            "q": "99"
+          },
+          {
+            "img": "2.jpg",
+            "name": "name",
+            "q": "99"
+          },
+          {
+            "img": "2.jpg",
+            "name": "name",
+            "q": "99"
+          },
+          {
+            "img": "2.jpg",
+            "name": "name",
+            "q": "99"
+          },
+          {
+            "img": "2.jpg",
+            "name": "name",
+            "q": "99"
+          },
+          {
+            "img": "2.jpg",
+            "name": "name",
+            "q": "99"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "环球美食",
+    "limg": "1.jpg",
+    "rlst": [
+      {
+        "img": "2.jpg",
+        "name": "n555ame",
+        "q": "99"
+      },
+      {
+        "img": "2.jpg",
+        "name": "n555ame",
+        "q": "99"
+      },
+      {
+        "img": "2.jpg",
+        "name": "n555ame",
+        "q": "99"
+      },
+      {
+        "img": "2.jpg",
+        "name": "n555ame",
+        "q": "99"
+      },
+      {
+        "img": "2.jpg",
+        "name": "n555ame",
+        "q": "99"
+      },
+      {
+        "img": "2.jpg",
+        "name": "n555ame",
+        "q": "99"
+      },
+      {
+        "img": "2.jpg"
+      }
+    ]
+  },
+  {
+    "title": "美容彩妆",
+    "limg": "1.jpg",
+    "rlst": [
+      {
+        "img": "2.jpg",
+        "name": "n555ame",
+        "q": "99"
+      },
+      {
+        "img": "2.jpg",
+        "name": "n555ame",
+        "q": "99"
+      },
+      {
+        "img": "2.jpg",
+        "name": "n555ame",
+        "q": "99"
+      },
+      {
+        "img": "2.jpg",
+        "name": "n555ame",
+        "q": "99"
+      },
+      {
+        "img": "2.jpg",
+        "name": "n555ame",
+        "q": "99"
+      },
+      {
+        "img": "2.jpg",
+        "name": "n555ame",
+        "q": "99"
+      },
+      {
+        "img": "2.jpg"
+      }
+    ]
+  },
+  {
+    "title": "美容彩妆",
+    "limg": "1.jpg",
+    "rlst": [
+      {
+        "img": "2.jpg",
+        "name": "n555ame",
+        "q": "99"
+      },
+      {
+        "img": "2.jpg",
+        "name": "n555ame",
+        "q": "99"
+      },
+      {
+        "img": "2.jpg",
+        "name": "n555ame",
+        "q": "99"
+      },
+      {
+        "img": "2.jpg",
+        "name": "n555ame",
+        "q": "99"
+      },
+      {
+        "img": "2.jpg",
+        "name": "n555ame",
+        "q": "99"
+      },
+      {
+        "img": "2.jpg",
+        "name": "n555ame",
+        "q": "99"
+      },
+      {
+        "img": "2.jpg"
+      }
+    ]
+  },
+  {
+    "title": "美容彩妆",
+    "limg": "1.jpg",
+    "rlst": [
+      {
+        "img": "2.jpg",
+        "name": "n555ame",
+        "q": "99"
+      },
+      {
+        "img": "2.jpg",
+        "name": "n555ame",
+        "q": "99"
+      },
+      {
+        "img": "2.jpg",
+        "name": "n555ame",
+        "q": "99"
+      },
+      {
+        "img": "2.jpg",
+        "name": "n555ame",
+        "q": "99"
+      },
+      {
+        "img": "2.jpg",
+        "name": "n555ame",
+        "q": "99"
+      },
+      {
+        "img": "2.jpg",
+        "name": "n555ame",
+        "q": "99"
+      },
+      {
+        "img": "2.jpg"
+      }
+    ]
+  },
+  {
+    "title": "美容彩妆",
+    "limg": "1.jpg",
+    "rlst": [
+      {
+        "img": "2.jpg",
+        "name": "n555ame",
+        "q": "99"
+      },
+      {
+        "img": "2.jpg",
+        "name": "n555ame",
+        "q": "99"
+      },
+      {
+        "img": "2.jpg",
+        "name": "n555ame",
+        "q": "99"
+      },
+      {
+        "img": "2.jpg",
+        "name": "n555ame",
+        "q": "99"
+      },
+      {
+        "img": "2.jpg",
+        "name": "n555ame",
+        "q": "99"
+      },
+      {
+        "img": "2.jpg",
+        "name": "n555ame",
+        "q": "99"
+      },
+      {
+        "img": "2.jpg"
+      }
+    ]
+  }
+]
