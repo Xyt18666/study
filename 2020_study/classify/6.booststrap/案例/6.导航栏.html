@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui"
+    />
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+      crossorigin="anonymous"
+    ></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      html {
+        height: 3000px;
+      }
+      span {
+        font-size: 48px;
+      }
+      section {
+        display: block;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <!-- 最外层大盒子:定义导航组件 组件样式 位置   -->
+
+      <div class="container-fluid">
+        <!-- 流式布局盒子 -->
+        <div class="navbar-header">
+          <button
+            type="button"
+            class="navbar-toggle collapsed"
+            data-toggle="collapse"
+            data-target="#bs-example-navbar-collapse-1"
+            aria-expanded="false"
+          >
+            <!-- 最小屏幕下的下拉菜单按钮 -->
+
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <!-- 下拉菜单 -->
+          </button>
+          <a class="navbar-brand" href="#">Brand</a>
+          <!-- 正常显示的图标 -->
+        </div>
+
+        <!-- 收集导航链接、表单和其他用于切换的内容 -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-static-top">
+            <!-- 导航菜单 -->
+            <li class="active">
+              <a href="#">Link <span class="sr-only">(current)</span></a>
+            </li>
+            <!-- 两个小按钮 -->
+            <li><a href="#">Link</a></li>
+            <li class="dropdown">
+              <!-- 下拉列表按钮 -->
+              <a
+                href="#"
+                class="dropdown-toggle"
+                data-toggle="dropdown"
+                role="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+                >Dropdown <span class="caret"></span
+              ></a>
+              <ul class="dropdown-menu">
+                <!-- 下拉列表项 -->
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="navbar-form navbar-left">
+            <!-- 表单组件 -->
+            <div class="form-group">
+              <!-- 搜索框 -->
+              <input type="text" class="form-control" placeholder="Search" />
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+            <!-- 提交按钮 -->
+          </form>
+          <ul class="nav navbar-nav navbar-right">
+            <!-- 导航右列表项 -->
+            <li><a href="#">Link</a></li>
+            <li class="dropdown">
+              <a
+                href="#"
+                class="dropdown-toggle"
+                data-toggle="dropdown"
+                role="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+                >Dropdown <span class="caret"></span
+              ></a>
+              <!-- 下拉列表 -->
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+  </body>
+  <script>
+    /*
+    导航条：
+        基类：navbar
+        样式：
+            navbar-default  默认
+            navbar-inverse  深色
+
+        导航条里面菜单类名：nav navbar-nav
+
+        去除导航条圆角 ：navbar-static-top
+
+        导航条固定定位到头部：  navbar-fixed-top     
+
+        导航条固定定位到底部 ：navbar-fixed-bottom
+
+        导航条添加logo : navbar-brand
+
+        logo标签的父级元素 : navbar-header
+
+        导航菜单的浮动 : navbar-left    navbar-right
+
+        导航条添加按钮 : navbar-btn
+
+        导航条添加链接 : navbar-link
+
+        导航条添加文字 : navbar-text
+
+        导航条添加表单 : form表单添加navbar-form
+
+
+
+
+
+
+
+
+
+    */
+  </script>
+</html>

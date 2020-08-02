@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui"
+    />
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+      crossorigin="anonymous"
+    ></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      li {
+        background: rgb(41, 221, 228);
+      }
+      p {
+        background: red;
+      }
+      .box3 {
+        display: flex;
+        justify-content: space-around;
+        flex-flow: wrap row;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="box">
+      <ul class="container-fluid">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+      </ul>
+    </div>
+    <div class="box2">
+      <ul class="container">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+      </ul>
+    </div>
+    <div class="box3 row container-fluid">
+      <p class="col-xs-12 col-sm-6 col-md-4 col-lg-2 col-lg-push-3">1</p>
+      <p
+        class="col-xs-12 col-sm-6 col-md-4 col-lg-2 visible-lg-block hiddem-lg-xs"
+      >
+        2
+      </p>
+      <p class="col-xs-12 col-sm-6 col-md-4 col-lg-2">33333333333333333</p>
+      <p class="col-xs-12 col-sm-6 col-md-4 col-lg-2 col-lg-offset-3">
+        4444444444444444
+      </p>
+      <p class="col-xs-12 col-sm-6 col-md-4 col-lg-2 col-lg-pull-4">
+        55555555555555
+      </p>
+    </div>
+  </body>
+  <script>
+    /*
+
+    流式布局： 
+        container-fluid  百分百，平铺整个页面
+
+    固定布局：
+        container  根据浏览器不同分辨率，固定尺寸不同
+        不同阈值对应的宽度如下：
+                >=1200     width为1170px
+                >=992        width为970px
+                >=768        width为750px
+                <768          为自适应宽度auto
+
+    
+    栅格布局：
+        Bootstrap 包含了一个响应式的、移动设备优先的、不固定的网格系统，可以随着设备或视口大小的增加而适当地扩展到 12 列。它包含了用于简单的布局选项的预定义类，也包含了用于生成更多语义布局的功能强大的混合类
+
+        表示行的class：row
+        （3）表示列的class：col-lg-*：
+            大型设备台式电脑（≥1200）
+            col-md-*：中型设备台式电脑（≥992）
+            col-sm-*：小型设备平板电脑（≥768）
+            col-xs-*：超小设备手机（<768）
+
+        在多大的屏幕显示的大小
+
+
+        列偏移: 
+            col-[*]-offset-*
+            含义：表示在对应的屏幕分辨率下偏移多少个栅格
+
+            说明：
+            [*]可选 ：lg / md / sm / xs
+            *可选：1~12的任意数字（其他数字无效）
+        
+
+        列排序:
+            col-[*]-push-*:往后排多少个网格
+            col-[*]-pull-*：往前排多少个网格
+
+            说明：[*]可选 ：lg / md / sm / xs
+            *可选：1~12的任意数字（其他数字无效）
+
+        排序跟偏移有什么区别？
+            ①offset偏移只能向右偏，排序既可以向右也可以向左
+            ②在有多列存在时，如果一行排不下的时候，offset会在下一行偏移，而排序会在一行显示。
+
+        嵌套:
+            规则：嵌套的一行会按照它的父级重新分配网格
+            （即按照其父级宽度进行12个网格的平均分配）
+
+        清浮动:
+            说明：在需要清除浮动的元素前面添加一个空的div，给div添加类名clearfix
+
+        可见性：
+            ①visible-[*]-*
+            说明：
+                [*]可选：lg / md / sm /xs 表示在对应的分辨率下显示
+                *可选：block / inline / inline-block
+
+            ②hidden-[*]     
+            说明：
+                [*]可选：lg / md / sm /xs 表示在对应的分辨率下隐藏
+
+        打印类：
+            ①visible-print-*
+            在打印机可见，在浏览器隐藏
+            说明： *可选：block / inline / inline-block
+
+            ②hidden-print
+            在浏览器可见，在打印机隐藏
+
+        字体图标：
+            创建一个空标签，给该标签添加一个基类和对应图标的类
+            说明：基类  .glyphicon
+
+
+      */
+  </script>
+</html>
