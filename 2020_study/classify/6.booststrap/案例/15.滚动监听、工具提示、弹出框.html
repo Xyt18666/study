@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui"
+    />
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+      crossorigin="anonymous"
+    ></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+
+    <style></style>
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    /*  
+    滚动监听:   
+        1.定义：自动更新导航插件，会根据滚动条的位置自动更新对应的导航目标
+        2.设置方法
+            （1）给需要监听的元素添加属性 data-spy="scroll''，并且通过data-target设置与其相关联的导航元素
+            （2）通过锚点实现导航选项与元素内容的对应
+            （3）如果想要设置元素距离顶部一定距离时对应导航实现跳转则可以给滚动元素设置data-offset=''数值''属性
+            注意：滚动监听都需要被监听的组件是 position: relative; 即相对定位方式。
+
+        3.通过js方法实现
+            监听元素.scrollspy({ target: '对应导航的选择器' })
+        4.方法
+            .scrollspy('refresh')
+        当使用滚动监听插件的同时在 DOM 中添加或删除元素，需要更新DOM
+
+    工具提示：
+        1.定义：当鼠标划过某个元素时会出现额外的信息提示框
+        2.实现方式：
+            （1）通过data属性实现
+                给a标签(或者按钮)添加 data-toggle="tooltip" ，a标签的 title 即为提示工具（tooltip）的文本
+                注意：①提示工具（Tooltip）插件不是纯 CSS 插件，如果需要使用该插件需要对其进行初始化。
+                        方法：工具类元素调用tooltip()方法
+                    ②若没有写title属性则提示文字会显示data-original-title属性的值（如果有该属性的话）
+                        data-placement属性：显示工具提示框的位置（默认顶部）可以设置left/right/bottom/top
+            （2）通过js实现：
+                ①选项的配置
+                    animation（data-animation）设置true/false  使用动画效果
+                    placement（data-placement） top|bottom|left|right|auto
+                        指定提示工具的位置
+                    trigger（data-trigger） click| hover | focus | manual
+                        定义如何触发提示工具
+                ②方法
+                    .tooltip(options)  传对象配置选项
+                    .tooltip('show')   显示元素的提示工具。
+                    .tooltip('hide')     隐藏元素的提示工具。
+                    .tooltip('toggle')   切换显示/隐藏元素的提示工具。
+                    .tooltip('destroy')   隐藏并销毁元素的提示工具。
+
+
+    弹出框：
+        1.定义：弹出框可以给我们提供一个可扩展的视图，它与工具提示框类似
+        2.用法
+        （1）使用data属性实现
+            给触发元素添加data-toggle=''popover'';
+            注意：该插件不是纯 CSS 插件，需要进行初始化
+            触发元素.popover()
+            在触发元素上设置title属性,其内容是弹出框的标题
+            设置data-content属性，其属性值是弹出框的内容部分
+            设置data-placement属性可以指定弹出框的方向
+
+
+
+    */
+  </script>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="text/javascript"
+        src="https://webapi.amap.com/maps?v=1.4.15&key=b80c982daa8e9b912e25ffc2cd219049"></script>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        ul,
+        li,
+        ol {
+            list-style: none;
+        }
+
+        #box {
+            width: 700px;
+            height: 580px;
+            border: 1px solid red;
+            margin: 0 auto;
+        }
+    </style>
+    <script type="text/javascript"
+        src="https://webapi.amap.com/maps?v=1.4.15&key=b80c982daa8e9b912e25ffc2cd219049&plugin=AMap.Walking"></script>
+</head>
+
+<body>
+    <div id="box"></div>
+    <div id="panel"></div>
+</body>
+<script>
+    let panel = document.querySelector("#panel");
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+
+
+            var map = new AMap.Map("box", {
+                zoom: 16, //级别
+                center: [position.coords.longitude, position.coords.latitude],//中心点坐标, //中心点坐标
+                //   viewMode: "3D", //使用3D视图
+            });
+
+            var marker = new AMap.Marker({
+                position: [position.coords.longitude, position.coords.latitude]//位置
+            })
+            var marker1 = new AMap.Text({
+                position: [position.coords.longitude, position.coords.latitude],//位置
+                text: "这是文字标记"
+            })
+            map.add(marker1);//添加到地图
+            map.add(marker);
+            var walking = new AMap.Walking({
+                map: map,
+                panel: "panel"
+            });
+            walking.search([
+                { keyword: '北京工商管理专修学院', city: '北京' },
+                { keyword: '天安门', city: '北京' }
+            ])
+            // 两点之间的距离
+            var m1 = new AMap.Marker({
+                map: map,
+                draggable: true,
+                position: new AMap.LngLat(position.coords.longitude, position.coords.latitude)
+            });
+            var m2 = new AMap.Marker({
+                map: map,
+                draggable: true,
+                position: new AMap.LngLat(116.3972282409668, 39.90960456049752)
+            });
+            map.setFitView();
+
+            var line = new AMap.Polyline({
+                strokeColor: '#80d8ff',
+                isOutline: true,
+                outlineColor: 'white'
+            });
+            line.setMap(map);
+            var text = new AMap.Text({
+                text: '',
+                style: {
+                    'background-color': '#29b6f6',
+                    'border-color': '#e1f5fe',
+                    'font-size': '12px'
+                }
+            });
+            text.setMap(map)
+            function computeDis() {
+                var p1 = m1.getPosition();
+                var p2 = m2.getPosition();
+                var textPos = p1.divideBy(2).add(p2.divideBy(2));
+                var distance = Math.round(p1.distance(p2));
+                var path = [p1, p2];
+                line.setPath(path);
+                text.setText('两点相距' + distance + '米')
+                text.setPosition(textPos)
+            }
+            computeDis();
+            m1.on('dragging', computeDis)
+            m2.on('dragging', computeDis)
+
+
+
+
+
+
+
+
+        },
+        () => { },
+        {
+            enableHighAccuracy: true,
+        }
+    );
+</script>
+
+<html>

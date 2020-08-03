@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui"
+    />
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+      crossorigin="anonymous"
+    ></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+
+    <style></style>
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    /*  
+     模态框（Modal）是覆盖在父窗体上的子窗体。通常，目的是显示来自一个单独的源的内容，可以在不离开父窗体的情况下有一些互动。子窗体可提供信息、交互等。
+
+
+    设置方法:
+        （1）模态框设置.modal,一般给它赋予角色role='dialog';
+        （2）模态框入口的设置：
+            通过 data 属性：在控制器元素（比如按钮或者链接）上设置属性 data-toggle="modal"，同时设置 data-target="#id" 或 href="#id" 来指定要切换的特定的模态框（带有 id="id"）
+        （3）弹出的内容设置
+            ①盒子：.modal-dialog
+            ②内容：.modal-content
+            ③内容里面可以设置：
+                头部.modal-header（头部的标题设置.modal-title）
+                主体部分  .modal-body
+                底部  .modal-footer
+            ④关闭按钮(X)设置：.close
+                给需要触发关闭模态框的按钮设置data-dismiss='modal' 即可关闭模态框
+        （4）给模态框设置.
+            fade可以实现当模态框被切换时，它会引起内容淡入淡出。
+        （5）模态框大小的设置（大/默认/小）
+            大模态框：
+                给.modal设置bs-example-modal-lg
+                给.modal-dialog设置.modal-lg
+            小模态框：
+                给.modal设置bs-example-modal-sm
+                给.modal-dialog设置.modal-sm    
+
+    基于触发按钮改变模态内容:
+        实现方式：通过给模态框绑定事件 show.bs.modal 获取到触发该模态框的元素（event.relatedTarget）里面data-whatever属性的值
+        赋值给对应的文本输入框
+
+    模态框data-*属性选项:
+        （1）data-backdrop 设置布尔值
+                指定一个静态的背景，当用户点击模态框外部时不会关闭模态框（true）。
+        （2）data-keyboard 设置布尔值
+                设置为true时按下 escape 键时关闭模态框，设置为 false 时则按键无效。
+        注意：要想此属性生效必须给.modal添加tabindex="-1"才能实现
+
+
+    模态框的方法:
+    （1）.modal(options) 把内容作为模态框激活。接受一个可选的选项对象。
+    （2）.modal('toggle')	手动切换模态框。
+    （3）.modal('show')   手动打开模态框。
+    （4） .modal('hide')    手动隐藏模态框。
+
+    */
+  </script>
+</html>

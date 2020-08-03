@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui"
+    />
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+      crossorigin="anonymous"
+    ></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+
+    <style></style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="table-responsive">
+      <table
+        class="table table-striped table-bordered table-hover table-condensed"
+      >
+        <thead>
+          <tr>
+            <th>th表格标题</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="active">td表格内容1</td>
+            <td class="success">td表格内容1</td>
+          </tr>
+          <tr>
+            <td class="info">td表格内容2</td>
+            <td class="warning">td表格内容1</td>
+          </tr>
+          <tr>
+            <td class="danger">td表格内容3</td>
+            <td class="">td表格内容1</td>
+          </tr>
+          <tr>
+            <td class="">td表格内容4</td>
+            <td class="">td表格内容1</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+  <script>
+    /*  
+    标题行容器： thead
+    主体部分行容器： tbody
+
+    表格 基类： table
+    
+        （1）table：为 <table> 添加基本样式
+        （2）table-striped：为主体内容添加斑马线形式的条纹
+        （3）table-bordered：为所有表格的单元格添加边框
+        （4）table-hover：为主体内容每一行添加鼠标悬停状态
+        （5）table-condensed：可以让表格更加紧凑，单元格中的内补（padding）均会减半
+
+    状态类:通过这些状态类可以为行或单元格设置颜色，添加在<th>、<tr>、<td>上
+        active  鼠标悬停在行或单元格上时所设置的颜色
+        success	标识成功或积极的动作
+        info	标识普通的提示信息或动作
+        warning	标识警告或需要用户注意
+        danger	标识危险或潜在的带来负面影响的动作
+
+    响应式表格:
+        给tabel标签添加一个类名为.table-responsive的父级即可创建响应式表格。
+    */
+  </script>
+</html>

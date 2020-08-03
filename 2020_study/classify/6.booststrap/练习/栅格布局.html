@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui"
+    />
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+      crossorigin="anonymous"
+    ></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      .row > div {
+        background: rgb(47, 174, 233);
+        border: 1px solid red;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 流式布局 -->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4">1</div>
+        <div class="col-md-4">2</div>
+        <div class="col-md-4">3</div>
+        <div class="col-md-4">4</div>
+      </div>
+    </div>
+    <!-- ------------------------------------------------------- -->
+    <!-- 多设备改变布局 -->
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-8">
+        .col-xs-12 .col-sm-6 .col-md-8
+      </div>
+      <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+      <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+      <!-- Optional: clear the XS cols if their content doesn't match in height -->
+      <div class="clearfix visible-xs-block"></div>
+      <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+    </div>
+    <!---------------------------------- -->
+
+    <!-- 多余列，另起一行 -->
+    <div class="row">
+      <div class="col-xs-9">.col-xs-9</div>
+      <div class="col-xs-4">
+        .col-xs-4<br />Since 9 + 4 = 13 &gt; 12, this 4-column-wide div gets
+        wrapped onto a new line as one contiguous unit.
+      </div>
+      <div class="col-xs-6">
+        .col-xs-6<br />Subsequent columns continue along the new line.
+      </div>
+    </div>
+    <!-- ---------------------------------------- -->
+    <!-- 响应式列重置 -->
+    <div class="row">
+      <div class="col-xs-6 col-sm-3">.col-xs-6 .col-sm-3</div>
+      <div class="col-xs-6 col-sm-3">.col-xs-6 .col-sm-3</div>
+
+      <!-- Add the extra clearfix for only the required viewport -->
+      <div class="clearfix visible-xs-block"></div>
+
+      <div class="col-xs-6 col-sm-3">.col-xs-6 .col-sm-3</div>
+      <div class="col-xs-6 col-sm-3">.col-xs-6 .col-sm-3</div>
+    </div>
+    <!-- ------------------------------------------------------- -->
+    <!-- 列偏移 -->
+    <div class="row">
+      <div class="col-md-4">列偏移.col-md-4</div>
+      <div class="col-md-4 col-md-offset-4">.col-md-4 .col-md-offset-4</div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 col-md-offset-3">.col-md-3 .col-md-offset-3</div>
+      <div class="col-md-3 col-md-offset-3">.col-md-3 .col-md-offset-3</div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">.col-md-6 .col-md-offset-3</div>
+    </div>
+  </body>
+  <!-- 列排序 -->
+  <div class="row">
+    <div class="col-md-9 col-md-push-3">向后3.col-md-9 .col-md-push-3</div>
+    <div class="col-md-3 col-md-pull-9">向前9.col-md-3 .col-md-pull-9</div>
+  </div>
+  <!-- ------------------------------------------------------- -->
+  <!-- 列嵌套 -->
+  <div class="row">
+    <div class="col-sm-9">
+      Level 1: .col-sm-9
+      <div class="row">
+        <div class="col-xs-8 col-sm-6">
+          Level 2: .col-xs-8 .col-sm-6
+        </div>
+        <div class="col-xs-4 col-sm-6">
+          Level 2: .col-xs-4 .col-sm-6
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    /*
+
+
+
+      */
+  </script>
+</html>
