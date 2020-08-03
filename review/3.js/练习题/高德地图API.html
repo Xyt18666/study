@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      type="text/javascript"
+      src="https://webapi.amap.com/maps?v=1.4.15&key=b80c982daa8e9b912e25ffc2cd219049"
+    ></script>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      ul,
+      li,
+      ol {
+        list-style: none;
+      }
+      #box {
+        width: 700px;
+        height: 580px;
+        border: 1px solid red;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box"></div>
+  </body>
+  <script>
+    let center = [];
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        center.push(position.coords.longitude); //经度
+        center.push(position.coords.latitude); //纬度
+        var map = new AMap.Map("box", {
+          zoom: 16, //级别
+          center, //中心点坐标
+          //   viewMode: "3D", //使用3D视图
+        });
+      },
+      () => {},
+      {
+        enableHighAccuracy: true,
+      }
+    );
+  </script>
+</html>

@@ -48,6 +48,75 @@
       newarr1.map((item) => (ok += item));
       console.log(ok);
     }
+
+    {
+      //第一题优化：
+
+      function toChinsNum(num) {
+        let hz = ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九"];
+        let dw = ["", "拾", "百", "千"];
+        let str = "";
+        let arr = [...num.toString()].reverse();
+        // 转数组翻转，方便从个位算起
+
+        arr.forEach((item, index) => {
+          str +=
+            (parseInt(item) == 0 ? "" : dw[index % 4]) +
+            // 值是否为0，不是的话，拼接单位
+            hz[parseInt(item)] +
+            //拼接数字
+            (index == 3 ? "万" : "");
+          //判断是否到达 万位，到达拼接万
+        });
+        let newStr = [...str]
+          .reverse()
+          .join("")
+          .replace(/(零(?=万)|零(?=零)|(零)$)/g, "");
+
+        return newStr;
+      }
+      console.log(toChinsNum(12345678));
+    }
+    {
+      // 数字转 以 万/亿 为单位的小数：
+      function gitSize(value) {
+        var param = {};
+        // 定义一个对象储存值
+        var k = 10000,
+          sizes = ["", "万", "亿", "万亿"],
+          i;
+        // 定义基础值，单位，和下标
+        if (value < k) {
+          // 假如值小于基础值
+          param.value = value;
+          // 就没有单位，并且赋值为本身
+          param.unit = "";
+        } else {
+          // Math.log(value)方法可返回一个数的自然对数(基于E)
+          i = Math.floor(Math.log(value) / Math.log(k));
+          // 向上取整(输入值的自然对数 / 基数10000的自然对数)
+
+          console.log(Math.log(value), Math.log(k));
+          //      1亿 18.420680743952367     1万 9.210340371976184
+          //           刚好是  一倍的关系
+
+          console.log(Math.log(value) / Math.log(k));
+          console.log(Math.floor(Math.log(value) / Math.log(k)));
+          // 拿到 几次方和下标 ，也就是说 基数的几次方
+
+          param.value = (value / Math.pow(k, i)).toFixed(2);
+          // 相除，得到小数
+          console.log(k, i);
+          console.log(value, Math.pow(k, i));
+          console.log(value / Math.pow(k, i));
+
+          param.unit = sizes[i];
+        }
+        // console.log(param);
+        return param;
+      }
+      console.log(gitSize(100000000));
+    }
     {
       // （2）编写程序实现字符串的加密操作，要求：输入字符串，字符串的奇数位抽出来做前半部分，偶数位倒序后做后半部分拼接起来形成一个新的字符串输出；
 
@@ -71,55 +140,25 @@
       console.log(newStr);
     }
     {
+      // 第二题 解
+      function enCodeStr(str) {
+        let evenStr = ""; //用来拼接偶数位数
+        let addStr = ""; //用来拼接奇数位数
+        for (let i = 0; i < str.length; i++) {
+          if (i % 2 == 0) {
+            evenStr += str[i];
+          } else {
+            addStr += str[i];
+          }
+        }
+        return addStr + evenStr.split("").reverse().join("");
+      }
+
+      console.log(enCodeStr("hello world"));
+    }
+
+    {
       // （3）编写程序找出一段英文字符串中出现次数最多的单词；
-      // 如var str = "hello thank funny hello what suck it dick thank hello"; 输出hello
-      // let str = "hello thank funny hello what suck it dick thank hello";
-      // let stro;
-      // let arr = str.split(" ");
-      // let arr2 = [];
-      // let arr3 = [];
-      // for (var a = 0; a < arr.length; a++) {
-      //   for (var b = a + 1; b < arr.length; b++) {
-      //     if (arr[a] == arr[b]) {
-      //       arr2.push(arr[a]);
-      //     }
-      //   }
-      // }
-      // for (var a = 0; a < arr2.length; a++) {
-      //   for (var b = a + 1; b < arr2.length; b++) {
-      //     if (arr2[a] == arr2[b]) {
-      //       arr3.push(arr2[a]);
-      //     }
-      //   }
-      // }
-      // console.log(arr3);
-    }
-    {
-      // let str =
-      //   "hello thank funny hello what suck it dick thank hello";
-      // let stro;
-      // let arr = str.split(" ");
-      // let arr2 = [];
-      // let arr3 = [];
-      // let arr4 = [];
-      // let arr5 = [];
-      // for (let a = 0; a < arr.length; a++) {
-      //   if (arr2.indexOf(arr[a]) === -1) {
-      //     arr2.push(arr[a]);
-      //   } else {
-      //     arr3.push(arr[a]);
-      //   }
-      // }
-      // for (let a = 0; a < arr3.length; a++) {
-      //   if (arr4.indexOf(arr3[a]) === -1) {
-      //     arr4.push(arr3[a]);
-      //   } else {
-      //     arr5.push(arr3[a]);
-      //   }
-      // }
-      // console.log(arr5);
-    }
-    {
       let str = "hello thank funny hello what suck it dick thank hello";
       function more(str) {
         let arr = str.split(" "); //字符分割成数组
@@ -162,6 +201,29 @@
       console.log(more(str));
     }
     {
+      // 第三题优化
+      let str = "hello thank funny hello what suck it dick thank hello";
+      let arr = str.split(" "); //字符分割成数组
+      let obj = {};
+      let max = 1;
+      arr.forEach((item, index) => {
+        if (obj[item]) {
+          obj[item]++;
+        } else {
+          obj[item] = 1;
+        }
+      });
+      console.log(obj);
+
+      for ([k, v] of Object.entries(obj)) {
+        if (max < v) {
+          max = v;
+          maxS = k;
+        }
+      }
+      console.log(maxS, max);
+    }
+    {
       //   （4）编写程序输出字符串中所有的叠词；
       // 如：输入：晴川历历汉阳树，芳草萋萋鹦鹉洲  输出：'历历', '萋萋'
       let str = "晴川历历汉阳树，芳草萋萋鹦鹉洲";
@@ -174,6 +236,17 @@
         }
       }
       console.log(newarr);
+    }
+    {
+      //  第四题优化
+      let str = "晴川历历汉阳树，芳草萋萋鹦鹉洲";
+      let arr = [];
+      for (var a = 0; a < str.length; a++) {
+        if (str[a] == str[a + 1]) {
+          arr.push(str[a] + str[a + 1]);
+        }
+      }
+      console.log(arr.join(","));
     }
 
     {

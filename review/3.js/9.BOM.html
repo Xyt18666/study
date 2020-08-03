@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bt">bt</div>
+    <div class="box"></div>
+  </body>
+  <script>
+    /*
+    BOM:
+
+        全局变量不可以使用 delete 删除，而window属性可以删除
+
+        弹框：
+            akert()
+            confirm()
+            prompt()
+
+        
+        定时器：
+            setInterval()
+            clearInterval()
+            setTimeout()
+            clearTimeout()
+            
+
+        开关窗口：
+            open("",{})
+            close(打开时储存的变量)
+
+
+
+
+    location对象：
+        赋值：
+            ①使浏览器跳转到新页面：location = '新页面网址';
+            ②跳转到相对页面：location = '相对路径';
+            ③跳转回文档顶部：location = '#文档顶部id'；  
+
+
+        属性：
+            ①href:完整的url路径 ②hash:返回网址中#后面的内容 
+	          ③search:返回网址中?后面的内容
+
+        方法：
+
+            assign()  跳转到指定的 url ,可退回
+            replace()  跳转到指定的 url ，不可退回
+            reload()  重载页面，传参 true,强制重载，不走缓存
+      
+      
+
+    history对象：
+        生成历史的3种方式：
+            1.浏览网页
+            2.hash值，#后改变时
+            3.history.pushState()方法
+
+
+        属性：
+            length: 历史记录的条数(赋值0，等于清空历史)
+
+        方法：
+            back()  后退 
+            forward() 前进
+            go()  跳转到 
+            pushState(data,title,url) 用来保存历史记录的数据，(后两个参数不用写)
+
+
+            onHashchange    hash改变触发
+            onpopstate 事件获取历史管理 储存的值  e.state        
+
+
+    navigatot对象:
+        属性：
+            appName: 浏览器名称
+            userAgent: 浏览器用户代理字符串
+            platform: 返回字符串，表示浏览器所在的系统平台类型
+            geolocation: 地理定位对象
+                方法： 
+                    getCurrentPositon(success,error,{配置对象})   获取当前地理位置信息
+                      正确回调的后的对象信息：
+                        Position对象，其有两个属性：
+                          timestamp ： 时间戳
+                          coords： 指向一个对象，包含了用户的位置信息
+                              coords.latitude：当前地理位置的纬度
+                              coords.longitude：前地理位置的经度
+                              coords.accuracy：当前地理位置的精度（准确度）等
+
+                      错误回调的信息：
+                        PositionError.code 返回无符号的、简短的错误码：
+                          code为0  :  不包括其他错误编号中的错误
+                          code为1： 地理位置信息的获取失败，因为该页面没有获取地理位置信息的权限。（用户拒绝浏览器获取位置信息）
+                          code为2：地理位置获取失败，因为至少有一个内部位置源返回一个内部错误。（尝试获取用户信息，但失败了）
+                          code为3： 获取地理位置超时，通过定义PositionOptions.timeout 来设置获取地理位置的超时时长。
+
+                        配置对象的参数：
+                          enableHighAccuracy：更精确的查找，默认false
+                          如果设为true，就要求客户端提供更精确的位置信息，这会导致更长的定位时间和更大的耗电
+                    Timeout：获取位置允许最长时间，默认infinity
+                          等待客户端做出回应的最大毫秒数。如果该时间内未获取到地理位置信息，则返回错误。
+                    maximumAge：位置可以缓存的最大时间，默认0
+                          客户端可以使用缓存数据的最大毫秒数。如果设为0，客户端不读取缓存；如果设为infinity，客户端只读取缓存。
+
+
+
+
+                    watchPosition(success,error,{配置对象})    间隔 获取定位信息
+                    
+                    clearWatch(启动时的变量名)  关闭间隔获取地理信息
+
+
+
+      */
+    {
+      let a = "詹三";
+      delete a;
+      console.log(a); //"詹三"
+
+      window.name = "zs";
+      delete window.name;
+      console.log(window.name); //undefined
+    }
+    {
+      // 修改hash值，改变内容
+      //   function getRandom(start, end) {
+      //     return Math.floor(Math.random() * (end - start) + start);
+      //   }
+      //   let map = new Map();
+      //   $(".bt").click(function () {
+      //     let h = new Date().getTime();
+      //     let sj = getRandom(1, 20);
+      //     location.hash = h;
+      //     $(".box").html(sj);
+      //     map.set(h, sj);
+      //     console.log(map);
+      //   });
+      //   window.onhashchange = function () {
+      //     let hh = parseInt(location.hash.split("#")[1]);
+      //     let val = map.get(hh);
+      //     $(".box").html(val);
+      //   };
+    }
+    {
+      // pushState(data,title,url)改变内容
+
+      function getRandom(start, end) {
+        return Math.floor(Math.random() * (end - start) + start);
+      }
+      $(".bt").click(function () {
+        let h = new Date().getTime();
+        let sj = getRandom(1, 20);
+        $(".box").html(sj);
+        history.pushState(sj, "", "");
+      });
+      window.onpopstate = function (e) {
+        console.log(e.state);
+        $(".box").html(e.state);
+      };
+    }
+    {
+      window.navigator.geolocation.getCurrentPosition(
+        (position) => {
+          console.log(new Date(position.timestamp));
+          console.log(position.coords);
+        },
+        (error) => {
+          console.log(error);
+        },
+        {}
+      );
+    }
+  </script>
+</html>

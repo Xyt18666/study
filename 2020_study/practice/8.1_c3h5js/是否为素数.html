@@ -39,5 +39,32 @@
       }
     }
     console.log(arr);
+
+    {
+      // 方法二:遍历求和优化版
+      function sushu(num) {
+        let flag = true;
+        for (let i = 2; i < num; i++) {
+          if (num % i == 0) {
+            flag = false;
+            break;
+          }
+        }
+        return flag;
+      }
+      function sun(num) {
+        let arr = [];
+        let i = 1;
+        while (arr.length < num) {
+          if (sushu(i)) {
+            arr.push(i);
+          }
+          i++;
+        }
+
+        return arr.reduce((s, item) => s + item);
+      }
+      console.log(sun(20));
+    }
   </script>
 </html>

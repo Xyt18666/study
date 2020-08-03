@@ -19,6 +19,19 @@
     
     
     */
+    {
+      function* g2(num) {
+        for (let a = num; a > 0; a--) {
+          num--;
+          yield num;
+        }
+      }
+      let gen = g2();
+      $("input").click(function () {
+        console.log(g2.next());
+      });
+    }
+
     function* cs() {
       yield;
       yield;
