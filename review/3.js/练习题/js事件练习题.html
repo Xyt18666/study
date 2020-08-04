@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      /* html {
+        height: 3000px;
+      } */
+      p {
+        width: 100px;
+        margin: 50px auto;
+        display: flex;
+      }
+      span {
+        color: #ccc;
+        display: block;
+        width: 32px;
+        height: 32px;
+        font: 800 32px/32px "宋体";
+      }
+      .xd {
+        width: 100%;
+        height: 120px;
+        background: rgb(20, 205, 238);
+        text-align: center;
+        position: fixed;
+        top: -120px;
+        font: 32px/120px "";
+        z-index: 999;
+        transition: 0.5s;
+      }
+      .qq {
+        width: 20px;
+        height: 20px;
+        border: 3px solid rgb(243, 151, 13);
+        border-radius: 50%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        animation: scale 0.5s infinite linear;
+      }
+      @keyframes scale {
+        0% {
+          transform: scale(0);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1.5);
+          opacity: 0;
+        }
+      }
+      .box {
+        width: 800px;
+        height: 400px;
+        background: #c0f5e5;
+        position: relative;
+        margin: 0 auto;
+      }
+      .mask {
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: rgb(127, 32, 236);
+      }
+      .box2 {
+        width: 50px;
+        height: 50px;
+        background: #000;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="xd">我是一个吸顶</div>
+    <p>
+      <span>❤</span>
+      <span>❤</span>
+      <span>❤</span>
+      <span>❤</span>
+      <span>❤</span>
+    </p>
+    <!-- <div class="qq"></div> -->
+    <div class="box"><div class="mask"></div></div>
+    <div class="box2"></div>
+  </body>
+
+  <script>
+    {
+      // 完成吸顶效果
+      // 完成星星评分效果
+      // 完成鼠标跟随效果
+      // 完成键盘控制块的移动效果
+      // 完成限制拖拽
+    }
+    {
+      //吸了个顶
+
+      $(window).scroll(function () {
+        var st = $(this).scrollTop();
+        if (st > 500) {
+          $(".xd").css({
+            top: 0,
+          });
+        } else {
+          $(".xd").css({
+            top: " -120px",
+          });
+        }
+      });
+    }
+    {
+      //一闪一闪亮晶晶，满天都是小星星
+      var ss = 0;
+      $("span").mouseover(function () {
+        var xb = $(this).index() + 1;
+        tab(xb);
+      });
+      $("span").mouseout(function () {
+        ss > 0 ? tab(ss) : tab(0);
+      });
+      $("span").click(function () {
+        ss = $(this).index() + 1;
+        tab(ss);
+      });
+      function tab(zz) {
+        $("span").css("color", "#ccc");
+
+        for (var a = 0; a < zz; a++) {
+          $("span").eq(a).css("color", "pink");
+        }
+      }
+    }
+    {
+      // 鼠标跟随
+      $(document).mousemove(function (e) {
+        let qq = $(`<div class="qq" ></div>`);
+        qq.css({
+          top: e.clientY - 10 + "px",
+          left: e.clientX - 10 + "px",
+        }).appendTo("body");
+        setTimeout(function () {
+          qq.remove();
+        }, 500);
+      });
+    }
+    {
+      // 键盘控制块
+      let setA = new Set();
+      $(window).keydown(function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log(e.keyCode);
+        setA.add(e.keyCode);
+        console.log(setA);
+        switch (e.keyCode) {
+          case 37:
+            fx("left", "-=10px");
+            break;
+          case 38:
+            fx("top", "-=10px");
+            break;
+          case 39:
+            fx("left", "+=10px");
+            break;
+          case 40:
+            fx("top", "+=10px");
+            break;
+          default:
+            console.log("按键无效");
+            break;
+        }
+        // ctrl+数字0  回归原位
+        if (setA.has(17) && setA.has(96) && setA.size == 2) {
+          $(".box2").css({
+            left: 0,
+            top: 0,
+          });
+        } else if (
+          setA.has(90) &&
+          setA.has(88) &&
+          setA.has(67) &&
+          setA.size == 3
+        ) {
+          // z x c 改变颜色
+          console.log(`rgb(${sj(255, 0)},${sj(255, 0)},${sj(255, 0)})`);
+          $(".box2").css({
+            background: `rgba(${sj(255, 0)},${sj(255, 0)},${sj(255, 0)},1)`,
+          });
+        }
+      });
+      $(window).keyup(function () {
+        setA.clear();
+      });
+      function sj(min, max) {
+        return parseInt(Math.random() * (max - min + 1) + min);
+      }
+      function fx(fx, sz) {
+        $(".box2").animate({ [fx]: sz }, 0);
+      }
+    }
+
+    {
+      //限制拖拽
+      $(".mask").mousedown(function (e) {
+        e.stopPropagation();
+        console.log(e.offsetX, e.offsetY);
+        var x = e.offsetX;
+        var y = e.offsetY;
+
+        $(document).mousemove(function (e) {
+          let xz = e.clientX - x - $(".box").offset().left;
+          let yz = e.clientY - y - $(".box").offset().top;
+          xz = xz < 0 ? 0 : xz;
+          yz = yz < 0 ? 0 : yz;
+          xz =
+            xz > $(".box").width() - $(".mask").width()
+              ? $(".box").width() - $(".mask").width()
+              : xz;
+          yz =
+            yz > $(".box").height() - $(".mask").height()
+              ? $(".box").height() - $(".mask").height()
+              : yz;
+          $(".mask").css({
+            left: xz + "px",
+            top: yz + "px",
+          });
+        });
+        $(document).mouseup(function () {
+          $(document).unbind("mousemove");
+        });
+      });
+    }
+  </script>
+</html>

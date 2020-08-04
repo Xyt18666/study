@@ -22,7 +22,7 @@
       age: "23",
       _skill: "WEB开发",
       _like: "生活",
-      weight: "105kg",
+      weight: "53kg",
       height: "175cm",
     };
 
@@ -69,6 +69,55 @@
 
     for (let k in pro) {
       console.log(k);
+    }
+
+    {
+      //优化
+      let obj = {
+        name: "cedar",
+        age: "23",
+        _skill: "WEB开发",
+        _like: "生活",
+        weight: "52kg",
+        height: "175cm",
+      };
+
+      function intercept(obj) {
+        return new Proxy(obj, {
+          get(obj, key) {
+            if (key == "age") {
+              return 18;
+            }
+          },
+          set(obj, key, val) {
+            if (key == "weight" || key == "height") {
+              return Reflect.set(obj, key, val);
+            }
+          },
+          has(obj, key) {
+            if (key.startsWith("_")) {
+              return false;
+            }
+            return obj[key];
+          },
+          deleteProperty(obj, key) {
+            if (key == "name") {
+              return delete obj[key];
+            }
+            return false;
+          },
+          ownKeys(obj) {
+            return Object.keys(obj).filter((item) => !item.startsWith("_"));
+          },
+        });
+      }
+      let newobj = intercept(obj);
+      console.log(Reflect.get(newobj, "age"));
+      Reflect.set(newobj, "height", "188cm");
+      console.log(newobj);
+      console.log(Reflect.has(newobj, "_like"));
+      Reflect.deleteProperty(newobj, "name");
+      console.log(pro);
     }
   </script>
 </html>

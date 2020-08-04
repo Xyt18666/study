@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    /*
+    DOM:
+
+
+        获取元素的方法：
+            document.getElementById(id)
+            document.getElementsByClassName(class)
+            document.getELementsByTagName(tag)
+            querySelector()
+            querySelectorAll()
+
+
+        节点：
+
+            document   文档节点
+            element    元素节点
+            attribute  属性节点
+            text       文本节点
+            comment    注释节点
+        
+            nodeType    返回节点类型
+                1 2 3 8 9 10   ...
+                元素 属性 文本 注释 文档
+
+            nodeName    返回节点名
+                元素 和 属性 会返回  名称  大写的标签名
+                其他的都返回 #节点名
+
+            nodeValue       返回节点的文本值
+            nodeContent     返回文本值 包后代 忽略标签
+
+        获取节点：
+            nextSibling    上一个兄弟节点
+            previousSibling   下一个兄弟节点
+            parentNode   返回父级节点
+            parentElement  返回父级元素节点
+            firstChild     第一个子节点
+            lastChild 		最后一个子节点
+            childNode    所有子节点
+
+            nextElementSibling    上一个元素兄弟节点
+            previousElementSibling   下一个元素兄弟节点
+            firstElementChild     第一个元素子节点
+            lastElementChild 		最后一个元素子节点
+            children       所有元素子节点
+
+
+        获取id或clas：
+            .id           获取id
+            .tagName      标签名
+            .className    获取class名
+
+        
+            classList    获取所有标签名
+            .add()       添加一个类名
+            .removr()    删除一个类名
+            .toggle()    添加或删除一个类名
+
+
+        属性节点的操作：
+            属性：.attributes
+            getAttribute()
+            setAttribute()
+            removeAttribute()
+            
+        节点操作：
+            createElement()  创建元素节点
+            append()    向后插入节点
+            appendchild()  向后插入节点
+            replace()  替换
+            replaceChild()  替换
+            befor()      在某个节点前插入多个节点
+            after()		 在某个节点后插入多个节点
+            prepend()				向前插入节点
+            remove()   		删除节点
+            cloneNode()   	克隆节点
+            insertBefor()  在指定子节点之前
+            removeChild()  
+
+        
+        获取元素的大小：(不包括边框和外边距)
+            clientWidth
+
+        获取元素的大小：(包括边框)
+            offsetWidth
+
+        获取滚动条大小：
+            scrollWidth
+
+        获取距离定位父级的左上角距离：
+            offsetTop
+            offsetLeft
+        
+        滚动条的距离：
+            scrollTop
+            scrollLeft
+
+        css操作：
+            window.getComputedStyle(元素,[可选伪类]).属性
+            IE: 元素.currentStyle.属性
+
+
+
+        
+        事件：
+            内联事件： html内写
+            0级事件：  元素.on事件=function(){}
+            2级事件：  window.addEventListener("事件"，function(){},bioolean)
+                    IE：
+                    元素.attachEvent("事件名",函数)
+                    事件名写on
+                    元素.detachEvent("事件名",函数) 
+
+
+            事件流： 捕获 目标 冒泡
+
+            阻止事件冒泡：e.stopPropogation()
+                        IE：e.canselBubble=ture
+
+        事件种类：
+            load
+            resize
+            scroll
+            error
+            beforunload
+
+            focus
+            blur
+
+            change
+            input
+            selection
+            submit
+            reseit
+
+            onmouse down           按下
+                    move           移动
+                    up             松开
+                    over           移入
+                    out            移出
+                    enter          移入
+                    leave          移出
+                    click          单击
+                    dblclick       双击
+                    contextmenu    右键
+
+            鼠标事件的属性：
+                e.clientX（Y）    获取当前鼠标距离 可视窗口 的距离
+                e.pageX（Y）    	获取当前鼠标距离 文档 的距离
+                e.offsetX（Y）	获取当前鼠标距离 目标节点 的距离
+
+
+            ondragtart   开始
+            ondrag       移动
+            ondragend    结束
+
+            释放目标时触发：
+            ondragenter   拖入时
+            ondragover    在另一个容器移动时
+            ondragleave	  拖出时
+            ondrop        释放时
+
+
+
+            键盘事件：
+            onkeypress   按下抬起
+            onkeydowm    按下
+            onkeyup      抬起
+
+            键盘属性：
+            e.keyCode    按键编号
+            e.key        按键名
+            ev.shiftKey
+            ev.ctrlKey
+            ev.altKey
+            
+
+            滚动事件：
+                onmouseWheel
+                    e.wheelDelta   大于0向上
+
+                DOMMouseScroll
+                    e.datail  大于0向下
+
+
+        事件对象：
+            如何获取 事件对象：
+                通过事件 arguments 可以找到事件对象 e
+                ie: windlw.event  可以找到事件对象 e
+
+            取消默认事件： e.preventDefault()  
+                IE: return false
+
+            e.target  目标节点
+            e.currentTarget  绑定事件的节点
+
+    
+    
+    */
+    {
+      function fn() {
+        console.log(arguments);
+      }
+      fn();
+      document.onclick = function () {
+        console.log(arguments);
+      };
+    }
+  </script>
+</html>

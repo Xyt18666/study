@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    /*
+    get([index])    转js
+    jQuery.noConflict([ex])  释放$符号
+    $.each(object,[callback])  遍历
+    $.ajax(url,[settings])   ajax
+    $.type(obj)  检测数据类型
+    $.trim(str)  去除空格
+
+
+
+    选择器：
+        基本：
+            #id
+            element
+            .class
+            *
+            selector1,selector2,selectorN
+
+        层级：
+            ancestor descendant
+            parent > child
+            prev + next
+            prev ~ siblings
+
+        基础：
+            :first    
+            :not(selector)
+            :even
+            :odd
+            :eq(index)
+            :gt(index)
+            :last
+            :lt(index)
+            :header         匹配如 h1, h2, h3之类的标题元素
+            :animated    
+            :focus 
+
+            
+        内容：
+            :contains(text)
+            :empty
+            :has(selector)
+            :parent
+
+
+        可见性:
+            :hidden
+            :visible
+
+        属性：
+            [attribute]
+            [attribute=value]
+            [attribute!=value]
+            [attribute^=value]
+            [attribute$=value]
+            [attribute*=value]
+            [attrSel1][attrSel2][attrSelN]
+
+        子元素：
+            :first-child
+            :first-of-type
+            :last-child
+            :last-of-type
+            :nth-child
+            :nth-last-child()
+            :nth-last-of-type()
+            :nth-of-type()
+            :only-child
+            :only-of-type
+
+        表单：
+            :input
+            :text
+            :password
+            :radio
+            :checkbox
+            :submit
+            :image
+            :reset
+            :button
+            :file
+            :hidden
+
+        表单对象属性：
+            :enabled
+            :disabled
+            :checked
+            :selected
+                
+        
+
+    属性:
+        attr(name|pro|key,val|fn)
+        removeAttr(name)
+        prop(n|p|k,v|f)
+        removeProp(name)
+
+    CSS 类:
+        addClass(class|fn)
+        removeClass([class|fn])
+        toggleClass(class|fn[,sw])
+
+    HTML代码/文本/值:
+        html([val|fn])
+        text([val|fn])
+        val([val|fn|arr])   
+    
+    CSS:
+        css(name|pro|[,val|fn])
+
+    位置:
+        offset([coordinates])
+        position()
+        scrollTop([val])
+        scrollLeft([val])
+
+    尺寸:
+        height([val|fn])
+        width([val|fn])
+        innerHeight()
+        innerWidth()
+        outerHeight([soptions])
+        outerWidth([options])
+
+
+    内部插入：
+        append(content|fn)
+        appendTo(content)
+        prepend(content|fn)
+        prependTo(content)
+
+    外部插入：
+        after(content|fn)
+        before(content|fn)
+        insertAfter(content)
+        insertBefore(content)
+
+    包裹：
+        wrap(html|ele|fn)
+
+    替换：
+        replaceWith(content|fn)   将所有匹配的元素替换成指定的HTML或DOM元素。
+
+    删除：
+        empty()   删除匹配的元素集合中所有的子节点。
+        remove([expr])  从DOM中删除所有匹配的元素。
+        detach([expr]) 从DOM中删除所有匹配的元素。（这个方法不会把匹配的元素从jQuery对象中删除，因而可以在将来再使用这些匹配的元素。与remove()不同的是，所有绑定的事件、附加的数据等都会保留下来。）
+
+    复制：
+        clone([Even[,deepEven]])   传参 ，深度克隆，同事克隆事件
+
+
+    过滤：
+        eq(index|-index)
+        first()
+        last()
+        hasClass(class)
+        filter(expr|obj|ele|fn)
+        is(expr|obj|ele|fn)
+        has(expr|ele)
+        not(expr|ele|fn)
+
+
+    查找：
+        children([expr])
+        find(e|o|e)
+        next([expr])
+        nextall([expr])
+        nextUntil([e|e][,f])
+        offsetParent()   返回第一个匹配元素用于定位的父节点。（这返回父元素中第一个其position设为relative或者absolute的元素。此方法仅对可见元素有效。）
+        parent([expr])
+        parents([expr])
+        prev([expr])
+        prevall([expr])
+        prevUntil([e|e][,f])
+        siblings([expr])
+
+    页面载入：
+        ready(fn)
+    事件处理：
+        on(eve,[sel],[data],fn)
+        off(eve,[sel],[fn])
+        bind(type,[data],fn)
+        unbind(t,[d|f])
+
+    
+    事件切换：
+        hover([over,]out)
+        toggle([spe],[eas],[fn])
+
+    事件：
+        blur([[data],fn])
+        change([[data],fn])
+        click([[data],fn])
+        dblclick([[data],fn])
+        error([[data],fn])
+        focus([[data],fn])
+        focusin([data],fn)
+        focusout([data],fn)
+        keydown([[data],fn])
+        keypress([[data],fn])
+        keyup([[data],fn])
+        mousedown([[data],fn])
+        mouseenter([[data],fn])
+        mouseleave([[data],fn])
+        mousemove([[data],fn])
+        mouseout([[data],fn])
+        mouseover([[data],fn])
+        mouseup([[data],fn])
+        resize([[data],fn])
+        scroll([[data],fn])
+        select([[data],fn])
+        submit([[data],fn])
+        unload([[data],fn])
+
+    事件对象：
+        eve.currentTarget
+        eve.target
+        eve.pageX
+        eve.pageY
+        eve.preventDefault()
+
+
+    基本效果：
+        show([s,[e],[fn]])
+        hide([s,[e],[fn]])
+    滑动：
+        slideDown([s],[e],[fn])
+        slideUp([s,[e],[fn]])
+        slideToggle([s],[e],[fn])
+    淡入淡出：
+        fadeIn([s],[e],[fn])
+        fadeOut([s],[e],[fn])
+        fadeTo([[s],o,[e],[fn]])
+        fadeToggle([s,[e],[fn]])
+    自定义：
+        animate(p,[s],[e],[fn])
+        stop([c],[j])
+        delay(d,[q])
+
+
+    */
+  </script>
+</html>

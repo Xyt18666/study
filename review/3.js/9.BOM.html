@@ -37,8 +37,22 @@
             
 
         开关窗口：
-            open("",{})
+            open("","_blank",{})
             close(打开时储存的变量)
+        
+        距离屏幕左上角的距离：  window.screenX    Y
+
+        可视区的宽高：  window.innerWidth   Height
+
+
+        滚动到 ： scrollTo({
+          top:,
+          left:,
+          behavior:"smooth";
+        })
+
+
+        滚动多少： scrollBy(x,y)
 
 
 
@@ -51,8 +65,11 @@
 
 
         属性：
-            ①href:完整的url路径 ②hash:返回网址中#后面的内容 
-            ③search:返回网址中?后面的内容
+            href:完整的url路径 
+            hash:返回网址中#后面的内容 
+            search:返回网址中?后面的内容
+            host：地址端口
+
 
         方法：
 
@@ -121,6 +138,11 @@
                     
                     clearWatch(启动时的变量名)  关闭间隔获取地理信息
 
+    screen屏幕对象:
+      属性：
+          width 宽
+          height 高
+          orientation  方向
 
 
 
