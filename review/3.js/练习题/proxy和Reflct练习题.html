@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    /*
+
+    ①封装函数实现对访问对象进行过滤与拦截，返回拦截后的对象
+    ②若访问对象的年龄(age)属性永远显示18
+    ③只允许修改身高（height）和体重（weight）属性
+    ④用in操作符检测该对象的属性时，保护私有属性
+    ⑤只允许删除name属性
+    ⑥遍历操作中保护私有属性
+
+       */
+    let obj = {
+      name: "cedar",
+      age: "23",
+      _skill: "WEB开发",
+      _like: "生活",
+      weight: "105kg",
+      height: "175cm",
+    };
+
+    let pro = new Proxy(obj, {
+      get(obj, key) {
+        if (key == "age") {
+          return "18";
+        }
+      },
+      set(obj, key, val) {
+        if (key == "weight" || key == "height") {
+          return (obj[key] = val);
+        }
+        return obj[key];
+      },
+      has(obj, key) {
+        if (key.startsWith("_")) {
+          return false;
+        }
+        return obj[key];
+      },
+      deleteProperty(obj, key) {
+        if (key == "name") {
+          return delete obj[key];
+        }
+        return false;
+      },
+      ownKeys(obj) {
+        return Object.keys(obj).filter((item) => !item.startsWith("_"));
+      },
+    });
+
+    console.log(Reflect.get(pro, "age"));
+    Reflect.set(pro, "height", "188cm");
+    Reflect.set(pro, "weight", "110kg");
+    console.log(pro);
+    console.log(Reflect.has(pro, "_like"));
+    Reflect.deleteProperty(pro, "name");
+    console.log(pro);
+    // for (i of Reflect.ownKeys(obj)) {
+    //   console.log(i);
+    // }
+    // console.log(Reflect.ownKeys(obj));
+
+    for (let k in pro) {
+      console.log(k);
+    }
+  </script>
+</html>
