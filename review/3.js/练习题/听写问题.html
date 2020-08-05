@@ -9,6 +9,110 @@
   <script>
     /*
 
+    数据类型：
+      值类型(基本类型)：字符串（String）、数字(Number)、布尔(Boolean)、对空（Null）、未定义（Undefined）、Symbol。
+      引用数据类型：对象(Object)，obj包括 ：数组(Array)、函数(Function)。
+
+    数据类型的转换：
+
+    字符串的方法：
+      charAt()   返回某个下标的值
+      charCodeAt()  返回某个下标的unicode
+      toLowerCAse()  小写
+      toupperCase()  大写
+      split()  以指定的 符号 分割成数组
+      replace()  替换
+      sbustring()  截取
+      slice()   截取
+      sbustr()  截取
+      concat()  拼接成新字符串
+      trim()  去除空格
+      search()  寻找在字符串中的位置，返回下标，找不到返回 -1
+      indexOf()  有无此值
+      lasetIndexOf() 返找
+      String.formcharCode()   unicode转 字符
+      codePointAt()       返回某个下标字符的 unicode值,识别的更广泛
+      String.fromCodePoint()       返回某个 字符编码的 字符,识别的更广泛
+      includes()        寻找有没有某个值，返回布尔值
+      startsWith(值,起始下标)     返回布尔值，表示参数是否在字符串的 开头
+      endsWith(值,起始下标)      结尾
+      padStart(几位,值)       向前补全字符串
+      padEnd()  向后
+      repeat(次数)      把某个字符串 重复几次
+      matchAll(regexp)  返回一个正则在当前字符串的匹配值
+
+
+    数组的方法：
+        push() ：向后添加
+        pop():删除末尾
+        shuift(): 向前添加
+        unshift(): 删除首个
+        reverse():翻转数组
+        sort() : 排序的规则是字符串的排序，从首位开始比较unicode值
+        cancat():拼接数组
+        join():数组拼接成字符串
+        slice():截取
+        splice(起始,删除,添加):操作数组
+        indexOf()  寻找有没有某个值，返回下标，找不到返回 -1
+        lastIndexOf() 倒着找
+
+        Array.isArray(): 判断是不是一个 数组
+        forEach()：数组的遍历，function回调
+        map(): 遍历数组，返回新数组 ，(item,index,arr)=>{}
+        filter():遍历，筛选 (item,index,arr)=>{}
+        some():遍历，只要有一个符合条件，就返回 true (item,index,arr)=>{}
+        every():遍历，只要有一个不符合条件，就返回 false (item,index,arr)=>{}
+        reduce():累 /*-+计算
+        reduceRight():倒着，累/*-+计算
+
+        es6新增：
+        Array.from(): 将伪数组或者可便利对象转为真数组
+        Array.of():将散乱参数  转为数组
+        fill(填充值,起始下标,结束下标): 使用给定值，填充一个数组，如果填充的值是对象，这几个对象的内从地址指向同一个位置
+        find((valie,index,arr)=>{}):用于找出第一个符合条件的数组成员
+        findIndex():用于找出第一个符合条件的数组成员的下标
+        includes():判断一个数组是否包含一个指定的值，如果是返回 true，否则false
+        values():  for of遍历 数组.values()  输出值
+        keys():  for of遍历 数组.keys() 输出下标
+        entries(): for of遍历 数组.entries() 输出键值
+        flat(展开的层数):展开数组，默认展开1层
+        flatMap():先执行一次MAp,在展开数组，只能展开一次
+
+
+    math函数的方法：
+        Math.max(): 获取一组数的最大值
+        Math.min(): 最小值
+        MAth.abs(): 绝对值
+
+        Math.ceil():向上取整
+        Math.floor():向下取整
+        Math.round():四舍五入
+        Math.trunc(): 取整,去除小数点后面的值
+
+        Math.random():随机数
+        
+        Math.pow(,): 几的几次方
+        Math.sqre(): 平方根
+        Math.cbrt(): 立方根
+        
+        Math.hypot():返回所有参数 平方和 平方根
+
+    正则的断言：
+        x(?=y): 匹配x后面为y的x , 先行断言
+        (?<=y)x: 匹配X前面为y的x , 后行断言
+
+    map和对象的转换：
+        map转obj : Object.fromEntries(map)
+        obj转map : for of  Object.keys(obj)遍历obj ,map.set(k,obj[k])
+
+    reflect的方法：
+
+      get(target, propKey, receiver)
+      set(target, propKey, value, receiver)
+      has(target, propKey)
+      deleteProperty(target, propKey)
+      ownKeys(target)
+
 
 
 

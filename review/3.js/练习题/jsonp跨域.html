@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" />
+    <ul></ul>
+  </body>
+
+  <script>
+    function jsonp889(e) {
+      let { result } = e;
+      let arr = [...result];
+
+      for (let a = 0; a < arr.length; a++) {
+        $(` <li>${arr[a][0]}</li>`).appendTo("ul");
+      }
+      $("input").on("input", function () {
+        arr.length = 0;
+        $("li").remove();
+      });
+    }
+  </script>
+  <script>
+    $("input").on("input", function () {
+      if ($(this).val()) {
+        let scr = $(` <script ><\/script> `);
+        $(scr).attr(
+          "src",
+          `https://suggest.taobao.com/sug?code=utf-8&q=${$(
+            "input"
+          ).val()}&_ksTS=1596617915955_888&callback=jsonp889&code=utf-8&area=c2c`
+        );
+
+        $("body").append($(scr));
+      }
+    });
+  </script>
+</html>

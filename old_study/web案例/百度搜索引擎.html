@@ -1,131 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-	<style>
-		*{
-			margin: 0;
-			padding: 0;
-		}
-		.ss{
-			width: 1190px;
-			margin: 50px auto;
-			position: relative;
-		}
-		input{
-			display: block;
-			width: 600px;
-			height: 50px;
-			border:2px solid #789;
-			margin: 0 auto;
-			outline:none;
-			color: #333;
-			font:500 26px/50px "一纸情书";
-		}
-		.box{
-			z-index: 50;
-			width: 600px;
-			margin: 0 auto;
-			border:2px solid #789;
-			display: none;
-		}
-		.box p a{
-			height: 25px;
-			color: #333;
-			font: 20px/25px "一纸情书";
-			text-decoration: none;
-		}
-	</style>
-</head>
-<body>
-	<div class="ss">
-		<input type="text">
-		<div class="box">
-			<p><a href="#" target="_blank"></a></p>
-			<p><a href="#" target="_blank"></a></p>
-			<p><a href="#" target="_blank"></a></p>
-			<p><a href="#" target="_blank"></a></p>
-			<p><a href="#" target="_blank"></a></p>
-			<p><a href="#" target="_blank"></a></p>
-			<p><a href="#" target="_blank"></a></p>
-			<p><a href="#" target="_blank"></a></p>
-			<p><a href="#" target="_blank"></a></p>
-			<p><a href="#" target="_blank"></a></p>
-		</div>
-	</div>
-	<script>
-		function fn(d){
-		//自己的函数写到上面
-		//传入形参用于获取返回值
-		//返回值为索要的数据
-			var arr=d.s
-			var pp=document.querySelectorAll("p")
-			var aa=document.querySelectorAll("a")
-			for(var a=0; a<pp.length; a++){
-				$(aa[a]).text(arr[a])
-				$(aa[a]).attr("href","https://www.baidu.com/baidu?word="+ $(aa[a]).text())
-			}
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .ss {
+        width: 1190px;
+        margin: 50px auto;
+        position: relative;
+      }
+      input {
+        display: block;
+        width: 600px;
+        height: 50px;
+        border: 2px solid #789;
+        margin: 0 auto;
+        outline: none;
+        color: #333;
+        font: 500 26px/50px "一纸情书";
+      }
+      .box {
+        z-index: 50;
+        width: 600px;
+        margin: 0 auto;
+        border: 2px solid #789;
+        display: none;
+      }
+      .box p a {
+        height: 25px;
+        color: #333;
+        font: 20px/25px "一纸情书";
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ss">
+      <input type="text" />
+      <div class="box">
+        <p><a href="#" target="_blank"></a></p>
+        <p><a href="#" target="_blank"></a></p>
+        <p><a href="#" target="_blank"></a></p>
+        <p><a href="#" target="_blank"></a></p>
+        <p><a href="#" target="_blank"></a></p>
+        <p><a href="#" target="_blank"></a></p>
+        <p><a href="#" target="_blank"></a></p>
+        <p><a href="#" target="_blank"></a></p>
+        <p><a href="#" target="_blank"></a></p>
+        <p><a href="#" target="_blank"></a></p>
+      </div>
+    </div>
+    <script>
+      function fn(d) {
+        //自己的函数写到上面
+        //传入形参用于获取返回值
+        //返回值为索要的数据
+        var arr = d.s;
+        var pp = document.querySelectorAll("p");
+        var aa = document.querySelectorAll("a");
+        for (var a = 0; a < pp.length; a++) {
+          $(aa[a]).text(arr[a]);
+          $(aa[a]).attr(
+            "href",
+            "https://www.baidu.com/baidu?word=" + $(aa[a]).text()
+          );
+        }
 
+        if (arr.length < 0) {
+          $(".box").css("display", "none");
+        }
+        if (arr.length > 0) {
+          $(".box").css("display", "block");
+        }
 
-			if(arr.length<0){
-				$(".box").css("display","none")
-			}
-			if(arr.length>0 ){
-				$(".box").css("display","block")
-			}
+        $("input").click(function (e) {
+          e.stopPropagation();
+          if ($(this).val()) {
+            $(".box").css("display", "block");
+          }
+        });
+      }
+    </script>
+  </body>
 
-			$("input").click(function(e){
-				e.stopPropagation()
-				if($(this).val()){
-					$(".box").css("display","block")
-				}
-			})
-			
-		}
-
-	</script>
-
-</body>
-
-<script>
-/*
+  <script>
+    /*
 http://suggestion.baidu.com/su?wd=关键词&cb=fn
 
 
  */
 
+    $("input").on("input", function () {
+      if ($(this).val()) {
+        var scr = document.createElement("script");
+        $(scr).attr(
+          "src",
+          "http://suggestion.baidu.com/su?wd=" + $(this).val() + "&cb=fn"
+        );
+        //通过创建的script的src获取数据，并传入对应的参数和函数名
+        $("body").append($(scr));
+      }
 
-$("input").on("input",function(){
-	if($(this).val()){
-		var scr=document.createElement("script")
-		$(scr).attr("src","http://suggestion.baidu.com/su?wd="+ $(this).val() +"&cb=fn")
-		//通过创建的script的src获取数据，并传入对应的参数和函数名
-		$("body").append($(scr))
-	}
+      if ($("input").val().length < 1) {
+        $(".box").css("display", "none");
+        $(".box p a").text("");
+      }
+    });
 
-	if($("input").val().length <1){
-		$(".box").css("display","none")
-		$(".box p a").text("")
-	}
+    $(window).click(function (e) {
+      $(".box").css("display", "none");
+    });
 
-
-})
-
-$(window).click(function(e){
-	$(".box").css("display","none")
-})
-
-
-$(".box").click(function(e){
-	e.stopPropagation()
-})
-
-
-	
-
-
-
-</script>
+    $(".box").click(function (e) {
+      e.stopPropagation();
+    });
+  </script>
 </html>
