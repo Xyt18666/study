@@ -1,161 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-	<style>
-		*{
-			margin: 0;
-			padding: 0;
-		}
-		.box{
-			width: 100px;
-			height: 100px;
-			background: #0f0;
-			position: absolute;
-			left: 0;
-			opacity: 1;
-		}
-	</style>
-</head>
-<body>
-	<div class="box"></div>
-</body>
-<script type="text/javascript">
-var box=document.querySelector(".box");
-var nStyle={
-	width:500,
-	height:400,
-	opacity:50
-}
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .box {
+        width: 100px;
+        height: 100px;
+        background: #0f0;
+        position: absolute;
+        left: 0;
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+  </body>
+  <script type="text/javascript">
+    var box = document.querySelector(".box");
+    var nStyle = {
+      width: 800,
+      height: 400,
+      opacity: 50,
+    };
 
-box.onclick=function(){
-	 move(box,nStyle,null)
-}
+    box.onclick = function () {
+      move(box, nStyle, null);
+    };
 
-function move(obj,json,fn){
-	clearInterval(obj.dsq)
-	var speed=0,thStle=0;
-	obj.dsq=setInterval(function(){
-		var onOff=true
+    // function move(obj, json, fn) {
+    //   clearInterval(obj.dsq);
+    //   var speed = 0,
+    //     thStle = 0;
+    //   obj.dsq = setInterval(function () {
+    //     var onOff = true;
 
-		for(key in json){
-			thStle=key=="opacity"?parseFloat(getStyle(obj,key))*100:parseInt(getStyle(obj,key))
-			speed=(json[key]-thStle)/20
-			speed=speed>0?Math.ceil(speed):Math.floor(speed)
+    //     for (key in json) {
+    //       thStle =
+    //         key == "opacity"
+    //           ? parseFloat(getStyle(obj, key)) * 100
+    //           : parseInt(getStyle(obj, key));
+    //       speed = (json[key] - thStle) / 20;
+    //       speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
 
-			if(thStle!=json[key]){
-				onOff=false;
-				thStle+=speed
-				if(key=="opacity"){
-					obj.style["opacity"]=thStle/100;
-					obj.style.filter="alpha(opacity="+thStle+")"
-				}else{
-					obj.style[key]=thStle+"px"
-				}
-			}
-		}
-		if(onOff){
-			clearInterval(obj.dsq)
-			fn&&fn()
-		}
+    //       if (thStle != json[key]) {
+    //         onOff = false;
+    //         thStle += speed;
+    //         if (key == "opacity") {
+    //           obj.style["opacity"] = thStle / 100;
+    //           obj.style.filter = "alpha(opacity=" + thStle + ")";
+    //         } else {
+    //           obj.style[key] = thStle + "px";
+    //         }
+    //       }
+    //     }
+    //     if (onOff) {
+    //       clearInterval(obj.dsq);
+    //       fn && fn();
+    //     }
+    //   }, 20);
+    // }
 
-	},20)
-}
+    // function move(obj,json,fn){
+    // 	clearInterval(obj.dsq)
+    // 	var speed=0;
+    // 	var thisStyle=0;
+    // 	obj.dsq=setInterval(function(){
+    // 		var onOff=true;
 
+    // 		for(key in json){
+    // 			thisStyle=key=="opacity"?parseFloat(getStyle(obj,key))*100:parseInt(getStyle(obj,key))
 
+    // 			speed=(json[key]-thisStyle)/20
+    // 			speed=speed>0?Math.ceil(speed):Math.floor(speed)
 
+    // 			if(thisStyle!=json[key]){
+    // 				onOff=false;
+    // 				thisStyle+=speed
+    // 				if(key=="opacity"){
+    // 					obj.style["opacity"]=thisStyle/100
+    // 					obj.style.filter="alpha(opacity="+thisStyle+")"
+    // 				}else{
+    // 					obj.style[key]=thisStyle+"px"
+    // 				}
+    // 			}
+    // 		}
+    // 		if(onOff){
+    // 			clearInterval(obj.dsq)
+    // 			fn&&fn()
+    // 		}
+    // 	},20)
+    // }
 
+    // function move(obj,attr,end){
+    // 	clearInterval(obj.dsq)
 
-// function move(obj,json,fn){
-// 	clearInterval(obj.dsq)
-// 	var speed=0;
-// 	var thisStyle=0;
-// 	obj.dsq=setInterval(function(){
-// 		var onOff=true;
+    // 	obj.dsq=setInterval(function(){
+    // 		var thisattr=parseInt(getStyle(obj,attr))
 
-// 		for(key in json){
-// 			thisStyle=key=="opacity"?parseFloat(getStyle(obj,key))*100:parseInt(getStyle(obj,key))
+    // 		var speed=(end-thisattr)/10
 
-// 			speed=(json[key]-thisStyle)/20
-// 			speed=speed>0?Math.ceil(speed):Math.floor(speed)
+    // 		speed=speed>0?Math.ceil(speed):Math.floor(speed)
 
-// 			if(thisStyle!=json[key]){
-// 				onOff=false;
-// 				thisStyle+=speed
-// 				if(key=="opacity"){
-// 					obj.style["opacity"]=thisStyle/100
-// 					obj.style.filter="alpha(opacity="+thisStyle+")"
-// 				}else{
-// 					obj.style[key]=thisStyle+"px"
-// 				}
-// 			}
-// 		}
-// 		if(onOff){
-// 			clearInterval(obj.dsq)
-// 			fn&&fn()
-// 		}
-// 	},20)
-// }
+    // 		console.log(speed,thisattr)
+    // 		thisattr+=speed
 
+    // 		console.log(speed,thisattr)
 
-// function move(obj,attr,end){
-// 	clearInterval(obj.dsq)
+    // 		obj.style[attr]=thisattr+"px"
 
-// 	obj.dsq=setInterval(function(){
-// 		var thisattr=parseInt(getStyle(obj,attr))
+    // 		if(thisattr==end){
+    // 			clearInterval(obj.dsq)
+    // 		}
 
-// 		var speed=(end-thisattr)/10
-		
-// 		speed=speed>0?Math.ceil(speed):Math.floor(speed)
+    // 	},20)
+    // }
 
-		
-// 		console.log(speed,thisattr)
-// 		thisattr+=speed
- 	
-// 		console.log(speed,thisattr)
+    // function move(obj,attr,spe,end){
+    // 	clearInterval(obj.dsq)
+    // 	var speed=parseInt(getStyle(obj,attr))>end?-spe:spe
 
-// 		obj.style[attr]=thisattr+"px"
+    // 	obj.dsq=setInterval(function(){
+    // 		var thisattr=parseInt(getStyle(obj,attr))
 
-// 		if(thisattr==end){
-// 			clearInterval(obj.dsq)
-// 		}
+    // 		thisattr+=speed
 
-// 	},20)
-// }
+    // 		if(speed>0&&thisattr>end || speed<0&&thisattr<end){
+    // 			thisattr=end
+    // 		}
+    // 		obj.style[attr]=thisattr+"px"
 
+    // 		if(thisattr==end){
+    // 			clearInterval(obj.dsq)
+    // 		}
 
-// function move(obj,attr,spe,end){
-// 	clearInterval(obj.dsq)
-// 	var speed=parseInt(getStyle(obj,attr))>end?-spe:spe
+    // 	},20)
+    // }
 
-// 	obj.dsq=setInterval(function(){
-// 		var thisattr=parseInt(getStyle(obj,attr))
+    //运动原理
+    //使用定时器，在特定的时间里
+    //在元素的原有的基础上 改变一次元素的样式
+    //在改变的过程中确保元素准确的到达指定位置
+    //当元素到达指定位置时，关闭定时器
 
-// 		thisattr+=speed
-
-// 		if(speed>0&&thisattr>end || speed<0&&thisattr<end){
-// 			thisattr=end
-// 		}
-// 		obj.style[attr]=thisattr+"px"
-
-// 		if(thisattr==end){
-// 			clearInterval(obj.dsq)
-// 		}
-
-// 	},20)
-// }
-
-
-//运动原理
-//使用定时器，在特定的时间里
-//在元素的原有的基础上 改变一次元素的样式
-//在改变的过程中确保元素准确的到达指定位置
-//当元素到达指定位置时，关闭定时器
-
-
-function getStyle(obj,attr){
-	return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj,null)[attr]
-}
-</script>
+    function getStyle(obj, attr) {
+      return obj.currentStyle
+        ? obj.currentStyle[attr]
+        : getComputedStyle(obj, null)[attr];
+    }
+  </script>
 </html>

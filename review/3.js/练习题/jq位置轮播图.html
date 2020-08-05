@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      li {
+        list-style: none;
+      }
+      img {
+        display: block;
+      }
+      .ban {
+        margin: 50px auto;
+        width: 970px;
+        height: 344px;
+        position: relative;
+      }
+      .le,
+      .ri {
+        position: absolute;
+        width: 50px;
+        height: 100px;
+        background: rgba(79, 95, 233, 0.4);
+        top: 50%;
+        line-height: 100px;
+        transform: translate(0, -50%);
+      }
+      .le {
+        left: 0;
+      }
+      .ri {
+        right: 0;
+      }
+      .list {
+        width: 100%;
+        height: 100%;
+      }
+      li {
+        position: absolute;
+        transition: 1s;
+      }
+      .pos1,
+      .pos2,
+      .pos6,
+      .pos7 {
+        opacity: 0;
+      }
+      .pos3 {
+        top: 0;
+        left: 0;
+        transform: scale(0.6) translate(-50%);
+      }
+      .pos4 {
+        top: 0;
+        left: 50%;
+        transform: translate(-50%);
+        z-index: 999;
+      }
+      .pos5 {
+        top: 0;
+        right: 0;
+        transform: scale(0.6) translate(50%);
+      }
+      .dd p {
+        width: 10px;
+        height: 10px;
+        float: left;
+        background: #000;
+        margin: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ban">
+      <ul class="list">
+        <li class="pos1"><img src="images/1.jpg" alt="" /></li>
+        <li class="pos2"><img src="images/2.jpg" alt="" /></li>
+        <li class="pos3"><img src="images/3.jpg" alt="" /></li>
+        <li class="pos4"><img src="images/4.jpg" alt="" /></li>
+        <li class="pos5"><img src="images/5.jpg" alt="" /></li>
+        <li class="pos6"><img src="images/6.jpg" alt="" /></li>
+        <li class="pos7"><img src="images/7.jpg" alt="" /></li>
+      </ul>
+      <div class="le"><</div>
+      <div class="ri">></div>
+    </div>
+    <div class="dd">
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+    </div>
+  </body>
+  <script>
+    /*
+
+    把当前 index 的 类 给 前一个
+    需要做的 是 把 第一个位置的 class 换成最后一个
+
+
+
+
+
+    */
+    let indexs = 4;
+
+    tab(indexs);
+    $(".ri").click(function () {
+      let zt = $("li").eq(0).attr("class");
+      //   拿变量储存了第一个
+      $("li").each((index, item) => {
+        $(item).attr(
+          "class",
+          index + 1 == 7 ? zt : $(item).next().attr("class")
+        );
+      });
+      indexs++;
+      index = indexs > 6 ? 0 : index;
+      tab(indexs);
+    });
+
+    $(".le").click(function () {
+      var zt = $("li").eq(6).attr("class");
+      // th(6, $("li").eq(5).attr("class"));
+      // th(5, $("li").eq(4).attr("class"));
+      // th(4, $("li").eq(3).attr("class"));
+      // th(3, $("li").eq(2).attr("class"));
+      // th(2, $("li").eq(1).attr("class"));
+      // th(1, $("li").eq(0).attr("class"));
+      // th(0, zt);
+      indexs--;
+      indexs = indexs < 0 ? 6 : indexs;
+      tab(indexs);
+
+      for (let a = $("li").length - 1; a >= 0; a--) {
+        $("li")
+          .eq(a)
+          .attr(
+            "class",
+            a <= 0
+              ? zt
+              : $("li")
+                  .eq(a - 1)
+                  .attr("class")
+          );
+      }
+    });
+
+    // function th(x, y) {
+    //   $("li").eq(x).attr("class", y);
+    // }
+    function tab(index) {
+      $(".dd p")
+        .eq(index)
+        .css({
+          background: "red",
+        })
+        .siblings()
+        .css({
+          background: "#000",
+        });
+    }
+  </script>
+</html>
