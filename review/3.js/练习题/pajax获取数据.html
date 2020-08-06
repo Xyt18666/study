@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    function pAjax(json) {
+      let str = "";
+      let url = json.url;
+      let type = json.type || "get";
+      let data = json.data || {};
+
+      for (let k in data) {
+        str += k + "=" + data[k] + "&";
+      }
+      return new Promise((res, rej) => {
+        let xhr = null;
+        try {
+          xhr = new XMLHttpRequest();
+        } catch (e) {
+          xhr = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        if (type.toLowerCase() == "get") {
+          xhr.open("get", `${url}?${str}time=${Date.now()}`, true);
+          xhr.send();
+        } else if (type.toLowerCase() == "post") {
+          xhr.setRequestHeader(
+            "Content-type",
+            "application/x-www-form-urlencoded"
+          );
+          xhr.send(str.substring(0, str.lastIndexOf("&")));
+        }
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) {
+            if (xhr.status >= 200 && xhr.status <= 300) {
+              res(JSON.parse(xhr.responseText));
+            } else {
+              let error = new Error();
+              error.status = this.status;
+              rej(error);
+            }
+          }
+        };
+      });
+    }
+  </script>
+  <script>
+    pAjax({
+      url: "json/1.json",
+      data: "",
+      type: "get",
+    }).then((res) => {
+      console.log(res);
+      pAjax({
+        url: "json/2.json",
+        data: "",
+        type: "get",
+      }).then((res) => {
+        console.log(res);
+        pAjax({
+          url: "json/3.json",
+          data: "",
+          type: "get",
+        }).then((res) => {
+          console.log(res);
+        });
+      });
+    });
+
+    // async function test() {
+    //   let s1 = await pAjax({
+    //     url: "json/1.json",
+    //     data: "",
+    //     type: "get",
+    //   }).then((res) => {
+    //     console.log(res);
+    //   });
+    //   let s2 = await pAjax({
+    //     url: "json/2.json",
+    //     data: "",
+    //     type: "get",
+    //   }).then((res) => {
+    //     console.log(res);
+    //   });
+    //   let s3 = await pAjax({
+    //     url: "json/3.json",
+    //     data: "",
+    //     type: "get",
+    //   }).then((res) => {
+    //     console.log(res);
+    //   });
+    // }
+    // test();
+  </script>
+</html>
