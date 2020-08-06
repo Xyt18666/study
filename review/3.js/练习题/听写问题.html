@@ -22,9 +22,9 @@
       toupperCase()  大写
       split()  以指定的 符号 分割成数组
       replace()  替换
-      sbustring()  截取
+      substring()  截取
       slice()   截取
-      sbustr()  截取
+      subustr()  截取
       concat()  拼接成新字符串
       trim()  去除空格
       search()  寻找在字符串中的位置，返回下标，找不到返回 -1
@@ -114,6 +114,46 @@
       ownKeys(target)
 
 
+    json与字符串互转：
+    
+      JSON.parse(jsonString) 字符串转化为 JSON
+      JSON.stringify(jsObject) JSON 转化为 字符串
+
+    g函数的关键字：yield
+
+    readyState:ajax对象的工作状态值：
+      0：请求未初始化
+      1：服务器建立连接
+      2：请求已接收
+      3：请求处理中
+      4：请求已完成，且相应已就绪
+
+    status:服务器返回的数字代码（HTTP状态码）代表请求结果：
+      常见的状态码： 
+          200:操作成功
+          304:缓存
+          404:Not found 文件未找到
+          403:没有权限 
+          501:服务器识别错误
+      总结：  
+          1**：请求消息收到，继续处理         
+          2**：操作成功
+          3**：完成此请求必须进一步处理（重定向）
+          4**：客户端错误
+          5**：服务器错误
+
+    跨域的方式：
+
+      jsonp:
+        使用 script 的 src 不受同源策略约束，实现跨域
+
+
+      跨域资源共享(CORS):
+        对于简单请求，浏览器直接发出 CORS 请求。具体来说，就是在头信息之中，自动增加一个 Origin 字段，用来说明请求来自哪个源。服务器拿到请求之后，在回应时对应地添加Access-Control-Allow-Origin字段，如果 Origin 不在这个字段的范围中，那么浏览器就会将响应拦截。
+
+
+      Nginx代理跨域:
+        同源策略是浏览器的安全策略，不是HTTP协议的一部分，服务器调用HTTP接口只是使用HTTP协议，不会执行JS脚本，不受同源策略的影响，也就不存在跨域问题
 
 
 
