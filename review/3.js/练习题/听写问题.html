@@ -159,6 +159,111 @@
 
 
 
+    数组排序：
+      arr.sort((a, b) => a - b)
+
+      for (let i = 0; i < arr.length - 1; i++) {
+        for (let j = 0; j < arr.length - 1 - i; j++) {
+          // 相邻元素两两对比，元素交换，大的元素交换到后面
+          if (arr[j] > arr[j + 1]) {
+            [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+          }
+        }
+      }
+
+      for (let a = 0; a < arr.length; a++) {
+        for (let q = a + 1; q < arr.length; q++) {
+          console.log(a, q);
+          if (arr[a] > arr[q]) {
+            [arr[a], arr[q]] = [arr[q], arr[a]];
+          }
+        }
+      }
+
+
+
+    h5改变历史记录的函数：
+      pushState(data,title,url) 用来保存历史记录的数据，(后两个参数不用写)
+      onpopstate 事件获取历史管理 储存的值  e.state 
+
+
+    
+    什么是浅拷贝：拷贝的是栈内的东西，如果是复杂数据类型，只拷贝内存地址
+
+
+    什么是深拷贝：拷贝 堆中的内容 ，原对象修改后，深拷贝的对象无变化
+
+
+
+    如何实现深拷贝：
+      一： JSON.parse(JSON.stringify(o))
+        function deepCopy(o) {
+          return JSON.parse(JSON.stringify(o))
+        }
+        缺陷：这种拷贝方法不可以拷贝一些特殊的属性（例如正则表达式，undefine，function）
+
+      二： 递归遍历
+        function deepCopyTwo(obj) {
+            let objClone = Array.isArray(obj) ? [] : {};
+            if (obj && typeof obj == 'object') {
+                for (const key in obj) {
+                    //判断obj子元素是否为对象，如果是，递归复制
+                    if (obj[key] && typeof obj[key] === "object") {
+                        objClone[key] = deepCopyTwo(obj[key]);
+                    } else {
+                        //如果不是，简单复制
+                        objClone[key] = obj[key];
+                    }
+                }
+            }
+            return objClone;
+        }
+
+      三：代理法
+        function deepClone(obj) {
+            if (!isObject(obj)) {
+                throw new Error('obj 不是一个对象！')
+            }
+
+            let isArray = Array.isArray(obj)
+            let cloneObj = isArray ? [...obj] : { ...obj }
+            Reflect.ownKeys(cloneObj).forEach(key => {
+                cloneObj[key] = isObject(obj[key]) ? deepClone(obj[key]) : obj[key]
+            })
+
+            return cloneObj
+        }
+      
+      四：Object.create(prop)
+        function deepClone(initalObj, finalObj) {    
+          var obj = finalObj || {};    
+          for (var i in initalObj) {        
+            var prop = initalObj[i];        // 避免相互引用对象导致死循环，如initalObj.a = initalObj的情况
+            if(prop === obj) {            
+              continue;
+            }        
+            if (typeof prop === 'object') {
+              obj[i] = (prop.constructor === Array) ? [] : Object.create(prop);
+            } else {
+              obj[i] = prop;
+            }
+          }    
+          return obj;
+        }
+      
+      五：借用 JQ 的 extend 方法实现深拷贝。
+      　　$.extend([deep], target, ...object);
+        　　deep 表示深拷贝，Boolean
+        　　target 目标对象
+        　　 ...object 需要进行合并的对象
+
+
+
+    pajax获取数据：
+
+    G函数间隔输出 123：
+
+
 
     */
   </script>
