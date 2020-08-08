@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      ul {
+        display: flex;
+        justify-content: space-around;
+        flex-flow: row wrap;
+      }
+      li {
+        width: 45%;
+        list-style: none;
+      }
+      img {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <ul>
+        <!-- <li>
+          <img src="1801A模拟考/images/1.png" alt="" />
+          <h3>sdfsd</h3>
+          <p>sdf</p>
+          <p>sdf</p>
+          <h4>sdfs <s>sdf</s></h4>
+        </li>
+        <li>
+          <img src="1801A模拟考/images/1.png" alt="" />
+          <h3>sdfsd</h3>
+          <p>sdf</p>
+          <p>sdf</p>
+          <h4>sdfs <s>sdf</s></h4>
+        </li>
+        <li>
+          <img src="1801A模拟考/images/1.png" alt="" />
+          <h3>sdfsd</h3>
+          <p>sdf</p>
+          <p>sdf</p>
+          <h4>sdfs <s>sdf</s></h4>
+        </li>
+        <li>
+          <img src="1801A模拟考/images/1.png" alt="" />
+          <h3>sdfsd</h3>
+          <p>sdf</p>
+          <p>sdf</p>
+          <h4>sdfs <s>sdf</s></h4>
+        </li> -->
+      </ul>
+      <a href="child.html">购物车</a>
+    </div>
+  </body>
+  <script>
+    function jqAjax(json) {
+      let url = json.url;
+      let type = json.type || "get";
+      let data = json.data || {};
+      return new Promise((res, reg) => {
+        $.ajax({
+          url: url,
+          data: data,
+          tupe: type,
+          success: res,
+        });
+      });
+    }
+    jqAjax({
+      url: "1801A模拟考/data.js",
+      data: "",
+      type: "get",
+    }).then((e) => {
+      let data = JSON.parse(e);
+      for (let a = 0; a < data.length; a++) {
+        $("ul").append(`<li data-id=${data[a].id} index=${a}>
+          <img src=${"1801A模拟考/" + data[a].img} alt="" />
+          <h3>${data[a].name}</h3>
+          <p>${data[a].info}</p>
+          <p>${data[a].weight}</p>
+          <h4>￥${data[a].price} </h4>
+        </li>`);
+      }
+      //   $("li").click(function () {
+      //     let id = $(this).attr("data-id");
+      //     //  获取当前商品id
+
+      //     let items = data.find((item) => item.id == id);
+      //     // 通过 当前 id 从 数据中 找到 当前 对象所有属性
+
+      //     let arr = JSON.parse(localStorage.getItem("shopCart")) || [];
+      //     //  获取 本地存储 ，如果存在就转换为 js对象 ，否则定义一个空的数组
+
+      //     // 从 本地存储中 找 id相符的 对象
+      //     if (arr.some((item) => item.id == id)) {
+      //       //找到的操作
+      //       let index = arr.findIndex((item) => item.id == id);
+      //       // 从 本地存储 中找到符合 当前点击商品id的 对象的 下标
+
+      //       let num = arr[index].num;
+      //       //获取当前商品数量
+      //       arr[index].num = ++num;
+      //       //   当前商品数量自增
+      //     } else {
+      //       // 找不到的 操作
+      //       items["num"] = 1;
+      //       //初始化数量为1
+      //       arr.push(items);
+      //       //添加到 数组中
+      //     }
+      //     localStorage.setItem("shopCart", JSON.stringify(arr));
+      //     // 在添加到 本地存储
+      //   });
+
+      //-------------------------------------------------------------------------
+
+      // 点击加入购物车并本地存储
+      let getData = JSON.parse(localStorage.getItem("car")) || [];
+      //获取购物车
+
+      $("li").on("click", function () {
+        addStorage($(this).attr("index"), getData);
+        //   点击调用函数，传入下标和本地存储对象
+      });
+      // 添加本地存储
+      function addStorage(index, carData) {
+        carData.some((item) => item.value == index)
+          ? //本地存储中是否有 一个子项的 value == 下标
+            carData.find((item) => item.value == index).num++
+          : // 有的话，数量自增
+            carData.push(Object.assign(data[index], { value: index, num: 1 }));
+        //没有的话 push进新的
+        localStorage.setItem("car", JSON.stringify(carData));
+        //最后在存入 本地存贮
+      }
+    });
+  </script>
+</html>

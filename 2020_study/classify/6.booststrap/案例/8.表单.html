@@ -25,6 +25,36 @@
     <title>Document</title>
   </head>
   <body>
+    <form>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="exampleInputEmail1"
+          placeholder="Email"
+        />
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="exampleInputPassword1"
+          placeholder="Password"
+        />
+      </div>
+      <div class="form-group">
+        <label for="exampleInputFile">File input</label>
+        <input type="file" id="exampleInputFile" />
+        <p class="help-block">Example block-level help text here.</p>
+      </div>
+      <div class="checkbox">
+        <label> <input type="checkbox" /> Check me out </label>
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+    s
     <form action="#" method="get" class="form-inline">
       <div class="form-group">
         <input type="text" class="form-control" />
@@ -37,6 +67,13 @@
           <div class="input-group-addon">后缀</div>
         </div>
       </div>
+      <div class="input-group">
+        <span class="input-group-addon">@</span>
+        <input type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status">
+      </div>
+      <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+      <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
+    </div>
     </form>
   </body>
   <script>
@@ -79,21 +116,27 @@
                 bootstrap将某些表单控件的默认 outline 样式移除，然后对 :focus 状态赋予 box-shadow 属性
         （2）禁用状态
                 给输入框设置disabled属性.若禁止多个，则可以将这几个控件放在字段集 fieldset里面，给fieldset设置disabled
-        注意：fieldset不仅可以禁止控件也可以至今按钮但是它不能禁止a标签。
+                注意：fieldset不仅可以禁止控件也可以至今按钮但是它不能禁止a标签。
         （3）只读状态
                 给输入框设置readonly 属性
         （4）验证状态
             Bootstrap 包含了错误、警告和成功消息的验证样式。只需要对form-group简单地添加适当的 class（.has-warning、 .has-error 或 .has-success）即可使用验证状态
-            验证状态可以添加额外的图标
-            给.form-group添加has-feedback类
-            给文本输入框.form-control上添加图标基类以及对应图标类和.form-control-feedback
+
+    验证状态可以添加额外的图标：
+        给.form-group添加has-feedback类
+        给文本输入框.form-control上添加图标基类以及对应图标类和.form-control-feedback
+
+    内联单选和多选框：
+        通过将 .checkbox-inline 或 .radio-inline 类应用到一系列的多选框（checkbox）或单选框（radio）控件上，可以使这些控件排列在一行。
 
     表单控件的大小：
         单中分别使用 class .input-[lg/sm/xs] 和 .col-lg-* 来设置表单的高度和宽度
 
+    水平排列的表单组的尺寸：
+        通过添加 .form-group-lg 或 .form-group-sm 类，为 .form-horizontal 包裹的 label 元素和表单控件快速设置尺寸。
+        
     帮助文本：
         文本输入框下面的提示信息，给该元素添加help-block
-
 
 
 
