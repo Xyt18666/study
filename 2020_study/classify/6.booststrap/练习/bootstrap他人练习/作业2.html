@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="../bootstrap-3.3.7-dist/js/jquery-2.1.1.min.js"></script>
+    <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="./vue.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <form>
+            <div class="form-group">
+                <label for="name">名字</label>
+                <input placeholder="请输入您的名字" v-model="name" type="text" id="name" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="age">年龄</label>
+                <input placeholder="请输入您的年龄" v-model="age" type="text" id="age" class="form-control">
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-primary" @click="add">添加</button>
+                <button type="reset" class="btn btn-danger">重置</button>
+            </div>
+        </form>
+        <table class="table table-bordered">
+            <caption class="h3 text-center text-primary">用户信息表</caption>
+            <thead>
+                <tr>
+                    <th class="text-center">序号</th>
+                    <th class="text-center">名字</th>
+                    <th class="text-center">年龄</th>
+                    <th class="text-center">操作</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                <tr v-for="(item,index) in userData">
+                    <td>{{index+1}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.age}}</td>
+                    <td>
+                        <button @click="getIndex(index)" data-toggle="modal" data-target=".modal" class="btn btn-primary btn-xs">删除</button>
+                    </td>
+                </tr>
+                <tr v-show="userData.length==0">
+                    <td colspan="4">
+                        暂无数据
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-danger pull-right" v-show="userData.length!=0" @click="deleteAll">删除全部</button>
+        <div class="modal bs-example-modal-lg">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5>确认要删除吗？<button data-dismiss="modal" class="close">X</button></h5>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" data-dismiss="modal">取消</button>
+                        <button class="btn btn-danger" data-dismiss="modal" @click="deleteData">确定</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:".container",
+        data:{
+            userData:[],
+            name:"",
+            age:"",
+            currentIndex:-1
+        },
+        methods:{
+            //点击添加按钮执行的操作
+            add:function(){
+                //获取input框的内容也就是name和age值
+                //this.name为第一个input的内容，this.age为第二个input框的内容
+                console.log(this.name,this.age)
+                if(this.name.length!=0 && this.age.length!=0){
+                    this.userData.push({
+                       name:this.name,
+                       age:this.age
+                    })
+                    this.name="";
+                    this.age=""
+                }else{
+                    alert("输入框不能为空")
+                }
+            },
+            //点击模态框的确定按钮实现删除某一项的操作
+            deleteData:function(){
+                this.userData.splice(this.currentIndex,1);
+            },
+            //点击每一项删除按钮需要保存当前点击这条数据的下标
+            getIndex:function(_index){
+                this.currentIndex = _index;
+            },
+            //全部删除按钮事件处理
+            deleteAll:function(){
+                this.userData = [];
+            }
+        }
+    })
+</script>
+</html>

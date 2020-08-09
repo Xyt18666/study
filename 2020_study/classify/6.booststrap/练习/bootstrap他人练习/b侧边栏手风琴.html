@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.0.js"></script>
+    <script type="text/javascript" src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <style>
+        #accordion{
+            width:200px;
+            right:200px;
+            top:50px;
+        }
+        li{
+            list-style:none;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+    	<div class="panel-group affix" id="accordion">
+            <div class="panel panel-default"><!-- 第一个容器 -->
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a href="#collapse1" data-toggle="collapse" data-parent="#accordion">概览</a>
+                    </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse" > <!-- 折叠菜单的部分collapse:开始时先隐藏 -->
+                    <ul class="panel-body">
+                        <li><a href="">单个还是全部引入</a></li>
+                        <li><a href="">data属性</a></li>
+                        <li><a href="">编程方式的API</a></li>
+                        <li><a href="">避免命名空间冲突</a></li>
+                        <li><a href="">事件</a></li>
+                        <li><a href="">Version numbers</a></li>
+                        <li><a href="">浏览器的javascript被禁用的情况</a></li>
+                        <li><a href="">第三方工具库</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a href="#collapse2" data-toggle="collapse" data-parent="#accordion">过渡效果</a>
+                    </h4>
+                </div>
+                <div id="collapse2" class="panel-collapse collapse" > 
+                    <ul class="panel-body">
+                        <li>111</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a href="#collapse3" data-toggle="collapse" data-parent="#accordion">模态框</a>
+                    </h4>
+                </div>
+                <div id="collapse3" class="panel-collapse collapse" >
+                    <ul class="panel-body">
+                        <li><a href="">实例</a></li>
+                        <li><a href="">Sizes</a></li>
+                        <li><a href="">Remove animation</a></li>
+                        <li><a href=""> Varying content based on tigger</a></li>
+                        <li><a href="">button</a></li>
+                        <li><a href="">用法</a></li>
+                        <li><a href="">参数</a></li>
+                        <li><a href="">方法</a></li>
+                        <li><a href="">事件</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a href="#collapse4" data-toggle="collapse" data-parent="#accordion">下拉菜单</a>
+                    </h4>
+                </div>
+                <div id="collapse4" class="panel-collapse collapse" >
+                    <ul class="panel-body">
+                        <li><a href="">实例</a></li>
+                        <li><a href="">用法</a></li>
+                        <li><a href="">方法</a></li>
+                        <li><a href="">事件</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a href="#collapse5" data-toggle="collapse" data-parent="#accordion">滚动监听</a>
+                    </h4>
+                </div>
+                <div id="collapse5" class="panel-collapse collapse" >
+                    <ul class="panel-body">
+                        <li><a href="">实例</a></li>
+                        <li><a href="">用法</a></li>
+                        <li><a href="">方法</a></li>
+                        <li><a href="">参数</a></li>
+                        <li><a href="">事件</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a href="#collapse6" data-toggle="collapse" data-parent="#accordion">标签页</a>
+                    </h4>
+                </div>
+                <div id="collapse6" class="panel-collapse collapse" >
+                    <ul class="panel-body">
+                        <li><a href="">实例</a></li>
+                        <li><a href="">用法</a></li>
+                        <li><a href="">方法</a></li>
+                        <li><a href="">参数</a></li>
+                        <li><a href="">事件</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a href="#collapse7" data-toggle="collapse" data-parent="#accordion">工具提示</a>
+                    </h4>
+                </div>
+                <div id="collapse7" class="panel-collapse collapse" >
+                    <ul class="panel-body">
+                        <li><a href="">实例</a></li>
+                        <li><a href="">用法</a></li>
+                        <li><a href="">方法</a></li>
+                        <li><a href="">参数</a></li>
+                        <li><a href="">事件</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a href="#collapse8" data-toggle="collapse" data-parent="#accordion">弹出框</a>
+                    </h4>
+                </div>
+                <div id="collapse8" class="panel-collapse collapse" >
+                    <ul class="panel-body">
+                        <li><a href="">实例</a></li>
+                        <li><a href="">用法</a></li>
+                        <li><a href="">方法</a></li>
+                        <li><a href="">参数</a></li>
+                        <li><a href="">事件</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a href="#collapse9" data-toggle="collapse" data-parent="#accordion">警告框</a>
+                    </h4>
+                </div>
+                <div id="collapse9" class="panel-collapse collapse" >
+                    <ul class="panel-body">
+                        <li><a href="">警告框实例</a></li>
+                        <li><a href="">用法</a></li>
+                        <li><a href="">方法</a></li>
+                        <li><a href="">事件</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a href="#collapse10" data-toggle="collapse" data-parent="#accordion">按钮</a>
+                    </h4>
+                </div>
+                <div id="collapse10" class="panel-collapse collapse" >
+                    <ul class="panel-body">
+                        <li><a href="">Stateful</a></li>
+                        <li><a href="">Single toggle</a></li>
+                        <li><a href="">Checkbox/Radio</a></li>
+                        <li><a href="">方法</a></li>
+                       
+                    </ul>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a href="#collapse11" data-toggle="collapse" data-parent="#accordion">Collapse</a>
+                    </h4>
+                </div>
+                <div id="collapse11" class="panel-collapse collapse" >
+                    <ul class="panel-body">
+                        <li><a href="">实例</a></li>
+                        <li><a href="">Accordion example</a></li>
+                        <li><a href="">用法</a></li>
+                        <li><a href="">方法</a></li>
+                        <li><a href="">参数</a></li>
+                        <li><a href="">事件</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a href="#collapse12" data-toggle="collapse" data-parent="#accordion">Carousel</a>
+                    </h4>
+                </div>
+                <div id="collapse12" class="panel-collapse collapse" >
+                    <ul class="panel-body">
+                        <li><a href="">实例</a></li>
+                        <li><a href="">用法</a></li>
+                        <li><a href="">方法</a></li>
+                        <li><a href="">参数</a></li>
+                        <li><a href="">事件</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a href="#collapse13" data-toggle="collapse" data-parent="#accordion">Affix</a>
+                    </h4>
+                </div>
+                <div id="collapse13" class="panel-collapse collapse" >
+                    <ul class="panel-body">
+                        <li><a href="">实例</a></li>
+                        <li><a href="">用法</a></li>
+                        <li><a href="">方法</a></li>
+                        <li><a href="">参数</a></li>
+                        <li><a href="">事件</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

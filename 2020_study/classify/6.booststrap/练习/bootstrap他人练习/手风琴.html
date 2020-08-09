@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.0.js"></script>
+    <script type="text/javascript" src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="panel-group" id="accordion">
+        <div class="panel panel-default"><!-- 第一个容器 -->
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a href="#collapse1" data-toggle="collapse" data-parent="#accordion">第一部分</a>
+                </h4>
+            </div>
+            <div id="collapse1" class="panel-collapse collapse" > <!-- 折叠菜单的部分collapse:开始时先隐藏 -->
+                <div class="panel-body">第一部分内容</div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a href="#collapse2" data-toggle="collapse" data-parent="#accordion">第二部分</a>
+                </h4>
+            </div>
+            <div id="collapse2" class="panel-collapse collapse" > 
+                <div class="panel-body">第二部分内容</div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a href="#collapse3" data-toggle="collapse" data-parent="#accordion">第三部分</a>
+                </h4>
+            </div>
+            <div id="collapse3" class="panel-collapse collapse" >
+                <div class="panel-body">第三部分内容</div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a href="#collapse4" data-toggle="collapse" data-parent="#accordion">第四部分</a>
+                </h4>
+            </div>
+            <div id="collapse4" class="panel-collapse collapse" >
+                <div class="panel-body">第四部分内容</div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    console.log(0.1 + 0.2); //0.30000000000000004
+    //
+    console.log(Math.PI); //js数值只能 显示 18 个 字符
+    console.log(10.12345678910111213141516171819);
+
+    /*
+        解决小数 运算问题：
+            1.放大，在缩小
+            2.toFixed()
+    */
+    console.log((100.123412341234 * 10000 + 100.123412341234 * 10000) / 10000);
+    console.log((100.123412341234 + 100.123412341234).toFixed(13));
+    //精度只有 小数点后 12几位左右
+  </script>
+</html>

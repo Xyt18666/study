@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.css">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.0.js"></script>
+	<script type="text/javascript" src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	<style>
+		.row div{
+			height:50px;
+			border:1px solid red;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<!-- <div class="row">
+			<div class="col-lg-4 "></div>
+			<div class="col-lg-4 col-lg-offset-2"></div>
+			<div class="col-lg-4"></div>
+			<div class="col-lg-4"></div>
+			<div class="col-lg-4"></div>
+		</div> -->
+		<!-- 偏移会把后边的元素顶下去 -->
+		<!-- 排序不会吧别的元素顶下去想当于定位 -->
+		<!-- <div class="row">
+			<div class="col-lg-4"></div>
+			<div class="col-lg-4 col-lg-pull-2"></div>
+			<div class="col-lg-4 col-lg-push-2"></div>
+		</div> -->
+		<div style='border:1px solid blue' class='clearfix'>
+			<div class="left" style='height:30px;width:30px;background:red;float:left'>mm</div>
+			<!-- 打印时隐藏 -->
+			<div class="right hidden-md hidden-sm hidden-xs hidden-print" style='height:30px;width:30px;background:blue;float:right' >hello</div>
+		</div>
+		<div class="glyphicon glyphicon-search" style='color:red;font-size:60px'></div>
+	</div>
+</body>
+</html>

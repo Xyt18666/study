@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="../bootstrap-3.3.7-dist/js/jquery-2.1.1.min.js"></script>
+    <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <button data-toggle="modal" data-whatever="张三" data-target=".modal" class="btn btn-primary">张三打开模态框</button>
+    <button data-toggle="modal" data-whatever="赵四" data-target=".modal" class="btn btn-success">赵四打开模态框</button data-toggle="modal" data-target=".modal">
+    <button data-toggle="modal" data-whatever="刘能" data-target=".modal" class="btn btn-danger">刘能打开模态框</button>
+
+    <div class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="user">用户名</label>
+                        <input type="text" id="user" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="psw">密码</label>
+                        <input type="password" id="psw" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal">close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(".modal").on('show.bs.modal',function(e){
+            //模态框出来之前
+            //①找关联元素
+            let btn = e.relatedTarget;
+            //②找该元素上面的自定义属性data-whatever里面存放的信息
+            let info = $(btn).data('whatever');
+            console.log(info);
+
+            $(this).find("#user").val(info);
+        })
+    </script>
+</body>
+</html>

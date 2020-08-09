@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        img {
+            display: block;
+        }
+
+        .list {
+            width: 100vw;
+            height: 100vh;
+            box-sizing: border-box;
+            padding: 15px 10px 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            background: #ccc;
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-content: flex-start;
+        }
+
+        .list .item {
+            width: 45%;
+            height: 240px;
+            padding: 10px;
+            box-sizing: border-box;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .list .item .p-img {
+            width: 100%;
+            height: 140px;
+        }
+
+        .p-name {
+            font-size: 14px;
+        }
+
+        .p-weight,
+        .p-price {
+            font-size: 12px;
+            color: #423f3f;
+        }
+
+        .addCart {
+            width: 40px;
+            height: 30px;
+            border-radius: 5px;
+            background: orange;
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="list">
+        <!-- <li class="item">
+            <img class="p-img" src="./images/1.png" alt="">
+            <p class="p-name">西红柿</p>
+            <div class="p-dis">小时候的味道</div>
+            <div class="p-weight">约500克</div>
+            <span class="p-price">￥50.9</span>
+            <div class="addCart"></div>
+        </li>  -->
+    </ul>
+
+    <script src="./jquery-1.11.1.min.js"></script>
+    <script>
+        function getData(url) {
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: url,
+                    type: 'get',
+                    success: (res) => {
+                        resolve(res);
+                    }
+                })
+            })
+        }
+        getData('data.json').then((res) => {
+            $.each(res, (index, item) => {
+                $(`<li class="item">
+                    <img class="p-img" src="${item.img}" alt="">
+                    <p class="p-name">${item.name}</p>
+                    <div class="p-dis">${item.info}</div>
+                    <div class="p-weight">${item.weight}</div>
+                    <span class="p-price">￥${item.price}</span>
+                    <div class="addCart" data-index="${index}"></div>
+                </li> `).appendTo('.list')
+            })
+            console.log(res)
+            //加入购物车操作
+            // ①获取购物车
+            let cartData =JSON.parse(localStorage.getItem('cart')) || [];
+            $(document).on('click','.addCart',function(){
+                let index = $(this).attr('data-index');
+                console.log(index)
+                addToCart(res[index],cartData);
+                //数据中的当前对象，本地存储的所有数据
+            })
+        })
+
+        //封装将商品加入购物车的函数
+        function addToCart(obj,arr){
+            let _index = isHas(obj.id,arr);
+            //加入商品前需要判断该商品是否买过
+            if(_index==-1){
+                //没有该商品，需要新增
+                obj.count = 1;
+                obj.status = true;
+                arr.push(obj)
+            }else{
+                arr[_index].count++;
+            }
+            localStorage.setItem('cart',JSON.stringify(arr))
+        }
+
+        function isHas(id,arr){
+            //  id 和 本地存储的对象
+            let index = -1;
+            for(let i=0;i<arr.length;i++){
+                if(arr[i].id == id){
+                    index = i;
+                    break;
+                }
+            }
+            return index;
+        }
+
+
+        /* localStorage.setItem('info',JSON.stringify([{name:'zhangsan',age:20}]))
+        let infoData =JSON.parse(localStorage.getItem('info'));
+        console.log(infoData) */
+    </script>
+</body>
+
+</html>

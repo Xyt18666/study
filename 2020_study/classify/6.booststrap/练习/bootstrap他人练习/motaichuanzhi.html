@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	 <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.0.js"></script>
+    <script type="text/javascript" src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<button data-toggle='modal' data-target='#my' data-whatever='张三' class="btn btn-primary">张三</button>
+	<button data-toggle='modal' data-target='#my' data-whatever='李四' class="btn btn-success">李四</button>
+	<button data-toggle='modal' data-target='#my' data-whatever='王五' class="btn btn-danger">王五</button>
+	<div class="modal" id='my' tabindex='-1'>
+		<div class="modal-dialog" >
+			<div class="content">
+				<div class="modal-header">
+					<button type='button' class='close' data-dismiss='modal'></button>
+					 <h4 class="modal-title" id="my">New message</h4>
+
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="user">用户名</label>
+						<input type="text" id='user' class='form-control'>
+					</div>
+					<div class="form-group">
+						<label for="paw">密码</label>
+						<input type="text" id='paw' class='form-control'>
+					</div>
+					
+				</div>
+				<div class="modal-footer">
+					<button  data-dismiss='modal' class="btn primary">确定</button>
+					<button  data-dismiss='modal' class="btn btn-danger">取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type='text/javascript'>
+		$('.modal').on('show.bs.model',function(event){
+			var button=$(event.relatedTarget);
+			var recipient=button.data('whatever');
+
+			$(this).find('.modal-title').text('New message to'+recient);
+			$(this).find('modal-body input').val(recipient);
+		})
+	</script>
+</body>
+</html>

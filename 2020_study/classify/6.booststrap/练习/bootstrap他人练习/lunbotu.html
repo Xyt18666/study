@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+		<link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.css">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.0.js"></script>
+	<script type="text/javascript" src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		.carousel{
+			width:800px;
+			border:1px solid red;
+		}
+		.carousel-inner{
+			height:400px;
+			margin-bottom: 0;
+		}
+		img{
+			width:100%;
+			height:100%;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="carousel slide">
+			<ul class="carousel-inner">
+				<li class="item active">
+					<img src="img/1.png" alt="">
+					<div class="carousel-caption">致我们的晴川</div>
+				</li>
+
+				<li class="item">
+					<img src="img/2.png" alt="">
+					<div class="carousel-caption">等风来不如追风去</div>
+				</li>
+
+				<li class="item">
+					<img src="img/3.png" alt="">
+					<div class="carousel-caption">炸不炸</div>
+				</li>
+
+				<li class="item">
+					<img src="img/4.png" alt="">
+					<div class="carousel-caption">熟不熟</div>
+				</li>
+
+				<li class="item">
+					<img src="img/6.png" alt="">
+					<div class="carousel-caption">春雨贵如油</div>
+				</li>
+			</ul>
+			<a href="#" data-slide="prev" data-target=".carousel" class="carousel-control left">
+				<span class="glyphicon glyphicon-chevron-left"></span>
+			</a>
+			<a href="#" data-slide="next" data-target=".carousel" class="carousel-control right">
+				<span class="glyphicon glyphicon-chevron-right"></span>
+			</a>
+			<ul class="carousel-indicators">
+				<li data-target=".carousel" data-slide-to="0" class="active" ></li>
+				<li data-target=".carousel" data-slide-to="1"></li>
+				<li data-target=".carousel" data-slide-to="2"></li>
+				<li data-target=".carousel" data-slide-to="3"></li>
+				<li data-target=".carousel" data-slide-to="4"></li>			
+			</ul>
+		</div>
+	</div>
+	<button class="btn btn-primary">按钮</button>
+	<script>
+			$('.carousel').carousel({
+				interval:1000,
+				pause:'hover',
+				//是否无缝
+				wrap:true,
+				keyboard:false
+			})
+			$('.btn').click(function(){
+				$('.carousel').carousel()
+			})
+	</script>
+
+</body>
+</html>

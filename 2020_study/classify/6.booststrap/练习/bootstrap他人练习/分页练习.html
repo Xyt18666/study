@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.0.js"></script>
+    <script type="text/javascript" src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    
+</head>
+<body>
+    <div class="container">
+        <ul class="pagination pagination-lg">
+            <li class="disabled"><a href="javascript:;"><</a></li>
+            <li class="active"><a href="javascript:;">1</a></li>
+            <li><a href="javascript:;">2</a></li>
+            <li><a href="javascript:;">3</a></li>
+            <li><a href="javascript:;">4</a></li>
+            <li><a href="javascript:;">5</a></li>
+            <li><a href="javascript:;">></a></li>
+        </ul>
+    </div>
+    <script>
+        let len = $('.pagination li').length;
+        let iNow = 1;
+        $('.pagination li').click(function(){
+            $('.pagination li').removeClass('disabled');
+            let index = $(this).index();
+            if(index == 0){
+                $(".pagination li").eq(len-1).removeClass('disabled');
+                //点击左按钮
+                iNow--;
+                if(iNow <= 1){
+                    $(this).addClass('disabled');
+                    iNow = 1;
+                }
+                console.log(iNow);
+                $('.pagination li').eq(iNow).addClass('active').siblings().removeClass('active');
+                return;
+            }
+            if(index == len-1){
+                //点击右按钮
+                $('.pagination li').eq(0).removeClass('disabled');
+                iNow++;
+                if(iNow >= len-2){
+                    $(this).addClass('disabled');
+                    iNow = 5;
+                }
+                $('.pagination li').eq(iNow).addClass('active').siblings().removeClass('active');
+                return;
+            }
+            //当我点击第一页的时候，上一页按钮禁用
+            if(index == 1){
+                $(".pagination li").eq(0).addClass("disabled")
+            }
+            //当点击的是最后一页，那么右按钮禁用
+            if(index == len-2){
+                $(".pagination li").eq(len-1).addClass("disabled")
+            }
+            $(this).addClass('active').siblings().removeClass('active');
+            iNow  = index;
+        })
+    </script>
+</body>
+</html>

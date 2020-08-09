@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .wraper {
+        width: 100px;
+        height: 100px;
+        background: red;
+      }
+    </style>
+  </head>
+  <div class="wraper"></div>
+  <body></body>
+  <script>
+    class LikeButton {
+      constructor() {
+        this.state = { isLiked: false };
+      }
+
+      setState(state) {
+        this.state = state;
+        this.el = this.render();
+      }
+
+      changeLikeText() {
+        this.setState({
+          isLiked: !this.state.isLiked,
+        });
+      }
+
+      render() {
+        this.el = this.createDOMFromString(`
+                <button class='like-btn'>
+                <span class='like-text'>${
+                  this.state.isLiked ? "取消" : "点赞"
+                }</span>
+                <span></span>
+                <button>
+            `);
+        this.el.addEventListener(
+          "click",
+          this.changeLikeText.bind(this),
+          false
+        );
+        return this.el;
+      }
+      setState(state) {
+        const oldEl = this.el;
+        this.state = state;
+        this.el = this.render();
+        if (this.onStateChange) this.onStateChange(oldEl, this.el);
+      }
+      createDOMFromString(str) {
+        var objConstain = document.createElement("div");
+        objConstain.innerHTML = str;
+        return objConstain;
+      }
+    }
+    const likeButton = new LikeButton();
+    let wrapper = document.querySelector(".wraper");
+    wrapper.appendChild(likeButton.render()); // 第一次插入 DOM 元素
+    likeButton.onStateChange = (oldEl, newEl) => {
+      wrapper.insertBefore(newEl, oldEl); // 插入新的元素
+      wrapper.removeChild(oldEl); // 删除旧的元素
+    };
+  </script>
+
+  <html></html>
+</html>

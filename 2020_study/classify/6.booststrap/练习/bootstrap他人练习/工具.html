@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.css">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.0.js"></script>
+	<script type="text/javascript" src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container" style='padding-top:60px'>
+		<button title='提示按钮' data-toggle='tooltip' data-original-title='hello' class='btn btn-primary' data-placement='left'>按钮</button>
+		<button class="btn btn-danger btn-lg" id='btn' data-content='我是主体' data-toggle='popover' data-placement='top'>弹出</button>
+	</div>
+	<script>
+		// $('.btn').tooltip({
+		// 	placement:"bottom",
+		// 	trigger:'click',
+		// 	animation:'false'
+		// })
+		$('#btn').popover()
+	</script>
+</body>
+</html>

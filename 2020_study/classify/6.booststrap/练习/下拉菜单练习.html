@@ -26,39 +26,47 @@
         margin: 0;
         padding: 0;
       }
+      span {
+        display: inline-block;
+
+        width: 14px;
+        height: 14px;
+        background: url("https://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/8a/2018new_xin_org.png")
+          0 0 no-repeat;
+        background-size: 14px 14px;
+      }
     </style>
     <title>Document</title>
   </head>
   <body>
-    <div>
-      <!--    选项卡盒子   胶囊样式 -->
-      <ul class="nav nav-pills" role="tablist">
-        <li class="active">
-          <!-- 选项卡按钮    当前项-->
-          <a href="#home" data-toggle="tab">Home</a>
-          <!-- href为锚点式链接    toggle必须添加     -->
+    <div class="dropdown">
+      <button
+        class="btn btn-default dropdown-toggle"
+        type="button"
+        id="dropdownMenu1"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="true"
+      >
+        Dropdown
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <li>
+          <a href="#"> <span></span> Action</a>
+        </li>
+        <li role="separator" class="divider"></li>
+        <li>
+          <a href="#"> <span></span> Another action</a>
         </li>
         <li>
-          <a href="#profile" data-toggle="tab">Profile</a>
+          <a href="#"> <span></span> Something else here</a>
         </li>
+
         <li>
-          <a href="#messages" data-toggle="tab">Messages</a>
-        </li>
-        <li>
-          <a href="#settings" data-toggle="tab">Settings</a>
+          <a href="#"> <span></span> Separated link</a>
         </li>
       </ul>
-
-      <!--  选项盒子 -->
-      <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active fade in" id="home">
-          <!-- 子项    当前项   淡入淡出 淡出     指定id-->
-          ...1
-        </div>
-        <div role="tabpanel" class="tab-pane fade" id="profile">...2</div>
-        <div role="tabpanel" class="tab-pane fade" id="messages">...3</div>
-        <div role="tabpanel" class="tab-pane fade" id="settings">...4</div>
-      </div>
     </div>
   </body>
 

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.css">
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.0.js"></script>
+		<script type="text/javascript" src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+		<style>
+			.open{
+				margin-top:200px;
+			}
+			.dropdown-menu{
+				padding:0 10px;
+			}
+		</style>
+	</head>
+		<body>
+		<div class="container">
+			<div class="dropup open">
+			<button data-toggle='dropdown' class="dropdown-toggle">点击下拉列表</button>		
+			<ul class='dropdown-menu'>
+				<li class='dropdown-header'>标题</li>
+				<li>我</li>
+				<li>是</li>
+				<li>你好</li>
+				<li class='dropdown-header'>标题2</li>
+
+			</ul>
+		</div>
+		<div class="dropdown ">
+			<button class="dropdown-toggle btn btn-default" data-toggle='dropdown'>script&code <span class='caret'></span></button>
+			<ul class='dropdown-menu'>
+				<li class='dropdown-header text-center'>Most Popular</li>
+				<li class='divider'></li>
+				<li>PHP Scripts</li>
+				<li>javascripts</li>
+				<li>CSS</li>
+				<li>Python</li>
+				<li>java</li>
+				<li>Ruby</li>
+			</ul>
+		</div> 	
+	</div>
+	<script type='text/javascript'>
+		// $('.dropdown-toggle').dropdown();
+		$('.dropdown-toggle').mouseover(function(){
+			$('.dropdown-toggle').dropdown('toggle');
+		})
+		$('.dropdown').on('show.bs.dropdown',function(){
+			console.log('显示前')
+		})
+		$('.dropdown').on('shown.bs.dropdown',function(){
+			console.log('显示后')
+		})
+		$('.dropdown').on('hide.bs.dropdown',function(){
+			console.log('隐藏前')
+		})
+		$('.dropdown').on('hidden.bs.dropdown',function(){
+			console.log('隐藏后')
+		})
+	</script>
+	</body>
+</html>		

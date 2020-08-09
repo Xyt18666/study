@@ -41,6 +41,7 @@
       <div class="container-fluid">
         <!-- 流式布局盒子 -->
         <div class="navbar-header">
+          <!-- 最左侧 logo 盒子 -->
           <button
             type="button"
             class="navbar-toggle collapsed"
@@ -49,9 +50,12 @@
             aria-expanded="false"
           >
             <!-- 最小屏幕下的下拉菜单按钮 -->
+            <!-- 按钮 navbar-header   -->
 
             <span class="sr-only">Toggle navigation</span>
+            <!--溢出隐藏 -->
             <span class="icon-bar"></span>
+            <!-- 按钮内的横条 -->
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
@@ -62,14 +66,17 @@
         <!-- 收集导航链接、表单和其他用于切换的内容 -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-static-top">
+            <!-- 导航列表 -->
+
             <!-- 导航菜单 -->
             <li class="active">
+              <!-- 当前项 active -->
               <a href="#">Link <span class="sr-only">(current)</span></a>
             </li>
             <!-- 两个小按钮 -->
             <li><a href="#">Link</a></li>
             <li class="dropdown">
-              <!-- 下拉列表按钮 -->
+              <!-- 定义下拉列表 -->
               <a
                 href="#"
                 class="dropdown-toggle"
@@ -77,8 +84,12 @@
                 role="button"
                 aria-haspopup="true"
                 aria-expanded="false"
-                >Dropdown <span class="caret"></span
-              ></a>
+                >Dropdown
+                <span class="caret"></span>
+                <!-- 小三角 -->
+              </a>
+              <!-- 下拉列表按钮   class="dropdown-toggle" data-toggle="dropdown" -->
+
               <ul class="dropdown-menu">
                 <!-- 下拉列表项 -->
                 <li><a href="#">Action</a></li>
@@ -86,9 +97,11 @@
                 <li><a href="#">Something else here</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="#">Separated link</a></li>
+                <!-- 分割线 -->
                 <li role="separator" class="divider"></li>
                 <li><a href="#">One more separated link</a></li>
               </ul>
+              111
             </li>
           </ul>
           <form class="navbar-form navbar-left">
@@ -98,12 +111,13 @@
               <input type="text" class="form-control" placeholder="Search" />
             </div>
             <button type="submit" class="btn btn-default">Submit</button>
-            <!-- 提交按钮 -->
+            <!-- 提交按钮   按钮基础类   按钮默认样式-->
           </form>
           <ul class="nav navbar-nav navbar-right">
-            <!-- 导航右列表项 -->
+            <!-- 导航右列表项   右浮动  -->
             <li><a href="#">Link</a></li>
             <li class="dropdown">
+              <!-- 下拉列表 -->
               <a
                 href="#"
                 class="dropdown-toggle"
@@ -131,35 +145,7 @@
   </body>
   <script>
     /*
-    导航条：
-        基类：navbar
-        样式：
-            navbar-default  默认
-            navbar-inverse  深色
-
-        导航条里面菜单类名：nav navbar-nav
-
-        去除导航条圆角 ：navbar-static-top
-
-        导航条固定定位到头部：  navbar-fixed-top     
-
-        导航条固定定位到底部 ：navbar-fixed-bottom
-
-        导航条添加logo : navbar-brand
-
-        logo标签的父级元素 : navbar-header
-
-        导航菜单的浮动 : navbar-left    navbar-right
-
-        导航条添加按钮 : navbar-btn
-
-        导航条添加链接 : navbar-link
-
-        导航条添加文字 : navbar-text
-
-        导航条添加表单 : form表单添加navbar-form
-
-
+   
 
 
 

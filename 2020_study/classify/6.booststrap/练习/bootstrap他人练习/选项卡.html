@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.css">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.0.js"></script>
+	<script type="text/javascript" src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+
+		<ul class="nav nav-tabs">
+			<li class='active'><a href="#">html</a></li>
+			<li><a href="">css</a></li>
+			<li><a href="">javascript</a></li>
+		</ul>
+
+		<ul class="nav nav-justified">
+			<li class='active'><a href="">html</a></li>
+			<li><a href="">css</a></li>
+			<li><a href="">javascript</a></li>
+		</ul>
+
+		<ul class="nav nav-tabs nav-tabs-justified">
+			<li class='active'><a href="">html</a></li>
+			<li><a href="">css</a></li>
+			<li><a href="">javascript</a></li>
+		</ul>
+
+		<ul class="nav nav-pills">
+			<li class='active' data-toggle='tab'><a href="">html</a></li>
+			<li data-toggle='tab'><a href="">css</a></li>
+			<li data-toggle='tab'><a href="">javascript</a></li>
+		</ul>
+		<ul class="nav nav-pills nav-justified">
+			<li class='active' data-toggle='tab'><a href="">html</a></li>
+			<li data-toggle='tab'><a href="">css</a></li>
+			<li data-toggle='tab'><a href="">javascript</a></li>
+		</ul>
+		<ul class="nav nav-pills nav-stacked">
+			<li class='active' data-toggle='tab'><a href="">html</a></li>
+			<li data-toggle='tab'><a href="">css</a></li>
+			<li data-toggle='tab'><a href="">javascript</a></li>
+		</ul>
+		<ul class="nav nav-pills">
+			<li class='active' data-toggle='tab'><a href="">html</a></li>
+			<li data-toggle='tab' class='dropdown'>
+				<a href="" class='dropdown-toggle' data-toggle='dropdown'>css
+					<span class='caret'></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li>1</li>
+					<li>2</li>
+					<li>3</li>
+				</ul>
+			</li>
+			<li data-toggle='tab'><a href="">javascript</a></li>
+		</ul>
+	</div>
+	<div class="container" style='width:50%'>
+		<ul class="nav nav-pills">
+			<li data-target='#one' class='active' data-toggle='tab'><a href="">1</a></li>
+			<li data-target='#two' data-toggle='tab'><a href="">2</a></li>
+			<li data-target='#three' data-toggle='tab'><a href="">3</a></li>
+		</ul>
+		<ul class="tab-content">
+			<div class="tab-pane fade in active" id='one'>第一个</div>
+			<div class="tab-pane fade" id='two'>第二个</div>
+			<div class="tab-pane fade" id='three'>第三个</div>
+		</ul>
+	</div>
+</body>
+</html>

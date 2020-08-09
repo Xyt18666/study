@@ -26,47 +26,55 @@
         margin: 0;
         padding: 0;
       }
+      .panel {
+        width: 400px;
+      }
+      label {
+        width: 100%;
+        margin: 0 auto;
+      }
+      label input {
+        width: 100%;
+        outline: none;
+        height: 36px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      .logo {
+        padding-top: 20px;
+      }
     </style>
     <title>Document</title>
   </head>
   <body>
-    <div>
-      <!--    选项卡盒子   胶囊样式 -->
-      <ul class="nav nav-pills" role="tablist">
-        <li class="active">
-          <!-- 选项卡按钮    当前项-->
-          <a href="#home" data-toggle="tab">Home</a>
-          <!-- href为锚点式链接    toggle必须添加     -->
-        </li>
-        <li>
-          <a href="#profile" data-toggle="tab">Profile</a>
-        </li>
-        <li>
-          <a href="#messages" data-toggle="tab">Messages</a>
-        </li>
-        <li>
-          <a href="#settings" data-toggle="tab">Settings</a>
-        </li>
-      </ul>
-
-      <!--  选项盒子 -->
-      <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active fade in" id="home">
-          <!-- 子项    当前项   淡入淡出 淡出     指定id-->
-          ...1
-        </div>
-        <div role="tabpanel" class="tab-pane fade" id="profile">...2</div>
-        <div role="tabpanel" class="tab-pane fade" id="messages">...3</div>
-        <div role="tabpanel" class="tab-pane fade" id="settings">...4</div>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h2 class="panel-title">登陆</h2>
+      </div>
+      <div class="panel-body">
+        <form action="#" mdethod="get">
+          <label>
+            <p>用户名:</p>
+            <input type="text" />
+          </label>
+          <label>
+            <p>密码:</p>
+            <input type="password" />
+          </label>
+          <div class="logo">
+            <p class="pull-left"><a href="#">忘记密码?</a></p>
+            <input type="submit" class="btn btn-success pull-right" />
+          </div>
+        </form>
       </div>
     </div>
   </body>
 
   <script>
     /*
-      
-      
-      
+
+
+
       */
   </script>
 </html>

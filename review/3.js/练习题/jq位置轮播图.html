@@ -125,7 +125,7 @@
         );
       });
       indexs++;
-      index = indexs > 6 ? 0 : index;
+      indexs = indexs > 6 ? 0 : indexs;
       tab(indexs);
     });
 
@@ -170,5 +170,26 @@
           background: "#000",
         });
     }
+    $(".dd p ").click(function () {
+      let thisIndex = $(this).index();
+      let cz = indexs - thisIndex;
+      console.log(cz);
+      if (cz > 0) {
+        // 左
+        for (let a = cz; a > 0; a--) {
+          $(".le").click();
+        }
+      } else {
+        // 右
+        for (let a = cz; a < 0; a++) {
+          $(".ri").click();
+        }
+      }
+    });
+
+    // 判断点击的下标是几
+    // 获取当前的下标
+    // 判断差值
+    // 遍历差值次数执行  左右点击
   </script>
 </html>
