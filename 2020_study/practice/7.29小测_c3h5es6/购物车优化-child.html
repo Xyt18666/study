@@ -23,121 +23,193 @@
       img {
         width: 30%;
       }
+      .select-icon {
+        width: 20px;
+        height: 20px;
+      }
     </style>
   </head>
   <body>
     <div class="wrap">
-      <input type="checkbox" class="qx" />
+      <img src="1801A模拟考/images/01.jpg" alt="" class="qx" />
       <ul></ul>
       <h3 class="zj">总价<span>0</span></h3>
       <h4 class="zs">总数<span>0</span></h4>
     </div>
   </body>
   <script>
-    window.addEventListener("storage", function (e) {});
-    let data = JSON.parse(window.localStorage.getItem("car")) || [];
+    let data = JSON.parse(window.localStorage.getItem("car"));
     let ls = window.localStorage;
     // console.log(data);
 
-    for (let a = 0; a < data.length; a++) {
-      $("ul").append(`<li indexs=${data[a].value}>
-              <input type="checkbox">
-          <img src=${"1801A模拟考/" + data[a].img} alt="" />
-          <h3>${data[a].name}</h3>
-          <p>${data[a].info}</p>
-          <p>${data[a].weight}</p>
-          <h4>￥<span>${data[a].price}</span> </h4>
-          <h4>单品总价<i>${data[a].price * data[a].num}</i> </h4>
+    /*
+点击加减： 控制 数量 小计 总价总数
+
+点击全选：改变当前按钮状态，以及全部状态
+
+点击单选，修改当前状态
+
+判断全选状态： 选中项 等于 总数项
+
+
+封装修改本地存储的方法
+计算总价封装成方法
+
+
+*/
+
+    $.each(data, (index, item) => {
+      $("ul").append(`<li indexs=${item.value}>
+        <img src="${
+          item.ckeck ? "1801A模拟考/images/02.jpg" : "1801A模拟考/images/01.jpg"
+        }" alt="" class="select-icon">
+             
+          <img src=${"1801A模拟考/" + item.img} alt="" />
+          <h3>${item.name}</h3>
+          <p>${item.info}</p>
+          <p>${item.weight}</p>
+          <h4>￥<span>${item.price}</span> </h4>
+          <h4>单品总价<i>${(item.price * item.num).toFixed(2)}</i> </h4>
           <div class="num">
           <p>+</p>
-          <span>${data[a].num}</span>
+          <span>${item.num}</span>
           <p>-</p>
           <h6>删除</h6>
         </div>
         </li>`);
-    }
+    });
 
     $("p:contains(+)").click(function () {
-      var dj = $(this).parents("li").find("h4 span").text() - 0;
-      var sl = $(this).parents("li").find("p:contains(+)+span").text() - 0;
-      // console.log(dj, sl);
-      $(this)
-        .parents("li")
-        .find("p:contains(+)+span")
-        .text(++sl);
-      $(this)
-        .parents("li")
-        .find("h4 i")
-        .text(parseInt(dj * sl));
-      getMoy();
-      var rId = $(this).parents(" li").attr("id");
-      //获取当前商品的 ip
-      ls.setItem("con" + rId, sl);
-      data.find(
-        (item) => item.value == $(this).parents("li").attr("indexs")
-      ).num = sl;
-
-      //设置当前商品的数量
-      localStorage.setItem("car", JSON.stringify(data));
-
-      var sps = ls.getItem("sps") || 0;
-      ls.setItem("sps", ++sps);
+      zs($(this), +1);
     });
     $("p:contains(-)").click(function () {
-      var dj = $(this).parents("li").find("h4 span").text() - 0;
-      var sl = $(this).parents("li").find("p:contains(+)+span").text() - 0;
+      zs($(this), -1);
+    });
 
-      sl = sl <= 1 ? 1 : --sl;
-      console.log(sl);
-      $(this).parents("li").find("p:contains(+)+span").text(sl);
-      $(this)
+    function zs(obj, num) {
+      //加减封装
+      var dj = obj.parents("li").find("h4 span").text() - 0;
+      var sl = obj.parents("li").find("p:contains(+)+span").text() - 0;
+
+      sl += num;
+      sl = sl <= 1 ? 1 : sl;
+      obj.parents("li").find("p:contains(+)+span").text(sl);
+      obj
         .parents("li")
         .find("h4 i")
-        .text(parseInt(dj * sl));
-      getMoy();
-
-      var rId = $(this).parents(" li").attr("id");
+        .text((dj * sl).toFixed(2));
+      var rId = obj.parents(" li").attr("id");
       //获取当前商品的 ip
       data.find(
-        (item) => item.value == $(this).parents("li").attr("indexs")
+        (item) => item.value == obj.parents("li").attr("indexs")
       ).num = sl;
-      localStorage.setItem("car", JSON.stringify(data));
-      //设置当前商品的数量
 
+      cc();
+      spzs(num);
+      getTotal();
+    }
+    function cc() {
+      localStorage.setItem("car", JSON.stringify(data));
+    }
+    function spzs(num) {
+      // 商品总数
       var sps = ls.getItem("sps") || 0;
-      sps--;
+      sps += num;
       sps = sps <= 1 ? 1 : sps;
       ls.setItem("sps", sps);
+    }
+
+    $(".select-icon").click(function () {
+      let id = $(this).parents("li").attr("indexs");
+      let _index = data.findIndex((item) => item.value == id);
+      data[_index].ckeck = !data[_index].ckeck;
+
+      $(this).attr(
+        "src",
+        `${
+          data[_index].ckeck
+            ? "1801A模拟考/images/02.jpg"
+            : "1801A模拟考/images/01.jpg"
+        }`
+      );
+
+      //控制全选
+      let xzData = data.filter((item) => item.ckeck == true);
+      $(".qx").attr(
+        "src",
+        `${
+          data.length == xzData.length
+            ? "1801A模拟考/images/02.jpg"
+            : "1801A模拟考/images/01.jpg"
+        }`
+      );
+      qxk();
+      cc();
+      getTotal();
     });
+
+    //初始化全选
+    qxk();
+    function qxk() {
+      let xzData = data.filter((item) => item.ckeck == true);
+      let allStatus = data.length == xzData.length;
+      $(".qx").attr(
+        "src",
+        `${
+          allStatus ? "1801A模拟考/images/02.jpg" : "1801A模拟考/images/01.jpg"
+        }`
+      );
+    }
+    getTotal();
+    //初始化
 
     $(".qx").click(function () {
-      $("li input").prop("checked", $(".qx").prop("checked"));
-      getMoy();
+      qxk();
+      let xzData = data.filter((item) => item.ckeck == true);
+      let allStatus = data.length == xzData.length;
+      allStatus = !allStatus;
+      //更新页面
+      $(".select-icon,.qx").attr(
+        "src",
+        `${
+          allStatus ? "1801A模拟考/images/02.jpg" : "1801A模拟考/images/01.jpg"
+        }`
+      );
+      console.log(data);
+      data.map((item) => (item.ckeck = allStatus));
+      cc();
+      getTotal();
     });
-    $("li input").click(function () {
-      var inp = $("li input").length;
-      var cinp = $("li input:checked").length;
-      $(".qx").prop("checked", inp == cinp);
-      getMoy();
-    });
+
+    function getTotal() {
+      let xzData = data.filter((item) => item.ckeck == true);
+      let totalNum = 0;
+      let totalPrice = 0;
+      $.each(xzData, (index, item) => {
+        totalNum += item.num;
+        totalPrice += parseFloat((item.num * item.price).toFixed(2));
+      });
+      $("h3.zj").text(totalPrice.toFixed(2) + "元");
+      $("h4.zs").text(totalNum);
+    }
 
     $("li h6").click(function () {
-      $(this).parents("li").remove();
-      getMoy();
-      var rr = $(this).attr("id");
-
+      var rr = $(this).parents("li").attr("indexs");
       var sps = ls.getItem("sps") || 0;
       //获取总数
-      var tsl = data[$(this).parents("li").attr("indexs")].num;
+      let _index = data.findIndex((item) => item.value == rr);
+
+      var tsl = data[_index].num;
       //获取当前商品数量
       ls.setItem("sps", sps - tsl);
       //总数- 当前商品数量
 
       //删除的时候 删除 当前的商品数据
       let xb = data.findIndex((item) => item.value);
-      console.log(xb);
       data.splice(xb, 1);
-      localStorage.setItem("car", JSON.stringify(data));
+      $(this).parents("li").remove();
+      getTotal();
+      cc();
     });
 
     $(window).on({
@@ -145,16 +217,5 @@
         location.reload();
       },
     });
-    function getMoy() {
-      var xz = $("li input:checked");
-      var zj = 0;
-      var sl = 0;
-      for (var a = 0; a < xz.length; a++) {
-        zj += $(xz[a]).parents("li").find("h4 span").text() - 0;
-        sl += $(xz[a]).parents("li").find(".num span").text() - 0;
-      }
-      $("h3.zj").text(parseInt(zj));
-      $("h4.zs").text(sl);
-    }
   </script>
 </html>

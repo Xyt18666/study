@@ -392,22 +392,19 @@
     {
       // promise 封装 $.ajax
 
-      function jqAjax(){
+      function jqAjax(json) {
         let url = json.url;
         let type = json.type || "get";
         let data = json.data || {};
-        return new Promise((res,reg)=>{
+        return new Promise((res, reg) => {
           $.ajax({
-            url:url,
-            data:data,
-            tupe:type,
-            success:{
-              res()
-            }
-          })
-        })
+            url: url,
+            data: data,
+            tupe: type,
+            success: res,
+          });
+        });
       }
-
     }
 
     {

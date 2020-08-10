@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 50px;
+        height: 200px;
+        background: #951;
+      }
+      .con {
+        width: 90%;
+        height: 300px;
+        overflow: scroll;
+      }
+      *::-webkit-scrollbar {
+        /* display: none; */
+        width: 0;
+        height: 0;
+        background: transparent;
+      }
+      *::-webkit-scrollbar {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="con">
+      <div class="box">1</div>
+      <div class="box">2</div>
+      <div class="box">3</div>
+      <div class="box">4</div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+    <!-- 
+        整个盒子不能超过设备可视区
+
+        然后在设置 -webkit-scrollbar
+    
+    -->
+  </body>
+</html>

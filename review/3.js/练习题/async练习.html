@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .box {
+        width: 50px;
+        height: 50px;
+        background: #798;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">123</div>
+  </body>
+  <script>
+    /*
+    分别用Promise、Genertor函数和saync编写程序实现：
+        假定某个 DOM 元素上面，部署了一系列的动画，前一个动画结束，才能开始后一个。如果当中有一个动画出错，就不再往下执行，返回上一个成功执行的动画的返回值。
+
+    */
+    {
+      //   move(document.querySelector(".box"), {
+      //     width: 200,
+      //     height: 50,
+      //     opacity: 50,
+      //   }).then(
+      //     () => {
+      //       return Promise.reject().then(
+      //         () => {
+      //           return move(document.querySelector(".box"), {
+      //             width: 200,
+      //             height: 200,
+      //             opacity: 50,
+      //           }).then(
+      //             (e) => {
+      //               return console.log(e, "第三次成功");
+      //             },
+      //             (e) => {
+      //               console.log(e, "第三次错误");
+      //             }
+      //           );
+      //         },
+      //         (e) => {
+      //           console.log(e, "第二次错误");
+      //         }
+      //       );
+      //     },
+      //     (e) => {
+      //       console.log(e, "第一次错误");
+      //     }
+      //   );
+    }
+    {
+      function* g() {
+        let a = yield log(ele, {
+          width: 600,
+        });
+
+        let b = yield log(ele, {
+          height: 600,
+        });
+      }
+      let ge = g();
+      let ele = document.querySelector(".box");
+
+      function log(ele, obj) {
+        move(ele, obj).then((res) => {
+          ge.next();
+        });
+        //运动，成功的回调，在调用next()
+      }
+      ge.next();
+      //执行第一次 log函数
+    }
+    {
+      //   async function yd() {
+      //     let a = await move(document.querySelector(".box"), {
+      //       width: 200,
+      //       height: 50,
+      //       opacity: 50,
+      //     });
+      //     console.log(a);
+      //     let b = await move(document.querySelector(".box"), {
+      //       width: 200,
+      //       height: 100,
+      //       opacity: 50,
+      //     });
+      //     console.log(b);
+      //     let d = new Promise.reject();
+      //     console.log(d);
+      //     let c = await move(document.querySelector(".box"), {
+      //       width: 200,
+      //       height: 200,
+      //       opacity: 50,
+      //     });
+      //     console.log(c);
+      //   }
+      //   yd().then(
+      //     (e) => {
+      //       console.log("成功");
+      //     },
+      //     (e) => {
+      //       console.log("失败");
+      //     }
+      //   );
+    }
+
+    function move(obj, json) {
+      return new Promise((res, rej) => {
+        clearInterval(obj.dsq);
+        //清除定时器，防止定时器叠加
+        var speed = 0,
+          thStle = 0;
+        //定义速度和属性
+
+        obj.dsq = setInterval(function () {
+          // 开启定时器
+          var onOff = true;
+          //定义状态
+          for (key in json) {
+            //遍历属性对象
+            thStle =
+              key == "opacity"
+                ? parseFloat(getStyle(obj, key)) * 100
+                : parseInt(getStyle(obj, key));
+            //获取属性值，兼容 opcity
+
+            speed = (json[key] - thStle) / 20;
+            //定义速度
+
+            console.log(2222);
+
+            speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+            //速度正向反向取整，防止 定时器不能结束
+
+            if (thStle != json[key]) {
+              //如果 当前的属性 为达到终点
+              onOff = false;
+              //修改状态
+
+              thStle += speed;
+              // 值 的 递增
+
+              if (key == "opacity") {
+                // 赋值 兼容 opacity
+                obj.style["opacity"] = thStle / 100;
+                obj.style.filter = "alpha(opacity=" + thStle + ")";
+              } else {
+                obj.style[key] = thStle + "px";
+              }
+            }
+          }
+          if (onOff) {
+            //判断状态，结束定时器
+
+            res();
+            clearInterval(obj.dsq);
+            //回调
+          }
+        }, 20);
+      });
+    }
+
+    function getStyle(obj, attr) {
+      //获取非行间样式
+      return obj.currentStyle
+        ? obj.currentStyle[attr]
+        : getComputedStyle(obj, null)[attr];
+    }
+  </script>
+</html>
