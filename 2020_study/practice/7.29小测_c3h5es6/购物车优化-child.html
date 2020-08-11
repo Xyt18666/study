@@ -43,17 +43,7 @@
     // console.log(data);
 
     /*
-点击加减： 控制 数量 小计 总价总数
 
-点击全选：改变当前按钮状态，以及全部状态
-
-点击单选，修改当前状态
-
-判断全选状态： 选中项 等于 总数项
-
-
-封装修改本地存储的方法
-计算总价封装成方法
 
 
 */
@@ -199,14 +189,15 @@
       //获取总数
       let _index = data.findIndex((item) => item.value == rr);
 
+      console.log(_index);
       var tsl = data[_index].num;
       //获取当前商品数量
       ls.setItem("sps", sps - tsl);
       //总数- 当前商品数量
 
       //删除的时候 删除 当前的商品数据
-      let xb = data.findIndex((item) => item.value);
-      data.splice(xb, 1);
+
+      data.splice(_index, 1);
       $(this).parents("li").remove();
       getTotal();
       cc();

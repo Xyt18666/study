@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    /*
+
+
+
+
+
+
+
+
+
+
+
+    */
+    {
+      //为对象添加属性和方法
+      let obj = new Object();
+      obj.name = "xx";
+      obj.jn = function () {
+        console.log("111");
+      };
+    }
+    {
+      //封装函数 ， 为对象添加属性和方法 ，工厂模式创建 自定义对象
+      function pers(name, jn) {
+        let obj = new Object();
+        obj.name = name;
+        obj.jn = function () {
+          console.log(jn);
+        };
+        return obj;
+      }
+      let newobj = pers("小黑", "连斩");
+      console.log(newobj);
+      newobj.jn();
+      //缺点：工厂模式相同的方法存在多份，浪费内存，性能不好
+    }
+    {
+      let obj = new Object();
+      let date = new Array();
+      /*
+        
+        系统创建对象是 面向对象
+        首字母大写
+        构造函数
+        */
+    }
+    {
+      /*
+        
+         new 关键字的作用 :
+            1. 函数内部自动创建一个对象 this ，   省略了： let obj = new Object();
+            2. 隐式 return 这个对象   ，   省略了： return obj;
+            3. this指向 创建时 的 对象。
+        
+        */
+    }
+    {
+      // 改进后的 构造函数
+      function Fn(name, jn) {
+        this.name = name;
+        this.jn = function () {
+          console.log(jn);
+        };
+      }
+      let newobj = new Fn("鬼吞", "天火怒炎");
+      console.log(newobj.name);
+      let newobj2 = new Fn("不知火", "二形态");
+      console.log(newobj2.name);
+
+      console.log(newobj.name == newobj2.name); //false
+      console.log(newobj.jn == newobj2.jn); //false
+      //虽然是使用同一个构造函数创建,但是他们所属的对象不同，会在不同的对象下创建一个函数，所以为false
+    }
+    {
+      Fn.prototype = {
+        //为 fn原型添加方法
+        constructor: "Fn",
+        eat: function () {
+          console.log("吃东西");
+        },
+        sleep: function () {
+          console.log("睡觉");
+        },
+      };
+
+      function Fn2(name, jn, xx) {
+        Fn.call(this, name, jn);
+        //通过借用构造函数继承属性
+        //解决原型继承属性值相同的缺陷
+        this.xx = xx;
+      }
+      Fn2.prototype = new Fn();
+      //通过原型继承方法，并未初始化属性
+      
+      let fn2 = new Fn2("茶几", "永夜无眠", "168");
+      console.dir(fn2);
+      fn2.jn();
+    }
+  </script>
+</html>
