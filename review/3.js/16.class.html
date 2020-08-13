@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    /*
+
+
+*/
+    {
+      class Cf1 {
+        constructor(name) {
+          //构造函数本身
+          this.name = name; //实例属性
+          this.func = function () {
+            //实例方法
+            console.log("实例方法");
+          };
+        }
+        fn() {
+          //定义在原型上的方法
+          console.log(this.name); //this是实例对象
+        }
+        static ok = "okk"; //静态属性
+        static jtsx() {
+          //静态方法
+          console.log("这是静态方法", this.ok); //this是构造函数
+        }
+      }
+      Cf1.prototype.sex = "男"; //原型属性
+
+      //class本身 没有 实例方法 和 原型属性 的优化写法，也不是实用的属性
+
+      let fn1 = new Cf1("蓝猫");
+      console.dir(Cf1);
+      Cf1.jtsx();
+      console.log(fn1);
+      //--------------------------------------------------
+      class Per extends Cf1 {
+        // 子类Per 继承 父类Cf1
+        constructor(name, n, b) {
+          super(name); //调用父类 Cf1
+          this.b = b;
+          this.n = n;
+        }
+      }
+
+      let fn2 = new Per("蓝猫2", "未知", "饿了");
+      console.log(fn2);
+      console.log(Per.ok); //继承了 静态属性
+      Per.jtsx(); //继承了 静态方法
+
+      console.log(fn2.name); //继承了 实例属性 和 方法
+      fn2.func();
+
+      console.log(fn2.sex); //继承了 原型属性 和 方法
+      fn2.fn();
+    }
+  </script>
+</html>

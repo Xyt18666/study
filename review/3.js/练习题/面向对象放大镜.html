@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .le {
+        width: 400px;
+        height: 330px;
+        float: left;
+        margin-right: 50px;
+      }
+      .ri {
+        width: 600px;
+        height: 400px;
+      }
+      .le {
+        border: 2px solid red;
+        position: relative;
+      }
+      .le img {
+        width: 400px;
+        height: 330px;
+        display: block;
+      }
+      .le .mask {
+        /*			width: 100px;
+			height: 100px;*/
+        background: rgba(0, 0, 0, 0.3);
+        position: absolute;
+        display: none;
+      }
+      .ri {
+        border: 2px solid #0f0;
+        overflow: hidden;
+        position: relative;
+        display: none;
+      }
+      .ri img {
+        width: calc(800px * 2);
+        height: calc(660px * 2);
+        display: block;
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="le">
+      <div class="mask"></div>
+      <img src="images/1.jpg" alt="" />
+    </div>
+    <div class="ri">
+      <img src="images/1.jpg" alt="" />
+    </div>
+  </body>
+  <script type="text/javascript">
+    function ScaleBox(lbox, rbox) {
+      this.lbox = lbox;
+      this.rbox = rbox;
+      this.mouseove();
+      this.mousemov();
+      this.mouseou();
+    }
+    ScaleBox.prototype = {
+      mouseove() {
+        let that = this;
+        $(that.lbox).mouseover(function () {
+          $(that.lbox).children(".mask").css("display", "block");
+          $(that.rbox).css("display", "block");
+          var w =
+            ($(that.rbox).width() / $(that.rbox).children("img").width()) *
+            $(that.lbox).width();
+          var h =
+            ($(that.rbox).height() / $(that.rbox).children("img").height()) *
+            $(that.lbox).height();
+
+          $(that.lbox).children(".mask").css({
+            width: w,
+            height: h,
+          });
+        });
+      },
+      mousemov() {
+        let that = this;
+        $(document).mousemove(function (e) {
+          var x =
+            e.pageX -
+            $(that.lbox).offset().left -
+            $(that.lbox).children(".mask").width() / 2;
+          var y =
+            e.pageY -
+            $(that.lbox).offset().top -
+            $(that.lbox).children(".mask").height() / 2;
+
+          x = x < 0 ? 0 : x;
+          y = y < 0 ? 0 : y;
+
+          x =
+            x > $(that.lbox).width() - $(that.lbox).children(".mask").width()
+              ? $(that.lbox).width() - $(that.lbox).children(".mask").width()
+              : x;
+
+          y =
+            y > $(that.lbox).height() - $(that.lbox).children(".mask").height()
+              ? $(that.lbox).height() - $(that.lbox).children(".mask").height()
+              : y;
+
+          $(that.lbox).children(".mask").css({
+            left: x,
+            top: y,
+          });
+
+          var xbl =
+            ($(that.rbox).children("img").width() - $(".ri").width()) /
+            ($(that.lbox).width() - $(that.lbox).children(".mask").width());
+          var ybl =
+            ($(that.rbox).children("img").height() - $(".ri").height()) /
+            ($(that.lbox).height() - $(that.lbox).children(".mask").height());
+
+          console.log($(that.lbox).children(".mask").width());
+
+          var blx = -x * xbl;
+
+          var bly = -y * ybl;
+
+          $(that.rbox).children("img").css({
+            left: blx,
+            top: bly,
+          });
+        });
+      },
+      mouseou() {
+        let that = this;
+
+        $(that.lbox).mouseout(function () {
+          $(that.lbox).children(".mask").css("display", "none");
+          $(that.rbox).css("display", "none");
+        });
+      },
+    };
+    window.onload = function () {
+      new ScaleBox(".le", ".ri");
+    };
+  </script>
+</html>

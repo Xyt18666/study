@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    /*
+
+
+
+
+
+
+
+
+
+
+
+    */
+    {
+      //为对象添加属性和方法
+      let obj = new Object();
+      obj.name = "xx";
+      obj.jn = function () {
+        console.log("111");
+      };
+    }
+    {
+      //封装函数 ， 为对象添加属性和方法 ，工厂模式创建 自定义对象
+      function pers(name, jn) {
+        let obj = new Object();
+        obj.name = name;
+        obj.jn = function () {
+          console.log(jn);
+        };
+        return obj;
+      }
+      let newobj = pers("小黑", "连斩");
+      console.log(newobj);
+      newobj.jn();
+      //缺点：工厂模式相同的方法存在多份，浪费内存，性能不好
+    }
+    {
+      let obj = new Object();
+      let date = new Array();
+      /*
+
+        系统创建对象是 面向对象
+        首字母大写
+        构造函数
+        */
+    }
+    {
+      /*
+
+         new 关键字的作用 :
+            1. 函数内部自动创建一个对象 this ，   省略了： let obj = new Object();
+            2. 隐式 return 这个对象   ，   省略了： return obj;
+            3. this指向 创建时 的 对象。
+            4. 会使 实例对象__proto___ 指向 构造函数的原型对象prototype
+
+        */
+    }
+    {
+      // 改进后的 构造函数
+      function Fn(name, jn) {
+        this.name = name;
+        this.jn = function () {
+          console.log(jn);
+        };
+      }
+      let newobj = new Fn("鬼吞", "天火怒炎");
+      console.log(newobj.name);
+      let newobj2 = new Fn("不知火", "二形态");
+      console.log(newobj2.name);
+
+      console.log(newobj.name == newobj2.name); //false
+      console.log(newobj.jn == newobj2.jn); //false
+      //虽然是使用同一个构造函数创建,但是他们所属的对象不同，会在不同的对象下创建一个函数，所以为false
+    }
+    {
+      Fn.prototype = {
+        //构造函数的原型
+        age: 18,
+        getName: function () {
+          console.log(this.name);
+        },
+      };
+      let newobj3 = new Fn("离", "火");
+      let newobj4 = new Fn("离2", "火2");
+      /*
+        new Fn(){} ： 构造函数
+        newobj3  ： 实例对象
+        Fn.prototype ： 构造函数的原型
+
+        构造函数内的属性和和方法： 叫做实例属性 、实例方法 ，必须通过实例来调用
+
+        构造函数本身的属性和方法： 叫静态属性 、静态方法 ，可以直接通过 构造函数名直接调用
+
+        构造函数原型上的属性和和方法 ：叫原型属性、原型方法 ，必须通过实例来调用
+
+        先从实例身上找，找不到的话去原型上找
+
+      */
+      newobj3.getName();
+      newobj3.jn();
+      console.log(newobj3.age);
+      console.log(newobj3.getName == newobj4.getName); //true
+      // 在 原型定义的 方法   ，能够节省内存空间
+      // 原型上的 属性是不可以修改的 ，所以属性最好定义在 构造函数
+    }
+
+    {
+      /*
+      最终的混合写法：
+        属性写到构造函数，能够 创建 不同的属性值 的  实例
+        方法写到原型对象，能够公用同一片内存，节省空间
+
+
+      */
+      function Pro(name, sex) {
+        this.name = name;
+        this.sex = sex;
+      }
+      Pro.prototype = {
+        constructor: "Pro",
+        //最好指定一下构造器
+        jn() {
+          console.log("技能" + "名字" + this.name);
+        },
+      };
+      let newPro = new Pro("离", "女");
+      newPro.jn();
+    }
+    {
+      /*
+        为构造函数添加静态属性和方法：
+
+
+      */
+      function Pro2(name, sex) {
+        this.name = name;
+        this.sex = sex;
+      }
+      Pro2.prototype = {
+        constructor: "Pro2",
+        //最好指定一下构造器
+        jn() {
+          console.log("技能");
+        },
+      };
+      Pro2.a = "静态属性a";
+      Pro2.run = function () {
+        console.log("静态方法");
+      };
+      console.dir(Pro2);
+      let pro2 = new Pro2("小明", "男");
+      console.log(pro2);
+    }
+    {
+      //继承
+      function P1(name) {
+        this.name = name;
+
+        this.fn123 = function () {
+          console.log(this.name);
+        };
+      }
+      P1.prototype.fn465 = function () {
+        consle.log(this.age);
+      };
+      function P2(name, age) {
+        P1.apply(this, [name]);
+        // P1.call(this, name);
+        // P1.bind(this, name)();
+
+        // 三种改变this指向的方法
+        // 只能够继承构造函数内绑定过this的属性和方法
+        this.age = age;
+      }
+      let fn333 = new P2("111", "222");
+      console.log(fn333);
+      fn333.fn123();
+      fn333.fn456(); //报错
+    }
+  </script>
+</html>

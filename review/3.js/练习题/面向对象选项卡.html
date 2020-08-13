@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title></head
+  >\<style>
+    div {
+      width: 500px;
+      height: 300px;
+      margin: 100px auto;
+      border: 1px solid black;
+    }
+    ul li {
+      float: left;
+      overflow: hidden;
+    }
+
+    ul li a {
+      display: block;
+      width: 100px;
+      height: 30px;
+      background: red;
+      color: white;
+      text-align: center;
+      line-height: 30px;
+    }
+    p {
+      width: 100%;
+      display: none;
+    }
+  </style>
+  <body>
+    <div class="bigBox">
+      <ul>
+        <li><a href="#">商品介绍</a></li>
+        <li><a href="#">规格参数</a></li>
+        <li><a href="#">包装清单</a></li>
+        <li><a href="#">售后服务</a></li>
+      </ul>
+      <p>111111111111</p>
+      <p>222222222222</p>
+      <p>333333333333</p>
+      <p>444444444444</p>
+    </div>
+  </body>
+  <script>
+    function ClickBox(buttonAll, boxAll) {
+      this.buta = document.querySelectorAll(buttonAll);
+      this.boxa = document.querySelectorAll(boxAll);
+      this.index = 0;
+      this.tab();
+    }
+    ClickBox.prototype = {
+      tab() {
+        let that = this;
+        that.cssText(that.index);
+        for (let a = 0; a < that.buta.length; a++) {
+          that.buta[a].onclick = function () {
+            that.resetStyle();
+            that.cssText(a);
+          };
+        }
+      },
+      resetStyle() {
+        let that = this;
+        for (var i = 0; i < that.buta.length; i++) {
+          that.buta[i].style.cssText = "background:red;color:#fff";
+          that.boxa[i].style.cssText = "display:none";
+        }
+      },
+      cssText(index) {
+        let that = this;
+        that.buta[index].style.cssText = "background:#fff;color:#000";
+        that.boxa[index].style.cssText = "display:block";
+      },
+    };
+    window.onload = function () {
+      new ClickBox("ul li a", "p");
+    };
+  </script>
+</html>
