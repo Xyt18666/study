@@ -161,8 +161,22 @@
       console.log(pro2);
     }
     {
-      //继承
-      function P1(name) {
+      /*
+      什么是继承？
+        它可以使用现有类的所有功能，并在无需重新编写原来的类的情况下对这些功能进行扩展
+        通过继承创建的新类称为“子类”或“派生类”。
+        被继承的类称为“基类”、“父类”或“超类”。
+
+      继承的目标：
+        子类要拥有父类的属性和方法（包括本地和原型的属性和方法）
+        子类继承父类属性后，可以自己灵活扩展
+        如果父类的方法和属性改变后，子类的方法和属性也会改变
+        子类的方法和属性发生改变后，不会影响到父类的属性
+
+      
+      */
+      // 构造函数继承，不可取，只能够继承构造函数内绑定过this的属性和方法
+      function P1(name = "ddd") {
         this.name = name;
 
         this.fn123 = function () {
@@ -172,19 +186,113 @@
       P1.prototype.fn465 = function () {
         consle.log(this.age);
       };
-      function P2(name, age) {
-        P1.apply(this, [name]);
-        // P1.call(this, name);
-        // P1.bind(this, name)();
+      function P2([name, age]) {
+        //this 子类的实例对象 替换 P1 的指向
+        P1.apply(this, [name]); //传参用[]
+        // P1.call(this, name);//直接写参数
+        // P1.bind(this, name)();//直接写参数，改变了this指向，并没有调用，需要手动调用
+        //想要修改 父类里 的默认值，只需要传参数，不传参，会直接获取父类的默认值
 
         // 三种改变this指向的方法
-        // 只能够继承构造函数内绑定过this的属性和方法
+
         this.age = age;
       }
-      let fn333 = new P2("111", "222");
+      let fn333 = new P2([, "222"]);
+      //此时只修改了 age ，而name 是继承了 name
+
       console.log(fn333);
       fn333.fn123();
-      fn333.fn456(); //报错
+
+      // fn333.fn456(); //报错
+    }
+    {
+      //通过原型继承方法，不可取，修改子会影响父
+      function P3(name = "ddd") {
+        this.name = name;
+      }
+      P3.prototype.fn465 = function () {
+        console.log(this.name);
+      };
+      function P4(name, age) {
+        P1.apply(this, [name]);
+        this.age = age;
+      }
+      P4.prototype = P3.prototype;
+      let fn00 = new P4("naem2", "199");
+
+      fn00.fn465();
+    }
+    {
+      //通过遍历继承方法，不可取，双方互不影响
+      function P7(name = "ddd") {
+        this.name = name;
+      }
+      P7.prototype.fn465 = function () {
+        console.log(this.name);
+      };
+      function P8(name, age) {
+        P1.apply(this, [name]);
+        this.age = age;
+      }
+      for (var a in P7.prototype) {
+        P8.prototype[a] = P7.prototype[a];
+      }
+      let fn00 = new P8("naem88", "8888");
+
+      fn00.fn465();
+    }
+    {
+      // 原型链继承, 属性重叠,子类的原型会变成一个 父类的实列对象；会把父类的本地属性添加在子类的原型上
+
+      function P5(name = "ddd") {
+        this.name = name;
+      }
+      P5.prototype.fn465 = function () {
+        console.log(this.name);
+      };
+      P6.prototype = new P5();
+      //把父类的实例 给子级的 原型
+      function P6(name, age) {
+        P1.apply(this, [name]);
+        this.age = age;
+      }
+      let fn01 = new P6("naem333", "19555");
+      fn01.fn465();
+      console.log(fn01);
+    }
+    {
+      // 寄生组合式继承
+      function Foo(name) {
+        this.name = name;
+      }
+      Foo.prototype.age = function () {
+        console.log("父类：" + this.name);
+      };
+      Foo.prototype.obj = function () {
+        console.log("hello world");
+      };
+      function fn(name) {
+        Foo.call(this, name); //继承父类的 原型 属性 和方法
+      }
+      fn.prototype = Object.create(Foo.prototype);
+      // Object.create()方法创建一个新对象，使用现有的对象来提供新创建的对象的__proto__。
+      //拿到原型方法
+      console.log(Object.create(Foo.prototype), Foo.prototype);
+
+      fn.prototype.constructor = fn;
+      // 定义构造器为 fn
+
+      fn.prototype.age = function () {
+        console.log("子类：" + this.name);
+      };
+      fn.prototype.set = function () {
+        console.log("set si es5");
+      };
+      var a = new fn("lisi");
+      a.age();
+      a.obj();
+      a.set();
+      console.log(a);
     }
   </script>
 </html>

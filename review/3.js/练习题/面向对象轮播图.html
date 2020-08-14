@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .list li {
+        list-style: none;
+        width: 680px;
+        height: 430px;
+        float: left;
+      }
+      img {
+        display: block;
+        width: 680px;
+        height: 430px;
+      }
+      .wrap,
+      .wrap2 {
+        overflow: hidden;
+        position: relative;
+        width: 680px;
+        height: 430px;
+        margin: 50px auto;
+      }
+      .list {
+        position: absolute;
+        width: 4760px;
+        height: 430px;
+      }
+      .le,
+      .ri {
+        position: absolute;
+        top: 50%;
+        margin-top: -30px;
+        height: 60px;
+        width: 40px;
+        text-align: center;
+        color: #789;
+        font: bold 80px/60px "一纸情书";
+        z-index: 999;
+      }
+      .le {
+        left: 0;
+      }
+      .ri {
+        right: 0;
+      }
+      .dd {
+        bottom: 20px;
+        position: absolute;
+        left: 50%;
+        margin-left: -75px;
+        height: 20px;
+      }
+      .dd li {
+        width: 20px;
+        list-style: none;
+        height: 20px;
+        margin-right: 10px;
+        background: #000;
+        float: left;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <ul class="list">
+        <li>
+          <a href="#"><img src="images/5.jpg" alt="" /></a>
+        </li>
+        <li>
+          <a href="#"><img src="images/1.jpg" alt="" /></a>
+        </li>
+        <li>
+          <a href="#"><img src="images/2.jpg" alt="" /></a>
+        </li>
+        <li>
+          <a href="#"><img src="images/3.jpg" alt="" /></a>
+        </li>
+        <li>
+          <a href="#"><img src="images/4.jpg" alt="" /></a>
+        </li>
+        <li>
+          <a href="#"><img src="images/5.jpg" alt="" /></a>
+        </li>
+        <li>
+          <a href="#"><img src="images/1.jpg" alt="" /></a>
+        </li>
+      </ul>
+      <ol class="dd">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ol>
+      <div class="le"><</div>
+      <div class="ri">></div>
+    </div>
+    <div class="wrap2"></div>
+    <p>sdfsdf</p>
+  </body>
+
+  <script>
+    class CeratBanner {
+      constructor(index) {
+        // this.imgData = imgData;
+        this.index = index;
+      }
+      init() {
+        // this.creat();
+        this.tab();
+        this.leClick();
+        this.riClick();
+        this.lb();
+      }
+      //   creat() {
+      //     let that = this;
+
+      //     $(".wrap").append(
+      //       '<ul class="list"></ul><ol class="dd"></ol><div class="le"><</div><div class="ri">></div>'
+      //     );
+      //     for (var a = 0; a < that.imgData.length; a++) {
+      //       $(
+      //         `<li><a href=><img src=
+      //            ${that.imgData[a]}
+      //             alt=""></a></li>`
+      //       ).appendTo("ul");
+      //       $("<li></li>").appendTo(".dd");
+      //     }
+      //     $($(".list li:first")[0].cloneNode(true)).appendTo(".list");
+      //     $($(".list li:last").prev()[0].cloneNode(true)).prependTo(".list");
+      //     $(".list").css({ left: -$(".list li:first").width() });
+      //   }
+      leClick() {
+        let index = this.index;
+        let that = this;
+
+        $(".le").click(function () {
+          index--;
+
+          if (index < 1) {
+            index = $(".list li").length - 2;
+            that.index = $(".list li").length - 2;
+            $(".list").css({
+              left: -($(".list li").length - 1) * $(".list li:first").width(),
+            });
+          }
+          that.index = index;
+          that.tab();
+        });
+      }
+      riClick() {
+        let index = this.index;
+        let that = this;
+        $(".ri").click(function () {
+          index++;
+          if (index > $(".list li").length - 2) {
+            index = 1;
+            that.index = 1;
+            $(".list").css({ left: 0 });
+          }
+          console.log(index, "111111111111");
+          that.index = index;
+          that.tab();
+        });
+      }
+      lb() {
+        let that = this;
+        var ds = setInterval(function () {
+          $(".ri").click();
+        }, 2000);
+        $(".wrap").mouseover(function () {
+          clearInterval(ds);
+        });
+        $(".wrap").mouseout(function () {
+          ds = setInterval(function () {
+            that.riClick();
+          }, 2000);
+        });
+      }
+      tab() {
+        let index = this.index;
+        console.log(index);
+        for (var a = 0; a < $(".dd li").length; a++) {
+          $($(".dd li")[a]).css("background", "#000");
+        }
+        $($(".dd li")[index - 1]).css("background", "red");
+        $(".list").animate({
+          left: -index * $(".list li:first").width(),
+        });
+      }
+    }
+    window.onload = function () {
+      let cb = new CeratBanner(3);
+      cb.init();
+    };
+  </script>
+</html>
