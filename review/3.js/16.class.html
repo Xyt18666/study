@@ -10,7 +10,7 @@
     /*
 
 
-*/
+    */
     {
       class Cf1 {
         constructor(name) {
@@ -24,6 +24,7 @@
         fn() {
           //定义在原型上的方法
           console.log(this.name); //this是实例对象
+          return this.name;
         }
         static ok = "okk"; //静态属性
         static jtsx() {
@@ -44,8 +45,24 @@
         // 子类Per 继承 父类Cf1
         constructor(name, n, b) {
           super(name); //调用父类 Cf1
+          /*
+
+              1.继承必须调用 super ，而且必须写到最上面
+                  es6子类没有this , super 用来构建 子类中 的 this
+                  而es5 的 子类使用call.. 替换了 父级的this
+
+              2.传参覆盖默认值，不传参使用父类的默认值
+
+              3.super代表父类的构造函数，返回子类的实例
+
+              4.super作为对象时，在普通方法中（ constructor），指向的父类的原型对象
+
+              5.super作为对象时，在静态方法中，指向的父类
+
+          */
           this.b = b;
           this.n = n;
+          console.log(super.fn(), "----------------============"); //父类原型对象的方法
         }
       }
 
@@ -59,6 +76,27 @@
 
       console.log(fn2.sex); //继承了 原型属性 和 方法
       fn2.fn();
+    }
+    {
+      class Fa {
+        static mm(a) {
+          console.log("static" + a);
+        }
+        mm(a) {
+          console.log("ins" + a);
+        }
+      }
+      class Ch extends Fa {
+        static mm(a) {
+          super.mm(1);
+        }
+        mm(a) {
+          super.mm(2);
+        }
+      }
+      Ch.mm(1);
+      let chi = new Ch();
+      chi.mm(2);
     }
   </script>
 </html>

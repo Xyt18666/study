@@ -214,7 +214,7 @@
         console.log(this.name);
       };
       function P4(name, age) {
-        P1.apply(this, [name]);
+        P3.apply(this, [name]);
         this.age = age;
       }
       P4.prototype = P3.prototype;
@@ -231,7 +231,7 @@
         console.log(this.name);
       };
       function P8(name, age) {
-        P1.apply(this, [name]);
+        P7.apply(this, [name]);
         this.age = age;
       }
       for (var a in P7.prototype) {
@@ -252,18 +252,45 @@
       };
       P6.prototype = new P5();
       //把父类的实例 给子级的 原型
+      P6.prototype.constructor = P6;
       function P6(name, age) {
-        P1.apply(this, [name]);
+        P5.apply(this, [name]);
         this.age = age;
       }
       let fn01 = new P6("naem333", "19555");
       fn01.fn465();
-      console.log(fn01);
+      console.log(fn01, "1111111111111111111111");
+    }
+    {
+      //利用空壳函 和 原型链 实现继承
+      function P9(name = "ddd") {
+        this.name = name;
+      }
+      P9.prototype.fn465 = function () {
+        console.log(this.name);
+      };
+      function FF() {}
+      //创建空函数
+      FF.prototype = P9.prototype;
+      // 空函数继承原型
+
+      P10.prototype = new FF();
+      //二次继承给所需要的的构造函数
+      P10.prototype.constructor = P10;
+      //需要指定构造器
+      function P10(name, age) {
+        P9.apply(this, [name]);
+        this.age = age;
+      }
+      let fn01 = new P10("naem333", "19555");
+      fn01.fn465();
+      console.log(fn01, "333");
     }
     {
       // 寄生组合式继承
-      function Foo(name) {
+      function Foo(name, ages) {
         this.name = name;
+        this.ages = ages;
       }
       Foo.prototype.age = function () {
         console.log("父类：" + this.name);
@@ -292,7 +319,7 @@
       a.age();
       a.obj();
       a.set();
-      console.log(a);
+      console.log(a, "22222222222222");
     }
   </script>
 </html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: #000;
+      }
+      .box {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 10px;
+
+        /* background: pink; */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <div class="box"></div> -->
+  </body>
+  <script>
+    class Yh {
+      constructor(sssj, slsj, slx, sli, slr, ssqjx, ssqji) {
+        this.sssj = sssj; //上升时间
+        this.slsj = slsj; //散落时间
+        this.slx = slx; //生产数量最大值
+        this.sli = sli; //生产数量最小值
+        this.slr = slr; //散落半径
+        this.ssqjx = ssqjx; //上升区间最大值
+        this.ssqji = ssqji; //上升区间最小值
+      }
+
+      clickBox(e) {
+        let sjY = this.random(this.ssqjx, this.ssqji);
+        let id = this.random(30, 1);
+        this.creatD(e.pageX, e.pageY, id);
+        this.moves(sjY, id);
+        setTimeout(() => {
+          this.creadyh(e, sjY, id);
+        }, this.sssj);
+      }
+      creadyh(e, sjY, id) {
+        for (let a = 0; a < this.random(this.slx, this.sli); a++) {
+          this.creatD(e.pageX, sjY, id);
+        }
+        for (let i = 0; i < $(".box").length; i++) {
+          $(".box")
+            .eq(i)
+            .animate(
+              {
+                top: `${sjY + this.random(this.slr, -this.slr)}px`,
+                left: `${e.pageX + this.random(this.slr, -this.slr)}px`,
+                opacity: 0,
+              },
+              this.slsj
+            );
+        }
+        setTimeout(() => {
+          $(`.id${id}`).remove();
+        }, this.slsj);
+      }
+
+      moves(sjjl, id) {
+        $(`.id${id}`).animate(
+          {
+            top: `${sjjl}px`,
+          },
+          this.sssj
+        );
+      }
+      creatD(x, y, id) {
+        $(`<div class="box id${id} "></div> `)
+          .css({
+            top: y,
+            left: x,
+
+            background: `rgba(${this.random(255, 1)},${this.random(
+              255,
+              1
+            )},${this.random(255, 1)},0.8)`,
+          })
+          .appendTo("body");
+      }
+      random(max, min) {
+        return Math.floor(Math.random() * (max - min) + min);
+      }
+    }
+
+    $(window).click((e) => {
+      new Yh(1000, 800, 50, 30, 200, 150, 50).clickBox(e);
+    });
+  </script>
+</html>

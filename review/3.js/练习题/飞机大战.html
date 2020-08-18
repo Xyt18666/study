@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .contentBox {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        background: #ccc;
+        position: relative;
+      }
+      .startBut {
+        width: 35vw;
+        height: 8vh;
+        position: absolute;
+        background: rgb(14, 212, 247);
+        left: 50%;
+        top: 50%;
+        text-align: center;
+        font: 24px/8vh "";
+        border-radius: 5px;
+        /* box-shadow: 2px 2px 5px 1px rgb(13, 119, 218); */
+        box-shadow: -2px -2px 5px 1px rgb(13, 119, 218) inset;
+        transform: translate(-50%, 100%);
+      }
+      .my {
+        width: 10vw;
+        height: 5vh;
+        border-radius: 5vw;
+        background: #000;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 0);
+      }
+      .myZd {
+        width: 1vw;
+        height: 2vh;
+        border-radius: 2vh;
+        background: rgb(236, 25, 25);
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -100%);
+      }
+      .dj {
+        position: absolute;
+      }
+      .dj1 {
+        width: 5vw;
+        height: 5vh;
+        background: rgb(99, 228, 137);
+      }
+      .dj2 {
+        width: 10vw;
+        height: 10vh;
+        background: rgb(69, 214, 233);
+      }
+      .dj3 {
+        width: 15vw;
+        height: 15vh;
+        background: rgb(42, 61, 230);
+      }
+    </style>
+  </head>
+  <body></body>
+
+  <script>
+    {
+      class Dj {
+        // 敌方飞机
+        constructor() {}
+        creatDj(model, xjl) {
+          //   创建敌机
+          $(`<div class="dj ${model}"></div>`)
+            .css({
+              left: xjl,
+              bottom: "100vh",
+            })
+            .appendTo(".contentBox")
+            .animate(
+              {
+                bottom: "-20vh",
+              },
+              10000
+            );
+        }
+        death() {
+          //敌机 销毁
+        }
+      }
+      class Dj1 extends Dj {
+        constructor(model) {
+          super(model);
+        }
+      }
+
+      class Zd {
+        //子弹
+        constructor() {}
+        init() {
+          this.creZd();
+        }
+        creZd() {
+          //创建子弹
+          setInterval(() => {
+            $(`<div class="myZd"></div>`)
+              .appendTo(".my")
+              .animate({ top: "-100vh" }, 3000);
+            [...$(".myZd")].map((item, index) => {
+              Math.abs(parseInt($(item).css("top"))) >= $(window).height()
+                ? item.remove()
+                : null;
+            });
+
+            this.jc();
+          }, 500);
+        }
+        jc() {
+          //碰撞检测
+          [...$(".dj")].map((item, index) => {
+            var item1 = item;
+            var t1 = item.offsetTop;
+            var l1 = item.offsetLeft;
+            var r1 = item.offsetLeft + item.offsetWidth;
+            var b1 = item.offsetTop + item.offsetHeight;
+
+            [...$(".myZd")].map((item, index) => {
+              var item2 = item;
+              var t2 = item.offsetTop;
+              var l2 = item.offsetLeft;
+              var r2 = item.offsetLeft + item.offsetWidth;
+              var b2 = item.offsetTop + item.offsetHeight;
+              if (b1 < t2 || l1 > r2 || t1 > b2 || r1 < l2) {
+                // 表示没碰上
+              } else {
+                item1.remove();
+              }
+            });
+
+            Math.abs(parseInt($(item).css("top"))) >= $(window).height()
+              ? item.remove()
+              : null;
+          });
+        }
+      }
+      class My {
+        //我的飞机
+        constructor() {}
+        init() {
+          this.creat();
+          this.attack();
+          this.move();
+          this.over();
+        }
+        creat() {
+          //创建
+          $(`<div class="my"></div>`).appendTo(".contentBox");
+        }
+        attack() {
+          //攻击
+          new Zd().init(); //创建子弹
+        }
+        move() {
+          //移动
+          $("body").mousemove((e) => {
+            let xx = e.pageX;
+            xx = xx < $(".my").width() / 2 ? $(".my").width() / 2 : xx;
+            xx =
+              xx > $(window).width() - $(".my").width() / 2
+                ? $(window).width() - $(".my").width() / 2
+                : xx;
+            $(".my").css({
+              left: `${xx}px`,
+            });
+          });
+        }
+        over() {
+          //死亡
+        }
+      }
+      class Flay {
+        constructor(startBut) {
+          this.startBut = startBut;
+        }
+        init() {
+          this.creatConten();
+          this.startClick();
+        }
+        creatConten() {
+          //创建初始界面
+          $(
+            `<div class="contentBox"><div class="startBut">开始游戏</div></div>`
+          ).appendTo("body");
+        }
+        startClick() {
+          //点击开始
+          let arr = ["dj1", "dj2", "dj3"];
+          let size = [5, 10, 15];
+
+          $(".startBut").click(() => {
+            $(".startBut").hide(); //去除开始按钮
+            new My().init(); //创建我的飞机
+
+            let dsq = setInterval(() => {
+              //循环创建敌机
+              let jj = 3;
+              let he = 0;
+              while (he <= 100) {
+                let sjs = this.random(3, 0);
+                new Dj1().creatDj(arr[sjs], he + "vw");
+                he += size[sjs] + jj;
+              }
+            }, 5000);
+          });
+        }
+
+        random(max, min) {
+          return Math.floor(Math.random() * (max - min) + min);
+        }
+      }
+      let flay = new Flay($(".startBut"));
+      flay.init();
+    }
+  </script>
+</html>

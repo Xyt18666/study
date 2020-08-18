@@ -75,45 +75,57 @@
     </aside>
   </body>
   <script>
-    $(window).scroll(function () {
-      var st = $(this).scrollTop();
-      st > 1300 ? $("aside").addClass("st") : $("aside").removeClass("st");
+    class Floor {
+      constructor() {}
+      init() {
+        this.scroll();
+        this.click();
+        this.fhdb();
+      }
+      scroll() {
+        $(window).scroll(function () {
+          var st = $(this).scrollTop();
+          st > 1300 ? $("aside").addClass("st") : $("aside").removeClass("st");
 
-      var stMax = st + $(window).height() / 2;
-      var stMin = st - $(window).height() / 2;
-      console.log(stMax, st, stMin);
+          var stMax = st + $(window).height() / 2;
+          var stMin = st - $(window).height() / 2;
+          console.log(stMax, st, stMin);
 
-      $("ol li").each(function (i) {
-        var ost = $(".list li").eq(i).offset().top;
-        if (ost > stMin && ost < stMax) {
-          $("ol li")
-            .eq(i)
-            .css("background", "red")
-            .siblings()
-            .css("background", "#0f0");
-        }
-      });
-    });
-
-    $("ol li").click(function () {
-      var stoz = $(".list li").eq($(this).index()).offset().top;
-      $("html,body").animate(
-        {
-          scrollTop: stoz - 100,
-        },
-        300
-      );
-    });
-
-    $("aside p").click(function () {
-      $("html,body").animate(
-        {
-          scrollTop: 0,
-        },
-        300
-      );
-    });
-
-    console.log(Object.assign([1, 2, 3], [4, 5]));
+          $("ol li").each(function (i) {
+            var ost = $(".list li").eq(i).offset().top;
+            if (ost > stMin && ost < stMax) {
+              $("ol li")
+                .eq(i)
+                .css("background", "red")
+                .siblings()
+                .css("background", "#0f0");
+            }
+          });
+        });
+      }
+      click() {
+        $("ol li").click(function () {
+          var stoz = $(".list li").eq($(this).index()).offset().top;
+          $("html,body").animate(
+            {
+              scrollTop: stoz - 100,
+            },
+            300
+          );
+        });
+      }
+      fhdb() {
+        $("aside p").click(function () {
+          $("html,body").animate(
+            {
+              scrollTop: 0,
+            },
+            300
+          );
+        });
+      }
+    }
+    let flor = new Floor();
+    flor.init();
   </script>
 </html>
