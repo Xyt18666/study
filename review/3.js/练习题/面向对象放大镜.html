@@ -29,17 +29,17 @@
         display: block;
       }
       .le .mask {
-        /*			width: 100px;
-			height: 100px;*/
+        width: 100px;
+        height: 100px;
         background: rgba(0, 0, 0, 0.3);
         position: absolute;
-        display: none;
+        /* display: none; */
       }
       .ri {
         border: 2px solid #0f0;
         overflow: hidden;
         position: relative;
-        display: none;
+        /* display: none; */
       }
       .ri img {
         width: calc(800px * 2);
@@ -59,92 +59,174 @@
     </div>
   </body>
   <script type="text/javascript">
-    function ScaleBox(lbox, rbox) {
-      this.lbox = lbox;
-      this.rbox = rbox;
-      this.mouseove();
-      this.mousemov();
-      this.mouseou();
+    class Mangifier {
+      constructor(move, smaPic, monitor, bigPic) {
+        this.move = move;
+        this.smaPic = smaPic;
+        this.monitor = monitor;
+        this.bigPic = bigPic;
+      }
+      init() {
+        //设置move块宽高,右图/左图*右块
+        this.setStyle(
+          this.move,
+          "width",
+          this.getStyle(this.monitor, "width") / this.getRatio().w
+        );
+        this.setStyle(
+          this.move,
+          "height",
+          this.getStyle(this.monitor, "height") / this.getRatio().h
+        );
+        this.drag(this.move);
+      }
+      setStyle(obj, attr, target) {
+        obj.style[attr] = target + "px";
+      }
+      getStyle(obj, attr) {
+        return parseInt(window.getComputedStyle(obj, null)[attr]);
+      }
+      getRatio() {
+        return {
+          w:
+            this.getStyle(this.bigPic, "width") /
+            this.getStyle(this.smaPic, "width"),
+          h:
+            this.getStyle(this.bigPic, "height") /
+            this.getStyle(this.smaPic, "height"),
+        };
+      }
+      drag(obj) {
+        obj.onmousedown = (e) => {
+          let ev = e || window.event;
+          let disX = ev.pageX - this.move.offsetLeft;
+          let disY = ev.pageY - this.move.offsetTop;
+          document.onmousemove = (e) => {
+            let ev = e || window.event;
+            this.moves(ev, disX, disY);
+          };
+          document.addEventListener("mouseup", (e) => {
+            document.onmousemove = null;
+          });
+        };
+      }
+      moves(ev, disX, disY) {
+        let l = ev.pageX - disX;
+        let t = ev.pageY - disY;
+        this.setStyle(this.move, "left", this.setBound("width", l));
+        this.setStyle(this.move, "top", this.setBound("height", t));
+        this.setStyle(
+          this.bigPic,
+          "left",
+          -this.setBound("width", t) * this.getRatio().w
+        );
+        this.setStyle(
+          this.bigPic,
+          "top",
+          -this.setBound("height", t) * this.getRatio().h
+        );
+      }
+      setBound(attr, der) {
+        let dybg =
+          this.getStyle(this.smaPic, attr) - parseInt(this.move.style[attr]);
+        return der < 0 ? 0 : der > dybg ? dybg : der;
+      }
     }
-    ScaleBox.prototype = {
-      mouseove() {
-        let that = this;
-        $(that.lbox).mouseover(function () {
-          $(that.lbox).children(".mask").css("display", "block");
-          $(that.rbox).css("display", "block");
-          var w =
-            ($(that.rbox).width() / $(that.rbox).children("img").width()) *
-            $(that.lbox).width();
-          var h =
-            ($(that.rbox).height() / $(that.rbox).children("img").height()) *
-            $(that.lbox).height();
+    let fdj = new Mangifier(
+      $(".mask")[0],
+      $(".le img")[0],
+      $(".ri")[0],
+      $(".ri img")[0]
+    );
+    fdj.init();
 
-          $(that.lbox).children(".mask").css({
-            width: w,
-            height: h,
-          });
-        });
-      },
-      mousemov() {
-        let that = this;
-        $(document).mousemove(function (e) {
-          var x =
-            e.pageX -
-            $(that.lbox).offset().left -
-            $(that.lbox).children(".mask").width() / 2;
-          var y =
-            e.pageY -
-            $(that.lbox).offset().top -
-            $(that.lbox).children(".mask").height() / 2;
+    //--------------------------------------------------------
+    // function ScaleBox(lbox, rbox) {
+    //   this.lbox = lbox;
+    //   this.rbox = rbox;
+    //   this.mouseove();
+    //   this.mousemov();
+    //   this.mouseou();
+    // }
+    // ScaleBox.prototype = {
+    //   mouseove() {
+    //     let that = this;
+    //     $(that.lbox).mouseover(function () {
+    //       $(that.lbox).children(".mask").css("display", "block");
+    //       $(that.rbox).css("display", "block");
+    //       var w =
+    //         ($(that.rbox).width() / $(that.rbox).children("img").width()) *
+    //         $(that.lbox).width();
+    //       var h =
+    //         ($(that.rbox).height() / $(that.rbox).children("img").height()) *
+    //         $(that.lbox).height();
 
-          x = x < 0 ? 0 : x;
-          y = y < 0 ? 0 : y;
+    //       $(that.lbox).children(".mask").css({
+    //         width: w,
+    //         height: h,
+    //       });
+    //     });
+    //   },
+    //   mousemov() {
+    //     let that = this;
+    //     $(document).mousemove(function (e) {
+    //       var x =
+    //         e.pageX -
+    //         $(that.lbox).offset().left -
+    //         $(that.lbox).children(".mask").width() / 2;
+    //       var y =
+    //         e.pageY -
+    //         $(that.lbox).offset().top -
+    //         $(that.lbox).children(".mask").height() / 2;
 
-          x =
-            x > $(that.lbox).width() - $(that.lbox).children(".mask").width()
-              ? $(that.lbox).width() - $(that.lbox).children(".mask").width()
-              : x;
+    //       x = x < 0 ? 0 : x;
+    //       y = y < 0 ? 0 : y;
 
-          y =
-            y > $(that.lbox).height() - $(that.lbox).children(".mask").height()
-              ? $(that.lbox).height() - $(that.lbox).children(".mask").height()
-              : y;
+    //       x =
+    //         x > $(that.lbox).width() - $(that.lbox).children(".mask").width()
+    //           ? $(that.lbox).width() - $(that.lbox).children(".mask").width()
+    //           : x;
 
-          $(that.lbox).children(".mask").css({
-            left: x,
-            top: y,
-          });
+    //       y =
+    //         y > $(that.lbox).height() - $(that.lbox).children(".mask").height()
+    //           ? $(that.lbox).height() - $(that.lbox).children(".mask").height()
+    //           : y;
 
-          var xbl =
-            ($(that.rbox).children("img").width() - $(".ri").width()) /
-            ($(that.lbox).width() - $(that.lbox).children(".mask").width());
-          var ybl =
-            ($(that.rbox).children("img").height() - $(".ri").height()) /
-            ($(that.lbox).height() - $(that.lbox).children(".mask").height());
+    //       $(that.lbox).children(".mask").css({
+    //         left: x,
+    //         top: y,
+    //       });
 
-          console.log($(that.lbox).children(".mask").width());
+    //       var xbl =
+    //         ($(that.rbox).children("img").width() - $(".ri").width()) /
+    //         ($(that.lbox).width() - $(that.lbox).children(".mask").width());
+    //       var ybl =
+    //         ($(that.rbox).children("img").height() - $(".ri").height()) /
+    //         ($(that.lbox).height() - $(that.lbox).children(".mask").height());
 
-          var blx = -x * xbl;
+    //       console.log($(that.lbox).children(".mask").width());
 
-          var bly = -y * ybl;
+    //       var blx = -x * xbl;
 
-          $(that.rbox).children("img").css({
-            left: blx,
-            top: bly,
-          });
-        });
-      },
-      mouseou() {
-        let that = this;
+    //       var bly = -y * ybl;
 
-        $(that.lbox).mouseout(function () {
-          $(that.lbox).children(".mask").css("display", "none");
-          $(that.rbox).css("display", "none");
-        });
-      },
-    };
-    window.onload = function () {
-      new ScaleBox(".le", ".ri");
-    };
+    //       $(that.rbox).children("img").css({
+    //         left: blx,
+    //         top: bly,
+    //       });
+    //     });
+    //   },
+    //   mouseou() {
+    //     let that = this;
+
+    //     $(that.lbox).mouseout(function () {
+    //       $(that.lbox).children(".mask").css("display", "none");
+    //       $(that.rbox).css("display", "none");
+    //     });
+    //   },
+    // };
+    // window.onload = function () {
+    //   new ScaleBox(".le", ".ri");
+    // };
   </script>
 </html>

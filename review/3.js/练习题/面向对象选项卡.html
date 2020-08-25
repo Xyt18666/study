@@ -63,13 +63,16 @@
         toggle() {
           [...this.button].forEach((item, index) => {
             item.onclick = () => {
-              [...this.button].forEach((item, index) => {
-                item.className = "";
-                this.constants[index].className = "";
-              });
-              item.className = "active";
-              this.constants[index].className = "show";
+              this.setClass([...this.button], index, "active");
+              this.setClass([...this.constants], index, "show");
             };
+          });
+        },
+        setClass(arr, index, clname) {
+          arr.forEach((item, i) => {
+            return index === i
+              ? item.classList.add(clname)
+              : item.classList.remove(clname);
           });
         },
       };

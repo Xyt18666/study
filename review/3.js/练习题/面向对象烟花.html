@@ -10,8 +10,16 @@
         margin: 0;
         padding: 0;
       }
-      body {
+      body,
+      html {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
         background: #000;
+      }
+      .ss {
+        position: absolute;
+        border-radius: 40%;
       }
       .box {
         position: absolute;
@@ -28,74 +36,248 @@
   </body>
   <script>
     class Yh {
-      constructor(sssj, slsj, slx, sli, slr, ssqjx, ssqji) {
-        this.sssj = sssj; //上升时间
-        this.slsj = slsj; //散落时间
-        this.slx = slx; //生产数量最大值
-        this.sli = sli; //生产数量最小值
-        this.slr = slr; //散落半径
-        this.ssqjx = ssqjx; //上升区间最大值
-        this.ssqji = ssqji; //上升区间最小值
+      constructor(x, y, w = 10, h = 20) {
+        this.x = x; //上升烟花X
+        this.y = y; //上升烟花y
+        this.w = w; //上升烟花w
+        this.h = h; //上升烟花h
+        this.initPosition =
+          document.body.clientHeight || document.documentElement.clientHeight; //获取可视区 高度
+        this.element = null; //定义 上升烟花元素
+        this.pecies = []; //存放烟花碎片
       }
+      init() {
+        this.creatFier(); //创建上升烟花
+        this.firemove(); //烟花移动，并执行回调，爆炸
+      }
+      boom() {
+        //烟花 炸裂
 
-      clickBox(e) {
-        let sjY = this.random(this.ssqjx, this.ssqji);
-        let id = this.random(30, 1);
-        this.creatD(e.pageX, e.pageY, id);
-        this.moves(sjY, id);
-        setTimeout(() => {
-          this.creadyh(e, sjY, id);
-        }, this.sssj);
-      }
-      creadyh(e, sjY, id) {
-        for (let a = 0; a < this.random(this.slx, this.sli); a++) {
-          this.creatD(e.pageX, sjY, id);
+        this.setStyle(this.element, {
+          //设置上升烟花 不可见
+          background: "#000",
+        });
+        for (let i = 0; i < this.random(50, 30); i++) {
+          //循环添加小花火
+          this.creatPec();
         }
-        for (let i = 0; i < $(".box").length; i++) {
-          $(".box")
-            .eq(i)
-            .animate(
-              {
-                top: `${sjY + this.random(this.slr, -this.slr)}px`,
-                left: `${e.pageX + this.random(this.slr, -this.slr)}px`,
-                opacity: 0,
-              },
-              this.slsj
-            );
-        }
-        setTimeout(() => {
-          $(`.id${id}`).remove();
-        }, this.slsj);
+        this.pecies.map((item, index) => {
+          //遍历花火
+          move(
+            //花火移动
+            item,
+            {
+              left: this.random(200, -200), //设置区间值
+              top: this.random(200, -200),
+              opacity: 0,
+            },
+            () => {
+              item.remove(); //爆炸结束清除自己 和 父类
+              item.children.length == 0
+                ? setTimeout(() => {
+                    this.element.remove();
+                  }, 1000)
+                : null;
+            },
+            20
+          );
+        });
       }
+      firemove() {
+        //上升烟花
 
-      moves(sjjl, id) {
-        $(`.id${id}`).animate(
+        console.log(this.element);
+        move(
+          this.element,
           {
-            top: `${sjjl}px`,
+            top: this.random(200, 50),
           },
-          this.sssj
+          () => {
+            this.boom();
+          },
+          2
         );
       }
-      creatD(x, y, id) {
-        $(`<div class="box id${id} "></div> `)
-          .css({
-            top: y,
-            left: x,
+      creatPec() {
+        //创建花火
+        let pec = document.createElement("div");
+        pec.className = "box";
+        this.setStyle(pec, {
+          background: this.setRGB(),
+        });
 
-            background: `rgba(${this.random(255, 1)},${this.random(
-              255,
-              1
-            )},${this.random(255, 1)},0.8)`,
-          })
-          .appendTo("body");
+        this.element.appendChild(pec); //添加到 烟花中
+        this.pecies.push(pec); //添加到数组
+      }
+      creatFier() {
+        //创建烟花
+        this.element = document.createElement("div");
+        this.element.classList.add("ss");
+        this.setStyle(this.element, {
+          left: this.x + "px",
+          top: this.initPosition + "px",
+          width: this.w + "px",
+          height: this.h + "px",
+          background: this.setRGB(),
+        });
+        document.body.appendChild(this.element);
+      }
+      setStyle(ele, styleObj) {
+        for (let [key, val] of Object.entries(styleObj)) {
+          ele.style[key] = val;
+        }
+      }
+      setRGB() {
+        return `rgb(${this.random(255, 1)},${this.random(255, 1)},${this.random(
+          255,
+          1
+        )})`;
       }
       random(max, min) {
         return Math.floor(Math.random() * (max - min) + min);
       }
     }
 
-    $(window).click((e) => {
-      new Yh(1000, 800, 50, 30, 200, 150, 50).clickBox(e);
-    });
+    document.body.onclick = (e) => {
+      let ev = e || window.event;
+      let yh = new Yh(ev.clientX, ev.clientY);
+      yh.init();
+    };
+
+    //运动函数
+    function move(obj, json, fn, xs) {
+      clearInterval(obj.dsq);
+      //清除定时器，防止定时器叠加
+      console.log(obj.dsq);
+
+      var speed = 0,
+        thStle = 0;
+      //定义速度和属性
+
+      obj.dsq = setInterval(function () {
+        // 开启定时器
+        var onOff = true;
+        //定义状态
+        for (key in json) {
+          //遍历属性对象
+          thStle =
+            key == "opacity"
+              ? parseFloat(getStyle(obj, key)) * 100
+              : parseInt(getStyle(obj, key));
+          //获取属性值，兼容 opcity
+
+          speed = (json[key] - thStle) / xs;
+
+          //定义速度
+
+          speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+          //速度正向反向取整，防止 定时器不能结束
+
+          if (thStle != json[key]) {
+            //如果 当前的属性 为达到终点
+            onOff = false;
+            //修改状态
+
+            thStle += speed;
+            // 值 的 递增
+
+            if (key == "opacity") {
+              // 赋值 兼容 opacity
+              obj.style["opacity"] = thStle / 100;
+              obj.style.filter = "alpha(opacity=" + thStle + ")";
+            } else {
+              obj.style[key] = thStle + "px";
+            }
+          }
+        }
+        if (onOff) {
+          console.log(onOff);
+          //判断状态，结束定时器
+          clearInterval(obj.dsq);
+          fn && fn();
+          //回调
+        }
+      }, 20);
+    }
+    function getStyle(obj, attr) {
+      //获取非行间样式
+      return obj.currentStyle
+        ? obj.currentStyle[attr]
+        : getComputedStyle(obj, null)[attr];
+    }
+
+    //-------------------------------------------------------------------
+    // class Yh {
+    //   constructor(sssj, slsj, slx, sli, slr, ssqjx, ssqji) {
+    //     this.sssj = sssj; //上升时间
+    //     this.slsj = slsj; //散落时间
+    //     this.slx = slx; //生产数量最大值
+    //     this.sli = sli; //生产数量最小值
+    //     this.slr = slr; //散落半径
+    //     this.ssqjx = ssqjx; //上升区间最大值
+    //     this.ssqji = ssqji; //上升区间最小值
+    //   }
+    //   init(e) {
+    //     this.clickBox(e);
+    //   }
+    //   clickBox(e) {
+    //     let sjY = this.random(this.ssqjx, this.ssqji);
+    //     let id = this.random(30, 1);
+    //     this.creatD(e.pageX, e.pageY, id);
+    //     this.moves(sjY, id);
+    //     setTimeout(() => {
+    //       this.creadyh(e, sjY, id);
+    //     }, this.sssj);
+    //   }
+    //   creadyh(e, sjY, id) {
+    //     for (let a = 0; a < this.random(this.slx, this.sli); a++) {
+    //       this.creatD(e.pageX, sjY, id);
+    //     }
+    //     for (let i = 0; i < $(".box").length; i++) {
+    //       $(".box")
+    //         .eq(i)
+    //         .animate(
+    //           {
+    //             top: `${sjY + this.random(this.slr, -this.slr)}px`,
+    //             left: `${e.pageX + this.random(this.slr, -this.slr)}px`,
+    //             opacity: 0,
+    //           },
+    //           this.slsj
+    //         );
+    //     }
+    //     setTimeout(() => {
+    //       $(`.id${id}`).remove();
+    //     }, this.slsj);
+    //   }
+
+    //   moves(sjjl, id) {
+    //     $(`.id${id}`).animate(
+    //       {
+    //         top: `${sjjl}px`,
+    //       },
+    //       this.sssj
+    //     );
+    //   }
+    //   creatD(x, y, id) {
+    //     $(`<div class="box id${id} "></div> `)
+    //       .css({
+    //         top: y,
+    //         left: x,
+
+    //         background: `rgba(${this.random(255, 1)},${this.random(
+    //           255,
+    //           1
+    //         )},${this.random(255, 1)},0.8)`,
+    //       })
+    //       .appendTo("body");
+    //   }
+    //   random(max, min) {
+    //     return Math.floor(Math.random() * (max - min) + min);
+    //   }
+    // }
+
+    // $(window).click((e) => {
+    //   new Yh(1000, 800, 50, 30, 200, 150, 50).init(e);
+    // });
   </script>
 </html>

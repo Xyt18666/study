@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .box {
+        width: 320px;
+        height: 568px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        background: url("img/开始背景.png");
+      }
+      button {
+        position: absolute;
+        width: 200px;
+        height: 50px;
+        border: 1px solid #999;
+        background: #fff;
+        outline: none;
+        left: 50%;
+        bottom: 60px;
+        z-index: 99;
+        transform: translate(-50%, 0);
+      }
+      .myPlay {
+        width: 66px;
+        height: 80px;
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <button>开始游戏</button>
+    </div>
+  </body>
+  <script>
+    let oBtn = $("button")[0]; //开始游戏按钮
+    let oBox = $(".box")[0]; //整体盒子
+
+    oBtn.onclick = function () {
+      //开始点击
+      $(oBox).css({
+        //切换背景
+        background: `url(img/background_1.png)`,
+      });
+      this.remove(); //移除按钮
+      let myPlay = new MyPlane( //创建实例并初始化
+        oBox.offsetWidth / 2 - 33,
+        oBox.offsetHeight - 80
+      );
+
+      myPlay.init();
+    };
+    //我方飞机类
+
+    class MyPlane {
+      constructor(
+        x,
+        y,
+        imgSrc = `img/我的飞机.gif`,
+        boomImg = `img/本方飞机爆炸.gif`
+      ) {
+        this.x = x;
+        this.y = y;
+        this.imgSrc = imgSrc;
+        this.boomImg = boomImg;
+      }
+      init() {
+        this.createMyPlane();
+        this.handleEvent();
+      }
+      handleEvent() {
+        //我方飞机移动事件
+        document.addEventListener("mousemove", this.myPlaneMove.bind(this));
+      }
+      myPlaneMove(e) {
+        let ev = e || window.event;
+        let disX = ev.clientX - oBox.offsetLeft; //鼠标距离可视区左-盒子左
+        let disY = ev.clientY - oBox.offsetTop;
+
+        this.x = this.setBound(disX, 33, "width");
+        this.y = this.setBound(disY, 40, "height");
+
+        this.setStyle(this.element, {
+          left: this.x - 33 + "px",
+          top: this.y - 40 + "px",
+        });
+      }
+      getStyle(ele, attr) {
+        return parseInt(ele.style[attr] || getComputedStyle(ele)[attr]);
+      }
+      getMax(attr) {
+        return this.getStyle(oBox, attr) - this.getStyle(this.element, attr);
+      }
+      setBound(direction, num, attr) {
+        //限制边界
+        return direction < num //小于边界值吗
+          ? num //就是边界
+          : direction > this.getMax(attr) + 33 // 大于 盒子-飞机+飞机的一半吗
+          ? this.getMax(attr) + 33
+          : direction;
+      }
+      createMyPlane() {
+        this.element = document.createElement("div");
+        this.element.className = "myPlay";
+        this.setStyle(this.element, {
+          left: this.x + "px",
+          top: this.y + "px",
+          background: `url(${this.imgSrc})`,
+        });
+
+        oBox.appendChild(this.element);
+      }
+      setStyle(obj, json) {
+        for (let [key, value] of Object.entries(json)) {
+          obj.style[key] = value;
+        }
+      }
+    }
+  </script>
+</html>

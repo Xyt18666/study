@@ -72,9 +72,6 @@
     <div class="wrap">
       <ul class="list">
         <li>
-          <a href="#"><img src="images/5.jpg" alt="" /></a>
-        </li>
-        <li>
           <a href="#"><img src="images/1.jpg" alt="" /></a>
         </li>
         <li>
@@ -88,9 +85,6 @@
         </li>
         <li>
           <a href="#"><img src="images/5.jpg" alt="" /></a>
-        </li>
-        <li>
-          <a href="#"><img src="images/1.jpg" alt="" /></a>
         </li>
       </ul>
       <ol class="dd">
@@ -108,98 +102,275 @@
   </body>
 
   <script>
-    class CeratBanner {
-      constructor(index) {
-        // this.imgData = imgData;
-        this.index = index;
+    class Slider {
+      constructor(selector, options) {
+        this.selector = document.querySelector(selector); //最外层大盒子
+        this.options = options || {}; //参数
+        this.element = this.selector.children[0]; //轮播图 ul
+        this.elechid = this.element.children; //所有ul下 li
+        this.pagn =
+          this.options.pagni &&
+          this.selector.querySelectorAll(this.options.pagni); //所有小圆点
+        this.le =
+          this.options.navig &&
+          this.selector.querySelector(this.options.navig.le); //左
+        this.ri =
+          this.options.navig &&
+          this.selector.querySelector(this.options.navig.ri); //右
+        this.timer = null; //定时器
+        this.icur = 0; //下标
+        this.iw = this.selector.clientWidth; //轮播图 宽度
+        this.length = this.elechid.length; //有几个轮播图
+        this.len = this.elechid.length; //基础个数
+
+        this.autoPlay = this.options.autoPlay == true ? true : false; //是否自动播放
+        this.speed = this.options.speed || 3000; //播放间隔时间
       }
       init() {
-        // this.creat();
-        this.tab();
-        this.leClick();
-        this.riClick();
-        this.lb();
-      }
-      //   creat() {
-      //     let that = this;
-
-      //     $(".wrap").append(
-      //       '<ul class="list"></ul><ol class="dd"></ol><div class="le"><</div><div class="ri">></div>'
-      //     );
-      //     for (var a = 0; a < that.imgData.length; a++) {
-      //       $(
-      //         `<li><a href=><img src=
-      //            ${that.imgData[a]}
-      //             alt=""></a></li>`
-      //       ).appendTo("ul");
-      //       $("<li></li>").appendTo(".dd");
-      //     }
-      //     $($(".list li:first")[0].cloneNode(true)).appendTo(".list");
-      //     $($(".list li:last").prev()[0].cloneNode(true)).prependTo(".list");
-      //     $(".list").css({ left: -$(".list li:first").width() });
-      //   }
-      leClick() {
-        let index = this.index;
-        let that = this;
-
-        $(".le").click(function () {
-          index--;
-
-          if (index < 1) {
-            index = $(".list li").length - 2;
-            that.index = $(".list li").length - 2;
-            $(".list").css({
-              left: -($(".list li").length - 1) * $(".list li:first").width(),
-            });
-          }
-          that.index = index;
-          that.tab();
-        });
-      }
-      riClick() {
-        let index = this.index;
-        let that = this;
-        $(".ri").click(function () {
-          index++;
-          if (index > $(".list li").length - 2) {
-            index = 1;
-            that.index = 1;
-            $(".list").css({ left: 0 });
-          }
-          console.log(index, "111111111111");
-          that.index = index;
-          that.tab();
-        });
-      }
-      lb() {
-        let that = this;
-        var ds = setInterval(function () {
-          $(".ri").click();
-        }, 2000);
-        $(".wrap").mouseover(function () {
-          clearInterval(ds);
-        });
-        $(".wrap").mouseout(function () {
-          ds = setInterval(function () {
-            that.riClick();
-          }, 2000);
-        });
-      }
-      tab() {
-        let index = this.index;
-        console.log(index);
-        for (var a = 0; a < $(".dd li").length; a++) {
-          $($(".dd li")[a]).css("background", "#000");
+        this.autoPlay && this.autoplay();
+        if (this.options.navig) {
+          //左右按钮
+          this.ri.addEventListener("click", () => {
+            this.nextClick();
+          });
+          this.le.addEventListener("click", () => {
+            this.prevClick();
+          });
         }
-        $($(".dd li")[index - 1]).css("background", "red");
-        $(".list").animate({
-          left: -index * $(".list li:first").width(),
+
+        this.selector.addEventListener("mouseover", () => {
+          clearInterval(this.timer);
+        }); //移入移出开关定时器
+        this.selector.addEventListener("mouseout", () => {
+          this.autoPlay && this.autoplay();
         });
+        this.options.loop && this.loop();
+        this.pagn && this.pagns();
+      }
+      pagns() {
+        //小圆点点击
+        [...this.pagn].forEach((item, index) => {
+          item.onclick = () => {
+            this.icur = index;
+            this.moveEle();
+          };
+        });
+      }
+      loop() {
+        this.element.append(this.elechid[0].cloneNode(true));
+        this.length++;
+      }
+      autoplay() {
+        //自动播放
+        this.timer = setInterval(() => {
+          this.nextClick();
+        }, this.speed);
+      }
+      nextClick() {
+        //向下轮播
+        this.icur++;
+        if (this.icur == this.length) {
+          if (this.options.loop) {
+            this.icur = 1;
+            this.element.style.left = "0px";
+          } else {
+            this.icur = 0;
+          }
+          console.log(this.element.style);
+        }
+        // this.icur = this.icur == this.length ? 0 : this.icur;
+        this.moveEle();
+      }
+      prevClick() {
+        //向上轮播
+        this.icur--;
+        if (this.icur < 0) {
+          this.icur = 4;
+          if (this.options.loop) {
+            this.element.style.left = -this.iw * this.len + "px";
+          }
+        }
+
+        this.moveEle();
+        // this.icur = this.icur < 0 ? 5 : this.icur;
+      }
+      moveEle() {
+        //运动
+        move(this.element, { left: -this.icur * this.iw });
+        this.pagnStyle();
+      }
+      pagnStyle() {
+        //小圆点样式
+        [...this.pagn].map((item, index) => {
+          item.style = `background:#000`;
+        });
+
+        [...this.pagn][this.icur % this.len].style = `background:red`;
       }
     }
-    window.onload = function () {
-      let cb = new CeratBanner(3);
-      cb.init();
-    };
+
+    let slider = new Slider(".wrap", {
+      autoPlay: true,
+      loop: true,
+      pagni: ".dd li",
+      speed: 3000,
+      navig: {
+        le: ".le",
+        ri: ".ri",
+      },
+    });
+    slider.init();
+
+    function move(obj, json, fn) {
+      clearInterval(obj.dsq);
+      //清除定时器，防止定时器叠加
+      var speed = 0,
+        thStle = 0;
+      //定义速度和属性
+
+      obj.dsq = setInterval(function () {
+        // 开启定时器
+        var onOff = true;
+        //定义状态
+        for (key in json) {
+          //遍历属性对象
+          thStle =
+            key == "opacity"
+              ? parseFloat(getStyle(obj, key)) * 100
+              : parseInt(getStyle(obj, key));
+          //获取属性值，兼容 opcity
+
+          speed = (json[key] - thStle) / 20;
+          //定义速度
+
+          speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+          //速度正向反向取整，防止 定时器不能结束
+
+          if (thStle != json[key]) {
+            //如果 当前的属性 为达到终点
+            onOff = false;
+            //修改状态
+
+            thStle += speed;
+            // 值 的 递增
+
+            if (key == "opacity") {
+              // 赋值 兼容 opacity
+              obj.style["opacity"] = thStle / 100;
+              obj.style.filter = "alpha(opacity=" + thStle + ")";
+            } else {
+              obj.style[key] = thStle + "px";
+            }
+          }
+        }
+        if (onOff) {
+          //判断状态，结束定时器
+          clearInterval(obj.dsq);
+          fn && fn();
+          //回调
+        }
+      }, 20);
+    }
+    function getStyle(obj, attr) {
+      //获取非行间样式
+      return obj.currentStyle
+        ? obj.currentStyle[attr]
+        : getComputedStyle(obj, null)[attr];
+    }
+    //----------------------------------------
+
+    // class CeratBanner {
+    //   constructor(index) {
+    //     // this.imgData = imgData;
+    //     this.index = index;
+    //   }
+    //   init() {
+    //     // this.creat();
+    //     this.tab();
+    //     this.leClick();
+    //     this.riClick();
+    //     this.lb();
+    //   }
+    //   //   creat() {
+    //   //     let that = this;
+
+    //   //     $(".wrap").append(
+    //   //       '<ul class="list"></ul><ol class="dd"></ol><div class="le"><</div><div class="ri">></div>'
+    //   //     );
+    //   //     for (var a = 0; a < that.imgData.length; a++) {
+    //   //       $(
+    //   //         `<li><a href=><img src=
+    //   //            ${that.imgData[a]}
+    //   //             alt=""></a></li>`
+    //   //       ).appendTo("ul");
+    //   //       $("<li></li>").appendTo(".dd");
+    //   //     }
+    //   //     $($(".list li:first")[0].cloneNode(true)).appendTo(".list");
+    //   //     $($(".list li:last").prev()[0].cloneNode(true)).prependTo(".list");
+    //   //     $(".list").css({ left: -$(".list li:first").width() });
+    //   //   }
+    //   leClick() {
+    //     let index = this.index;
+    //     let that = this;
+
+    //     $(".le").click(function () {
+    //       index--;
+
+    //       if (index < 1) {
+    //         index = $(".list li").length - 2;
+    //         that.index = $(".list li").length - 2;
+    //         $(".list").css({
+    //           left: -($(".list li").length - 1) * $(".list li:first").width(),
+    //         });
+    //       }
+    //       that.index = index;
+    //       that.tab();
+    //     });
+    //   }
+    //   riClick() {
+    //     let index = this.index;
+    //     let that = this;
+    //     $(".ri").click(function () {
+    //       index++;
+    //       if (index > $(".list li").length - 2) {
+    //         index = 1;
+    //         that.index = 1;
+    //         $(".list").css({ left: 0 });
+    //       }
+    //       console.log(index, "111111111111");
+    //       that.index = index;
+    //       that.tab();
+    //     });
+    //   }
+    //   lb() {
+    //     let that = this;
+    //     var ds = setInterval(function () {
+    //       $(".ri").click();
+    //     }, 2000);
+    //     $(".wrap").mouseover(function () {
+    //       clearInterval(ds);
+    //     });
+    //     $(".wrap").mouseout(function () {
+    //       ds = setInterval(function () {
+    //         that.riClick();
+    //       }, 2000);
+    //     });
+    //   }
+    //   tab() {
+    //     let index = this.index;
+    //     console.log(index);
+    //     for (var a = 0; a < $(".dd li").length; a++) {
+    //       $($(".dd li")[a]).css("background", "#000");
+    //     }
+    //     $($(".dd li")[index - 1]).css("background", "red");
+    //     $(".list").animate({
+    //       left: -index * $(".list li:first").width(),
+    //     });
+    //   }
+    // }
+    // window.onload = function () {
+    //   let cb = new CeratBanner(3);
+    //   cb.init();
+    // };
   </script>
 </html>
