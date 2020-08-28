@@ -96,53 +96,17 @@
       }, 60000);
 
       timer3 = setInterval(() => {
-        let enemySmol = new EnemySmol(
-          randoms(30, oBoxW - 30 - 34), //x
-          -24, //y
-          8, //速度
-          1, //需要被击中的次数
-          34, //w
-          24, //h
-          "img/enemy1_fly_1.png", //飞机图
-          "img/小飞机爆炸.gif", //飞机被打图
-          "img/boom.png", //飞机爆炸图
-          200, //爆炸持续时间
-          1
-        ); //创建敌机 实例并初始化
+        let enemySmol = new EnemySmol(); //创建敌机 实例并初始化
         enemySmol.init();
       }, 1000 * difficulty * 0.7);
 
       timer2 = setInterval(() => {
-        let enemyMedium = new EnemyMedium(
-          randoms(30, oBoxW - 30 - 46),
-          -60,
-          5,
-          5,
-          46,
-          60,
-          "img/enemy2_fly_1.png",
-          "img/中飞机挨打.png",
-          "img/中飞机爆炸.gif",
-          500,
-          5
-        ); //创建敌机 实例并初始化
+        let enemyMedium = new EnemyMedium(); //创建敌机 实例并初始化
         enemyMedium.init();
       }, 5000 * difficulty * 0.7);
 
       timer1 = setInterval(() => {
-        let enemyBig = new EnemyBig(
-          randoms(30, oBoxW - 30 - 110),
-          -164,
-          3,
-          10,
-          110,
-          164,
-          "img/enemy3_fly_1.png",
-          "img/大飞机挨打.png",
-          "img/大飞机爆炸.gif",
-          1000,
-          10
-        ); //创建敌机 实例并初始化
+        let enemyBig = new EnemyBig(); //创建敌机 实例并初始化
         enemyBig.init();
       }, 15000 * difficulty * 0.7);
     };
@@ -436,7 +400,7 @@
 
             if (this.hitNum <= 0) {
               fsNum += this.fsz; //计算总分
-              console.log(this.fsz);
+
               document.querySelector(".fs span").innerHTML = fsNum;
 
               this.setStyle(this.enemyNode, {
@@ -454,17 +418,17 @@
 
     class EnemyBig extends EnemyPlay {
       constructor(
-        x,
-        y,
-        iSpeed,
-        hitNum,
-        w,
-        h,
-        imgSrc,
-        hitImg,
-        boomImg,
-        boomTime,
-        fsz
+        x = randoms(30, oBoxW - 30 - 110),
+        y = -164,
+        iSpeed = 3,
+        hitNum = 10,
+        w = 110,
+        h = 164,
+        imgSrc = "img/enemy3_fly_1.png",
+        hitImg = "img/大飞机挨打.png",
+        boomImg = "img/大飞机爆炸.gif",
+        boomTime = 1000,
+        fsz = 10
       ) {
         super(
           x,
@@ -483,17 +447,17 @@
     }
     class EnemyMedium extends EnemyPlay {
       constructor(
-        x,
-        y,
-        iSpeed,
-        hitNum,
-        w,
-        h,
-        imgSrc,
-        hitImg,
-        boomImg,
-        boomTime,
-        fsz
+        x = randoms(30, oBoxW - 30 - 46),
+        y = -60,
+        iSpeed = 5,
+        hitNum = 5,
+        w = 46,
+        h = 60,
+        imgSrc = "img/enemy2_fly_1.png",
+        hitImg = "img/中飞机挨打.png",
+        boomImg = "img/中飞机爆炸.gif",
+        boomTime = 500,
+        fsz = 5
       ) {
         super(
           x,
@@ -512,17 +476,17 @@
     }
     class EnemySmol extends EnemyPlay {
       constructor(
-        x,
-        y,
-        iSpeed,
-        hitNum,
-        w,
-        h,
-        imgSrc,
-        hitImg,
-        boomImg,
-        boomTime,
-        fsz
+        x = randoms(30, oBoxW - 30 - 34),
+        y = -24,
+        iSpeed = 8,
+        hitNum = 1,
+        w = 34,
+        h = 24,
+        imgSrc = "img/enemy1_fly_1.png",
+        hitImg = "img/小飞机爆炸.gif",
+        boomImg = "img/boom.png",
+        boomTime = 200,
+        fsz = 1
       ) {
         super(
           x,
