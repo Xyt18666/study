@@ -22,6 +22,7 @@
         right: 0;
         bottom: 0;
         margin: auto;
+        overflow: hidden;
         background: url("img/开始背景.png");
       }
       button {
@@ -41,59 +42,192 @@
         height: 80px;
         position: absolute;
       }
+      .buttles {
+        width: 6px;
+        height: 14px;
+        position: absolute;
+        z-index: 999;
+      }
+      .fs {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
     </style>
   </head>
   <body>
     <div class="box">
+      <div class="fs">分数:<span>0</span>分</div>
       <button>开始游戏</button>
     </div>
   </body>
   <script>
     let oBtn = $("button")[0]; //开始游戏按钮
     let oBox = $(".box")[0]; //整体盒子
+    let oBoxW = oBox.offsetWidth; //大盒子宽
+    let oBoxH = oBox.offsetHeight; //大盒子高
+    let fsNum = 0; //总分
+    let difficulty = 1; //难度系数
+    let timer1 = null;
+    let timer2 = null;
+    let timer3 = null;
 
-    oBtn.onclick = function () {
+    oBox.onmousedown = function (e) {
+      e.preventDefault();
+    };
+    oBtn.onclick = function (e) {
+      e.preventDefault();
       //开始点击
       $(oBox).css({
         //切换背景
         background: `url(img/background_1.png)`,
       });
-      this.remove(); //移除按钮
-      let myPlay = new MyPlane( //创建实例并初始化
+
+      this.style.display = "none"; //移除按钮
+
+      let myPlay = new MyPlane( //创建我的飞机 实例并初始化
         oBox.offsetWidth / 2 - 33,
         oBox.offsetHeight - 80
       );
-
       myPlay.init();
-    };
-    //我方飞机类
 
-    class MyPlane {
+      setInterval(() => {
+        difficulty++; //难度系数随着时间递增
+      }, 60000);
+
+      timer3 = setInterval(() => {
+        let enemySmol = new EnemySmol(
+          randoms(30, oBoxW - 30 - 34), //x
+          -24, //y
+          8, //速度
+          1, //需要被击中的次数
+          34, //w
+          24, //h
+          "img/enemy1_fly_1.png", //飞机图
+          "img/小飞机爆炸.gif", //飞机被打图
+          "img/boom.png", //飞机爆炸图
+          200, //爆炸持续时间
+          1
+        ); //创建敌机 实例并初始化
+        enemySmol.init();
+      }, 1000 * difficulty * 0.7);
+
+      timer2 = setInterval(() => {
+        let enemyMedium = new EnemyMedium(
+          randoms(30, oBoxW - 30 - 46),
+          -60,
+          5,
+          5,
+          46,
+          60,
+          "img/enemy2_fly_1.png",
+          "img/中飞机挨打.png",
+          "img/中飞机爆炸.gif",
+          500,
+          5
+        ); //创建敌机 实例并初始化
+        enemyMedium.init();
+      }, 5000 * difficulty * 0.7);
+
+      timer1 = setInterval(() => {
+        let enemyBig = new EnemyBig(
+          randoms(30, oBoxW - 30 - 110),
+          -164,
+          3,
+          10,
+          110,
+          164,
+          "img/enemy3_fly_1.png",
+          "img/大飞机挨打.png",
+          "img/大飞机爆炸.gif",
+          1000,
+          10
+        ); //创建敌机 实例并初始化
+        enemyBig.init();
+      }, 15000 * difficulty * 0.7);
+    };
+
+    class FlayPlay {
+      getStyle(ele, attr) {
+        //获取样式
+        return parseInt(ele.style[attr] || getComputedStyle(ele)[attr]);
+      }
+      setStyle(obj, json) {
+        //设置样式
+        for (let [key, value] of Object.entries(json)) {
+          obj.style[key] = value;
+        }
+      }
+    }
+
+    class MyPlane extends FlayPlay {
       constructor(
         x,
         y,
         imgSrc = `img/我的飞机.gif`,
         boomImg = `img/本方飞机爆炸.gif`
       ) {
-        this.x = x;
+        super();
+        this.x = x; //我的飞机位置,飞机图片
         this.y = y;
         this.imgSrc = imgSrc;
         this.boomImg = boomImg;
       }
       init() {
-        this.createMyPlane();
-        this.handleEvent();
+        this.createMyPlane(); //创建飞机
+        this.handleEvent(); //飞机的事件
+
+        //判断是否与敌机碰撞
+        this.dsq = setInterval(() => {
+          //使用定时器 检测是否碰撞
+          this.isMyBoom();
+        }, 50);
       }
       handleEvent() {
         //我方飞机移动事件
-        document.addEventListener("mousemove", this.myPlaneMove.bind(this));
+
+        this.element.onmousedown = (e) => {
+          //飞机按下
+          e.preventDefault(); //阻止默认事件
+
+          //飞机按下移动
+          document.onmousemove = () => {
+            //飞机移动
+            this.myPlaneMove();
+          };
+
+          this.mylaneShoot();
+        };
+
+        oBox.onmouseup = () => {
+          //飞机抬起
+          this.stopShoot();
+          document.onmousemove = null;
+        };
       }
+      stopShoot() {
+        //抬起 停止射击
+        clearInterval(this.timer);
+      }
+      mylaneShoot(e) {
+        //攻击 子弹
+        clearInterval(this.timer);
+        let buttle = new Bullet(this.x - 3, this.y - 40 - 14); //按下攻击
+        buttle.init();
+
+        this.timer = setInterval(() => {
+          //按下 持续攻击
+          let buttle = new Bullet(this.x - 3, this.y - 40 - 14);
+          buttle.init();
+        }, 300);
+      }
+
       myPlaneMove(e) {
         let ev = e || window.event;
         let disX = ev.clientX - oBox.offsetLeft; //鼠标距离可视区左-盒子左
         let disY = ev.clientY - oBox.offsetTop;
 
-        this.x = this.setBound(disX, 33, "width");
+        this.x = this.setBound(disX, 33, "width"); //限制边界后的值
         this.y = this.setBound(disY, 40, "height");
 
         this.setStyle(this.element, {
@@ -101,21 +235,70 @@
           top: this.y - 40 + "px",
         });
       }
-      getStyle(ele, attr) {
-        return parseInt(ele.style[attr] || getComputedStyle(ele)[attr]);
+      isMyBoom() {
+        // 我的飞机的数据
+
+        let myL = this.getStyle(this.element, "left");
+        let myT = this.getStyle(this.element, "top");
+        let myW = this.getStyle(this.element, "width");
+        let myH = this.getStyle(this.element, "height");
+
+        let enemys = document.querySelectorAll(".enemy");
+        [...enemys].forEach((item) => {
+          //敌机的位置与宽高
+          let enemyL = this.getStyle(item, "left");
+          let enemyT = this.getStyle(item, "top");
+          let enemyW = this.getStyle(item, "width");
+          let enemyH = this.getStyle(item, "height");
+          if (
+            myT < enemyT + enemyH && //我飞机的 top 要小于 敌机top+敌机搞  ，也就是y轴重叠
+            enemyT < myT + myH &&
+            myL < enemyL + enemyW && //我飞机的 左边 要小于  敌机的 左边 + 宽度 ，左侧最大值
+            enemyL < myL + myW // 敌机的左边 要小于 我飞机的左边加 我飞机的宽 ，右侧最大值
+          ) {
+            //自己销毁，游戏结束
+            clearInterval(this.dsq); //碰撞后不再检测碰撞
+            document.onmousemove = null; //同时移除移动事件
+            this.element.onmousedown = null; //同时移除攻击事件
+            oBox.onmouseup = null; //同时移除攻击事件
+
+            clearInterval(timer3); //同时停止创建飞机
+            clearInterval(timer2); //同时停止创建飞机
+            clearInterval(timer1); //同时停止创建飞机
+            clearInterval(this.timer); //停止射击
+
+            [...enemys].forEach((items) => {
+              //同时停止所有小飞机的运动
+              clearInterval(items.time);
+            });
+
+            this.setStyle(this.element, {
+              //改变自身飞机样式
+              background: `url(${this.boomImg})`,
+            });
+
+            alert("game over");
+            setTimeout(() => {
+              //延时重载页面
+              window.location.reload();
+            }, 5000);
+          }
+        });
       }
       getMax(attr) {
+        //获取最大边界
         return this.getStyle(oBox, attr) - this.getStyle(this.element, attr);
       }
       setBound(direction, num, attr) {
         //限制边界
         return direction < num //小于边界值吗
           ? num //就是边界
-          : direction > this.getMax(attr) + 33 // 大于 盒子-飞机+飞机的一半吗
+          : direction > this.getMax(attr) + 33 // 大于 盒子-飞机+飞机的一半
           ? this.getMax(attr) + 33
           : direction;
       }
       createMyPlane() {
+        //创建我的飞机到 页面
         this.element = document.createElement("div");
         this.element.className = "myPlay";
         this.setStyle(this.element, {
@@ -123,14 +306,243 @@
           top: this.y + "px",
           background: `url(${this.imgSrc})`,
         });
-
         oBox.appendChild(this.element);
       }
-      setStyle(obj, json) {
-        for (let [key, value] of Object.entries(json)) {
-          obj.style[key] = value;
-        }
+    }
+
+    class Bullet extends FlayPlay {
+      //子弹类
+
+      constructor(x, y, imgSrc = "img/bullet1.png") {
+        super();
+        this.x = x;
+        this.y = y; //子弹位置，子弹图
+        this.imgSrc = imgSrc;
       }
+      init() {
+        this.creatBullet(); //创建子弹
+        this.buttleMove(); //子弹移动
+      }
+      buttleMove() {
+        this.timer = setInterval(() => {
+          this.setStyle(this.bulletNode, {
+            top: this.getStyle(this.bulletNode, "top") - 5 + "px",
+          });
+          this.getStyle(this.bulletNode, "top") < -14 //超出可视区，移除子弹
+            ? this.bulletNode.remove()
+            : null;
+        }, 10);
+      }
+      creatBullet() {
+        //创建子弹
+        this.bulletNode = document.createElement("div");
+        this.bulletNode.className = "buttles";
+        this.setStyle(this.bulletNode, {
+          left: this.x + "px",
+          top: this.y + "px",
+          background: `url(${this.imgSrc})`,
+        });
+        oBox.appendChild(this.bulletNode);
+      }
+    }
+
+    class EnemyPlay extends FlayPlay {
+      //创建敌人
+      constructor(
+        x,
+        y,
+        iSpeed,
+        hitNum,
+        w,
+        h,
+        imgSrc,
+        hitImg,
+        boomImg,
+        boomTime,
+        fsz
+      ) {
+        super();
+        this.x = x; //敌机 位置，速度，需要碰撞的次数,大小 ，图片，爆炸动图，爆炸结束图,分数
+        this.y = y;
+        this.iSpeed = iSpeed;
+        this.hitNum = hitNum;
+        this.w = w;
+        this.h = h;
+        this.imgSrc = imgSrc;
+        this.hitImg = hitImg;
+        this.boomImg = boomImg;
+        this.boomTime = boomTime;
+        this.fsz = fsz;
+      }
+      init() {
+        this.creatEneyPlane();
+      }
+      creatEneyPlane() {
+        //创建敌机
+        this.enemyNode = document.createElement("div");
+        this.enemyNode.className = "enemy";
+        this.setStyle(this.enemyNode, {
+          position: "absolute",
+          left: this.x + "px",
+          top: this.y + "px",
+          width: this.w + "px",
+          height: this.h + "px",
+          background: `url(${this.imgSrc})`,
+        });
+        oBox.appendChild(this.enemyNode);
+        this.enemyMove();
+      }
+      enemyMove() {
+        this.enemyNode.time = setInterval(() => {
+          let iCurt = this.getStyle(this.enemyNode, "top");
+
+          this.setStyle(this.enemyNode, {
+            top: iCurt + this.iSpeed + "px",
+          });
+          iCurt >= oBoxH //超出可视区，移除敌机
+            ? this.enemyNode.remove() //可以是游戏结束
+            : null;
+
+          //不停的检测是否被击中
+          this.hit();
+        }, 50);
+      }
+      hit() {
+        //敌机的位置与宽高
+        let enemyL = this.getStyle(this.enemyNode, "left");
+        let enemyT = this.getStyle(this.enemyNode, "top");
+        let enemyW = this.getStyle(this.enemyNode, "width");
+        let enemyH = this.getStyle(this.enemyNode, "height");
+
+        let buttles = document.querySelectorAll(".buttles");
+        [...buttles].forEach((item) => {
+          //子弹的位置与宽高
+          let buttL = this.getStyle(item, "left");
+          let buttT = this.getStyle(item, "top");
+          let buttW = this.getStyle(item, "width");
+          let buttH = this.getStyle(item, "height");
+          if (
+            buttT < enemyT + enemyH && //子弹的top 要小于 飞机的top+飞机高  ，表示在X轴相交
+            buttL < enemyL + enemyW && //子弹的left 要小于 飞机的left+飞机宽 ， 表示子弹 击中左侧 的最小范围
+            enemyL < buttL + buttW && //敌机的left 要小于 子弹的left+子弹的宽 ，表示子弹 击中左侧 的最小范围
+            enemyT < buttT + buttH // 敌机的 top 要小于 子弹的 top +子弹的高
+          ) {
+            //击中
+            item.remove(); //击中的子弹删除
+            this.hitNum--; //击中次数减1
+            this.setStyle(this.enemyNode, {
+              background: `url(${this.hitImg})`, //修改为挨打图
+            });
+
+            if (this.hitNum <= 0) {
+              fsNum += this.fsz; //计算总分
+              console.log(this.fsz);
+              document.querySelector(".fs span").innerHTML = fsNum;
+
+              this.setStyle(this.enemyNode, {
+                background: `url(${this.boomImg})`, //修改为 爆炸图
+              });
+              clearInterval(this.enemyNode.time);
+              setTimeout(() => {
+                this.enemyNode.remove();
+              }, this.boomTime);
+            }
+          }
+        });
+      }
+    }
+
+    class EnemyBig extends EnemyPlay {
+      constructor(
+        x,
+        y,
+        iSpeed,
+        hitNum,
+        w,
+        h,
+        imgSrc,
+        hitImg,
+        boomImg,
+        boomTime,
+        fsz
+      ) {
+        super(
+          x,
+          y,
+          iSpeed,
+          hitNum,
+          w,
+          h,
+          imgSrc,
+          hitImg,
+          boomImg,
+          boomTime,
+          fsz
+        );
+      }
+    }
+    class EnemyMedium extends EnemyPlay {
+      constructor(
+        x,
+        y,
+        iSpeed,
+        hitNum,
+        w,
+        h,
+        imgSrc,
+        hitImg,
+        boomImg,
+        boomTime,
+        fsz
+      ) {
+        super(
+          x,
+          y,
+          iSpeed,
+          hitNum,
+          w,
+          h,
+          imgSrc,
+          hitImg,
+          boomImg,
+          boomTime,
+          fsz
+        );
+      }
+    }
+    class EnemySmol extends EnemyPlay {
+      constructor(
+        x,
+        y,
+        iSpeed,
+        hitNum,
+        w,
+        h,
+        imgSrc,
+        hitImg,
+        boomImg,
+        boomTime,
+        fsz
+      ) {
+        super(
+          x,
+          y,
+          iSpeed,
+          hitNum,
+          w,
+          h,
+          imgSrc,
+          hitImg,
+          boomImg,
+          boomTime,
+          fsz
+        );
+      }
+    }
+
+    function randoms(max, min) {
+      //全局的随机函数
+      return Math.floor(Math.random() * (max - min + 1) + min);
     }
   </script>
 </html>
