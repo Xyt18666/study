@@ -53,11 +53,26 @@
         top: 0;
         left: 0;
       }
+      .qpbz {
+        position: absolute;
+        left: 0;
+        bottom: 100px;
+        width: 50px;
+        line-height: 50px;
+        color: red;
+        border-radius: 50%;
+        height: 50px;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.6);
+        display: none;
+      }
     </style>
   </head>
   <body>
     <div class="box">
       <div class="fs">分数:<span>0</span>分</div>
+      <div class="qpbz">炸弹</div>
+
       <button>开始游戏</button>
     </div>
   </body>
@@ -66,6 +81,7 @@
     let oBox = $(".box")[0]; //整体盒子
     let oBoxW = oBox.offsetWidth; //大盒子宽
     let oBoxH = oBox.offsetHeight; //大盒子高
+    let qpbz = document.querySelector(".qpbz"); //全屏爆炸按钮
     let fsNum = 0; //总分
     let difficulty = 1; //难度系数
     let timer1 = null;
@@ -84,6 +100,7 @@
       });
 
       this.style.display = "none"; //移除按钮
+      qpbz.style.display = "block";
 
       let myPlay = new MyPlane( //创建我的飞机 实例并初始化
         oBox.offsetWidth / 2 - 33,
@@ -340,11 +357,54 @@
       }
       init() {
         this.creatEneyPlane();
+        this.screenBlast();
+      }
+      screenBlast() {
+        //全屏爆炸
+
+        this.cd = 60;
+
+        this.screenBomButton = qpbz;
+        this.screenBomButton.onclick = () => {
+          this.screenBomButton.style.pointerEvents = "none";
+
+          [...document.querySelectorAll(".enemy")].forEach((item) => {
+            this.boom(item, item.boomImg, item.boomTime);
+          });
+
+          setInterval(() => {
+            this.cd--;
+            this.screenBomButton.innerHTML = `${this.cd}s`;
+            if (this.cd <= 0) {
+              this.screenBomButton.style.pointerEvents = "auto";
+              this.onof = true;
+
+              this.cd = 60;
+            }
+          }, 1000);
+        };
+      }
+      boom(ele, eleBoomImg, eleBoomTime) {
+        fsNum += ele.fsz; //计算总分
+
+        document.querySelector(".fs span").innerHTML = fsNum;
+        this.setStyle(ele, {
+          //改背景图
+          background: `url(${eleBoomImg})`,
+        });
+        clearInterval(ele.time); //关定时器。飞机不能移动
+        setTimeout(() => {
+          ele.remove(); //定时移除
+        }, eleBoomTime);
       }
       creatEneyPlane() {
         //创建敌机
         this.enemyNode = document.createElement("div");
         this.enemyNode.className = "enemy";
+        this.enemyNode.boomImg = this.boomImg; //为当前飞机绑定当前爆炸图
+        this.enemyNode.boomTime = this.boomTime;
+        this.enemyNode.fsz = this.fsz; //为当前飞机元素添加自身属性
+
         this.setStyle(this.enemyNode, {
           position: "absolute",
           left: this.x + "px",
@@ -399,17 +459,7 @@
             });
 
             if (this.hitNum <= 0) {
-              fsNum += this.fsz; //计算总分
-
-              document.querySelector(".fs span").innerHTML = fsNum;
-
-              this.setStyle(this.enemyNode, {
-                background: `url(${this.boomImg})`, //修改为 爆炸图
-              });
-              clearInterval(this.enemyNode.time);
-              setTimeout(() => {
-                this.enemyNode.remove();
-              }, this.boomTime);
+              this.boom(this.enemyNode, this.boomImg, this.boomTime);
             }
           }
         });
