@@ -76,25 +76,30 @@
   </body>
   <script>
     class Floor {
-      constructor() {}
+      constructor(floorList, buttonAll, backTop) {
+        this.floorList = floorList;
+        this.buttonAll = buttonAll;
+        this.backTop = backTop;
+      }
       init() {
         this.scroll();
         this.click();
         this.fhdb();
+   
       }
       scroll() {
-        $(window).scroll(function () {
-          var st = $(this).scrollTop();
+        $(window).scroll(()=> {
+          var st = $(window).scrollTop();
           st > 1300 ? $("aside").addClass("st") : $("aside").removeClass("st");
 
           var stMax = st + $(window).height() / 2;
           var stMin = st - $(window).height() / 2;
           console.log(stMax, st, stMin);
 
-          $("ol li").each(function (i) {
-            var ost = $(".list li").eq(i).offset().top;
+          this.buttonAll.each( (i)=> {
+            var ost = this.floorList.eq(i).offset().top;
             if (ost > stMin && ost < stMax) {
-              $("ol li")
+              this.buttonAll
                 .eq(i)
                 .css("background", "red")
                 .siblings()
@@ -104,8 +109,8 @@
         });
       }
       click() {
-        $("ol li").click(function () {
-          var stoz = $(".list li").eq($(this).index()).offset().top;
+        this.buttonAll.click(function () {
+          var stoz = this.floorList.eq($(this).index()).offset().top;
           $("html,body").animate(
             {
               scrollTop: stoz - 100,
@@ -115,7 +120,7 @@
         });
       }
       fhdb() {
-        $("aside p").click(function () {
+        this.backTop.click(function () {
           $("html,body").animate(
             {
               scrollTop: 0,
@@ -125,7 +130,7 @@
         });
       }
     }
-    let flor = new Floor();
+    let flor = new Floor($(".list li"), $("ol li"), $("p"));
     flor.init();
   </script>
 </html>

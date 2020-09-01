@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .box {
+        width: 320px;
+        height: 568px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        overflow: hidden;
+        background: url("img/开始背景.png");
+      }
+      button {
+        position: absolute;
+        width: 200px;
+        height: 50px;
+        border: 1px solid #999;
+        background: #fff;
+        outline: none;
+        left: 50%;
+        bottom: 60px;
+        z-index: 99;
+        transform: translate(-50%, 0);
+      }
+      .myPlay {
+        width: 66px;
+        height: 80px;
+        position: absolute;
+      }
+      .buttles {
+        width: 6px;
+        height: 14px;
+        position: absolute;
+        z-index: 999;
+      }
+      .fs {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .qpbz {
+        position: absolute;
+        left: 0;
+        bottom: 100px;
+        width: 50px;
+        line-height: 50px;
+        color: red;
+        border-radius: 50%;
+        height: 50px;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.6);
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="fs">分数:<span>0</span>分</div>
+      <div class="qpbz">炸弹</div>
+
+      <button>开始游戏</button>
+    </div>
+  </body>
+  <script src="require.js" async="true" data-main="./main.js"></script>
+</html>
