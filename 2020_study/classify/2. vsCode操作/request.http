@@ -12,4 +12,6 @@ POST https://way.jd.com/jisuapi/search?appkey=79994b160a821f1fcc132083a0172715&k
 GET https://api.imjad.cn/cloudmusic/?type=playlist&id=309390784
 
 ###
-GET http://musicapi.leanapp.cn/search?/keywords=1
+GET https://pub.m.iqiyi.com/h5/main/channel/zongyi/?ppuid=1298776115&uid=c59e682b38b861c92668af2e0adaea4c&authCookie=e2K2HGexm2pIib1gRr5sLnkQdMxVI3BdOZyWtAuJjSAVID5qrUhgsgIGiSGTObZ1m2W847&system=ios&callback=__jp159936273253810
+
+
