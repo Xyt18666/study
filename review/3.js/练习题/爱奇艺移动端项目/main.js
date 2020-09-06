@@ -1,5 +1,6 @@
 import "./modules/rem.js"; //引入rem
-import head from "./modules/head.js"; //引入头部模块 类
+import * as pub from "./modules/public.js"; //引入全局方法
+import Head from "./modules/head.js"; //引入头部模块 类
 
 //获取数据
 // import "./jq.js"; //引入jq
@@ -14,5 +15,4 @@ import head from "./modules/head.js"; //引入头部模块 类
 //     console.log(JSON.stringify(data));
 //   },
 // });
-
-console.log(head);
+new Head().init();
