@@ -1,3 +1,5 @@
+import "./jq.js"; //引入jq
+
 function getEle(clas) {
   return document.querySelector(clas);
 }
@@ -14,4 +16,23 @@ function setStyle(obj, json) {
     obj.style[key] = value;
   }
 }
-export { getEle, getEleAll, getStyle, setStyle };
+function PromiseAjax(params) {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: params.url,
+      type: params.type || "get",
+      async: false,
+      dataType: params.dataType || "json",
+      headers: params.headers || {},
+      data: params.data || {},
+      jsonpCallback: params.jsonpCallback || {},
+      success(res) {
+        resolve(res);
+      },
+      error(err) {
+        reject(err);
+      },
+    });
+  });
+}
+export { getEle, getEleAll, getStyle, setStyle, PromiseAjax };
