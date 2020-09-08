@@ -26,7 +26,7 @@ export default class Head {
         .PromiseAjax({
           type: "get",
           async: false,
-          url: `https://pub.m.iqiyi.com/h5/main/index/1/?callback=__jp${time}`,
+          url: `https://pub.m.iqiyi.com/h5/main/index/1/?`,
           dataType: "jsonp",
           jsonpCallback: `__jp${time}`,
         })
@@ -36,7 +36,6 @@ export default class Head {
               cards: [{ videos }],
             },
           } = res;
-          console.log(res);
 
           $(videos).each((index, item) => {
             $(".banner ul").append(`<li> 

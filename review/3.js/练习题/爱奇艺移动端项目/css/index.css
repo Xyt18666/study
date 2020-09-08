@@ -290,15 +290,18 @@ header {
   background: #ccc;
 }
 /* ---------------上面是 banner , 下面 大剧热综艺----------------------- */
-.djrz {
+.djrz,
+.dsj {
   width: 95%;
   margin: 0 auto;
 }
-.djrz h3 {
+.djrz h3,
+.dsj h3 {
   font: bold 0.28rem/0.38rem "";
   padding: 0.2rem 0;
 }
-.djrz ul {
+.djrz ul,
+.dsj ul {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
@@ -335,4 +338,41 @@ header {
 }
 .djrz ul li .plot {
   font: 0.22rem/0.38rem "";
+}
+/* ------------电视剧------------------------ */
+
+.dsj ul li {
+  width: calc(100% / 3 - 1%);
+  margin: 1% 0.5%;
+}
+.dsj ul li img {
+  width: 100%;
+}
+
+.dsj ul li .imgBox {
+  position: relative;
+}
+.dsj ul li .imgBox .lable {
+  position: absolute;
+  top: 0.1rem;
+  right: 0.1rem;
+  text-align: center;
+  font: 600 0.24rem/0.38rem "";
+  color: #fff;
+  padding: 0 0.05rem;
+}
+.dsj ul li .imgBox .information {
+  position: absolute;
+  bottom: 0.1em;
+  right: 0.1rem;
+  font: 0.24rem/0.38rem "";
+  color: #fff;
+}
+.dsj ul li img {
+  width: 100%;
+  height: 2.7rem;
+}
+.dsj ul li .title {
+  font: 0.28rem/0.38rem "";
+  color: #000;
 }

@@ -229,9 +229,6 @@ export default class Head {
           for (let i = 0; i < 6; i++) {
             $(".SearchHot ul").append(`<li>${res.data[i].query}</li>`);
           }
-
-          console.log($("header").height());
-
         });
     }
     creatHotList.bind(this)();
