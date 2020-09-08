@@ -1,7 +1,5 @@
 html {
   width: 100vw;
-  height: 100vh;
-  overflow: hidden;
 }
 body {
   font-family: "Helvetica Neue", helvetica, arial, sans-serif;
@@ -117,7 +115,7 @@ header {
   margin-left: 0;
 }
 .hB .navR {
-  width: 7%;
+  width: 0.38rem;
   height: 0.38rem;
   background-image: url(//www.iqiyipic.com/common/fix/h5-aura/c-channel-all-20200804.png);
   background-repeat: no-repeat;
@@ -242,4 +240,99 @@ header {
 }
 .SearchHot ul li:nth-child(6)::before {
   content: "6";
+}
+/* ------------ 上面是 header  ，下面是 banner------------- */
+
+.banner {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin-top: 1.52rem;
+}
+.banner ul {
+  width: 700%;
+  display: flex;
+}
+.banner ul li {
+  width: 100%;
+  position: relative;
+}
+.banner img {
+  width: 100%;
+}
+.banner ul li .title {
+  position: absolute;
+  bottom: 0.2rem;
+  font: 500 0.3rem/0.38rem "";
+  color: #fff;
+  margin-left: 0.2rem;
+}
+.banner ul li .type {
+  position: absolute;
+  top: 0.2rem;
+  right: 0.2rem;
+  font: bold 0.23rem/0.38rem "";
+  color: rgb(255, 255, 255);
+  text-align: center;
+  padding: 0 0.1rem;
+  border-radius: 0.04rem;
+}
+.dd {
+  position: absolute;
+  bottom: 0.2rem;
+  right: 0.1rem;
+  display: flex;
+}
+.dd li {
+  width: 0.15rem;
+  height: 0.05rem;
+  margin: 0.05rem;
+  background: #ccc;
+}
+/* ---------------上面是 banner , 下面 大剧热综艺----------------------- */
+.djrz {
+  width: 95%;
+  margin: 0 auto;
+}
+.djrz h3 {
+  font: bold 0.28rem/0.38rem "";
+  padding: 0.2rem 0;
+}
+.djrz ul {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+.djrz ul li {
+  width: 48%;
+  margin: 0 1%;
+}
+.djrz ul li .imgBox {
+  position: relative;
+}
+.djrz ul li .imgBox .lable {
+  position: absolute;
+  top: 0.1rem;
+  right: 0.1rem;
+  text-align: center;
+  font: 600 0.24rem/0.38rem "";
+  color: #fff;
+  padding: 0 0.05rem;
+}
+.djrz ul li .imgBox .information {
+  position: absolute;
+  bottom: 0.1em;
+  right: 0.1rem;
+  font: 0.24rem/0.38rem "";
+  color: #fff;
+}
+.djrz ul li img {
+  width: 100%;
+}
+.djrz ul li .title {
+  font: 0.28rem/0.38rem "";
+  color: #000;
+}
+.djrz ul li .plot {
+  font: 0.22rem/0.38rem "";
 }

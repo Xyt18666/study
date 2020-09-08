@@ -49,7 +49,7 @@ export default class Head {
     });
 
     console.log();
-    pub.getEle("body").innerHTML = ` <header>
+    pub.getEle("body").innerHTML = ` <header class="clearfix">
       <div class="hT">
         <div class="logo"></div>
         <form action="#">
@@ -229,6 +229,9 @@ export default class Head {
           for (let i = 0; i < 6; i++) {
             $(".SearchHot ul").append(`<li>${res.data[i].query}</li>`);
           }
+
+          console.log($("header").height());
+
         });
     }
     creatHotList.bind(this)();
