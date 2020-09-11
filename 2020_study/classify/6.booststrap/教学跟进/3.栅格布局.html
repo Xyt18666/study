@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+    <script
+      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"
+    ></script>
+    <style></style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row align-items-end">
+        <!--定义行 ，行内不能有内容,  align-item-start 子项垂直对齐方式 -->
+        <div class="col-xl-8">第一列</div>
+        <div class="col-xl-2">第2列</div>
+        <!--align-self-center 自己纵向居中   -->
+        <div class="w-100">换行， w-百分比</div>
+        <!--定义列 -->
+        <div class="col-xl-2">第3列</div>
+        <!-- col-屏幕尺寸-所占份数 -->
+        <div class="col-xl-2">第4列</div>
+      </div>
+      <div class="row">
+        <div class="col-xl">第一列</div>
+        <div class="col-xl col-lg-8">第2列</div>
+        <div class="col-xl col-lg-4">第3列</div>
+        <div class="col-xl">第4列</div>
+      </div>
+      <div class="row">
+        <div class="col-5">第一列</div>
+        <div class="col-5">第2列</div>
+        <div class="col-5 col-xl-auto">第5列1111111111111</div>
+        <div class="col-5">第4列</div>
+      </div>
+      <div class="row row-cols-3">
+        <div class="order-last">第一列</div>
+        <div class="order-first">第2列</div>
+        <div class="order-11">第3列1111111111111</div>
+        <div class="order-1">第4列</div>
+      </div>
+      <div class="row justify-content-around">
+        <div class="col-2 px-lg-10">第一列</div>
+        <div class="col-2 mx-lg-n5">第2列</div>
+        <div class="col-2">第3</div>
+        <div class="w-100"></div>
+        <div class="col-2 py-3">第4列</div>
+        <div class="col-2 pb-3">第5列</div>
+        <div class="col-2 offset-xl-3">第6列</div>
+        <div class="col-2 d-none d-xl-block">第7列</div>
+        <div class="col-2">第8列</div>
+      </div>
+    </div>
+    <div class="container no-gutters">
+      <div class="row align-items-start mr-auto">
+        <div class="col">One of three columns</div>
+        <div class="col">One of three columns</div>
+        <div class="col">One of three columns</div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col">One of three columns</div>
+        <div class="col">One of three columns</div>
+        <div class="col">One of three columns</div>
+      </div>
+      <div class="row align-items-end">
+        <div class="col">One of three columns</div>
+        <div class="col">One of three columns</div>
+        <div class="col">One of three columns</div>
+      </div>
+    </div>
+    <div class="container px-lg-5">
+      <div class="row mx-lg-n5">
+        <div class="col py-3 px-lg-5 border bg-light">
+          Custom column padding
+        </div>
+        <div class="col py-3 px-lg-5 border bg-light">
+          Custom column padding
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    /*
+row : 代表行 ，行内不可以写内容 ，行内只能有列 ，一行最多12列,如果一行超过12列，将换行
+
+
+col-屏幕-所占份数 ：定义列，在什么屏幕下 ，所占的 份数 ，列里可以套用行
+    特小<576px	Small≥576px	Medium≥768px	Large≥992px	特大≥1200px
+    最大容器宽度	无（自动）	540像素	720px	960px	1140px
+    类前缀	.col-	.col-sm-	.col-md-	.col-lg-	.col-xl-
+
+col :在等宽的情况下 ，无需定义屏 幕和份数 ，直接使用 col
+    也可以单数设置 一个列的宽度，其余 的 列将 平局分配
+
+col-屏幕 ：在某种屏幕下 ，平局分配
+col-份数：平局分配 ，指定屏幕下 ，改变列宽
+
+col-屏幕-auto :可根据其内容的自然宽度来调整列的大小
+
+row-cols-列数 ：在行上定义，将分为几列
+row-cols-屏幕-列数 ： 在不同屏幕下的 列
+col-列数 ： 普通元素 将使用 这个
+
+order-[1-12] ：列排序，越小，越靠前
+order-屏幕-[1-12] ：在指定屏幕下 排序
+order-first： 第一个
+order-last: 最后一个
+
+offset-屏幕-偏移列数 ： 偏移列
+
+
+w-数值  ： 通过创建一个 元素  ，实现 等宽 多行
+
+d-none ： display:none
+d-屏幕-block :在某种屏幕 block
+
+align-items-center/start/end : 为弹性盒子 设置 纵向对齐方式
+align-self-center/start/end  ： 为弹性盒子 ，子元素 ，设置自己的纵向对齐方式
+
+justify-content-start/center/start/end/around/between : 水平排列方式
+
+
+.pb-3 ：内边距
+.py-3 : padding-bottom 1rem
+
+px-lg-5 :  margin-left 3rem margin-right 3rem
+mx-lg-n5 : margin-left -3rem margin-right -3rem
+
+ml/mr-屏幕-auto  :在某种屏幕 左右 auto
+ml/mr-auto ：左右 auto
+
+
+no-gutters ：删除子列的 margin padding
+
+
+
+border ：边框
+bg-light ： 背景色 - 亮
+
+
+
+*/
+  </script>
+</html>
