@@ -1,0 +1,14 @@
+CACHE MANIFEST
+# 注释
+
+/0.html5内容.html
+
+
+NETWORK:
+*
+
+FALLBACK:
+
+# 下面的 FALLBACK 部分规定如果无法建立因特网连接，则用 "offline.html" 替代 /html/ 目录中的所有文件
+
+/html/ /offline.html

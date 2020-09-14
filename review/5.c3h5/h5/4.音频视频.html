@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+ 
+    >
+    <video   poster="https://dss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=4220765120,4182187051&fm=58" width="800">
+        <!--  循环 封面  宽度  自动autoplay 控制台controls  循环loop-->
+      <source  src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"  type="video/mp4"> </source>
+      <!-- 路径 类型  -->
+    </video>
+    <p>开关</p>
+
+  </body>
+  <script>
+/*
+
+
+
+
+*/
+let video = document.querySelector("video")
+let onof = document.querySelector("p")
+
+console.log(video.paused)
+onof.onclick=()=>{
+    if(video.paused){//判断播放状态是否为关闭
+        video.play();//打开
+    }else{
+        video.pause();//关闭
+    }
+}
+
+video.oncanplay=()=>{//可以播放时触发
+    setInterval(()=>{
+        console.log(video.duration, video.currentTime)//获取总时长,当前播放的时间
+    },1000)
+}
+
+video.ontimeupdate=()=>{//currentTime改变时触发
+    console.log(video.volume);//音量  0-1
+    video.playbackRate=5
+    console.log(video.playbackRate);//播放速度 0.5 1 1.5 2 2.5
+
+}
+video.onended=()=>{
+    video.pause();//关闭
+    console.log("播放结束事件");
+    
+}
+
+/*
+
+$(".xx").click(function(){
+    //操作全屏事件。并兼容
+    if(video.requestFullScreen){
+            video.requestFullScreen()
+    }else if(video.webkitRequestFullScreen){
+            video.webkitRequestFullScreen()
+    }else if(video.mozRequestFullScreen){
+            video.mozRequestFullScreen()
+    }else if(video.msRequestFullScreen){
+            video.msRequestFullScreen()
+    }
+})
+
+*/
+  </script>
+</html>
+ 

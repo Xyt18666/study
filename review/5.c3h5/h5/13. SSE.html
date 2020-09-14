@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>获得服务器更新</h1>
+    <div id="result"></div>
+    <!-- 
+    服务器发送事件(Server-Sent Events)
+    Server-Sent 事件 - 单向消息传递
+
+        事件：
+            onopen	当通往服务器的连接被打开
+            onmessage	当接收到消息
+            onerror	当发生错误
+     -->
+
+    <script>
+      if (typeof EventSource !== "undefined") {
+        var source = new EventSource("demo_sse.php");
+        //创建一个新的 EventSource 对象，然后规定发送更新的页面的 URL（本例中是 "demo_sse.php"）
+
+        source.onmessage = function (event) {
+          //每接收到一次更新，就会发生 onmessage 事件
+          console.log(event);
+          //当 onmessage 事件发生时，把已接收的数据推入 id 为 "result" 的元素中
+          document.getElementById("result").innerHTML += event.data + "<br />";
+        };
+      } else {
+        document.getElementById("result").innerHTML =
+          "抱歉，您的浏览器不支持 server-sent 事件 ...";
+      }
+    </script>
+  </body>
+</html>

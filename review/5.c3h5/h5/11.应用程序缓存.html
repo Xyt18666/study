@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" manifest="cache.appcache">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+
+        1. html标签中添加 manifest="xx.appcache"
+        2.创建 xx.appcache 文件
+
+        3. appcache 文件 详解
+            # 注释
+            CACHE MANIFEST - 在此标题下列出的文件将在首次下载后进行缓存 （必写）
+            NETWORK - 在此标题下列出的文件需要与服务器的连接，且不会被缓存
+                * 表示说有文件
+            FALLBACK - 在此标题下列出的文件规定当页面无法访问时的回退页面，或者说是替代文件（比如 404 页面）
+
+        4. 事件
+            oncached	当离线资源存储完成后触发
+            onchecking	当浏览器对离线存储资源进行检查的时候触发
+            ondownloading	当浏览器开始下载离线资源的时候触发
+            onerror	当缓存资源失败的时候触发
+            onnoupdate	浏览器检查manifest文件没有更新时触发
+            onobsolete	过时的
+            onprogress	当浏览器缓存每一个资源的时候都会触发一次
+            onupdateready	浏览器更新离线资源完成的时候触发
+
+            window.applicationCache.addEventListener('oncached', function () {});
+
+       -->
+  </body>
+  <script>
+    window.applicationCache.addEventListener("error", function () {
+      console.log(11);
+    });
+  </script>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="result"></div>
+  </body>
+  <script>
+    let w;
+    if (typeof Worker !== "undefined") {
+      // 是的! Web worker 支持!
+      console.log(1);
+      if (typeof w == "undefined") {
+        w = new Worker("demo_workers.js");
+        w.onmessage = function (event) {
+          //向 web worker 添加一个 "onmessage" 事件监听器
+          document.getElementById("result").innerHTML = event.data; //接收到的信息
+          console.log(event);
+        };
+      }
+    } else {
+      //抱歉! Web Worker 不支持
+    }
+    function stopWorker() {
+      w.terminate(); //终止 web worker
+      w = undefined;
+    }
+  </script>
+</html>

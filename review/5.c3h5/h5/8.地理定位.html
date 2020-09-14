@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    if (navigator.geolocation) {
+      //判断是否支持定位
+      console.log(navigator.geolocation);
+      navigator.geolocation.getCurrentPosition(
+        (succ) => {
+          console.log("ok");
+          console.log(succ.coords); //对象
+        },
+        (error) => {
+          console.log("NO");
+          console.log(error.code); //错误码
+          console.log(error.message); //错误提示
+        },
+        {
+          enableHighAccuracy: true,
+          timeOut: 20,
+          maximumAge: 60,
+        }
+      );
+    }
+  </script>
+</html>

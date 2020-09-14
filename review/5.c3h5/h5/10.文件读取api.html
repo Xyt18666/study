@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="file" />
+  </body>
+  <script>
+    function read(f) {
+      console.log(f);
+
+      var reader = new FileReader(); //创建文件读取对象
+
+      reader.readAsDataURL(f); //读取图片音乐视频文件，转换data开头的字符串
+      //   reader.readAsText(f);//读取文本文件，返回字符串
+      // reader.readAsBinaryString(f);//读取任意格式转2进制
+
+      console.log(f);
+      reader.onload = function () {
+        //执行完成后
+        console.log(reader.result); //获取到result 字符串
+      };
+    }
+    document.querySelector("input").onchange = () => {
+      var files = document.querySelector("input").files[0]; //input 上传的文件 ，在 input files下
+
+      //e.dataTransfer.files[0]  常用于桌面拖进浏览器的文件信息
+
+      read(files);
+    };
+  </script>
+</html>
