@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+    <script
+      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"
+    ></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <span class="border"></span>
+    <span class="border-top"></span>
+    <span class="border-right"></span>
+    <span class="border-bottom"></span>
+    <span class="border-left"></span>
+    <!-- 
+        border ； 边框
+        border-* ： 单独某条边框
+        border-方向-0 ：某方向边框 0
+
+
+     -->
+    <span class="border border-primary"></span>
+    <span class="border border-secondary"></span>
+    <span class="border border-success"></span>
+    <span class="border border-danger"></span>
+    <span class="border border-warning"></span>
+    <span class="border border-info"></span>
+    <span class="border border-light"></span>
+    <span class="border border-dark"></span>
+    <span class="border border-white"></span>
+    <!-- 
+         border-* ： 边框色
+     -->
+    <img src="..." alt="..." class="rounded" />
+    <img src="..." alt="..." class="rounded-top" />
+    <img src="..." alt="..." class="rounded-right" />
+    <img src="..." alt="..." class="rounded-bottom" />
+    <img src="..." alt="..." class="rounded-left" />
+    <img src="..." alt="..." class="rounded-circle" />
+    <img src="..." alt="..." class="rounded-pill" />
+    <img src="..." alt="..." class="rounded-0" />
+    <img src="..." alt="..." class="rounded-sm" />
+    <img src="..." alt="..." class="rounded-lg" />
+    <!-- 
+        rounded-* ： 圆角样式
+        rounded-sm/lg : 大小号
+     -->
+    <div class="bg-info clearfix">
+      <button type="button" class="btn btn-secondary float-left">
+        向左浮动（float）的按钮
+      </button>
+      <button type="button" class="btn btn-secondary float-right">
+        向右浮动（float）的按钮
+      </button>
+    </div>
+    <!-- 
+          clearfix ： 清浮动
+       -->
+    <button type="button" class="close" aria-label="关闭">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <!-- 
+        关闭按钮
+     -->
+    <p class="text-primary">.text-primary</p>
+    <p class="text-secondary">.text-secondary</p>
+    <p class="text-success">.text-success</p>
+    <p class="text-danger">.text-danger</p>
+    <p class="text-warning">.text-warning</p>
+    <p class="text-info">.text-info</p>
+    <p class="text-light bg-dark">.text-light</p>
+    <p class="text-dark">.text-dark</p>
+    <p class="text-body">.text-body</p>
+    <p class="text-muted">.text-muted</p>
+    <p class="text-white bg-dark">.text-white</p>
+    <p class="text-black-50">.text-black-50</p>
+    <p class="text-white-50 bg-dark">.text-white-50</p>
+    <p><a href="#" class="text-primary">Primary link</a></p>
+    <p><a href="#" class="text-secondary">Secondary link</a></p>
+    <p><a href="#" class="text-success">Success link</a></p>
+    <p><a href="#" class="text-danger">Danger link</a></p>
+    <p><a href="#" class="text-warning">Warning link</a></p>
+    <p><a href="#" class="text-info">Info link</a></p>
+    <p><a href="#" class="text-light bg-dark">Light link</a></p>
+    <p><a href="#" class="text-dark">Dark link</a></p>
+    <p><a href="#" class="text-muted">Muted link</a></p>
+    <p><a href="#" class="text-white bg-dark">White link</a></p>
+    <div class="p-3 mb-2 bg-primary text-white">.bg-primary</div>
+    <div class="p-3 mb-2 bg-secondary text-white">.bg-secondary</div>
+    <div class="p-3 mb-2 bg-success text-white">.bg-success</div>
+    <div class="p-3 mb-2 bg-danger text-white">.bg-danger</div>
+    <div class="p-3 mb-2 bg-warning text-dark">.bg-warning</div>
+    <div class="p-3 mb-2 bg-info text-white">.bg-info</div>
+    <div class="p-3 mb-2 bg-light text-dark">.bg-light</div>
+    <div class="p-3 mb-2 bg-dark text-white">.bg-dark</div>
+    <div class="p-3 mb-2 bg-white text-dark">.bg-white</div>
+    <div class="p-3 mb-2 bg-transparent text-dark">.bg-transparent</div>
+    <div class="bg-gradient-primary">1</div>
+    <div class="bg-gradient-secondary">2</div>
+    <div class="bg-gradient-success">3</div>
+    <div class="bg-gradient-danger">4</div>
+    <div class="bg-gradient-warning">5</div>
+    <div class="bg-gradient-info">6</div>
+    <div class="bg-gradient-light">7</div>
+    <div class="bg-gradient-dark">8</div>
+    <!-- 
+        颜色
+     -->
+    <span class="d-block p-2 bg-primary text-white">d-block</span>
+    <div class="d-inline p-2 bg-dark text-white">d-inline</div>
+    <!-- 
+        d-block/inline : 块元素/行内元素
+        d-none ： 元素隐藏
+        d-屏幕-状态 ： 某种屏幕下显示或者隐藏
+        d-print-状态 ： 是否在打印中显示
+
+     -->
+    <div class="embed-responsive embed-responsive-16by9">
+      <iframe
+        class="embed-responsive-item"
+        src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0"
+        allowfullscreen
+      ></iframe>
+    </div>
+    <!-- 
+
+        embed-responsive ：通过创建可在任何设备上缩放的固有比率，根据父对象的宽度创建自适应视频或幻灯片嵌入
+        embed-responsive-item ：给 iframe 
+
+         embed-responsive-16by9 ： 定义比例，
+       -->
+    <div class="d-flex p-2 bd-highlight">I'm a flexbox container!</div>
+    <div class="d-inline-flex p-2 bd-highlight">
+      I'm an inline flexbox container!
+    </div>
+    <!-- 
+           d-flex  :弹性布局
+           d-inline-fliex : 嵌入式 flex
+           d-型号-flex  : 不同型号下 为 弹性布局
+           d-型号-inline-flex : 不同型号下  嵌入式 flex
+        -->
+    <div class="d-flex flex-row bd-highlight mb-3">
+      <div class="p-2 bd-highlight">Flex item 1</div>
+      <div class="p-2 bd-highlight">Flex item 2</div>
+      <div class="p-2 bd-highlight">Flex item 3</div>
+    </div>
+    <div class="d-flex flex-row-reverse bd-highlight">
+      <div class="p-2 bd-highlight">Flex item 1</div>
+      <div class="p-2 bd-highlight">Flex item 2</div>
+      <div class="p-2 bd-highlight">Flex item 3</div>
+    </div>
+    <div class="d-flex flex-column bd-highlight mb-3">
+      <div class="p-2 bd-highlight">Flex item 1</div>
+      <div class="p-2 bd-highlight">Flex item 2</div>
+      <div class="p-2 bd-highlight">Flex item 3</div>
+    </div>
+    <div class="d-flex flex-column-reverse bd-highlight">
+      <div class="p-2 bd-highlight">Flex item 1</div>
+      <div class="p-2 bd-highlight">Flex item 2</div>
+      <div class="p-2 bd-highlight">Flex item 3</div>
+    </div>
+    <!-- 
+        弹性盒子排列方式：
+            flex-row :设置在水平方向
+            flex-row-reverse ：设置在水平方向 倒叙
+
+            flex-column：垂直方向
+            flex-column-reverse ： 垂直方向倒叙
+
+            flex-屏幕-排列方式-反转 ：多屏幕下，排列样式
+
+
+     -->
+
+    <div class="d-flex justify-content-start">...</div>
+    <div class="d-flex justify-content-end">...</div>
+    <div class="d-flex justify-content-center">...</div>
+    <div class="d-flex justify-content-between">...</div>
+    <div class="d-flex justify-content-around">...</div>
+    <!-- 
+        主轴对齐方式：
+            justify-content-位置 ：对齐方式
+            justify-content-屏幕-位置 ： 多屏幕下对齐方式
+     -->
+    <div class="d-flex align-items-start">...</div>
+    <div class="d-flex align-items-end">...</div>
+    <div class="d-flex align-items-center">...</div>
+    <div class="d-flex align-items-baseline">...</div>
+    <div class="d-flex align-items-stretch">...</div>
+    <!-- 
+        侧轴对齐方式：
+            align-items-位置 ：对齐方式
+            align-items-屏幕-位置 ： 多屏幕下对齐方式
+     -->
+    <div class="align-self-start">Aligned flex item</div>
+    <div class="align-self-end">Aligned flex item</div>
+    <div class="align-self-center">Aligned flex item</div>
+    <div class="align-self-baseline">Aligned flex item</div>
+    <div class="align-self-stretch">Aligned flex item</div>
+    <!-- 
+        单独元素对齐方式：
+            align-self-位置 ：对齐方式
+            align-self-屏幕-位置 ： 多屏幕下对齐方式
+     -->
+    <div class="d-flex bd-highlight">
+      <div class="p-2 flex-fill bd-highlight">
+        Flex item with a lot of content
+      </div>
+      <div class="p-2 flex-fill bd-highlight">Flex item</div>
+      <div class="p-2 flex-fill bd-highlight">Flex item</div>
+    </div>
+    <!-- 
+        flex-fill ：在一系列同级元素上使用类，以将它们强制变为等于其内容的宽度（如果其内容未超过其边框，则等于宽度），同时占用所有可用的水平空间。
+
+        flex-屏幕-fill ：不同屏幕的状态
+     -->
+    <div class="d-flex bd-highlight">
+      <div class="p-2 w-100 bd-highlight">Flex item</div>
+      <div class="p-2 flex-shrink-1 bd-highlight">Flex item</div>
+    </div>
+    <!-- 
+        flex-{grow|shrink}-0/1   ： 放大收缩
+        flex-屏幕-{grow|shrink}-0/1 ：不同屏幕的 放大 收缩
+
+        w-100 ： w 100%
+     -->
+    <div class="d-flex bd-highlight mb-3">
+      <div class="p-2 bd-highlight">Flex item</div>
+      <div class="p-2 bd-highlight">Flex item</div>
+      <div class="p-2 bd-highlight">Flex item</div>
+    </div>
+
+    <div class="d-flex bd-highlight mb-3">
+      <div class="mr-auto p-2 bd-highlight">Flex item</div>
+      <div class="p-2 bd-highlight">Flex item</div>
+      <div class="p-2 bd-highlight">Flex item</div>
+    </div>
+
+    <div class="d-flex bd-highlight mb-3">
+      <div class="p-2 bd-highlight">Flex item</div>
+      <div class="p-2 bd-highlight">Flex item</div>
+      <div class="ml-auto p-2 bd-highlight">Flex item</div>
+    </div>
+    <div
+      class="d-flex align-items-start flex-column bd-highlight mb-3"
+      style="height: 200px"
+    >
+      <div class="mb-auto p-2 bd-highlight">Flex item</div>
+      <div class="p-2 bd-highlight">Flex item</div>
+      <div class="p-2 bd-highlight">Flex item</div>
+    </div>
+
+    <div
+      class="d-flex align-items-end flex-column bd-highlight mb-3"
+      style="height: 200px"
+    >
+      <div class="p-2 bd-highlight">Flex item</div>
+      <div class="p-2 bd-highlight">Flex item</div>
+      <div class="mt-auto p-2 bd-highlight">Flex item</div>
+    </div>
+    <!-- 
+        mr-auto : margin-right:auto;
+        ml-auto :   left auto
+        mt-auto :  top
+        mb-auto :  bottom
+     -->
+    <div class="d-flex flex-nowrap">...</div>
+    <!-- 
+        是否换行：
+            flex-nowrap ： 不
+            flex-wrap ：换行
+            flex-wrap-reverse ：换行反转
+            flex-屏幕-nowrap ： 不同屏幕下 不换行
+            flex-屏幕-wrap ：不同屏幕下 换行
+            flex-屏幕-wrap-reverse ：不同屏幕下 换行反转
+     -->
+    <div class="d-flex flex-nowrap bd-highlight">
+      <div class="order-3 p-2 bd-highlight">First flex item</div>
+      <div class="order-2 p-2 bd-highlight">Second flex item</div>
+      <div class="order-1 p-2 bd-highlight">Third flex item</div>
+    </div>
+    <!-- 
+          位置：
+            order-1~12 ： 调整位置
+            order-屏幕-1~12 ： 不同屏幕的 位置
+       -->
+    <div class="d-flex align-content-start flex-wrap">...</div>
+    <!-- 
+         多侧轴对齐方式：
+            align-content-位置 ：对齐方式
+            align-content-屏幕-位置 ： 多屏幕下对齐方式
+     -->
+  </body>
+</html>
