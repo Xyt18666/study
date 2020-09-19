@@ -311,5 +311,276 @@
             align-content-位置 ：对齐方式
             align-content-屏幕-位置 ： 多屏幕下对齐方式
      -->
+    <div class="float-left">Float left on all viewport sizes</div>
+    <br />
+    <div class="float-right">Float right on all viewport sizes</div>
+    <br />
+    <div class="float-none">Don't float on all viewport sizes</div>
+    <!-- 
+        浮动：
+            float-left ： 左
+            float-right ： 右
+            float-none ： 无
+            float-屏幕-left ： 不同屏幕下 左
+            float-屏幕-right ：不同屏幕下 右
+            float-屏幕-none ：不同屏幕下 无
+     -->
+    <h1 class="text-hide">Custom heading</h1>
+    <!-- 
+        text-hide ： 隐藏文本
+     -->
+    <p class="user-select-all">
+      This paragraph will be entirely selected when clicked by the user.
+    </p>
+    <p class="user-select-auto">
+      This paragraph has the default select behavior.
+    </p>
+    <p class="user-select-none">
+      This paragraph will not be selectable when clicked by the user.
+    </p>
+    <!-- 
+        文字选择：更改用户与之交互时选择内容的方式。
+        user-select-all ： 单击全选
+        user-select-auto ： 正常 选中
+        user-select-none ： 不可选中 
+
+     -->
+    <div class="overflow-auto">...</div>
+    <div class="overflow-hidden">...</div>
+    <!-- 
+        溢出隐藏、滚动
+     -->
+    <div class="position-static">...</div>
+    <div class="position-relative">...</div>
+    <div class="position-absolute">...</div>
+    <div class="position-fixed">...</div>
+    <div class="position-sticky">
+      position:sticky是一个新的css3属性，它的表现类似position:relative和position:fixed的合体，在目标区域在屏幕中可见时，它的行为就像position:relative;
+      而当页面滚动超出目标区域时，它的表现就像position:fixed，它会固定在目标位置。
+    </div>
+    <div class="fixed-top">...</div>
+    <!-- 
+        定位：
+            position-定位类型 ；定位
+            fixed-位置 ：固定定位 到 什么位置
+
+     -->
+    <a class="sr-only sr-only-focusable" href="#content"
+      >隐藏所有设备的元素，除了屏幕阅读器使用.sr-only。结合.sr-only使用.sr-only-focusable可在元素集中时再次显示该元素（例如，仅使用键盘的用户）</a
+    >
+    <!-- 
+        隐藏所有设备的元素
+     -->
+    <div class="shadow-none p-3 mb-5 bg-light rounded">无阴影</div>
+    <div class="shadow-sm p-3 mb-5 bg-white rounded">小阴影</div>
+    <div class="shadow p-3 mb-5 bg-white rounded">一般阴影</div>
+    <div class="shadow-lg p-3 mb-5 bg-white rounded">大阴影</div>
+    <!-- 
+        shadow-*  ： 阴影
+     -->
+    <div class="w-25 p-3" style="background-color: #eee">Width 25%</div>
+    <div class="w-50 p-3" style="background-color: #eee">Width 50%</div>
+    <div class="w-75 p-3" style="background-color: #eee">Width 75%</div>
+    <div class="w-100 p-3" style="background-color: #eee">Width 100%</div>
+    <div class="w-auto p-3" style="background-color: #eee">Width auto</div>
+    <div style="height: 100px; background-color: rgba(255, 0, 0, 0.1)">
+      <div
+        class="h-25 d-inline-block"
+        style="width: 120px; background-color: rgba(0, 0, 255, 0.1)"
+      >
+        Height 25%
+      </div>
+      <div
+        class="h-50 d-inline-block"
+        style="width: 120px; background-color: rgba(0, 0, 255, 0.1)"
+      >
+        Height 50%
+      </div>
+      <div
+        class="h-75 d-inline-block"
+        style="width: 120px; background-color: rgba(0, 0, 255, 0.1)"
+      >
+        Height 75%
+      </div>
+      <div
+        class="h-100 d-inline-block"
+        style="width: 120px; background-color: rgba(0, 0, 255, 0.1)"
+      >
+        Height 100%
+      </div>
+      <div
+        class="h-auto d-inline-block"
+        style="width: 120px; background-color: rgba(0, 0, 255, 0.1)"
+      >
+        Height auto
+      </div>
+    </div>
+    <img src="..." class="mw-100" alt="..." />
+    <div
+      class="mh-100"
+      style="
+        width: 100px;
+        height: 200px;
+        background-color: rgba(0, 0, 255, 0.1);
+      "
+    >
+      Max-height 100%
+    </div>
+    <div class="min-vw-100">Min-width 100vw</div>
+    <div class="min-vh-100">Min-height 100vh</div>
+    <div class="vw-100">Width 100vw</div>
+    <div class="vh-100">Height 100vh</div>
+    <!-- 
+        w-数值 ：宽度百分比
+        h-数值 : 高度百分比
+        w-auto ：自适应
+        h-auto : 自适应
+        mh-数值 ： Max-height
+        mw-数值 ：Max-width
+        min-vw-数值 ：Mix-width
+        min-vh-数值 ：Mix-height
+        vh-数值 ：wh
+        vw-数值 ： vw
+
+ -->
+    <div class="row mx-md-n5">
+      <div class="col px-md-5">
+        <div class="p-3 border bg-light">Custom column padding</div>
+      </div>
+      <div class="col px-md-5">
+        <div class="p-3 border bg-light">Custom column padding</div>
+      </div>
+    </div>
+    <!--  
+    margin 和 padding ：
+
+        m : margin
+        p : padding
+
+        位置：
+            l
+            r
+            t
+            b
+
+            x lr
+            y tb
+        
+        m位置-1~5/auto ： margin 位置 多少
+        p位置-1~5/auto ：padding 位置 多少
+
+        p/m位置-屏幕-1~5/auto ：不同屏幕下的 边距
+
+        负值的话，在数值前 加一个 c字母：
+            p/m位置-屏幕-1~5
+
+        
+ -->
+    <p class="text-left">Left aligned text on all viewport sizes.</p>
+    <p class="text-center">Center aligned text on all viewport sizes.</p>
+    <p class="text-right">Right aligned text on all viewport sizes.</p>
+
+    <p class="text-sm-left">
+      Left aligned text on viewports sized SM (small) or wider.
+    </p>
+    <p class="text-md-left">
+      Left aligned text on viewports sized MD (medium) or wider.
+    </p>
+    <p class="text-lg-left">
+      Left aligned text on viewports sized LG (large) or wider.
+    </p>
+    <p class="text-xl-left">
+      Left aligned text on viewports sized XL (extra-large) or wider.
+    </p>
+    <p class="text-lowercase">转为小写的文本。</p>
+    <p class="text-uppercase">转为大写的文本。</p>
+    <p class="text-capitalize">转为首字母大写的文本。</p>
+    <p class="font-weight-bold">Bold text.</p>
+    <p class="font-weight-bolder">
+      Bolder weight text (relative to the parent element).
+    </p>
+    <p class="font-weight-normal">Normal weight text.</p>
+    <p class="font-weight-light">Light weight text.</p>
+    <p class="font-weight-lighter">
+      Lighter weight text (relative to the parent element).
+    </p>
+    <p class="font-italic">Italic text.</p>
+    <p class="text-monospace">This is in monospace</p>
+    <!-- 
+        文本对齐方式：
+            text-位置 ： 文本对齐方式
+            text-屏幕-位置 ：  不同屏幕文本对齐
+
+        文本是否换行 ：
+            text-wrap : 换行
+            text-nowrap : 不换行
+            text-truncate ：溢出省略号
+
+        单词截断：
+            text-break ： 不能保持完整单词，将换行
+
+        大小写：
+            text-lowercase ：小写
+            text-uppercase ：大写
+            text-capitalize ：首字母大写
+        
+        字体粗细，斜体：
+            font-weight-*
+            font-italic
+
+        等宽字体 ：text-monospace
+
+        重置颜色 ：text-reset
+
+        去除下划线 ： text-decoration-none
+
+     -->
+    <span class="align-baseline">baseline</span>
+    <span class="align-top">top</span>
+    <span class="align-middle">middle</span>
+    <span class="align-bottom">bottom</span>
+    <span class="align-text-top">text-top</span>
+    <span class="align-text-bottom">text-bottom</span>
+    <table style="height: 100px">
+      <tbody>
+        <tr>
+          <td class="align-baseline">baseline</td>
+          <td class="align-top">top</td>
+          <td class="align-middle">middle</td>
+          <td class="align-bottom">bottom</td>
+          <td class="align-text-top">text-top</td>
+          <td class="align-text-bottom">text-bottom</td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- 
+        垂直对齐 方式 ：
+
+            align-位置
+     -->
+    <div class="visible">...111</div>
+    <div class="invisible">...222</div>
+    <!-- 
+        visible ：显示
+        invisible ：隐藏
+     -->
+    <div class="card" style="width: 18rem">
+      <img src="..." class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">Card with stretched link</h5>
+        <p class="card-text">
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </p>
+        <a href="#" class="btn btn-primary stretched-link">Go somewhere</a>
+      </div>
+    </div>
+    <!-- 
+        ard ：延伸链接
+        card-body ：身体
+        card-title ： title
+        card-text :文本
+        stretched-link ：链接
+     -->
   </body>
 </html>

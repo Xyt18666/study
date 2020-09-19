@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+    <script
+      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"
+    ></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="alert alert-primary" role="alert">
+      A simple primary alert—check it out!
+    </div>
+    <div class="alert alert-secondary" role="alert">
+      A simple secondary alert—check it out!
+    </div>
+    <div class="alert alert-success" role="alert">
+      A simple success alert—check it out!
+    </div>
+    <div class="alert alert-danger" role="alert">
+      A simple danger alert—check it out!
+    </div>
+    <div class="alert alert-warning" role="alert">
+      A simple warning alert—check it out!
+    </div>
+    <div class="alert alert-info" role="alert">
+      A simple info alert—check it out!
+    </div>
+    <div class="alert alert-light" role="alert">
+      A simple light alert—check it out!
+    </div>
+    <div class="alert alert-dark" role="alert">
+      A simple dark alert—check it out!
+    </div>
+    <!-- 
+        警告框：
+            alert ： 基础类
+
+            alert-风格类 ： 样式
+
+     -->
+    <div class="alert alert-primary" role="alert">
+      A simple primary alert with
+      <a href="#" class="alert-link">an example link</a>. Give it a click if you
+      like.
+    </div>
+    <div class="alert alert-secondary" role="alert">
+      A simple secondary alert with
+      <a href="#" class="alert-link">an example link</a>. Give it a click if you
+      like.
+    </div>
+    <div class="alert alert-success" role="alert">
+      A simple success alert with
+      <a href="#" class="alert-link">an example link</a>. Give it a click if you
+      like.
+    </div>
+    <div class="alert alert-danger" role="alert">
+      A simple danger alert with
+      <a href="#" class="alert-link">an example link</a>. Give it a click if you
+      like.
+    </div>
+    <div class="alert alert-warning" role="alert">
+      A simple warning alert with
+      <a href="#" class="alert-link">an example link</a>. Give it a click if you
+      like.
+    </div>
+    <div class="alert alert-info" role="alert">
+      A simple info alert with
+      <a href="#" class="alert-link">an example link</a>. Give it a click if you
+      like.
+    </div>
+    <div class="alert alert-light" role="alert">
+      A simple light alert with
+      <a href="#" class="alert-link">an example link</a>. Give it a click if you
+      like.
+    </div>
+    <div class="alert alert-dark" role="alert">
+      A simple dark alert with
+      <a href="#" class="alert-link">an example link</a>. Give it a click if you
+      like.
+    </div>
+    <!-- 
+            alert-link ： 警告框内 a链接 样式
+
+     -->
+    <div class="alert alert-success" role="alert">
+      <h4 class="alert-heading">Well done!</h4>
+      <p>
+        Aww yeah, you successfully read this important alert message. This
+        example text is going to run a bit longer so that you can see how
+        spacing within an alert works with this kind of content.
+      </p>
+      <hr />
+      <p class="mb-0">
+        Whenever you need to, be sure to use margin utilities to keep things
+        nice and tidy.
+      </p>
+    </div>
+    <!-- 
+        alert-heading ：附加内容标题类
+
+     -->
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong>Holy guacamole!</strong> You should check in on some of those
+      fields below.
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <!-- 
+        可以关闭的提示框：
+            alert-dismissible ： 添加关闭按钮类
+            close ： 关闭按钮
+            fade  ： 淡入淡出
+            show ： 显示
+
+            data-dismiss="alert" ： 添加属性，该属性将触发JavaScript功能
+     -->
+  </body>
+  <script>
+    $(".alert").on("closed.bs.alert", function () {
+      console.log("close调用实例方法时，将立即触发此事件。");
+    });
+
+    $(".alert").on("close.bs.alert", function () {
+      console.log("11");
+    });
+  </script>
+</html>

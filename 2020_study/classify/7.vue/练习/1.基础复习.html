@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="charset" content="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script src="http://jxsjs.com/lab/vue.min.js"></script>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .dogBox {
+      position: relative;
+    }
+    .dog {
+      width: 90%;
+    }
+    .aniema {
+      animation: dogGo 0.5s forwards;
+    }
+    .tail {
+      width: 30%;
+      position: absolute;
+      top: 7%;
+      left: 50%;
+      z-index: -1;
+      transform-origin: 0 100%;
+    }
+    @keyframes dogGo {
+      0% {
+        transform: translate(0, 0);
+      }
+      100% {
+        transform: translate(-100%, 0);
+      }
+    }
+  </style>
+  <body>
+    <div class="dogBox">
+      <img src="http://jxsjs.com/img/dog.png" class="dog" />
+      <img src="http://jxsjs.com/img/tail.png" class="tail" />
+    </div>
+
+    <p>你跟狗狗打了 <span>0</span> 次招呼</p>
+    <button>hello</button>
+  </body>
+  <script>
+    {
+      // const tail = document.querySelector(".tail");
+      // const button = document.querySelector("button");
+      // const span = document.querySelector("span");
+      // let num = 0;
+      // button.addEventListener("click", () => {
+      //   num++;
+      //   span.innerText = num;
+      //   tail.style.transform = `rotate(${num * 30}deg)`;
+      // });
+    }
+
+    $(() => {
+      const tail = $(".tail");
+      const button = $("button");
+      const span = $("span");
+      let num = 0;
+      button.on("click", () => {
+        num++;
+        span.text(num);
+        tail.css({
+          transform: `rotate(${num * 30}deg)`,
+        });
+
+        if (num >= 3) {
+          $(".dogBox").addClass("aniema");
+        }
+      });
+    });
+  </script>
+</html>
