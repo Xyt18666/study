@@ -1,0 +1,49 @@
+#main {
+  width: 97%;
+  background: #777;
+
+  p,
+  div {
+    font-size: 2em;
+    a {
+      font-weight: bold;
+    }
+  }
+
+  pre {
+    font-size: 3em;
+  }
+}
+// 直接嵌套子级 ，让代码逻辑更清晰
+
+a {
+  font-weight: bold;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+  body.firefox & {
+    font-weight: normal;
+  }
+}
+#main {
+  color: black;
+  &-sidebar {
+    border: 1px solid;
+  }
+}
+// & 代表 父选择器 ，可以直接当做 选择器的一部分
+
+.funky {
+  font: 20px/24px {
+    family: fantasy;
+    weight: bold;
+  }
+}
+
+// 属性的嵌套 ，有些 CSS 属性遵循相同的命名空间
+
+
+
+
+// 占位符选择器 %foo ，必须通过 @extend 指令调用

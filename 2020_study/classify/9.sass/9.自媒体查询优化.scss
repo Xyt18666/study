@@ -1,0 +1,16 @@
+// .sidebar {
+//   width: 300px;
+//   @media screen and (orientation: landscape) {
+//     width: 500px;
+//   }
+// }
+
+@media screen {
+  .sidebar {
+    @media (orientation: landscape) {
+      width: 500px;
+    }
+  }
+}
+
+// 这个功能让 @media 用起来更方便，不需要重复使用选择器，也不会打乱 CSS 的书写流程

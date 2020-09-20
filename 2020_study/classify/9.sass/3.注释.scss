@@ -1,0 +1,19 @@
+/* This comment is
+ * several lines long.
+ * since it uses the CSS comment syntax,
+ * it will appear in the CSS output. */
+body {
+  color: black;
+}
+
+// These comments are only one line long each.
+// They won't appear in the CSS output,
+// since they use the single-line comment syntax.
+a {
+  color: green;
+}
+
+// 多行注释 ，会被 编译到 css文件中 ，单行则不会
+//将 ! 作为多行注释的第一个字符表示在压缩输出模式下保留这条注释并输出到 CSS 文件中，通常用于添加版权信息。
+
+

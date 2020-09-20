@@ -1,0 +1,49 @@
+$width: 5em;
+
+#main {
+  width: $width;
+}
+
+// 使用 $ 定义变量
+
+#main {
+  $width: 5em !global;
+
+  width: $width;
+}
+
+#sidebar {
+  width: $width;
+}
+//变量支持块级作用域
+// !global 释放到全局
+
+/*
+
+数据类型：
+数字，1, 2, 13, 10px
+字符串，有引号字符串与无引号字符串，"foo", 'bar', baz
+颜色，blue, #04a3f9, rgba(255,0,0,0.5)
+布尔型，true, false
+空值，null
+数组 (list)，用空格或逗号作分隔符，1.5em 1em 0 2em, Helvetica, Arial, sans-serif
+maps, 相当于 JavaScript 的 object，(key1: value1, key2: value2)
+
+*/
+
+$selector: "header";
+@mixin firefox-message($selector) {
+  body.firefox #{$selector}:before {
+    content: "Hi, Firefox users!";
+  }
+}
+//使用 #{} 插入变量
+/*
+
+
+两种字符串类型：
+有引号字符串 (quoted strings)
+与无引号字符串 (unquoted strings)，
+只有一种情况例外，使用 #{} (interpolation) 时，有引号字符串将被编译为无引号字符串，这样便于在 mixin 中引用选择器名
+
+*/

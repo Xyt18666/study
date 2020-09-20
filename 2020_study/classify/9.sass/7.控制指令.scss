@@ -1,0 +1,36 @@
+p {
+  @if 1 + 1 == 2 {
+    border: 1px solid;
+  }
+  @if 5 < 3 {
+    border: 2px dotted;
+  }
+  @if null {
+    border: 3px double;
+  }
+}
+
+//    @if{} @else if{}  @else{}
+
+@for $i from 1 through 3 {
+  .item-#{$i} {
+    width: 2em * $i;
+  }
+}
+// @for $i from  through  遍历
+
+@each $animal in puma, sea-slug, egret, salamander {
+  .#{$animal}-icon {
+    background-image: url("/images/#{$animal}.png");
+  }
+}
+// @each $animal in a, b, c,d 遍历
+
+$i: 6;
+@while $i > 0 {
+  .item-#{$i} {
+    width: 2em * $i;
+  }
+  $i: $i - 2;
+}
+// @whilde 循环
