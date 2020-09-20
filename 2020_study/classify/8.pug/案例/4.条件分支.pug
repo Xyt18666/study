@@ -1,0 +1,42 @@
+- var friends = 10
+case friends
+  when 0
+    p 您没有朋友
+  when 1
+    p 您有一个朋友
+  default
+    p 您有 #{friends} 个朋友
+
+//-  case 类似于 switch语句 
+//-  内容直接写在标签后
+//-  #{} 插入变量
+
+
+- var friends = 0
+case friends
+  when 0
+  when 1
+    p 您的朋友很少
+  default
+    p 您有 #{friends} 个朋友
+
+//-  分支传递 ，由于 0 没有任何操作 ，将传递到 1 
+
+- var friends = 0
+case friends
+  when 0
+    - break
+  when 1
+    p 您的朋友很少
+  default
+    p 您有 #{friends} 个朋友
+
+//-  而使用 - break 以后，中断了 执行，所以不会输出
+
+- var friends = 1
+case friends
+  when 0: p 您没有朋友
+  when 1: p 您有一个朋友
+  default: p 您有 #{friends} 个朋友
+
+//-  使用优化语法 when X: 执行

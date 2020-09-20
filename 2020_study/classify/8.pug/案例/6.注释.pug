@@ -1,0 +1,31 @@
+// 一些内容
+p foo
+p bar
+
+//- 这行不会出现在结果里
+p foo
+p bar
+
+body
+  //-
+    给模板写的注释
+    随便写多少字
+    都没关系。
+  //
+    给生成的 HTML 写的注释
+    随便写多少字
+    都没关系。
+
+
+
+
+
+<!--[if IE 8]>
+<html lang="en" class="lt-ie9">
+<![endif]-->
+
+//-  条件注释
+
+<!--[if gt IE 8]><!-->
+<html lang="en">
+<!--<![endif]-->

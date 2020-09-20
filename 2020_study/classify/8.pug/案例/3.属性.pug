@@ -1,0 +1,62 @@
+- var authenticated = true
+body(class=authenticated ? 'authed' : 'anon')
+p(
+    age="5"
+    name="珍妮"
+   data-json=`
+  {
+    "非常": "长的",
+    "数据": true
+  }
+`
+)
+
+- var btnType = 'info'
+- var btnSize = 'lg'
+button(type='button' class='btn btn-' + btnType + ' btn-' + btnSize)
+|
+|
+button(type='button' class=`btn btn-${btnType} btn-${btnSize}`)
+|
+|
+div(escaped="<code>")
+div(unescaped!="<code>")
+|
+|
+input(type='checkbox' checked)
+|
+|
+input(type='checkbox' checked=true)
+|
+|
+input(type='checkbox' checked=false)
+
+|
+|
+a(style={color: 'red', background: 'green'})
+|
+|
+- var classes = ['foo', 'bar', 'baz']
+a(class=classes)
+|
+|
+//- the class attribute may also be repeated to merge arrays
+a.bang(class=classes class=['bing'])
+
+.content
+a.button
+a#main-link
+#content
+|
+|
+div#foo(data-bar="foo")&attributes({'data-foo': 'bar'})
+
+//-  - var 定义变量
+//-  () 内表示属性  ，多行属性换行，允许使用js表达式
+//-  `` 支持模板字符串 ，可用于写对象 ，长字符串拼接
+//-  不转义属性 !=
+//-  布尔值 直接写
+//-  样式 style={对象形式}
+//-  类 class=字符串 或者 数组
+//-  字面量创建 类 和 id , 同 快捷键 
+//-  &attributes({})  将一个对象转化为一个元素的属性列表

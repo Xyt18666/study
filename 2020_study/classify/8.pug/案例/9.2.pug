@@ -1,0 +1,22 @@
+extends 9.1.pug
+
+block scripts
+  script(src='/jquery.js')
+  script(src='/pets.js')
+
+block content
+  h1= title
+  - var pets = ['猫', '狗']
+  each petName in pets
+    p 内容#{petName}
+
+//-
+    使用  extends 继承了 某某
+
+    某某内部 有 那些块
+    这些块的内容分别是
+
+    使用 block 块名 声明接下来要写的是那些部分
+        某个块的 内容
+
+

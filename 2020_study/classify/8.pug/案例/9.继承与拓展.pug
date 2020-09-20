@@ -1,0 +1,26 @@
+
+extends 9.1.pug
+//- 覆盖原有的9.1代码块，并添加了两个子代码块 sidebar primary
+block content
+  .sidebar
+    block sidebar
+      p 什么都没有
+  .primary
+    block primary
+      p 什么都没有
+
+block append scripts
+  script(src='111.js')
+block prepend scripts
+  script(src='222.js')
+
+
+//- 
+    仅仅覆盖了 content 
+    9.2 中 scripts 被保留
+
+    block prepend 某某块
+    向 某某块 前添加
+
+    block append 某某块
+    向 某某块 后添加

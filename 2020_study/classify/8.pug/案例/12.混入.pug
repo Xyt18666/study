@@ -1,0 +1,70 @@
+//- 定义 混入 名称
+mixin list
+  ul
+    li foo
+    li bar
+    li baz
+//- 使用 +名称  ，实现复用
++list
++list
+
+|
+|
+
+mixin pet(name)
+  li.pet= name
+ul
+  +pet('猫')
+  +pet('狗')
+  +pet('猪')
+
+//- 
+    可以使用参数 ，传递 属性
+
+- var cc="what block"
+mixin article(title)
+  .article
+    .article-wrapper
+      h1= title
+      if cc
+        block
+      else
+        p 没有提供任何内容。
+
++article('Hello world')
+
++article('Hello world2')
+  p 这是我
+  p 随便写的文章
+p 这是我2
+p 随便写的文章2
+
+//- 
+    可以混入 整个代码块 
+
+    在使用 +混入名以后 ，在使用 换行 tab  ，内容会在最内部子级
+
+
+mixin link2(href, name)
+  //- attributes == {class: "btn"}
+  a(class!=attributes.class href=href data=attributes.data)= name
+
++link2('/foo', 'foo')(class="btn2",data="data1")
+
+//- 
+    可以混入 属性
+    调用时 第一个 () ，正常 传参
+    第二个 () ,从标签属性中得到一个参数 attributes 
+
+
+mixin list(id, ...items)
+  ul(id=id)
+    each item in items
+      li= item
+
++list('my-list', 1, 2, 3, 4)
+
+
+
+//- 
+    可以使用 ... 拓展运算符

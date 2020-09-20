@@ -1,0 +1,36 @@
+ul
+  each val, index in {1:'一',2:'二',3:'三'}
+    li= index + ': ' + val
+
+
+//- 
+    可遍历 对象、数组..
+
+- var values = [];
+ul
+  each val in values.length ? values : ['没有内容']
+    li= val
+
+//- 
+    遍历 允许 使用 三元运算符判断
+
+- var values = [];
+ul
+  each val in values
+    li= val
+  else
+    li 没有内容
+
+//- 
+    遍历 允许 使用 else
+
+    each == for  , 可以使用 for 代替each
+
+
+- var n = 0;
+ul
+  while n < 4
+    li= n++
+
+//- 
+    可以使用 while 循环
