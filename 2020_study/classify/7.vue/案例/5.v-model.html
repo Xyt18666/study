@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="charset" content="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <script src="http://jxsjs.com/lib/vue.min.js"></script>
+    <title>clock</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <body>
+    <div id="app">
+      <input type="text" v-model="message" placeholder="请输入" />
+      <p>输入的内容是: {{message}}</p>
+    </div>
+  </body>
+  <script>
+    const clock = new Vue({
+      el: "#app",
+      data: {
+        message: "",
+      },
+    });
+
+    /*
+    v-model指令的本质是： 它负责监听用户的输入事件，从而更新数据，并对一些极端场景进行一些特殊处理。
+    同时，v-model会忽略所有表单元素的value、checked、selected特性的初始值，它总是将vue实例中的数据作为数据来源。 
+    然后当输入事件发生时，实时更新vue实例中的数据。
+
+
+    */
+  </script>
+</html>

@@ -94,7 +94,7 @@
       </ul>
       <div class="clockBox">
         <div class="zxd"></div>
-        <div
+        <div 
           class="zz"
           v-for="(item,index) in arr"
           :class="index=='0'?'sz':index=='1'?'fz':index=='2'?'mz':null"
@@ -170,6 +170,11 @@
 
     // s * 6-90
     // 秒数 *  360度/60格  ，一秒走6度
+
+    // ----------------------------------------------------------
+    // let s = d.getSeconds() * 6;
+    // let m = d.getMinutes() * 6 + (s / 360) * 6;
+    // let h = d.getHours() * 30 + (m / 360) * 30;
 
     setInterval(() => {
       vw.timeSring = getTmie();
