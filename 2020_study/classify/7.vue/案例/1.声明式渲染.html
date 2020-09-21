@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="charset" content="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <script src="http://jxsjs.com/lib/vue.min.js"></script>
+    <title>dog</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .dogBox {
+      position: relative;
+    }
+    .dog {
+      width: 90%;
+    }
+    .aniema {
+      animation: dogGo 0.5s forwards;
+    }
+    img {
+      height: auto;
+      display: block;
+    }
+    .tail {
+      width: 30%;
+      position: absolute;
+      top: 7%;
+      left: 50%;
+      z-index: -1;
+      transform-origin: 0 100%;
+    }
+    @keyframes dogGo {
+      0% {
+        transform: translate(0, 0);
+      }
+      100% {
+        transform: translate(-100%, 0);
+      }
+    }
+  </style>
+  <body>
+    <div id="app">
+      <div class="dogBox">
+        <img src="http://jxsjs.com/img/dog.png" class="dog" />
+        <img
+          src="http://jxsjs.com/img/tail.png"
+          class="tail"
+          :style="`transform: rotate(${num*20}deg);`"
+        />
+      </div>
+
+      <p>你跟狗狗打了 <span>{{ num }}</span> 次招呼</p>
+      <button @click="num++">hello</button>
+    </div>
+  </body>
+  <script>
+    /*
+    
+    
+    */
+    const dog = new Vue({
+      el: "#app",
+      data: {
+        num: 0,
+      },
+    });
+    console.log(dog);
+  </script>
+</html>

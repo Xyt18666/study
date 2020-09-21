@@ -126,7 +126,7 @@
             事件流： 捕获 目标 冒泡
 
             阻止事件冒泡：e.stopPropogation()
-                        IE：e.canselBubble=ture
+                        IE：e.cancelBubble=ture
 
         事件种类：
             load
@@ -191,13 +191,13 @@
                     e.wheelDelta   大于0向上
 
                 DOMMouseScroll
-                    e.datail  大于0向下
+                    e.detail  大于0向下
 
 
         事件对象：
             如何获取 事件对象：
                 通过事件 arguments 可以找到事件对象 e
-                ie: windlw.event  可以找到事件对象 e
+                ie: window.event  可以找到事件对象 e
 
             取消默认事件： e.preventDefault()  
                 IE: return false

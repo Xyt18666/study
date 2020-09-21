@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="charset" content="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <script src="http://jxsjs.com/lib/vue.min.js"></script>
+    <title>clock</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    #app {
+      width: 100vw;
+      height: 100vh;
+    }
+    h2 {
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50px;
+    }
+    span {
+      color: #fff;
+      background: url(http://jxsjs.com/img/logo.png) left center no-repeat;
+      background-size: contain;
+      padding-left: 50px;
+    }
+  </style>
+  <body>
+    <div id="app">
+      <h2>
+        <span>现在时间 {{ time }} </span>
+      </h2>
+      <span v-once> 不会改变的 插值 {{ time }} </span>
+      <!--    ---------------------------------------------------------- -->
+      <div class="htm" v-html="ht"></div>
+      <!--    ---------------------------------------------------------- -->
+      <button v-bind:disabled="zt">Button</button>
+      <!--    ---------------------------------------------------------- -->
+      <p>{{ number + 1 }}</p>
+      <p>{{ ok ? 'YES' : 'NO' }}</p>
+      <p>{{ message.split('').reverse().join('') }}</p>
+
+      <div v-bind:id="'list-' + id"></div>
+    </div>
+  </body>
+  <script>
+    /*
+    new Vue  ： 创建实例
+        el ： 定义 vue 接管的 区域
+        data ：数据对象
+
+    {{}} : 向html中 添加 值 ,双大括号会将数据解释为普通文本
+
+    v-once : 通过使用 v-once 指令，你也能执行一次性地插值，当数据改变时，插值处的内容不会更新。但请留心这会影响到该节点上的其它数据绑定
+
+    */
+    const clock = new Vue({
+      el: "#app",
+      data: {
+        time: getTime(),
+        ht: `<div class="cdHtml">html</div>`,
+        zt: true,
+        class: "xx",
+        number: 99,
+        ok: "",
+        message: "wersadfa",
+        id: "iddd",
+      },
+    });
+
+    console.log(clock.$data === clock.time);
+
+    function getTime() {
+      return new Date().toLocaleTimeString().slice(2);
+    }
+    console.log(getTime());
+
+    function setTime() {
+      setInterval(() => {
+        clock.time = getTime();
+      }, 1000);
+    }
+    setTime();
+
+    // ---------------------------
+
+    /*
+
+    添加 html元素 : v-html="某某"
+    绑定 标签属性 ：v-bind:属性="值"   ， 简写  :属性
+
+
+    所有的 插值 支持 js表达式
+    
+    所有插值只能使用 vue 实例对象内的属性 和 白名单 内的 对象 
+
+      Infinity,undefined,NaN,isFinite,isNaN,parseFloat,parseInt,decodeURI,decodeURIComponent,encodeURI,encodeURIComponent,
+      Math,Number,Date,Array,Object,Boolean,String,RegExp,Map,Set,JSON,Intl,require
+
+    */
+  </script>
+</html>
