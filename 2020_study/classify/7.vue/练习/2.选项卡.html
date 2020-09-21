@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="charset" content="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <script src="http://jxsjs.com/lib/vue.min.js"></script>
+    <title>clock</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <body>
+    <div id="app">
+      <div class="tab">
+        <a href="#" @click="tabId=0">前端框架</a>
+        <a href="#" @click="tabId=1">Vue</a>
+        <a href="#" @click="tabId=2">Angular</a>
+        <a href="#" @click="tabId=3">React</a>
+      </div>
+
+      <div class="box">
+        <div v-show="tabId===0">111</div>
+
+        <div v-show="tabId===1">222</div>
+
+        <div v-show="tabId===2">333</div>
+
+        <div v-show="tabId===3">444</div>
+      </div>
+    </div>
+  </body>
+  <script>
+    const vw = new Vue({
+      el: "#app",
+      data: {
+        tabId: 0,
+      },
+    });
+  </script>
+</html>

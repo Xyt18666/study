@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="charset" content="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <script src="http://jxsjs.com/lib/vue.min.js"></script>
+    <title>for</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+   
+  </style>
+  <body>
+    <div id="app">
+        <span v-for="i in 10">{{ i }}</span>
+     <ul >
+         <li v-for="(i,index) in datas" :key="index"> {{ i }} ---------- {{index}}</li>
+     </ul>
+     <div v-for="i in 3">{{ i }}</div>
+    
+  </body>
+  <script>
+    const vw = new Vue({
+      el: "#app",
+      data: {
+          datas:{
+              a:1,
+              b:2,
+              c:3
+          }
+      },
+    });
+    /*
+    循环： v-for
+
+        使用v-for 遍历 数组、对象 或者 数字 实现循环
+
+        在 块元素中 中使用 v-for 可循环 该元素
+        在 行内元素中 中使用 v-for 可循环 输出文文本
+
+        :key ：使用 v-for时 ，尽可能添加 :key 值 ，序号
+    
+    
+    
+    */ 
+  </script>
+</html>

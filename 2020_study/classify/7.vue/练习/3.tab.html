@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="charset" content="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <script src="http://jxsjs.com/lib/vue.min.js"></script>
+    <title>tab</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    #app {
+      background: #000;
+      width: 100vw;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: auto;
+      padding: 20px;
+    }
+    .tab-wrap {
+      display: flex;
+      justify-content: space-around;
+      border: 1px solid #2c50a1;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .tab-wrap div {
+      flex: 1;
+      line-height: 40px;
+      color: #ccc;
+      text-align: center;
+      background: #777;
+    }
+    .tab-wrap div.active {
+      color: #fff;
+      background: #2c50a1;
+    }
+    .content {
+      padding: 40px;
+      color: #fff;
+      font-size: 40px;
+      /* display: none; */
+    }
+  </style>
+  <body>
+    <div id="app">
+      <div class="tab-wrap">
+        <div :class="tab==='faur'?'active':''" @click="tab='faur'">1</div>
+        <div :class="tab==='his'?'active':''" @click="tab='his'">2</div>
+      </div>
+
+      <div class="content" v-show="tab==='faur'">11</div>
+      <div class="content" v-show="tab==='his'">22</div>
+    </div>
+  </body>
+  <script>
+    const vw = new Vue({
+      el: "#app",
+      data: {
+        tab: "faur",
+      },
+    });
+  </script>
+</html>

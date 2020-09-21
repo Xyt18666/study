@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="charset" content="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <script src="http://jxsjs.com/lib/vue.min.js"></script>
+    <script src="http://jxsjs.com/singer-list-1"></script>
+    <title>for</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    #app {
+      background: rgb(133, 133, 133);
+      width: 100vw;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: auto;
+      padding: 20px;
+    }
+    li {
+      padding: 10px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgb(28, 140, 245);
+    }
+    p {
+      color: #fff;
+    }
+    .imgs {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-size: contain;
+    }
+  </style>
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="(item,index) in singerList" :key="item.id">
+          <div
+            class="imgs"
+            :style="`background-image:url(${item.avatar});`"
+          ></div>
+          <p>{{item.name}}</p>
+        </li>
+      </ul>
+    </div>
+  </body>
+  <script>
+    const vw = new Vue({
+      el: "#app",
+      data: { singerList },
+    });
+    // singerList
+  </script>
+</html>
