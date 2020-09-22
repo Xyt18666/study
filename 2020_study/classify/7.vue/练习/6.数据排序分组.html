@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="charset" content="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <script src="http://jxsjs.com/lib/vue.min.js"></script>
+    <script src="http://jxsjs.com/singer-list-3"></script>
+    <title>for</title>
+  </head>
+  <style></style>
+  <body>
+    <div id="app"></div>
+  </body>
+  <script>
+    const vw = new Vue({
+      el: "#app",
+      data: [],
+    });
+
+    let obj = {};
+    // 创建一个 新对象
+
+    singerList.map((item, index) => {
+      const letter = item.firstLetter;
+      if (!obj[letter]) {
+        // 判断对象中是否有 该字母 ，如果没有
+        obj[letter] = {
+          // 对象添加 该字母以及 items数组
+          letter,
+          items: [],
+        };
+      }
+
+      obj[letter].items.push(item);
+      //   有的话 在对应的 字母下的数组中添加item
+    });
+    console.log(obj);
+
+    let arr = [];
+    for (let key in obj) {
+      arr.push(obj[key]);
+      //   遍历对象 放入新数组
+    }
+
+    arr.sort((a, b) => a.letter.charCodeAt(0) - b.letter.charCodeAt(0));
+    // 数组排序
+
+    console.log(arr);
+  </script>
+</html>

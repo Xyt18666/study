@@ -85,10 +85,9 @@
         this.scroll();
         this.click();
         this.fhdb();
-   
       }
       scroll() {
-        $(window).scroll(()=> {
+        $(window).scroll(() => {
           var st = $(window).scrollTop();
           st > 1300 ? $("aside").addClass("st") : $("aside").removeClass("st");
 
@@ -96,7 +95,7 @@
           var stMin = st - $(window).height() / 2;
           console.log(stMax, st, stMin);
 
-          this.buttonAll.each( (i)=> {
+          this.buttonAll.each((i) => {
             var ost = this.floorList.eq(i).offset().top;
             if (ost > stMin && ost < stMax) {
               this.buttonAll

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="charset" content="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <script src="http://jxsjs.com/lib/vue.min.js"></script>
+    <title>[]{}</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .red {
+        color: red;
+      }
+      .bg {
+        font-size: 50px;
+      }
+    </style>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <body>
+    <div id="app">
+      <div
+        :class="{
+          'red':!error,
+          'bg':true
+      }"
+      >
+        行内，对象形式绑定 class ,并使用变量
+      </div>
+      <div :class="classObj">对象形式绑定 class</div>
+
+      <div :class="['red',bg?'bg':'']">
+        行内数组形式绑定 class ，并使用表达式
+      </div>
+      <div :class="classArr">数组形式绑定 class</div>
+
+      <!-- -------------------------------------- -->
+
+      <div :style="{ color: '#0f0', fontSize:  '26px' }">行内对象 css</div>
+      <div :style="cssobj">对象 css</div>
+      <div :style="[cssobj, cssobj2]">行内数组css，将多个样式放到同一元素</div>
+    </div>
+  </body>
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        error: false,
+        bg: false,
+        classObj: {
+          red: false,
+          bg: false,
+        },
+        classArr: ["bg"],
+        cssobj: {
+          background: "pink",
+        },
+        cssobj2: {
+          color: "#0f0",
+        },
+      },
+    });
+
+    /*
+    使用对象 绑定 class：
+      {
+          'class名':变量,
+      }
+      变量为真，输出 该 class
+      class名中如果有-等特殊符号，要用''包起来
+
+      变量可以使用表达式
+
+
+    使用数组 绑定 class：
+
+      ["class1","class2"]
+
+      每个类都可以使用表达式
+
+
+
+    对象的形式绑定 class ：
+      :class="变量名"
+      可以是 对象 或者 数组
+
+--------------------------------------------------------------
+
+    使用对象 绑定 style:
+      { color: 变量, fontSize:  '26px' }
+      可以为变量 ，也可以是 值
+
+
+    对象的形式绑定 style ：
+      :style="变量名"
+    
+    数组绑定多个 样式到同一元素：
+      [cssobj, cssobj2] 只能是 变量 对象
+
+
+
+     */
+  </script>
+</html>

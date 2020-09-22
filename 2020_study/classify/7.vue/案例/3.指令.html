@@ -32,6 +32,9 @@
       <!-- -------------------------------- -->
 
       <form v-on:click.prevent="onSubmit">...</form>
+      <!-- ---------------------------------------- -->
+
+      <!-- ------------------------ -->
     </div>
   </body>
   <script>
@@ -43,6 +46,7 @@
         name2: "xyt2",
         name3: "xxx3",
         sj: "click",
+
         clicksj() {
           console.log("触发click");
         },
@@ -80,6 +84,12 @@
     动态参数：
         v-on:[参数]
         v-bind:[属性]
+
+    key:
+        key 管理可复用的元素,
+        也就是说，在切换过程中 ，不使用key值时 ，元素不会被重新渲染 ，而是复用，之前输入的内容不会改
+        具体看 ：https://cn.vuejs.org/v2/guide/conditional.html
+
 
     事件修饰词：
         v-on:事件.prevent

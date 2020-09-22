@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="charset" content="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <script src="http://jxsjs.com/lib/vue.min.js"></script>
+    <title>[]{}</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .gd{
+          width: 300px;
+          background: #000;
+          height: 60px;
+          overflow: scroll;
+          color: #fff;
+      }
+    </style>
+
+  
+  <body>
+    <div id="app">
+      <div class="box" @click="clickBox($event,33)">click</div>
+      <!-- ----------------------------------------------------------- -->
+
+      <!-- 事件修饰符 -->
+      <!-- 阻止单击事件继续传播 -->
+      <a v-on:click.stop="doThis">阻止单击事件继续传播</a>
+
+      <!-- 提交事件不再重载页面 -->
+      <form v-on:submit.prevent="onSubmit">
+        提交事件不再重载页面
+        <input type="submit" value="提交" />
+      </form>
+
+      <!-- 修饰符可以串联 -->
+      <a v-on:click.stop.prevent="doThat">修饰符可以串联</a>
+
+      <!-- 只有修饰符 -->
+      <form v-on:submit.prevent>
+        只有修饰符 <input type="submit" value="提交" />
+      </form>
+
+      <!-- 添加事件监听器时使用事件捕获模式 -->
+      <!-- 即内部元素触发的事件先在此处理，然后才交由内部元素进行处理 -->
+      <div v-on:click.capture="doThis">
+        即内部元素触发的事件先在此处理，然后才交由内部元素进行处理
+      </div>
+
+      <!-- 只当在 event.target 是当前元素自身时触发处理函数 -->
+      <!-- 即事件不是从内部元素触发的 -->
+      <div v-on:click.self="doThat">
+        只当在 event.target 是当前元素自身时触发处理函数
+        <p>非 event.target</p>
+      </div>
+
+      <!-- 点击事件将只会触发一次 -->
+      <a v-on:click.once="doThis">点击事件将只会触发一次</a>
+
+      <!-- 滚动事件的默认行为 (即滚动行为) 将会立即触发 -->
+      <!-- 而不会等待 `onScroll` 完成  -->
+      <!-- 这其中包含 `event.preventDefault()` 的情况 -->
+      <div v-on:scroll.passive="onScroll" class="gd">
+        滚动事件的默认行为 (即滚动行为) 将会立即触发
+        <p>sfaadofgfd dfg FDGG 发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼发鬼地方</p>
+      </div>
+      <!-- --------------------------------------- -->
+
+      <!-- 键盘事件 -->
+      <!-- 只有在 `key` 是 `Enter` 时调用 `vm.submit()` -->
+        <input v-on:keyup.enter="submit">  
+        
+        <!-- 你可以直接将 KeyboardEvent.key 暴露的任意有效按键名转换为 kebab-case 来作为修饰符。 -->
+        <input v-on:keyup.page-down="onPageDown">
+
+        <!-- 使用 keyCode attribute   按键 码值 -->
+        <input v-on:keyup.13="submit">
+        <!-- Vue 提供了绝大多数常用的按键码的别名：
+        .enter
+        .tab
+        .delete (捕获“删除”和“退格”键)
+        .esc
+        .space
+        .up
+        .down
+        .left
+        .right -->
+
+      <!-- -------------------- -->
+      <!-- 系统修饰键 -->
+        <!-- 
+        .ctrl
+        .alt
+        .shift
+        .meta
+ -->
+        <!-- Alt + C -->
+        <input v-on:keyup.alt.67="clear">
+
+        <!-- Ctrl + Click -->
+        <div v-on:click.ctrl="doSomething">Do something</div>
+
+        <!-- .exact 修饰符允许你控制由精确的系统修饰符组合触发的事件。 -->
+
+        <!-- 即使 Alt 或 Shift 被一同按下时也会触发 -->
+        <button v-on:click.ctrl="onClick">A</button>
+
+        <!-- 有且只有 Ctrl 被按下的时候才触发 -->
+        <button v-on:click.ctrl.exact="onCtrlClick">A</button>
+
+        <!-- 没有任何系统修饰符被按下的时候才触发 -->
+        <button v-on:click.exact="onClick">A</button>
+
+
+      <!-- ----------------------------- -->
+      <!-- 鼠标修饰符 -->
+        <!-- 
+        .left
+        .right
+        .middle
+        这些修饰符会限制处理函数仅响应特定的鼠标按钮。 -->
+
+        <div class="sb" @click.middle="sbxsf">789456</div>
+        <div class="sb" @click.left="sbxsf">789456</div>
+        <div class="sb" @click.right="sbxsf">789456</div>
+
+
+      <!-- ------------------ -->
+    </div>
+  </body>
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        size: 10,
+      },
+      methods: {
+        //   定义方法
+        getSize() {
+          console.log(this.size);
+        },
+        setSize(size) {
+          this.size = size;
+        },
+        clickBox(e, size) {
+          console.log("click执行" + size, e);
+        },
+        doThis() {
+          console.log(11);
+        },
+        onSubmit() {
+          console.log(22);
+        },
+        doThat() {
+          console.log(33);
+        },
+        onScroll() {
+          console.log(44);
+        },
+        submit(){
+          console.log(55);
+        },
+        onPageDown(){
+          console.log(66);
+        },
+        clear(){
+            console.log("alt+c");
+            
+        },
+        doSomething(){
+            console.log(" Ctrl + Click" );
+        },
+        onClick(){
+            console.log(" Ctrl + 任意键都会触发，并不精确" );
+        },
+        onCtrlClick(){
+            console.log(" Ctrl + Click ,精确触发" );
+        },
+        sbxsf(){
+            console.log("sbxsf");
+            
+        }
+    },
+    });
+
+    vm.getSize();
+    vm.setSize(8);
+    vm.getSize();
+
+    /*
+    methods：{}  定义方法的对象
+
+    对象内定义的 方法 可以通过 this.xx 访问到 当前实例的属性
+
+
+    v-on:事件    事件绑定
+    简写 @事件
+
+    $event   event对象
+
+    可以通过全局 config.keyCodes 对象自定义按键修饰符别名：
+
+     */
+     Vue.config.keyCodes.enter = 112
+     console.log(Vue.config.keyCodes);
+     
+  </script>
+</html>

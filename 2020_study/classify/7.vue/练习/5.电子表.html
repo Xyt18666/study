@@ -51,6 +51,7 @@
         border-radius: 50%;
         z-index: 999;
         transform: translate(-50%, -50%);
+        /* 多个 transform  ,从后向前执行 */
       }
       .sz {
         width: 15vw;
@@ -94,7 +95,7 @@
       </ul>
       <div class="clockBox">
         <div class="zxd"></div>
-        <div 
+        <div
           class="zz"
           v-for="(item,index) in arr"
           :class="index=='0'?'sz':index=='1'?'fz':index=='2'?'mz':null"

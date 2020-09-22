@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="charset" content="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <script src="http://jxsjs.com/lib/vue.min.js"></script>
+    <title>[]{}</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      #app .box{
+          width: 100vw;
+          height: 100vh;
+          position: relative;
+      }
+      .flower{
+          position: absolute;
+          width: 30px;
+          height: 30px;
+          background: url(http://jxsjs.com/img/flower.png) no-repeat;
+          background-size: 60px 60px;
+      }
+      .flower-1{
+          background-position: top left;
+      }
+      .flower-2{
+          background-position: top right;
+      }
+      .flower-3{
+          background-position: left bottom;
+      }
+      .flower-4{
+          background-position: right  bottom;
+      }
+    </style>
+
+  
+  <body>
+    <div id="app">
+        <div class="box" @click="addFlower">
+            <div 
+                
+                v-for="(item,index) in flowerList" 
+                :key="index"
+                :class="['flower', 'flower-' + (index % 4 + 1)]"
+                :style="{
+                    'left':item.x+'px',
+                    'top':item.y+'px'
+                }"
+            
+            >
+            </div>
+           
+        </div>
+    </div>
+  </body>
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        flowerList:[]
+      },
+      methods: {
+       addFlower(e){
+            console.log(e);
+            this.flowerList.push({
+                x:e.clientX-15,
+                y:e.clientY-15
+            })
+            
+        },
+      
+      },
+      
+     
+    });
+
+    /*
+
+
+
+     */
+  </script>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="charset" content="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <script src="http://jxsjs.com/lib/vue.min.js"></script>
+    <title>[]{}</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <body>
+    <div id="app">
+      <div class="box" @click="clickz()">click++</div>
+      <span>{{ size }}</span>
+      <!-- <input type="text" v-model="size" /> -->
+      <input type="text" :value="size" @input="oninput" />
+
+      <div class="box" @click="clicks">click--</div>
+    </div>
+  </body>
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        size: 10,
+      },
+      methods: {
+        clickz() {
+          this.size++;
+        },
+        clicks() {
+          this.size--;
+        },
+        oninput(e) {
+          // console.log(e.target.value);
+          // this.size = document.querySelector("input").value;
+          this.size = e.target.value;
+        },
+      },
+    });
+
+    /*
+  
+
+
+     */
+  </script>
+</html>

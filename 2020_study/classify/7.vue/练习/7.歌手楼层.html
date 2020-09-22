@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="charset" content="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <script src="http://jxsjs.com/lib/vue.min.js"></script>
+    <script src="http://jxsjs.com/singer-list-2"></script>
+    <title>for</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    #app {
+      background: linear-gradient(
+        60deg,
+        rgba(31, 158, 218, 0.5),
+        rgba(79, 42, 104, 0.5)
+      );
+      width: 100vw;
+      transition: 0.5s;
+      height: 100vh;
+      overflow: scroll;
+      /* position: fixed; */
+      /* top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0; */
+      /* overflow: auto; */
+      padding: 20px;
+    }
+
+    li {
+      list-style: none;
+    }
+    .singer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid rgb(28, 140, 245);
+    }
+    p {
+      color: #fff;
+    }
+    .imgs {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-size: contain;
+    }
+    h2 {
+      align-self: center;
+    }
+    .aside {
+      width: 20px;
+      position: fixed;
+      right: 0;
+      top: 20px;
+      border-radius: 20px;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 99;
+    }
+    .aside li {
+      text-align: center;
+    }
+  </style>
+  <body>
+    <div id="app" @scroll="scroll">
+      <ul>
+        <li v-for="(item,index) in singerList" :key="index">
+          <h2>{{item.letter}}</h2>
+          <div
+            class="singer"
+            v-for="(item2,index2) in item.items"
+            :key="item2.id"
+          >
+            <div
+              class="imgs"
+              :style="`background-image:url(${item2.avatar});`"
+            ></div>
+            <p>{{item2.name}}</p>
+          </div>
+        </li>
+      </ul>
+      <ol class="aside">
+        <li v-for="i in singerList" :key="i" @click="scrollTo">{{i.letter}}</li>
+      </ol>
+    </div>
+  </body>
+  <script>
+    const vw = new Vue({
+      el: "#app",
+      data: {
+        singerList,
+        list: [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J",
+          "K",
+          "L",
+          "M",
+          "N",
+          "O",
+          "P",
+          "Q",
+          "R",
+          "S",
+          "T",
+          "U",
+          "V",
+          "W",
+          "X",
+          "Y",
+          "Z",
+        ],
+        st: new Set(),
+      },
+      methods: {
+        scrollTo(e) {
+          vw.getTop();
+          [...document.querySelectorAll("ul li")].map((item, index) => {
+            if (e.target.innerHTML == item.children[0].innerHTML) {
+              document.querySelector("#app").scrollTop = [
+                ...document.querySelectorAll("ul li"),
+              ][index].offsetTop;
+            }
+          });
+        },
+        getTop() {
+          [...document.querySelectorAll("ul li")].map((item) => {
+            this.st.add(item.offsetTop);
+          });
+        },
+        scroll() {
+          vw.getTop();
+          let stz = document.querySelector("#app").scrollTop;
+
+          let xxz;
+
+          for (var v = 0; v < this.st.size; v++) {
+            if (stz > [...this.st][v] && stz < [...this.st][v + 1]) {
+              xxz = v;
+              console.log(xxz);
+            }
+            if (stz > [...this.st][[...this.st].size - 1]) {
+              xxz = [...this.st].size - 1;
+            }
+          }
+
+          for (
+            var i = 0;
+            i < [...document.querySelectorAll("ol li")].length;
+            i++
+          ) {
+            [...document.querySelectorAll("ol li")][i].style.color = "#333";
+          }
+          [...document.querySelectorAll("ol li")][xxz].style.color = "red";
+        },
+      },
+    });
+  </script>
+</html>
