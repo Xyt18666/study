@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="charset" content="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <script src="http://jxsjs.com/lib/vue.min.js"></script>
+    <title>clock</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .button {
+      width: 50px;
+      height: 50px;
+      background: red;
+    }
+  </style>
+  <body>
+    <div id="app">
+      <button-counter></button-counter>
+    </div>
+    <div id="app2">
+      <button-counter></button-counter>
+
+      <jubuzujian></jubuzujian>
+      <div class="faz" :style="csss">
+        <blog-post
+          v-for="post in posts"
+          :key="post.id"
+          :title="post.title"
+          :post2="post2"
+          @enlarge-text="onEnlargeText"
+          :fn="onEnlargeText"
+        ></blog-post>
+        <!-- 父组件绑定函数传递给子组件   :fn="onEnlargeText" -->
+      </div>
+      <!-- <button @click="csss.fontSize='28px'">Enlarge text</button> -->
+
+      <!-- 
+
+
+      <blog-post         把组件放入组件
+        v-for="post in posts"    遍历对象
+        :key="post.id"  绑定key
+        :title="post.title"  绑定属性，为组件传值，传递时的名字要和接收时一值
+      ></blog-post>
+
+
+
+       -->
+      <custom-input
+        v-bind:value="searchText"
+        v-on:input="searchText = $event"
+      ></custom-input>
+      <p>{{ searchText }}组件绑定 v-model</p>
+
+      <!-- ------------------- -->
+      <alert-box> Something bad happened. </alert-box>
+      <ul>
+        <li is="li-item"></li>
+      </ul>
+      <!-- -------------------- -->
+      <a href="" @click="name='login'">登录</a>
+      <a href="" @click="name='register'">注册</a>
+      <a href="" @click="name='forget'">忘记密码</a>
+      <component :is="name"></component>
+    </div>
+  </body>
+  <script>
+    Vue.component("button-counter", {
+      // 定义全局组件(组件名,{ 对象 })
+      data() {
+        //   这里的data要使用函数 ，并return 对象
+        return {
+          count: 0,
+        };
+      },
+      //   template  html模板
+      template:
+        '<button v-on:click="count++">You clicked me {{ count }}111111 times.</button>',
+    });
+
+    // 使用时，直接当标签引入
+    // ------------------------------------------------------------------------
+
+    const JubuZujian = {
+      // 定义局部组件
+      data() {
+        return {
+          n: 0,
+        };
+      },
+      methods: {}, //组件内同样 可以使用 这些对象
+      computed: {}, //组件内同样 可以使用 这些对象
+      watch: {}, //组件内同样 可以使用 这些对象
+      template: '<div class="button" @click="n++">{{n}}2222</div>',
+    };
+
+    // -------------------------------------------------
+    Vue.component("blog-post", {
+      props: ["title", "post2", "fn"], //props 接收 数据  ，引入fn函数
+      template: `
+      <div class="blog-post">
+          <h3>{{ title }}</h3>
+        <h3>{{ post2.title }}</h3>
+        <div v-html="post2.content"></div>
+        <button @click="$emit('enlarge-text', 0.1)">456789<button> 
+        <button @click="fn(0.1)">4567<button> 
+
+      </div>
+    `, // template html模板， {{引入属性}}
+    }); //
+    // --------------------------------------------
+
+    Vue.component("custom-input", {
+      props: ["value"],
+      template: `
+    <input
+      v-bind:value="value"
+      v-on:input="$emit('input', $event.target.value)"
+    >
+  `,
+    });
+
+    // ------------------------------------------
+    Vue.component("alert-box", {
+      template: `
+    <div class="demo-alert-box">
+        通过插槽分发内容,把组件标签内部的文字，插入到 slot 内
+      <strong>Error!</strong>
+      <slot></slot>
+    </div>
+  `,
+    });
+
+    // ----------------------------
+    Vue.component("li-item", {
+      template: `<li>1lilililil</li>`,
+    });
+    // --------------------------------
+
+    Vue.component("login", {
+      template: `<p>1</p>`,
+    });
+    Vue.component("register", {
+      template: `<p>2</p>`,
+    });
+    Vue.component("forget", {
+      template: `<p>3</p>`,
+    });
+
+    // -------------------------------------------------
+    const vm2 = new Vue({
+      el: "#app2",
+      data: {
+        csss: {
+          background: "#ccc",
+          color: "#fff",
+          fontSize: "24px",
+        },
+
+        posts: [
+          //属性
+          { id: 1, title: "My journey with Vue" },
+          { id: 2, title: "Blogging with Vue" },
+          { id: 3, title: "Why Vue is so fun" },
+        ],
+        post2: {
+          title: "titlesssss",
+          content: "<p>121</p>",
+        },
+        searchText: "df",
+      },
+      methods: {
+        onEnlargeText(ee) {
+          console.log(ee);
+        },
+      },
+      components: {
+        //绑定局部组件
+        jubuzujian: JubuZujian, //组件命名： 定义局部组件的对象
+      },
+    });
+
+    const vm = new Vue({
+      el: "#app",
+    });
+
+    /*
+
+      组件必须包裹在一个根组件下，
+
+      必须定义好组件后 在new 实例
+      
+      为组件的父级添加样式， 子组件会继承一部分属性
+
+      子向父传值不可以修改数据，只能使用$emit()
+
+        父子组件传值时，父组件传递的参数，数组和对象，子组件接受之后可以直接进行修改，并且会传递给父组件相应的值也会修改。
+        如果传递的值是字符串，直接修改会报错。
+        不推荐子组件直接修改父组件中的参数，避免这个参数多个子组件引用，无法找到造成数据不正常的原因
+      
+      引入局部组件时 ，可以使用es6语法，不用写键名，直接写组件名，
+
+      不能重名
+
+----------------------------------------------------------------------------------------------------
+
+      子传父：
+            子组件  ： 调用函数  $emit('父级的自定义事件', "参数")
+            父组件 ： @自定义事件="函数"
+                函数内 的 参数 ，就是 子级传递给父级的参数
+
+
+            第二种方式：
+                父传子一个函数 
+                子调用函数，把参数填入函数调用
+                父函数输出 信息
+        
+
+        在组件上使用 v-model
+
+
+        插槽：
+            通过插槽分发内容,把组件标签内部的文字，插入到 slot 内
+            <slot></slot>
+
+
+    
+        解析 DOM 模板时的注意事项：
+            在特定元素内，使用组件，容易发生错误 ，比如 ul内只能有li  ,所以建议使用 单文件组件
+
+        使用is解决 dom模板解析问题：
+            is=""
+
+        使用 :is  切换组件
+
+    */
+  </script>
+</html>

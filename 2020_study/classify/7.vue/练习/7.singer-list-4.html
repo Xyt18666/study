@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>single List 4</title>
+    <script src="http://jxsjs.com/lib/vue.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        body {
+            overflow: hidden;
+        }
+
+        #app {
+            position: relative;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .container .letter {
+            width: 100%;
+            width: 100%;
+            padding: 5px 10px;
+            font-size: 20px;
+        }
+
+        .container ul li {
+            width: 100%;
+            display: flex;
+            justify-content: row;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid white;
+            background: #000;
+            color: white;
+        }
+
+        .container ul li div {
+            width: 50px;
+            height: 50px;
+            border: 2px solid white;
+            margin-right: 10px;
+        }
+
+        .container ol {
+            position: fixed;
+            top: 50%;
+            right: 0;
+            padding: 10px 0;
+            transform: translateY(-50%) scale(0.4);
+            width: 50px;
+            border-radius: 50px;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .container ol li {
+            padding: 10px;
+            width: 100%;
+            height: 50px;
+            line-height: 30px;
+            color: black;
+            text-align: center;
+            font-size: 30px;
+        }
+
+        .container ol li.active {
+            background: black;
+            color: white;
+            border-radius: 50%;
+        }
+        .title{
+            position: fixed;
+            top: 0;
+            left: 0;
+            background:white;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" @scroll="scrollPage">
+        <div class="container">
+            <div class="letter title">{{title}}</div>
+            <div ref="ul">
+                <singer-group  v-for="(item,index) in newList" :key="index" :group="item"></singer-group>
+            </div>
+            <ol>
+                <li v-for="(item,indexs) in newList" :key="indexs" :class="(indexs == index)?'active':''"
+                    @click="scrollTo(indexs)">{{item.title}}</li>
+            </ol>
+        </div>
+    </div>
+</body>
+<script src="http://jxsjs.com/singer-list-3"></script>
+<script>
+    Vue.component("singer-item", {
+        props: ['avatar', 'name'],
+        template: `<li>
+                         <div
+                         :style="{
+                             background:'url('+avatar+') no-repeat 0 0',
+                             backgroundSize:'contain'
+                            }"
+                        ></div>
+                        <p>{{name}}</p>
+                    </li>`
+    })
+    const SingerGroup = {
+        props:['group'],
+        template:`<ul>
+                    <div class="letter" v-text="group.title"></div>
+                    <singer-item
+                     v-for="(items,indexs) in group.list"
+                     :key="items.id"
+                     :avatar="items.avatar"
+                     :name="items.name" 
+                    ></singer-item>
+                </ul>`
+    }
+    new Vue({
+        el: '#app',
+        data: {
+            title:"A",
+            index: 0,
+            singerList
+        },
+        components:{
+            SingerGroup
+        },
+        methods: {
+            formateList(items) {
+                let arr = [];
+                let obj = {};
+                items.forEach((item) => {
+                    let title = item['firstLetter'];
+                    if (!obj[title]) {
+                        obj[title] = {
+                            title,
+                            list: []
+                        }
+                    }
+                    obj[title]['list'].push(item)
+                })
+                for (const [keys, values] of Object.entries(obj)) {
+                    arr.push(values)
+                }
+                arr.sort((a, b) => {
+                    return a.title.charCodeAt(0) - b.title.charCodeAt(0)
+                });
+                return arr;
+            },
+            scrollTo(i) {
+                let top = this.getLocation()[i];
+                this.$nextTick(() => {
+                    this.$el.scrollTo({
+                        top,
+                        behavior: "smooth"
+                    })
+                })
+            },
+            scrollPage() {
+                let top = this.$el.scrollTop;
+                let arr = this.getLocation();
+                arr.forEach((item, index) => {
+                    if ((top >= item && top <= arr[index + 1])||top>=arr[index]) {
+                        this.index = index;
+                        this.title = this.newList[index]['title'];
+                    }
+                })
+                this.$nextTick(() => {
+                    this.$refs.ul.scrollTop = top;
+                })
+            },
+            getLocation() {
+                let arr = [];
+                [...this.$refs.ul.children].forEach(item => {
+                    arr.push(item.offsetTop)
+                })
+                return arr;
+            }
+        },
+        computed: {
+            newList() {
+                return this.formateList(this.singerList);
+            }
+        }
+    })
+</script>
+
+</html>

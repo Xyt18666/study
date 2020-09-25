@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <script src="http://jxsjs.com/lib/vue.min.js"></script>
+    <script src="http://jxsjs.com/album-list"></script>
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      ul {
+        width: 95%;
+        margin: 0 auto;
+      }
+      li {
+        display: flex;
+        margin-bottom: 10px;
+      }
+      img {
+        width: 60px;
+      }
+      .preE {
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <li
+          is="Zjsc"
+          v-for="(i,ind) in list"
+          :key="ind"
+          :i="i"
+          :index="ind"
+          @zj3="zj4(ind)"
+          @js3="js4(ind)"
+          @input3="changeinput($event,ind)"
+        ></li>
+      </ul>
+
+      <p>商品总数<span>{{getsize}}</span></p>
+      <p>商品总价 <span>{{getmoy}}</span></p>
+    </div>
+  </body>
+  <script>
+    Vue.component("zj", {
+      props: ["number"],
+      template: `<div class="zc">
+                <p @click="$emit('zjs')">+</p>
+              <p> {{number}}</p>
+              <input
+              :value="number"
+              @input="$emit('inputData', $event.target.value)"
+              :class="{preE:number<=1}" 
+            >
+              <p @click="$emit('jss')"
+              >-</p>
+            </div>`,
+    });
+
+    const Zjsc = {
+      props: ["i", "index"],
+      methods: {},
+      template: ` <li >
+          <img :src="i.cover" alt="" />
+          <div class="rBox">
+            <p>{{i.album}}---{{i.singer}}</p>
+            <p>￥{{i.price}}x{{i.number}}</p>
+          </div>
+          <zj :number=i.number
+              @zjs="$emit('zj3')"
+              @jss="$emit('js3')"
+              @inputData="$emit('input3', $event)"
+          ></zj>
+        </li>`,
+    };
+
+    const vw = new Vue({
+      el: "#app",
+      data: {
+        list: albumList,
+      },
+      methods: {
+        zj4(ind) {
+          this.list[ind].number++;
+        },
+        js4(ind) {
+          this.list[ind].number =
+            this.list[ind].number <= 1 ? 1 : --this.list[ind].number;
+        },
+        changeinput(num, ind) {
+          if (num == "" || num <= 1) {
+            num = 1;
+          } else {
+            num = num;
+          }
+
+          this.list[ind].number = num;
+        },
+      },
+      computed: {
+        getsize() {
+          return this.list.reduce((prev, cur) => {
+            return prev + cur.number;
+          }, 0);
+        },
+        getmoy() {
+          return this.list.reduce((prev, cur) => {
+            return prev + cur.price * cur.number;
+          }, 0);
+        },
+      },
+      components: {
+        Zjsc,
+      },
+      watch: {
+        list: {
+          handler() {
+            // console.log(this.list);
+          },
+
+          deep: true,
+        },
+      },
+    });
+  </script>
+</html>

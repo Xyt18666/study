@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Form</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        outline: none;
+        background: transparent;
+      }
+      form {
+        width: 500px;
+        margin: 30px;
+      }
+      .item {
+        display: flex;
+      }
+      .label {
+        width: 100px;
+        flex-shrink: 0;
+      }
+      [required] {
+        position: relative;
+      }
+      [required]:before {
+        content: "*";
+        position: absolute;
+        left: -13px;
+        top: 1px;
+        color: red;
+      }
+      .content {
+        flex-grow: 1;
+      }
+      .border {
+        padding: 0 10px;
+        border: 1px solid #ccc;
+      }
+      input[type="text"],
+      select {
+        width: 100%;
+        height: 30px;
+      }
+      textarea {
+        width: 100%;
+        height: 100px;
+      }
+      .checkbox-item {
+        display: inline-block;
+        margin-right: 20px;
+      }
+      button {
+        height: 30px;
+        padding: 0 10px;
+        background-color: #66f;
+        color: #fff;
+        border-radius: 3px;
+      }
+      button + button {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        color: #000;
+      }
+      .err {
+        height: 30px;
+        line-height: 20px;
+        padding-left: 100px;
+        color: red;
+        font-size: 14px;
+        visibility: hidden;
+      }
+      .err.show {
+        visibility: visible;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <div class="item">
+        <div class="label" required>活动名称</div>
+        <div class="content border">
+          <input type="text" v-model="formData.name" />
+        </div>
+      </div>
+      <div :class="['err', errMsg.name ? 'show' : '']">{{ errMsg.name }}</div>
+      <div class="item">
+        <div class="label" required>活动区域</div>
+        <div class="content border">
+          <select v-model="formData.city">
+            <option value="" disabled>请选择</option>
+            <option value="SH">上海</option>
+            <option value="BJ">北京</option>
+          </select>
+        </div>
+      </div>
+      <div :class="['err', errMsg.city ? 'show' : '']">{{ errMsg.city }}</div>
+      <div class="item">
+        <div class="label">即时配送</div>
+        <div class="content">
+          <input type="checkbox" v-model="formData.send" />
+        </div>
+      </div>
+      <div :class="['err', errMsg.send ? 'show' : '']">{{ errMsg.send }}</div>
+      <div class="item">
+        <div class="label" required>活动性质</div>
+        <div class="content">
+          <div class="checkbox-item" v-for="(d, i) in sendList" :key="i">
+            <input
+              type="checkbox"
+              :id="d.value"
+              :value="d.value"
+              v-model="formData.type"
+            />
+            <label :for="d.value">{{ d.label }}</label>
+          </div>
+        </div>
+      </div>
+      <div :class="['err', errMsg.type ? 'show' : '']">{{ errMsg.type }}</div>
+      <div class="item">
+        <div class="label" required>特殊资源</div>
+        <div class="content">
+          <div class="checkbox-item" v-for="(d, i) in resourceList" :key="i">
+            <input
+              type="radio"
+              :id="d.value"
+              :value="d.value"
+              v-model="formData.resource"
+            />
+            <label :for="d.value">{{ d.label }}</label>
+          </div>
+        </div>
+      </div>
+      <div :class="['err', errMsg.resource ? 'show' : '']">
+        {{ errMsg.resource }}
+      </div>
+      <div class="item">
+        <div class="label" required>活动形式</div>
+        <div class="content border">
+          <textarea v-model="formData.detail"></textarea>
+        </div>
+      </div>
+      <div :class="['err', errMsg.detail ? 'show' : '']">
+        {{ errMsg.detail }}
+      </div>
+      <div class="item">
+        <div class="label"></div>
+        <div class="content">
+          <button @click.prevent="onSubmit">立即创建</button>
+          <button @click.prevent="onReset">重置</button>
+        </div>
+      </div>
+    </form>
+
+    <script src="http://jxsjs.com/lib/vue.min.js"></script>
+    <script>
+      const form = new Vue({
+        el: "form",
+        data: {
+          formData: {
+            name: "",
+            city: "",
+            send: true,
+            type: [],
+            resource: "",
+            detail: "",
+          },
+          errMsg: {
+            name: "",
+            city: "",
+            send: "",
+            type: "",
+            resource: "",
+            detail: "",
+          },
+          sendList: [
+            {
+              label: "美食/餐厅线上活动",
+              value: "send1",
+            },
+            {
+              label: "地摊活动",
+              value: "send2",
+            },
+            {
+              label: "线下主题活动",
+              value: "send3",
+            },
+            {
+              label: "单纯品牌曝光",
+              value: "send4",
+            },
+          ],
+          resourceList: [
+            {
+              label: "线上品牌商赞助",
+              value: "resource1",
+            },
+            {
+              label: "线下场地免费",
+              value: "resource2",
+            },
+          ],
+        },
+        methods: {
+          onReset() {
+            this.clearErr();
+            this.formData = {
+              name: "",
+              city: "",
+              send: true,
+              type: [],
+              resource: "",
+              detail: "",
+            };
+          },
+          clearErr() {
+            this.errMsg = {
+              name: "",
+              city: "",
+              send: "",
+              type: "",
+              resource: "",
+              detail: "",
+            };
+          },
+          onSubmit() {
+            this.clearErr();
+            const { name, city, type, resource, detail } = this.formData;
+            let hasErr = false;
+            if (!name) {
+              this.errMsg.name = "请填写活动名称";
+              hasErr = true;
+            }
+            if (!city) {
+              this.errMsg.city = "请选择活动区域";
+              hasErr = true;
+            }
+            if (type.length === 0) {
+              this.errMsg.type = "请选择至少一项活动性质";
+              hasErr = true;
+            }
+            if (!resource) {
+              this.errMsg.resource = "请选择特殊资源";
+              hasErr = true;
+            }
+            if (!detail) {
+              this.errMsg.detail = "请填写活动形式";
+              hasErr = true;
+            }
+            if (!hasErr) {
+              console.log(JSON.stringify(this.formData));
+            }
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

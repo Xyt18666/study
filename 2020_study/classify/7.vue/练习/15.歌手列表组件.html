@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Singer List 4</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      #app {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: #241b3c;
+        overflow: auto;
+      }
+      h2 {
+        line-height: 30px;
+        padding-left: 20px;
+        background: linear-gradient(15deg, #061842, #2c50a1);
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+      }
+      .list-group ul {
+        padding: 20px;
+      }
+      li.list-item {
+        display: flex;
+        align-items: center;
+        height: 65px;
+      }
+      .avatar {
+        position: relative;
+        flex: 0 0 50px;
+        height: 50px;
+        border: 1px solid #5a485f;
+        border-radius: 50%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+      }
+      .name {
+        flex-grow: 1;
+        padding-left: 15px;
+        font-size: 16px;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <singer-group
+          v-for="group in list"
+          :key="group.letter"
+          :group="group"
+        ></singer-group>
+      </ul>
+    </div>
+
+    <script src="http://jxsjs.com/singer-list-3"></script>
+    <script src="http://jxsjs.com/lib/vue.min.js"></script>
+    <script>
+      Vue.component("singer-item", {
+        props: ["avatar", "name"],
+        template: `<li class="list-item">
+                        <div
+                            class="avatar"
+                            :style="{ 'background-image': 'url(' + avatar + ')' }"
+                        ></div>
+                        <div class="name">{{ name }}</div>
+                    </li>`,
+      });
+
+      const SingerGroup = {
+        props: ["group"],
+        template: `<li class="list-group">
+                <h2>{{ group.letter }}</h2>
+                <ul>
+                    <singer-item
+                        v-for="(d, i) in group.items"
+                        :key="i"
+                        :avatar="d.avatar"
+                        :name="d.name"
+                    ></singer-item>
+                </ul>
+            </li>`,
+      };
+
+      const app = new Vue({
+        el: "#app",
+        components: {
+          "singer-group": SingerGroup,
+        },
+        data: {
+          list: [],
+        },
+      });
+
+      let arr = [];
+      let obj = {};
+      singerList.forEach((item) => {
+        const letter = item.firstLetter;
+        if (obj[letter] === undefined) {
+          obj[letter] = {
+            letter,
+            items: [],
+          };
+        }
+        obj[letter].items.push(item);
+      });
+      for (let key in obj) {
+        arr.push(obj[key]);
+      }
+      arr.sort((a, b) => {
+        return a.letter.charCodeAt(0) - b.letter.charCodeAt(0);
+      });
+      app.list = arr;
+    </script>
+  </body>
+</html>

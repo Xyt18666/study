@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <script src="http://jxsjs.com/lib/vue.min.js"></script>
+    <title>按进度复习</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        /* box-sizing: border-box; */
+      }
+      .class1 {
+        background: #000;
+      }
+      .class2 {
+        color: pink;
+      }
+      .box2 {
+        width: 200px;
+        height: 200px;
+        background: #777;
+      }
+      .box2 a {
+        display: block;
+        width: 100px;
+        height: 100px;
+        background: pink;
+      }
+      .fzBox {
+        position: relative;
+        width: 200px;
+        height: 150px;
+        left: 50px;
+        top: 50px;
+        background: red;
+      }
+      .wz {
+        position: absolute;
+        top: 15px;
+        left: 25px;
+        width: 25px;
+        height: 80px;
+        border: 2px solid #777;
+        background: #0f0;
+      }
+    </style>
+  </head>
+  <body id="view">
+    <div id="app">
+      <div>{{ a+b }} 插值</div>
+      <div>{{ num }} 计算属性性插值</div>
+      <div v-html="htmlText"></div>
+      <div :class="className">:绑定属性 ， 并且通过数组 同时绑定2个 class</div>
+      <div :style="styls">绑定 style 对象绑定</div>
+      <div @click="clickFn" v-once>
+        @绑定事件 ，并且执行 参数修改 ，并且只能执行一次插值,并不影响事件{{b}}
+      </div>
+      <div class="box">
+        <div v-if="b<a">条件渲染 if b < a</div>
+        <div v-else-if="b>a">条件渲染 else if b > a</div>
+      </div>
+      <div class="box2">
+        <div v-if="0<a">条件渲染 if 0 < a</div>
+        <div v-else>条件渲染 else</div>
+      </div>
+      <template v-if="0<10">
+        <p>1 使用template 整组渲染</p>
+        <p>2</p>
+      </template>
+      <input type="text" v-model="value" placeholder="v-model" />
+      <div v-show="!document.querySelector('input').value">v-show</div>
+      <div class="tab">
+        <p>
+          v-if 绑定 key,切换元素，并重新渲染 ，如果不添加key,则元素不会被切换
+        </p>
+        <template v-if="loginType === 'username'">
+          <label>Username</label>
+          <input placeholder="Enter your username" key="ues-input" />
+        </template>
+        <template v-else>
+          <label>Email</label>
+          <input placeholder="Enter your email address" key="ema-input" />
+        </template>
+        <div class="button" @click="tab">button</div>
+      </div>
+      <div class="for">
+        <p>嵌套循环生成</p>
+        <template v-for="(item,index) in listArr" :key="index">
+          <ul>
+            <li v-for="(item2,index2) in item" :key="index2">
+              {{item2}}----{{index2}}
+            </li>
+          </ul>
+        </template>
+      </div>
+      <div class="sj">
+        <div class="box1" @click="clck">事件对象$event</div>
+        <div class="box2" @click="doThisFaz">
+          <a @click.stop="doThis">阻止单击事件继续传播</a>
+        </div>
+      </div>
+      <div class="fzBox">
+        <div class="wz">位置box</div>
+      </div>
+    </div>
+  </body>
+  <script>
+    {
+      let box = document.querySelector(".wz");
+      console.log(box.offsetTop);
+      console.log(box.offsetLeft);
+      console.log(box.offsetWidth);
+      console.log(box.offsetHeight);
+      console.log(box.clientTop);
+      console.log(box.clientLeft);
+      console.log(box.clientWidth);
+      console.log(box.clientHeight);
+      console.log(box.scrollTop);
+      console.log(box.scrollLeft);
+      console.log(box.scrollWidth); //?
+      console.log(box.scrollHeight); //?
+      console.log(box.getBoundingClientRect());
+      console.log(
+        "--视区宽高-",
+        window.innerWidth,
+        window.innerHeight,
+        document.documentElement.clientWidth,
+        document.documentElement.clientHeight,
+        "--屏幕宽高-",
+        window.screen.width,
+        window.screen.height,
+        "-文档宽高--",
+        document.body.clientWidth,
+        document.body.clientHeight,
+
+        document.documentElement.scrollWidth,
+        document.documentElement.scrollHeight,
+        "-滚动条距离--",
+        document.body.scrollWidth,
+        document.body.scrollHeight,
+        document.body.scrollTop,
+        document.body.scrollLeft,
+        window.scrollY,
+        window.scrollX,
+        document.documentElement.scrollTop,
+        document.documentElement.scrollLeft,
+        window.pageYOffset,
+        window.pageXOffset
+      );
+
+      // https://blog.tachmiao.com/?id=14
+      var element = document.getElementById("view");
+      // element.scrollIntoView();
+      // element.scrollIntoView(false);
+      // element.scrollIntoView({ block: "end" });
+      // element.scrollIntoView({
+      //   behavior: "smooth",
+      //   block: "end",
+      //   inline: "end",
+      // });
+    }
+    /*
+    原生获取位置：
+       加给元素：
+            offsetLeft （距离定位父级的距离）
+            offsetTop （距离定位父级的距离）
+            offsetWidth （盒子实际大小，包括边框）
+            offsetHeight （盒子实际大小，包括边框）
+            clientLeft （左边框 宽度）
+            clientTop （上边框 宽度）
+            clientWidth（盒子实际大小，不包括边框）
+            clientHeight（盒子实际大小，不包括边框）
+            scrollTop（纵向滚动距离）
+            scrollLeft（横向滚动距离）
+            scrollWidth（内容宽度）
+            scrollHeight（内容高度）
+        getBoundingClientRect ( ) 返回值：对象 有6个属性
+            left（元素左侧相对于可视区左上角的距离）
+            right（元素右侧相对于可视区左上角的距离）
+            top（元素上边相对于可视区左上角的距离）
+            bottom（元素下边相对于可视区左上角的距离）
+            width（可视宽度）
+            height（可视高度）
+            x:（元素左侧相对于可视区左上角的距离）
+            y:（元素上边相对于可视区左上角的距离）
+        获取可视区宽高：
+            window.innerWidth
+            window.innerHeight
+            document.documentElement.clientWidth
+            document.documentElement.clientHeight
+        屏幕宽高：
+            window.screen.width
+            window.screen.height
+        获取文档宽高：
+            document.body.clientWidth
+            document.body.clientHeight
+            document.documentElement.scrollWidth
+            document.documentElement.scrollHeight
+            document.body.scrollWidth（如果内容宽度超过一屏，得到文档宽度；如果内容小于一屏，得到一屏的宽度）
+            document.body.scrollHeight （如果内容高度超过一屏，得到文档高度；如果内容小于一屏，得到一屏的高度）
+        获取滚动条距离：
+            document.body.scrollTop
+            document.body.scrollLeft
+            window.scrollY
+            window.scrollX
+            document.documentElement.scrollTop
+            document.documentElement.scrollLeft
+            window.pageYOffset
+            window.pageXOffset
+
+
+        ScrollIntoView
+    
+    */
+
+    window.onscroll = () => {
+      console.log(
+        "-滚动条距离--",
+        document.body.scrollWidth,
+        document.body.scrollHeight,
+        document.body.scrollTop,
+        document.body.scrollLeft,
+        window.scrollY,
+        window.scrollX,
+        document.documentElement.scrollTop,
+        document.documentElement.scrollLeft,
+        window.pageYOffset,
+        window.pageXOffset
+      );
+    };
+    const vm = new Vue({
+      el: "#app", //规定接管区域
+      data: {
+        //参数对象
+        a: 1,
+        b: 33,
+        htmlText: "<p>v-html插入元素</p>",
+        className: ["class1", "class2"],
+        styls: {
+          "background-color": "#777",
+          color: "red",
+        },
+        value: "",
+        loginType: "username",
+        listArr: [
+          {
+            q: "q",
+            w: "w",
+            e: "e",
+          },
+          {
+            q: "q2",
+            w: "w2",
+            e: "e2",
+          },
+          {
+            q: "q3",
+            w: "w3",
+            e: "e3",
+          },
+        ],
+      },
+      methods: {
+        //方法函数
+        clickFn() {
+          console.log(this.b);
+          this.b++;
+        },
+        tab() {
+          this.loginType = this.loginType == "username" ? "" : "username";
+        },
+        clck(e) {
+          console.log(e);
+        },
+        doThis() {
+          console.log("阻止事件传播");
+        },
+        doThisFaz() {
+          console.log("父级");
+        },
+      },
+      computed: {
+        //计算属性
+        num() {
+          return this.a * 10 + this.b / 3;
+        },
+      },
+      watch: {},
+    });
+  </script>
+</html>

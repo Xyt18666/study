@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="charset" content="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <script src="http://jxsjs.com/lib/vue.min.js"></script>
+    <title>clock</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <body>
+    <div id="app">
+      <p>重新绑定value 到 实例属性 ，数据的双向绑定的原理</p>
+      <!-- <input type="text" :value="value" @input="value=$event.target.value" /> -->
+      <p>{{value}}</p>
+      <!-- ---------------------- -->
+
+      <!-- <input type="text" :value="value" /> -->
+      <!-- 这种就不会 修改 实例内 的 value ，此时 dom与数据不匹配 -->
+
+      <!-- ---------------------------------- -->
+      <input type="text" :v-model="value" />
+      <!-- 绑定值 -->
+      <!-- 优化 -->
+
+      <!-- --------------------------------------- -->
+      <p style="white-space: pre-line">{{ message }}</p>
+      <br />
+      <textarea v-model="message" placeholder="add multiple lines"></textarea>
+      <!-- 绑定值 -->
+      <!-- ------------------------- -->
+      <!-- 单复选框，绑定布尔值 -->
+      <input type="checkbox" id="checkbox" v-model="checked" />
+      <label for="checkbox">{{ checked }}</label>
+      <!-- 多复选框 ，绑定 数组 -->
+      <!-- ------------------------- -->
+      <br />
+      <input type="checkbox" id="jack" value="Jack" v-model="checkedNames" />
+      <label for="jack">Jack</label>
+      <input type="checkbox" id="john" value="John" v-model="checkedNames" />
+      <label for="john">John</label>
+      <input type="checkbox" id="mike" value="Mike" v-model="checkedNames" />
+      <label for="mike">Mike</label>
+      <br />
+      <span>Checked names: {{ checkedNames }}</span>
+      <!-- ------------------------- -->
+      <div id="example-4">
+        <!-- 单选框，绑定同一个 变量 -->
+        <input type="radio" id="one" value="One" v-model="picked" />
+        <label for="one">One</label>
+        <br />
+        <input type="radio" id="two" value="Two" v-model="picked" />
+        <label for="two">Two</label>
+        <br />
+        <span>Picked: {{ picked }}</span>
+      </div>
+      <!-- ------------------------- -->
+      <!-- 下拉单选 绑定 变量 -->
+      <br />
+      <select v-model="selected">
+        <option disabled value="">请选择</option>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+      </select>
+      <span>Selected: {{ selected }}</span>
+      <!-- ------------------------- -->
+      <!-- 下拉多选 绑定 数组 -->
+      <select v-model="selected2" multiple style="width: 50px">
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+      </select>
+      <br />
+      <span>Selected: {{ selected2 }}</span>
+      <!-- ------------------------- -->
+      <!-- 使用 v-for 遍历对象 生成选项 -->
+      <select v-model="selected3">
+        <option v-for="option in options" v-bind:value="option.value">
+          {{ option.text }}
+        </option>
+      </select>
+      <span>Selected: {{ selected3 }}</span>
+      <!-- ------------------------- -->
+      <!-- 修饰符 -->
+      <!-- 在“change”时而非“input”时更新 -->
+      <input v-model.lazy="msg" />
+
+      <!-- 如果想自动将用户的输入值转为数值类型，可以给 v-model 添加 number 修饰符 -->
+      <input v-model.number="age" type="number" />
+
+      <!-- 如果要自动过滤用户输入的首尾空白字符，可以给 v-model 添加 trim 修饰符： -->
+      <input v-model.trim="msg" />
+      <!-- ------------------------- -->
+      <!-- ------------------------- -->
+      <!-- ------------------------- -->
+      <!-- ------------------------- -->
+      <!-- ------------------------- -->
+      <!-- ------------------------- -->
+      <!-- ------------------------- -->
+    </div>
+  </body>
+  <script>
+    const clock = new Vue({
+      el: "#app",
+      data: {
+        value: "hl",
+        message: "",
+        checked: true,
+        checkedNames: [],
+        picked: "",
+        selected: "",
+        selected2: [],
+        selected3: "",
+        options: [
+          { text: "One", value: "A" },
+          { text: "Two", value: "B" },
+          { text: "Three", value: "C" },
+        ],
+        picked: "",
+        toggle: true,
+        msg: "",
+        age: "",
+      },
+      methods: {},
+    });
+
+    /*
+    :v-model 表单输入绑定
+
+        可以绑定 的 有 : input selsection checkbox radio textarea
+
+
+    */
+  </script>
+</html>

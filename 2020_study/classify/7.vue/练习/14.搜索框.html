@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="charset" content="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <script src="http://jxsjs.com/lib/vue.min.js"></script>
+    <title>clock</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    #app {
+      padding-top: 20px;
+      width: 100vw;
+      height: 100vh;
+      background: url(http://jxsjs.com/img/bg.png);
+      background-size: cover;
+    }
+    form {
+      width: 90%;
+      height: 40px;
+      padding: 0 10px;
+      margin: auto;
+      background: rgb(110, 31, 236);
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+    i {
+      display: block;
+
+      width: 30px;
+      height: 30px;
+      background: url(http://jxsjs.com/img/icon-search.png) no-repeat;
+      background-size: cover;
+    }
+    .clear {
+      width: 30px;
+      height: 30px;
+      background: url(http://jxsjs.com/img/icon-clear.png) no-repeat;
+      background-size: cover;
+    }
+    input {
+      flex: 7;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+    }
+    li {
+      color: #fff;
+    }
+  </style>
+  <body>
+    <div id="app">
+      <form action="#">
+        <i></i>
+        <input type="text" v-model="search" placeholder="搜索歌手" />
+        <div class="clear" @click="search=''" v-show="search"></div>
+      </form>
+      <div class="hotS" v-if="!search">
+        <h2>热门搜索</h2>
+        <ol>
+          <li v-for="(i,d) in hot" :key="d" @click="search=i">{{i}}</li>
+        </ol>
+      </div>
+      <ul v-else="search">
+        <li v-for="(i,d) in searchList" :key="d">{{i}}</li>
+      </ul>
+    </div>
+  </body>
+  <script>
+    function jsonp(url, fn) {
+      const callBackName = "cb" + Math.random().toString().replace(".", "");
+      //   创建随机函数名
+
+      url += `&callback=${callBackName}`;
+      // 添加回调函数名
+      let scr = document.createElement("script");
+      scr.src = url;
+      //   动态创建script
+
+      window[callBackName] = (dt) => {
+        // 定义随机函数
+        fn(dt);
+        document.body.removeChild(scr);
+        // 清除函数和script
+        delete window[callBackName];
+      };
+      document.body.appendChild(scr);
+      //   添加到body
+    }
+  </script>
+  <script>
+    const vw = new Vue({
+      el: "#app",
+      data: {
+        search: "",
+        searchList: [],
+        hot: ["1", "2", "3"],
+      },
+      methods: {
+        getResult() {
+          let urlStr = `https://m.baidu.com/sugrec?prod=wise&wd=${this.search}`;
+          //   拼接字符 执行jsonp
+          jsonp(urlStr, (dt) => {
+            if (dt.g) {
+              this.searchList = dt.g.map((item) => item.q);
+            }
+
+            console.log(this.searchList);
+          });
+        },
+      },
+      computed: {},
+      watch: {
+        search: {
+          handler(newa, olda) {
+            if (!newa) {
+              this.searchList = [];
+            }
+            // 参数修改时调用 getResult
+            this.getResult();
+          },
+        },
+      },
+    });
+
+    /*
+
+    */
+  </script>
+</html>

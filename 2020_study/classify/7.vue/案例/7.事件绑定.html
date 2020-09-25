@@ -27,12 +27,13 @@
 
       <!-- 事件修饰符 -->
       <!-- 阻止单击事件继续传播 -->
-      <a v-on:click.stop="doThis">阻止单击事件继续传播</a>
+      <a v-on:click.stop="doThis" >阻止单击事件继续传播</a>
 
       <!-- 提交事件不再重载页面 -->
       <form v-on:submit.prevent="onSubmit">
         提交事件不再重载页面
         <input type="submit" value="提交" />
+        
       </form>
 
       <!-- 修饰符可以串联 -->

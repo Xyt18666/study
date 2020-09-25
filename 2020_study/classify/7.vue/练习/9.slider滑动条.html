@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="charset" content="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <script src="http://jxsjs.com/lib/vue.min.js"></script>
+    <title>clock</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    #app {
+      width: 100vw;
+      height: 100vh;
+      overflow: auto;
+    }
+    .slider-wrap {
+      width: 80%;
+      position: relative;
+      height: 40px;
+      margin: 50px auto;
+    }
+    .slider-wrap:before {
+      position: absolute;
+
+      content: "";
+      height: 4px;
+      display: block;
+      width: 100%;
+      background: #777;
+      border-radius: 4px;
+    }
+    .slider-but {
+      width: 100%;
+      height: 40px;
+    }
+    .slider-bar {
+      height: 4px;
+      display: block;
+      position: absolute;
+      width: 0%;
+      background: rgb(30, 162, 250);
+      border-radius: 4px;
+      z-index: 99;
+    }
+    .slider-but {
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      margin-left: -10px;
+      z-index: 999;
+    }
+    .slider-but::before {
+      content: "";
+      display: block;
+      width: 20px;
+      height: 20px;
+      background: #000;
+      border-radius: 50%;
+      transform: translate(0, -50%);
+    }
+  </style>
+  <body>
+    <div id="app">
+      <div class="slider-wrap">
+        <div class="slider-bar" :style="{width:`${value}%`}"></div>
+        <div
+          class="slider-but"
+          :style="{left:`${value}%`}"
+          @touchstart.prevent="start"
+          @touchmove.prevent="move"
+          @touchend.prevent="end"
+        ></div>
+      </div>
+    </div>
+  </body>
+  <script>
+    const clock = new Vue({
+      el: "#app",
+      data: {
+        value: 0,
+        initValue: 0,
+        isTouche: false,
+        startX: 0,
+        moveX: 0,
+      },
+      methods: {
+        jsbfb() {
+          let sww = document.querySelector(".slider-wrap").offsetWidth;
+          // 获取滑块盒子宽度
+
+          this.value = this.initValue + (this.moveX / sww) * 100;
+          // 当前的 value  = 起始位置 +( 移动位置/总长度 )* 100
+
+          // console.log(this.initValue, this.moveX, sww);
+
+          this.value =
+            this.value <= 0 ? 0 : this.value >= 100 ? 100 : this.value;
+          // 限定范围
+        },
+        start(e) {
+          let ev = e.touches[0];
+          this.isTouche = true;
+          this.startX = ev.clientX;
+
+          // 按下获取滑块距离文档左侧的距离，并赋值给 this.start
+
+          this.initValue = this.value;
+          // 按下时 把 上次结束的 位置赋值给 ，起始位置
+          this.moveX = 0;
+          // 重置 moveX 值
+        },
+        move(e) {
+          if (!this.isTouche) {
+            return;
+            // 如果处于非按下状态，直接结束
+          }
+          let ev = e.touches[0];
+          this.moveX = ev.clientX - this.startX;
+          // 当前位置 - 起始位置 = 移动值
+
+          this.jsbfb();
+          // 执行赋值
+        },
+        end(e) {
+          if (!this.isTouche) {
+            return;
+          }
+          this.jsbfb();
+          this.isTouche = false;
+          // 改变状态
+        },
+      },
+    });
+
+    /*
+
+
+
+    */
+  </script>
+</html>

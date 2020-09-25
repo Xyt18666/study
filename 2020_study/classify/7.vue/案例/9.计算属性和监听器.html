@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="charset" content="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <script src="http://jxsjs.com/lib/vue.min.js"></script>
+    <title>clock</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <body>
+    <div id="app">
+      <div id="example">
+        <p>Original message: "{{ message }}"</p>
+        <p>Computed reversed message: "{{ reversedMessage }}"</p>
+      </div>
+
+      <div id="demo">{{ fullName}}</div>
+      <input type="text" v-model="num" @click="change" />
+    </div>
+  </body>
+  <script>
+    const vw = new Vue({
+      el: "#app",
+      data: {
+        message: "Hello",
+        firstName: "Foo",
+        lastName: "Bar",
+        fullName: "Foo Bar",
+        num: "12",
+        name: "坤",
+      },
+      methods: {
+        change() {
+          this.name = "棒棒糖";
+          console.log(this.name);
+        },
+      },
+      computed: {
+        reversedMessage() {
+          return this.message.split("").reverse().join("");
+        },
+        fullName() {
+          return this.firstName + " " + this.lastName;
+        },
+      },
+      watch: {
+        // num(newVal, oldVal) {
+        //   // 监听 num 属性的数据变化
+        //   // 作用 : 只要 num 的值发生变化,这个方法就会被调用
+        //   // 第一个参数 : 新值
+        //   // 第二个参数 : 旧值,之前的值
+        //   console.log("oldVal:", oldVal);
+        //   console.log("newVal:", newVal);
+        // },
+        num: {
+          //对象形式
+          handler(newa, olda) {
+            console.log(newa, olda);
+          },
+          immediate: true,
+          deep: true,
+        },
+      },
+    });
+
+    /*
+    计算属性缓存：
+        computed 定于计算函数 。与data同级的 对象
+        用于操作属性 ，然后页面在进行 引用操作
+
+    计算属性缓存 vs 方法：
+        计算属性缓存： 
+            在{{}}内引用时 ，直接写 函数名，即可
+            依赖于原始数据进行缓存，只有原始数据修改后，才会刷新视图，能够提高性能
+        方法：
+            而在methods中定于的方法，在{{}}引用时 ，需要 使用 函数名() 来调用
+            每次都会调用函数，没有缓存，性能差
+
+  
+
+    ps：无论做什么操作都不要修改原始数据（除了需要改变原始数据）
+
+
+    监听器：
+        watch  监听 属性的数据变化
+        只要  的值发生变化,这个方法就会被调用
+
+        立即处理 进入页面就触发
+        immediate: true,
+
+        深度监听 属性的变化，监听一个对象
+        deep: true,
+
+        两个参数(新值，旧值)
+
+
+    Watch和computed的区别:
+        Watch: 
+            watch用于观察和监听页面上的vue实例，当你需要在数据变化响应时，执行异步操作，或高性能消耗的操作，那么watch为最佳选择
+
+        computed:
+            可以关联多个实时计算的对象，当这些对象中的其中一个改变时都会触发这个属性
+            具有缓存能力，所以只有当数据再次改变时才会重新渲染，否则就会直接拿取缓存中的数据。
+    */
+  </script>
+</html>
