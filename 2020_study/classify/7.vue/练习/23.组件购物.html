@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <script src="http://jxsjs.com/lib/vue.min.js"></script>
+    <title>Document</title>
+    <style>
+      .wrap {
+        width: 200px;
+        margin: 0 auto;
+      }
+      .title,
+      .footer {
+        background-color: #eee;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+      }
+      .footer span {
+        color: red;
+      }
+      .footer button {
+        width: 60px;
+        height: 30px;
+        margin: 0 10px;
+      }
+      .item {
+        height: 55px;
+        line-height: 55px;
+        position: relative;
+        vertical-align: middle;
+      }
+      .item .name {
+        position: absolute;
+        left: 10px;
+        top: 0;
+      }
+      .item .change {
+        position: absolute;
+        right: 30px;
+        top: 0;
+      }
+      .change input {
+        width: 40px;
+        text-align: center;
+      }
+      .change a {
+        text-decoration: none;
+        font-size: 22px;
+        color: #000;
+      }
+      .item .remove {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 25px;
+        color: red;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <my-cart></my-cart>
+    </div>
+  </body>
+  <script src="node_modules/vue/dist/vue.js"></script>
+  <script>
+    let CartTitle = {
+      template: `
+        <div class="title">购物车</div>
+        `,
+    };
+    let CartFooter = {
+      // 计算总数
+      props: ["list"],
+      template: `
+        <div class="footer">
+            <span>金额：{{getSum}}</span>
+            <button>结算</button>
+        </div>
+        `,
+      computed: {
+        getSum() {
+          let sum = 0;
+          this.list.some((item) => {
+            sum += item.price * item.num;
+          });
+          return sum;
+        },
+      },
+    };
+    let CartList = {
+      props: ["list"],
+      template: `
+        <div>
+            <div class="item" :key="item.id" v-for="item in list">
+            <div class="name">{{item.uname}}</div>
+            <div class="change">
+                <a href="JavaScript:;" @click="sub(item.id)">-</a>
+                <input type="text" class="num" v-model="item.num" @blur="changeNum(item.id,$event)" />
+                <a href="JavaScript:;" @click="add(item.id)">+</a>
+            </div>
+            <div class="remove" @click="del(item.id)">×</div>
+        </div>
+        </div>
+        `,
+      // 通过 emit 把所有 操作传递给父级
+      methods: {
+        //商品删除按钮
+        del(id) {
+          this.$emit("del-cart", id);
+        },
+        //商品增加按钮
+        add(id) {
+          this.$emit("change-num", {
+            id: id,
+            flag: "add",
+          });
+        },
+        //商品减少按钮
+        sub(id) {
+          this.$emit("change-num", {
+            id: id,
+            flag: "sub",
+          });
+        },
+        //表单发生改变
+        changeNum(id, event) {
+          this.$emit("change-num", {
+            id: id,
+            flag: "change",
+            num: event.target.value,
+          });
+        },
+      },
+    };
+
+    Vue.component("my-cart", {
+      // 整体组件
+      template: `
+            <div class="wrap">
+                <cart-title></cart-title>
+                <cart-list :list="list" @del-cart="delCart" @change-num="changeNum"></cart-list>
+                <cart-footer :list="list"></cart-footer>
+            </div>
+        `,
+      data() {
+        return {
+          //商品数据表
+          list: [
+            {
+              id: 1,
+              uname: "华为P30",
+              price: 3000,
+              num: 1,
+            },
+            {
+              id: 2,
+              uname: "小米10",
+              price: 2000,
+              num: 1,
+            },
+            {
+              id: 3,
+              uname: "扫地机",
+              price: 500,
+              num: 1,
+            },
+            {
+              id: 4,
+              uname: "电视剧",
+              price: 1000,
+              num: 1,
+            },
+          ],
+        };
+      },
+      methods: {
+        delCart(id) {
+          //拿到子组件想要删除的商品id
+          let cartId = this.list.findIndex((item) => {
+            return item.id === id;
+          });
+          this.list.splice(cartId, 1);
+        },
+        //修改商品数量方法
+        changeNum(obj) {
+          if (obj.flag === "add") {
+            this.list.some((item) => {
+              if (item.id === obj.id) {
+                item.num++;
+                return true;
+              }
+            });
+          } else if (obj.flag === "sub") {
+            this.list.some((item) => {
+              if (item.id === obj.id) {
+                item.num > 0 ? item.num-- : 0;
+                return true;
+              }
+            });
+          } else if (obj.flag === "change") {
+            this.list.some((item) => {
+              if (item.id === obj.id) {
+                item.num = obj.num;
+                return true;
+              }
+            });
+          }
+        },
+      },
+      components: {
+        "cart-title": CartTitle,
+        "cart-list": CartList,
+        "cart-footer": CartFooter,
+      },
+    });
+
+    new Vue({
+      el: "#app",
+    });
+  </script>
+</html>

@@ -29,6 +29,10 @@
       justify-content: space-around;
       align-items: center;
     }
+    ul li {
+      display: flex;
+      justify-content: space-between;
+    }
     i {
       display: block;
 
@@ -53,6 +57,57 @@
     li {
       color: #fff;
     }
+    .wishLi {
+      position: fixed;
+      bottom: 0;
+      background: #fff;
+      color: #000;
+      width: 100%;
+
+      text-align: center;
+    }
+ 
+    .wishLi li {
+      color: #000;
+    }
+    label{
+      display: flex;
+    }
+    .over{
+      color: #ccc;
+    }
+ 
+     input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      border-radius: 20px;
+      -webkit-appearance: none;
+      border: 3px solid #777;
+      position: relative;
+      flex: none;
+    
+    }
+     input[type="checkbox"]::before {
+      content: "";
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      background: #000;
+      left: 50%;
+      top: 50%;
+      border-radius: 5px;
+      transform: translate(-50%, -50%);
+    }
+    .over input[type="checkbox"]:checked{
+      width: 20px;
+      height: 20px;
+      color: pink;
+      background: pink;
+      border: 1px solid pink;
+    }
+    .de{
+      display:none;
+    }
   </style>
   <body>
     <div id="app">
@@ -68,8 +123,47 @@
         </ol>
       </div>
       <ul v-else="search">
-        <li v-for="(i,d) in searchList" :key="d">{{i}}</li>
+        <!-- <li v-for="(i,d) in searchList" :key="d">
+          <p>{{i}}</p>
+          <p @click="pushWis(i)">加入心愿</p>
+        </li> -->
+        <li 
+        is="search-list" 
+        v-for="(i,d) in searchList" 
+        :key="d"
+        :item="i"
+        @set-wis="pushWis"
+        ></li>
       </ul>
+      <div class="wishLi">
+        <p>
+          <p  @click="isBlockfn" v-show="!isBlock">心愿清单 <span class="de"> {{wisSize}} </span>({{wis.size}})</p>
+          <!-- <p  @click="isBlockfn" v-show="!isBlock">心愿清单 ({{wis.size}})</p> -->
+          <!-- 单写他，视图不会及时刷新 -->
+
+          <p  @click="isBlockfn" v-show="isBlock">关闭</p>
+        </p>
+        <ol v-show="isBlock">
+          <!-- <li v-for="(i,d) in wis" :key="d">
+            <label :class="{'over':checkedArr.includes(i)}">
+              <p v-show="!checkedArr.includes(i)">{{i}}</p>
+              <s v-show="checkedArr.includes(i)">{{i}}</s>
+              <input type="checkbox" :value="i" v-model="checkedArr" @click="console.log(checkedArr)" >
+            </label>
+          </li> -->
+          <li 
+            is="wis-list-item"
+            v-for="(i,d) in wis" 
+            :key="d"
+            :checkedarrs="checkedarr"
+            :i="i"
+            @inputfn="checkedarrfn"
+          ></li> 
+          
+          
+        </ol>
+      </div>
+      
     </div>
   </body>
   <script>
@@ -95,12 +189,53 @@
     }
   </script>
   <script>
+    Vue.component("search-list",{
+      data(){
+        return{}
+      },
+      props:["item"],
+      template:` <li>
+          <p>{{item}}</p>
+          <p @click="$emit('set-wis',item)">加入心愿</p>
+        </li>`
+    })
+
+
+    let wislistitem = {
+      data(){
+        return{}
+      },
+      props:["checkedarrs","i"],
+      methods:{
+        getState(){
+          return this.checkedarrs.includes(this.i)
+        }
+      },
+      template:` <li>
+            <label :class="{'over':!getState()}" >
+              <p v-show="getState()">{{i}}</p>
+              <s v-show="!getState()">{{i}}</s>
+              <input type="checkbox" 
+                :value="i" 
+                @input="$emit('inputfn',i)"
+               >
+            </label>
+          </li>`
+    
+
+    }
+
     const vw = new Vue({
       el: "#app",
       data: {
         search: "",
         searchList: [],
         hot: ["1", "2", "3"],
+        wis: new Set(),
+        wisSize: 0,
+        isBlock: false,
+        checkedarr:[],
+       
       },
       methods: {
         getResult() {
@@ -110,10 +245,34 @@
             if (dt.g) {
               this.searchList = dt.g.map((item) => item.q);
             }
-
-            console.log(this.searchList);
+            // console.log(this.searchList);
           });
         },
+        pushWis(i) {
+          this.wis.add(i);
+          this.checkedarr.push(i);
+          console.log(this.checkedarr);
+          
+          this.wisSize++; 
+
+        },
+        isBlockfn() {
+          this.isBlock = this.isBlock == true ? false : true;
+          // console.log(this.isBlock);
+        },
+        checkedarrfn(d){
+          console.log(d);
+          if(this.checkedarr.includes(d)){
+            this.checkedarr.splice(this.checkedarr.indexOf(d),1)
+          }else{
+            this.checkedarr.push(d)
+          }
+          
+        }
+       
+      },
+      components:{
+        "wis-list-item":wislistitem
       },
       computed: {},
       watch: {
@@ -124,6 +283,12 @@
             }
             // 参数修改时调用 getResult
             this.getResult();
+          },
+        },
+        checkedarr: {
+          handler(newa, olda) {
+            console.log(newa);
+            
           },
         },
       },

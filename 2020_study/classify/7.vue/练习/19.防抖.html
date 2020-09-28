@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>函数去抖</title>
+  </head>
+  <body>
+    <h4>函数去抖实现</h4>
+    <input type="text" />
+    <div class="show"></div>
+  </body>
+  <script>
+    var input = document.getElementsByTagName("input")[0];
+    input.addEventListener("keyup", function () {
+      debounce(doSearch, window, this.value);
+    });
+
+    function doSearch(searchText) {
+      var p = document.createElement("p");
+      p.innerText = "当前搜索内容： " + searchText;
+      document.getElementsByClassName("show")[0].appendChild(p);
+    }
+
+    function debounce(fn, context, searchText) {
+      clearTimeout(this.timer); // 关键点：1000ms内重复调用则清除timer
+      this.timer = setTimeout(function () {
+        fn.call(context, searchText); // 调用函数fn，context为fn所属作用域
+        console.log(fn, context, searchText);
+      }, 1000);
+    }
+  </script>
+</html>

@@ -19,7 +19,9 @@
         <p>Computed reversed message: "{{ reversedMessage }}"</p>
       </div>
 
-      <div id="demo">{{ fullName}}</div>
+      <div id="demo">{{ fullName }}</div>
+      <div id="demo" @click="fullNameReplate">{{ fullName2 }}</div>
+
       <input type="text" v-model="num" @click="change" />
     </div>
   </body>
@@ -39,6 +41,9 @@
           this.name = "棒棒糖";
           console.log(this.name);
         },
+        fullNameReplate() {
+          this.fullName2 = "798";
+        },
       },
       computed: {
         reversedMessage() {
@@ -46,6 +51,17 @@
         },
         fullName() {
           return this.firstName + " " + this.lastName;
+        },
+        fullName2: {
+          get: function () {
+            console.log("调用了getter属性");
+            return "***" + this.firstName + "***";
+          },
+          set: function (newValue) {
+            console.log("调用了settter属性");
+            console.log(newValue);
+            this.firstName = newValue;
+          },
         },
       },
       watch: {
@@ -68,20 +84,26 @@
       },
     });
 
+    console.log(vw);
+    /*
+    vue 将所有的 属性和方法 挂载到 实例中 
+
+    */
+
     /*
     计算属性缓存：
         computed 定于计算函数 。与data同级的 对象
         用于操作属性 ，然后页面在进行 引用操作
 
     计算属性缓存 vs 方法：
-        计算属性缓存： 
+        计算属性缓存：
             在{{}}内引用时 ，直接写 函数名，即可
             依赖于原始数据进行缓存，只有原始数据修改后，才会刷新视图，能够提高性能
         方法：
             而在methods中定于的方法，在{{}}引用时 ，需要 使用 函数名() 来调用
             每次都会调用函数，没有缓存，性能差
 
-  
+
 
     ps：无论做什么操作都不要修改原始数据（除了需要改变原始数据）
 
@@ -106,6 +128,15 @@
         computed:
             可以关联多个实时计算的对象，当这些对象中的其中一个改变时都会触发这个属性
             具有缓存能力，所以只有当数据再次改变时才会重新渲染，否则就会直接拿取缓存中的数据。
+
+    watch在监控数组时有2种监控不到：
+      1.使用下标直接赋值
+      2.修改length的长度
+    
+    解决：
+      可以使用数组的方法 splice 修改 触发
+      使用其他数据修改 去驱动视图刷新 ，带动刷新 
+
     */
   </script>
 </html>

@@ -28,9 +28,10 @@
   <body>
     <div id="app">
       <div class="faz">
-        <son :info="sonInof" @give="giveSon"></son>
+        <son :info="sonInof" @give="giveSon" :size="sizearr"></son>
         <p>要了{{money}}钱</p>
       </div>
+      <p @click="setSizeC">size++{{sizearr[0]}}</p>
     </div>
   </body>
   <script>
@@ -40,10 +41,13 @@
           money: 0,
         };
       },
-      props: ["info"],
+      props: ["info", "size"],
       methods: {
         giveMoney() {
           this.$emit("give", this.money);
+        },
+        fn() {
+          console.log(this.size);
         },
       },
 
@@ -52,6 +56,7 @@
         <p>{{ info.sg }}</p>
         <input type="text" v-model="money">
         <button @click="giveMoney">没钱了</button>
+        <s  @click="fn">{{size[0]}}</s>
 
         </div>`,
     });
@@ -64,12 +69,34 @@
           sg: "阴阳",
         },
         money: 0,
+        sizearr: [],
       },
       methods: {
         giveSon(e) {
           this.money = e;
           console.log(e, this.money);
         },
+        setSizeC() {
+          // let data = this.sizearr.slice();
+          // // console.log(data, "克隆数组");
+          // data[0] = 111;
+          // // 修改数组
+          // this.sizearr = data;
+          // // 重新赋值
+
+          this.sizearr.splice(0, 1, "111");
+          // this.sizearr.push("991")
+          // 方法操作数组
+
+          // console.log(this.sizearr[0]);
+        },
+      },
+
+      watch: {
+        sizearr(newa, olda) {
+          console.log(newa, olda, "watch");
+        },
+        deep: true,
       },
     });
   </script>
