@@ -104,7 +104,7 @@
     </head>
     <body>
         <div id="app">
-            <div class="wrapper">
+            <!-- <div class="wrapper">
                 <album-item
                     v-for="(item,index) in albumList"
                     :key="index"
@@ -122,14 +122,12 @@
                     <div class="label">商品总价</div>
                     <div class="number">¥{{getmoy }}</div>
                 </div>
-            </div>
+            </div> -->
+            <content-box></content-box>
         </div>
 
         <script>
-            Vue.component("setSize", {
-                data() {
-                    return {};
-                },
+            let setSize = {
                 props: ["number"],
                 methods: {
                     onInput(e) {
@@ -147,33 +145,71 @@
                             >
                             <button @click="$emit('to-faz',1)">+</button>
                         </div>`,
-            });
-
-            let albmItem = {
-                data() {
-                    return {};
-                },
-                props: ["dt"],
-
-                template: `<div class="album-item">
-                <img :src="dt.cover" />
-                <div class="info">
-                    <h2>{{ dt.album + ' - ' + dt.singer }}</h2>
-                    <div class="else">
-                        <p>¥{{ dt.price }} x {{ dt.number }}</p>
-                        <setSize
-                            :number=dt.number
-                            @to-faz="$emit('to-wrap',$event)"
-                            @inputData="$emit('input-to-wrap',$event)"
-                        ></setSize>
-                    </div>
-                </div>
-            </div>`,
             };
 
-            let Faz = new Vue({
-                el: "#app",
-                data: { albumList },
+            let contentListItem = {
+                props: ["dt"],
+                template: `<div class="album-item">
+                            <img :src="dt.cover" />
+                            <div class="info">
+                                <h2>{{ dt.album + ' - ' + dt.singer }}</h2>
+                                <div class="else">
+                                    <p>¥{{ dt.price }} x {{ dt.number }}</p>
+                                    <set-size
+                                        :number=dt.number
+                                        @to-faz="$emit('to-wrap',$event)"
+                                        @inputData="$emit('input-to-wrap',$event)"
+                                    ></set-size>
+                                </div>
+                            </div>
+                        </div>`,
+                components: {
+                    "set-size": setSize,
+                },
+            };
+
+            let contentBottom = {
+                props: ["getsizefn", "getmoyfn"],
+                template: ` <div class="wrapper">
+                            <div class="total-item">
+                                <div class="label">商品总数</div>
+                                <div class="number">{{ getsizefn }}</div>
+                            </div>
+                            <div class="total-item">
+                                <div class="label">商品总价</div>
+                                <div class="number">¥{{ getmoyfn }}</div>
+                            </div>
+                        </div>`,
+            };
+
+            Vue.component("content-box", {
+                data() {
+                    return { albumList };
+                },
+                template: `
+                    <div>
+                        <div class="wrapper">
+                            <content-list-item
+                                v-for="(item,index) in albumList"
+                                :key="index"
+                                :dt="item"
+                                @to-wrap="changeSize($event,index)"
+                                @input-to-wrap="changeinput($event,index)"
+                            ></content-list-item>
+                        </div>
+                        <div class="wrapper">
+                            <content-bottom
+                                :getsizefn="getsize"
+                                :getmoyfn="getmoy"
+                            ></content-bottom>
+                        </div>
+                    </div>
+                    `,
+
+                components: {
+                    "content-list-item": contentListItem,
+                    "content-bottom": contentBottom,
+                },
                 methods: {
                     changeSize(num, ind) {
                         if (num > 0) {
@@ -199,10 +235,10 @@
                         }, 0);
                     },
                 },
-                watch: {},
-                components: {
-                    "album-item": albmItem,
-                },
+            });
+
+            const vm = new Vue({
+                el: "#app",
             });
         </script>
     </body>

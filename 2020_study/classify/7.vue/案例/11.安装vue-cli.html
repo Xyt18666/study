@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <!-- 
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
         1. 下载安装 node.js
 
             常用语法：
@@ -44,17 +44,109 @@
 
         
         4.创建第一个vue 项目
-            vue create limited-music
+            vue create limited-music                             
             选择 Manually select features
             使用空格 选择 手动配置
             配置 选项
             (具体选择看 ppt ，后面有 选择解释)
-            
+                            
+
+        5. 进入项目目录
+          npm run serve  运行
+            相当于执行
+            package.json 下的 serve
+            "scripts": {
+                "serve": "vue-cli-service serve",
+                "build": "vue-cli-service build",
+                "lint": "vue-cli-service lint"
+              },
 
 
+        插件配置缩进：
+          VSCode左下角的设置图标--》设置--》输入框中搜索 -》设置-》用户--》功能--》终端--》在settings.json中编辑--》添加如下代码
 
+        安装谷歌vue拓展插件：
+          Vue.js devtools5.3.3
 
 
      -->
-  </body>
+        <!-- 
+       创建项目英文解析：
+          1. vue create limited-music   开始
+
+          2.选择安装配置方式
+            vue2
+            vue3
+            手动选择    选手动
+
+          3.选择需要的配置
+            vue新增
+            babel
+            typeStript
+            pwa渐进式开发
+            路由
+            状态管理
+            css
+            代码检测错误
+          
+          4.是否使用 history 路由
+            n
+
+          5.选择css编译语言
+
+          6.选择 语法纠错 格式化
+            第一个
+
+          7.自动纠错 或 检测 git
+            第一个
+            git 提交检测
+          
+          8.babel 和 esLint 的config文件是否独立存放
+            第一个
+            放入 package.json
+
+          9.以后是否复用以上配置
+            n
+
+
+
+
+        https://blog.csdn.net/liyunkun888/article/details/102738377?utm_medium=distribute.pc_relevant.none-task-blog-title-5&spm=1001.2101.3001.4242
+
+      -->
+
+        <!-- 
+
+    文件夹说明：
+
+      .browserslistrc 浏览器兼容列表 
+      .eslintrc.js ESLint 配置文件
+      .gitignore Git版本管理忽略文件列表 
+      babel.config.js Babel配置文件
+      package.json 模块描述文件
+      package-lock.json 安装包的锁定记录
+      README.md 项目描述
+
+
+
+      node_modules 依赖包
+      public 静态资源文件
+      src 开发源文件
+      src/assets 资源文件
+      src/components 组件
+      src/router 路由
+      src/store 状态管理
+      src/views 页面文件
+      src/App.vue 主文件
+      src/main.js 入口文件
+
+
+
+
+
+
+
+
+       -->
+    </body>
 </html>
