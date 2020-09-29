@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            .wrap {
+                position: relative;
+                width: 200px;
+                height: 100vh;
+                background: #ddd;
+                overflow: hidden;
+            }
+
+            span {
+                display: inline-block;
+                white-space: nowrap;
+                padding: 5px;
+                line-height: 24px;
+                cursor: pointer;
+            }
+
+            .one:hover {
+                animation: move 3s infinite alternate linear;
+            }
+            .wrap2 {
+                width: auto;
+            }
+            .wrap2 .one:hover {
+                animation: move2 3s infinite alternate linear;
+            }
+
+            @keyframes move {
+                0% {
+                    transform: translate(0, 0);
+                }
+                100% {
+                    transform: translate(calc(-100% + 200px), 0);
+                }
+            }
+
+            @keyframes move2 {
+                0% {
+                    left: 0;
+                    transform: translate(0, 0);
+                }
+                100% {
+                    left: 100%;
+                    transform: translate(-100%, 0);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrap">
+            <p>父容器 定宽度，文字滚动</p>
+            <span class="one" title="Overflow scorll left to right Overflow">
+                Overflow scorll left to right Overflow
+            </span>
+            <span class="one" title="AAA BBB CCC DDD EEE FFF DDD GGG">
+                AAA BBB CCC DDD EEE FFF DDD GGG
+            </span>
+            <span class="" title="AAA BBB CCC">AAA BBB CCC</span>
+            <span class="one" title="AAA BBB CCC DDD EEE FFF DDD GGG HHH III">
+                AAA BBB CCC DDD EEE FFF DDD GGG HHH III
+            </span>
+        </div>
+        <div class="wrap wrap2">
+            <p>父容器不定宽度，文字滚动</p>
+            <span class="one" title="Overflow scorll left to right Overflow">
+                Overflow scorll left to right Overflow
+            </span>
+            <span class="one" title="AAA BBB CCC DDD EEE FFF DDD GGG">
+                AAA BBB CCC DDD EEE FFF DDD GGG
+            </span>
+            <span class="" title="AAA BBB CCC">AAA BBB CCC</span>
+            <span class="one" title="AAA BBB CCC DDD EEE FFF DDD GGG HHH III">
+                AAA BBB CCC DDD EEE FFF DDD GGG HHH III
+            </span>
+        </div>
+    </body>
+</html>

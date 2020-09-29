@@ -1,0 +1,68 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: none;
+    /* 提高移动端滚动流畅度 */
+    -webkit-overflow-scrolling: touch;
+
+    user-select: none;
+    /* 禁止用户选取文本，禁止用户选中图片变蓝 */
+}
+
+/* body垂直撑满 */
+html,
+body {
+    min-height: 100%;
+}
+
+/* 取消掉点击元素的高亮 */
+html {
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-image: url(../img/bg.png);
+    font-family: "PingFangTC-light", "Lantinghei SC", "PingFang SC", "Microsoft Yahei",
+        "Hiragino Sans GB", "Microsoft Sans Serif", "WenQuanYi Micro Hei", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #fff;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:focus,
+button:focus,
+input:focus,
+textarea:focus {
+    outline: none;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+/* 表单元素字体从父级继承 */
+input,
+button,
+textarea {
+    font: inherit;
+}
+
+/* 触摸并按住触摸目标时候，禁止系统默认菜单 */
+a,
+img {
+    -webkit-touch-callout: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-weight: normal;
+}
