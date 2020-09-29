@@ -11,7 +11,7 @@
     "prettier.proseWrap": "preserve", // 默认值。因为使用了一些折行敏感型的渲染器（如GitHub comment）而按照markdown文本样式进行折行
     "prettier.arrowParens": "avoid", //  (x) => {} 箭头函数参数只有一个时是否要有小括号。avoid：省略括号
     "prettier.bracketSpacing": true, // 在对象，数组括号与文字之间加空格 "{ foo: bar }"
-    "prettier.disableLanguages": ["vue"], // 不格式化vue文件，vue文件的格式化单独设置
+    "prettier.disableLanguages": [], // 不格式化vue文件，vue文件的格式化单独设置
     "prettier.endOfLine": "auto", // 结尾是 \n \r \n\r auto
     "prettier.eslintIntegration": false, //不让prettier使用eslint的代码格式进行校验
     "prettier.htmlWhitespaceSensitivity": "ignore",
@@ -24,6 +24,8 @@
     "prettier.trailingComma": "es5", // 在对象或数组最后一个元素后面是否加逗号（在ES5中加尾逗号）
     "prettier.tslintIntegration": false,
     "terminal.integrated.allowMnemonics": true,
-    "terminal.integrated.automationShell.linux": "" // 不让prettier使用tslint的代码格式进行校验
+    "terminal.integrated.automationShell.linux": "",
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true // 不让prettier使用tslint的代码格式进行校验
     ///报错的话，检查一下有没有用逗号与上一项设置分隔
 }

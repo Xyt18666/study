@@ -3,6 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import "@/assets/style/common.css";
+/*    @代表 src 路径    */
 
 Vue.config.productionTip = false;
 
