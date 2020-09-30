@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+
+
+
+     -->
+    </body>
+
+    <script>
+        /*
+    
+    props 属性校验 ：
+    
+    */
+        let propsss = {
+            q: String, //定义数据类型
+            w: [String, Number],
+        };
+
+        let propss = {
+            props: {
+                a: {
+                    type: String,
+
+                    default: "abc", //默认值
+                },
+                b: {
+                    type: Object,
+
+                    default() {
+                        //对象或数组默认值必须 从一个工厂函数获取
+                        return {
+                            cc: "ccc",
+                        };
+                    },
+                },
+                c: {
+                    rquired: true, //必填
+                    validator(val) {
+                        //自定义验证函数
+                        return val + "xx";
+                    },
+                },
+            },
+        };
+
+        // ----------------------------------------------------------------
+    </script>
+</html>

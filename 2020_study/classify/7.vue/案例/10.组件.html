@@ -1,47 +1,47 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="charset" content="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
-    />
-    <script src="http://jxsjs.com/lib/vue.min.js"></script>
-    <title>clock</title>
-  </head>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-    }
-    .button {
-      width: 50px;
-      height: 50px;
-      background: red;
-    }
-  </style>
-  <body>
-    <div id="app">
-      <button-counter></button-counter>
-    </div>
-    <div id="app2">
-      <button-counter></button-counter>
+    <head>
+        <meta name="charset" content="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+        />
+        <script src="http://jxsjs.com/lib/vue.min.js"></script>
+        <title>clock</title>
+    </head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .button {
+            width: 50px;
+            height: 50px;
+            background: red;
+        }
+    </style>
+    <body>
+        <div id="app">
+            <button-counter></button-counter>
+        </div>
+        <div id="app2">
+            <button-counter></button-counter>
 
-      <jubuzujian></jubuzujian>
-      <div class="faz" :style="csss">
-        <blog-post
-          v-for="post in posts"
-          :key="post.id"
-          :title="post.title"
-          :post2="post2"
-          @enlarge-text="onEnlargeText"
-          :fn="onEnlargeText"
-        ></blog-post>
-        <!-- 父组件绑定函数传递给子组件   :fn="onEnlargeText" -->
-      </div>
-      <!-- <button @click="csss.fontSize='28px'">Enlarge text</button> -->
+            <jubuzujian></jubuzujian>
+            <div class="faz" :style="csss">
+                <blog-post
+                    v-for="post in posts"
+                    :key="post.id"
+                    :title="post.title"
+                    :post2="post2"
+                    @enlarge-text="onEnlargeText"
+                    :fn="onEnlargeText"
+                ></blog-post>
+                <!-- 父组件绑定函数传递给子组件   :fn="onEnlargeText" -->
+            </div>
+            <!-- <button @click="csss.fontSize='28px'">Enlarge text</button> -->
 
-      <!-- 
+            <!-- 
 
 
       <blog-post         把组件放入组件
@@ -53,58 +53,55 @@
 
 
        -->
-      <custom-input
-        v-bind:value="searchText"
-        v-on:input="searchText = $event"
-      ></custom-input>
-      <p>{{ searchText }}组件绑定 v-model</p>
+            <custom-input v-bind:value="searchText" v-on:input="searchText = $event"></custom-input>
+            <p>{{ searchText }}组件绑定 v-model</p>
 
-      <!-- ------------------- -->
-      <alert-box> Something bad happened. </alert-box>
-      <ul>
-        <li is="li-item"></li>
-      </ul>
-      <!-- -------------------- -->
-      <a href="" @click="name='login'">登录</a>
-      <a href="" @click="name='register'">注册</a>
-      <a href="" @click="name='forget'">忘记密码</a>
-      <component :is="name"></component>
-    </div>
-  </body>
-  <script>
-    Vue.component("button-counter", {
-      // 定义全局组件(组件名,{ 对象 })
-      data() {
-        //   这里的data要使用函数 ，并return 对象
-        return {
-          count: 0,
+            <!-- ------------------- -->
+            <alert-box>Something bad happened.</alert-box>
+            <ul>
+                <li is="li-item"></li>
+            </ul>
+            <!-- -------------------- -->
+            <a href="" @click="name='login'">登录</a>
+            <a href="" @click="name='register'">注册</a>
+            <a href="" @click="name='forget'">忘记密码</a>
+            <component :is="name"></component>
+        </div>
+    </body>
+    <script>
+        Vue.component("button-counter", {
+            // 定义全局组件(组件名,{ 对象 })
+            data() {
+                //   这里的data要使用函数 ，并return 对象
+                return {
+                    count: 0,
+                };
+            },
+            //   template  html模板
+            template:
+                '<button v-on:click="count++">You clicked me {{ count }}111111 times.</button>',
+        });
+
+        // 使用时，直接当标签引入
+        // ------------------------------------------------------------------------
+
+        const JubuZujian = {
+            // 定义局部组件
+            data() {
+                return {
+                    n: 0,
+                };
+            },
+            methods: {}, //组件内同样 可以使用 这些对象
+            computed: {}, //组件内同样 可以使用 这些对象
+            watch: {}, //组件内同样 可以使用 这些对象
+            template: '<div class="button" @click="n++">{{n}}2222</div>',
         };
-      },
-      //   template  html模板
-      template:
-        '<button v-on:click="count++">You clicked me {{ count }}111111 times.</button>',
-    });
 
-    // 使用时，直接当标签引入
-    // ------------------------------------------------------------------------
-
-    const JubuZujian = {
-      // 定义局部组件
-      data() {
-        return {
-          n: 0,
-        };
-      },
-      methods: {}, //组件内同样 可以使用 这些对象
-      computed: {}, //组件内同样 可以使用 这些对象
-      watch: {}, //组件内同样 可以使用 这些对象
-      template: '<div class="button" @click="n++">{{n}}2222</div>',
-    };
-
-    // -------------------------------------------------
-    Vue.component("blog-post", {
-      props: ["title", "post2", "fn"], //props 接收 数据  ，引入fn函数
-      template: `
+        // -------------------------------------------------
+        Vue.component("blog-post", {
+            props: ["title", "post2", "fn"], //props 接收 数据  ，引入fn函数
+            template: `
       <div class="blog-post">
           <h3>{{ title }}</h3>
         <h3>{{ post2.title }}</h3>
@@ -114,84 +111,84 @@
 
       </div>
     `, // template html模板， {{引入属性}}
-    }); //
-    // --------------------------------------------
+        }); //
+        // --------------------------------------------
 
-    Vue.component("custom-input", {
-      props: ["value"],
-      template: `
+        Vue.component("custom-input", {
+            props: ["value"],
+            template: `
     <input
       v-bind:value="value"
       v-on:input="$emit('input', $event.target.value)"
     >
   `,
-    });
+        });
 
-    // ------------------------------------------
-    Vue.component("alert-box", {
-      template: `
+        // ------------------------------------------
+        Vue.component("alert-box", {
+            template: `
     <div class="demo-alert-box">
         通过插槽分发内容,把组件标签内部的文字，插入到 slot 内
       <strong>Error!</strong>
       <slot></slot>
     </div>
   `,
-    });
+        });
 
-    // ----------------------------
-    Vue.component("li-item", {
-      template: `<li>1lilililil</li>`,
-    });
-    // --------------------------------
+        // ----------------------------
+        Vue.component("li-item", {
+            template: `<li>1lilililil</li>`,
+        });
+        // --------------------------------
 
-    Vue.component("login", {
-      template: `<p>1</p>`,
-    });
-    Vue.component("register", {
-      template: `<p>2</p>`,
-    });
-    Vue.component("forget", {
-      template: `<p>3</p>`,
-    });
+        Vue.component("login", {
+            template: `<p>1</p>`,
+        });
+        Vue.component("register", {
+            template: `<p>2</p>`,
+        });
+        Vue.component("forget", {
+            template: `<p>3</p>`,
+        });
 
-    // -------------------------------------------------
-    const vm2 = new Vue({
-      el: "#app2",
-      data: {
-        csss: {
-          background: "#ccc",
-          color: "#fff",
-          fontSize: "24px",
-        },
+        // -------------------------------------------------
+        const vm2 = new Vue({
+            el: "#app2",
+            data: {
+                csss: {
+                    background: "#ccc",
+                    color: "#fff",
+                    fontSize: "24px",
+                },
 
-        posts: [
-          //属性
-          { id: 1, title: "My journey with Vue" },
-          { id: 2, title: "Blogging with Vue" },
-          { id: 3, title: "Why Vue is so fun" },
-        ],
-        post2: {
-          title: "titlesssss",
-          content: "<p>121</p>",
-        },
-        searchText: "df",
-      },
-      methods: {
-        onEnlargeText(ee) {
-          console.log(ee);
-        },
-      },
-      components: {
-        //绑定局部组件
-        jubuzujian: JubuZujian, //组件命名： 定义局部组件的对象
-      },
-    });
+                posts: [
+                    //属性
+                    { id: 1, title: "My journey with Vue" },
+                    { id: 2, title: "Blogging with Vue" },
+                    { id: 3, title: "Why Vue is so fun" },
+                ],
+                post2: {
+                    title: "titlesssss",
+                    content: "<p>121</p>",
+                },
+                searchText: "df",
+            },
+            methods: {
+                onEnlargeText(ee) {
+                    console.log(ee);
+                },
+            },
+            components: {
+                //绑定局部组件
+                jubuzujian: JubuZujian, //组件命名： 定义局部组件的对象
+            },
+        });
 
-    const vm = new Vue({
-      el: "#app",
-    });
+        const vm = new Vue({
+            el: "#app",
+        });
 
-    /*
+        /*
 
       组件必须包裹在一个根组件下，
 
@@ -225,7 +222,20 @@
                 父函数输出 信息
         
 
-        在组件上使用 v-model
+        在组件上使用 v-model:
+          使用 v-model 向 子组件 绑定 属性
+          子组件 必须 使用 value 属性 接收
+          子组件 必须 使用 $emit('input',操作后的value) 返回数据
+          v-model 实现双向数据绑定 ，接收什么属性  要返回什么属性
+
+        
+        可以 模拟 v-model 实现数据的 交互 ：
+            :value="val"
+            @input="val=$event"
+
+
+
+
 
 
         插槽：
@@ -243,5 +253,5 @@
         使用 :is  切换组件
 
     */
-  </script>
+    </script>
 </html>

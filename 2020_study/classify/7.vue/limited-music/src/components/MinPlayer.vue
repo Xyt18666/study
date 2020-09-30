@@ -1,4 +1,5 @@
 <template lang="pug">
+
     .mini-player
         
         .cd(
@@ -14,7 +15,12 @@
                 @click="playing = !playing"
             )
             .btn.playlist
-       
+
+
+            
+
+          
+                
 </template>
 
 <script>

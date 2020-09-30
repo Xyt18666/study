@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+        {
+  "name": "limited-music",
+  "version": "0.1.0",
+  "lockfileVersion": 1,
+  "requires": true,
+  "dependencies":{
+ "@babel/code-frame": {
+      "version": "7.10.4",
+      "resolved": "https://registry.npm.taobao.org/@babel/code-frame/download/@babel/code-frame-7.10.4.tgz",
+      "integrity": "sha1-Fo2ho26Q2miujUnA8bSMfGJJITo=",
+      "dev": true,
+      "requires": {
+        "@babel/highlight": "^7.10.4"
+      }
+    },
+  }
+}
+     -->
+    </body>
+    <script>
+        const packagelock = {
+            name: "limited-music", //项目名称
+            version: "0.1.0", //版本
+            lockfileVersion: 1,
+            requires: true, // 是否 需要
+            dependencies: {
+                //依赖关系
+
+                "@babel/code-frame": {  //依赖包名 
+                    version: "7.10.4",  //版本
+                    resolved:
+                        "https://registry.npm.taobao.org/@babel/code-frame/download/@babel/code-frame-7.10.4.tgz",
+                    integrity: "sha1-Fo2ho26Q2miujUnA8bSMfGJJITo=",
+                    dev: true,
+                    requires: {   // 需要 xx
+                        "@babel/highlight": "^7.10.4",
+                    },
+                },
+            },
+        };
+    </script>
+</html>
