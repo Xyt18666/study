@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <!-- 
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
 
         <template>         　template的作用是模板占位符，可帮助我们包裹元素，但在循环过程当中，template不会被渲染到页面上      
         <slot>              插槽标签 ，组件标签 内的文本 会放入插槽
         <component>         定义动态组件
+        <slot>              插槽标签
 
 
         {{}}                文本插值
@@ -25,8 +26,10 @@
         v-else              同
         v-shoe              条件切换
         v-for               循环
+        v-slot              绑定插槽
+        #                   绑定插槽简写
         :key                循环绑定key , 条件渲染也可以绑定key
-        v-mode              表单绑定
+        v-mode              表单绑定 或者 组件绑定
         []                  绑定 class 或者 style
         {}                  绑定 class 或者 style                    
         :is                 配合 <component> 实现动态组件 ， 值为 变量 ，变量值是 '组件名'
@@ -35,6 +38,9 @@
         $emit()              子向父传递值
         $event               在组件中代表 父级接收的值
         $event               在事件中 表示 event 事件
+
+        scoped              为 style 标签 添加 ，启用局部 css
+        lang                为 style 和 html 绑定属性 ，定义 使用的语言
 
 
 
@@ -53,6 +59,10 @@
         immediate                   立即出发监听
         temaplate                   html模板
         props                       组件接收属性
+        type                        props属性校验 类型
+        default                     props属性校验 默认值  ， object 属性时 ，要用 default函数
+        rquired                     props属性校验 必填
+        validator                   props属性校验 自定义验证函数
 
 
 
@@ -112,5 +122,5 @@
 
         
      -->
-  </body>
+    </body>
 </html>

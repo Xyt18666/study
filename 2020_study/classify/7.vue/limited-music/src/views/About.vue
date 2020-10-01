@@ -7,7 +7,12 @@
         :a="'是否关闭'"
         b="取消"
         :c="'确定'"
+        @quxiao="quxiaof"
+        @queren="querenf"
+       
         )
+        h2 确认删除吗？
+        h3 {{ visible }} +++  "无法访问定义组件的作用域" 
     .boxs(@click="visible=!visible") 弹框
 
     switch-box(
@@ -18,6 +23,14 @@
     switch-box(
        v-model="val"
     )
+
+    base-layout
+        
+        p 身体内容
+        template(#header)
+            p 头
+        template(#footer)
+            p 脚
 </template>
 
 <script>
@@ -27,14 +40,12 @@ export default {
         return { visible: false, val: false };
     },
     methods: {
-        // qx(d) {
-        //     this.visible = !d;
-        //     console.log("取消", !d);
-        // },
-        // qr(d) {
-        //     this.visible = !d;
-        //     console.log("确认", !d);
-        // },
+        quxiaof() {
+            console.log("取消");
+        },
+        querenf() {
+            console.log("确认");
+        },
     },
     components: {
         MinPlayer,

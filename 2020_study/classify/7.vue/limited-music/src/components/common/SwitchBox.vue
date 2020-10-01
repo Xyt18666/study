@@ -7,10 +7,16 @@
 
 <script>
 export default {
+    model: {
+        prop: "val",     // 修改 v-model 默认的 vale变量名
+        event: "change", // 修改 v-model 默认的 input 事件
+    },
     data() {
         return {};
     },
-    props: ["value"],
+    props: {
+        value: Boolean,
+    },
     watch: {
         value(n) {
             console.log(n);
@@ -43,7 +49,7 @@ export default {
     &.on
         background: #fff
 
-        &.on:before
+        &:before
             background: #0f0
             left: 68%
             transition: left 1.5s

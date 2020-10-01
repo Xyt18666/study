@@ -1,11 +1,12 @@
 <template lang="pug">
     .confirm-box-wrap(v-show="value")
         .confirm-box
+            slot 不传参数时的默认值
             .content
                 | {{ a }}
             .footer
-                .btn(@click="$emit('input',!value)") {{ b }}
-                .btn(@click="$emit('input',!value)") {{ c }}
+                .btn(@click="cancle") {{ b }}
+                .btn(@click="confirm") {{ c }}
 </template>
 
 <script>
@@ -26,12 +27,15 @@ export default {
         },
     },
     methods: {
-        // cancle() {
-        //     this.$emit("cancle", this.value);
-        // },
-        // confirm() {
-        //     this.$emit("confirm", this.value);
-        // },
+        cancle() {
+            this.$emit("input", !this.value);
+            this.$emit("quxiao");
+
+        },
+        confirm() {
+            this.$emit("input", !this.value);
+            this.$emit("queren");
+        },
     },
 };
 </script>
