@@ -23,6 +23,10 @@
     switch-box(
        v-model="val"
     )
+    keep-alive
+        test-box(v-if="isRander")
+
+    p(@click="isRander=!isRander") 渲染与销毁
 
     base-layout
         
@@ -31,14 +35,40 @@
             p 头
         template(#footer)
             p 脚
+    
+    |
+    |
+    child-components
+    button(@click="n++") 父组件 {{ n }}
+
+    |
+    |
+    parent-com
 </template>
 
 <script>
 import MinPlayer from "@/components/MinPlayer.vue";
+import TestBox from "@/components/TestBox.vue";
+import ChildComponents from "@/components/ChildComponents.vue";
+import minxina from "@/mixins/life-cycle.js";
+
+import ParentCom from "@/components/ParentComponent.vue";
+
 export default {
+    name: "parent",
+    color: "#0f0",
     data() {
-        return { visible: false, val: false };
+        return {
+            visible: false,
+            val: false,
+            isRander: true,
+            size: 10,
+        };
     },
+    ok() {
+        console.log("自定义方法");
+    },
+    mixins: [minxina],
     methods: {
         quxiaof() {
             console.log("取消");
@@ -49,6 +79,9 @@ export default {
     },
     components: {
         MinPlayer,
+        ChildComponents,
+        TestBox,
+        ParentCom,
     },
 };
 </script>

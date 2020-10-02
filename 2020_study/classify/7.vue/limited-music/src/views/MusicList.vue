@@ -850,9 +850,9 @@ export default {
 <style lang="sass">
 .wrapper
     position: fixed
-    top: 0
+    top: 20vh
     left: 0
     width: 100vw
-    height: 100vh
+    height: 80vh
     overflow: hidden
 </style>

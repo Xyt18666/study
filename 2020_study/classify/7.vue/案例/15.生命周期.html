@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+
+
+     -->
+    </body>
+    <script>
+        /*
+    生命周期函数：总共分为8个阶段创建前/后，载入前/后，更新前/后，销毁前/后。
+
+        创建：
+            • beforeCreate          还未初始化数据和方法前
+            • created               数据和方法创建结束 ，但 dom 未生成
+
+        挂载：
+            • beforeMount           还未将 虚拟 dom 挂载到 页面
+            • mounted               挂载结束
+
+        更新：
+            • beforeUpdate          检测到数据更新
+            • updated               刷新 dom
+
+        销毁:
+            • beforeDestroy         销毁前触发 ，但此时还未 销毁 ，在此处释放缓存，销毁当前组件的 变量、函数、事件...
+            • destroyed             销毁后 ，vue实例已经解除了事件监听以及和dom的绑定，无法在触发任何生命周期
+                        
+
+        创建前/后：
+            在beforeCreated阶段，vue实例的挂载元素$el和数据对象data都为undefined，还未初始化。
+            在created阶段，vue实例的数据对象data有了，$el还没有。
+
+        载入前/后：
+            在beforeMount阶段，vue实例的$el和data都初始化了，但还是挂载之前为虚拟的dom节点，data.message还未替换。
+            在mounted阶段，vue实例挂载完成，data.message成功渲染。
+
+        更新前/后：
+            当data变化时，会触发beforeUpdate和updated方法。
+
+        销毁前/后：
+            在执行destroy方法后，对data的改变不会再触发周期函数，说明此时vue实例已经解除了事件监听以及和dom的绑定，但是dom结构依然存在。
+
+
+
+----------------------------------------------------------------------------------------------------------------
+
+
+    组件缓存：当 组件 渲染与销毁同时 数据也会随之刷新(例如使用了 v-if) , 所以我们需要 组件缓存
+        
+        实现组件缓存：
+            使用 keep-alive 标签 包含的组件 就会实现 组件的数据缓存
+
+        组件缓存的钩子函数：
+            activated       激活时调用
+            deactivated     停用时调用
+
+        如果 不使用 组件缓存 想保留数据 ，就不能销毁元素，但是会降低性能
+
+---------------------------------------------------------------------------------------------------------------
+
+    */
+    </script>
+</html>

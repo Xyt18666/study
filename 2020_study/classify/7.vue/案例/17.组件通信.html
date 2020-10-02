@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+
+
+
+
+         -->
+    </body>
+    <script>
+        /*
+        组件通讯：
+
+            父子之间：
+                $emit、$event、props  (前面学过的)
+
+                $root ：Vue 子组件可以通过 $root 属性访问 根组件 实例的 属性和方法
+                
+                $parent : Vue 子组件可以通过 $parent 属性访问 父组件 实例的 属性和方法
+
+                $children : 组件的 后代 ，获取子组件实例集合
+                
+                $refs3种用法：
+                　　1、ref 加在普通的元素上，用this.$refs.ref绑定时的值 获取到的是dom元素
+                　　2、ref 加在子组件上，用this.$refs.ref绑定时的值 获取到的是组件实例，可以使用组件的所有方法。
+                　　3、v-for 和 ref 配合使用
+                    ps:要使用 $refs  , 要在需要的位置绑定ref
+
+
+
+            兄弟之间：eventBus 配合 $emit 配合 $on ，事件总站，中转数据
+                  
+                方案一：
+                    1.首先创建一个vue的空白实例文件（兄弟间的桥梁）
+                        import Vue from 'vue'
+                        export default new Vue()
+
+                    2.发送方 引入 空白实例，然后发送方使用 $emit 自定义事件把数据带过去 
+                        import xx from ""
+                            xx.$emit("自定义函数",数据)
+
+
+                    3.接收方引入 空白实例，然后 使用 $on 监听 自定义事件，获取值
+                        xx.$on("自定义事件",(val)=>{  回调函数要使用箭头函数;
+                            执行操作
+                        })
+                    
+                方案二：
+                        优化以上写法
+                        window.eventBus = new Vue()
+                        window.eventBus.$emit("自定义函数",数据)
+                        window.eventBus.$on("自定义事件",(val)=>{})
+                
+
+                方案三 ：状态管理工具 Vuex，可以很方便实现组件之间的参数传递
+
+
+                
+                
+                
+
+
+
+
+
+
+
+
+       --------------------------------------------------
+            爷孙互传：
+                $attrs:包含了父作用域中不被认为 (且不预期为) props 的特性绑定 (class 和 style 除外)。当一个组件没有声明任何 props 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过 v-bind=”$attrs” 传入内部组件——在创建更高层次的组件时非常有用。
+                $listeners:包含了父作用域中的 (不含 .native 修饰器的) v-on 事件监听器。它可以通过 v-on=”$listeners” 传入内部组件——在创建更高层次的组件时非常有用。
+                inheritAttrs:默认情况下父作用域的不被认作 props 的特性绑定 (attribute bindings) 将会“回退”且作为普通的 HTML 特性应用在子组件的根元素上。当撰写包裹一个目标元素或另一个组件的组件时，这可能不会总是符合预期行为。通过设置 inheritAttrs 到 false，这些默认行为将会被去掉。而通过 (同样是 2.4 新增的) 实例属性 $attrs 可以让这些特性生效，且可以通过 v-bind 显性的绑定到非根元素上。
+                上述特性的使用完全可以降低在不使用Vuex以及事件总线的情况下，组件跨级props以及事件传递的复杂度。
+
+
+        了解 provide／inject
+        了解 $nextTick
+        
+        
+        
+        
+        */
+    </script>
+</html>
