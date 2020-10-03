@@ -4,7 +4,15 @@
             @click="getSon"
             ref="pp"
         ) 父组件
-        son(ref="soncomponent")
+        son(
+            ref="soncomponent"
+            v-bind="$attrs" 
+            v-on="$listeners"
+            jicheng="shuxing"
+        )
+        p {{$attrs}}
+        p foo:{{foo}}
+
 
         p(@click="getcli") getChi
 
@@ -18,8 +26,11 @@ export default {
     data() {
         return {
             name: "鹿丸",
+            ck: "ck",
         };
     },
+    props: ["foo"],
+    inheritAttrs: false,
     components: { Son },
     methods: {
         getSon() {

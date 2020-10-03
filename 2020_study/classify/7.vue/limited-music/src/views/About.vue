@@ -43,7 +43,12 @@
 
     |
     |
-    parent-com
+    parent-com(
+        :foo="foo"
+        :coo="coo"
+        v-on:upRocket="reciveRocket"
+        )
+    next-tick
 </template>
 
 <script>
@@ -53,16 +58,20 @@ import ChildComponents from "@/components/ChildComponents.vue";
 import minxina from "@/mixins/life-cycle.js";
 
 import ParentCom from "@/components/ParentComponent.vue";
+import NextTick from "@/components/NextTick.vue";
 
 export default {
     name: "parent",
     color: "#0f0",
+
     data() {
         return {
             visible: false,
             val: false,
             isRander: true,
             size: 10,
+            foo: "Hello, world",
+            coo: "Hello,rui",
         };
     },
     ok() {
@@ -76,12 +85,21 @@ export default {
         querenf() {
             console.log("确认");
         },
+        reciveRocket(d) {
+            console.log("11111", d);
+        },
     },
     components: {
         MinPlayer,
         ChildComponents,
         TestBox,
         ParentCom,
+        NextTick,
+    },
+    provide() {
+        return {
+            userName: "bruce",
+        };
     },
 };
 </script>

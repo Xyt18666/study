@@ -7,11 +7,13 @@
     </head>
     <body>
         <!-- 
+        
 
-        <template>         　template的作用是模板占位符，可帮助我们包裹元素，但在循环过程当中，template不会被渲染到页面上      
+        <template>          template的作用是模板占位符，可帮助我们包裹元素，但在循环过程当中，template不会被渲染到页面上      
         <slot>              插槽标签 ，组件标签 内的文本 会放入插槽
         <component>         定义动态组件
         <slot>              插槽标签
+        <keep-alive>        用于实现组件缓存
 
 
         {{}}                文本插值
@@ -35,10 +37,31 @@
         :is                 配合 <component> 实现动态组件 ， 值为 变量 ，变量值是 '组件名'
         is                  解决 dom 解析问题 , 值为 组件名  ，区别是,不用:是不能动态切换的
 
-        $emit()              子向父传递值
-        $event               在组件中代表 父级接收的值
-        $event               在事件中 表示 event 事件
+        $emit()             子向父传递值
+        $event              在组件中代表 父级接收的值
+        $event              在事件中 表示 event 事件
 
+        $root               Vue 子组件可以通过 $root 属性访问 根组件 实例的 属性和方法
+        $parent             Vue 子组件可以通过 $parent 属性访问 父组件 实例的 属性和方法
+        $children           组件的 后代 ，获取子组件实例集合
+        $refs               可用来获取原生dom 、获取到的是组件实例
+
+        $attrs              继承所有的父组件属性（除了prop传递的属性、class 和 style ）
+        $listeners          用v-on绑定的且不用.native修饰的事件。可通过$listeners传递
+        
+        
+
+        Bus(Bus是自定义的名) 配合 $emit、$on  创建事件总站，完成数据交互
+
+
+
+        $options            用来获取定义在data外的数据和方法的
+        $data               是用于获取data里数据的
+
+        $nextTick(()=>{})   他能 在dom 未渲染时 ，获取 以被修改的 dom
+       
+
+        export default      默认导出
         scoped              为 style 标签 添加 ，启用局部 css
         lang                为 style 和 html 绑定属性 ，定义 使用的语言
 
@@ -49,7 +72,10 @@
         new Vue({})                 实例Vue
         Vue.component("",{})        创建全局组件
         el                          vue 接管的区域 ，是一个选择器
+        name                        名称
+        inheritAttrs                设置禁用继承特性 , 配合 $listeners、$attrs ，优化爷孙传值
         data                        属性对象
+        provide                     必须在分级组件进行使用，用来给后代组件注入依赖（属性或方法） 类似于data
         methods                     函数对象
         components                  插入 局部组件
         computed                    计算属性缓存器
@@ -59,10 +85,52 @@
         immediate                   立即出发监听
         temaplate                   html模板
         props                       组件接收属性
+        inject                      必须在子组件进行使用，用来获取根组件定义的跨组件传递的数据 ,类似于 props
         type                        props属性校验 类型
         default                     props属性校验 默认值  ， object 属性时 ，要用 default函数
         rquired                     props属性校验 必填
         validator                   props属性校验 自定义验证函数
+        mixins                      混入
+
+
+        beforeCreate                还未初始化数据和方法前
+        created                     数据和方法创建结束 ，但 dom 未生成
+        
+        beforeMount                 还未将 虚拟 dom 挂载到 页面
+        mounted                     挂载结束
+        
+        beforeUpdate                检测到数据更新
+        updated                     刷新 dom
+        
+        beforeDestroy               销毁前触发 ，但此时还未 销毁 ，在此处释放缓存，销毁当前组件的 变量、函数、事件...
+        destroyed                   销毁后 ，vue实例已经解除了事件监听以及和dom的绑定，无法在触发任何生命周期
+        
+        activated                   激活时调用
+        deactivated                 停用时调用
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        console.group()           用于查看分组信息，能够更清晰的看到执行的顺序
+
+
+
 
 
 
