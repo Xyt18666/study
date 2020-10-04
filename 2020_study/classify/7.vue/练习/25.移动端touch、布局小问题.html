@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            .a {
+                width: 100vw;
+                position: relative;
+                display: flex;
+            }
+            .b {
+                height: 300px;
+                background: #777;
+                width: 100px;
+            }
+            .c {
+                position: absolute;
+                height: 100%;
+                width: 100px;
+                background: red;
+                left: 100px;
+            }
+            .touch {
+                width: 100px;
+                height: 100px;
+                background: #789;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 
+    如何让块元素的高度自适应:
+        方法一： 给父级相对定位 ，子级绝对定位 height:100%;
+        方法二： 父级设置 flex
+
+    移动端不要使用 100vh :因为由于浏览器的不同，底部工具栏会被计算在内 
+        
+        解决：height:fill-available;
+
+
+    c3新增宽高属性值：
+        fill-available  表示撑满可用空间
+        fit-content     表示将元素宽度收缩为内容宽度
+        min-content     表示采用内部元素宽度值最小的那个元素的宽度作为最终容器的宽度
+        max-content     表示采用内部元素宽度值最大的那个元素的宽度作为最终容器的宽度。如果出现文本，则相当于文本不换行
+
+
+    元素最大最小的设置：
+        min-width/height : 设置最小值
+        max-widht/height : 设置最大值
+
+
+
+
+    移动端 拖拽 完整 逻辑:
+    
+
+
+     -->
+        <div class="a">
+            <div class="b">bb</div>
+            <div class="c">cc</div>
+        </div>
+        <div class="touch">touch</div>
+    </body>
+    <script>
+        /*
+        
+        
+        
+        
+        
+        */
+
+        const touchBox = document.querySelector(".touch");
+
+        // 元素初始位置 + 鼠标距离差 = 元素最终位置
+        let boxl = 0;
+        let startx = 0;
+        let movex = 0;
+        let endl = 0;
+        let dis = 0;
+
+        touchBox.ontouchstart = function (e) {
+            startx = e.touches[0].pageX;
+            // console.log(startx);
+        };
+        touchBox.ontouchmove = function (e) {
+            movex = e.touches[0].pageX;
+            // console.log(movex);
+            dis = movex - startx;
+            // console.log(parseInt(dis));
+            endl = boxl + dis;
+            touchBox.style.transform = `translate(${endl}px,0)`;
+        };
+        touchBox.ontouchend = function (e) {
+            boxl = parseInt(endl);
+        };
+    </script>
+</html>
