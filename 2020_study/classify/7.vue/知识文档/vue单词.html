@@ -12,8 +12,12 @@
         <template>          template的作用是模板占位符，可帮助我们包裹元素，但在循环过程当中，template不会被渲染到页面上      
         <slot>              插槽标签 ，组件标签 内的文本 会放入插槽
         <component>         定义动态组件
-        <slot>              插槽标签
         <keep-alive>        用于实现组件缓存
+        <router-view>       渲染路由组件的容器
+        <router-link>       路由跳转
+            :to="路径"          实现切换
+            tag="标签名"        修改为其他标签
+        
 
 
         {{}}                文本插值
@@ -31,7 +35,7 @@
         v-slot              绑定插槽
         #                   绑定插槽简写
         :key                循环绑定key , 条件渲染也可以绑定key
-        v-mode              表单绑定 或者 组件绑定
+        v-model              表单绑定 或者 组件绑定
         []                  绑定 class 或者 style
         {}                  绑定 class 或者 style                    
         :is                 配合 <component> 实现动态组件 ， 值为 变量 ，变量值是 '组件名'
@@ -47,7 +51,7 @@
         $refs               可用来获取原生dom 、获取到的是组件实例
 
         $attrs              继承所有的父组件属性（除了prop传递的属性、class 和 style ）
-        $listeners          用v-on绑定的且不用.native修饰的事件。可通过$listeners传递
+        $listeners          用v-on绑定的且不用.native修饰的事件。获取绑定者所有监听器,可通过$listeners传递
         
         
 
@@ -62,6 +66,7 @@
        
 
         export default      默认导出
+        import              导入
         scoped              为 style 标签 添加 ，启用局部 css
         lang                为 style 和 html 绑定属性 ，定义 使用的语言
 
@@ -71,6 +76,7 @@
 
         new Vue({})                 实例Vue
         Vue.component("",{})        创建全局组件
+        Vue.use()                   注册 路由功能
         el                          vue 接管的区域 ，是一个选择器
         name                        名称
         inheritAttrs                设置禁用继承特性 , 配合 $listeners、$attrs ，优化爷孙传值
@@ -92,6 +98,8 @@
         validator                   props属性校验 自定义验证函数
         mixins                      混入
 
+        router                      路由对象
+      
 
         beforeCreate                还未初始化数据和方法前
         created                     数据和方法创建结束 ，但 dom 未生成

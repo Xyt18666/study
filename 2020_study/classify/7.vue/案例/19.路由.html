@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+    路由 基本 知识 ：
+        router 文件下的 index.js 是配置好的路由功能
+        
+        路由的使用：
+            1. 配置 route下的 index.js
+            2. main.js 中引入 router
+            3. 把router 放入 Vue实例中
+            4. 在 app组件中 使用 router-link 标签 ，配合 
+                :to="路径" 实现切换
+                tag="标签名" 修改为其他标签
+            5. 在 app组件中 使用 router-view ，他是渲染 路由组件的容器
+        
+
+
+
+
+     -->
+    </body>
+    <script>
+        /*
+        router/index.js内具体概述：    
+
+            import Vue from "vue";                引入vue
+            import VueRouter from "vue-router";    引入路由
+            import Home from "../views/Home.vue";    引入组件
+            import About from "../views/About.vue";
+
+            Vue.use(VueRouter);    vue 安装注册 路由功能
+
+            const routes = [  配置路由匹配的组件
+                {
+                    path: "/",    路径
+                    name: "Home",  名称
+                    component: Home,  组件名
+                },
+                {
+                    path: "/about/*", *模糊匹配
+                    name: "About",
+                    component: About,
+                },
+                {
+                    path: "/musiclist",
+                    name: "MusicList",
+                    component: () => import("../views/MusicList.vue"),   动态导入
+                },
+            ];
+
+            const router = new VueRouter({   实例化 路由
+                routes,  上面定义的routes 放入内部，也可以直接写在内部
+            });
+
+            export default router;  默认导出 router
+
+         
+    
+        main.js 中的 含义：
+            new Vue({
+                router,   绑定 路由
+                store,
+                render: h => h(App),    将app组件渲染
+            }).$mount("#app");  替换 index.htnm 中的 #app
+
+        
+    
+    */
+    </script>
+</html>

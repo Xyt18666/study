@@ -31,6 +31,19 @@
                 height: 100px;
                 background: #789;
             }
+            .whfaz {
+                width: -webkit-min-content;
+                display: flex;
+            }
+            .whbrz {
+                width: 50px;
+                height: 80px;
+                background: blue;
+            }
+            .wh {
+                background: pink;
+                width: -webkit-fill-available;
+            }
         </style>
     </head>
     <body>
@@ -58,7 +71,7 @@
 
 
 
-    移动端 拖拽 完整 逻辑:
+    移动端 拖拽 完整 逻辑: 元素初始位置 + 鼠标距离差 = 元素最终位置
     
 
 
@@ -68,6 +81,10 @@
             <div class="c">cc</div>
         </div>
         <div class="touch">touch</div>
+        <div class="whfaz">
+            <div class="wh">whwhwhwhwhwh</div>
+            <div class="whbrz">brz</div>
+        </div>
     </body>
     <script>
         /*
