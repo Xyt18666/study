@@ -42,6 +42,7 @@
 
   c-a(v-if="hashValue === 'a'")
   c-b(v-if="hashValue === 'b'")
+  button(@click="toHomue") 回首页
 </template>
 
 <script>
@@ -84,6 +85,17 @@ export default {
     },
     reciveRocket(d) {
       console.log("11111", d);
+    },
+    toHomue() {
+      console.log(this.$router); // 他就是 整个 router 实例
+      this.$router.push("/"); // 切换路径 hash值 ，切换组件
+      // this.$router.go(1) 前进
+      // this.$router.go(-1)  后退
+      // this.$router.replace("/") 替换到某个 组件 ，不存在历史记录 ，不能返回上一页
+      //   router-link  标签添加  replace属性 等同于  $router.replace
+
+      //  动态路径 在定义路由时  前面 加 :
+      //  this.$route.params.xx参数  当前页面的匹配路由  ，获取值
     },
   },
   components: {

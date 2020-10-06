@@ -17,11 +17,109 @@
             4. 在 app组件中 使用 router-link 标签 ，配合 
                 :to="路径" 实现切换
                 tag="标签名" 修改为其他标签
+                replace属性 等同于  $router.replace
             5. 在 app组件中 使用 router-view ，他是渲染 路由组件的容器
         
 
+        通过编程切换组件：
+            this.$router.push("路径")
+            this.$router.go(1) 前进
+            this.$router.go(-1)  后退
+            this.$router.replace("路径") 替换到某个 组件 ，不存在历史记录 ，不能返回上一页
 
 
+
+        动态路由的定义 ：  :后拼接
+            {
+                path: "/detail/:id",  
+                name: "Detail",
+                component: Detail,
+            },
+        
+        可选参数 ：   ? 可以不写
+           {
+                path: "/detail/:id?",  
+                name: "Detail",
+                component: Detail,
+            },
+
+
+        传参方式：
+            第一种： 路径直接拼接字符串
+            第二种： this.$router.push({
+                path:"路径拼接参数"
+                query:{拼接在 ? 后的 参数}
+            })
+            第三种： this.$router.push({
+                name:""
+                params:{
+                    参数对象
+                }
+                query:{拼接在 ? 后的 参数}
+            })
+
+            如果有 path， params 会被忽略
+        
+        取参：
+            this.$route.params
+            this.$route.query
+
+
+        路由嵌套： 
+            children:{
+                二级路由
+                 {
+                    path: ,
+                    name: ,
+                    component:,
+                },
+            } 
+        
+        当数据修改后 ，未刷新dom  ,使用 watch监听 $route变化 ，重新赋值
+    
+
+        ------------------------------------------------------------------
+
+        切换路由的方式：
+            1. 使用 router-link 标签
+            2. 使用 this.$router.push()
+        
+        路由传参的方式：
+            1. 直接拼接 字符串
+            2. 使用 this.$router.push() 配置
+               (path  /  params)
+                name
+                query
+        
+        取参数：
+            this.$route.params
+            this.$route.query
+    
+        路由的嵌套：
+            children:[]  定义嵌套路由
+            在子路由创建 router-view 标签 ，渲染嵌套的路由
+        
+        重定向和别名：
+            redirect: "/about",  把某个路径重新定向到 某路由 
+            alias: "/index",   使用 某某路径 访问  固定的 路由
+
+        导航守卫：
+            全局守卫：
+                router.beforeEach((to, from, next) => {})
+                    next(false)   中断当前导航
+
+                后置路由钩子 ：router.afterEach((to, form) => {})   
+
+            路由独享守卫：
+                beforeEnter:()=>{}
+
+            组件内守卫：
+                beforeRouteEnter(to, from, next) {进入前}
+                beforeRouteUpdate(to, from, next) {更新}
+                beforeRouteLeave(to, from, next) {离开}
+        
+        路由额外信息：
+                meta: {}
 
      -->
     </body>

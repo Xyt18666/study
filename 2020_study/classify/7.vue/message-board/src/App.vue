@@ -52,6 +52,16 @@ export default {
       isremoveid: null,
       likelist: [],
       islike: false,
+      list: [
+        {
+          title: "文章1",
+          id: "p1",
+        },
+        {
+          title: "文章2",
+          id: "p2",
+        },
+      ],
     };
   },
   components: {
@@ -60,6 +70,30 @@ export default {
     PromptBox,
   },
   methods: {
+    goDetail(id) {
+      // 拼接路径传参
+      // this.$router.push(`/detail/${id}?type=hot&time=today`);
+      // 命名路由
+      this.$router.push({
+        name: "Detail",
+        params: {
+          haha: id,
+        },
+        query: {
+          type: "hot",
+          time: "today",
+        },
+      });
+    },
+    toRou() {
+      this.$router.push({
+        name: "Er2",
+        params: {
+          siez: "11",
+        },
+        query: { ok: "no" },
+      });
+    },
     setmasgfn(d) {
       console.log(d);
       this.datalist.push(d);
