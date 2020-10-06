@@ -15,8 +15,9 @@
         <keep-alive>        用于实现组件缓存
         <router-view>       渲染路由组件的容器
         <router-link>       路由跳转
-            :to="路径"          实现切换
+            :to="路径"          实现切换路由
             tag="标签名"        修改为其他标签
+            replace             等同于 this.$router.replace("路径")
         
 
 
@@ -116,6 +117,40 @@
         activated                   激活时调用
         deactivated                 停用时调用
 
+-------------------------------------------------------
+
+       
+
+        $router             全局的路由实例
+        push()              切换路由
+        name                切换路由的name
+        params              传递的参数对象
+        path                切换路由的path
+        query               传递的参数对象
+        go(1)               前进
+        go(-1)              后退
+        replace()           替换到某个 组件 ，不存在历史记录 ，不能返回上一页
+
+
+        $route              当前路由信息对象
+        params              接收的参数   
+        query               接收的参数
+
+
+        redirect            重定向
+        alias               别名
+        :                   定义动态属性
+        ?                   表示可选参数
+
+
+        router.beforeEach((to, from, next) => {})   全局守卫
+        next()                                      允许执行 ，填参数 false ，中断当前导航
+
+        beforeEnter:()=>{}                          路由独享守卫
+
+        beforeRouteEnter(to, from, next) {}         组件内守卫，进入前
+        beforeRouteUpdate(to, from, next) {}        组件内守卫，更新
+        beforeRouteLeave(to, from, next) {}         组件内守卫，离开
 
 
 
