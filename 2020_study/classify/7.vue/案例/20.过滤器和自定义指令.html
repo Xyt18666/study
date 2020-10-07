@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+            全局过滤器：Vue.filter('名称'()=>{})
+            局部过滤器: filters:{}
+
+            过滤器的作用：格式化 文本
+
+            使用：{{ val | 过滤器名(可传参) | 可传多个过滤器 }} 过滤了 xx 文本
+            
+            过滤器 从做向右 执行
+
+
+-----------------------------------------------------------------------------
+        全局自定义指令：Vue.directive("指令名",{
+            bind(){ 指令 绑定到元素时 调用},   
+            inserted(){被绑定元素 插入到 父节点时 },
+            update(){所在组件 VNode 更新时调用 },
+            componentUpdated(){ 更新结束调用 },
+            unbind(){解绑时调用 },
+
+        })
+        局部自定义指令: directives:{}
+
+        默认参数：
+            el 绑定的元素
+
+            binding 一个对象，包含以下属性
+                name：指令名，
+                value：绑定值，
+                oldValue：绑定的前一个值，
+                expression：指令表达式，
+                arg：指令参数，
+                modifiers：修饰符对象
+
+            vnode vue编译生成的 虚拟dom
+            
+           
+
+
+     -->
+    </body>
+    <script>
+        /*
+
+
+
+
+*/
+    </script>
+</html>

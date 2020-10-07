@@ -132,9 +132,51 @@
 
 
 
-    接收参数：
+    接收参数 ：
         this.$route.params
         this.$route.query
+
+---------------------------------------------------------------------------------------------
+    拓展知识：
+        $route.matched :
+            一个数组，包含当前路由的所有嵌套路径片段的路由记录
+            一个路由匹配到的所有路由记录会暴露为 $route 对象 (还有在导航守卫中的路由对象) 的 $route.matched 数组
+            to.matched 搭配路由守卫 进行验证
+
+        $route.fullPath : 
+            完整解析的URL，包括查询和哈希。
+            fullPath匹配路由，path匹配路径。
+
+        Vue.use()
+            参数 : {Object | function} plugin
+            用法: 
+                安装Vue.js 插件。如果插件(plugin)是一个对象，必须提供install方法。
+                如果插件是一个函数，它会作为install方法。install方法调用时，会将Vue作为参数传入。
+                该方法需要在调用New Vue()之前被调用。
+                当install方法被同一个插件多次调用，插件将只会被安装一次。
+
+            https://www.jianshu.com/p/89a05706917a
+
+
+        render()
+            使用render函数描述虚拟DOM时，vue提供一个函数，这个函数是就构建虚拟DOM所需要的工具。
+            官网上给他起了个名字叫createElement。还有约定它的简写叫h
+            https://juejin.im/post/6844903919764635655
+
+        $mount()
+            Vue 的$mount()为手动挂载，在项目中可用于延时挂载（例如在挂载之前要进行一些其他操作、判断等），之后要手动挂载上。
+            new Vue时，el和$mount并没有本质上的不同。
+
+        
+
+
+        history模式路由原理：
+            https://blog.csdn.net/qq_41800366/article/details/101055105
+            https://www.cnblogs.com/karthuslorin/p/9450068.html
+            https://blog.csdn.net/sinat_41904410/article/details/104393881
+    
+            
+
 
 ---------------------------------------------------------------------------
 
@@ -146,6 +188,8 @@
         5. 嵌套 必须要写 嵌套 的 渲染区 router-view
         
         只要是想通过多数据 渲染同一页面，路径中 必然要拼接id 作为区分
+
+    
 
      -->
     </body>

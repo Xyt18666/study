@@ -14,6 +14,10 @@ window.eventBus = new Vue();
 
 Vue.config.productionTip = false;
 
+Vue.filter("tel", val => {
+    return val.replace(/^([0-9]{3})([0-9]{4})([0-9]{4})$/g, "$1****$3");
+});
+
 Vue.component("confirm-box", ConfirmBox);
 Vue.component("switch-box", SwitchBox);
 Vue.component("base-layout", BaseLayout);
@@ -23,4 +27,3 @@ new Vue({
     store,
     render: h => h(App),
 }).$mount("#app");
-

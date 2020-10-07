@@ -1,17 +1,17 @@
 <template lang="pug">
   .main-content
-    form
-        input(
-            type="text"
-            ref="w"
-        )
-        input(
-            type="password"
-            ref="p"
-        )
-        button(
-            @click="long"
-        ) 提交
+   
+    input(
+        type="text"
+        ref="w"
+    )
+    input(
+        type="password"
+        ref="p"
+    )
+    button(
+        @click="long"
+    ) 提交
 </template>
 
 <script>
@@ -35,6 +35,7 @@ export default {
                     p: this.$refs.p.value,
                 },
             });
+            console.log(this.$route.matched);
         },
     },
 };
