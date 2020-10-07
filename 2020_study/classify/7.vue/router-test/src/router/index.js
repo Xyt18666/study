@@ -1,9 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-import ElementUI from "element-ui";
-import "element-ui/lib/theme-chalk/index.css";
-
 import Home from "../views/Home.vue";
 import List from "../views/List.vue";
 import Msg from "../views/Msg.vue";
@@ -18,15 +15,21 @@ import Bbb from "@/components/Bbb.vue";
 import Longin from "../views/Longin.vue";
 import Main from "../views/Main.vue";
 
+import Songxq from "../views/Songxq.vue";
+
 const originalPush = VueRouter.prototype.push; //解决重复跳转报错
 VueRouter.prototype.push = function push(location) {
     return originalPush.call(this, location).catch(err => err);
 };
 
 Vue.use(VueRouter);
-Vue.use(ElementUI);
 
 const routes = [
+    {
+        path: "/song:id",
+        name: "Songxq",
+        component: Songxq,
+    },
     {
         path: "/longin",
         name: "Longin",

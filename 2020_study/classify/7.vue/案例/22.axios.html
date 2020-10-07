@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+
+     -->
+    </body>
+    <script>
+        /*
+    安装包：
+        npm i axios -s
+
+    main.js引入：
+        import axios from "axios";
+
+    将axios挂载到 vue 实例 ：
+        Vue.prototype.$http = axios;
+        ps: $http是自定义的名字，推荐这样写
+
+    配置跨域：
+        创建 vue.config.js
+
+        配置的内容：
+            module.exports = {
+                devServer: {
+                    proxy: {
+                        "/api": {
+                            //代理的路径
+                            target: "http://jxsjs.com", //请求路径
+                            changeOrigin: true, // 改请求头 的  host 字段 为target  http://jxsjs.com
+                            pathRewrite: {
+                                "/api": "", //把路径中的 /api 置空
+                            },
+                        },
+                    },
+                },
+            };
+            // 配置跨域
+
+
+    
+    */
+    </script>
+</html>
