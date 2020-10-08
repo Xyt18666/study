@@ -16,6 +16,8 @@ import Longin from "../views/Longin.vue";
 import Main from "../views/Main.vue";
 
 import Songxq from "../views/Songxq.vue";
+import SingerList from "../views/SingerList.vue";
+import SingerCi from "../views/SingerCi.vue";
 
 const originalPush = VueRouter.prototype.push; //解决重复跳转报错
 VueRouter.prototype.push = function push(location) {
@@ -26,9 +28,21 @@ Vue.use(VueRouter);
 
 const routes = [
     {
+        path: "/singerlist",
+        name: "Singerlist",
+        component: SingerList,
+    },
+    {
         path: "/song:id",
         name: "Songxq",
         component: Songxq,
+        children: [
+            {
+                path: "singerci:ids",
+                name: "Singerci",
+                component: SingerCi,
+            },
+        ],
     },
     {
         path: "/longin",
@@ -122,18 +136,18 @@ const router = new VueRouter({
     routes,
 });
 
-router.beforeEach((to, from, next) => {
-    // if (to.name) {
-    //     console.log(to.matched);
-    //     next(); // 确保一定要调用 next()
-    // } else {
-    //     next(); // 确保一定要调用 next()
-    // }
-    if (to.path === "/main" && document.cookie.indexOf() === -1) {
-        next("/longin");
-    } else {
-        next();
-    }
-});
+// router.beforeEach((to, from, next) => {
+//     // if (to.name) {
+//     //     console.log(to.matched);
+//     //     next(); // 确保一定要调用 next()
+//     // } else {
+//     //     next(); // 确保一定要调用 next()
+//     // }
+//     if (to.path === "/main" && document.cookie.indexOf() === -1) {
+//         next("/longin");
+//     } else {
+//         next();
+//     }
+// });
 
 export default router;

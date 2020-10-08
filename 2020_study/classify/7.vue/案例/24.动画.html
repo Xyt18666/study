@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+    过度：
+        使用 <transtion> 标签 包裹 需要过度的元素
+        添加类名
+
+        原理是： 为元素 添加 固定 类名
+
+
+
+        什么是过渡？
+            任何元素或组件进入／离开视图时，样式属性的逐渐改变过程
+
+        Vue 为以下 提供 transition 组件
+            条件渲染 (使用 v-if)
+            条件展示 (使用 v-show)
+            动态组件／router-view
+            组件根节点(包裹组件即可)
+
+
+        类名种类有：
+            .v-enter      进入的开始状态
+            .v-leave-to   出去结束的 状态
+            
+            .v-enter-active   过程中的状态
+            .v-leave-active   过程中的状态
+        
+            .v-enter-to   进入结束
+            .v-leave    出去的开始状态
+
+        如果 transition 定义了 name属性 ， name将 替代 v
+
+
+            
+        自定义过渡的类名:
+            enter-class
+            enter-active-class
+            enter-to-class
+            leave-class
+            leave-active-class
+            leave-to-class
+            他们的优先级高于普通的类名，这对于 Vue 的过渡系统和其他第三方 CSS 动画库，如 Animate.css 结合使用十分有用。
+
+        动画库：
+            Animate.css 动画库
+
+
+        
+     -->
+    </body>
+    <script>
+        /*
+
+
+
+
+
+
+
+*/
+        const css = {
+            fade: {
+                title: "淡入淡出",
+                fadeIn: "淡入",
+                fadeInDown: "向下淡入",
+                fadeInDownBig: "向下快速淡入",
+                fadeInLeft: "向右淡入",
+                fadeInLeftBig: "向右快速淡入",
+                fadeInRight: "向左淡入",
+                fadeInRightBig: "向左快速淡入",
+                fadeInUp: "向上淡入",
+                fadeInUpBig: "向上快速淡入",
+                fadeOut: "淡出",
+                fadeOutDown: "向下淡出",
+                fadeOutDownBig: "向下快速淡出",
+                fadeOutLeft: "向左淡出",
+                fadeOutLeftBig: "向左快速淡出",
+                adeOutRight: "向右淡出",
+                fadeOutRightBig: "向右快速淡出",
+                fadeOutUp: "向上淡出",
+                fadeOutUpBig: "向上快速淡出",
+            },
+            bounce: {
+                title: "弹跳类",
+                bounceIn: "弹跳进入",
+                bounceInDown: "向下弹跳进入",
+                bounceInLeft: "向右弹跳进入",
+                bounceInRight: "向左弹跳进入",
+                bounceInUp: "向上弹跳进入",
+                bounceOut: "弹跳退出",
+                bounceOutDown: "向下弹跳退出",
+                bounceOutLeft: "向左弹跳退出",
+                bounceOutRight: "向右弹跳退出",
+                bounceOutUp: "向上弹跳退出",
+            },
+            zoom: {
+                title: "缩放类",
+                zoomIn: "放大进入",
+                zoomInDown: "向下放大进入",
+                zoomInLeft: "向右放大进入",
+                zoomInRight: "向左放大进入",
+                zoomInUp: "向上放大进入",
+                zoomOut: "缩小退出",
+                zoomOutDown: "向下缩小退出",
+                zoomOutLeft: "向左缩小退出",
+                zoomOutRight: "向右缩小退出",
+                zoomOutUp: "向上缩小退出",
+            },
+            rotate: {
+                title: "旋转类",
+                rotateIn: "顺时针旋转进入",
+                rotateInDownLeft: "从左往下旋入",
+                rotateInDownRight: "从右往下旋入",
+                rotateInUpLeft: "从左往上旋入",
+                rotateInUpRight: "从右往上旋入",
+                rotateOut: "顺时针旋转退出",
+                rotateOutDownLeft: "向左下旋出",
+                rotateOutDownRight: "向右下旋出",
+                rotateOutUpLeft: "向左上旋出",
+                rotateOutUpRight: "向右上旋出",
+            },
+            flip: {
+                title: "翻转类",
+                flipInX: "水平翻转进入",
+                flipInY: "垂直翻转进入",
+                flipOutX: "水平翻转退出",
+                flipOutY: "垂直翻转退出",
+            },
+            strong: {
+                title: "强调类",
+                bounce: "弹跳",
+                flash: "闪烁",
+                pulse: "脉冲",
+                rubberBand: "橡皮筋",
+                shake: "左右弱晃动",
+                swing: "上下摆动",
+                tada: "缩放摆动",
+                wobble: "左右强晃动",
+                jello: "拉伸抖动",
+            },
+        };
+    </script>
+</html>

@@ -13,6 +13,7 @@
         <slot>              插槽标签 ，组件标签 内的文本 会放入插槽
         <component>         定义动态组件
         <keep-alive>        用于实现组件缓存
+        <transtion>         过渡标签
         <router-view>       渲染路由组件的容器
         <router-link>       路由跳转
             :to="路径"          实现切换路由
@@ -171,6 +172,16 @@
         componentUpdated(){ 更新结束调用 },
         unbind(){解绑时调用 },
 
+----------------------------------------------------------------------------------
+
+        .v-enter            进入的开始状态
+        .v-leave-to         出去结束的 状态
+        
+        .v-enter-active     过程中的状态
+        .v-leave-active     过程中的状态
+        
+        .v-enter-to         进入结束
+        .v-leave            出去的开始状态
 
 
 

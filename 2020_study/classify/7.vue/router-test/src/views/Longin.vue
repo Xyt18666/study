@@ -31,13 +31,15 @@ export default {
         onSubmit() {
             const { useName, passWord } = this.formData;
             if (!useName || !passWord) {
-                this.$message({
-                    message: "xxxxxx",
-                    type: "waring",
-                });
+                // this.$message({
+                //     message: "xxxxxx",
+                //     type: "waring",
+                // });
+                console.log(11);
             } else {
                 document.cookie = "longin1";
                 this.$router.push("/main");
+                // console.log(22);
             }
         },
     },
