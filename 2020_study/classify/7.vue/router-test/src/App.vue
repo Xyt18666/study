@@ -9,18 +9,31 @@
     </div>
     <router-view/> -->
         <!-- <main-content></main-content> -->
-        <router-view />
+        <transition name="zj" mode="out-in">
+            <router-view />
+        </transition>
     </div>
 </template>
 
 <script>
-
-export default {
-   
-};
+export default {};
 </script>
 
 <style lang="scss">
+.zj-enter,
+.zj-leave-to {
+    opacity: 0;
+}
+
+.zj-enter-active,
+.zj-leave-active {
+    transition: opacity 1s;
+}
+.v-enter-to,
+.v-leave {
+    opacity: 1;
+}
+
 #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;

@@ -8,7 +8,7 @@
     <body>
         <!-- 
     过度：
-        使用 <transtion> 标签 包裹 需要过度的元素
+        使用 <transition> 标签 包裹 需要过度的元素
         添加类名
 
         原理是： 为元素 添加 固定 类名
@@ -50,9 +50,60 @@
 
         动画库：
             Animate.css 动画库
-
-
         
+        多元素过渡：
+            v-if 和 v-else
+        
+        解决 元素 进入出去的顺序问题：
+            mode 属性
+                in-out   先进后出
+                out-in   先出后进
+
+        <transition-group>  过渡组
+
+        设置过渡时间 ： :duration="{ enter: 500, leave: 800 }"
+
+
+        初始渲染时的过渡：
+       
+            可以通过 appear attribute 设置节点在初始渲染的过渡
+            
+            这里默认和进入/离开过渡一样，同样也可以自定义 CSS 类名。
+            
+            <transition 
+                appear 
+                appear-class="custom-appear-class" 
+                appear-to-class="custom-appear-to-class" 
+                appear-active-class="custom-appear-active-class"
+            >
+
+        动画钩子：
+            1、入场钩子
+                before-enter进入过渡前
+                enter过渡运行时
+                after-enter过渡完成后
+                enter-cancelled过渡被打断时
+            2、出场钩子
+                before-leave离开过渡运行前
+                leave离开过渡运行时
+                after-leave离开过渡运行后
+                leave-cancelled离开过渡被打断时
+
+            v-on:before-enter="beforeEnter"         动画进入之前的回调
+            v-on:enter="enter"                      动画执行中
+            v-on:after-enter="afterEnter"           动画执行完成之后
+            v-on:enter-cancelled="enterCancelled"   入场钩子enter-cancelled过渡被打断
+            
+            v-on:before-leave="beforeLeave"         动画离开之前的回调
+            v-on:leave="leave"                      动画执行中
+            v-on:after-leave="afterLeave"           动画执行完成之后
+            v-on:leave-cancelled="leaveCancelled"   出场钩子enter-cancelled过渡被打断
+        
+            动画钩子的 参数：
+                第一个参数：el，表示 要执行动画的那个DOM元素，是个原生的 JS DOM对象
+                第一个参数：done，动画入场, 这里的 done 就是 afterEnter 动画完成之后立即调用afterEnter
+                官网是这么解释的: 当只用 JavaScript 过渡的时候,在 enter 和 leave 中必须使用 done 进行回调,否则, 它们将被同步调用, 过渡会立即完成
+            
      -->
     </body>
     <script>
@@ -65,86 +116,5 @@
 
 
 */
-        const css = {
-            fade: {
-                title: "淡入淡出",
-                fadeIn: "淡入",
-                fadeInDown: "向下淡入",
-                fadeInDownBig: "向下快速淡入",
-                fadeInLeft: "向右淡入",
-                fadeInLeftBig: "向右快速淡入",
-                fadeInRight: "向左淡入",
-                fadeInRightBig: "向左快速淡入",
-                fadeInUp: "向上淡入",
-                fadeInUpBig: "向上快速淡入",
-                fadeOut: "淡出",
-                fadeOutDown: "向下淡出",
-                fadeOutDownBig: "向下快速淡出",
-                fadeOutLeft: "向左淡出",
-                fadeOutLeftBig: "向左快速淡出",
-                adeOutRight: "向右淡出",
-                fadeOutRightBig: "向右快速淡出",
-                fadeOutUp: "向上淡出",
-                fadeOutUpBig: "向上快速淡出",
-            },
-            bounce: {
-                title: "弹跳类",
-                bounceIn: "弹跳进入",
-                bounceInDown: "向下弹跳进入",
-                bounceInLeft: "向右弹跳进入",
-                bounceInRight: "向左弹跳进入",
-                bounceInUp: "向上弹跳进入",
-                bounceOut: "弹跳退出",
-                bounceOutDown: "向下弹跳退出",
-                bounceOutLeft: "向左弹跳退出",
-                bounceOutRight: "向右弹跳退出",
-                bounceOutUp: "向上弹跳退出",
-            },
-            zoom: {
-                title: "缩放类",
-                zoomIn: "放大进入",
-                zoomInDown: "向下放大进入",
-                zoomInLeft: "向右放大进入",
-                zoomInRight: "向左放大进入",
-                zoomInUp: "向上放大进入",
-                zoomOut: "缩小退出",
-                zoomOutDown: "向下缩小退出",
-                zoomOutLeft: "向左缩小退出",
-                zoomOutRight: "向右缩小退出",
-                zoomOutUp: "向上缩小退出",
-            },
-            rotate: {
-                title: "旋转类",
-                rotateIn: "顺时针旋转进入",
-                rotateInDownLeft: "从左往下旋入",
-                rotateInDownRight: "从右往下旋入",
-                rotateInUpLeft: "从左往上旋入",
-                rotateInUpRight: "从右往上旋入",
-                rotateOut: "顺时针旋转退出",
-                rotateOutDownLeft: "向左下旋出",
-                rotateOutDownRight: "向右下旋出",
-                rotateOutUpLeft: "向左上旋出",
-                rotateOutUpRight: "向右上旋出",
-            },
-            flip: {
-                title: "翻转类",
-                flipInX: "水平翻转进入",
-                flipInY: "垂直翻转进入",
-                flipOutX: "水平翻转退出",
-                flipOutY: "垂直翻转退出",
-            },
-            strong: {
-                title: "强调类",
-                bounce: "弹跳",
-                flash: "闪烁",
-                pulse: "脉冲",
-                rubberBand: "橡皮筋",
-                shake: "左右弱晃动",
-                swing: "上下摆动",
-                tada: "缩放摆动",
-                wobble: "左右强晃动",
-                jello: "拉伸抖动",
-            },
-        };
     </script>
 </html>

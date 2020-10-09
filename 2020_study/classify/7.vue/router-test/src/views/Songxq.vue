@@ -13,6 +13,7 @@
         p(
             @click="toCi($route.params.id)"
         )  歌词
+        
         router-view
 
 </template>
@@ -32,4 +33,4 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="sass"></style>

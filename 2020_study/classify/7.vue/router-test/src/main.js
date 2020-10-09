@@ -5,13 +5,15 @@ import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 import axios from "axios";
 import CryptoJS from "crypto-js";
+import Toast from "@/components/Toast.js";
 
+import "animate.css";
 
-import animated from "animate.css";
-
-Vue.use(animated);
+console.log(Toast);
 
 Vue.prototype.$http = axios;
+Vue.prototype.toast = Toast;
+
 Vue.prototype.$CryptoJS = CryptoJS;
 console.log(CryptoJS);
 

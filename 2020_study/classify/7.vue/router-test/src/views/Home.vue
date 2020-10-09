@@ -65,6 +65,14 @@
             h1(v-show="show" class="animate__animated" :key="1") Animate.css
             h2(v-show="show" class="animate__animated" :key="2") Just-add-water CSS animations
 
+        transition(mode="out-in")
+            .box(class="box1" v-if="show" key="box1") 1
+            .box(class="box2" v-else key="box2") 2
+        
+        .tip(
+            @click="toast('what fack?')"
+        ) 点击提示框
+    
 
          
      
@@ -131,11 +139,11 @@ export default {
     mounted() {},
 };
 </script>
-<style lang="sass" scoped>
+<style lang="sass">
 // .v-enter,.v-leave-to
 //     opacity: 0
 // .v-enter-active,.v-leave-active
-//     transition: opacity 5s
+//     transition: opacity 2s
 
 
 .boxs
