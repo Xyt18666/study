@@ -21,6 +21,19 @@
       v-show="islike"
     )
   PromptBox(v-if="tip", @yes="yesfn", @no="tip = false")
+  p ------------------------------------------------------
+  p  vuex
+  p {{$store.state.name}}  获取数据
+  p {{lists}}   计算后 简化书写
+  p  数组的第{{$store.state.index}} 个下标是 {{$store.getters.son}}
+
+  input(v-model.number="index")
+  button(@click="onClick") 获第 {{ index }} 个孩子
+
+  p(
+    @click="xgd"
+  ) 一次修改多个
+ 
 </template>
 <script>
 import "normalize.css/normalize.css";
@@ -45,90 +58,106 @@ import PromptBox from "@/components/comm/PromptBox.vue";
 */
 
 export default {
-  data() {
-    return {
-      datalist: [],
-      tip: false,
-      isremoveid: null,
-      likelist: [],
-      islike: false,
-      list: [
-        {
-          title: "文章1",
-          id: "p1",
+    computed: {
+        lists() {
+            return this.$store.state.name;
         },
-        {
-          title: "文章2",
-          id: "p2",
+    },
+
+    data() {
+        return {
+            datalist: [],
+            tip: false,
+            isremoveid: null,
+            likelist: [],
+            islike: false,
+            list: [
+                {
+                    title: "文章1",
+                    id: "p1",
+                },
+                {
+                    title: "文章2",
+                    id: "p2",
+                },
+            ],
+            index: 0,
+        };
+    },
+    components: {
+        HeaderContent,
+        MainContent,
+        PromptBox,
+    },
+    methods: {
+        xgd() {
+            this.$store.dispatch("setni", {
+                index: 2,
+                name: "鹿丸",
+            });
         },
-      ],
-    };
-  },
-  components: {
-    HeaderContent,
-    MainContent,
-    PromptBox,
-  },
-  methods: {
-    goDetail(id) {
-      // 拼接路径传参
-      // this.$router.push(`/detail/${id}?type=hot&time=today`);
-      // 命名路由
-      this.$router.push({
-        name: "Detail",
-        params: {
-          haha: id,
+        onClick() {
+            this.$store.commit("setindex", this.index);
         },
-        query: {
-          type: "hot",
-          time: "today",
+        goDetail(id) {
+            // 拼接路径传参
+            // this.$router.push(`/detail/${id}?type=hot&time=today`);
+            // 命名路由
+            this.$router.push({
+                name: "Detail",
+                params: {
+                    haha: id,
+                },
+                query: {
+                    type: "hot",
+                    time: "today",
+                },
+            });
         },
-      });
-    },
-    toRou() {
-      this.$router.push({
-        name: "Er2",
-        params: {
-          siez: "11",
+        toRou() {
+            this.$router.push({
+                name: "Er2",
+                params: {
+                    siez: "11",
+                },
+                query: { ok: "no" },
+            });
         },
-        query: { ok: "no" },
-      });
+        setmasgfn(d) {
+            console.log(d);
+            this.datalist.push(d);
+        },
+        removeitemfn(d) {
+            this.tip = true;
+            this.isremoveid = d;
+        },
+        likeitemfn(d) {
+            if (!d.lick) {
+                d.lick = true;
+                this.likelist.push(d);
+                console.log(this.likelist);
+            } else {
+                d.lick = false;
+                this.likelist.some((item, index) => {
+                    if (item.time == d.time) {
+                        this.likelist.splice(index, 1);
+                    }
+                });
+            }
+        },
+        yesfn() {
+            this.datalist.some((item, index) => {
+                if (this.isremoveid == item.time) {
+                    this.datalist.splice(index, 1);
+                }
+            });
+            this.isremoveid = null;
+            this.tip = false;
+        },
+        searchfn() {
+            this.islike = !this.islike;
+        },
     },
-    setmasgfn(d) {
-      console.log(d);
-      this.datalist.push(d);
-    },
-    removeitemfn(d) {
-      this.tip = true;
-      this.isremoveid = d;
-    },
-    likeitemfn(d) {
-      if (!d.lick) {
-        d.lick = true;
-        this.likelist.push(d);
-        console.log(this.likelist);
-      } else {
-        d.lick = false;
-        this.likelist.some((item, index) => {
-          if (item.time == d.time) {
-            this.likelist.splice(index, 1);
-          }
-        });
-      }
-    },
-    yesfn() {
-      this.datalist.some((item, index) => {
-        if (this.isremoveid == item.time) {
-          this.datalist.splice(index, 1);
-        }
-      });
-      this.isremoveid = null;
-      this.tip = false;
-    },
-    searchfn() {
-      this.islike = !this.islike;
-    },
-  },
 };
 </script>
 <style scoped lang="sass">

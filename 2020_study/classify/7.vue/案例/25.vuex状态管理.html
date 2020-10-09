@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+            vuex状态管理器：
+                就是统一管理数据的 区域
+
+                安装脚手架时  安装了 vuex
+
+                store文件夹下的 index.js 就是vuex的主文件
+
+                实际项目开发，要将其中的子项 设立单独文件
+                
+                
+
+     -->
+    </body>
+    <script>
+        /*
+
+        state :    类似于 data 保存数据
+            定义： {}
+            使用 ：直接使用
+        
+
+        getters :   以有属性的，衍生 属性 ，对象里是方法，也可以理解为 计算属性  
+            定义： son(state){}
+            使用 ：直接使用
+        
+        mutations : 定义修改数据的方法，对象里是方法  , 必须是同步
+            定义： setindex(state, val){}
+            使用 ：commit :  修改属性值  this.$store.commit("修改数据的方法名",传入的值);
+
+
+        actions: 定义修改多个数据的方法，对象里是方法 ， 方法内是多个 commit  , 还可以调用 异步 api
+            定义：  setni({commit},list){}  第一参数 对象中包含和 store 实例相同的属性和方法
+            使用 ：dispatch:  修改一组属性值 this.$store.dispatch("修改组的函数名"，传入的值值)
+
+       
+        
+
+       
+        
+        
+        
+        */
+    </script>
+</html>
