@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import axios from "axios"; //引入 axios
 
 Vue.use(Vuex);
 
@@ -15,8 +16,12 @@ export default new Vuex.Store({
             songName: null,
             songUrl: null,
         },
+        sliderListMsg: null,
     },
     mutations: {
+        setSliderListMsg(state, val) {
+            state.sliderListMsg = val;
+        },
         setMusicListShow(state, val) {
             state.musicListIsShow = val;
         },
@@ -43,6 +48,10 @@ export default new Vuex.Store({
     actions: {
         setHitList({ commit }, list) {
             commit("setHitList", list);
+        },
+        async setSliderList({ commit }) {
+            let sliderList = await axios.get("/api/slider-list");
+            commit("setSliderListMsg", sliderList);
         },
     },
     modules: {},

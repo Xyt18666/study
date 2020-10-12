@@ -98,54 +98,65 @@ export default {
         transform: rotate(360deg)
 
 .wrap
+    width: 100%
+
     position: fixed;
     display: flex;
     align-items: center;
     justify-content: space-between
-    width: 100vw
     bottom: 0
     height: 60px;
-    padding: 0 5px 0 10px;
     background-color: #061842;
     background: linear-gradient(15deg,#061842,#2c50a1);
     box-shadow: 0 0 10px rgba(0,0,0,.4);
     .left
         display: flex
         align-items: center
+        margin-left:  0.11rem
         img
             display: block
             width: 40px
             height: 40px
             border-radius: 50%
             margin: 0
-            margin-right: 10px
+            margin-right: 0.1rem
             animation: 10s linear imgPlay infinite backwards paused
             &.play
                 animation: 10s linear imgPlay infinite backwards running
         .msg-box
             color: #fff
+            .song-title
+                font-size: 0.14rem
+                height: 0.2rem
+                line-height: 0.2rem
             .song-name
                 margin-top: 5px
-                font-size: 12px
+                opacity: 0.4
+                height: 0.16rem
+                line-height: 0.16rem
+                font-size: 0.12rem
     .right
         display: flex
+        align-items: center
+        margin-right:  0.18rem
         .play-switch
-            width: 50px
-            height: 50px
+            width: 0.37rem
+            height: 0.37rem
             background-repeat: no-repeat;
             background-position: 50%;
             background-image: url(../assets/images/icon-play.png);
-            background-size: 28px;
+            background-size: 0.15rem;
+            margin-right: 0.18rem
             &.playbg
                 background-image: url(../assets/images/icon-pause.png);
         .play-switch-stop
             background-image: url(../assets/images/icon-pause.png);
 
         .music-list
-            width: 50px
-            height: 50px
+            width: 0.28rem
+            height: 0.28rem
             background-repeat: no-repeat;
             background-position: 50%;
             background-image: url(../assets/images/icon-playlist.png);
-            background-size: 28px;
+            background-size: 0.28rem;
 </style>

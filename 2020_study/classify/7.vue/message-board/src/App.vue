@@ -24,8 +24,8 @@
   p ------------------------------------------------------
   p  vuex
   p {{$store.state.name}}  获取数据
-  p {{lists}}   计算后 简化书写
-  p  数组的第{{$store.state.index}} 个下标是 {{$store.getters.son}}
+  p {{name}}   计算后 简化书写
+  p  数组的第{{$store.state.index}} 个下标是 {{son}}
 
   input(v-model.number="index")
   button(@click="onClick") 获第 {{ index }} 个孩子
@@ -56,12 +56,15 @@ import PromptBox from "@/components/comm/PromptBox.vue";
 
 
 */
+import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
 
 export default {
     computed: {
-        lists() {
-            return this.$store.state.name;
-        },
+        ...mapState(["name"]),
+        ...mapGetters(["son"]),
+        // lists() {
+        //     return this.$store.state.name;
+        // },
     },
 
     data() {
@@ -89,15 +92,23 @@ export default {
         MainContent,
         PromptBox,
     },
+
     methods: {
+        ...mapMutations(["setindex"]),
+        ...mapActions(["setni"]),
         xgd() {
-            this.$store.dispatch("setni", {
+            // this.$store.dispatch("setni", {
+            //     index: 2,
+            //     name: "鹿丸",
+            // });
+            this.setni({
                 index: 2,
                 name: "鹿丸",
             });
         },
         onClick() {
-            this.$store.commit("setindex", this.index);
+            // this.$store.commit("setindex", this.index);
+            this.setindex(this.index);
         },
         goDetail(id) {
             // 拼接路径传参

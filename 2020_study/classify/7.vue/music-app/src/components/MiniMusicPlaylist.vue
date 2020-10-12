@@ -5,7 +5,7 @@
         .play-model 顺序播放
         .removeList(
             @click="removeHotList"
-        ) 清空列表
+        ) 清空
     ul
         li(
             v-for="(item,index) in $store.state.hitList"
@@ -22,7 +22,7 @@
         @click="toggleShow"
     ) 关闭
     confirm-box(
-        :msg="'确认清空列表?'"
+        :msg="'确认清空播放列表?'"
         @confirm="confirm"
         @cancel="cancel"
     )
@@ -86,42 +86,65 @@ export default {
         display: flex
 
         justify-content: space-between
-        padding: 10px
+        padding: 0.1rem
         align-items: center
         .play-model
-            padding-left: 25px
+            height: 0.2rem
+            font-size: 0.15rem
+            line-height: 0.2rem
+
+            padding-left: 0.25rem
             &:before
             content: ""
-            left: -20px
+            left: -0.2rem
             background-image: url(../assets/images/icon-mode-normal.png)
             background-repeat: no-repeat;
             background-position: 0;
-            background-size: 20px;
+            background-size: 0.2rem;
         .removeList
-            padding-left: 25px
+            padding-left: 0.25rem
+            height: 0.2rem
+            font-size: 0.15rem
+            line-height: 0.2rem
             &:before
             content: ""
-            left: -20px
+            left: 0.2rem
             background-image: url(../assets/images/icon-delete.png)
             background-repeat: no-repeat;
             background-position: 0;
-            background-size: 20px;
+            background-size: 0.2rem;
     ul
         li
             display: flex
             align-items: center
             justify-content: space-between
+            padding-left: 0.33rem
+            margin-top: 0.13rem
+            &:last-child
+                margin-bottom: 0.13rem
             p
-                font: 16px/18px ""
+                height: 0.2rem
+                font-size: 0.15rem
+                line-height: 0.2rem
             p+p
-                font: 12px/14px ""
+                height: 0.17rem
+                font-size: 0.12rem
+                line-height: 0.17rem
+                opacity: 0.4
+
             .clear
-                width: 36px
-                height: 36px;
+                width: 0.2rem
+                height: 0.2rem
                 background: url(../assets/images/icon-clear.png) no-repeat 50%;
-                background-size: 20px;
+                background-size: 0.2rem
                 opacity: .4;
+                margin-right: 0.22rem
     .colse
+        height: 0.44rem
+        background: #000
+        font-size: 0.16rem
+        line-height: 0.44rem
+        color: #fff
+        opacity: 0.8
         text-align: center
-        height: 36px
 </style>

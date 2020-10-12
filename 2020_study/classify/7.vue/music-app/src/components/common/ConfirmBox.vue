@@ -58,24 +58,30 @@ export default {
     width: 100%
     height: 100%
     z-index: 900
-    background: rgba(0,0,0,0.7)
+    background: #000
     .main
         text-align: center
-
         position: absolute
         left: 50%
         top: 50%
-        width: 80%
-
-        line-height: 60px
-        font-size: 26px
-        margin-top: -50%
-        margin-left: -40%
+        width: 3rem
+        height: 1rem
+        font-size: 0.15rem
+        margin-top: -1rem
+        margin-left: -1.5rem
         border-radius: 5px
-        background: #fff
-        color: #999
+        background: #333
+        p
+            height: 0.6rem
+            line-height: 0.6rem
+
         .button
             display: flex
+            border-top: 1px solid #000
             div
+                height: 0.4rem
+                line-height: 0.4rem
                 flex: 1
+            div+div
+                border-left: 1px solid #000
 </style>

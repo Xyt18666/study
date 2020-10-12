@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "@/views/Home.vue";
 import Singer from "@/views/Singer.vue";
 import Search from "@/views/Search.vue";
+import SingerDetail from "@/views/SingerDetail.vue";
 import User from "@/views/User.vue";
 
 Vue.use(VueRouter);
@@ -17,6 +18,13 @@ const routes = [
         path: "/singer",
         name: "Singer",
         component: Singer,
+        children: [
+            {
+                path: ":singerId",
+                name: "SingerDetail",
+                component: SingerDetail,
+            },
+        ],
     },
     {
         path: "/search",

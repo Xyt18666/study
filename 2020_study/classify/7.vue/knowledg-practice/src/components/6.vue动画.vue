@@ -6,7 +6,7 @@
         p(
             v-show="show"
         ) 
-             transition(
+            transition(
                 name="a2"
             )
                 span(
@@ -34,6 +34,27 @@
         h3(
             v-show="show"
         ) h3333333333
+
+    transition(
+        enter-class="b3"
+        leave-to-class="b3"
+        enter-active-class="b4"
+        leave-active-class="b4"
+    ) 
+        h4(
+            v-show="show"
+        ) h44444
+            transition(
+                    enter-class="b5"
+                    leave-to-class="b5"
+                    enter-active-class="b6"
+                    leave-active-class="b6"
+                )
+                    span(
+                        v-show="show"
+                    ) span444
+
+  
 </template>
 
 <script>
@@ -74,6 +95,16 @@ export default {
 .b2
     animation: bb 2s forwards reverse
 
+.b3
+    background: red
+.b4
+    transition: 3s
+
+.b5
+    color: #000
+.b6
+    transition: 3s
+
 
 @keyframes bb
     0%
@@ -88,8 +119,13 @@ p
     background: #0f0
     span
         color: pink
+
+h4
+    background: #0f0
 h3
     width: 200px
     height: 200px
     background: #000
+    span
+        color: pink
 </style>

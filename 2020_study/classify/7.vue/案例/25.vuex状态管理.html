@@ -43,9 +43,54 @@
 
        
         
-
-       
+        辅助函数：
+            mapState            将 this.$store.state 自动生成计算属性
+            mapGetters          将 this.$store.getters 自动生成计算属性
+            mapMutations        将 this.$store.commit 自动映射成方法
+            mapActions          将 this.$store.dispatch 自动映射成方法
+            
+            使用：
+                1. import { mapState,mapGetters,mapMutations,mapActions } from "vuex"
+                2. 在computed 中  ...mapState(["name"]),  ...mapGetters(["值"]) ,在matheds中    ...mapMutations(["setindex"]), ...mapActions(["setni"]),
+                3. 在使用时 属性就直接使用就可以了 ，函数 直接调用函数
+            
+            
+        mutations 事件类型使用常量：
+            • mutations 函数名使用常量
+            • 所有常量放在单独文件中
         
+        单文件vuex:
+            通过定义单独文件，然后 引入
+            
+            import vue from 'vue'
+            import vuex from 'vuex'
+            import states from './state.js'
+            import mutatons from './mutations.js'
+            import actons from './actions.js'
+            import getters from './getters'
+            vue.use(vuex);
+            export default new vuex.Store({
+                                ststes,
+                                mutatons,
+                                getters,
+                                actions
+                            });
+        
+        模块化 vuex:
+            使用模块属性 ，配合单文件 ，使得项目更清晰
+
+            export default new vuex.Store({
+                               modules:{
+                                        mod1name:{
+                                              states,
+                                              mutatons,
+                                              getters,
+                                              actions
+                                            },
+                                        mod2name:xx.js   也可以导入文件 ，该文件导出的是 一个 对象 ，包含 states, mutatons, getters,  actions 。
+                                    }
+                  });
+                    
         
         
         */
