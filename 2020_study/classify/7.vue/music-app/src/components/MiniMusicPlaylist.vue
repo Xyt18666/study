@@ -22,7 +22,6 @@
         @click="toggleShow"
     ) 关闭
     confirm-box(
-        v-show="$store.state.clearHotIsShow"
         :msg="'确认清空列表?'"
         @confirm="confirm"
         @cancel="cancel"

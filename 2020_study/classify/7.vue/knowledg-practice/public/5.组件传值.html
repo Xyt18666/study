@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+        $emit  ：返回一个事件 
+        $event：  接收的参数
+        props ： 接收传递的参数
+
+        $root ：Vue 子组件可以通过 $root 属性访问 根组件 实例的 属性和方法
+        
+        $parent : Vue 子组件可以通过 $parent 属性访问 父组件 实例的 属性和方法
+
+        $children : 组件的 后代 ，获取子组件实例集合
+        
+        $refs 3种用法：
+        　　1、ref 加在普通的元素上，用this.$refs.ref绑定时的值 获取到的是dom元素
+        　　2、ref 加在子组件上，用this.$refs.ref绑定时的值 获取到的是组件实例，可以使用组件的所有方法。
+        　　3、v-for 和 ref 配合使用
+            ps:要使用 $refs  , 要在需要的位置绑定ref
+
+
+            
+        $attrs : 继承所有的父组件属性（除了prop传递的属性、class 和 style ）
+
+        $listeners : 它是一个对象，里面包含了作用在这个组件上的所有监听器，你就可以配合 v-on="$listeners" 将所有的事件监听器指向这个组件的某个特定的子元素
+                简言之，用v-on绑定的且不用.native修饰的事件。可通过$listeners传递
+
+        inheritAttrs: false,  设置禁用继承特性 , 
+            继承特性：父组件 内 子组件标签上 定义属性 默认会被继承到 子组件的 dom 元素
+
+
+
+
+        provide : 必须在分级组件（不一定是app.vue）进行使用，用来给后代组件注入依赖（属性或方法）
+                        像date一样 定义一个 函数 保存要传递的 数据 ，也可是对象 ，但是推荐 函数 
+
+        inject :  必须在子组件进行使用，用来获取根组件定义的跨组件传递的数据
+                像 props 一样接收数据 ，可以是 数组接收 ，也可以是 对象
+
+        
+        eventBus ： 配合 $emit 配合 $on 
+
+
+
+
+     -->
+    </body>
+</html>

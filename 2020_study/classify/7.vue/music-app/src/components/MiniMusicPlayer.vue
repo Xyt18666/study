@@ -84,6 +84,7 @@ export default {
     width: 100vw
     height: 100%
     background: rgba(0,0,0,0.6)
+
 @keyframes bg
     0%
         background: #fff

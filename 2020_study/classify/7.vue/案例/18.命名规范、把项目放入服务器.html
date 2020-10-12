@@ -97,6 +97,20 @@
         3. 修改 index.html 的 引入文件路径
         4. 将 build文件夹 和 index.html 放入 服务器文件夹内
 
+    解决请求数据问题：
+        1. 删除 vue.congfig.js中的代理路径
+        2. 在请求接口中 写入 真实的请求路径
+    
+    请求数据将http 升级为 https：
+        在html标签中加入：
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+        
+        或者在 请求头中添加 ：
+        header("Content-Security-Policy: upgrade-insecure-requests");
+
+        或者 去除 请求地址 的 http , 以 //开头
+
+        but问题没解决，按照常理 ，在同为 https时 可以获取导数据
 
 
 
