@@ -34,8 +34,10 @@ export default {
     beforeDestroy() {
         if (this.bs) {
             this.bs.destroy();
+
+
             this.bs = null;
-        }
+            }
     },
 };
 </script>

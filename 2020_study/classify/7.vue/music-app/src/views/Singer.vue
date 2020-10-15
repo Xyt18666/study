@@ -1,42 +1,23 @@
 <template lang="pug">
 .singer.wrapper
-    ul.content
+  ul.content
+    li(v-for="(item, index) in singerList", :key="index", ref="songLi")
+      h3 {{ item.letter }}
+      ol
         li(
-            v-for="item,index in singerList"
-            :key="index"
-            ref="songLi"
+          v-for="(item2, index2) in item.items",
+          :key="index2",
+          @click="toDetaile(item2)"
         )
-            h3 {{item.letter}}
-            ol
-                li(
-                    v-for="item2,index2 in item.items"
-                    :key="index2"
-                    @click="toDetaile(item2)"
-                )
-                   .avatar(
-                       :style="{ 'background-image': 'url(' + item2.avatar + ')' }"
-                   )
-                   .name {{ item2.name }} 
+          .avatar(:style="{ 'background-image': 'url(' + item2.avatar + ')' }")
+          .name {{ item2.name }}
 
-    .topZm(
-        v-show="zmShow"
-    ) {{zm}}
-    
-    .scrollBar
-        .item(
-            v-for="item,index in singerList"
-            :key="index"
-            ref="scrollBar"
-        ) {{item.letter}}
-    transition(
-        enter-active-class="xq"
-        leave-active-class="xqt"
-    )
-        router-view
+  .topZm(v-show="zmShow", ref="topZm") {{ zm }}
 
-    
-       
-
+  .scrollBar
+    .item(v-for="(item, index) in singerList", :key="index", ref="scrollBar") {{ item.letter }}
+  transition(enter-active-class="xq", leave-active-class="xqt")
+    router-view
 </template>
 
 <script>
@@ -44,110 +25,116 @@ import SingerDetail from "@/views/SingerDetail.vue";
 import Toast from "@/components/common/Toast.js";
 import BScroll from "better-scroll";
 export default {
-    data() {
-        return {
-            singerList: null,
-            bs: null,
-            ostArr: [],
-            zmShow:false,
-            zm:"A",
-            scrollIndex:0
-        };
+  data() {
+    return {
+      singerList: null,
+      bs: null,
+      ostArr: [],
+      zmShow: false,
+      zm: "A",
+      scrollIndex: 0,
+    };
+  },
+  mounted() {
+    this.bs = new BScroll(".wrapper", {
+      probeType: 3,
+    });
+    this.bs.on("scroll", (position) => {
+      let { y } = position;
+      //   console.log(-y); //本来是负数
+
+      this.ostArr.map((item, index) => {
+        if ((-y >= item && -y < this.ostArr[index + 1]) || -y >= item) {
+          //负负的正
+          this.scrollIndex = index;
+          this.$refs.topZm.style.transform = `translate3d(0,${0}px,0)`;
+          //   console.log(index);
+        }
+        if (item + y > 0 && item + y < 30) {
+          let st = -(30 - (item + y));
+
+          this.$refs.topZm.style.transform = `translate3d(0,${st}px,0)`;
+
+          if (st <= -29) {
+            this.$refs.topZm.style.transform = `translate3d(0,${0}px,0)`;
+          }
+
+          //    0  --> -30
+        }
+        // console.log(item, y);
+      });
+
+      this.resetScrollBar();
+
+      if (position.y <= 0) {
+        this.zmShow = true;
+      } else {
+        this.zmShow = false;
+      }
+
+      this.zm = this.singerList[this.scrollIndex]["letter"];
+
+      this.bs.refresh(); //重载  BScroll
+    });
+  },
+  updated() {
+    this.$refs.songLi.map((item) => {
+      this.ostArr.push(item.offsetTop);
+      this.ostArr = [...new Set(this.ostArr)];
+      //   console.log(this.ostArr);
+    });
+  },
+  components: {
+    SingerDetail,
+  },
+  methods: {
+    resetScrollBar() {
+      this.$refs.scrollBar.map((item) => (item.style.color = "#fff"));
+      this.$refs.scrollBar[this.scrollIndex].style.color = "red";
     },
-    updated() {
-        this.bs = new BScroll(".wrapper", {
-            probeType: 3,
+    toDetaile(id) {
+      console.log(id.id);
+      if (id.copyright) {
+        this.$router.push({
+          name: "SingerDetail",
+          params: {
+            singerId: id.id,
+          },
         });
-        // console.log(this.bs);
-        this.$refs.songLi.map(item => {
-            this.ostArr.push(-item.firstChild.offsetTop );
+      } else {
+        Toast("无版权");
+      }
+    },
+  },
+  created() {
+    this.$http.post("singer-list").then(
+      (d) => {
+        let arr = [];
+        let obj = {};
+        d.data.forEach((item) => {
+          const letter = item.firstLetter;
+          if (obj[letter] === undefined) {
+            obj[letter] = {
+              letter,
+              items: [],
+            };
+          }
+          obj[letter].items.push(item);
         });
-        this.bs.on("scroll", position => {
-            this.ostArr.map((item, index) => {
-                if (position.y < item && position.y > this.ostArr[index + 1]) {
-                    this.scrollIndex=index
-                
-                    
-                 
-                }
-     
-                if (
-                    position.y < this.ostArr[this.ostArr.length - 1] &&
-                    this.ostArr[index + 1] == undefined
-                ) {
-                    this.scrollIndex=this.ostArr.length - 1
-
-               
-                }
-                this.resetScrollBar(this.scrollIndex)
-
-                // if(position.y < 0 ){
-                //     this.zmShow =true
-                // }else{
-                //     this.zmShow =false
-
-                // }
-                // this.zm = this.$refs.songLi[this.scrollIndex].firstChild.innerText
-                // console.log(this.$refs.songLi[this.scrollIndex].firstChild.innerText);
-                
-
-            });
+        for (let key in obj) {
+          arr.push(obj[key]);
+        }
+        arr.sort((a, b) => {
+          return a.letter.charCodeAt(0) - b.letter.charCodeAt(0);
         });
-      
-        
-    },
-  
-    components: {
-        SingerDetail,
-    },
-    methods: {
-        resetScrollBar(index){
-            this.$refs.scrollBar.map(item => (item.style.color = "#fff"));
-            this.$refs.scrollBar[index].style.color = "red";
-        },
-        toDetaile(id) {
-            console.log(id.id);
-            if (id.copyright) {
-                this.$router.push({
-                    name: "SingerDetail",
-                    params: {
-                        singerId: id.id,
-                    },
-                });
-            } else {
-                Toast("无版权");
-            }
-        },
-    },
-    created() {
-        this.$http.post("singer-list").then(
-            d => {
-                let arr = [];
-                let obj = {};
-                d.data.forEach(item => {
-                    const letter = item.firstLetter;
-                    if (obj[letter] === undefined) {
-                        obj[letter] = {
-                            letter,
-                            items: [],
-                        };
-                    }
-                    obj[letter].items.push(item);
-                });
-                for (let key in obj) {
-                    arr.push(obj[key]);
-                }
-                arr.sort((a, b) => {
-                    return a.letter.charCodeAt(0) - b.letter.charCodeAt(0);
-                });
-                this.singerList = arr;
-                console.log(this.singerList);
-            },
-            e => {
-                console.log(e, "错误");
-            }
-        );
-    },
+        this.singerList = arr;
+        console.log(this.singerList);
+      },
+      (e) => {
+        console.log(e, "错误");
+      }
+    );
+  },
 };
 </script>
 
