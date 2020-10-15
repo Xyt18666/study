@@ -53,13 +53,15 @@ ul
     justify-content: space-between
     align-items: center
     padding: 0 0.2rem
+    margin-bottom: 0.1rem
     li
         height: 0.3rem
-        opacity: 0.6
+
         background-size: 0.2rem 0.2rem
         background-repeat: no-repeat
         padding-left: 0.21rem
         background-position: 0 0.05rem
+
         &.homeImg
         background-image: url(~@/assets/images/icon-home.png)
         &.singerImg
@@ -75,4 +77,7 @@ ul
             line-height: 0.3rem
             font-size: 0.14rem
             color: #fff
+            opacity: 0.6
+            &.router-link-active
+                opacity: 1
 </style>

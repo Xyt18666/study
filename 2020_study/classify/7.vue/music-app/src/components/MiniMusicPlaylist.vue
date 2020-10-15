@@ -8,7 +8,7 @@
         ) 清空
     ul
         li(
-            v-for="(item,index) in $store.state.hitList"
+            v-for="(item,index) in playList"
             :key="item.id"
             @click="setMiniPlaer(item)"
         )
@@ -34,6 +34,7 @@
 
 <script>
 import ConfirmBox from "@/components/common/ConfirmBox.vue";
+import { mapState, mapMutations } from "vuex";
 export default {
     components: {
         ConfirmBox,
@@ -42,8 +43,14 @@ export default {
         return {};
     },
     methods: {
+        ...mapMutations(["clearplayList"]),
         clearItem(id) {
-            this.$store.commit("clearItem", id);
+            this.playList.map((item, index) => {
+                if (item.id == id) {
+                    this.clearplayList(index);
+                }
+            });
+            // this.$store.commit("clearItem", id);
         },
         toggleShow() {
             this.$store.commit("setMusicListShow", !this.$store.state.musicListIsShow);
@@ -58,14 +65,20 @@ export default {
         },
         confirm() {
             this.$store.commit("setClearHotIsShow", false);
-            this.$store.commit("setHitList", null);
+            // this.$store.commit("setHitList", null);
+
+            this.playList.map((item, index) => {
+                this.clearplayList(index);
+            });
             this.toggleShow();
         },
         cancel() {
             this.$store.commit("setClearHotIsShow", false);
         },
     },
-    computed: {},
+    computed: {
+        ...mapState(["playList"]),
+    },
     created() {},
 };
 </script>

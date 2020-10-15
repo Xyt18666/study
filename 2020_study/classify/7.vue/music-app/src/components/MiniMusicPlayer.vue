@@ -1,24 +1,28 @@
 <template lang="pug">
-.mini-music-player
-    .wrap
+.mini-music-player(
+    v-if="playList.length>0"
+)
+    .wrap(
+        @click="togglePlaer"
+    )
         .left
             img(
                 :class="[$store.state.playing?'play':'']"
-                :src="$store.state.miniPlaer.cover"
+                :src="playList[playIndex].cover"
             )
             .msg-box
-                .song-title {{$store.state.miniPlaer.song}}
-                .song-name {{$store.state.miniPlaer.singer}}
+                .song-title {{playList[playIndex].song}}
+                .song-name {{playList[playIndex].singer}}
         .right
             .play-switch(
                 :class="[$store.state.playing?'playbg':'']"
-                @click="setPlaying"
+                @click.stop="setPlaying"
             )
             .music-list(
-                @click="toggleShow"
+                @click.stop="toggleShow"
             )
     audio(
-        :src="$store.state.miniPlaer.url"
+        :src="playList[playIndex].url"
         ref="audios"
     )
     transition(
@@ -36,17 +40,24 @@
 
 <script>
 import MiniMusicPlaylist from "@/components/MiniMusicPlaylist.vue";
+import { mapState, mapMutations } from "vuex";
+
 export default {
     data() {
-        return {};
+        return {
+            audio: null,
+        };
     },
     components: {
         MiniMusicPlaylist,
     },
-    computed: {},
+    computed: {
+        ...mapState(["playList", "playIndex"]),
+    },
     watch: {},
 
     methods: {
+        ...mapMutations(["setPleraIsBlock", "setZsc", "setDaqsc"]),
         toggleShow() {
             this.$store.commit("setMusicListShow", !this.$store.state.musicListIsShow);
         },
@@ -56,6 +67,18 @@ export default {
             const audio = this.$refs.audios;
             this.$store.state.playing ? audio.play() : audio.pause();
         },
+        togglePlaer() {
+            this.setPleraIsBlock(true);
+        },
+    },
+    updated() {
+        this.audio = this.$refs.audios;
+        this.audio.oncanplay = () => {
+            setInterval(() => {
+                this.setZsc(this.audio.duration);
+                this.setDaqsc(this.audio.currentTime);
+            }, 1000);
+        };
     },
 };
 </script>
@@ -83,11 +106,12 @@ export default {
     left: 0
     width: 100vw
     height: 100%
+    z-index: 800
     background: rgba(0,0,0,0.6)
 
 @keyframes bg
     0%
-        background: #fff
+        background: rgba(0,0,0,0)
     100%
         background: rgba(0,0,0,0.6)
 
@@ -99,13 +123,13 @@ export default {
 
 .wrap
     width: 100%
-
+    z-index: 600
     position: fixed;
     display: flex;
     align-items: center;
     justify-content: space-between
     bottom: 0
-    height: 60px;
+    height: 0.61rem;
     background-color: #061842;
     background: linear-gradient(15deg,#061842,#2c50a1);
     box-shadow: 0 0 10px rgba(0,0,0,.4);

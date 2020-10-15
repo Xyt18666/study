@@ -1,10 +1,13 @@
 <template lang="pug">
 .home
     .banner
-        .banner-content {{sliderListMsg}}
+        banner-swiper
+        //- banner-swiper(v-if="sliderListMsg.length>0")
+
+        //- 由于创建时数据未获取完成，所以轮播图渲染有问题
     .hot-song 
         h3 热门单曲推荐
-        ul
+        ul()
             li(
                 v-for="item,index in hitList"
                 :key="item.id"
@@ -13,47 +16,61 @@
                 .img-box
                     img(:src="item.cover")
                 .r-msg
-                    h4 {{item.singer}}
-                    p {{item.song}}
+                    h4 {{item.song}}
+                    p {{item.singer}} - {{item.album}}
                   
 </template>
 
 <script>
 import { mapState, mapMutations } from "vuex";
+import BannerSwiper from "@/components/BannerSwiper.vue";
+
 export default {
     data() {
-        return {};
+        return {
+            audio: null,
+        };
+    },
+    components: {
+        BannerSwiper,
     },
     computed: {
-        ...mapState(["hitList", "sliderListMsg"]),
+        ...mapState(["hitList", "sliderListMsg", "playList"]),
     },
     methods: {
-        ...mapMutations(["setMiniPlaer", "setPlaying"]),
+        ...mapMutations(["setMiniPlaer", "setPlaying", "setplayList"]),
         openMiniMusic(id) {
-            console.log(id);
+            // console.log(id);
             this.hitList.map((item, index) => {
                 if (item.id == id) {
                     this.setMiniPlaer(this.hitList[index]);
+                    this.setplayList(this.hitList[index]);
+
+                    // console.log(this.playList);
                 }
             });
             this.setPlaying(true);
+            this.audio.pause();
+            setTimeout(() => {
+                this.audio.play();
+                console.log(this);
+            }, 200);
         },
+    },
+    updated() {
+        this.audio = document.querySelector("audio");
     },
 };
 </script>
 
 <style lang="sass" scoped>
 .banner
-    padding: 0 0.2rem
+    // padding: 0 0.2rem
     padding-top: 0.1rem
     height: 1.34rem
-    width: 3.35rem
-    overflow: hidden
+    width: 100%
 
-    .banner-content
-        background: #fff
-        border-radius: 0.05rem
-        font-size: 0.12rem
+
 .hot-song
     padding: 0 0.2rem
     h3
@@ -87,6 +104,7 @@ export default {
                     color: #fff
                     height: 0.2rem
                     font-size: 0.14rem
+                    font-weight: normal
                 p
                     height: 0.17rem
                     color: #fff

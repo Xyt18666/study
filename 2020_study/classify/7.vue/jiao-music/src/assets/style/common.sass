@@ -1,0 +1,65 @@
+*
+    box-sizing: border-box
+    margin: 0
+    padding: 0
+    border: none
+    -webkit-overflow-scrolling: touch
+    user-select: none
+
+html, body
+    min-height: 100%
+
+html
+    -webkit-tap-highlight-color: transparent
+
+body
+    background-image: url(../img/bg.png)
+    font-family: 'PingFangTC-light', 'Lantinghei SC', 'PingFang SC', 'Microsoft Yahei', 'Hiragino Sans GB', 'Microsoft Sans Serif', 'WenQuanYi Micro Hei', sans-serif
+    font-weight: 400
+    font-style: normal
+    color: #fff
+
+a
+    text-decoration: none
+
+a, button, input, textarea
+    &:focus
+        outline: none
+
+ol, ul
+    list-style: none
+
+input, button, textarea
+    font: inherit
+
+a, img
+    -webkit-touch-callout: none
+
+h1, h2, h3, h4, h5
+    font-weight: normal
+
+.lm-ellipsis
+    overflow: hidden
+    white-space: nowrap
+    text-overflow: ellipsis
+
+.lm-clear-fix:after
+    content: ''
+    clear: both
+    display: table
+
+.lm-up
+    text-transform: uppercase
+
+.lm-bg-cover
+    background-color: #000
+    background-repeat: no-repeat
+    background-position: center
+    background-size: cover
+
+.lm-fixed-container
+    position: fixed
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0

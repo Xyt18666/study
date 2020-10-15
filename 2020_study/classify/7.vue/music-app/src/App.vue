@@ -8,7 +8,7 @@
     router-view
   aside
     mini-music-content
-    
+    plaer-continer
 
   
 
@@ -17,25 +17,28 @@
 import MiniMusicContent from "@/components/MiniMusicContent.vue";
 import HeaderBox from "@/components/HeaderBox.vue";
 import NavBox from "@/components/NavBox.vue";
+import PlaerContiner from "@/components/PlaerContiner.vue";
 
-import { mapActions } from "vuex";
+import { mapActions, mapMutations } from "vuex";
 
 export default {
     components: {
         MiniMusicContent,
         HeaderBox,
         NavBox,
+        PlaerContiner,
     },
+    computed: {},
     methods: {
-        ...mapActions(["setSliderList"]),
+        ...mapMutations(["setBannerLoading"]),
+        ...mapActions(["setSliderList", "getMiniPlaer"]),
     },
     created() {
-        this.$http.get("/api/hit-single-list").then(d => {
-            // console.log(d.data.data);
-            this.$store.dispatch("setHitList", d.data.data);
-            this.$store.commit("setMiniPlaer", d.data.data[0]);
+        const getDataArr = [this.setSliderList(), this.getMiniPlaer()];
+
+        Promise.all(getDataArr).then(() => {
+            this.setBannerLoading(false);
         });
-        this.setSliderList();
     },
 };
 </script>
@@ -49,4 +52,5 @@ export default {
     height: 100%
     overflow: hidden
     background-image: url("assets/images/bg.png")
+    background-size: cover
 </style>
