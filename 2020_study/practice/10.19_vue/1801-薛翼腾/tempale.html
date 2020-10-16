@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="charset" content="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+        />
+        <script src="./js/vue.min.js"></script>
+        <title>clock</title>
+    </head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+     
+    </style>
+    <body>
+        <div id="app">
+            <jubuzujian></jubuzujian>
+        </div>
+    </body>
+    <script>
+        // Vue.component("", {
+        //     data() {
+        //         return {  
+        //         };
+        //     },
+        //     template:
+        //         '',
+        // });
+
+
+        const JubuZujian = {
+            data() {
+                return {
+                };
+            },
+            methods: {}, 
+            computed: {}, 
+            watch: {}, 
+            template: '<p>ppp</p>',
+        };
+
+        // -------------------------------------------------
+       
+        const vm = new Vue({
+            el: "#app",
+            data: {
+            //    xx:"xx"
+            },
+            methods: {
+               
+            },
+            components: {
+              
+                jubuzujian: JubuZujian,
+            },
+        });
+
+     
+
+
+    </script>
+</html>
