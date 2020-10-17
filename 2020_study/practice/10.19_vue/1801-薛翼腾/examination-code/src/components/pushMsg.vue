@@ -1,16 +1,16 @@
 <template lang="pug">
-.about aa
+.pushMsg
 </template>
 
 <script>
-// import pushMsg from "@/components/pushMsg.vue";
 export default {
   data() {
     return {};
   },
-  components: {},
   methods: {},
 };
 </script>
 
-<style lang="sass"></style>
+<style lang="sass">
+
+</style>
