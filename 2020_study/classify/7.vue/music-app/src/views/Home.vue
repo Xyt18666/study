@@ -1,5 +1,9 @@
 <template lang="pug">
-.home
+.home(
+    @click="ggeett" 
+)
+//- ggeett获取本地数据，需要修改 config 文件
+
     .banner
         banner-swiper
         //- banner-swiper(v-if="sliderListMsg.length>0")
@@ -56,6 +60,19 @@ export default {
                 console.log(this);
             }, 200);
         },
+        // ggeett() {
+        //     console.log(333);
+
+        //     this.$http.post("/").then(
+        //         d => {
+        //             console.log(d);
+        //             console.log(11);
+        //         },
+        //         e => {
+        //             console.log(e);
+        //         }
+        //     );
+        // },
     },
     updated() {
         this.audio = document.querySelector("audio");

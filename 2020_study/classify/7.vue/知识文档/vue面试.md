@@ -581,3 +581,18 @@ publicPath: '', // 相对于 HTML 页面（目录相同）
 
 
 
+# 六十一、vue路由守卫触发顺序
+
+> ## 不同组件之间的路由跳转流程图
+>
+> 1. 导航被触发（A–>B）
+> 2. 调用A组件内路由守卫beforeRouteLeave(to,from,next)
+> 3. 调用全局路由前置守卫router.beforeEach(to,from,next)
+> 4. 调用B路由独享守卫 beforeEnter(to,from.next)
+> 5. 解析异步路由组件B
+> 6. 调用B的组件内路由守卫beforeRouteEnter(to,from,next)
+> 7. 调用全局路由解析守卫 router.beforeResolve(to,from,next)
+> 8. 导航被确认
+> 9. 调用全局路由钩子router.afterEach(to,from)
+> 10. 渲染B组件DOM
+

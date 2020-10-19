@@ -33,6 +33,10 @@ export default {
         ...mapMutations(["setBannerLoading"]),
         ...mapActions(["setSliderList", "getMiniPlaer"]),
     },
+    beforeCreated() {
+      
+
+    },
     created() {
         const getDataArr = [this.setSliderList(), this.getMiniPlaer()];
 

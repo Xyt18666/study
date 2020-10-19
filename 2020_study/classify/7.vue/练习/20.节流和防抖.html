@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>函数节流</title>
-  </head>
-  <body>
-    <h4>函数节流实现</h4>
-    <input type="text" />
-    <div class="show"></div>
-  </body>
-  <script>
-    /*
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>函数节流</title>
+    </head>
+    <body>
+        <h4>函数节流实现</h4>
+        <input type="text" />
+        <div class="show"></div>
+    </body>
+    <script>
+        /*
     
     函数防抖（debounce）：
         事件响应函数在一段时间后才会执行，如果在这段时间内再次调用，则重新计算执行时间；当预定时间内没有再次调用该函数，则执行响应逻辑。
@@ -29,42 +29,47 @@
         resize window 重新计算样式或布局：debounce
         keydown 事件、文本输入、自动完成，keyup 事件：debounce或者throttle 按需引入
         鼠标移动，mousemove 事件、DOM 元素动态定位，window 对象的 resize 和 scroll 事件：throttle
+
+
+    防抖：就是 多少时间内 连续执行一个操作 ，只有最会一次被触发 。（每次触发都清除定时器，重新开启，此时就形成了简单的防抖）
+    节流：每隔 多少时间 执行 一次 ，就是 节流。
+
     */
-    var input = document.getElementsByTagName("input")[0];
-    // 获取input
+        var input = document.getElementsByTagName("input")[0];
+        // 获取input
 
-    input.addEventListener("keyup", function () {
-      // 绑定 按键 抬起事件
+        input.addEventListener("keyup", function () {
+            // 绑定 按键 抬起事件
 
-      throttle(doSearch, window, this.value, 500, 2000);
-      // 调用函数(creat p标签函数 ,  方法所属对象, 搜索文本 ,自动执行时间, 最大延迟执行时间  )
-      // 以下实现用户停止输入2秒后发搜索请求，期间每隔500ms发一次搜索请求。
-    });
-    function doSearch(searchText) {
-      // 创建p标签，输出到 html
-      var p = document.createElement("p");
-      p.innerText = "当前搜索内容： " + searchText;
-      document.getElementsByClassName("show")[0].appendChild(p);
-    }
-    // (调用方法, 方法所属对象, 搜索文本 ,自动执行时间, 最大延迟执行时间 ))
-    function throttle(fn, context, searchText, autoDoTime, delay) {
-      clearTimeout(fn.timer);
-      // 记录当前时间
-      fn.currentTime = Date.now();
-      // 若该函数是第一次调用，则直接设置startTime,即开始时间，为currentTime，即此刻的时间
-      if (!fn.startTime) {
-        fn.startTime = fn.currentTime;
-      }
-      // 大于等于自动执行时间，调用方法
-      if (fn.currentTime - fn.startTime >= autoDoTime) {
-        fn.call(context, searchText);
-        fn.startTime = fn.currentTime;
-      } else {
-        // 大于最大延迟时间，调用方法
-        fn.timer = setTimeout(function () {
-          fn.call(context, searchText);
-        }, delay);
-      }
-    }
-  </script>
+            throttle(doSearch, window, this.value, 500, 2000);
+            // 调用函数(creat p标签函数 ,  方法所属对象, 搜索文本 ,自动执行时间, 最大延迟执行时间  )
+            // 以下实现用户停止输入2秒后发搜索请求，期间每隔500ms发一次搜索请求。
+        });
+        function doSearch(searchText) {
+            // 创建p标签，输出到 html
+            var p = document.createElement("p");
+            p.innerText = "当前搜索内容： " + searchText;
+            document.getElementsByClassName("show")[0].appendChild(p);
+        }
+        // (调用方法, 方法所属对象, 搜索文本 ,自动执行时间, 最大延迟执行时间 ))
+        function throttle(fn, context, searchText, autoDoTime, delay) {
+            clearTimeout(fn.timer);
+            // 记录当前时间
+            fn.currentTime = Date.now();
+            // 若该函数是第一次调用，则直接设置startTime,即开始时间，为currentTime，即此刻的时间
+            if (!fn.startTime) {
+                fn.startTime = fn.currentTime;
+            }
+            // 大于等于自动执行时间，调用方法
+            if (fn.currentTime - fn.startTime >= autoDoTime) {
+                fn.call(context, searchText);
+                fn.startTime = fn.currentTime;
+            } else {
+                // 大于最大延迟时间，调用方法
+                fn.timer = setTimeout(function () {
+                    fn.call(context, searchText);
+                }, delay);
+            }
+        }
+    </script>
 </html>
