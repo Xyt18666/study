@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    /*
+
+
+
+    */
+    {
+      //1.判断两个字符串是否：字母相同且长度相同（空格不算）。
+      function bol(str1, str2) {
+        if (
+          str1.replace(/\s/gi, "").length != str2.replace(/\s/gi, "").length
+        ) {
+          return false;
+        }
+        for (let i = 0; i < str1.length; i++) {
+          if (str2[i] !== str1[i]) {
+            return false;
+          }
+        }
+        return true;
+      }
+    }
+
+    {
+      //2.鸡兔同笼：鸡和兔子一共35只，笼子里一共有94只脚，用程序计算出鸡和兔子分别多少只。
+      for (let i = 0; i < 35; i++) {
+        for (let j = 0; j < 35; j++) {
+          if (i * 2 + j * 4 == 94 && i + j == 35) {
+            console.log("鸡有" + i + "只");
+            console.log("兔子有" + j + "只");
+          }
+        }
+      }
+    }
+
+    {
+      /*
+    3、写一个方法实现，把以下两个数组，以id为条件合并成一个数组。（es6方法， 原生js方法两种方法实现）
+    var  arr1 = [{ id: 1, age: '11' }, { id: 2, age: '22' }, { id: 3, age: '33' }]
+    var  arr2 = [{ id: 3, name: 'CC' }, { id: 1, name: 'AA' }, { id: 2, name: 'BB' }]
+    代码合并结果为：
+    [
+      { id: 1, age: '11', name: 'AA' },
+      { id: 2, age: '22', name: 'BB' },
+      { id: 3, age: '33', name: 'CC' }
+    ]
+            */
+      var arr1 = [
+        { id: 1, age: "11" },
+        { id: 2, age: "22" },
+        { id: 3, age: "33" },
+      ];
+      var arr2 = [
+        { id: 3, name: "CC" },
+        { id: 1, name: "AA" },
+        { id: 2, name: "BB" },
+      ];
+
+      //   let newData = [];
+      //   arr1.map((item, index) => {
+      //     arr2.map((item2, index2) => {
+      //       if (item.id == item2.id) {
+      //         newData.push(Object.assign(item, item2));
+      //       }
+      //     });
+      //   });
+      //   ---------------------------------
+
+      //   function bbb(arr1, arr2) {
+      //     let arr = arr1.concat(arr2);
+      //     let arr3 = [];
+      //     for (let i = 0; i < arr.length; i++) {
+      //       for (let j = i + 1; j < arr.length; j++) {
+      //         if (arr[i].id == arr[j].id) {
+      //           let a = Object.assign(arr[i], arr[j]);
+      //           arr3.push(a);
+      //         }
+      //       }
+      //     }
+      //     return arr3;
+      //   }
+      //   console.log(bbb(arr1, arr2));
+    }
+
+    {
+      // 7、什么是BFC规范？并如何触发
+      // https://www.jianshu.com/p/271eead0ed54
+      // 根元素或其它包含它的元素
+      // 浮动元素 (元素的 float 不是 none)
+      // 绝对定位元素 (元素具有 position 为 absolute 或 fixed)
+      // 内联块 (元素具有 display: inline-block)
+      // 表格单元格 (元素具有 display: table-cell，HTML表格单元格默认属性)
+      // 表格标题 (元素具有 display: table-caption, HTML表格标题默认属性)
+      // 具有overflow 且值不是 visible 的块元素，
+      // display: flow-root!!无副作用!!
+      // column-span: all 应当总是会创建一个新的格式化上下文，即便具有 column-span: all 的元素并不被包裹在一个多列容器中。
+      // BFC 有哪些作用：
+      // 自适应两栏布局
+      // 可以阻止元素被浮动元素覆盖
+      // 可以包含浮动元素——清除内部浮动
+      // 分属于不同的 BFC 时可以阻止 margin 重叠
+    }
+
+    {
+      // https为什么比http协议安全？
+      //     1、https协议需要到ca申请证书，一般免费证书较少，因而需要一定费用。
+      // 　　2、http是超文本传输协议，信息是明文传输，https则是具有安全性的ssl加密传输协议。
+      // 　　3、http和https使用的是完全不同的连接方式，用的端口也不一样，前者是80，后者是443。
+      // 　　4、http的连接很简单，是无状态的；HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议，比http协议安全。
+    }
+
+    {
+      // 兼容 ie8 背景透明度
+      // filter:Alpha(opacity=60);
+    }
+
+    {
+      /*
+      8、写一个函数，输入一个数组a,找到里面是否存在三个不同的元素，使得a[i] + a[j] ==a[k]。如果能找到输出true,找不到输出false。
+    举例：
+    输入var a1 = [1,5,10,25,9,17,100];输出false
+    输入var a2 = [2,99,3,5];可以找到2+3=5，因此输出true
+    输入var a3 = [1,50,0,5];输出false
+      */
+
+      function isTrue(arr) {
+        for (let i = 0; i < arr.length; i++) {
+          for (let j = i + 1; j < arr.length; j++) {
+            for (let k = 0; k < arr.length; k++) {
+              // console.log(arr[i], arr[j], arr[k]);
+              if (
+                arr[i] + arr[j] == arr[k] &&
+                arr[i] !== arr[k] &&
+                arr[j] !== arr[k]
+              ) {
+                return true;
+              }
+            }
+          }
+        }
+        return false;
+      }
+      var a1 = [1, 5, 10, 25, 9, 17, 100];
+      var a2 = [2, 99, 3, 5];
+      var a3 = [1, 50, 0, 5];
+
+      console.log(isTrue(a3));
+    }
+
+    {
+      //非考试，但是需要复习
+      let arr = [1, 5, 9, 7, 4, 3];
+      // 冒泡
+      // for (let i = 0; i < arr.length - 1; i++) {
+      //   for (let j = 0; j < arr.length - 1 - i; j++) {
+      //     // 相邻元素两两对比，元素交换，大的元素交换到后面
+      //     console.log(arr[j], arr[j + 1]);
+      //     // if (arr[j] > arr[j + 1]) {
+      //     //   [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+      //     // }
+      //   }
+      // }
+
+      // 选择
+      // for (let a = 0; a < arr.length; a++) {
+      //   for (let q = a + 1; q < arr.length; q++) {
+      //     console.log(a, q);
+      //     // if (arr[a] > arr[q]) {
+      //     //   [arr[a], arr[q]] = [arr[q], arr[a]];
+      //     // }
+      //   }
+      // }
+    }
+  </script>
+</html>
