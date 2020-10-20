@@ -64,27 +64,30 @@
 
             // let newData = [];
             // arr1.map((item, index) => {
-            //   arr2.map((item2, index2) => {
-            //     if (item.id == item2.id) {
-            //       newData.push(Object.assign(item, item2));
-            //     }
-            //   });
+            //     arr2.map((item2, index2) => {
+            //         console.log(index, index2);
+            //         if (item.id == item2.id) {
+            //             newData.push(Object.assign(item, item2));
+            //         }
+            //     });
             // });
 
             //   ---------------------------------
 
             // function bbb(arr1, arr2) {
-            //   let arr = arr1.concat(arr2);
-            //   let arr3 = [];
-            //   for (let i = 0; i < arr.length; i++) {
-            //     for (let j = i + 1; j < arr.length; j++) {
-            //       if (arr[i].id == arr[j].id) {
-            //         let a = Object.assign(arr[i], arr[j]);
-            //         arr3.push(a);
-            //       }
+            //     let arr = arr1.concat(arr2);
+            //     let arr3 = [];
+            //     for (let i = 0; i < arr.length; i++) {
+            //         for (let j = i + 1; j < arr.length; j++) {
+            //             console.log(i, j);
+
+            //             if (arr[i].id == arr[j].id) {
+            //                 let a = Object.assign(arr[i], arr[j]);
+            //                 arr3.push(a);
+            //             }
+            //         }
             //     }
-            //   }
-            //   return arr3;
+            //     return arr3;
             // }
             // console.log(bbb(arr1, arr2));
         }
@@ -129,29 +132,46 @@
     输入var a2 = [2,99,3,5];可以找到2+3=5，因此输出true
     输入var a3 = [1,50,0,5];输出false
       */
-
-            function isTrue(arr) {
-                for (let i = 0; i < arr.length; i++) {
-                    for (let j = i + 1; j < arr.length; j++) {
-                        for (let k = 0; k < arr.length; k++) {
-                            // console.log(arr[i], arr[j], arr[k]);
-                            if (
-                                arr[i] + arr[j] == arr[k] &&
-                                arr[i] !== arr[k] &&
-                                arr[j] !== arr[k]
-                            ) {
-                                return true;
-                            }
-                        }
-                    }
-                }
-                return false;
-            }
-            var a1 = [1, 5, 10, 25, 9, 17, 100];
-            var a2 = [2, 99, 3, 5];
-            var a3 = [1, 50, 0, 5];
-
-            console.log(isTrue(a3));
+            // function isTrue(arr) {
+            //     for (let i = 0; i < arr.length; i++) {
+            //         for (let j = i + 1; j < arr.length; j++) {
+            //             for (let k = 0; k < arr.length; k++) {
+            //                 // console.log(arr[i], arr[j], arr[k]);
+            //                 if (
+            //                     arr[i] + arr[j] == arr[k] &&
+            //                     arr[i] !== arr[k] &&
+            //                     arr[j] !== arr[k]
+            //                 ) {
+            //                     return true;
+            //                 }
+            //             }
+            //         }
+            //     }
+            //     return false;
+            // }
+            // var a1 = [1, 5, 10, 25, 9, 17, 100];
+            // var a2 = [2, 99, 3, 5];
+            // var a3 = [1, 50, 0, 5];
+            // console.log(isTrue(a3));
+        }
+        {
+            // const test = arr => {
+            //     if (arr.length < 3) return false;
+            //     arr.sort((a, b) => a - b);
+            //     for (let i = 0; i <= arr.length - 3; i++) {
+            //         const a1 = arr[i];
+            //         const a2 = arr[i + 1];
+            //         for (let j = i + 2; j <= arr.length - 1; j++) {
+            //             const a3 = arr[j];
+            //             if (a1 + a2 === a3) return true;
+            //         }
+            //     }
+            //     return false;
+            // };
+            // var a1 = [1, 5, 10, 25, 9, 17, 100];
+            // var a2 = [2, 99, 3, 5];
+            // var a3 = [1, 50, 0, 5];
+            // console.log(test(a3));
         }
 
         {
