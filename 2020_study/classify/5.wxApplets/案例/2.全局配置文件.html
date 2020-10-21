@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+        {
+        "pages":[      里面包含是页面 ，不要加后缀
+            "pages/index/index",    
+            "pages/logs/logs"
+        ],
+        "window":{  全局默认窗口 表现
+            "backgroundTextStyle":"dark",  下拉刷新的 样式 dark/light
+            "navigationBarBackgroundColor": "#fff",  导航栏背景色彩
+            "navigationBarTitleText": "Weixin",  导航栏 文字
+            "navigationBarTextStyle":"black",  导航栏文字颜色 (只能是 黑色或者 白色 英文)
+            "enablePullDownRefresh":true ,  是否开启全局 下拉刷新
+            "backgroundColor":"#777"    下拉刷新框的 背景色
+        },
+        "tabBar": { 底部导航栏
+            "list": [
+            {
+            "pagePath": "pagePath",  导航路径
+            "text": "test",   导航的文字
+            "iconPath": "iconPath",  未选中图标样式
+            "selectedIconPath": "selectedIconPath"  选中图标样式
+            }
+            ],
+            "color": "#0094ff",   导航文字样式
+            "selectedColor": "#00f"  选用文字样式
+            "backgroundColor": "#ff5500", 导航背景色
+            "borderStyle": "black",  导航上边线色，只能是 黑白
+            "position": "top"  导航栏定位 
+        },
+        "style": "v2",
+        "sitemapLocation": "sitemap.json"
+        }
+
+    ps：建议 在 微信开发工具中写配置，因为有提示
+
+    快速创建一个页面：
+        复制pages数组 内的任意一个 字段 ，粘贴一份修改路径名字即可(要在小程序开发工具中保存才会创建)
+    
+    设置首页： 
+        pages数组内的 第一个 默认是首页
+
+    设置底部导航：
+        tabBar
+        list中 一定要有 index 主页
+
+
+     -->
+    </body>
+</html>
