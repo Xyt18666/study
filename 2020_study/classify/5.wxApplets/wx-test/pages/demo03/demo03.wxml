@@ -1,0 +1,11 @@
+<swiper indicator-active-color="#0f0" indicator-color="red" circular="true" indicator-dots="{{true}}" autoplay="{{true}}" interval="{{2000}}" duration="{{200}}">
+    <swiper-item>
+        <image mode="widthFix" class="swiper-image" src="https://t8.baidu.com/it/u=3571592872,3353494284&fm=79&app=86&size=h300&n=0&g=4n&f=jpeg?sec=1603882554&t=f40e743286e02650cfba4cb4d53629e8" />
+    </swiper-item>
+    <swiper-item>
+        <image mode="widthFix" class="swiper-image" src="https://t8.baidu.com/it/u=1484500186,1503043093&fm=79&app=86&size=h300&n=0&g=4n&f=jpeg?sec=1603882554&t=a55a8ce7a6a502ea8dad9f71fa4eb0d3" />
+    </swiper-item>
+    <swiper-item>
+        <image mode="widthFix" class="swiper-image" src="https://t8.baidu.com/it/u=2247852322,986532796&fm=79&app=86&size=h300&n=0&g=4n&f=jpeg?sec=1603882554&t=9a2ad9ca470c29f07329e5d3c286e41e" />
+    </swiper-item>
+</swiper>

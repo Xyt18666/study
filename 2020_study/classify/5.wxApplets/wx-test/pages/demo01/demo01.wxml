@@ -1,2 +1,16 @@
-<!--pages/demo01/demo01.wxml-->
-<text>pages/demo01/demo01.wxml</text>
+<!-- pages/demo01/demo01.wxml -->
+<view hover-class="none" bindtap="tap">rpx1</view>
+<view hover-class="none" bindtap="tap">rpx2</view>
+<view hover-class="active" hover-start-time="2000" hover-stay-time="500" bindtap="tap">rpx3</view>
+<view hover-class="none" bindtap="tap">rpx4</view>
+<text space="ensp" decode="true" user-select="true">
+    ok
+    
+    &lt;
+    
+    &nbsp;
+    
+    
+    &gt;
+    7 7
+</text>

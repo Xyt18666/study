@@ -1,0 +1,3 @@
+<navigator url="../demo03/demo03">QAQ To 轮播图</navigator>
+<navigator open-open-type="redirect" url="../demo03/demo03">QAQ To 轮播图 ,无返回</navigator>
+<rich-text nodes="{{html2}}"></rich-text>
