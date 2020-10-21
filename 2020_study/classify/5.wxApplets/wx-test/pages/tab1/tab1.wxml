@@ -1,2 +1,12 @@
-<!--pages/tab1/tab1.wxml-->
-<text>pages/tab1/tab1.wxml</text>
+<view>
+    <text>{{data1}}</text>
+    <view data-num="{{num}}">为标签绑定属性</view>
+    <checkbox class="che" value="22" checked="{{isTrue}}" color="red"></checkbox>
+    <text>{{ 1 + 2 > 5 ? "yes" : "no"}}</text>
+</view>
+<view>
+    <view wx:for="{{list}}" wx:for-item="item" wx:for-index="index" wx:key="*this">
+        {{item}}
+        {{index}}
+    </view>
+</view>
