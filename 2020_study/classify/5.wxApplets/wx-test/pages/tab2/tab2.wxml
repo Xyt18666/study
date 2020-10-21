@@ -1,0 +1,6 @@
+<view>
+    <input type="text" bindinput="inputFn" />
+    <text>{{num}}</text>
+    <view bindtap="handletTap" data-num="{{1}}">++</view>
+    <view bindtap="handletTap" data-num="{{-1}}">--</view>
+</view>

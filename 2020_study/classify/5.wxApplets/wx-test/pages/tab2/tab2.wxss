@@ -1,0 +1,4 @@
+/* pages/tab2/tab2.wxss */
+input {
+    background: #0f0;
+}

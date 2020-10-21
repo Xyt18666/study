@@ -15,16 +15,33 @@ export default {
 <style lang="sass" scoped>
 
 .box-enter-active
-    animation: boxInter 1s
+    // animation: boxInter 1s
+    animation: boxRTL 1s
+
 
 .box-leave-active
-    animation: boxInter 1s reverse
+    // animation: boxInter 1s reverse
+    animation: boxLTR 1s
+
 
 @keyframes boxInter
     0%
         top: -100%
     100%
         top: 0
+
+@keyframes boxRTL
+    0%
+        left: -100%
+    100%
+        left: 0
+
+@keyframes boxLTR
+    0%
+        left: 0
+    100%
+        left: 100%
+
 
 .content
     width: 100%

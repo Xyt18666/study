@@ -1,18 +1,22 @@
-// pages/tab1/tab1.js
+// pages/tab2/tab2.js
 Page({
     /**
      * 页面的初始数据
      */
     data: {
-        data1: "789",
-        num: 666,
-        isTrue: false,
-        isShow: false,
-        list: ["q", "w", "e"],
-        obj: {
-            name: "qwe",
-            age: 18,
-        },
+        num: 0,
+        key: 11,
+    },
+    inputFn(e) {
+        console.log(e.detail.value);
+        this.setData({
+            num: e.detail.value,
+        });
+    },
+    handletTap(e) {
+        this.setData({
+            num: parseInt(this.data.num) + e.currentTarget.dataset.num,
+        });
     },
 
     /**

@@ -10,3 +10,14 @@
         {{index}}
     </view>
 </view>
+<view>
+    <block wx:for="{{obj}}" wx:for-item="value" wx:for-index="key" wx:key="age">
+        {{key}} :   {{value}}
+    </block>
+</view>
+<view wx:if="{{isShow}}">是否被渲染111</view>
+<view wx:elif="{{isShow}}">是否被渲染222</view>
+<view wx:else>是否被渲染3333</view>
+<text>是否被渲染{{isShow}}</text>
+<view hidden>hidden</view>
+<view hidden="{{false}}">hidden</view>
