@@ -6,7 +6,7 @@
             </view>
         </view>
     </view>
-    <view class="content">内容
-
-        {{dataA}}</view>
+    <view class="content">
+        <slot></slot>
+    </view>
 </view>

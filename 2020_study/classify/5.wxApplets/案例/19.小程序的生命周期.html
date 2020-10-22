@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+    !!!! 实例在demo06 .js  和 app.json !!!!
+
+    应用生命周期： app.js 中
+        onLaunch                第一次启动就会触发, 常用于获取用户信息
+        onShow                  应用被用户看到触发 , 常用于对页面数据的重置
+        onHide                  应用被隐藏 触发 ， 常用于 暂停定时器
+        onError                 当应用错误 触发 ,常用于 代码报错时，收集错误 信息，通过异步请求，将错误信息发送到后台
+        onPageNotFound          应用第一次启动时，如果找不到第一个入口文件，就会触发 ，常用于如果页面不存，就跳转到其他页面
+        
+    
+    页面生命周期：在页面文件内的 .js中
+        data:{}             页面初始数据
+        onLoad              监听页面加载,常用于 加载异步请求
+        onShow              页面显示
+        onReady             页面渲染完毕
+        onHide              页面隐藏，页面跳转时，有返回键时
+        onUnload            页面卸载触发 ，页面跳转时，并且不可返回，才会触发
+        onPullDownRefresh   页面下拉刷新时触发
+        onReachBottom       页面上拉触底时触发
+        onShareAppMessage   用户点击右上角分享时触发
+        onPageScroll        页面滚动触发
+        onResize            页面尺寸改变时触发，横屏竖屏切换
+        onTabItemTap        当前在tabbar时，点击自己的tabbar时才触发
+
+        
+    开启页面横屏竖屏配置：
+        全局在 app.json 中配置
+        单页面在 当前页面的 json中配置
+            "pageOrientation":"auto"
+
+    
+    
+
+
+     -->
+    </body>
+</html>

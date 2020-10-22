@@ -1,5 +1,7 @@
 {
   "usingComponents": {
     "Tabs":"../../components/Tabs/Tabs"
-  }
+  },
+  "pageOrientation":"auto"
+
 }

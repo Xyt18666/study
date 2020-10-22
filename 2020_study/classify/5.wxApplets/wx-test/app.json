@@ -20,6 +20,7 @@
     "enablePullDownRefresh":true,
     "backgroundColor":"#777"
   },
+  
   "tabBar": {
     "list": [ 
     {

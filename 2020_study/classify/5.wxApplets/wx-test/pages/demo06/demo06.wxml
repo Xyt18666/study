@@ -1,1 +1,5 @@
-<Tabs dataA="a123a" tabs="{{tabs}}" bindsetActive="setActive"></Tabs>
+<Tabs dataA="a123a" tabs="{{tabs}}" bindsetActive="setActive">
+    <block wx:if="{{tabs[0].isActive}}">111</block>
+    <block wx:elif="{{tabs[1].isActive}}">22</block>
+    <block wx:elif="{{tabs[2].isActive}}">333</block>
+</Tabs>

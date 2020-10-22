@@ -53,4 +53,6 @@ Component({
             // this.setData({ tabs });
         },
     },
+    observers:{},
+    
 });
