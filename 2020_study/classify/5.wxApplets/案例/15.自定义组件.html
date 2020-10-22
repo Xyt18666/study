@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+            !!!! 案例在demo06 !!!!!
+
+    定义组件文件夹：
+           components文件夹 与 pages同级 
+           新建组价文件夹   内部文件与 页面文件夹 相同
+           ps： 使用 开发者工具 可以快速创建组件 文件夹
+
+    使用组件：
+            页面文件夹中 xx.json 中 引入组件
+                "usingComponents": {
+                    "组件名":"../../components/Tabs/Tabs"  路径
+                }
+            
+            在页面中 以标签的形式 引入组件
+
+    点击切换样式：
+            通过绑定点击事件 传参获取 下标
+            通过下标 修改 实例 对象内 的 属性
+
+            不推荐直接 修改 实例属性对象
+            最严谨的写法是 : JSON.parse(JSON.stringify(this.data.xx))
+
+
+        
+-->
+    </body>
+</html>

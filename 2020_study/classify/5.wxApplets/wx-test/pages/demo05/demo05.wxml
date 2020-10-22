@@ -1,0 +1,25 @@
+<button>button</button>
+<button size="mini">button</button>
+<button type="primary">button</button>
+<button type="plain">button</button>
+<button type="primary" loading>button</button>
+<!-- ----------------------------------------- -->
+<button open-type="contact">contact</button>
+<button open-type="share">share</button>
+<button open-type="getUserInfo" bindgetuserinfo="getInfo">getUserInfo</button>
+<button open-type="launchApp">launchApp</button>
+<button open-type="openSetting">openSetting</button>
+<button open-type="feedback">feedback</button>
+<button open-type="getPhoneNumber" bindgetphonenumber="getNumber">getPhoneNumber</button>
+<!-- --------------------------------------------- -->
+<icon type="success" size="60" color="#000"></icon>
+<!-- ---------------------------------------------- -->
+<radio-group bindchange="change">
+    <radio value="nan">男</radio>
+    <radio value="nv">女</radio>
+    <radio value="??">??</radio>
+</radio-group>
+<checkbox-group bindchange="checkebox">
+    <checkbox value="苹果">苹果</checkbox>
+    <checkbox value="香蕉">香蕉</checkbox>
+</checkbox-group>

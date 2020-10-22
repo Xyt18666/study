@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>localStorage</title>
+    </head>
+    <body>
+        <div id="app">
+            <h2>商品列表</h2>
+            <ul>
+                <li v-for="(item, index) in list" :key="index" @click="add(item)">
+                    {{ item.name }} / {{ item.price + '元' }} +
+                </li>
+            </ul>
+
+            <div class="box">
+                <h2>购物车里有{{ number }} 件商品，总共{{ price }}元</h2>
+            </div>
+        </div>
+        <script src="js/vue.min.js"></script>
+        <script>
+            const KEY = "gou_wu_che";
+            const set = val => {
+                window.localStorage.setItem(KEY, JSON.stringify(val));
+            };
+            function get() {
+                return JSON.parse(window.localStorage.getItem(KEY) || "[]");
+            }
+
+            new Vue({
+                el: "#app",
+                data: {
+                    list: [
+                        {
+                            name: "火腿肠",
+                            price: 2,
+                        },
+                        {
+                            name: "可乐",
+                            price: 2.5,
+                        },
+                        {
+                            name: "手抓饼",
+                            price: 5,
+                        },
+                        {
+                            name: "iPhone 12 Pro Max",
+                            price: 10000,
+                        },
+                    ],
+                    list2: get(),
+                },
+                computed: {
+                    price() {
+                        let m = 0;
+                        this.list2.forEach(i => {
+                            m += i.price;
+                        });
+                        return m;
+                    },
+                    number() {
+                        return 0;
+                    },
+                },
+                methods: {
+                    add(item) {
+                        this.list2.unshift({
+                            name: item.name,
+                            price: item.price,
+                            number: 1,
+                        });
+                        set(this.list2);
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>
