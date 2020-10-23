@@ -1,0 +1,9 @@
+<view class="singer" wx:for="{{list}}" wx:for-item="item" wx:for-index="index" wx:key="letter">
+    <view class="letter">{{item.letter}}</view>
+    <view class="singers" wx:for="{{item.items}}" wx:for-item="item2" wx:for-index="index2" wx:key="id">
+        <view class="singItem">
+            <image class="imgs" src="{{item2.avatar}}" mode="widthFix" />
+            <view>{{item2.name}}</view>
+        </view>
+    </view>
+</view>

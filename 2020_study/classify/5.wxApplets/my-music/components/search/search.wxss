@@ -1,0 +1,14 @@
+.search {
+    margin-top: 70rpx;
+}
+.pt {
+    display: block;
+    margin: 0 auto;
+    border: 2rpx solid #777;
+    height: 20rpx;
+    border-radius: 20rpx;
+}
+li {
+    display: flex;
+    justify-content: space-between;
+}

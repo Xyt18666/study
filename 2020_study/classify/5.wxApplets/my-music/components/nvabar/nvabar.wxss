@@ -1,0 +1,27 @@
+.nvabar {
+    width: 100vw;
+}
+.tabs {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    background: #fff;
+}
+.tabs-title {
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2rpx solid rgb(235, 234, 234);
+}
+.tabs-item {
+    margin: 0 auto;
+    width: fit-content;
+    text-align: center;
+    padding: 10rpx 0;
+    border-bottom: 4rpx solid transparent;
+}
+.active {
+    border-bottom: 4rpx solid red;
+}

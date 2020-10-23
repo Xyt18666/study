@@ -1,0 +1,9 @@
+<view class="recom">
+    <view class="left">
+        <image class="img" src="{{dataMmusicItem.cover}}" mode="widthFix" />
+    </view>
+    <wiew class="rig">
+        <view>{{dataMmusicItem.song}}</view>
+        <view>{{dataMmusicItem.singer}}--{{dataMmusicItem.duration}}</view>
+    </wiew>
+</view>

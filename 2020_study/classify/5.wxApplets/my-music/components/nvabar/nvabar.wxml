@@ -1,0 +1,12 @@
+<view class="nvabar">
+    <view class="tabs">
+        <view class="tabs-title">
+            <view wx:for="{{tabs}}" wx:key="id" class="tabs-item {{item.isActive?'active':''}}" bindtap="itemTap" data-index="{{index}}">
+                {{item.name}}
+            </view>
+        </view>
+    </view>
+    <view>
+        <slot></slot>
+    </view>
+</view>

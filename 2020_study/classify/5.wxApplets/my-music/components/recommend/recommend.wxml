@@ -1,0 +1,8 @@
+<!-- components/recommend/recommend.wxml -->
+<banner></banner>
+<view>
+    <view>推荐歌单</view>
+    <block wx:for="{{singerList}}" wx:key="id">
+        <recomMucic dataMmusicItem="{{item}}" bindtap="toMusic" data-item="{{item}}"></recomMucic>
+    </block>
+</view>

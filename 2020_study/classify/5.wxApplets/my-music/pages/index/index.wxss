@@ -1,0 +1,15 @@
+.miniPlaer {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    z-index: 88;
+    background: #894;
+    height: 150rpx;
+}
+.miniPlaer image {
+    width: 150rpx;
+}
+.miniPlaer view {
+    display: flex;
+    justify-content: space-between;
+}

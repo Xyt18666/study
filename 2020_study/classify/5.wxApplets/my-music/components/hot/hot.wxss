@@ -1,0 +1,9 @@
+.singer{
+     margin-top: 70rpx;
+}
+.singItem {
+    display: flex;
+}
+.imgs {
+    width: 100rpx;
+}

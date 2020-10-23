@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "nvabar":"../../components/nvabar/nvabar",
+    "recommend":"../../components/recommend/recommend",
+    "hot":"../../components/hot/hot",
+    "search":"../../components/search/search"
+  }
+
+}

@@ -1,0 +1,8 @@
+.banner {
+    width: 100%;
+    height: calc(100vw * 150 / 375);
+    margin-top: 70rpx;
+}
+.swiper-image {
+    width: 100%;
+}

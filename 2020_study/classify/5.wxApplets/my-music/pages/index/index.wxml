@@ -1,0 +1,21 @@
+<!-- index.wxml -->
+<view class="container">
+    <nvabar tabs="{{tabs}}" bindsetActive="setActive">
+        <block wx:if="{{tabs[0].isActive}}">
+            <recommend bindsetPlaying="setPlaying"></recommend>
+        </block>
+        <block wx:elif="{{tabs[1].isActive}}">
+            <hot></hot>
+        </block>
+        <block wx:elif="{{tabs[2].isActive}}">
+            <search></search>
+        </block>
+    </nvabar>
+    <view class="miniPlaer">
+        <view>
+            <image src="{{playing.cover}}" mode="widthFix" />
+            <view>{{playing.song}}--{{playing.singer}}</view>
+            <view bindtap="isPlay" data-play="{{!play}}">开关</view>
+        </view>
+    </view>
+</view>

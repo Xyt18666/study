@@ -10,6 +10,7 @@
 
     搭建新的项目：
         1. 创建新的小程序，填写自己的 appid
+
         2. 搭建项目解构目录
             styles      css
             components  组件
@@ -17,6 +18,19 @@
             utils       自己的库
             request     自己的接口请求帮助库
             
+        3. 正常书写 项目
+
+        4. 模拟调用接口 
+            详情 -> 本地设置 -> 不校验合法域名 勾选
+        
+        5. 播放器使用全新的 接口
+            wx.createInnerAudioContext()    播放器
+
+            wx.getBackgroundAudioManager()   背景播放器
+                必须设置 ：backgroundAudioManager.title
+                可实现背景音乐：app.json中 设置 "requiredBackgroundModes": ["audio"]
+
+
 
 
 
