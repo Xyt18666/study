@@ -1,0 +1,3 @@
+<view class="songContent">
+    <view wx:for="{{songList}}" wx:key="id">{{item.song}}</view>
+</view>

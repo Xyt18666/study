@@ -1,74 +1,72 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="charset" content="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <script src="http://jxsjs.com/lib/vue.min.js"></script>
-    <title>[]{}</title>
+    <head>
+        <meta name="charset" content="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <script src="http://jxsjs.com/lib/vue.min.js"></script>
+        <title>[]{}</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            .red {
+                color: red;
+            }
+            .bg {
+                font-size: 50px;
+            }
+        </style>
+    </head>
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-      }
-      .red {
-        color: red;
-      }
-      .bg {
-        font-size: 50px;
-      }
+        * {
+            margin: 0;
+            padding: 0;
+        }
     </style>
-  </head>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-    }
-  </style>
-  <body>
-    <div id="app">
-      <div
-        :class="{
+    <body>
+        <div id="app">
+            <div
+                :class="{
           'red':!error,
           'bg':true
       }"
-      >
-        行内，对象形式绑定 class ,并使用变量
-      </div>
-      <div :class="classObj">对象形式绑定 class</div>
+            >
+                行内，对象形式绑定 class ,并使用变量
+            </div>
+            <div :class="classObj">对象形式绑定 class</div>
 
-      <div :class="['red',bg?'bg':'']">
-        行内数组形式绑定 class ，并使用表达式
-      </div>
-      <div :class="classArr">数组形式绑定 class</div>
+            <div :class="['red',bg?'bg':'']">行内数组形式绑定 class ，并使用表达式</div>
+            <div :class="classArr">数组形式绑定 class</div>
 
-      <!-- -------------------------------------- -->
+            <!-- -------------------------------------- -->
 
-      <div :style="{ color: '#0f0', fontSize:  '26px' }">行内对象 css</div>
-      <div :style="cssobj">对象 css</div>
-      <div :style="[cssobj, cssobj2]">行内数组css，将多个样式放到同一元素</div>
-    </div>
-  </body>
-  <script>
-    const vm = new Vue({
-      el: "#app",
-      data: {
-        error: false,
-        bg: false,
-        classObj: {
-          red: false,
-          bg: false,
-        },
-        classArr: ["bg"],
-        cssobj: {
-          background: "pink",
-        },
-        cssobj2: {
-          color: "#0f0",
-        },
-      },
-    });
+            <div :style="{ color: '#0f0', fontSize:  '26px' }">行内对象 css</div>
+            <div :style="cssobj">对象 css</div>
+            <div :style="[cssobj, cssobj2]">行内数组css，将多个样式放到同一元素</div>
+        </div>
+    </body>
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                error: false,
+                bg: false,
+                classObj: {
+                    red: false,
+                    bg: false,
+                },
+                classArr: ["bg"],
+                cssobj: {
+                    background: "pink",
+                },
+                cssobj2: {
+                    color: "#0f0",
+                },
+            },
+        });
 
-    /*
+        /*
     使用对象 绑定 class：
       {
           'class名':变量,
@@ -104,8 +102,15 @@
     数组绑定多个 样式到同一元素：
       [cssobj, cssobj2] 只能是 变量 对象
 
+------------------------------------------------
 
+    关于渲染 本地图片：
+      require("图片路径")
+
+      原因：
+          我们一般直接在vue的文件中直接引入路径是不能显示的
+          原因是因为webpack打包后本地路径丢失，所以我们在data中可以通过require去引入，改正后的代码
 
      */
-  </script>
+    </script>
 </html>

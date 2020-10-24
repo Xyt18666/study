@@ -19,6 +19,9 @@
             request     自己的接口请求帮助库
             
         3. 正常书写 项目
+            根据项目需求写结构
+            最常用的 就是 ： 遍历 、 父子传值 、插值
+
 
         4. 模拟调用接口 
             详情 -> 本地设置 -> 不校验合法域名 勾选
@@ -29,6 +32,30 @@
             wx.getBackgroundAudioManager()   背景播放器
                 必须设置 ：backgroundAudioManager.title
                 可实现背景音乐：app.json中 设置 "requiredBackgroundModes": ["audio"]
+        
+        6. 判断数组中 两个对象是否为 同一个 id
+            newlist.some(item => item.id == e.detail.item.id);  返回布尔值
+            state.stort.findIndex(item => item.id == val.id);   返回下标
+
+        7. 页面传值
+            在 navigator 标签 url="{{'../song/song?id='+item2.id}}" 拼接参数
+
+            在跳转后的 新页面 通过  options 获取 参数
+               onLoad: function (options) {
+                    this.setData({
+                        id: options.id,
+                    });
+                    console.log(options.id);
+                },
+        
+        8. 阻止事件冒泡 
+                catch事件名
+
+        9. 小程序 绑定 style
+                style="width:{{jdt}}%"
+
+        10. 更多资料看 小程序api
+
 
 
 

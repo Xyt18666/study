@@ -8,7 +8,7 @@
     height: 20rpx;
     border-radius: 20rpx;
 }
-li {
+.li {
     display: flex;
     justify-content: space-between;
 }

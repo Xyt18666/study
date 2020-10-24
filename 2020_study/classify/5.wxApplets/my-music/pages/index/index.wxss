@@ -6,10 +6,24 @@
     background: #894;
     height: 150rpx;
 }
-.miniPlaer image {
+.miniPlaer .iimmgg {
     width: 150rpx;
 }
-.miniPlaer view {
+.miniPlaer .cons {
+}
+.musicList {
+    position: fixed;
+    width: 100%;
+    z-index: 200;
+    left: 0;
+    bottom: -100%;
+    background: #f0f;
+    transition: 1s;
+}
+.listACtive {
+    bottom: 0;
+}
+.cons navigator {
     display: flex;
     justify-content: space-between;
 }

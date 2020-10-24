@@ -1,9 +1,10 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/song/song",
+    "pages/musicPlay/musicPlay",
     "pages/hot/hot",
     "pages/search/search",
-
     "pages/logs/logs"
   ],
   "window":{

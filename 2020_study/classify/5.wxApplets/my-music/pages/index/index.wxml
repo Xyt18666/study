@@ -12,10 +12,20 @@
         </block>
     </nvabar>
     <view class="miniPlaer">
-        <view>
-            <image src="{{playing.cover}}" mode="widthFix" />
-            <view>{{playing.song}}--{{playing.singer}}</view>
-            <view bindtap="isPlay" data-play="{{!play}}">开关</view>
+        <view class="cons">
+            <navigator url="{{'../musicPlay/musicPlay?id='+playing.id}}">
+                <image class="iimmgg" src="{{playing.cover}}" mode="widthFix" />
+                <view>{{playing.song}}--{{playing.singer}}</view>
+                <view catchtap="isPlay" data-play="{{!play}}">开关</view>
+                <view catchtap="listAc">播放列表</view>
+            </navigator>
+        </view>
+    </view>
+    <view class="{{listShow?'musicList listACtive':'musicList'}}" bindtap="listAc">
+        <view>关闭</view>
+        <view wx:for="{{playlist}}" wx:key="id" bindtap="setPlay" data-item="{{item}}">
+            {{item.song}}
+            <view bindtap="clearItem" data-item="{{item.id}}">删除</view>
         </view>
     </view>
 </view>

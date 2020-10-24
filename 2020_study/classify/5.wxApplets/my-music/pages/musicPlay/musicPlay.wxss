@@ -1,0 +1,26 @@
+.bar {
+    width: 90%;
+    height: 10rpx;
+    background: #ccc;
+    margin: 0 auto;
+    border-radius: 10rpx;
+    position: relative;
+}
+.inbar {
+    position: absolute;
+    height: 10rpx;
+    border-radius: 10rpx;
+    top: 0;
+    left: 0;
+    width: 0;
+    background: #0f0;
+}
+.but {
+    position: absolute;
+    width: 40rpx;
+    height: 40rpx;
+    background: #333;
+    border-radius: 40rpx;
+    margin-left: -20rpx;
+    margin-top: -15rpx;
+}

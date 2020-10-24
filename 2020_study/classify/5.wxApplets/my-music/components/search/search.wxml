@@ -2,7 +2,7 @@
     <input class="pt" type="text" bindinput="sendMsg" placeholder="请搜索" />
     <view>
         <ul>
-            <li wx:for="{{mag}}" wx:key="id">
+            <li wx:for="{{mag}}" wx:key="id" class="li">
                 <view>{{item.name}}</view>
                 <view>{{item.artists[0].name}}</view>
             </li>

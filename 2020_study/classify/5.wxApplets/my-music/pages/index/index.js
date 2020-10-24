@@ -24,6 +24,10 @@ Page({
         play: false,
         playing: null,
         playlist: [],
+        listShow: false,
+    },
+    listAc() {
+        this.setData({ listShow: !this.data.listShow });
     },
     setActive(d) {
         let indexs = d.detail.indexs;
@@ -35,12 +39,32 @@ Page({
         this.setData({ tabs });
     },
     setPlaying(e) {
+        let newlist = this.data.playlist.slice(0);
+        // console.log(newlist);
+
+        if (newlist.length == 0) {
+            newlist.push(e.detail.item);
+        } else {
+            let isTrue = newlist.some(item => item.id == e.detail.item.id);
+            if (!isTrue) {
+                newlist.push(e.detail.item);
+            }
+        }
+        this.setData({ playlist: newlist });
+        console.log(this.data.playlist);
+
         this.setData({ playing: e.detail.item });
         backgroundAudioManager.title = this.data.playing.song;
         backgroundAudioManager.src = this.data.playing.url;
 
         backgroundAudioManager.play();
-        console.log(this.data.playing);
+        // console.log(this.data.playing);
+    },
+    setPlay(e) {
+        console.log(e.currentTarget.dataset.item);
+        backgroundAudioManager.title = e.currentTarget.dataset.item.song;
+        backgroundAudioManager.src = e.currentTarget.dataset.item.url;
+        backgroundAudioManager.play();
     },
     isPlay(e) {
         if (e.currentTarget.dataset.play) {
@@ -50,5 +74,13 @@ Page({
             backgroundAudioManager.pause();
             this.setData({ play: e.currentTarget.dataset.play });
         }
+    },
+    clearItem(e) {
+        let indexa = this.data.playlist.findIndex(item => {
+            item.id == e.currentTarget.dataset.item;
+        });
+        let newlist = this.data.playlist.slice(0);
+        newlist.splice(indexa, 1);
+        this.setData({ playlist: newlist });
     },
 });

@@ -4,6 +4,8 @@ import Home from "../views/Home.vue";
 import Msg from "../views/Msg.vue";
 import MyGwc from "../views/Gwc.vue";
 import TestSTort from "../views/TestSTort.vue";
+import StoreLoc from "../views/StoreLoc.vue";
+
 
 Vue.use(VueRouter);
 
@@ -12,6 +14,11 @@ const routes = [
         path: "/",
         name: "Home",
         component: Home,
+    },
+    {
+        path: "/storeloc",
+        name: "storeloc",
+        component: StoreLoc,
     },
     {
         path: "/testStort",

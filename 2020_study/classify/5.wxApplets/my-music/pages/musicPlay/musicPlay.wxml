@@ -1,0 +1,12 @@
+<view>
+    <view>{{pling.song}} ---  {{pling.album}}</view>
+    <view>
+        <image class="imagesa" src="{{pling.cover}}" mode="widthFix" />
+    </view>
+    <!-- <view class="bar">
+        <view class="inbar" style="width:{{jdt}}%"></view>
+        <view class="but"></view>
+    </view> -->
+    <slider value="{{jdt}}"  bindchanging="change"  bindchange="end"></slider>
+    <view bindtap="isPlay">开关</view>
+</view>

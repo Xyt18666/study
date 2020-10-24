@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+        使用 vuex 配合 本地存储 ，刷新后 数据不丢失
+
+        具体流程：
+            商品页面，点击加减，触发事件，修改vuex
+
+            vuex定义 购物车 ：
+                const KEY = "gou_wu_che";
+                const set = val => {
+                    window.localStorage.setItem(KEY, JSON.stringify(val));
+                };
+                const get = () => {
+                    return JSON.parse(window.localStorage.getItem(KEY) || "[]");
+                };
+            
+                购物车 属性 就等于 ：  get()  购物车就是本地存储的内容
+            
+
+            增加减少时，触发函数
+                首先判断 数据中是否有该商品，如果有，在原基础上修改 ，如果没有 直接添加
+            
+            ps: 获取后的 本地存储 ，修改后， 最后还要 放进本地存储
+
+                
+
+
+
+
+
+
+
+
+     -->
+    </body>
+</html>
