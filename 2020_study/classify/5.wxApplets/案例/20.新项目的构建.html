@@ -54,7 +54,62 @@
         9. 小程序 绑定 style
                 style="width:{{jdt}}%"
 
-        10. 更多资料看 小程序api
+        10. 父子互传   
+            父向子传值：
+                通过标签属性传值 
+                子组件在 xx.js 中 properties 属性接收值
+                然后 直接使用 即可
+
+            子向父传值：
+                子组件使用 this.triggerEvent("setActive", { 参数 }); 向父传递  ，同 $emit
+                父组件内 子组件标签上 定义自定义 事件 bindxx="xx"
+                在父组件的函数中 e.detail.xx 获取 属性 
+
+        11. 全局对象，  作用同 vuex
+            app.globalData
+                讲解地址 ：https://www.cnblogs.com/jiangtengteng/p/10531297.html
+
+            定义：
+                app.js中 
+                    globalData: {
+                    
+                    },
+            
+            获取：
+                使用的页面
+                var app = getApp();
+                app.globalData.xx
+
+            修改： 
+                使用的页面
+                var app = getApp();
+                getApp().globalData.xx="xx"
+        
+        12.获取dom
+                const $ = wx.createSelectorQuery()    返回一个选择器实例
+                select(‘.class’)匹          配当前页面的第一个匹配某个选择器的节点
+                selectAll(‘.class’)         匹配当前页面的所有匹配某个选择器的节点
+
+
+        获取位置和尺寸：
+        
+                元素.boundingClientRect(function(rect){
+                    rect.id      // 节点的ID
+                    rect.dataset // 节点的dataset
+                    rect.left    // 节点的左边界坐标
+                    rect.right   // 节点的右边界坐标
+                    rect.top     // 节点的上边界坐标
+                    rect.bottom  // 节点的下边界坐标
+                    rect.width   // 节点的宽度
+                    rect.height  // 节点的高度
+                })
+         
+
+
+
+
+
+                
 
 
 
