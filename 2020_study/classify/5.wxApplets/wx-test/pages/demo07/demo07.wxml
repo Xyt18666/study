@@ -1,0 +1,36 @@
+<view id="content">
+    content
+    <view>ok</view>
+</view>
+<view class="myLove">study</view>
+<view class="list">
+    <view class="item">1</view>
+    <view class="item">2</view>
+    <view class="item">3</view>
+    <view class="item">4</view>
+    <view class="item">5</view>
+</view>
+<scroll-view class="scroll" scroll-x="false" scroll-y="yes" upper-threshold="100" lower-threshold="100" scroll-top="0" scroll-left="0" scroll-with-animation="true" bindscrolltoupper="scrolltoupper" bindscrolltolower="scrolltolower" bindscroll="scroll" refresher-enabled="true" scroll-into-view="toChild">
+    <view>2134</view>
+    <view>2134</view>
+    <view>2134</view>
+    <view>2134</view>
+    <view>2134</view>
+    <view>2134</view>
+    <view>2134</view>
+    <view>2134</view>
+    <view>2134</view>
+    <view>2134</view>
+    <view>2134</view>
+    <view>2134</view>
+    <view>2134</view>
+    <view>2134</view>
+    <view id="toChild">2134</view>
+    <view>2134</view>
+    <view>2134</view>
+    <view>2134</view>
+    <view>2134</view>
+    <view>2134</view>
+    <view>2134</view>
+    <view>2134</view>
+</scroll-view>

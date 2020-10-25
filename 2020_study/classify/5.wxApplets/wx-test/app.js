@@ -1,6 +1,20 @@
 //app.js
 App({
-    onLaunch: function () {
+    globalData: {
+        name: "阿离",
+        tagName: "不知火",
+        sex: "女",
+        git(){
+            console.log("夜火离歌");
+            
+        }
+    },
+    onLoad() {},
+    onLaunch() {
+        console.log(this.globalData.name);
+        this.globalData.name = "亚";
+        console.log(this.globalData.name);
+
         //第一次启动就会触发
         console.log("onLaunch");
 
@@ -52,8 +66,5 @@ App({
     },
     onPageNotFound() {
         console.log("onPageNotFound");
-    },
-    globalData: {
-        userInfo: null,
     },
 });

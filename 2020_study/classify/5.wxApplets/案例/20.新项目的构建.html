@@ -7,6 +7,7 @@
     </head>
     <body>
         <!-- 
+        !!!! 案例my-music !!!!
 
     搭建新的项目：
         1. 创建新的小程序，填写自己的 appid
@@ -87,23 +88,25 @@
         
         12.获取dom
                 const $ = wx.createSelectorQuery()    返回一个选择器实例
-                select(‘.class’)匹          配当前页面的第一个匹配某个选择器的节点
-                selectAll(‘.class’)         匹配当前页面的所有匹配某个选择器的节点
+                .select(‘.class’)匹          配当前页面的第一个匹配某个选择器的节点
+                .selectAll(‘.class’)         匹配当前页面的所有匹配某个选择器的节点
+                .selectViewport()获取显示区域的尺寸，滚动位置等信息
+                .exec( callback()function{ } )将以上执行请求的结果，按次序构成数组，并在callback中返回这个数组
 
 
-        获取位置和尺寸：
-        
-                元素.boundingClientRect(function(rect){
-                    rect.id      // 节点的ID
-                    rect.dataset // 节点的dataset
-                    rect.left    // 节点的左边界坐标
-                    rect.right   // 节点的右边界坐标
-                    rect.top     // 节点的上边界坐标
-                    rect.bottom  // 节点的下边界坐标
-                    rect.width   // 节点的宽度
-                    rect.height  // 节点的高度
-                })
-         
+                获取位置和尺寸：
+
+                    元素.boundingClientRect(function(rect){
+                        rect.id      // 节点的ID
+                        rect.dataset // 节点的dataset
+                        rect.left    // 节点的左边界坐标
+                        rect.right   // 节点的右边界坐标
+                        rect.top     // 节点的上边界坐标
+                        rect.bottom  // 节点的下边界坐标
+                        rect.width   // 节点的宽度
+                        rect.height  // 节点的高度
+                    })
+            
 
 
 
