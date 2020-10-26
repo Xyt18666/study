@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+        !!!!实例看cloud页面 和 testCloudFunc!!!!
+        
+            为什么 使用 云函数 ：
+                有些数据库不是能放在客户端进行操作的，例如你有一个积分的小程序，修改积分的操作如果在前端请求的话，如果安全没做好，可能会被恶意攻击。这种敏感操作需要在后台（云函数）中进行代码的书写。
+                此外，数据库操作只是小程序的一部分，除了数据库操作还有很多前后端需要相应的。
+
+                请求列表数据，直接操作数据库每次只能返回20条，云函数的话可以返回100条；
+                还有就是直接调用数据库，所有的增删改查运算操作都是在手机本地运行的，数据量大的话，会耗用用户流量，而云函数则是在微信服务器上运算的。
+
+                            
+            新建云函数:
+                cloudfunctions 文件夹下 ，右键 新建 node.js 云函数
+
+            初始化 云函数：
+                在 新建的 云函数 文件夹目录 找到 index.js （内部默认已经写好了）
+
+
+            调用云函数： 获取数据
+                const cloud = wx.cloud;
+
+                cloud
+                    .callFunction({
+                        name: "testCloudFunc",  云函数名
+                        data: {                 传递的参数
+                            a: "aa",
+                            b: "22",
+                        },
+                    })
+                    .then(res => {
+                        console.log(res);       返回的参数
+                    });
+
+            通过 云函数 操作 数据库：
+                在云函数内 连接数据库 ，然后操作
+
+            
+                
+     -->
+    </body>
+</html>

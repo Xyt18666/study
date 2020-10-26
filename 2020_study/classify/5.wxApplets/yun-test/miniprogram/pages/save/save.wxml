@@ -1,0 +1,6 @@
+<view>
+  <view class="conten">content</view>
+  <button type="primary" bindtap="upLoad">上传</button>
+  <image src="{{url}}"></image>
+  <button type="primary" bindtap="downLoad">下载</button>
+</view>

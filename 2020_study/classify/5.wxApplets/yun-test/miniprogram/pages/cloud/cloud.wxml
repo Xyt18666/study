@@ -1,0 +1,8 @@
+<view>
+    <button type="primary" bindtap="getCloud">点击调用默认函数</button>
+    <text>
+        内容：{{cloudInfo}}
+    </text>
+      
+</view>
+  

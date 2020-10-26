@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+        !!!!实例看save页面!!!!
+        
+        
+        创建云对象的引用变量:
+            const cloud = wx.cloud;
+
+        上传：
+            本地路径 或者 url 会提示文件找不到，导致上传失败
+            filePath 需要一个 临时文件 路径 ，可以使用上传窗口选择本地文件
+
+            
+            wx.chooseImage({        从本地相册选择图片或使用相机拍照
+                count: 9,           数量
+                sizeType: ["original", "compressed"],   尺寸 ，原图或者压缩
+                sourceType: ["album", "camera"],        来源 ，相册或者相机
+            })  
+                .then(res => {
+                    console.log(res);
+                    cloud
+                        .uploadFile({ //上传函数
+                            cloudPath: "images/招财猫.jpg", // 上传至 云端的 那个路径
+                            filePath: res.tempFilePaths[0], //小程序临时文件路径
+                        })
+                        .then(res2 => {
+                            console.log(res2.fileID);       上传后的图片路径
+                            this.setData({ fileID: res2.fileID });
+                        });
+                });
+            
+
+        下载：
+             cloud.downloadFile({
+                fileID:     后台储存内自动生成的 ID
+                    "cloud://yun-test-3gub0zwb396f3a2e.7975-yun-test-3gub0zwb396f3a2e-1304018775/my-image.png",
+            })
+            .then(res => {
+                console.log(res.tempFilePath);  返回图片路径
+            });
+
+
+
+
+
+     -->
+    </body>
+</html>

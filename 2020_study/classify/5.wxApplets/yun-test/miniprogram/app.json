@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/cloud/cloud",
+    "pages/save/save",
     "pages/index/index"
    
   ],
