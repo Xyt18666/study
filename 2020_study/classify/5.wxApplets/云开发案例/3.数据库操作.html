@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+        调用 云对象 引用函数：
+            const db = wx.cloud.database();
+
+        --------------------------------------------------
+        
+        查询集合里的所有记录：
+            db.collection("数据库集合名")
+                .get()
+                .then(res => {
+                    console.log(res);
+                });
+        
+        通过id查询一条数据：
+            db.collection("counters")
+                .doc("e373396c5f9636fb01f498bd06e2ec0d")
+                .get()
+                .then(res => {
+                    console.log(res);
+                });
+
+        通过 指令 查询多个数据: 
+            const _ = db.command;  声明指令对象
+            db.collection("counters")
+                .where({                   
+                    name: _.eq("阿离"),
+                })
+                .get()
+                .then(res => {
+                    console.log(res);
+                });
+
+            指令有：
+                查询指令	说明
+                eq	        等于
+                neq	        不等于
+                lt	        小于
+                lte	        小于或等于
+                gt	        大于
+                gte	        大于或等于
+                in	        字段值在给定数组中
+                nin	        字段值不在给定数组中
+            
+            逻辑指令：
+                and          同时满足多条件
+                or           或者
+
+        -------------------------------------------------------
+                
+        添加数据：
+             db.collection("数据库集合名")
+                .add({          data 字段表示需新增的 JSON 数据
+                    data: {
+                       键:值,
+                    },
+                })
+                .then(res => {
+                    console.log(res);
+                });
+
+        --------------------------------------------------------
+        
+        更新数据：
+            
+            update：=局使用 update 方法可以局部更新一个记录或一个集合中的记录，局部更新意味着只有指定的字段会得到更新，其他字段不受影响。
+            
+
+                db.collection("counters")
+                    .doc("e373396c5f9636fb01f498bd06e2ec0d") 可用其他方式查询
+                    .update({
+                        data: {
+                        键:值,
+                        },
+                    })
+                    .then(res => {
+                        console.log(res);
+                    });
+            set：如果需要替换更新一条记录，可以在记录上使用 set 方法，替换更新意味着用传入的对象替换指定的记录
+                db.collection("counters")
+                    .doc("1b64dd7b5f9674320201f219627bdb89")
+                    .update({
+                        data: {         直接进行替换
+                            title: "坤",
+                            or: "亚",
+                            time: new Date("2020-9-7"),
+                        },
+                    })
+                    .then(res => {
+                        console.log(res);
+                    });
+                
+            更新指令：
+                更新指令	说明
+                set	        设置字段为指定值
+                remove	    删除字段
+                inc	        原子自增字段值
+                mul	        原子自乘字段值
+                push	    如字段值为数组，往数组尾部增加指定值
+                pop	        如字段值为数组，从数组尾部删除一个元素
+                shift	    如字段值为数组，从数组头部删除一个元素
+                unshift	    如字段值为数组，往数组头部增加指定值
+
+        ------------------------------------------------------------------------------------
+
+        删除数据：
+            db.collection("counters")
+                .doc("1b64dd7b5f9674320201f219627bdb89")
+                .remove()
+                .then(res => {
+                    console.log(res);
+                });
+
+        -------------------------------------------------------------------------------------
+
+        匹配记录中的嵌套对象:
+            方法一： 传入相同结构 的 对象
+
+                db.collection('todos').where({     匹配style属性中 color 为 red 的 数据
+                style: { 
+                    color: 'red'
+                }
+                }).get()
+
+              
+            方法2二：使用.表示法
+              
+                db.collection('todos').where({  
+                'style.color': 'red'            .方式简写
+                }).get()
+
+        ---------------------------------------------------------------------------------------
+
+        匹配数组：
+            
+            匹配完整的数组：
+                db.collection('todos').where({
+                    numbers: [10, 20, 30]
+                }).get()
+
+            匹配有某个值的数组：                
+                db.collection('todos').where({
+                    numbers: 20
+                }).get()
+
+            匹配数组中 某个下标 为 某个值的 数组：
+                db.collection('todos').where({
+                    'numbers.1': 20
+                }).get()
+        
+        
+        ------------------------------------------------------------------------------------------
+
+        结合查询指令进行匹配：
+            const _ = db.command
+            db.collection('todos').where({
+                numbers: _.gt(25).and(_.lt(15))
+            }).get()
+
+        ------------------------------------------------------------------------------------------
+
+        更新数组中第一个匹配到的元素：   关键字 $
+
+            例子：让所有 scores 中的第一个 20 的元素更新为 25
+                {
+                    "_id": "doc1",
+                    "scores": [10, 20, 30]
+                }
+                {
+                    "_id": "doc2",
+                    "scores": [20, 20, 40]
+                }
+                
+                const _ = db.command
+
+                db.collection('todos').where({
+                    scores: 20
+                }).update({
+                data: {
+                    'scores.$': 25
+                }
+                })
+
+                注意：批量更新需在云函数中进行
+
+        -------------------------------------------------------------------------------------
+
+        更新数组中所有匹配的元素:  关键字 $[]
+
+            例子：让 scores.math 字段所有数字加 10
+                const _ = db.command
+                db.collection('todos').doc('doc1').update({
+                data: {
+                    'scores.math.$[]': _.inc(10)
+                }
+                })
+
+        -----------------------------------------------------------------------
+
+        匹配多重嵌套的数组和对象： 范围性 匹配到后代数组
+            {
+            "root": {
+                    "objects": [
+                    {
+                        "numbers": [10, 20, 30]
+                    },
+                    {
+                        "numbers": [50, 60, 70]
+                    }
+                    ]
+                }
+            }
+
+            db.collection('todos').where({
+                'root.objects.numbers': 30
+            }).get()
+                    
+
+
+     -->
+    </body>
+</html>

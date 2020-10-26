@@ -5,14 +5,14 @@
   <button type="primary" bindtap="deletData">点击删除数据</button>
 </view>
 <view>
-查询到的数据{{getDatad}}
+查询到的数据::{{getDatad}}
 </view>
 <view>
-添加的数据{{addDatad}}
+添加的数据::{{addDatad}}
 </view>
 <view>
-更新的数据{{upDatad}}
+更新的数据::{{upDatad}}
 </view>
 <view>
-删除的数据{{deletDatad}}
+删除的数据::{{deletDatad}}
 </view>
