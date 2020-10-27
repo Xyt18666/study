@@ -1,5 +1,7 @@
 {
+  "cloud":true,
   "pages": [
+    "pages/msgCheck/msgCheck",
     "pages/cloud/cloud",
     "pages/save/save",
     "pages/index/index"

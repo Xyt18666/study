@@ -1,0 +1,1 @@
+<view bindtap="msgCheck"> 点击 </view>

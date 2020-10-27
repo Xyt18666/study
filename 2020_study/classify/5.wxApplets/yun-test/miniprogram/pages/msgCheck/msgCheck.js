@@ -1,19 +1,19 @@
-const db = wx.cloud.database();
-
-const cloud = wx.cloud;
-
+// pages/msgCheck/msgCheck.js
 Page({
     /**
      * 页面的初始数据
      */
-    data: { cloudInfo: "" },
-    getCloud() {
-        cloud
+    data: {},
+    msgCheck() {
+        wx.cloud
             .callFunction({
-                name: "testCloudFunc",
+                name: "msgCheck",
+                data: {
+                    text: "完h全fhg测fgh试h感fghete知sdf到sdf",
+                },
             })
             .then(res => {
-                console.log(JSON.parse(res.result));
+                console.log(res);
             });
     },
     /**

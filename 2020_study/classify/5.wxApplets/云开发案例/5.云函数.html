@@ -8,7 +8,7 @@
     <body>
         <!-- 
         !!!!实例看cloud页面 和 testCloudFunc!!!!
-        
+
             为什么 使用 云函数 ：
                 有些数据库不是能放在客户端进行操作的，例如你有一个积分的小程序，修改积分的操作如果在前端请求的话，如果安全没做好，可能会被恶意攻击。这种敏感操作需要在后台（云函数）中进行代码的书写。
                 此外，数据库操作只是小程序的一部分，除了数据库操作还有很多前后端需要相应的。
@@ -38,9 +38,92 @@
                     .then(res => {
                         console.log(res);       返回的参数
                     });
+            
+            云函数操作数据库：
+                const cloud = require("wx-server-sdk");
+                const db = cloud.database();
+                    
+                exports.main = async (event, context) => {
+                    let data = await db.collection("counters").add({
+                        data: {
+                            love: "亚鲲",
+                        },
+                    });
+                    return {data};
+                };
 
-            通过 云函数 操作 数据库：
-                在云函数内 连接数据库 ，然后操作
+            ps:
+                每次修改云函数，都要重新上传 
+                在云函数中 获取 数据库 不能使用 wx.cloud ,因为没有wx
+
+                    
+
+-----------------------------------------------------------------------
+
+            通过 云函数 发送 http数据 请求 ：
+                为什么要使用 云函数 发起请求呢？
+                    没有域名数量 限制 ，没有备案限制 
+
+                安装 got库 ：
+                    npm install got --save
+
+                使用 云函数 + got 调用 数据：
+                    const got = require("got");
+
+                   exports.main = async (event, context) => {
+                        let getResponse = await got("httpbin.org/get");
+                        return getResponse.body;
+                    };
+                
+                更新云函数：
+                    右键 上传 并部署
+
+----------------------------------------------------------------------------
+
+            文本内容安全检测 接口 ：
+                示例在 msgCheck 中
+                主要用途，检测是否含有违法违规内容文本
+
+----------------------------------------------------------------------------
+                    
+            图片内容 安全 检测 接口：
+                需要定义变量 :
+                    腾讯云 appid、SecretId、SecretKey
+                    node fs模块 、path模块
+
+                const {ImageClient} = require('image-node-sdk')
+
+                liet imageClient = new ImageClient({appid,SecretId,SecretKey})
+
+                在 异步函数中：
+                    return await imageClient.imgPornDetect({
+                        formData:{
+                            image:fs.createReadStream(path.join(__dirname,'./test.jpg'))
+                        },
+                        headers:{
+                            "content-type":"multipart/form-data"
+                        }
+                    })
+
+                主要用途，检测是否含有违法违规图片
+
+------------------------------------------------------------------------------
+
+            TCBRouter ：
+                为什么使用 他，因为 云函数在复杂的场景 不够用 ，所以使用它
+------------------------------------------------------------------------------
+            模板消息：
+                不进入小程序，进行 信息的推送 
+------------------------------------------------------------------------------
+            云函数 调用 云函数 或者 本地函数 ：
+                用于 复杂的 函数调用
+------------------------------------------------------------------------------
+            连接 MySQL ： 建议使用 自带的 数据库
+                    使用 Sequelize 库 辅助我们 连接 MySQL
+
+
+
+
 
             
                 
