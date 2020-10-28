@@ -10,5 +10,6 @@
         const designWidth = 375; //设计稿尺寸
         const screenWidth = document.body.clientWidth || document.documentElement.clientWidth; //当前可视区的 宽度
         document.documentElement.style.fontSize = (100 / designWidth) * screenWidth + "px";
+        // (100 / 设计稿尺寸) * 可视区宽度
     }
 })(document, window);

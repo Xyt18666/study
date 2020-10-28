@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+
+
+        组件：
+            1. 一个文件通过 export default 导出一个组件 无法同时导出2+个
+            2. 复合组件 组件可以进行嵌套 组件中又有其他的组件
+            3. 无论是 函数式组件 还是 class 组件 都有 props 属性 ， 用来获取所传递的参数
+            参数写在 组件调用的 属性中 ， 同样可以使用 扩展运算符 ... 传入 较多的 参数
+
+        组件传参：
+            同 vue 绑定在 组件调用的属性上
+
+
+        函数组件 与 类组件的区别：
+            1. 函数式组件 比较 简单 ， 一般用于静态没有 交互 内容 的页面
+            2. 类组件 一般称为动态组件 ， 一般 会有交互 或者 数据修改
+
+
+
+
+        函数式组件：
+            1. 名字首字母大写
+            2. export default   导出
+            3. 在 index.js 中引入
+            4. 以标签的形式引入
+
+        类组件：
+            1. 首字母大写
+            2. class xxx extends React.Component     定义类 名 继承  React.Component
+            3. render(){}  来渲染
+
+---------------------------------------------------------------------------------------
+        组件的参数：
+            
+             constructor(props){ 
+                super(props)     接收传递的参数
+                this.state = {
+                   自己的参数
+                }
+                this.clickEvent = this.clickEvent.bind(this)  最笨的 方法 ，使用 bind 改变this指向
+            }
+
+        组件参数的设置 ：
+             this.setState({
+                a:"b"
+            })   
+
+        绑定this的几种方式：
+            1. 某函数={this.fn.bind(this,参数)}     同样写在 标签里
+            2. 某函数={this.fn(参数)}    然后在 constructor 中改变this指向       this.fn = this.fn.bind(this,参数)
+            3. 某函数={this.fn(参数)}    然后 在书写 函数的时候使用 箭头函数   ()=>{this.fn(参数){ 函数体 }}
+
+
+        事件绑定：
+            on事件={this.clickEvent} 
+        事件参数传递：
+            data-xx="xx"
+        获取事件参数：
+            e.target.dataset.xx
+        
+     -->
+    </body>
+</html>
