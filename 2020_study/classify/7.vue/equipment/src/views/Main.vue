@@ -1,7 +1,7 @@
 <template lang="pug">
 .main
     top-header 
-    .main
+    .main2
         slide-bar
         .content
             router-view
@@ -20,4 +20,8 @@ export default {
 };
 </script>
 
-<style lang="sass"></style>
+<style lang="sass">
+.main2
+
+  display: flex
+</style>

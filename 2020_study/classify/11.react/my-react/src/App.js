@@ -7,6 +7,7 @@ import ShengMingZhouQi from "./components/8.生命周期.jsx";
 import ChaCao from "./components/9.插槽.jsx";
 import LuYou from "./components/10.路由.jsx";
 import ChongDingXiangAndSwitch from "./components/11.重定向和switch.jsx";
+import REFS from "./components/13.refs与dom.jsx";
 
 function App() {
     return (
@@ -26,7 +27,8 @@ function App() {
                 <div>我是插槽内容</div>
             </ChaCao>
             <LuYou></LuYou>
-            <ChongDingXiangAndSwitch></ChongDingXiangAndSwitch>
+            {/* <ChongDingXiangAndSwitch></ChongDingXiangAndSwitch> */}
+            <REFS></REFS>
         </div>
     );
 }

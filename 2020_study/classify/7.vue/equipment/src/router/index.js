@@ -4,6 +4,11 @@ import Router from "vue-router";
 import Login from "@/views/Login";
 import Main from "@/views/Main";
 
+import Administration from "@/views/Administration";
+import Dictionaries from "@/views/Dictionaries";
+import Overview from "@/views/Overview";
+import Register from "@/views/Register";
+
 //push
 const VueRouterPush = Router.prototype.push;
 Router.prototype.push = function push(to) {
@@ -34,7 +39,29 @@ export default new Router({
     {
       path: "/main",
       name: "Main",
-      component: Main
+      component: Main,
+      children: [
+        {
+          path: "administration",
+          name: "Administration",
+          component: Administration
+        },
+        {
+          path: "dictionaries",
+          name: "Dictionaries",
+          component: Dictionaries
+        },
+        {
+          path: "overview",
+          name: "Overview",
+          component: Overview
+        },
+        {
+          path: "register",
+          name: "Register",
+          component: Register
+        }
+      ]
     }
   ]
 });

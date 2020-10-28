@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {BrowserRouter as Router,Link,Route} from 'react-router-dom'
+import {BrowserRouter as Router,Link,Route,Switch,Redirect} from 'react-router-dom'
 
 
 export default class Ly extends React.Component{
@@ -34,13 +34,19 @@ export default class Ly extends React.Component{
                         <Link to="/move" replace>电影</Link>
                         {/* Link 的 replace 属性 将新地址替换成历史访问记录的原地址 */}
                         <Link to={"/dh/id="+this.state.id}>动画</Link>
+                         <Link to="/xxx">首页xxx</Link>  
+
+
 
                     </div>
-                    <Route path="/" exact component={Home}></Route>
-                      {/* /后不写内容 并加入 exact 属性  默认显示 */}
+                    <Switch>
+                        <Route path="/" exact component={Home}></Route>
+                        {/* /后不写内容 并加入 exact 属性  默认显示 */}
 
-                    <Route path="/move"  component={Move}></Route>
-                    <Route path="/dh/:id" component={Dh}></Route>
+                        <Route path="/move"  component={Move}></Route>
+                        <Route path="/dh/:id" component={Dh}></Route>
+                        <Redirect to="/move"></Redirect>
+                    </Switch>
                     {/* 
                     默认情况下，路由中的规则是模糊匹配的，如果路由部分匹配成功，就会展示这个路由对应的组件
                     如果想要精确匹配，可以添加 exact 属性
