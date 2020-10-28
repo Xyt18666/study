@@ -52,9 +52,13 @@ export default class LeiZuJian extends React.Component{
                         <li className={this.state.c2}>li2</li>
                     </ul>
                 </div>
+                <button onClick={(e) => this.deleteRow(97, e)}> Row</button>
             </div>
             
         )
+    }
+    deleteRow=(d,e)=>{
+        console.log(d,e)
     }
     clickEvent=(e)=>{ //被绑定的 点击事件
 

@@ -108,34 +108,63 @@ export default {
         this.usernames,
         this.passwords
       );
+      let { type, phones, codes, usernames, passwords } = this;
+      let params = {
+        type
+      };
 
       if (this.type == "sms") {
-        if (!this.phones || !this.codes) {
-          console.log("请填写完整参数");
-        } else {
-          this.$http
-            .post("equipment/login", {
-              type: this.type,
-              phone: this.phones,
-              code: this.codes
-            })
-            .then(res => {
-              console.log(res);
-            });
-        }
+        params.phone = phones;
+        params.code = codes;
+        // if (!this.phones || !this.codes) {
+        //   console.log("请填写完整参数");
+        // } else {
+        //   this.$http
+        //     .post("equipment/login", {
+        //       type: this.type,
+        //       phone: this.phones,
+        //       code: this.codes
+        //     })
+        //     .then(res => {
+        //       // this.$router.push({
+        //       //   name: "",
+        //       //   params: {}
+        //       // });
+        //     });
+        // }
       } else if (this.type == "passwprd") {
-        if (this.usernames || this.passwords) {
+        params.username = usernames;
+        params.password = passwords;
+        // if (this.usernames || this.passwords) {
+        //   console.log("请填写完整参数");
+        // } else {
+        //   this.$http
+        //     .post("equipment/login", {
+        //       type: this.type,
+        //       username: this.usernames,
+        //       password: this.passwords
+        //     })
+        //     .then(res => {
+        //       console.log(res);
+        //     });
+        // }
+      }
+
+      for (let item of Object.values(params)) {
+        console.log(item);
+
+        if (!item) {
           console.log("请填写完整参数");
+          return;
         } else {
-          this.$http
-            .post("equipment/login", {
-              type: this.type,
-              username: this.usernames,
-              password: this.passwords
-            })
-            .then(res => {
-              console.log(res);
+          console.log(params);
+
+          this.$http.post("equipment/login", params).then(res => {
+            console.log(res);
+            this.$router.push({
+              name: "Main"
             });
+          });
         }
       }
     }

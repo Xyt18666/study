@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+
+    安装 路由:
+      cnpm install react-router-dom
+
+  
+    路由属性：
+        HashRouter   路由根容器，所有的路由相关的东西都要包裹在他里面，一个网站只需要使用一次就好了
+        Route       表示一个路由规则， 在Route上右两个比较重要的属性 path component
+        Link        表示一个路由的链接   
+
+    路由示例：
+        <Router basename="/me">  
+            basename="/me" 基础路径 
+
+            <Link to={"/dh/id="+this.state.id}>xx</Link>
+                replace 属性 将新地址替换成历史访问记录的原地址
+                to 属性 表示跳转的 路径
+            
+            <Route path="/" exact component={Home}></Route>
+                path 表示跳转到的 组件
+                    /后不写内容 并加入 exact 属性  默认显示
+                component 绑定 组件
+
+        </Router>
+
+    接收路由传参：
+        props.match.params.xx
+
+     -->
+    </body>
+</html>
