@@ -22,6 +22,7 @@ export default {
 
 <style lang="sass">
 .main2
-
   display: flex
+  .content
+    width: 100%
 </style>

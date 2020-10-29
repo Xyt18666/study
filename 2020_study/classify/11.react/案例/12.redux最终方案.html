@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+    安装 redux :
+        npm install redux --save
+        npm install react-redux --save
+
+
+    创建store文件夹 建立 index.js :
+            import { createStore } from "redux";
+            //引入 redux
+
+            let states = { num: 0 };
+            //所有数据
+
+            function reducer(state = states, action) {
+                //所有修改数据的方法
+                switch (action.type) {
+                    case "add":
+                        state.num++;
+                        break;
+                    case "dec":
+                        state.num--;
+                        break;
+                    default:
+                        break;
+                }
+                return { ...state };
+            }
+
+            const store = createStore(reducer);
+            //创建商店
+
+            export default store;
+            //导出商店
+
+    项目根文件 index.js 绑定商店：
+            import { Provider } from "react-redux";
+            //引入 react-redux
+
+            import Store from "./store/index";
+            //引入 数据商店
+
+            ReactDOM.render(
+                <Provider store={Store}>
+                使用 Provider 包裹 项目根组件，实现数据刷新
+                绑定 store 属性 给 props
+
+                    <App />
+                </Provider>,
+                document.getElementById("root")
+            );
+
+    在组件中使用 数据：
+        import {connect} from "react-redux"
+        // 引入 react-redux
+
+        function mapStateToProps(state){
+            return{
+                value:state.num
+            }
+        }
+        // 把 store属性 映射 到 props
+
+        function mapDispathToProps(dispatch){
+            return{
+                ondec:()=>{dispatch({type:"dec"})},
+                onadd:()=>{dispatch({type:"add"})},
+                dispatch接收一个 type ，是函数的名字
+            }
+        }
+        // 把 store方法 映射 到 props
+
+        class GetRedux extends React.Component{
+               constructor(props){  
+                    super(props)
+                    this.state = {
+                    }
+                }
+                componentDidMount(){
+                
+                }
+            
+             return(
+                let {value,onadd,ondec} = this.props
+                //等同于 vuex  mupMutation ,获取 state中的属性 和方法
+
+                <section>
+                    <h2 >size：{value}</h2>
+                    <h1 onClick={onadd}>++</h1>
+                    <h1 onClick={ondec}>--</h1>
+                </section>
+
+                这样就能够  获取 修改的 store属性了
+
+       
+            )
+
+
+        }
+
+
+        const NewRedux = connect(mapStateToProps,mapDispathToProps)(GetRedux)
+        // 连接 映射 数据 和 函数的 方法 和 组件 ，打通 数据连接
+
+
+        export default NewRedux
+        // 导出新的组件
+
+        此时已经实现了 数据管理
+            
+
+    
+
+
+
+
+        
+     -->
+    </body>
+</html>

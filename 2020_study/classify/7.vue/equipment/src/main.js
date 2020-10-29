@@ -6,6 +6,8 @@ import router from "./router";
 import store from "./store";
 
 import axios from "axios";
+// import echarts from "echarts";
+
 Vue.config.productionTip = false;
 Vue.prototype.$http = axios;
 

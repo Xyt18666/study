@@ -74,8 +74,8 @@ export default {
   data() {
     return {
       type: "sms",
-      phones: "",
-      codes: "",
+      phones: "13800138001",
+      codes: "654321",
       usernames: "",
       passwords: "",
       time: 3,
