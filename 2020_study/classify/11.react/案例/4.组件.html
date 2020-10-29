@@ -48,10 +48,42 @@
                 this.clickEvent = this.clickEvent.bind(this)  最笨的 方法 ，使用 bind 改变this指向
             }
 
-        组件参数的设置 ：
+        组件参数的设置 ：  
              this.setState({
                 a:"b"
             })   
+
+            this.setState() 是 异步更新 函数
+
+        如果想使用 更新后的 dom:
+            this.setState({},function(){ console.log(this.state.data);})   
+            函数内是新的 值
+
+        this.setState((prevState,props)=>{},fn)传递函数执行：
+            解决 的问题 ，使用 对象形式传参 ，如果多次执行同一种操作 ，他会合并，只执行一次
+            prevState 是 上一次执行的值 
+            
+
+        一个组件返回多个元素：
+            <React.Fragment key={item.id}>
+                <dt>{item.term}</dt>
+                <dd>{item.description}</dd>
+            </React.Fragment>
+
+            语法糖：<></>    如果要使用key,必须使用 完整写法
+
+        
+        组件懒加载：
+            React.lazy不能单独使用，需要配合React.suspense，suspence是用来包裹异步组件，添加loading效果等。
+
+            示例：
+                const Foo = React.lazy(() => import('../componets/Foo));       
+                <React.Suspense fallback={<div>loading...</div>}>
+                    <Foo/>
+                </React.Suspense>
+            
+
+
 
         绑定this的几种方式：
             1. 某函数={this.fn.bind(this,参数)}     同样写在 标签里

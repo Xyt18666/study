@@ -9,22 +9,28 @@
         <!-- 
 
             挂载卸载过程
-                constructor()               数据
+                constructor()               初始化数据
                 componentWillMount()        组件将要渲染 ，在此处获取数据
                 render                      生成虚拟dom
                 componentDidMount()         组件渲染完成，此时页面有可见dom
                 componentWillUnmount()      组件将要被销毁，此时组件还可用
+                
             更新过程
                 componentWillReceiveProps (nextProps)   组件将要接收 props 传递的新值时触发， 当子组件第一次被渲染时不会触发
                 shouldComponentUpdate(nextProps,nextState)在组件接收到 新的 状态或者props 后，是否需要更新，返回布尔值
                 componentWillUpdate (nextProps,nextState)   组件将要更新，但是其未更新
                 componentDidUpdate(prevProps,prevState) 组件更新完成，此时页面的内容都是新的
                 render()    生成虚拟dom
+
             React新增的生命周期
                 getDerivedStateFromProps(nextProps, prevState)     代替componentWillReceiveProps()
                 getSnapshotBeforeUpdate(prevProps, prevState)       代替componentWillUpdate()
 
 
+            React 16之后有三个生命周期被废弃(但并未删除)
+                componentWillMount
+                componentWillReceiveProps
+                componentWillUpdate
 
 
 

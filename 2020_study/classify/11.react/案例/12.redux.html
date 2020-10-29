@@ -9,8 +9,61 @@
         <!-- 
     安装 redux :
         npm install redux --save
+        npm install react-redux --save
 
 
+    引入：
+        { createStore } from "redux"
+    
+    创建默认公共数据(建立新的文件)：
+        const defaultSTate = {}
+
+        let todoApp = (state = defaultSTate,action) => {
+            if(action.type==""){
+                let newDate = JSON.parse(JSON.stringify(state))
+                return newDate
+            }
+
+        }
+
+        let store = createStore(todoApp)
+
+
+        export derault store
+    
+    根组件引入store:
+        
+        import {Provider} from "react-redux"
+        import Store from "创建好的store文件路径"
+
+        使用 Provider 作为根元素 ， 传入 store 参数
+            <Provider store={Srore}>
+               内部组件
+            </Provider>
+    
+    后代组件使用store:
+        import {Connect} from "react-redux"
+
+
+        const mapState = (state)=>{
+            return {
+                键:值
+            }
+        }
+
+        const mapDispatch = (dispatch)=>{
+            return {
+                fn(){
+                    let action= {
+                        type:"类型",
+                        value:"值"
+                    }
+                    dispatch(action)
+                }
+            }
+        }
+
+        export derault Connect(mapState,mapDispatch)(组件名)
 
         
      -->

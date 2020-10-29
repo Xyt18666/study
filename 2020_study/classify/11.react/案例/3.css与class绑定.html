@@ -22,6 +22,16 @@
         1. import xxx from '路径'        使用 scr={xxx}
         2. 在标签内部写 src={require('路径').default}
 
+-----------------------------------------------------------------------
+
+    class绑定：
+        <i className={["iconfont"+" "+item.icon]} ></i>         字符串拼接
+        	
+        <i className={["iconfont ",isRed ?item.icon :'' ].join('')} ></i>   条件判断
+
+        <i className={`iconfont ${isRed ?item.icon :'' }`} ></i>   模板字符串
+
+
 
      -->
     </body>
