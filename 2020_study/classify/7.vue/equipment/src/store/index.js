@@ -5,13 +5,16 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    count: 0,
+    userData: null,
+    size: 111
   },
   getters: {},
   mutations: {
-   
+    setUserData(state, val) {
+      state.userData = val;
+    }
   },
-  actions: {},
+  actions: {}
 });
 
 export default store;

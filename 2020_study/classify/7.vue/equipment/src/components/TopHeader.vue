@@ -9,21 +9,29 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from "vuex";
 export default {
   data() {
     return {
-      name: "亚坤",
+      name: "亚",
       show: false
     };
   },
+  computed: {
+    ...mapState(["userData"])
+  },
   methods: {
+    ...mapMutations(["setUserData"]),
     who() {
       this.$http.post("equipment/who").then(res => {
-        console.log(res);
+        console.log(res, "how");
         if (res.data.code !== 0) {
           this.$router.push({
             name: "Login"
           });
+        } else {
+          this.setUserData(res.data.data);
+          // console.log(this.userData);
         }
       });
     },
@@ -55,7 +63,6 @@ export default {
         margin: 0
         position: relative
         ul
-
             top: 30px
             width: 200px
             position: absolute

@@ -74,10 +74,10 @@ export default {
   data() {
     return {
       type: "sms",
-      phones: "13800138001",
+      phones: "13800138002",
       codes: "654321",
-      usernames: "",
-      passwords: "",
+      usernames: "wangerxiao",
+      passwords: "Qwe123",
       time: 3,
       loding: false
     };
@@ -101,13 +101,6 @@ export default {
     },
 
     login() {
-      console.log(
-        this.type,
-        this.phones,
-        this.codes,
-        this.usernames,
-        this.passwords
-      );
       let { type, phones, codes, usernames, passwords } = this;
       let params = {
         type
@@ -116,57 +109,36 @@ export default {
       if (this.type == "sms") {
         params.phone = phones;
         params.code = codes;
-        // if (!this.phones || !this.codes) {
-        //   console.log("请填写完整参数");
-        // } else {
-        //   this.$http
-        //     .post("equipment/login", {
-        //       type: this.type,
-        //       phone: this.phones,
-        //       code: this.codes
-        //     })
-        //     .then(res => {
-        //       // this.$router.push({
-        //       //   name: "",
-        //       //   params: {}
-        //       // });
-        //     });
-        // }
       } else if (this.type == "passwprd") {
         params.username = usernames;
         params.password = passwords;
-        // if (this.usernames || this.passwords) {
-        //   console.log("请填写完整参数");
-        // } else {
-        //   this.$http
-        //     .post("equipment/login", {
-        //       type: this.type,
-        //       username: this.usernames,
-        //       password: this.passwords
-        //     })
-        //     .then(res => {
-        //       console.log(res);
-        //     });
-        // }
       }
+      this.$http.post("equipment/login", params).then(res => {
+        console.log(params);
 
-      for (let item of Object.values(params)) {
-        console.log(item);
+        console.log(res);
+        this.$router.push({
+          name: "Main"
+        });
+      });
 
-        if (!item) {
-          console.log("请填写完整参数");
-          return;
-        } else {
-          console.log(params);
+      // for (let item of Object.values(params)) {
+      //   console.log(item);
 
-          this.$http.post("equipment/login", params).then(res => {
-            console.log(res);
-            this.$router.push({
-              name: "Main"
-            });
-          });
-        }
-      }
+      //   if (!item) {
+      //     console.log("请填写完整参数");
+      //     return;
+      //   } else {
+      //     console.log(params);
+
+      //     this.$http.post("equipment/login", params).then(res => {
+      //       console.log(res);
+      //       this.$router.push({
+      //         name: "Main"
+      //       });
+      //     });
+      //   }
+      // }
     }
   }
 };

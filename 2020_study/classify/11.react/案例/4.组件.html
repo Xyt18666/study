@@ -59,7 +59,7 @@
             this.setState({},function(){ console.log(this.state.data);})   
             函数内是新的 值
 
-        this.setState((prevState,props)=>{},fn)传递函数执行：
+        this.setState((prevState,props)=>({}),fn)传递函数执行：
             解决 的问题 ，使用 对象形式传参 ，如果多次执行同一种操作 ，他会合并，只执行一次
             prevState 是 上一次执行的值 
             
