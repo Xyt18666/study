@@ -3,7 +3,7 @@
     h2 设备管理
     h2(@mouseover="show=true"  @mouseout="show=false" ) 用户名:{{name}} 
         ul(v-show="show")
-            li 修改密码
+            li(@click="setPassWord") 修改密码
             li(@click="logOut") 退出
  
 </template>
@@ -42,6 +42,9 @@ export default {
         });
         console.log(res);
       });
+    },
+    setPassWord() {
+      // 弹框 重置 密码
     }
   },
   created() {

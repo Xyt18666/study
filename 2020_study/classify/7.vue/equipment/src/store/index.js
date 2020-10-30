@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    userData: null,
+    userData: "",
     size: 111
   },
   getters: {},

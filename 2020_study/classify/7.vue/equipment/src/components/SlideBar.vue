@@ -2,7 +2,7 @@
 .slide-bar 
     ul
         li(
-            v-for="(item,index) in permissionNavList"
+            v-for="(item,index) in navList"
             :key="index"
             ) 
             router-link(
@@ -44,18 +44,21 @@ export default {
   },
 
   computed: {
-    ...mapState(["userData", "size"]),
-    permissionNavList() {
-      return this.navList.filter(item => {
-        const pStr = item.permissions;
-        return this.userData.permissions.indexOf(pStr) > -1;
-      });
-    }
+    ...mapState(["userData", "size"])
+    // permissionNavList() {
+    //   return this.navList.filter(item => {
+    //     return this.userData.permissions.indexOf(item.permissions) > -1;
+    //   });
+    // }
   },
-  created() {},
-  mounted() {
-    // console.log(this.size, "slide");
-  }
+  created() {
+    setTimeout(() => {
+      this.navList = this.navList.filter(item => {
+        return this.userData.permissions.indexOf(item.permissions) > -1;
+      });
+    }, 200);
+  },
+  mounted() {}
 };
 </script>
 
