@@ -21,13 +21,27 @@
 
 
     配置代理：
-        package.json 中 配置 proxy
-        "pruxy":"路径"
-        然后请求时 ，请求路径后的地址
 
-        react官方脚手架默认是将webpack配置隐藏起来了，在进行配置之前需要将webpack给暴露出来。
+        获取 react隐藏的 webpack 文件：
+            react官方脚手架默认是将webpack配置隐藏起来了，在进行配置之前需要将webpack给暴露出来。
 
-        输入命令 npm run eject
+            输入命令 npm run eject
+
+
+        在 config/webpackDevServer.config.js文件下配置： 大概在104行
+             proxy: {
+                "/api": {
+                    //代理的路径
+                    target: "http://m.jxsjs.com", //请求路径
+                    changeOrigin: true, // 改请求头 的  host 字段 为target  http://jxsjs.com
+                    // pathRewrite: {
+                    //     "/api": "", //把路径中的 /api 置空
+                    // },
+                },
+            },
+
+    异步获取数据如何渲染dom:
+        render函数  return时三目判断是否有数据，有数据才渲染
 
 
      -->

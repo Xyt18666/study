@@ -113,7 +113,26 @@
         export default NewRedux
         // 导出新的组件
 
+        ps:不能再 app.js中使用 connect ，报错
+
         此时已经实现了 数据管理
+
+
+
+
+
+    Provider绑定在 根index.js中无法获取数据 ，所以我放绑在了 app.js
+
+
+    在绑定 Provider的组件 获取 数据 ：
+        this.state = {
+            store: Store.getState(),
+        };
+
+        获取的数据还是 固定的 ，当数据刷新时 ，他不会刷新
+
+        所以我加了 定时器 ，每隔一段时间获取一次
+        
             
 
     
