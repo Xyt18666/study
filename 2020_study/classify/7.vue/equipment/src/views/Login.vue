@@ -19,16 +19,12 @@
             .form
                 .sms-from(v-show="type=='sms'")
                     label
-                        input(
-                            placeholder='13800138001'
-                            v-model="phones"
-                        )
+                    <el-input v-model="phones" placeholder="用户名"></el-input>
+                        
                     .con
                         label
-                            input(
-                                placeholder='654321'
-                                v-model="codes"
-                            )
+                          <el-input v-model="codes" placeholder="用户名"></el-input>
+                           
                         button.sendMsg(
                             @click="sendCode"
                        
@@ -39,18 +35,11 @@
 
                 .password-from(v-show="type=='passwprd'")
                     label
-                        input(
-                            placeholder='用户名'
-                            v-model="usernames"
-                        )
+                        <el-input v-model="usernames" placeholder="用户名"></el-input>
                     label
-                        input(
-                            placeholder='密码'
-                            v-model="passwords"
+                       <el-input v-model="passwords" type="password" placeholder="密码"></el-input>
 
-                        )
-
-                button(@click="login") 登陆
+                <el-button type="primary" @click="login">登陆</el-button>
             p {{phones}} -- {{codes}}
             p {{usernames}} -- {{passwords}}
             
@@ -83,6 +72,10 @@ export default {
     };
   },
   methods: {
+    resizeChart() {
+      this.$refs.status.resize();
+      this.$refs.category.resize();
+    },
     sendCode() {
       if (!/^\d{11}$/.test(this.phones)) {
         console.log("手机号码有误，请重填");
@@ -99,7 +92,6 @@ export default {
         }, 1000);
       }
     },
-
     login() {
       let { type, phones, codes, usernames, passwords } = this;
       let params = {
