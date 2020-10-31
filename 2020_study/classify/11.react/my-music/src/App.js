@@ -34,7 +34,7 @@ class App extends React.Component {
         let { value } = this.props;
         return (
             <section className="App">
-                <div>header</div>
+                <div className="header">header</div>
                 <Router>
                     <nav>
                         <Link to="/">首页</Link>
@@ -45,7 +45,13 @@ class App extends React.Component {
                     {renderRoutes(routes)}
                 </Router>
 
-                <div>{value}</div>
+                <div className="musicContent">
+                    {value}
+                    <div className="miniMusic">miniMusic</div>
+                    <div className="musicList">musicsList</div>
+                    <div className="musicBox">musicsList</div>
+                    {/* <audio></audio> */}
+                </div>
             </section>
         );
     }

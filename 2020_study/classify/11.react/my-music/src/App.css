@@ -1,0 +1,29 @@
+.header {
+    background: #0f0;
+    width: 100vw;
+    height: 60px;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    background: #ccc;
+    height: 60px;
+    line-height: 60px;
+}
+nav a {
+    display: block;
+    flex: 1;
+    text-align: center;
+}
+.musicContent {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    height: 60px;
+    background: #ccc;
+}
+.App > section {
+    width: 100vw;
+    height: calc(100vh - 180px);
+}
