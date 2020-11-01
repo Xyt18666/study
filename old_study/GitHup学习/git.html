@@ -40,7 +40,7 @@ git
 
 查看状态：(当放到大门口，却未移至仓库时)
 1. git status （随时都能看,执行后会进行比较,工作区和仓库的文件）
-2. 在执行 git commit -m ""
+2. 在执行 git commit --all -m ""
 
 git中忽略文件：
 1. 以 / 开头写一个路径,这些路径所对应的文件都会被忽略,不会被提交到仓库中。（也可以写指定文件）
@@ -52,7 +52,7 @@ git中忽略文件：
 
 
 版本回退：
-git reset --hard Head~0  (尾数字可以改,退回多个版本)
+git reset --hard Head~0  (尾数字可以改,退回多个版本,数字是几就是退回几个版本)
 
 通过版本号切换版本：
 git reset --hard 版本号   (git log --oneline 输出的版本号)
@@ -67,6 +67,8 @@ git reset --hard 版本号   (git log --oneline 输出的版本号)
 4. git merge dev (合并分支)
 5. git branch -d dev （删除 dev 分支,当前分支不能删除当前分支）
 6. 如果出现冲突,需要手动选择需要的代码,然后重新提交到仓库
+
+ps:在分支进行操作文件，主分支不会有任何变化
 
 
 
