@@ -121,17 +121,26 @@
 
 
 
-    Provider绑定在 根index.js中无法获取数据 ，所以我放绑在了 app.js
+    Provider绑定在 根index.js中无法获取数据 ？
+        报错信息：
+            Error: Objects are not valid as a React child (found: object with keys {}). If you meant to render a collection of children, use an array instead.
+
+        问题在于，标签 {} 内绑定的是 对象，所以报错
+
+    
 
 
-    在绑定 Provider的组件 获取 数据 ：
+    在绑定 Provider的组件 获取 数据 ：（由于之前报错所以使用的这种方法，现在用不到）
         this.state = {
             store: Store.getState(),
         };
+        componentDidMount() {
+            Store.subscribe(() => {
+                //实现实时响应
+                this.setState({ store: Store.getState() });
+            });
+        }
 
-        获取的数据还是 固定的 ，当数据刷新时 ，他不会刷新
-
-        所以我加了 定时器 ，每隔一段时间获取一次
         
             
 

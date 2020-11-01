@@ -105,6 +105,8 @@ export default {
         params.username = usernames;
         params.password = passwords;
       }
+      console.log(params);
+
       this.$http.post("equipment/login", params).then(res => {
         console.log(params);
 

@@ -46,16 +46,16 @@ class Home extends React.Component{
        
     }
     render(){
-          let {
-            songList,
-            copySongList,
-            mucisActive,
-            setSongList,
-            setCopySongList,
-            setMucisActive,
-        } = this.props;
+        //   let {
+            // songList,
+            // copySongList,
+            // mucisActive,
+            // setSongList,
+            // setCopySongList,
+            // setMucisActive,
+        // } = this.props;
 
-        return !this.state.dataAll?"loading":(
+        return !this.state.dataAll?(<p>loading</p>):(
             <section>
                  <div>
                         <p>banner</p>
@@ -69,7 +69,7 @@ class Home extends React.Component{
                         <p>hitList</p>
                         { 
                             this.state.dataAll[1].map((item,index)=>{
-                                return <p key={index} onClick={this.setMusicACtive} data-url={item.url}>{item.url}</p>
+                                return <p key={index} onClick={()=>this.setMusicACtive(item)} >{item.url}</p>
                             })
                         }
                         
@@ -82,9 +82,16 @@ class Home extends React.Component{
     
     
     setMusicACtive=(e)=>{
-     
-        this.props.setMucisActive({url:e.target.dataset.url})
-        // console.log(this.props.mucisActive)
+        // console.log(e)
+        this.props.setMucisActive(e)
+
+        this.props.songList.push(e)
+        this.props.copySongList.push(e)
+
+        this.props.setSongList([...new Set( this.props.songList)])
+        this.props.setCopySongList([...new Set( this.props.copySongList)])
+        // console.log(e.target.dataset.url)
+        // console.log(this.props.CopySongList)
 
       
     }

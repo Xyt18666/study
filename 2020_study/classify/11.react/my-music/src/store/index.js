@@ -2,7 +2,7 @@ import { createStore } from "redux";
 let states = {
     songList: [],
     copySongList: [],
-    mucisActive: { url: "?????" },
+    mucisActive: {},
 };
 
 function reducer(state = states, action) {

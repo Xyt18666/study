@@ -9,10 +9,19 @@ module.exports = {
     // Paths
     assetsSubDirectory: "static",
     assetsPublicPath: "/",
+    // proxyTable: {
+    //   "/equipmen": {
+    //     target: "http://api.jxsjs.com",
+    //     changeOrigin: true
+    //   }
+    // },
     proxyTable: {
-      "/equipmen": {
-        target: "http://api.jxsjs.com",
-        changeOrigin: true
+      "/equipment": {
+        target: "http://api.jxsjs.com/equipment",
+        changeOrigin: true,
+        pathRewrite: {
+          "/equipment": ""
+        }
       }
     },
 

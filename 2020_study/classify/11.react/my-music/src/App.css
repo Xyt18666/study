@@ -27,3 +27,16 @@ nav a {
     width: 100vw;
     height: calc(100vh - 180px);
 }
+.musicList,
+.musicBox {
+    position: fixed;
+    bottom: -100%;
+    background: #fff;
+    transition: 0.5s;
+}
+.musicList.active,
+.musicBox.active {
+    position: fixed;
+    bottom: 0;
+  
+}

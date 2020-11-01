@@ -4,17 +4,17 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-// import { Provider } from "react-redux";
-// import Store from "./store/index";
+import { Provider } from "react-redux";
+import Store from "./store/index";
 
 import "normalize.css";
 import axios from "axios";
 React.Component.prototype.axios = axios;
 
 ReactDOM.render(
-    // <Provider store={Store}>
-    <App />,
-    // </Provider>,
+    <Provider store={Store}>
+        <App />
+    </Provider>,
     document.getElementById("root")
 );
 
