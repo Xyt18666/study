@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+        Layout 布局:
+            通过基础的 24 分栏，迅速简便地创建布局
+
+            行组件 ：<el-row></el-row>
+                属性：
+                    :gutter="20"        定义列间隔
+                    type="flex"         启用 flex 布局
+                    justify="center"    通过 justify 属性来指定子元素的排版方式 
+                    align	            flex 布局下的垂直排列方式
+                    tag	                自定义元素标签
+
+            列组件 ：<el-col :span="24"></el-col>
+                属性：
+                    :span="24"      定义份数 
+                    :offset="6"     栅格左侧的间隔格数
+                    :push="6"	    栅格向右移动格数
+                    :pull="6"	    栅格向左移动格数
+                    tag	            自定义元素标签
+
+                    响应式布局属性：什么屏幕下的所占份数
+                        :xs="3"        超小   <768px
+                        :sm="3"        小     >=768px
+                        :md="3"        中     >=992px
+                        :lg="3"        大     >=1200px
+                        :xl="3"       超大    >=1920px
+
+                        参数可为 对象 ：例如： {span: 4, offset: 4}
+
+            基于断点的隐藏类:
+                引入文件： import 'element-ui/lib/theme-chalk/display.css';
+
+                hidden-xs-only          当视口在 xs 尺寸时隐藏
+                hidden-sm-only          当视口在 sm 尺寸时隐藏
+                hidden-sm-and-down      当视口在 sm 及以下尺寸时隐藏
+                hidden-sm-and-up        当视口在 sm 及以上尺寸时隐藏
+                hidden-md-only          当视口在 md 尺寸时隐藏
+                hidden-md-and-down      当视口在 md 及以下尺寸时隐藏
+                hidden-md-and-up        当视口在 md 及以上尺寸时隐藏
+                hidden-lg-only          当视口在 lg 尺寸时隐藏
+                hidden-lg-and-down      当视口在 lg 及以下尺寸时隐藏
+                hidden-lg-and-up        当视口在 lg 及以上尺寸时隐藏
+                hidden-xl-only          当视口在 xl 尺寸时隐藏
+        
+     -->
+    </body>
+</html>
