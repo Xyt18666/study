@@ -1,5 +1,10 @@
 <template lang="pug">
-.register register
+.register
+    router-link(
+        to="/main/register/registeradd"
+    ) 添加
+
+    router-view
 </template>
 
 <script>

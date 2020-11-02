@@ -53,10 +53,12 @@ export default {
   },
   created() {
     setTimeout(() => {
+      // console.log(this.userData);
+
       this.navList = this.navList.filter(item => {
         return this.userData.permissions.indexOf(item.permissions) > -1;
       });
-    }, 200);
+    }, 400);
   },
   mounted() {}
 };

@@ -63,7 +63,7 @@ export default {
   data() {
     return {
       type: "sms",
-      phones: "13800138002",
+      phones: "13800138001",
       codes: "654321",
       usernames: "wangerxiao",
       passwords: "Qwe123",

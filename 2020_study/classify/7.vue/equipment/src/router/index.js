@@ -62,22 +62,24 @@ export default new Router({
         {
           path: "register",
           name: "Register",
-          component: Register
-        },
-        {
-          path: "/registeradd",
-          name: "RegisterAdd",
-          component: RegisterAdd
-        },
-        {
-          path: "/registerdetail",
-          name: "RegisterDetail",
-          component: RegisterDetail
-        },
-        {
-          path: "/registerddit",
-          name: "RegisterEdit",
-          component: RegisterEdit
+          component: Register,
+          children: [
+            {
+              path: "registeradd",
+              name: "RegisterAdd",
+              component: RegisterAdd
+            },
+            {
+              path: "registerdetail",
+              name: "RegisterDetail",
+              component: RegisterDetail
+            },
+            {
+              path: "registerddit",
+              name: "RegisterEdit",
+              component: RegisterEdit
+            }
+          ]
         }
       ]
     }

@@ -44,6 +44,7 @@ import { mapState, mapMutations } from "vuex";
 export default {
   data() {
     return {
+      showChangePw: false,
       name: "亚",
       show: false,
       old: "",

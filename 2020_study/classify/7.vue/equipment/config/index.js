@@ -10,8 +10,8 @@ module.exports = {
     assetsSubDirectory: "static",
     assetsPublicPath: "/",
     proxyTable: {
-      "/equipmen": {
-        target: "http://api.jxsjs.com",
+      "/equipment": {
+        target: "http://jxsjs.com",
         changeOrigin: true
       }
     },

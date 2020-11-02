@@ -9,14 +9,14 @@
             p {{ overview.amount | money }}
     .echarts-list
         
-        Echarts.left(ref="states")
-        Echarts.right(ref="categroy")
+        echarts-dom.left(ref="states")
+        echarts-dom.right(ref="categroy")
 
 </template>
 
 <script>
 var echarts = require("echarts");
-import Echarts from "@/components/Echarts.vue";
+import EchartsDom from "@/components/Echarts.vue";
 export default {
   data() {
     return {
@@ -24,7 +24,7 @@ export default {
     };
   },
   components: {
-    Echarts
+    EchartsDom
   },
   filters: {
     money(val) {
@@ -42,8 +42,8 @@ export default {
   methods: {
     getChartData() {
       Promise.all([
-        axios.get("/equipment/status-overview"),
-        axios.get("/equipment/category-overview")
+        this.$http.get("/equipment/status-overview"),
+        this.$http.get("/equipment/category-overview")
       ]).then(rsp => {
         const statusData = rsp[0].data.data;
         const categoryData = rsp[1].data.data;
@@ -58,7 +58,7 @@ export default {
         };
       });
 
-      this.$refs.status.draw({
+      this.$refs.states.draw({
         title: {
           text: "设备状态汇总"
         },
@@ -75,7 +75,7 @@ export default {
         }
       });
 
-      this.$refs.category.draw({
+      this.$refs.categroy.draw({
         title: {
           text: "设备分类汇总"
         },
@@ -103,7 +103,7 @@ export default {
     }
   },
   created() {
-    axios.get("/equipment/overview").then(({ data }) => {
+    this.$http.get("/equipment/overview").then(({ data }) => {
       if (data.code === 0) {
         this.overview = data.data;
       }
