@@ -9,21 +9,21 @@ module.exports = {
     // Paths
     assetsSubDirectory: "static",
     assetsPublicPath: "/",
-    // proxyTable: {
-    //   "/equipmen": {
-    //     target: "http://api.jxsjs.com",
-    //     changeOrigin: true
-    //   }
-    // },
     proxyTable: {
-      "/equipment": {
-        target: "http://api.jxsjs.com/equipment",
-        changeOrigin: true,
-        pathRewrite: {
-          "/equipment": ""
-        }
+      "/equipmen": {
+        target: "http://api.jxsjs.com",
+        changeOrigin: true
       }
     },
+    // proxyTable: {
+    //   "/equipment": {
+    //     target: "http://api.jxsjs.com/equipment",
+    //     changeOrigin: true,
+    //     pathRewrite: {
+    //       "/equipment": ""
+    //     }
+    //   }
+    // },
 
     // Various Dev Server settings
     host: "localhost", // can be overwritten by process.env.HOST

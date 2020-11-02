@@ -8,6 +8,9 @@ import Administration from "@/views/Administration";
 import Dictionaries from "@/views/Dictionaries";
 import Overview from "@/views/Overview";
 import Register from "@/views/Register";
+import RegisterAdd from "@/views/RegisterAdd";
+import RegisterDetail from "@/views/RegisterDetail";
+import RegisterEdit from "@/views/RegisterEdit";
 
 //push
 const VueRouterPush = Router.prototype.push;
@@ -60,6 +63,21 @@ export default new Router({
           path: "register",
           name: "Register",
           component: Register
+        },
+        {
+          path: "/registeradd",
+          name: "RegisterAdd",
+          component: RegisterAdd
+        },
+        {
+          path: "/registerdetail",
+          name: "RegisterDetail",
+          component: RegisterDetail
+        },
+        {
+          path: "/registerddit",
+          name: "RegisterEdit",
+          component: RegisterEdit
         }
       ]
     }

@@ -129,6 +129,24 @@
 
 
       <!-- ------------------ -->
+        <!-- 
+          .sync  修饰符 
+            用于双向数据绑定
+            组件内部默认 导出 update:变量名  事件
+
+            <test-sync :num.sync="number"></test-sync>  等同于下面
+            <test-sync :num="number" @update:num="number = $event"></test-sync>   
+            Vue.component('test-sync', {
+                props: ['num'],
+                template: `<button @click="$emit('update:num', 2000)">{{ num }}</button>`
+            });
+
+
+
+
+         -->
+
+
     </div>
   </body>
   <script>
