@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[1],{77:function(n,o,c){"use strict";function t(n,o){return n+o}c.r(o),c.d(o,"fn",(function(){return t})),console.log("222")}}]);
+//# sourceMappingURL=tests.959a95e7f0.js.map

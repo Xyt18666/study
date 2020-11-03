@@ -1,0 +1,192 @@
+/*
+escape(@string); // 通过 URL-encoding 编码字符串
+e(@string); // 对字符串转义
+%(@string, values...); // 格式化字符串
+unit(@dimension, [@unit: ""]); // 移除或替换属性值的单位
+color(@string); // 将字符串解析为颜色值
+data-uri([mimetype,] url); // * 将资源内嵌到css中，可能回退到url()
+ceil(@number); // 向上取整
+floor(@number); // 向下取整
+percentage(@number); // 将数字转换为百分比，例如 0.5 -> 50%
+round(number, [places: 0]); // 四舍五入取整
+sqrt(number); // * 计算数字的平方根
+abs(number); // * 数字的绝对值
+sin(number); // * sin函数
+asin(number); // * arcsin函数
+cos(number); // * cos函数
+acos(number); // * arccos函数
+tan(number); // * tan函数
+atan(number); // * arctan函数
+pi(); // * 返回PI
+pow(@base, @exponent); // * 返回@base的@exponent次方
+mod(number, number); // * 第一个参数对第二个参数取余
+convert(number, units); // * 在数字之间转换
+unit(number, units); // * 不转换的情况下替换数字的单位
+color(string); // 将字符串或者转义后的值转换成颜色
+rgb(@r, @g, @b); // 转换为颜色值
+rgba(@r, @g, @b, @a); // 转换为颜色值
+argb(@color); // 创建 #AARRGGBB 格式的颜色值
+hsl(@hue, @saturation, @lightness); // 创建颜色值
+hsla(@hue, @saturation, @lightness, @alpha); // 创建颜色值
+hsv(@hue, @saturation, @value); // 创建颜色值
+hsva(@hue, @saturation, @value, @alpha); // 创建颜色值
+hue(@color); // 从颜色值中提取 hue 值（色相）
+saturation(@color); // 从颜色值中提取 saturation 值（饱和度）
+lightness(@color); // 从颜色值中提取 'lightness' 值（亮度）
+hsvhue(@color); // * 从颜色中提取 hue 值，以HSV色彩空间表示（色相）
+hsvsaturation(@color); // * 从颜色中提取 saturation 值，以HSV色彩空间表示（饱和度）
+hsvvalue(@color); // * 从颜色中提取 value 值，以HSV色彩空间表示（色调）
+red(@color); // 从颜色值中提取 'red' 值（红色）
+green(@color); // 从颜色值中提取 'green' 值（绿色）
+blue(@color); // 从颜色值中提取 'blue' 值（蓝色）
+alpha(@color); // 从颜色值中提取 'alpha' 值（透明度）
+luma(@color); // 从颜色值中提取 'luma' 值（亮度的百分比表示法）
+saturate(@color, 10%); // 饱和度增加 10%
+desaturate(@color, 10%); // 饱和度降低 10%
+lighten(@color, 10%); // 亮度增加 10%
+darken(@color, 10%); // 亮度降低 10%
+fadein(@color, 10%); // 透明度增加 10%
+fadeout(@color, 10%); // 透明度降低 10%
+fade(@color, 50%); // 设定透明度为 50%
+spin(@color, 10); // 色相值增加 10
+mix(@color1, @color2, [@weight: 50%]); // 混合两种颜色
+greyscale(@color); // 完全移除饱和度，输出灰色
+contrast(@color1, [@darkcolor: black], [@lightcolor: white], [@threshold: 43%]); // 如果 @color1 的 luma 值 > 43% 输出 @darkcolor，否则输出 @lightcolor
+multiply(@color1, @color2);
+screen(@color1, @color2);
+overlay(@color1, @color2);
+softlight(@color1, @color2);
+hardlight(@color1, @color2);
+difference(@color1, @color2);
+exclusion(@color1, @color2);
+average(@color1, @color2);
+negation(@color1, @color2);
+iscolor(@colorOrAnything); // 判断一个值是否是颜色
+isnumber(@numberOrAnything); // 判断一个值是否是数字（可含单位）
+isstring(@stringOrAnything); // 判断一个值是否是字符串
+iskeyword(@keywordOrAnything); // 判断一个值是否是关键字
+isurl(@urlOrAnything); // 判断一个值是否是url
+ispixel(@pixelOrAnything); // 判断一个值是否是以px为单位的数值
+ispercentage(@percentageOrAnything); // 判断一个值是否是百分数
+isem(@emOrAnything); // 判断一个值是否是以em为单位的数值
+isunit(@numberOrAnything, "rem"); // * 判断一个值是否是指定单位的数值
+
+
+
+
+
+
+
+
+
+混杂方法
+
+image-size("file.jpg"); // => 100px 50px
+image-width("file.jpg"); // => 100px
+image-height("file.jpg"); // => 50px
+
+
+单位转换
+convert(9s, "ms"); // => 9000ms
+convert(14cm, mm); // => 140mm
+convert(8, mm); // => 8
+
+列表
+
+@list: "A", "B", C, "D";
+length(@list); // => 4
+extract(@list, 3); // => C
+
+
+数学
+
+ceil(2.1); // => 3 向上取整
+floor(2.1); // => 2 向下取整
+percentage(.3); // => 30% 转百分比
+round(1.67, 1); // => 1.7 四舍五入，保留一位小数点
+sqrt(25cm); // => 5cm 取平方根
+abs(-5cm); // => 5cm 取绝对值
+pi(); // => 3.141592653589793 圆周率π
+max(3px, 42px, 1px, 16px); // => 42px
+min(3px, 42px, 1px, 16px); // => 1px
+
+字符串
+
+replace("Hi Tom?", "Tom", "Jack"); // => "Hi Jack"
+
+
+
+判断类型
+
+isnumber(56px); // => true 是否含数字
+isstring("string"); // => true
+iscolor(#ff0); // => true
+iscolor(blue); // => true
+iskeyword(keyword); // => true
+isurl(url(...)); // => true
+ispixel(56px); // => true
+isem(7.8em); // => true
+ispercentage(7.8%); // => true
+isunit(4rem, rem); // => true 是否为指定单位
+isruleset(@rules); // => true 是否为变量
+
+
+颜色操作
+
+saturate(color, 20%)// 增加饱和度
+desaturate(color, 20%)// 减少饱和度
+lighten(color, 20%)// 增加亮度
+darken(color, 20%)// 减少亮度
+fadein(color, 10%)// 降低透明度
+fadeout(color, 10%)// 增加透明度
+fade(color, 20%)// 设置绝对不透明度(覆盖原透明度)
+spin(color, 10)// 旋转色调角度
+mix(#f00, #00f, 50%)// 将两种颜色混合，不透明度包括在计算中。
+tint(#007fff, 50%)// 与白色混合
+shade(#007fff, 50%)// 与黑色混合
+greyscale(color)// 灰度，移除饱和度
+contrast(color1, color2)// 返回对比度最大的颜色
+
+
+
+颜色混合
+
+multiply(color1, color2);// 每个RGB 通道相乘，然后除以255
+screen(color1, color2);// 与 multiply 相反
+overlay(color1, color2)// 使之更浅或更暗
+softlight(color1, color2)// 避免太亮或太暗
+hardlight(color1, color2)// 与overlay相同，但颜色互换
+average(color1, color2)// 计算每个通道(RGB)基础上的两种颜色的平均值
+
+
+*/
+@media (min-width: 320px) {
+  html {
+    font-size: 42.66666667px;
+  }
+}
+@media (min-width: 360px) {
+  html {
+    font-size: 48px;
+  }
+}
+@media (min-width: 480px) {
+  html {
+    font-size: 64px;
+  }
+}
+@media (min-width: 540px) {
+  html {
+    font-size: 72px;
+  }
+}
+@media (min-width: 640px) {
+  html {
+    font-size: 85.33333333px;
+  }
+}
+@media (min-width: 750px) {
+  html {
+    font-size: 100px;
+  }
+}
