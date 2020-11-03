@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body></body>
+    <script>
+        /*
+    Alert 警告:
+        页面中的非浮层元素，不会自动消失
+        主题设置
+        自定义关闭按钮
+        带有 icon
+        文字居中
+        带有辅助性文字介绍
+        带有 icon 和辅助性文字介绍
+
+        属性：
+            参数	说明	类型	可选值	默认值
+            title	标题	string	—	—
+            type	主题	string	success/warning/info/error	info
+            description	辅助性文字。也可通过默认 slot 传入	string	—	—
+            closable	是否可关闭	boolean	—	true
+            center	文字是否居中	boolean	—	true
+            close-text	关闭按钮自定义文本	string	—	—
+            show-icon	是否显示图标	boolean	—	false
+            effect	选择提供的主题	string	light/dark	light
+
+        Slot：
+            Name	Description
+            —	描述
+            title	标题的内容
+
+        Events：
+            事件名称	说明	回调参数
+            close	关闭alert时触发的事件	—
+
+--------------------------------------------------------------------------------------
+
+    Loading 加载：
+        加载数据时显示动效
+        区域加载
+        自定义样式
+        整页加载
+    
+        属性：
+            参数	说明	类型	可选值	默认值
+            target	Loading 需要覆盖的 DOM 节点。可传入一个 DOM 对象或字符串；若传入字符串，则会将其作为参数传入 document.querySelector以获取到对应 DOM 节点	object/string	—	document.body
+            body	同 v-loading 指令中的 body 修饰符	boolean	—	false
+            fullscreen	同 v-loading 指令中的 fullscreen 修饰符	boolean	—	true
+            lock	同 v-loading 指令中的 lock 修饰符	boolean	—	false
+            text	显示在加载图标下方的加载文案	string	—	—
+            spinner	自定义加载图标类名	string	—	—
+            background	遮罩背景色	string	—	—
+            customClass	Loading 的自定义类名	string	—	—
+                
+-----------------------------------------------------------------------------------------
+
+    Message 消息提示：
+        从顶部出现，3 秒后自动消失
+        用来显示「成功、警告、消息、错误」类的操作反馈。
+        可以添加关闭按钮
+        文字居中
+        使用 HTML 片段
+
+        全局方法
+        单独引用
+
+        属性：
+            参数	说明	类型	可选值	默认值
+            message	消息文字	string / VNode	—	—
+            type	主题	string	success/warning/info/error	info
+            iconClass	自定义图标的类名，会覆盖 type	string	—	—
+            dangerouslyUseHTMLString	是否将 message 属性作为 HTML 片段处理	boolean	—	false
+            customClass	自定义类名	string	—	—
+            duration	显示时间, 毫秒。设为 0 则不会自动关闭	number	—	3000
+            showClose	是否显示关闭按钮	boolean	—	false
+            center	文字是否居中	boolean	—	false
+            onClose	关闭时的回调函数, 参数为被关闭的 message 实例	function	—	—
+            offset	Message 距离窗口顶部的偏移量	number	—	20
+
+        方法：
+            调用 Message 或 this.$message 会返回当前 Message 的实例。如果需要手动关闭实例，可以调用它的 close 方法。
+
+            方法名	说明
+            close	关闭当前的 Message
+                
+----------------------------------------------------------------------------------------
+
+    MessageBox 弹框：
+        消息提示
+        确认消息
+        提交内容
+        自定义
+        使用 HTML 片段
+
+        全局方法
+        单独引用
+
+        属性：
+            参数	说明	类型	可选值	默认值
+            title	MessageBox 标题	string	—	—
+            message	MessageBox 消息正文内容	string / VNode	—	—
+            dangerouslyUseHTMLString	是否将 message 属性作为 HTML 片段处理	boolean	—	false
+            type	消息类型，用于显示图标	string	success / info / warning / error	—
+            iconClass	自定义图标的类名，会覆盖 type	string	—	—
+            customClass	MessageBox 的自定义类名	string	—	—
+            callback	若不使用 Promise，可以使用此参数指定 MessageBox 关闭后的回调	function(action, instance)，action 的值为'confirm', 'cancel'或'close', instance 为 MessageBox 实例，可以通过它访问实例上的属性和方法	—	—
+            showClose	MessageBox 是否显示右上角关闭按钮	boolean	—	true
+            beforeClose	MessageBox 关闭前的回调，会暂停实例的关闭	function(action, instance, done)，action 的值为'confirm', 'cancel'或'close'；instance 为 MessageBox 实例，可以通过它访问实例上的属性和方法；done 用于关闭 MessageBox 实例	—	—
+            distinguishCancelAndClose	是否将取消（点击取消按钮）与关闭（点击关闭按钮或遮罩层、按下 ESC 键）进行区分	boolean	—	false
+            lockScroll	是否在 MessageBox 出现时将 body 滚动锁定	boolean	—	true
+            showCancelButton	是否显示取消按钮	boolean	—	false（以 confirm 和 prompt 方式调用时为 true）
+            showConfirmButton	是否显示确定按钮	boolean	—	true
+            cancelButtonText	取消按钮的文本内容	string	—	取消
+            confirmButtonText	确定按钮的文本内容	string	—	确定
+            cancelButtonClass	取消按钮的自定义类名	string	—	—
+            confirmButtonClass	确定按钮的自定义类名	string	—	—
+            closeOnClickModal	是否可通过点击遮罩关闭 MessageBox	boolean	—	true（以 alert 方式调用时为 false）
+            closeOnPressEscape	是否可通过按下 ESC 键关闭 MessageBox	boolean	—	true（以 alert 方式调用时为 false）
+            closeOnHashChange	是否在 hashchange 时关闭 MessageBox	boolean	—	true
+            showInput	是否显示输入框	boolean	—	false（以 prompt 方式调用时为 true）
+            inputPlaceholder	输入框的占位符	string	—	—
+            inputType	输入框的类型	string	—	text
+            inputValue	输入框的初始文本	string	—	—
+            inputPattern	输入框的校验表达式	regexp	—	—
+            inputValidator	输入框的校验函数。可以返回布尔值或字符串，若返回一个字符串, 则返回结果会被赋值给 inputErrorMessage	function	—	—
+            inputErrorMessage	校验未通过时的提示文本	string	—	输入的数据不合法!
+            center	是否居中布局	boolean	—	false
+            roundButton	是否使用圆角按钮	boolean	—	false
+        
+-----------------------------------------------------------------------------
+   
+    Notification 通知：
+        悬浮出现在页面角落，显示全局的通知提醒消息
+        带有 icon，常用来显示「成功、警告、消息、错误」类的系统消息
+        可以让 Notification 从屏幕四角中的任意一角弹出
+        让 Notification 偏移一些位置
+        使用 HTML 片段
+        可以不显示关闭按钮
+        
+        全局方法
+        单独引用
+
+        属性：
+            参数	说明	类型	可选值	默认值
+            title	标题	string	—	—
+            message	说明文字	string/Vue.VNode	—	—
+            dangerouslyUseHTMLString	是否将 message 属性作为 HTML 片段处理	boolean	—	false
+            type	主题样式，如果不在可选值内将被忽略	string	success/warning/info/error	—
+            iconClass	自定义图标的类名。若设置了 type，则 iconClass 会被覆盖	string	—	—
+            customClass	自定义类名	string	—	—
+            duration	显示时间, 毫秒。设为 0 则不会自动关闭	number	—	4500
+            position	自定义弹出位置	string	top-right/top-left/bottom-right/bottom-left	top-right
+            showClose	是否显示关闭按钮	boolean	—	true
+            onClose	关闭时的回调函数	function	—	—
+            onClick	点击 Notification 时的回调函数	function	—	—
+            offset	偏移的距离，在同一时刻，所有的 Notification 实例应当具有一个相同的偏移量	number	—	0
+
+        方法：
+            调用 Notification 或 this.$notify 会返回当前 Notification 的实例。如果需要手动关闭实例，可以调用它的 close 方法。
+
+            方法名	说明
+            close	关闭当前的 Notification
+
+    */
+    </script>
+</html>

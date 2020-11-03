@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body></body>
+    <script>
+        /*
+    NavMenu 导航菜单:
+        为网站提供导航功能的菜单
+        顶栏
+        侧栏
+        折叠
+
+        属性：
+            参数	说明	类型	可选值	默认值
+            mode	模式	string	horizontal / vertical	vertical
+            collapse	是否水平折叠收起菜单（仅在 mode 为 vertical 时可用）	boolean	—	false
+            background-color	菜单的背景色（仅支持 hex 格式）	string	—	#ffffff
+            text-color	菜单的文字颜色（仅支持 hex 格式）	string	—	#303133
+            active-text-color	当前激活菜单的文字颜色（仅支持 hex 格式）	string	—	#409EFF
+            default-active	当前激活菜单的 index	string	—	—
+            default-openeds	当前打开的 sub-menu 的 index 的数组	Array	—	—
+            unique-opened	是否只保持一个子菜单的展开	boolean	—	false
+            menu-trigger	子菜单打开的触发方式(只在 mode 为 horizontal 时有效)	string	hover / click	hover
+            router	是否使用 vue-router 的模式，启用该模式会在激活导航时以 index 作为 path 进行路由跳转	boolean	—	false
+            collapse-transition	是否开启折叠动画	boolean	—	true
+
+        Menu Methods：
+            方法名称	说明	参数
+            open	展开指定的 sub-menu	index: 需要打开的 sub-menu 的 index
+            close	收起指定的 sub-menu	index: 需要收起的 sub-menu 的 index
+
+        Menu Events：
+            事件名称	说明	回调参数
+            select	菜单激活回调	index: 选中菜单项的 index, indexPath: 选中菜单项的 index path
+            open	sub-menu 展开的回调	index: 打开的 sub-menu 的 index， indexPath: 打开的 sub-menu 的 index path
+            close	sub-menu 收起的回调	index: 收起的 sub-menu 的 index， indexPath: 收起的 sub-menu 的 index path
+
+        SubMenu Attribute：
+            参数	说明	类型	可选值	默认值
+            index	唯一标志	string/null	—	null
+            popper-class	弹出菜单的自定义类名	string	—	—
+            show-timeout	展开 sub-menu 的延时	number	—	300
+            hide-timeout	收起 sub-menu 的延时	number	—	300
+            disabled	是否禁用	boolean	—	false
+            popper-append-to-body	是否将弹出菜单插入至 body 元素。在菜单的定位出现问题时，可尝试修改该属性	boolean	—	一级子菜单：true / 非一级子菜单：false
+
+        Menu-Item Attribute：
+            参数	说明	类型	可选值	默认值
+            index	唯一标志	string	—	—
+            route	Vue Router 路径对象	Object	—	—
+            disabled	是否禁用	boolean	—	false
+
+        Menu-Group Attribute：
+            参数	说明	类型	可选值	默认值
+            title	分组标题	string	—	—
+                
+----------------------------------------------------------------------------------------
+
+    Tabs 标签页：
+        基础的、简洁的标签页
+        选项卡样式的标签页
+        卡片化的标签页
+        可以通过 tab-position 设置标签的位置
+        自定义标签页
+        动态增减标签页
+        自定义增加标签页触发器
+
+        属性：
+            参数	说明	类型	可选值	默认值
+            value / v-model	绑定值，选中选项卡的 name	string	—	第一个选项卡的 name
+            type	风格类型	string	card/border-card	—
+            closable	标签是否可关闭	boolean	—	false
+            addable	标签是否可增加	boolean	—	false
+            editable	标签是否同时可增加和关闭	boolean	—	false
+            tab-position	选项卡所在位置	string	top/right/bottom/left	top
+            stretch	标签的宽度是否自撑开	boolean	-	false
+            before-leave	切换标签之前的钩子，若返回 false 或者返回 Promise 且被 reject，则阻止切换。	Function(activeName, oldActiveName)	—	—
+
+        Tabs Events：
+            事件名称	说明	回调参数
+            tab-click	tab 被选中时触发	被选中的标签 tab 实例
+            tab-remove	点击 tab 移除按钮后触发	被删除的标签的 name
+            tab-add	点击 tabs 的新增按钮后触发	—
+            edit	点击 tabs 的新增按钮或 tab 被关闭后触发	(targetName, action)
+
+        Tab-pane Attributes：
+            参数	说明	类型	可选值	默认值
+            label	选项卡标题	string	—	—
+            disabled	是否禁用	boolean	—	false
+            name	与选项卡绑定值 value 对应的标识符，表示选项卡别名	string	—	该选项卡在选项卡列表中的顺序值，如第一个选项卡则为'1'
+            closable	标签是否可关闭	boolean	—	false
+            lazy	标签是否延迟渲染	boolean	—	false
+        
+------------------------------------------------------------------------------------------
+
+    Breadcrumb 面包屑：
+        基础 / 面包屑
+        图标分隔符
+
+        Breadcrumb Attributes：
+            参数	说明	类型	可选值	默认值
+            separator	分隔符	string	—	斜杠'/'
+            separator-class	图标分隔符 class	string	—	-
+
+        Breadcrumb Item Attributes：
+            参数	说明	类型	可选值	默认值
+            to	路由跳转对象，同 vue-router 的 to	string/object	—	—
+            replace	在使用 to 进行路由跳转时，启用 replace 将不会向 history 添加新记录	boolean
+  
+            
+-----------------------------------------------------------------------------------------
+
+    PageHeader 页头：
+        如果页面的路径比较简单，推荐使用页头组件而非面包屑组件
+
+        Attributes：
+            参数	说明	类型	可选值	默认值
+            title	标题	string	—	返回
+            content	内容	string	—	—
+
+        Events：
+            事件名称	说明	回调参数
+            back	点击左侧区域触发	—
+
+        Slots：
+            事件名称	说明
+            title	标题内容
+            content	内容
+
+-------------------------------------------------------------------------------
+
+    Dropdown 下拉菜单：
+        将动作或菜单折叠到下拉菜单中
+        可以配置 click 激活或者 hover 激活
+        菜单隐藏方式
+        指令事件
+        不同尺寸
+
+        Dropdown Attributes
+            参数	说明	类型	可选值	默认值
+            type	菜单按钮类型，同 Button 组件(只在split-button为 true 的情况下有效)	string	—	—
+            size	菜单尺寸，在split-button为 true 的情况下也对触发按钮生效	string	medium / small / mini	—
+            split-button	下拉触发元素呈现为按钮组	boolean	—	false
+            placement	菜单弹出位置	string	top/top-start/top-end/bottom/bottom-start/bottom-end	bottom-end
+            trigger	触发下拉的行为	string	hover, click	hover
+            hide-on-click	是否在点击菜单项后隐藏菜单	boolean	—	true
+            show-timeout	展开下拉菜单的延时（仅在 trigger 为 hover 时有效）	number	—	250
+            hide-timeout	收起下拉菜单的延时（仅在 trigger 为 hover 时有效）	number	—	150
+            tabindex	Dropdown 组件的 tabindex	number	—	0
+
+        Dropdown Slots：
+            Name	说明
+            —	触发下拉列表显示的元素。 注意： 必须是一个元素或者或者组件
+            dropdown	下拉列表，通常是 <el-dropdown-menu> 组件
+            ¶Dropdown Events
+            事件名称	说明	回调参数
+            click	split-button 为 true 时，点击左侧按钮的回调	—
+            command	点击菜单项触发的事件回调	dropdown-item 的指令
+            visible-change	下拉框出现/隐藏时触发	出现则为 true，隐藏则为 false
+
+        Dropdown Menu Item Attributes：
+            参数	说明	类型	可选值	默认值
+            command	指令	string/number/object	—	—
+            disabled	禁用	boolean	—	false
+            divided	显示分割线	boolean	—	false
+            icon	图标类名	string	—	—
+
+-----------------------------------------------------------------------------------------------
+
+    Steps 步骤条：
+        引导用户按照流程完成任务的分步导航条，可根据实际应用场景设定步骤，步骤不得少于 2 步
+        含状态步骤条
+        有描述的步骤条
+        居中的步骤条
+        带图标的步骤条
+        竖式步骤条
+        简洁风格的步骤条
+
+        Steps Attributes
+            参数	说明	类型	可选值	默认值
+            space	每个 step 的间距，不填写将自适应间距。支持百分比。	number / string	—	—
+            direction	显示方向	string	vertical/horizontal	horizontal
+            active	设置当前激活步骤	number	—	0
+            process-status	设置当前步骤的状态	string	wait / process / finish / error / success	process
+            finish-status	设置结束步骤的状态	string	wait / process / finish / error / success	finish
+            align-center	进行居中对齐	boolean	-	false
+            simple	是否应用简洁风格	boolean	-	false
+
+        Step Attributes：
+            参数	说明	类型	可选值	默认值
+            title	标题	string	—	—
+            description	描述性文字	string	—	—
+            icon	图标	传入 icon 的 class 全名来自定义 icon，也支持 slot 方式写入	string	—
+            status	设置当前步骤的状态，不设置则根据 steps 确定状态	wait / process / finish / error / success	-	
+
+        Step Slot：
+            name	说明
+            icon	自定义图标
+            title	自定义标题
+            description	自定义描述性文字
+
+
+    */
+    </script>
+</html>

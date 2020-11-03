@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body></body>
+    <script>
+        /*
+        上传：
+            用户头像上传：使用 before-upload 限制用户上传的图片格式和大小。
+            照片墙：使用 list-type 属性来设置文件列表的样式。
+            文件缩略图：使用 scoped-slot 去设置缩略图模版。
+            上传文件列表控制：通过 on-change 钩子函数来对列表进行控制
+            拖拽上传
+            手动上传
+
+            属性：
+                参数	说明	类型	可选值	默认值
+                action	必选参数，上传的地址	string	—	—
+                headers	设置上传的请求头部	object	—	—
+                multiple	是否支持多选文件	boolean	—	—
+                data	上传时附带的额外参数	object	—	—
+                name	上传的文件字段名	string	—	file
+                with-credentials	支持发送 cookie 凭证信息	boolean	—	false
+                show-file-list	是否显示已上传文件列表	boolean	—	true
+                drag	是否启用拖拽上传	boolean	—	false
+                accept	接受上传的文件类型（thumbnail-mode 模式下此参数无效）	string	—	—
+                on-preview	点击文件列表中已上传的文件时的钩子	function(file)	—	—
+                on-remove	文件列表移除文件时的钩子	function(file, fileList)	—	—
+                on-success	文件上传成功时的钩子	function(response, file, fileList)	—	—
+                on-error	文件上传失败时的钩子	function(err, file, fileList)	—	—
+                on-progress	文件上传时的钩子	function(event, file, fileList)	—	—
+                on-change	文件状态改变时的钩子，添加文件、上传成功和上传失败时都会被调用	function(file, fileList)	—	—
+                before-upload	上传文件之前的钩子，参数为上传的文件，若返回 false 或者返回 Promise 且被 reject，则停止上传。	function(file)	—	—
+                before-remove	删除文件之前的钩子，参数为上传的文件和文件列表，若返回 false 或者返回 Promise 且被 reject，则停止删除。	function(file, fileList)	—	—
+                list-type	文件列表的类型	string	text/picture/picture-card	text
+                auto-upload	是否在选取文件后立即进行上传	boolean	—	true
+                file-list	上传的文件列表, 例如: [{name: 'food.jpg', url: 'https://xxx.cdn.com/xxx.jpg'}]	array	—	[]
+                http-request	覆盖默认的上传行为，可以自定义上传的实现	function	—	—
+                disabled	是否禁用	boolean	—	false
+                limit	最大允许上传个数	number	—	—
+                on-exceed	文件超出个数限制时的钩子	function(files, fileList)	—	-
+
+            Slot：
+                name	说明
+                trigger	触发文件选择框的内容
+                tip	提示说明文字
+
+            Methods：
+                方法名	说明	参数
+                clearFiles	清空已上传的文件列表（该方法不支持在 before-upload 中调用）	—
+                abort	取消上传请求	（ file: fileList 中的 file 对象 ）
+                submit	手动上传文件列表	—
+                    
+-------------------------------------------------------------------------------------------------------------------------------
+
+        Rate 评分：
+            小星星评分
+            带有辅助文字的评分
+            icon图评分
+            只读的评分
+
+            参数：
+                参数	说明	类型	可选值	默认值
+                value / v-model	绑定值	number	—	0
+                max	最大分值	number	—	5
+                disabled	是否为只读	boolean	—	false
+                allow-half	是否允许半选	boolean	—	false
+                low-threshold	低分和中等分数的界限值，值本身被划分在低分中	number	—	2
+                high-threshold	高分和中等分数的界限值，值本身被划分在高分中	number	—	4
+                colors	icon 的颜色。若传入数组，共有 3 个元素，为 3 个分段所对应的颜色；若传入对象，可自定义分段，键名为分段的界限值，键值为对应的颜色	array/object	—	['#F7BA2A', '#F7BA2A', '#F7BA2A']
+                void-color	未选中 icon 的颜色	string	—	#C6D1DE
+                disabled-void-color	只读时未选中 icon 的颜色	string	—	#EFF2F7
+                icon-classes	icon 的类名。若传入数组，共有 3 个元素，为 3 个分段所对应的类名；若传入对象，可自定义分段，键名为分段的界限值，键值为对应的类名	array/object	—	['el-icon-star-on', 'el-icon-star-on','el-icon-star-on']
+                void-icon-class	未选中 icon 的类名	string	—	el-icon-star-off
+                disabled-void-icon-class	只读时未选中 icon 的类名	string	—	el-icon-star-on
+                show-text	是否显示辅助文字，若为真，则会从 texts 数组中选取当前分数对应的文字内容	boolean	—	false
+                show-score	是否显示当前分数，show-score 和 show-text 不能同时为真	boolean	—	false
+                text-color	辅助文字的颜色	string	—	#1F2D3D
+                texts	辅助文字数组	array	—	['极差', '失望', '一般', '满意', '惊喜']
+                score-template	分数显示模板	string	—	{value}
+
+            Events：
+                事件名称	说明	回调参数
+                change	分值改变时触发	改变后的分值
+
+---------------------------------------------------------------------------------------------------------
+
+        颜色选择器：
+            颜色选择
+            预选颜色
+            尺寸
+
+            属性：
+                参数	说明	类型	可选值	默认值
+                value / v-model	绑定值	string	—	—
+                disabled	是否禁用	boolean	—	false
+                size	尺寸	string	—	medium / small / mini
+                show-alpha	是否支持透明度选择	boolean	—	false
+                color-format	写入 v-model 的颜色的格式	string	hsl / hsv / hex / rgb	hex（show-alpha 为 false）/ rgb（show-alpha 为 true）
+                popper-class	ColorPicker 下拉框的类名	string	—	—
+                predefine	预定义颜色	array	—	—
+
+            Events：
+                事件名称	说明	回调参数
+                change	当绑定值变化时触发	当前值
+                active-change	面板中当前显示的颜色发生改变时触发	当前显示的颜色值
+
+-------------------------------------------------------------------------------------------
+
+        穿梭框：
+            两个框内的元素穿梭
+            可搜索
+            可自定义（使用 scoped-slot 自定义数据项）
+
+            属性：
+                参数	说明	类型	可选值	默认值
+                value / v-model	绑定值	array	—	—
+                data	Transfer 的数据源	array[{ key, label, disabled }]	—	[ ]
+                filterable	是否可搜索	boolean	—	false
+                filter-placeholder	搜索框占位符	string	—	请输入搜索内容
+                filter-method	自定义搜索方法	function	—	—
+                target-order	右侧列表元素的排序策略：若为 original，则保持与数据源相同的顺序；若为 push，则新加入的元素排在最后；若为 unshift，则新加入的元素排在最前	string	original / push / unshift	original
+                titles	自定义列表标题	array	—	['列表 1', '列表 2']
+                button-texts	自定义按钮文案	array	—	[ ]
+                render-content	自定义数据项渲染函数	function(h, option)	—	—
+                format	列表顶部勾选状态文案	object{noChecked, hasChecked}	—	{ noChecked: '${checked}/${total}', hasChecked: '${checked}/${total}' }
+                props	数据源的字段别名	object{key, label, disabled}	—	—
+                left-default-checked	初始状态下左侧列表的已勾选项的 key 数组	array	—	[ ]
+                right-default-checked	初始状态下右侧列表的已勾选项的 key 数组	array	—	[ ]
+
+            Slot：
+                name	说明
+                left-footer	左侧列表底部的内容
+                right-footer	右侧列表底部的内容
+
+            Scoped Slot：
+                name	说明
+                —	自定义数据项的内容，参数为 { option }
+
+            Methods：
+                方法名	说明	参数
+                clearQuery	清空某个面板的搜索关键词	'left' / 'right'，指定需要清空的面板
+
+            Events：
+                事件名称	说明	回调参数
+                change	右侧列表元素变化时触发	当前值、数据移动的方向（'left' / 'right'）、发生移动的数据 key 数组
+                left-check-change	左侧列表元素被用户选中 / 取消选中时触发	当前被选中的元素的 key 数组、选中状态发生变化的元素的 key 数组
+                right-check-change	右侧列表元素被用户选中 / 取消选中时触发	当前被选中的元素的 key 数组、选中状态发生变化的元素的 key 数组
+
+-----------------------------------------------------------------------------------------
+
+        表单：
+            行内表单
+            对齐方式
+            表单验证
+            自定义验证规则
+            动态增减表单项
+            数字类型验证
+            表单内组件尺寸控制
+
+            属性：
+                参数	说明	类型	可选值	默认值
+                model	表单数据对象	object	—	—
+                rules	表单验证规则	object	—	—
+                inline	行内表单模式	boolean	—	false
+                label-position	表单域标签的位置，如果值为 left 或者 right 时，则需要设置 label-width	string	right/left/top	right
+                label-width	表单域标签的宽度，例如 '50px'。作为 Form 直接子元素的 form-item 会继承该值。支持 auto。	string	—	—
+                label-suffix	表单域标签的后缀	string	—	—
+                hide-required-asterisk	是否显示必填字段的标签旁边的红色星号	boolean	—	false
+                show-message	是否显示校验错误信息	boolean	—	true
+                inline-message	是否以行内形式展示校验信息	boolean	—	false
+                status-icon	是否在输入框中显示校验结果反馈图标	boolean	—	false
+                validate-on-rule-change	是否在 rules 属性改变后立即触发一次验证	boolean	—	true
+                size	用于控制该表单内组件的尺寸	string	medium / small / mini	—
+                disabled	是否禁用该表单内的所有组件。若设置为 true，则表单内组件上的 disabled 属性不再生效	boolean	—	false
+
+            Form Methods：
+                方法名	说明	参数
+                validate	对整个表单进行校验的方法，参数为一个回调函数。该回调函数会在校验结束后被调用，并传入两个参数：是否校验成功和未通过校验的字段。若不传入回调函数，则会返回一个 promise	Function(callback: Function(boolean, object))
+                validateField	对部分表单字段进行校验的方法	Function(props: array | string, callback: Function(errorMessage: string))
+                resetFields	对整个表单进行重置，将所有字段值重置为初始值并移除校验结果	—
+                clearValidate	移除表单项的校验结果。传入待移除的表单项的 prop 属性或者 prop 组成的数组，如不传则移除整个表单的校验结果	Function(props: array | string)
+
+            Form Events：
+                事件名称	说明	回调参数
+                validate	任一表单项被校验后触发	被校验的表单项 prop 值，校验是否通过，错误消息（如果存在）
+
+            Form-Item Attributes：
+                参数	说明	类型	可选值	默认值
+                prop	表单域 model 字段，在使用 validate、resetFields 方法的情况下，该属性是必填的	string	传入 Form 组件的 model 中的字段	—
+                label	标签文本	string	—	—
+                label-width	表单域标签的的宽度，例如 '50px'。支持 auto。	string	—	—
+                required	是否必填，如不设置，则会根据校验规则自动生成	boolean	—	false
+                rules	表单验证规则	object	—	—
+                error	表单域验证错误信息, 设置该值会使表单验证状态变为error，并显示该错误信息	string	—	—
+                show-message	是否显示校验错误信息	boolean	—	true
+                inline-message	以行内形式展示校验信息	boolean	—	false
+                size	用于控制该表单域下组件的尺寸	string	medium / small / mini	-
+
+            Form-Item Slot：
+                name	说明
+                —	Form Item 的内容
+                label	标签文本的内容
+
+            Form-Item Scoped Slot：
+                name	说明
+                error	自定义表单校验信息的显示方式，参数为 { error }
+
+            Form-Item Methods：
+                方法名	说明	参数
+                resetField	对该表单项进行重置，将其值重置为初始值并移除校验结果	-
+                clearValidate	移除该表单项的校验结果	-
+
+
+-------------------------------------------------------------------------------------------
+
+
+        
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+                */
+    </script>
+</html>
