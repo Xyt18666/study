@@ -56,3 +56,55 @@ class qwers extends Qwe {
 }
 let qwerss = new qwers(18);
 // 构造函数 继承
+
+// -------------------------------------------------------
+
+class Xiaojiejie {
+    public readonly _size: number; //定义只读属性
+    constructor(private _age: number, size: number) {
+        this._size = size;
+    }
+    get age() {
+        return this._age - 10;
+    }
+    set age(age: number) {
+        this._age = age + 5;
+    }
+    static sayHi() {
+        console.log("hihihi");
+    }
+}
+let dajiao = new Xiaojiejie(28, 15);
+// console.log(dajiao._age);   无法直接获取
+console.log(dajiao.age); // 只能通过get获取 ，此时是 处理后的 值
+
+dajiao.age = 28;
+// 通过set时也可以进行包装
+
+Xiaojiejie.sayHi();
+// 调用静态方法
+
+// dajiao._size = 77;   无法修改只读属性
+
+// -----------------------------------------------------------
+
+abstract class ChouXiang {
+    abstract skill();
+}
+// 定义基础类 ,子类继承,必须有该方法,否则报错
+
+class zw1 extends ChouXiang {
+    skill() {
+        console.log("我是职位1");
+    }
+}
+class zw2 extends ChouXiang {
+    skill() {
+        console.log("我是职位2");
+    }
+}
+// class zw2 extends ChouXiang {
+//     qwer() {         报错
+//         console.log("我是职位22");
+//     }
+// }

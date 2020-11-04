@@ -1,168 +1,223 @@
-<template lang="pug">
-    .login
-        .l 
-            h1  
-                | 欢迎使用 
-                br
-                | 北工商管理系统
-        .r
-            ul
-                li(
-                    @click="type='sms'"
-                    :class="type=='sms'?'active':''"
-                    ) 短信登陆
-                li(
-                    @click="type='passwprd'"
-                    :class="type=='passwprd'?'active':''"
-
-                    ) 密码登陆
-            .form
-                .sms-from(v-show="type=='sms'")
-                    label
-                    <el-input v-model="phones" placeholder="用户名"></el-input>
-                        
-                    .con
-                        label
-                          <el-input v-model="codes" placeholder="用户名"></el-input>
-                           
-                        button.sendMsg(
-                            @click="sendCode"
-                       
-                            :class="[loding?'loading':'',!phones?'loading':'']"
-                        ) 发送验证码
-                        .time {{time}}
-
-
-                .password-from(v-show="type=='passwprd'")
-                    label
-                        <el-input v-model="usernames" placeholder="用户名"></el-input>
-                    label
-                       <el-input v-model="passwords" type="password" placeholder="密码"></el-input>
-
-                <el-button type="primary" @click="login">登陆</el-button>
-            p {{phones}} -- {{codes}}
-            p {{usernames}} -- {{passwords}}
-            
-            .datas
-                | 系统管理员
-                | 测试账号：lidazhao
-                | 密码：Qwe123
-                | 手机：13800138001
-                | 验证码：654321
-                | 设备管理员
-                | 测试账号：wangerxiao
-                | 密码：Qwe123
-                | 手机：13800138002
-                | 验证码：654321
-
-
+<template>
+  <div class="login-wrapper">
+    <div class="login">
+      <div class="l">
+        <h1>欢迎使用<br />北工商设备管理系统</h1>
+      </div>
+      <div class="r">
+        <ul class="clear-fix">
+          <li @click="type = 'sms'" :class="type === 'sms' ? 'active' : ''">
+            短信登陆
+          </li>
+          <li
+            @click="type = 'password'"
+            :class="type === 'password' ? 'active' : ''"
+          >
+            密码登陆
+          </li>
+        </ul>
+        <div class="form">
+          <div v-show="type === 'sms'" class="sms-form">
+            <div class="input">
+              <el-input
+                v-model="phone"
+                type="text"
+                placeholder="手机号"
+              ></el-input>
+            </div>
+            <div class="input">
+              <el-input
+                v-model="code"
+                type="text"
+                placeholder="验证码"
+              ></el-input>
+              <button :disabled="!phone || time !== 6" @click="sendCode">
+                {{ sendBtnLabel }}
+              </button>
+            </div>
+          </div>
+          <div v-show="type === 'password'" class="password-form">
+            <div class="input">
+              <!-- <input v-model="username" type="text" placeholder="用户名"> -->
+              <el-input v-model="username" placeholder="用户名"></el-input>
+            </div>
+            <div class="input">
+              <el-input
+                v-model="password"
+                type="password"
+                placeholder="密码"
+              ></el-input>
+              <!-- <input v-model="password" type="password" placeholder="密码"> -->
+            </div>
+          </div>
+          <!-- <button @click="login">登陆</button> -->
+          <el-button type="primary" @click="login">登陆</el-button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
-      type: "sms",
-      phones: "13800138001",
-      codes: "654321",
-      usernames: "wangerxiao",
-      passwords: "Qwe123",
-      time: 3,
-      loding: false
+      type: "sms", // 短信登陆sms、密码登陆password
+      phone: "13800138002",
+      code: "654321",
+      username: "",
+      password: "",
+      time: 6,
+      sendBtnLabel: "发送验证码",
+      timeId: null
     };
   },
   methods: {
-    resizeChart() {
-      this.$refs.status.resize();
-      this.$refs.category.resize();
-    },
-    sendCode() {
-      if (!/^\d{11}$/.test(this.phones)) {
-        console.log("手机号码有误，请重填");
-        return false;
-      } else {
-        this.loding = true;
-        let interval = setInterval(() => {
-          --this.time;
-          if (this.time <= 0) {
-            this.loding = false;
-            this.time = 3;
-            clearInterval(interval);
-          }
-        }, 1000);
-      }
-    },
     login() {
-      let { type, phones, codes, usernames, passwords } = this;
+      const { type, phone, code, username, password } = this;
       let params = {
         type
       };
-
-      if (this.type == "sms") {
-        params.phone = phones;
-        params.code = codes;
-      } else if (this.type == "passwprd") {
-        params.username = usernames;
-        params.password = passwords;
+      if (type === "sms") {
+        params.phone = phone;
+        params.code = code;
+      } else {
+        params.username = username;
+        params.password = password;
       }
-      console.log(params);
+      axios.post("/equipment/login", params).then(({ data }) => {
+        if (!data.code) {
+          this.$router.push("/main/overview");
+        } else {
+          this.$message({
+            message: data.msg,
+            type: "warning"
+          });
 
-      this.$http.post("equipment/login", params).then(res => {
-        console.log(params);
-
-        console.log(res);
-        this.$router.push({
-          name: "Main"
-        });
+          // alert(data.msg);
+        }
       });
-
-      // for (let item of Object.values(params)) {
-      //   console.log(item);
-
-      //   if (!item) {
-      //     console.log("请填写完整参数");
-      //     return;
-      //   } else {
-      //     console.log(params);
-
-      //     this.$http.post("equipment/login", params).then(res => {
-      //       console.log(res);
-      //       this.$router.push({
-      //         name: "Main"
-      //       });
-      //     });
-      //   }
-      // }
+    },
+    getCode() {
+      axios
+        .post("/equipment/code", {
+          phone: this.phone
+        })
+        .then(({ data }) => {
+          if (!data.code) {
+            alert("验证码已经发送到您的手机，请查收");
+          }
+        });
+    },
+    sendCode() {
+      /* 先对手机号校验，
+                以1开头，后面跟10位数字*/
+      const { phone } = this;
+      if (!phone) return;
+      if (!/^1\d{10}$/.test(phone)) return;
+      // 通过手机号码校验后，调用接口，并开始倒计时
+      this.getCode();
+      this.time--;
+      this.sendBtnLabel = `${this.time}秒后重发`;
+      this.timeId = setInterval(() => {
+        this.time--;
+        this.sendBtnLabel = `${this.time}秒后重发`;
+        if (this.time === 0) {
+          clearInterval(this.timeId);
+          this.time = 6;
+          this.sendBtnLabel = "发送验证码";
+        }
+      }, 1000);
     }
+  },
+  mounted() {
+    // axios.get('/equipment/category-list.php');
+    // axios.post('/equipment/status-order.php', {
+    //     type: 'equip',
+    //     ids: ['STATUS3', 'STATUS5', 'STATUS4', 'STATUS6']
+    // })
+    // axios.post('/equipment/status-edit.php', {
+    //     type: 'equip',
+    //     id: 'STATUS5',
+    //     name: '我是',
+    //     color: '#CC0'
+    // });
+    // axios.get('/equipment/status-list.php?type=pre');
+    // axios.get('/equipment/status-list.php?type=equip');
   }
 };
 </script>
 
 <style lang="sass">
-.active
-    border-bottom: 2px solid #0f0
-.sendMsg.loading
-    pointer-events: none
-    background: red
-.sendMsg
-    background: #0f0
-.login
+.login-wrapper
     position: fixed
     top: 0
     right: 0
     bottom: 0
     left: 0
-    background: url(~@/assets/images/login-bg.png) no-repeat center
+    background: url(~@/assets/img/login-bg.png) no-repeat center
     background-size: cover
-    .l
-        height: 80%
-        h1
-
-    .r
+    .login
+        display: flex
         position: fixed
-        width: 900px
-        height: 500px
         top: 50%
         left: 50%
-        transform: translate(-50%,-50%)
+        width: 900px
+        height: 500px
+        margin: -250px 0 0 -450px
+        background: #fff
+        border-radius: 10px
+        overflow: hidden
+        .l
+            width: 560px
+            background: url(~@/assets/img/login-left.png) no-repeat center
+            background-size: cover
+            h1
+                margin: 360px 0 0 70px
+                font-size: 32px
+                color: #fff
+        .r
+            width: 340px
+            padding: 90px 50px 0
+            ul
+                height: 50px
+            li
+                float: left
+                margin-right: 30px
+                font-size: 14px
+                color: #666
+                cursor: pointer
+                transition: color .3s
+                &.active
+                    position: relative
+                    color: #1989FA
+                    &:after
+                        content: ""
+                        position: absolute
+                        bottom: -10px
+                        left: 50%
+                        width: 26px
+                        height: 2px
+                        margin-left: -13px
+                        background: #1989FA
+            .input
+                position: relative
+                // height: 30px
+                margin-bottom: 10px
+                .el-input
+                    height: 100%
+                button
+                    position: absolute
+                    top: 0
+                    right: 0
+                    width: 100px
+                    height: 100%
+                    background: #1989FA
+                    border-radius: 0 4px 4px 0
+                    color: #fff
+                    &[disabled]
+                        background: #ccc
+            .form > button
+                width: 100%
 </style>

@@ -1,30 +1,37 @@
-<template lang="pug">
-.top-header 
-    h2 设备管理
-    //- h2(@mouseover="show=true"  @mouseout="show=false" ) 用户名:{{name}} 
-    //-     ul(v-show="show")
-    //-         li(@click="setPassWord") 修改密码
-    //-         li(@click="logOut") 退出
+<template>
+<div class="top-header">
+    <h2>设备管理系统</h2>
+    <!-- <div class="user">
+        <p>Administrator</p>
+        <ul>
+            <li>修改密码</li>
+            <li @click="logout">退出登陆</li>
+        </ul>
+    </div> -->
 
     <el-dropdown class="user" @command="onClick">
         <span class="el-dropdown-link">
-            <span>{{ userData.name }}</span>  
-            <i class="el-icon-arrow-down el-icon--right"></i>
+            {{ $store.state.username }}<i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item command="changePw">修改密码</el-dropdown-item>
-            <el-dropdown-item command="logOut">退出登陆</el-dropdown-item>
+            <el-dropdown-item :command="'changePw'">修改密码</el-dropdown-item>
+            <el-dropdown-item command="logout">退出登陆</el-dropdown-item>
         </el-dropdown-menu>
     </el-dropdown>
 
-    <el-dialog title="修改密码" :visible="showChangePw" @close="showChangePw = false" :width="'500px'" >
+    <el-dialog
+        title="修改密码"
+        :visible="showChangePw"
+        @close="showChangePw = false"
+        :width="'500px'"
+    >
         <div class="change-pw-form">
             <el-form label-width="100px">
                 <el-form-item label="旧密码">
-                    <el-input type="password" v-model="old"></el-input>
+                    <el-input type="password"></el-input>
                 </el-form-item>
                 <el-form-item label="新密码">
-                    <el-input type="password" v-model="news"></el-input>
+                    <el-input type="password"></el-input>
                 </el-form-item>
                 <el-form-item label="确认新密码">
                     <el-input type="password"></el-input>
@@ -36,103 +43,66 @@
             <el-button type="primary" @click="onChangePw">确定</el-button>
         </div>
     </el-dialog>
- 
+</div>
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
+import axios from 'axios';
 export default {
-  data() {
-    return {
-      showChangePw: false,
-      name: "亚",
-      show: false,
-      old: "",
-      news: ""
-    };
-  },
-  computed: {
-    ...mapState(["userData"])
-  },
-  methods: {
-    ...mapMutations(["setUserData"]),
-    changePw() {
-      this.showChangePw = true;
-    },
-    onClick(val) {
-      // if (val === 'changePw') {
-      //     this.changePw();
-      // }
-      this[val]();
-
-      // obj = { a: function() {} };
-      // let val = 'a';
-      // obj.a();
-      // obj[val]();
-
-      // callbackName = 'fn';
-      // window[callbackName] = function() {};
-      // function fn() {}
-    },
-    who() {
-      this.$http.post("equipment/who").then(res => {
-        console.log(res, "how");
-        if (res.data.code !== 0) {
-          this.$router.push({
-            name: "Login"
-          });
-        } else {
-          this.setUserData(res.data.data);
-          // console.log(this.userData);
+    data() {
+        return {
+            showChangePw: false
         }
-      });
     },
-    onChangePw() {
-      console.log("修改密码调用接口");
-      //     http://api.jxsjs.com/equipment/reset-password
-      // POST 参数oldPw, newPw
-      this.$http
-        .post("equipment/reset-password", {
-          oldPw: this.old,
-          newPw: this.news
-        })
-        .then(res => {
-          console.log(res);
-        });
-    },
-    logOut() {
-      this.$http.post("equipment/logout").then(res => {
-        this.$router.push({
-          name: "Login"
-        });
-        console.log(res);
-      });
-    },
-    setPassWord() {
-      // 弹框 重置 密码
+    methods: {
+        logout() {
+            axios.post('/equipment/logout').then(() => {
+                this.$router.push('/login');
+            });
+        },
+        changePw() {
+            this.showChangePw = true;
+        },
+        onClick(val) {
+            // if (val === 'changePw') {
+            //     this.changePw();
+            // }
+            this[val]();
+
+            // obj = { a: function() {} };
+            // let val = 'a';
+            // obj.a();
+            // obj[val]();
+
+            // callbackName = 'fn';
+            // window[callbackName] = function() {};
+            // function fn() {}
+        },
+        onChangePw() {
+            console.log('修改密码调用接口');
+        }
     }
-  },
-  created() {
-    this.who();
-  }
 };
 </script>
 
 <style lang="sass">
 .top-header
-    display: flex
-    justify-content: space-between
+    position: relative
     height: 60px
-    background: #0079c4
+    background: #0079C4
+    padding: 0 20px
     color: #fff
-    font: bold 18px/60px ""
-    padding-left: 30px
     h2
-        margin: 0
-        position: relative
-        ul
-            top: 30px
-            width: 200px
-            position: absolute
-            background: #0f0
+        line-height: 60px
+        font-size: 18px
+        padding-left: 30px
+        background: url(~@/assets/img/logo.png) no-repeat left center
+        background-size: 18px auto
+    .user
+        position: absolute
+        top: 0
+        right: 20px
+        .el-dropdown-link
+            line-height: 60px
+            color: #fff
 </style>

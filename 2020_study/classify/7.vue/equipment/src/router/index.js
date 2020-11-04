@@ -1,87 +1,64 @@
-import Vue from "vue";
-import Router from "vue-router";
-// import Home from "@/views/Home";
-import Login from "@/views/Login";
-import Main from "@/views/Main";
-
-import Administration from "@/views/Administration";
-import Dictionaries from "@/views/Dictionaries";
-import Overview from "@/views/Overview";
-import Register from "@/views/Register";
-import RegisterAdd from "@/views/RegisterAdd";
-import RegisterDetail from "@/views/RegisterDetail";
-import RegisterEdit from "@/views/RegisterEdit";
-
-//push
-const VueRouterPush = Router.prototype.push;
-Router.prototype.push = function push(to) {
-  return VueRouterPush.call(this, to).catch(err => err);
-};
-
-//replace
-const VueRouterReplace = Router.prototype.replace;
-Router.prototype.replace = function replace(to) {
-  return VueRouterReplace.call(this, to).catch(err => err);
-};
+import Vue from 'vue';
+import Router from 'vue-router';
+import Login from '@/views/Login.vue';
+import Main from '@/views/Main.vue';
+import Overview from '@/views/Overview.vue';
+import Register from '@/views/Register.vue';
+import RegisterDetail from '@/views/RegisterDetail.vue';
+import RegisterAdd from '@/views/RegisterAdd.vue';
+import RegisterEdit from '@/views/RegisterEdit.vue';
+import Management from '@/views/Management.vue';
+import Dictionary from '@/views/Dictionary.vue';
+// import store from '@/store/index.js';
 
 Vue.use(Router);
 
-export default new Router({
-  routes: [
-    {
-      path: "/",
-      // name: "Home",
-      // component: Home
-      redirect: "/login"
-    },
-    {
-      path: "/login",
-      name: "Login",
-      component: Login
-    },
-    {
-      path: "/main",
-      name: "Main",
-      component: Main,
-      children: [
-        {
-          path: "administration",
-          name: "Administration",
-          component: Administration
-        },
-        {
-          path: "dictionaries",
-          name: "Dictionaries",
-          component: Dictionaries
-        },
-        {
-          path: "overview",
-          name: "Overview",
-          component: Overview
-        },
-        {
-          path: "register",
-          name: "Register",
-          component: Register,
-          children: [
-            {
-              path: "registeradd",
-              name: "RegisterAdd",
-              component: RegisterAdd
-            },
-            {
-              path: "registerdetail",
-              name: "RegisterDetail",
-              component: RegisterDetail
-            },
-            {
-              path: "registerddit",
-              name: "RegisterEdit",
-              component: RegisterEdit
-            }
-          ]
-        }
-      ]
-    }
-  ]
+const router = new Router({
+    // 访问/的时候，直接跳转到/login
+    routes: [{
+        path: '/',
+        redirect: '/login'
+    }, {
+        path: '/login',
+        name: 'Login',
+        component: Login
+    }, {
+        path: '/main',
+        name: 'Main',
+        component: Main,
+        children: [{
+            path: 'overview',
+            component: Overview
+        }, {
+            path: 'register',
+            component: Register
+        }, {
+            path: 'register-detail/:id',
+            component: RegisterDetail
+        }, {
+            path: 'register-add',
+            component: RegisterAdd
+        }, {
+            path: 'register-edit/:id',
+            component: RegisterEdit
+        }, {
+            path: 'management',
+            component: Management
+        }, {
+            path: 'dictionary',
+            component: Dictionary
+        }]
+    }]
 });
+
+// router.beforeEach((to, from, next) => {
+//     if (to.path === '/login') next();
+//     const pStr = to.path.substr(to.path.lastIndexOf('/') + 1);
+//     if (store.state.permissions.indexOf(pStr) > -1) {
+//         next();
+//     } else {
+//         next('/login');
+//     }
+// });
+
+export default router;

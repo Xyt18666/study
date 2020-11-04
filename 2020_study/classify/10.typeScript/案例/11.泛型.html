@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+    函数泛型：   泛型常用 <T> 代表
+        泛型就是 在 函数调用时 确定 类型
+        而 类型 注解是 在 函数定义时确定类型
+    
+        function join<xyt>(a: xyt, b: xyt) {
+            return `${a}${b}`;
+        }
+        join<string>("aa", "po");
+
+        多值的泛型： 可规定多种类型
+            <T, P> 
+        
+        泛型也支持类型推断：调用的时候 可以不用书写<> ,但是不建议这样写
+            myFn(["123", "sef"]);
+
+                
+        函数参数为数组的泛型：
+            function myFn<fx>(arr: fx[]) {
+                console.log(arr);
+            }
+
+            function myFn<fx>(arr: Array<fx>) {  另一种写法
+                console.log(arr);
+            }
+
+            myFn<string>(["123", "sef"]);
+
+------------------------------------------------------------------------
+
+    类中使用泛型：
+        class selectGirl<T> {
+            constructor(private girs: T[]) {}
+            getGir(index: number): T {
+                return this.girs[index];
+            }
+        }
+
+        通过继承约定：
+            <T extends gir>
+            继承自某接口，必须有某属性
+
+            <T extends string | number>
+            泛型约束 ，必需是某类型
+
+
+     -->
+    </body>
+</html>
