@@ -242,6 +242,40 @@
             通过插槽分发内容,把组件标签内部的文字，插入到 slot 内
             <slot></slot>
 
+            具名/命名slot定义都是一样的：
+                <slot name="name"></slot>
+
+            使用时不同：
+                2.6.0之前
+                <template slot="name"></template>
+
+                2.6.0之后
+                <template v-slot:name></template>
+
+
+            作用域插槽:
+
+                在组件内部只能传一个自定义属性，各版本一样：
+                    <slot name="name" :obj="obj"></slot>
+
+            使用组件时，传slot时不同：
+                2.6.0之前
+                <template
+                    slot="name"
+                    slot-scope="slotProps"
+                >
+                    <h1>{{ slotProps.obj.age }}</h1>
+                </template>
+
+                2.6.0之后
+                <template
+                    v-slot:name="slotProps"
+                >
+                    <h1>{{ slotProps.obj.age }}</h1>
+                </template>
+
+     
+
 
     
         解析 DOM 模板时的注意事项：
