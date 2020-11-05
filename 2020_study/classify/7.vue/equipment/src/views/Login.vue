@@ -1,151 +1,148 @@
 <template>
-  <div class="login-wrapper">
-    <div class="login">
-      <div class="l">
-        <h1>欢迎使用<br />北工商设备管理系统</h1>
-      </div>
-      <div class="r">
-        <ul class="clear-fix">
-          <li @click="type = 'sms'" :class="type === 'sms' ? 'active' : ''">
-            短信登陆
-          </li>
-          <li
-            @click="type = 'password'"
-            :class="type === 'password' ? 'active' : ''"
-          >
-            密码登陆
-          </li>
-        </ul>
-        <div class="form">
-          <div v-show="type === 'sms'" class="sms-form">
-            <div class="input">
-              <el-input
-                v-model="phone"
-                type="text"
-                placeholder="手机号"
-              ></el-input>
+    <div class="login-wrapper">
+        <transition name="login">
+            <div class="login" v-if="isShow">
+                <div class="l">
+                    <h1>
+                        欢迎使用
+                        <br />
+                        北工商设备管理系统
+                    </h1>
+                </div>
+                <div class="r">
+                    <ul class="clear-fix">
+                        <li @click="type = 'sms'" :class="type === 'sms' ? 'active' : ''">
+                            短信登陆
+                        </li>
+                        <li @click="type = 'password'" :class="type === 'password' ? 'active' : ''">
+                            密码登陆
+                        </li>
+                    </ul>
+                    <div class="form">
+                        <div v-show="type === 'sms'" class="sms-form">
+                            <div class="input">
+                                <el-input
+                                    v-model="phone"
+                                    type="text"
+                                    placeholder="手机号"
+                                ></el-input>
+                            </div>
+                            <div class="input">
+                                <el-input
+                                    v-model="code"
+                                    type="text"
+                                    placeholder="验证码"
+                                    @keyup.native.enter="login"
+                                ></el-input>
+                                <button :disabled="!phone || time !== 6" @click="sendCode">
+                                    {{ sendBtnLabel }}
+                                </button>
+                            </div>
+                        </div>
+                        <div v-show="type === 'password'" class="password-form">
+                            <div class="input">
+                                <!-- <input v-model="username" type="text" placeholder="用户名"> -->
+                                <el-input v-model="username" placeholder="用户名"></el-input>
+                            </div>
+                            <div class="input">
+                                <el-input
+                                    v-model="password"
+                                    type="password"
+                                    placeholder="密码"
+                                    @keyup.native.enter="login"
+                                ></el-input>
+                                <!-- <input v-model="password" type="password" placeholder="密码"> -->
+                            </div>
+                        </div>
+                        <!-- <button @click="login">登陆</button> -->
+                        <el-button type="primary" @click="login">登陆</el-button>
+                    </div>
+                </div>
             </div>
-            <div class="input">
-              <el-input
-                v-model="code"
-                type="text"
-                placeholder="验证码"
-              ></el-input>
-              <button :disabled="!phone || time !== 6" @click="sendCode">
-                {{ sendBtnLabel }}
-              </button>
-            </div>
-          </div>
-          <div v-show="type === 'password'" class="password-form">
-            <div class="input">
-              <!-- <input v-model="username" type="text" placeholder="用户名"> -->
-              <el-input v-model="username" placeholder="用户名"></el-input>
-            </div>
-            <div class="input">
-              <el-input
-                v-model="password"
-                type="password"
-                placeholder="密码"
-              ></el-input>
-              <!-- <input v-model="password" type="password" placeholder="密码"> -->
-            </div>
-          </div>
-          <!-- <button @click="login">登陆</button> -->
-          <el-button type="primary" @click="login">登陆</el-button>
-        </div>
-      </div>
+        </transition>
     </div>
-  </div>
 </template>
 
 <script>
 import axios from "axios";
 export default {
-  data() {
-    return {
-      type: "sms", // 短信登陆sms、密码登陆password
-      phone: "13800138002",
-      code: "654321",
-      username: "",
-      password: "",
-      time: 6,
-      sendBtnLabel: "发送验证码",
-      timeId: null
-    };
-  },
-  methods: {
-    login() {
-      const { type, phone, code, username, password } = this;
-      let params = {
-        type
-      };
-      if (type === "sms") {
-        params.phone = phone;
-        params.code = code;
-      } else {
-        params.username = username;
-        params.password = password;
-      }
-      axios.post("/equipment/login", params).then(({ data }) => {
-        if (!data.code) {
-          this.$router.push("/main/overview");
-        } else {
-          this.$message({
-            message: data.msg,
-            type: "warning"
-          });
+    data() {
+        return {
+            isShow: false,
+            type: "sms", // 短信登陆sms、密码登陆password
+            phone: "13800138002",
+            code: "654321",
+            username: "",
+            password: "",
+            time: 6,
+            sendBtnLabel: "发送验证码",
+            timeId: null,
+        };
+    },
+    methods: {
+        login() {
+            const { type, phone, code, username, password } = this;
+            let params = {
+                type,
+            };
+            if (type === "sms") {
+                params.phone = phone;
+                params.code = code;
+            } else {
+                params.username = username;
+                params.password = password;
+            }
+            axios.post("/equipment/login", params).then(({ data }) => {
+                if (!data.code) {
+                    this.$router.push("/main/overview");
+                } else {
+                    this.$message({
+                        message: data.msg,
+                        type: "warning",
+                    });
 
-          // alert(data.msg);
-        }
-      });
-    },
-    getCode() {
-      axios
-        .post("/equipment/code", {
-          phone: this.phone
-        })
-        .then(({ data }) => {
-          if (!data.code) {
-            alert("验证码已经发送到您的手机，请查收");
-          }
-        });
-    },
-    sendCode() {
-      /* 先对手机号校验，
+                    // alert(data.msg);
+                }
+            });
+        },
+        getCode() {
+            axios
+                .post("/equipment/code", {
+                    phone: this.phone,
+                })
+                .then(({ data }) => {
+                    if (!data.code) {
+                        alert("验证码已经发送到您的手机，请查收");
+                    }
+                });
+        },
+        sendCode() {
+            /* 先对手机号校验，
                 以1开头，后面跟10位数字*/
-      const { phone } = this;
-      if (!phone) return;
-      if (!/^1\d{10}$/.test(phone)) return;
-      // 通过手机号码校验后，调用接口，并开始倒计时
-      this.getCode();
-      this.time--;
-      this.sendBtnLabel = `${this.time}秒后重发`;
-      this.timeId = setInterval(() => {
-        this.time--;
-        this.sendBtnLabel = `${this.time}秒后重发`;
-        if (this.time === 0) {
-          clearInterval(this.timeId);
-          this.time = 6;
-          this.sendBtnLabel = "发送验证码";
-        }
-      }, 1000);
-    }
-  },
-  mounted() {
-    // axios.get('/equipment/category-list.php');
-    // axios.post('/equipment/status-order.php', {
-    //     type: 'equip',
-    //     ids: ['STATUS3', 'STATUS5', 'STATUS4', 'STATUS6']
-    // })
-    // axios.post('/equipment/status-edit.php', {
-    //     type: 'equip',
-    //     id: 'STATUS5',
-    //     name: '我是',
-    //     color: '#CC0'
-    // });
-    // axios.get('/equipment/status-list.php?type=pre');
-    // axios.get('/equipment/status-list.php?type=equip');
-  }
+            const { phone } = this;
+            if (!phone) return;
+            if (!/^1\d{10}$/.test(phone)) return;
+            // 通过手机号码校验后，调用接口，并开始倒计时
+            this.getCode();
+            this.time--;
+            this.sendBtnLabel = `${this.time}秒后重发`;
+            this.timeId = setInterval(() => {
+                this.time--;
+                this.sendBtnLabel = `${this.time}秒后重发`;
+                if (this.time === 0) {
+                    clearInterval(this.timeId);
+                    this.time = 6;
+                    this.sendBtnLabel = "发送验证码";
+                }
+            }, 1000);
+        },
+        test() {
+            console.log("keyup");
+        },
+    },
+    mounted() {
+        this.isShow = true;
+    },
 };
 </script>
 
@@ -220,4 +217,11 @@ export default {
                         background: #ccc
             .form > button
                 width: 100%
+
+.login-enter, .login-leave-to
+    transform: translateY(10%) scale(.8)
+    opacity: 0
+
+.login-enter-active, .login-leave-active
+    transition: all 1s .5s
 </style>

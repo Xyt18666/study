@@ -114,20 +114,30 @@ rules: {
         }
     },
     beforeRouteLeave(to, from, next) {
-        // this.$confirm('您的表单已做修改，确认不保存并离开吗?', '重要提示', {
-        //     confirmButtonText: '确定退出',
-        //     cancelButtonText: '留在本页',
-        //     type: 'warning'
-        // }).then(() => {
-        //     // next();
-        // }).catch(() => {
-        //     // next(false);
-        // });
-        if (this.isDataChanged()) {
-            const isConfirmed = confirm('您的表单已做修改，确认不保存并离开吗?');
-            isConfirmed ? next() : next(false);
-        } else {
-            next();
+        setTimeout(() => {
+            this.$confirm('您的表单已做修改，确认不保存并离开吗?', '重要提示', {
+                confirmButtonText: '确定退出',
+                cancelButtonText: '留在本页',
+                type: 'warning'
+            }).then(() => {
+                next();
+            }).catch(() => {
+                next(false);
+            });
+        }, 200);
+        // if (this.isDataChanged()) {
+        //     const isConfirmed = confirm('您的表单已做修改，确认不保存并离开吗?');
+        //     isConfirmed ? next() : next(false);
+        // } else {
+        //     next();
+        // }
+    },
+    watch: {
+        formData: {
+            deep: true,
+            handler() {
+                console.log('ccc...')
+            }
         }
     }
 };

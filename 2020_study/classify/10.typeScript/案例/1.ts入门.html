@@ -28,7 +28,80 @@
             }
             
             终端运行 tsc
-        
+
+
+---------------------------------------------------------------------------------------------
+
+    简单的总结：
+
+        原始数据类型的约束：
+             变量名: 类型 = 值
+
+
+        字符串的字面量类型 ：
+            type  约束字符串的值只能为这几个字面量中的一个
+
+            type str="aaa" | "bbb" | "ccc"
+            let str: str="aaa"
+
+
+        void ：
+            设置为void的属性 只能赋值为null和undefined 
+
+        undefined和null：
+            是所有类型的子类型  可赋值给所有类型
+
+
+        对象的约束：
+            接口：
+                interface Name{
+                    name:string,
+                    age?:string,    ?可选参数，可选参数的类型，必须与已有参数类型一致 不然会报错 也可理解为 已有参数类型 必须和可选参数一致
+                    [propName:string]:any   定义更多参数
+                }
+
+            数组的约束：数组 只存在一种类型 元组 存在多种类型
+                
+                类型 []  数组中只存在这一种类型
+                [类型1 | 类型2]  元组 里边可以存放类型1和类型2两种类型
+
+            接口约束数组：
+                interface Ar{
+                    [index:number]:any // 索引为数字类型 值可存放任意类型
+                    length:number  //length是数字类型
+                }
+                let arr: Ar=["1","2",3,{num:"6"}]
+
+
+            函数的约束：
+                返回值 形参 字面量声明函数 都要约束
+                函数的可选参数 必须放在已有参数的后边 不会会报错
+                如果参数有默认值 那么默认为可选参数 但是不收必须放在最后边的影响
+
+                function ff1(num:string,b: number=6,str?:string){return num}
+
+            接口约束函数：
+                interface Fn{
+                    (num:number,str:string):number
+                }
+                let fn:Fn=function(num:number,str:string):number{return num}
+                // 函数声明 就这样约束
+                function fn1(num:number,str:string):number {
+                    return num
+                }
+            函数约束函数：
+                let fn2:(num:number,str:string)=>number=function(num:number,str:string):number{return num}
+
+        函数的重载：
+            有时相同的函数 传入的参数不同 返回值不同 就可以使用 重载 重载重上而下匹配 所以最精细的要放在在上边
+
+            function ff2(str:string,num:number):any
+            function ff2(b:number,c?:string):number    前边的都是函数声明 后边的ff2才是函数的实现
+            function ff2(d:any,c:any):any{
+                return d+c
+            }
+
+            
     
 
         
