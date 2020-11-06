@@ -181,7 +181,7 @@ if(! $conn )
 
 // ----------------------------------------------------------
 
-// 返回一个json ,没实现
+// 返回一个json 
 
 
 // function decodeUnicode($str){ //中文转码
@@ -192,7 +192,6 @@ if(! $conn )
 //     ),
 //     $str);
 // }
-
 
 
 
@@ -208,19 +207,21 @@ if(! $result )
     die('无法读取数据: ' . mysqli_error($conn));
 }
 
-echo '<h2>查询成功 my_test </h2>';
-echo '<table border="1"><tr><td>姓名 ID</td><td>年龄</td><td>性别</td></tr>';
-while($row = mysqli_fetch_array($retval, MYSQLI_ASSOC))
-{
-    echo "<tr><td> {$row['my_name']}</td> ".
-         "<td>{$row['my_age']} </td> ".
-         "<td>{$row['my_sex']} </td> ".
-         "</tr>";
+while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) 
+{//遍历表
+$rsp = array(
+    'code' => 0,
+    "data"=>array(//返回对象
+        "name"=>$row['my_name'],
+        "age"=>$row['my_age'],
+        "sex"=>$row['my_sex'], 
+    ),
+    "arr"=>array("Volvo","BMW","Toyota") //返回数组
+);
 }
-echo '</table>';
 
 
-
+echo json_encode($rsp);  //转json ,并返回
 
 //   $json = json_encode($data);
 //   echo decodeUnicode($json);//对变量进行JSON编码
