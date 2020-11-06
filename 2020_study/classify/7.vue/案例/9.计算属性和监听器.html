@@ -1,96 +1,96 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="charset" content="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <script src="http://jxsjs.com/lib/vue.min.js"></script>
-    <title>clock</title>
-  </head>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-    }
-  </style>
-  <body>
-    <div id="app">
-      <div id="example">
-        <p>Original message: "{{ message }}"</p>
-        <p>Computed reversed message: "{{ reversedMessage }}"</p>
-      </div>
+    <head>
+        <meta name="charset" content="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <script src="http://jxsjs.com/lib/vue.min.js"></script>
+        <title>clock</title>
+    </head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <body>
+        <div id="app">
+            <div id="example">
+                <p>Original message: "{{ message }}"</p>
+                <p>Computed reversed message: "{{ reversedMessage }}"</p>
+            </div>
 
-      <div id="demo">{{ fullName }}</div>
-      <div id="demo" @click="fullNameReplate">{{ fullName2 }}</div>
+            <div id="demo">{{ fullName }}</div>
+            <div id="demo" @click="fullNameReplate">{{ fullName2 }}</div>
 
-      <input type="text" v-model="num" @click="change" />
-    </div>
-  </body>
-  <script>
-    const vw = new Vue({
-      el: "#app",
-      data: {
-        message: "Hello",
-        firstName: "Foo",
-        lastName: "Bar",
-        fullName: "Foo Bar",
-        num: "12",
-        name: "坤",
-      },
-      methods: {
-        change() {
-          this.name = "棒棒糖";
-          console.log(this.name);
-        },
-        fullNameReplate() {
-          this.fullName2 = "798";
-        },
-      },
-      computed: {
-        reversedMessage() {
-          return this.message.split("").reverse().join("");
-        },
-        fullName() {
-          return this.firstName + " " + this.lastName;
-        },
-        fullName2: {
-          get: function () {
-            console.log("调用了getter属性");
-            return "***" + this.firstName + "***";
-          },
-          set: function (newValue) {
-            console.log("调用了settter属性");
-            console.log(newValue);
-            this.firstName = newValue;
-          },
-        },
-      },
-      watch: {
-        // num(newVal, oldVal) {
-        //   // 监听 num 属性的数据变化
-        //   // 作用 : 只要 num 的值发生变化,这个方法就会被调用
-        //   // 第一个参数 : 新值
-        //   // 第二个参数 : 旧值,之前的值
-        //   console.log("oldVal:", oldVal);
-        //   console.log("newVal:", newVal);
-        // },
-        num: {
-          //对象形式
-          handler(newa, olda) {
-            console.log(newa, olda);
-          },
-          immediate: true,
-          deep: true,
-        },
-      },
-    });
+            <input type="text" v-model="num" @click="change" />
+        </div>
+    </body>
+    <script>
+        const vw = new Vue({
+            el: "#app",
+            data: {
+                message: "Hello",
+                firstName: "Foo",
+                lastName: "Bar",
+                fullName: "Foo Bar",
+                num: "12",
+                name: "坤",
+            },
+            methods: {
+                change() {
+                    this.name = "棒棒糖";
+                    console.log(this.name);
+                },
+                fullNameReplate() {
+                    this.fullName2 = "798";
+                },
+            },
+            computed: {
+                reversedMessage() {
+                    return this.message.split("").reverse().join("");
+                },
+                fullName() {
+                    return this.firstName + " " + this.lastName;
+                },
+                fullName2: {
+                    get: function () {
+                        console.log("调用了getter属性");
+                        return "***" + this.firstName + "***";
+                    },
+                    set: function (newValue) {
+                        console.log("调用了settter属性");
+                        console.log(newValue);
+                        this.firstName = newValue;
+                    },
+                },
+            },
+            watch: {
+                // num(newVal, oldVal) {
+                //   // 监听 num 属性的数据变化
+                //   // 作用 : 只要 num 的值发生变化,这个方法就会被调用
+                //   // 第一个参数 : 新值
+                //   // 第二个参数 : 旧值,之前的值
+                //   console.log("oldVal:", oldVal);
+                //   console.log("newVal:", newVal);
+                // },
+                num: {
+                    //对象形式
+                    handler(newa, olda) {
+                        console.log(newa, olda);
+                    },
+                    immediate: true,
+                    deep: true,
+                },
+            },
+        });
 
-    console.log(vw);
-    /*
+        console.log(vw);
+        /*
     vue 将所有的 属性和方法 挂载到 实例中 
 
     */
 
-    /*
+        /*
     计算属性缓存：
         computed 定于计算函数 。与data同级的 对象
         用于操作属性 ，然后页面在进行 引用操作
@@ -137,6 +137,9 @@
       可以使用数组的方法 splice 修改 触发
       使用其他数据修改 去驱动视图刷新 ，带动刷新 
 
+
+    不能为对象新增值，不会刷新视图
+
     */
-  </script>
+    </script>
 </html>
