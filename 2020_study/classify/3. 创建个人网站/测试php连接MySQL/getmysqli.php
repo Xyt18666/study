@@ -3,7 +3,7 @@
 // mb_internal_encoding('UTF-8'); //设置/获取内部字符编码
 // mb_regex_encoding('UTF-8');  //设置/获取多字节正则表达式的字符编码
 // date_default_timezone_set('Asia/Shanghai'); //设置脚本中所有日期/时间函数使用的交替时区
-// // header("Access-Control-Allow-Origin:*");//解决跨域请求问题
+header("Access-Control-Allow-Origin:*");//解决跨域请求问题
 // header('Content-Type: application/json; charset=UTF-8'); //设置返回头
 // ------以上是配置信息，具体不知道干啥---------------
 

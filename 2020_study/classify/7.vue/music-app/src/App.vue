@@ -33,15 +33,15 @@ export default {
         ...mapMutations(["setBannerLoading"]),
         ...mapActions(["setSliderList", "getMiniPlaer"]),
     },
-    beforeCreated() {
-      
-
-    },
+    beforeCreated() {},
     created() {
         const getDataArr = [this.setSliderList(), this.getMiniPlaer()];
 
         Promise.all(getDataArr).then(() => {
             this.setBannerLoading(false);
+        });
+        this.$http.get("./getmysqli.php").then(d => {
+            console.log(d, "获取自己数据库信息");
         });
     },
 };
