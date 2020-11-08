@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body></body>
+    <script>
+        let obj = {
+            a: "Aa",
+            b: "bB",
+        };
+
+        let obj2 = { ...obj, a: "替换了Aa " };
+
+        console.log(obj, obj2);
+
+        obj2["b"] = "修改bB";
+
+        console.log(obj, obj2);
+
+        /*
+        ...对象 ：解构一个对象的所有属性到某处
+        obj[]:  []读取变量，可以通过他动态获取 对象中的某值
+
+
+        Object.assign() 不算深拷贝 也不算浅拷贝 一级拷贝 如果内层还有引用类型 就是浅拷贝了
+        ... 扩展和 assign 一样
+
+        JSON.parse(JSON.Stringify()) 深拷贝 但是缺点是不能拷贝 一部分属性， 解决办法就是递归
+
+            拷贝问题：
+                只能序列化对象的可枚举的自有属性
+                拷贝时间对象后，时间对象失效变字符串
+                如果obj里有RegExp、Error对象，则序列化的结果将只得到空对象
+                如果obj里有函数，undefined，则序列化的结果会把函数或 undefined丢失
+                如果obj里有NaN、Infinity和-Infinity，则序列化的结果会变成null
+                如果obj中的对象是有构造函数生成的，会丢弃对象的constructor
+                含有symbol属性名的对象拷贝会漏掉symbol属性
+                对象有循环引用,会报错
+        
+
+
+        实现深拷贝函数：
+            function deepCopy(obj, parent = null) {
+                // 创建一个新对象
+                let result = {};
+                let keys = Object.keys(obj),
+                    key = null,
+                    temp= null,
+                    _parent = parent;
+                // 该字段有父级则需要追溯该字段的父级
+                while (_parent) {
+                    // 如果该字段引用了它的父级则为循环引用
+                    if (_parent.originalParent === obj) {
+                        // 循环引用直接返回同级的新对象
+                        return _parent.currentParent;
+                    }
+                    _parent = _parent.parent;
+                }
+                for (let i = 0; i < keys.length; i++) {
+                    key = keys[i];
+                    temp= obj[key];
+                    // 如果字段的值也是一个对象
+                    if (temp && typeof temp=== 'object') {
+                        // 递归执行深拷贝 将同级的待拷贝对象与新对象传递给 parent 方便追溯循环引用
+                        result[key] = deepCopy(temp, {
+                            originalParent: obj,
+                            currentParent: result,
+                            parent: parent
+                        });
+                    } else {
+                        result[key] = temp;
+                    }
+                }
+                return result;
+            }
+
+        */
+    </script>
+</html>

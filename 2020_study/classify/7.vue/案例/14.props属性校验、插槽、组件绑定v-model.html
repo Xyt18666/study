@@ -85,7 +85,6 @@
 
             插槽的 默认值 ： slot 标签内 写入默认的内容 ，当不传如 内容时，会显示默认值
 
-
         具名卡槽 ：
             定义 slot 标签时  :  写入 name属性 （不带name的 slot 隐含名称为 default）
 
@@ -96,12 +95,25 @@
     
         卡槽的作用域： 插入内容 的 作用域
 
+
         插槽内容 访问子 组件中才有的数据或方法:
                 
             1. slot 标签内 绑定属性
             2. #slot的name="接收的属性"
 
             当接收 多个 属性时 可使用 解构  #slot的name={"接收的属性","接收的属性"}
+
+
+        2.6.0之前旧的插槽：
+            定义方法相同
+
+            使用：
+                 <template slot="default" slot-scope="slotProps">
+                    {{ slotProps.msg }}
+                </template>
+
+                slot="default"   绑定插槽名
+                slot-scope="slotProps"    获取传递的值 
 
 
         
