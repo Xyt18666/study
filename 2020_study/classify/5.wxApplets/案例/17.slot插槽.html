@@ -12,6 +12,20 @@
         slot 插槽标签    与vue中的 slot 相同
 
         子组件标签内的 html 会被 渲染到 组件内
+
+
+        启用插槽：
+            Component({ 
+            options: {
+                multipleSlots: true
+            }
+            }
+
+        多插槽定义绑定 name :
+            <slot name="slot1"></slot>
+
+        多插槽使用 ：
+            <view slot="slot1">我是定制的内容1</view>
         
             
 
