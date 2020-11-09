@@ -75,20 +75,19 @@
                 ></el-table-column>
                 <el-table-column
                     label="操作"
-                    width="150"
+                    width="300"
                 >
                     <template slot-scope="scope">
-                        <el-button size="mini" @click="viewDetail(scope.row.id)">详情</el-button>
+                        <el-button @click="viewDetail(scope.row.id)">详情</el-button>
                         <template v-if="scope.row.status === 'STATUS1'">
-                            <el-button size="mini" type="primary" @click="viewEdit(scope.row.id)">编辑</el-button>
-                            <el-button size="mini" type="primary" @click="viewCheck(scope.row.id)">审核</el-button>
+                            <el-button type="primary" @click="viewEdit(scope.row.id)">编辑</el-button>
+                            <el-button type="primary" @click="viewDetail(scope.row.id)">审核</el-button>
                         </template>
-                        <el-button size="mini" type="primary" v-else @click="viewApprove(scope.row.id)">入库</el-button>
+                        <el-button type="primary" v-else @click="viewDetail(scope.row.id)">入库</el-button>
                     </template>
                 </el-table-column>
             </el-table>
-        </div>
-        <div class="b">
+
             <el-pagination
                 @size-change="onPageSizeChange"
                 @current-change="onPageNoChange"
@@ -98,6 +97,9 @@
                 layout="total, sizes, prev, pager, next"
                 :total="total"
             ></el-pagination>
+        </div>
+        <div class="b">
+
         </div>
     </div>
 </div>
@@ -128,40 +130,6 @@ export default {
         },
         viewEdit(id) {
             this.$router.push('/main/register-edit/' + id);
-        },
-        viewCheck(id) {
-            this.$confirm('您确认要审核通过该条信息吗?', {
-                confirmButtonText: '确定审核',
-                cancelButtonText: '暂不操作',
-                type: 'warning'
-            }).then(() => {
-                this.loading = true;
-                axios.post('/equipment/pre-check', {
-                    id
-                }).then(() => {
-                    this.$message.success('审核成功');
-                    this.getList();
-                }).finally(() => {
-                    this.loading = false;
-                });
-            }).catch(() => {});
-        },
-        viewApprove(id) {
-            this.$confirm('您确认要入库通过该条信息吗?', {
-                confirmButtonText: '确定入库',
-                cancelButtonText: '暂不操作',
-                type: 'warning'
-            }).then(() => {
-                this.loading = true;
-                axios.post('/equipment/pre-approve', {
-                    id
-                }).then(() => {
-                    this.$message.success('入库成功');
-                    this.getList();
-                }).finally(() => {
-                    this.loading = false;
-                });
-            }).catch(() => {});
         },
         onAdd() {
             this.$router.push('/main/register-add');
@@ -218,22 +186,11 @@ export default {
             display: flex
             justify-content: space-between
             align-items: center
-            height: 60px
             padding-right: 20px
-            .el-button
-                font-size: 18px
-        .b
-            padding: 10px 0
     .color-list
         display: flex
     .color-box
         display: inline-block
         width: 10px
         height: 10px
-        margin-right: 10px
-    .cell
-        .el-button
-            padding: 5px
-            & + .el-button
-                margin-left: 5px
 </style>

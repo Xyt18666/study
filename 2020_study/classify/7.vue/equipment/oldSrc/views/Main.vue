@@ -52,9 +52,6 @@ export default {
     },
     created() {
         this.who();
-        setTimeout(() => {
-            axios.get('/equipment/test')
-        }, 3000)
     }
     // watch: {
     //     '$route'(route) {

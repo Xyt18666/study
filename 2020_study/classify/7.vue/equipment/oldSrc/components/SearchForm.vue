@@ -2,7 +2,7 @@
 .search-form
     h2 设备检索
     el-form(
-        label-width="70px"
+        label-width="80px"
         :model="searchForm"
     )
         el-form-item(label="设备编号")
@@ -63,26 +63,11 @@ export default {
 </script>
 
 <style lang="sass">
+.search-form .el-select,
+.search-form .el-button
+    width: 100%
 .search-form
-    background-color: #f9f9f9
-    border-radius: 5px
-    padding: 15px
-    .el-select, .el-button
-        width: 100%
     .el-form-item:last-child
         .el-form-item__content
             margin-left: 0!important
-    h2
-        position: relative
-        height: 50px
-        padding-left: 15px
-        font-size: 18px
-        &:before
-            content: ""
-            position: absolute
-            left: 0
-            top: 5px
-            width: 5px
-            height: 16px
-            background-color: #1989FA
 </style>
