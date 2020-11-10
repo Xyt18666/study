@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+    !!!! demo13 !!!!
+            
+    Date类:java.util.Date 封装了当前的日期和时间
+
+        Date类的构造器：
+            1.Date（）：分配Date对象并初始化此对象，以表示分配它的时间（精确到毫秒）。
+                Date d=Date（）;   当前时间
+
+            2. 第二个构造函数接收一个参数，该参数是从1970年1月1日起的毫秒数。
+                Date d=Date（1600051231300）;    表示：2020-09-14 10:40:31
+
+        类的方法：
+            1.public boolean after(Date when)判断当前日期是否在指定日期之后返回 true；否则返回 false。
+            2.public boolean before(Date when)判断当前日期是否在指定日期之前返回 true；否则返回 false。
+            3.public boolean compareTo(Date when)判断第一个时间是否在第二个时间之后返回 true；否则返回 false。
+            4.public boolean before(Date when)判断第一个时间是否在第二个时间之前返回 true；否则返回 false。
+            5.public int compareTo(Date when）比较两个时间，相等的时候返回0。 第一个时间在第二个时间之前返回负数。第一个时间在第二个时间之后则返回正数。
+            6.public boolean equals(Object date)当调用此方法的Date对象和指定日期相等时候返回true,否则返回false。
+            7.public long getTime() 返回时间对象的毫秒数
+            8.public void setTime(long time) 设置时间对象的毫秒数
+            9.public String toString() 把此 Date 对象转换为以下形式的 String： dow mon dd hh:mm:ss zzz yyyy 
+--------------------------------------------------------------------------------
+        
+    SimpleDateFormat类：
+        java.text.SimpleDateFormat 是格式化时间和解析时间的具体类，它允许进行格式化（日期→文本）、解析（文本→日期）和规范化。
+
+
+        构造方法：
+            1.SimpleDateFormat()：用默认的格式和默认的语言环境构造 SimpleDateFormat。
+            例如：SimpleDateFormat de=new SimpleDateFormat();
+
+            2.SimpleDateFormat(String pattern)：用指定的格式和默认的语言环境构造 SimpleDateFormat。
+            例如：SimpleDateFormat de=new SimpleDateFormat("yyyy年MM日dd日");
+
+            3.SimpleDateFormat(String pattern,Locale locale)：用指定的格式和指定的语言环境构造 SimpleDateFormat。
+            例如：SimpleDateFormat de=new SimpleDateFormat("yyyy年MM日dd日");
+
+         SimpleDateFormat类 的使用：
+            时间字符串”2020-12-01 00:00:00” 与  Date类 互相转换
+
+
+
+
+
+
+
+     -->
+    </body>
+</html>

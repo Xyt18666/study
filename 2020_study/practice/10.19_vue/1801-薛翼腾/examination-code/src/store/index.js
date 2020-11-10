@@ -13,6 +13,7 @@ const get = () => {
 
 export default new Vuex.Store({
     state: {
+        isLongin: false,
         isBlock: false,
         isShowSTort: false,
         stort: get(),
