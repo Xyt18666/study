@@ -1,12 +1,7 @@
 <template lang="pug">
-.home(
-    @click="ggeett" 
-)
-//- ggeett获取本地数据，需要修改 config 文件
-
+.home
     .banner
-        banner-swiper
-        //- banner-swiper(v-if="sliderListMsg.length>0")
+        banner-swiper(v-if="sliderListMsg.length>0")
 
         //- 由于创建时数据未获取完成，所以轮播图渲染有问题
     .hot-song 

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+    !!!! Demo4 !!!!
+
+    Scanner：
+        扫描器，扫描用户在控制台录入的数据
+
+        使用：
+            import java.util.Scanner;     导入包
+            Scanner sc = new Scanner(System.in);    创建键盘录入对象
+            int i = sc.nextInt();   接收数据
+            
+
+    流程控制语句：
+
+        顺序结构：
+            默认就是顺序执行，从上至下，从左至有
+
+        判断结构：
+            if
+            if...else
+            if...else if...else
+
+            switch(值)
+            {
+                case 取值 1: 
+                    表达式 1; 
+                break；
+                case 取值 2: 
+                    表达式 2;
+                break;
+                    ....
+                default: 
+                    表达式 n；
+                break；
+            }
+            ps:在switch语句中，如果case的后面不写break，将出现穿透现象，也就是不会在判断下一个case的值，直接向后运行，直到遇到break，或者整体switch结束
+
+
+        循环结构：
+            for(初始化表达式; 布尔表达式; 步进表达式){
+                循环体
+            }
+
+            for (int 初始化表达式 : 数组) {
+                这是增强 for
+            }
+
+            while(条件表达式)
+            {	
+                步进表达式
+                执行表达式;
+            }	
+
+            do{
+                步进表达式
+                执行表达式;
+            }while(条件表达式);
+
+
+        break与continue：
+            结束本次循环
+            跳过本次循环
+            应用范围：选择结构（switch）和循环结构(while,for,do while)
+            ps:当有多层循环嵌套时，并不能结束，需要使用标号
+
+        带标号的循环结束：
+            格式：
+                标号:循环
+
+                break 标号
+
+            例子：
+                label:for (int ii = 1; ii<4; ii++){
+                    for (int j = 1; j<11; j++){
+                        System.out.println("ii"+ii+"j"+j);
+                        if(ii==2 && j==5){
+                            System.out.println("找到了");
+                            break label;
+                        }
+                    }
+                }
+
+
+        Random类：随机数
+            import java.util.Random;    导入包                            
+            Random r = new Random();  创建示例
+            int num = r.nextInt(10);    获取一个 0-9的随机数
+            
+            
+
+     -->
+    </body>
+</html>
