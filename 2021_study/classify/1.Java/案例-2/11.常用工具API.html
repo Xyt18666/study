@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+    !!!! Demo10 !!!!
+
+    java中 组件的层次结构：
+        java:
+            javaSE模块：java核心类库 ，大多数以 java开头
+                包：
+                    接口/类
+            JDK模块：java开发工具内容 ，大多数 以 jdk开头
+                 包：
+                    接口/类
+
+
+    常用工具 API:
+        Object：    
+            概述：类层次结构最顶层的 基类 ，所有类都直接间接继承自 OBject
+
+            导包：
+                java.long包下的类可以直接使用，不需要导包
+
+            创建构造对象： 
+                Object obj1 = new Object();
+
+            成员方法：
+                .hashCode() , 返回int类型 ，返回对象的哈希值 ，每个对象返回的一般不同
+                .getClass() ，返回Class类型 ，返回字节码文件 ，一个类只有一个字节码文件
+                .toString()，返回String类型 ，打印的是地址值，不同对象打印的不同 ，全类名+@+该对象的哈希码的无符号16进制形式
+                .equals(obj2)，返回 布尔 类型 ，比较两个对象是否相等 ，默认比较地址值 ，所以的 false
+
+            重写Object类的方法：
+                重写的的方法toString  equals hashCode：
+                    alt + ins  重写方法
+            
+            一般都会重写 toString  equals hashCode 这些类
+
+
+        Scanner：
+            概述：扫描器，解析字符串和基本数据类型，主要解析 键盘录入
+            从指定输入流中获取数据参数System.in , 对应键盘录入
+
+            成员方法：
+                .hasNextXxx() , 判断是否还有下一个输入项 ，其中 Xxx 可以是任意基本类型，返回结果为布尔值
+
+                .nextXxx() , 获取下个输入项 ，其中 Xxx 可以是任意基本类型，返回对应类型的数据
+
+                String nextLine() ,获取下一行数据，以换行符 作为 结束字符
+                String next() , 获取下一个输入项，以空白符作为 结束字符
+
+
+        String:
+            概述：字符串,每一个字符串对象都是常量
+
+            构造方法：
+                String(byte[]) : 构造一个String对象，将指定字节数组中的数据转化成字符串对象
+                String(char[]) :造一个String对象，将指定字节数组中的数据转化成字符串对象
+
+                优化写法：
+                    免写 new : String s2 = "okmngt"
+
+            成员方法：
+                判断方法：
+                    equals() : 判断 2个字符串是否相等 ，大小字符区分
+                    equalsIgnoreCase() :判断 2个字符串是否相等 ，大小字符不区分
+                    startsWith() : 判断 是否 以 某字符 开头
+                    isEmpty(): 判断字符串是否为空
+
+                获取方法：
+                    length(): 获取当前字符串长度
+                    charAt():获取指定下标的字符
+                    indexOf():获取指定字符的索引
+                    substring(): 获取指定索引（含）为之后的字符串
+                    substring(s,e) :重载 传入2个参数 ，起始（含）结束 下标
+
+                转换方法：
+                    byte[] getBytes(): 将字符串转换为 字节数组
+                    char[] toCharArray(): 将字符串转换为 字节数组
+                    static String valueOf(): 将指定类型数据 转为字符串
+                    String replace(old,new):字符串替换
+                    String[] split(String):切割字符串，返回切割后的字符串数据，源字符串不变
+                    String trim() : 去除字符串两端的空白字符
+
+
+            StringBuilder: 速度更快
+                概述：可变字符串序列，用于构造字符串对象，内部使用自动扩容的数组操作字符串数据。
+
+                构造方法：
+                    StringBuilder():空参构造，构造一个空的 容器 
+                    StringBuilder(String): 传入一个字符串 封装为 StringBuilder类型的数据
+
+                成员方法：
+                    append(): 将任意数据 添加到 创建的容器中 ,返回自身，也就是说可以重复添加
+                    toString(): 将 容器 转换为 字符串
+
+              
+            StringBuffer: 速度比较慢
+                方法同 StringBuilder
+
+        Date:
+            概述：日期和日历类，用于操作日期和相关信息。
+
+            构造方法：
+                Date() : 空参构造 ，构建一个日期对象 ，当前时间 精确到毫秒
+                Date(long) : 构建一个日期对象 ，1970.1.1时间 至 参数的 毫秒数
+
+            成员方法：
+                getTime(): 将日期对象转换成对应时间的毫秒值
+
+               
+               
+
+
+        Calendar:
+            实例化：
+                Calendar getInstance   根据当前系统时区 和 语言获取 当前日历对象
+
+            成员方法：
+                get(int field) : 返回给定日历字段的值
+                set(): 将给定的日历字段设置为指定值
+
+        基本类型的包装类：
+            概述：基础数据类型不是对象，所以java针对基本类型提供了对应的包装类，一对象的形式来使用
+
+            装箱：基本数据类型 包装成 对象类型
+                Integer il = new Integer(as);
+            拆箱：对象类型 转成 基本类型
+                int bw = il.intValue();
+
+            自动拆装箱：
+                Integer ok = 60;
+                int  ok2 = ok;
+
+            字符串转数字：
+                String hg = "99";
+                int numk = Integer.parseInt(hg);
+
+            成员方法：
+                static 基本类型 parseXxx(String): 将字符串类型的数据转换成对应的基本类型
+
+                例子：static int parseInt()
+
+            ps:
+                除了 Character类以外，其他的 7种 包装类都有 parseXxx(String)方法
+                因为如果 字符串 想转换为 char 类型 的数据 ，可以通过 String类中的方法 toCharArray() , charAt() 
+
+            
+
+
+
+
+
+    
+     -->
+    </body>
+</html>
