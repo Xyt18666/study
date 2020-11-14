@@ -128,23 +128,33 @@
         基本类型的包装类：
             概述：基础数据类型不是对象，所以java针对基本类型提供了对应的包装类，一对象的形式来使用
 
+            包装类：
+                int     ->  Integer
+                char    ->  Character
+                byte    ->  Byte
+                short   ->  Short
+                long    ->  Long
+                float   ->  Float
+                double  ->  Double
+                boolean ->  Boolean
+
             装箱：基本数据类型 包装成 对象类型
                 Integer il = new Integer(as);
+
             拆箱：对象类型 转成 基本类型
                 int bw = il.intValue();
-
-            自动拆装箱：
-                Integer ok = 60;
-                int  ok2 = ok;
-
-            字符串转数字：
-                String hg = "99";
-                int numk = Integer.parseInt(hg);
 
             成员方法：
                 static 基本类型 parseXxx(String): 将字符串类型的数据转换成对应的基本类型
 
                 例子：static int parseInt()
+                    字符串转数字：
+                    String hg = "99";
+                    int numk = Integer.parseInt(hg);
+
+            自动拆装箱：
+                Integer ok = 60;
+                int  ok2 = ok;
 
             ps:
                 除了 Character类以外，其他的 7种 包装类都有 parseXxx(String)方法

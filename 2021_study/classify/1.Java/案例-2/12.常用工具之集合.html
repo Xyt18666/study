@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+    !!!! Demo11 !!!!
+
+    集合：
+        简介：是用来存储多个元素的容器
+
+        集合和数组的区别：
+            集合：
+                只能存储引用类型的值，存储基本数据类型时，会自动装箱
+                元素个数不固定，可任意扩展
+
+            数组：
+                基础类型的数据和引用数据类型都可以
+                元素个数固定，不能改变容量
+
+        集合的好处：
+            不受容器大小限制 ，可以随时添加 删除 元素 ，同时提供大量操作元素的方法，判断 获取等 
+
+        java集合体系：
+            
+            单列集合：Collection
+                List：
+                    特点： 可重复，有序（存储顺序相同）
+
+                    应用：ArrayList
+                        实例： List list = new ArrayList();
+                    
+                    实例方法：
+                        add():向集合中添加元素的方法
+                        size():获取集合中元素的个数的方法
+                        get():获取list中的值
+      
+                Set:
+                    HashSet
+
+            双列集合：Map:key,value
+                Map:
+                    HashMap
+
+    增强 for :
+        作用： 简化 数组和集合 的遍历
+
+        格式：
+            for (Object o : list) {
+                // o 就是 集合中 的  ite
+                // list  就是 集合本身
+            }
+
+        快捷键 ：iter
+        ps: 增强 for 底层 就是 迭代器
+
+
+    迭代器：
+        为什么需要迭代器：
+            迭代器是遍历Collection集合的通用方式，可以在对集合遍历时，进行添加 删掉等操作
+
+        获取某集合的迭代器：
+            Iterator it =  集合.iterator();
+
+        常用方法：
+            .next(): 返回迭代的下一个元素对象
+            .hasNext():如果仍有元素可迭代 ，则返回true
+        
+        ps: 在迭代操作中 进行 对 集合的操作会报错 ，并发修改错误
+
+    列表迭代器：在迭代中对集合进行添加删除等操作
+    
+        实例类 ：ListIterator it =  list.listIterator();
+
+        操作：
+            实例名.集合的方法()  
+
+    泛型：
+        含义：泛指任意类型，又叫参数化类型，对具体类型的使用起到辅助作用，类似于方法的参数
+
+        集合类泛型的解释：
+            在集合上写了一个泛型 ，就代表该集合中存放指定类型的元素
+
+        示例：List<String> list = new ArrayList<>();
+
+        泛型的好处：
+            类型安全
+            避免了类型转换
+
+        ps:
+            泛型一般只和集合类结合使用
+            定义 泛型 在 JDK7 以后，后面的泛型可以简写 <>
+
+
+    Collections:
+        简介：针对集合操作的工具类
+
+        成员方法：静态方法，无需 实例化 ，直接 Collections.xx 调用
+            max(Collection<T>): 获取聚合的最大元素 ， 通过返回值获取
+            sort(List<T>) : 根据元素的自然顺序，指定列表按升序排序
+            reverse(List<T>): 翻转List集合元素
+            shuffle(List<T>) : 随机置换指定的列表，也就是打乱集合
+            
+
+    Set集合：
+        特点：不可重复，无序
+
+        应用：Set<T> set = new HashSet<>();
+
+        成员方法：
+            add():向集合中添加元素的方法
+            size():获取集合中元素的个数的方法
+            get():获取list中的值
+
+        ps:要保证唯一性，要 在类中 重写 equals 和 hashCode 方法
+
+
+    Map集合：
+        特点：双列集合，键值对 ，key--value ,key不可重复
+
+        应用：Map<T1,T2> map = new HashMap<>();
+
+        成员方法：
+            put(): 向集合中添加
+            get():获取值
+
+        遍历集合的方式：
+            keySet() : 获取所有的Key 
+        
+       
+
+            
+
+                
+                
+
+
+                
+            
+
+
+     -->
+    </body>
+</html>

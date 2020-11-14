@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+        !!!! Demo13 !!!!
+
+        反射：
+            反射的概述：在程序运行过程中分析类的一种能力
+            
+            反射能做什么：
+                1.分析类
+                    加载并初始化类
+                    查看类的所有属性和方法
+                2.查看并使用对象
+                    查看对象的所有属性和方法
+                    使用任意属性和方法
+
+            应用场景：
+                构建通用工具类时
+                搭建具有高度灵活性和扩展性的系统框架
+
+            类加载器：
+                负责将类字节码文件加载到内存中，并生成对应的class类
+
+            获取Class对象的3种方式：
+                1.Object类的 getClss()
+                    Class cla = 对象名.getClass();
+
+                2. 类的静态属性
+                    Class cla = 类名.class;
+
+                3. 类的静态方法
+                    Class cla = Class.forName("类的正名");
+
+
+            反射的方式获取构造方法并使用：
+                Constructor<T>：通过Class对象获取构造器对象
+                    getConstructor(Class<?>...parameterTypes) :返回一个Constructor对象，仅公共构造函数
+
+                    getDeclaredConstructor()：返回一个Constructor对象，可获取私有的构造函数
+
+                    getDeclaredConstructors()：返回又有构造函数的 数组
+
+                常用方法：
+                    .getName():返回构造函数名
+                    .newInstance():使用此构造函数的指定参数和方法
+
+
+            反射的方式获取成员方法并使用：
+                Method对象：通过Class对象获取成员方法
+                    getMethod(String name,Class<?>...parameterTypes) :返回一个Method对象，仅公共构成员方法
+
+                    getDeclaredMethod()：返回一个Method对象，可获取私有的成员方法
+
+                    getMethods()：返回又有方法的 数组
+                    
+                常用方法：
+                    .getName():返回构造函数名
+                    .invoke(Object obj,Object ...args):在指定对象上调用此方法，参数为 args
+
+            反射的方式获取成员变量并使用：
+                Field对象：通过Class对象获取成员属性
+                     getField(Class<?>...parameterTypes) :返回一个Field对象，仅公共属性
+                        name:属性名
+
+                    getDeclaredField()：返回一个Field对象，可获取私有属性
+
+                    getDeclaredFields()：返回所有和属性， 数组形式
+                
+                 常用方法：
+                    .set():设置obj对象的指定的属性值为 value
+                    .setAccessible(Object obj,Object ...args):将此属性的可访问性设置为指定的布尔值 ，是要开启暴力反射
+                    
+
+
+
+            反射获取setter方法给对象的属性设置值：
+                1. 获取构造方法 getConstructor() ， .newInstance()
+                2. 获取指定的方法 getMethods() , xxmethxx.invoke()
+        
+            
+
+
+
+     -->
+    </body>
+</html>

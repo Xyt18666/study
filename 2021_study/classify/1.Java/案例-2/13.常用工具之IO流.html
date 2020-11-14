@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!--  
+        !!!!  Demo12 !!!!
+        IO流：
+            什么是IO流：数据传输的技术
+
+            File类：
+
+                构造方法：
+                    File(string path) ：根据字符串路径创建对应的 file对象
+                    File(f,c) : 根据传入的 父子 目录创建对应的 file对象
+                    File(ff,c) : 根据封装好的 父目录 + 字符串子目录 ，目录创建对应的 file对象
+                
+                成员方法：
+                    createNewFile() : 创建文件
+                    mkdir() 和  mkdirs()  :  创建目录 和 创建多级目录（mkdirs最常用）
+                   
+                    isDirectory(): 判断File对象是否为 目录
+                    isFile():判断File对象是否为文件
+                    exists():判断 File 对象是否存在
+
+                    getAbsolutePath(): 获取绝对路径
+                    getPath(): 获取相对路径
+                    getName() : 获取文件名
+                    list() : 获取指定目录下的所有文件(夹)名称数组
+                    listFiles() :获取指定目录下的所有文件(夹)File数组
+
+            IO流体系：
+                按数据流向分：
+                    输入流
+                    输出流
+
+            
+                按操作方式分：
+                    字节流：
+                        InputStream:都是抽象类
+                            FillInputStream:        普通字节输入流
+                            BufferedInputStream:    高效字节输入流
+
+                        OutputStream:都是抽象类
+                          FillOutputStream:         普通字节输出流
+                            BufferedOutputStream:   高效字节输出流
+
+                        字节流拷贝：
+                            同字符流
+
+                    字符流：
+                        Reader: 都是抽象类
+                            FileReader:             普通字符输入流
+                                创建对象：  Reader rea = new FileReader("xx\\io.txt");
+
+                                成员方法：
+                                    read(): 读取一个字符，返回该字符代表的整数 ，若达到末尾 ，返回 -1
+
+                                    read(字符数组)：读取字符到数组中，返回读取的数值，末尾 返回 -1
+
+                                    close：关闭资源
+                        
+
+                            BufferedReader:         高效字符输入流
+                                创建对象：  BufferedReader buf =  new BufferedReader(new FileReader("xx.xx"))
+                                
+                                成员方法：
+                                    readLine() : 一次读取一行数据并返回读取内容,读不到返回null
+
+
+                        Writer: 都是抽象类
+                            FileWriter:             普通字符输出流
+                                创建对象：  Writer wri = new FileWriter("xx.xx")
+
+                                成员方法：
+                                    write(x) : 写一个字符
+                                    write(字符数组,起始下标,操作个数) ：写入一个字符数组
+
+                                    write(字符串) ：写入一个字符串
+
+
+
+                            BufferedWriter:         高效字符输出流
+                                特点：字符缓冲流，自带缓冲区 ，大小6192个字符，也就是 16kb
+
+
+                                创建对象：  BufferedWriter buf =  new BufferedWriter(new FileWriter("xx.xx"))
+                                
+                                成员方法：
+                                    newLine() : 根据当前操作系统给出换行符
+
+                        字符流拷贝文件：
+                            就是 通过字符流的 读 和 写 综合使用
+
+                            核心6步：
+                                1.创建字符输入流对象，关联数据源文件
+                                2.创建字符输出流对象，关联目地的文件
+                                3.定义变量，记录读取到的内容
+                                4.循环读取，只要条件满足，就一直读取，并将数据内容赋值变量
+                                5.将读取到的数据 写入 目的地文件
+                                6.close释放资源
+
+                            同样的方法，一次读写一个字符数组，步骤三改为 字符数组
+
+                            同样的方法 ，使用  高效字符输如输出流 ，拷贝
+
+                            使用高效字符输入输出流拷贝文件，要使用 独有的 成员方法 xxLine()
+
+                            ps：只能拷贝纯文本文件
+
+
+           
+
+
+            IO流异常操作：
+
+                异常概述：程序出错
+
+                    异常分类：Throwable
+                        Exception: 可预料的异常
+                        Error: 不可预料的
+
+                    异常处理方式：
+                        JVM默认的异常处理方式 ：在控制台打印错误，并终止程序
+                        捕获异常，自己处理:
+                            try{}catch(Exception e){
+                                出现可能的异常之后的处理代码
+                            }finally{
+                                一定会执行的代码，如关闭资源
+                            }
+                        抛出异常 ，交给调用者处理 : throws 
+                            public static void show() throws Exception {
+                                错误代码
+                            }
+                            
+                            谁调用它，谁就要处理这个 错误
+                            调用者 还可以 抛出异常 ，最终交给JVM处理
+                            或者可以使用 try catch 处理
+
+
+
+                
+
+
+
+
+
+
+            
+        
+    --></body>
+</html>
