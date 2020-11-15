@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body></body>
+    <script>
+        /*宏任务  与   微任务*/
+        setTimeout(function () {
+            console.log("定时器开始啦"); //4
+        }, 0);
+
+        new Promise(function (resolve) {
+            console.log("马上执行for循环啦"); //1
+            for (var i = 0; i < 10000; i++) {
+                i == 99 && resolve();
+            }
+        }).then(function () {
+            console.log("执行then函数啦"); //3
+        });
+        console.log("代码执行结束"); //2
+
+        /*
+            首先执行script下的宏任务,遇到setTimeout,将其放到宏任务的【队列】里
+            遇到 new Promise直接执行,打印"马上执行for循环啦"
+            遇到then方法,是微任务,将其放到微任务的【队列里】
+            打印 "代码执行结束"
+            本轮宏任务执行完毕,查看本轮的微任务,发现有一个then方法里的函数, 打印"执行then函数啦"
+            到此,本轮的event loop 全部完成。
+            下一轮的循环里,先执行一个宏任务,发现宏任务的【队列】里有一个 setTimeout里的函数,执行打印"定时器开始啦
+        */
+
+        /*
+        javascript是一门单线程语言，虽然HTML5提出了Web-works这样的多线程解决方案，但是并没有改变JaveScript是单线程的本质。
+        既然js是单线程的，就是同一时间只能做一件事情。
+
+        所以就出现了两类任务：
+            同步任务
+            异步任务
+
+        
+        1.同步和异步任务分别进入不同的 '‘场所'’ 执行。所有同步任务都在主线程上执行，形成一个执行栈；而异步任务进入Event Table并注册回调函数
+        2.当这个异步任务有了运行结果，Event Table会将这个回调函数移入Event Queue，进入等待状态
+        3.当主线程内同步任务执行完成，会去Event Queue读取对应的函数，并结束它的等待状态，进入主线程执行
+        4.主线程不断重复上面3个步骤，也就是常说的Event Loop(事件循环)。
+                
+        
+        
+        
+        
+        */
+    </script>
+</html>

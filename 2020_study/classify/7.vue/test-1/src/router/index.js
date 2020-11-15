@@ -52,6 +52,11 @@ const routes = [
         name: "longin",
         component: () => import(/* webpackChunkName: "about" */ "../views/LongIn.vue"),
     },
+    {
+        path: "/xy",
+        name: "Xy",
+        component: () => import(/* webpackChunkName: "about" */ "../views/Xy.vue"),
+    },
 ];
 
 const router = new VueRouter({
