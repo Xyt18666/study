@@ -3,7 +3,7 @@
     p about3
     ul
         li 
-          router-link( to="/about3/child1") 二级路由1
+          router-link( to="/about3/") 二级路由1
         li 
           router-link( to="/about3/child2") 二级路由2
         li 
