@@ -21,10 +21,12 @@
                 $emit、$event、props  (前面学过的)
 
                 $root ：Vue 子组件可以通过 $root 属性访问 根组件 实例的 属性和方法
+
+                $children : 组件的 后代 ，获取子组件实例集合
                 
                 $parent : Vue 子组件可以通过 $parent 属性访问 父组件 实例的 属性和方法
 
-                $children : 组件的 后代 ，获取子组件实例集合
+                    $parent + $refs  配合使用
                 
                 $refs 3种用法：
                 　　1、ref 加在普通的元素上，用this.$refs.ref绑定时的值 获取到的是dom元素

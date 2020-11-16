@@ -31,6 +31,19 @@
         onResize            页面尺寸改变时触发，横屏竖屏切换
         onTabItemTap        当前在tabbar时，点击自己的tabbar时才触发
 
+    组件的生命周期：
+        created		    在组件实例刚刚被创建时执行	
+        attached		在组件实例进入页面节点树时执行
+        ready		    在组件在视图层布局完成后执行	
+        moved		    在组件实例被移动到节点树另一个位置时执行	
+        detached	    在组件实例被从页面节点树移除时执行
+        error		    每当组件方法抛出错误时执行
+
+        ps:特殊的 2个 新版本 
+            lifetimes: {
+                attached: function(){},
+                detached: function(){},
+            },
         
     开启页面横屏竖屏配置：
         全局在 app.json 中配置

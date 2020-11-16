@@ -1,5 +1,6 @@
 <!-- index.wxml -->
 <view class="container">
+    <!-- 页面自定义组件  index.json -->
     <nvabar tabs="{{tabs}}" bindsetActive="setActive">
         <block wx:if="{{tabs[0].isActive}}">
             <recommend bindsetPlaying="setPlaying"></recommend>
