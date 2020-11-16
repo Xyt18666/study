@@ -10,14 +10,14 @@ Vue.use(Vuex);
 //     return JSON.parse(window.localStorage.getItem(KEY) || "[]");
 // };
 
-
 export default new Vuex.Store({
     state: {
-        data: "",
+        data: localStorage.getItem("datas") || "",
     },
     mutations: {
         setData(state, val) {
             state.data = val;
+            localStorage.setItem("datas", state.data);
         },
     },
     actions: {},

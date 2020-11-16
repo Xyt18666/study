@@ -1,62 +1,62 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="charset" content="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <script src="http://jxsjs.com/lib/vue.min.js"></script>
-    <title>clock</title>
-  </head>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-    }
-  </style>
-  <body>
-    <div id="app">
-      <!-- <p v-if="seen">现在你看到我了</p>
+    <head>
+        <meta name="charset" content="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <script src="http://jxsjs.com/lib/vue.min.js"></script>
+        <title>clock</title>
+    </head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <body>
+        <div id="app">
+            <!-- <p v-if="seen">现在你看到我了</p>
       <p v-else-if="name2 ==='xyt'">现在你看到我了2</p>
       <p v-else>现在你看到我了3</p> -->
 
-      <template v-if="name">
-        <a href="">1</a>
-        <a href="">2</a>
-        <a href="">3</a>
-      </template>
-      <!-- ------------------------------------ -->
+            <template v-if="name">
+                <a href="">1</a>
+                <a href="">2</a>
+                <a href="">3</a>
+            </template>
+            <!-- ------------------------------------ -->
 
-      <!-- <a v-on:click="clicksj">...</a> -->
-      <!-- --------------------------- -->
+            <!-- <a v-on:click="clicksj">...</a> -->
+            <!-- --------------------------- -->
 
-      <a @[sj]="clicksj">...</a>
-      <!-- -------------------------------- -->
+            <a @[sj]="clicksj">...</a>
+            <!-- -------------------------------- -->
 
-      <form v-on:click.prevent="onSubmit">...</form>
-      <!-- ---------------------------------------- -->
+            <form v-on:click.prevent="onSubmit">...</form>
+            <!-- ---------------------------------------- -->
 
-      <!-- ------------------------ -->
-    </div>
-  </body>
-  <script>
-    const clock = new Vue({
-      el: "#app",
-      data: {
-        seen: false,
-        name: "xh",
-        name2: "xyt2",
-        name3: "xxx3",
-        sj: "click",
+            <!-- ------------------------ -->
+        </div>
+    </body>
+    <script>
+        const clock = new Vue({
+            el: "#app",
+            data: {
+                seen: false,
+                name: "xh",
+                name2: "xyt2",
+                name3: "xxx3",
+                sj: "click",
 
-        clicksj() {
-          console.log("触发click");
-        },
-        onSubmit() {
-          console.log("触发提交，取消默认事件");
-        },
-      },
-    });
+                clicksj() {
+                    console.log("触发click");
+                },
+                onSubmit() {
+                    console.log("触发提交，取消默认事件");
+                },
+            },
+        });
 
-    /*
+        /*
     条件渲染：
         v-if ：值为 true 显示 ，为flase 隐藏  ,"内部支持 js 表达式"
         v-else-if : 顺序执行判断 语句 ，遇到 true 就显示 ，并且后续不再执行
@@ -118,5 +118,5 @@
 
 
     */
-  </script>
+    </script>
 </html>
