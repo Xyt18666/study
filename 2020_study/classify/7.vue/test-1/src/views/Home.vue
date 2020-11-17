@@ -12,11 +12,11 @@
         .swiper-pagination
 
     .router
-      router-link( to="/about") 1
-      router-link( to="/about2") 2
+      router-link( to="/about" @click.native="active=1" :class="[active==1?'active':'']") 1
+      router-link( to="/about2" @click.native="active=2" :class="[active==2?'active':'']") 2
       .box 扫码
-      router-link( to="/about3") 3
-      router-link( to="/about4") 4
+      router-link( to="/about3" @click.native="active=3" :class="[active==3?'active':'']") 3
+      router-link( to="/about4" @click.native="active=4" :class="[active==4?'active':'']") 4
      
 
 </template>
@@ -49,6 +49,7 @@ export default {
     },
     data() {
         return {
+            active: 1,
             carouselArr: [
                 {
                     text: 1,
@@ -85,4 +86,6 @@ export default {
   bottom: 0
   display: flex
   justify-content: space-around
+.active
+    color: red
 </style>
