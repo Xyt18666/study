@@ -28,7 +28,54 @@
 
 
 
+    vue3的数据双向绑定原理：
+        ES6的语法 Proxy 对象来实现的
+
+
+
+
         
      -->
+        <div>
+            <input type="text" id="input" />
+            <span id="text"></span>
+        </div>
     </body>
+    <script>
+        {
+            // vue2
+            // var obj = {};
+            // Object.defineProperty(obj, "prop", {
+            //     get: function () {
+            //         return val;
+            //     },
+            //     set: function (newVal) {
+            //         val = newVal;
+            //         document.getElementById("text").innerHTML = val;
+            //     },
+            // });
+            // document.addEventListener("keyup", function (e) {
+            //     obj.prop = e.target.value;
+            // });
+        }
+        {
+            // vu3
+            var obj = {};
+            var obj1 = new Proxy(obj, {
+                // target就是第一个参数obj, receive就是返回的obj(返回的proxy对象)
+                get: function (target, key, receive) {
+                    // 返回该属性值
+                    return target[key];
+                },
+                set: function (target, key, newVal, receive) {
+                    // 执行赋值操作
+                    target[key] = newVal;
+                    document.getElementById("text").innerHTML = target[key];
+                },
+            });
+            document.addEventListener("keyup", function (e) {
+                obj1[0] = e.target.value;
+            });
+        }
+    </script>
 </html>
