@@ -198,8 +198,32 @@
 
     路由路径传参时参数数为字符串类型：
         需要用时，必须转换数据类型
-
+---------------------------------------------------------------------------
     
+    路由解耦：
+        概念： 
+            获取路由传递的参数时 需要 路由实例.params/query，不方便使用
+            可以通过解耦，直接把路由参数 放置到 props中
+
+        例子：
+            {
+                path: "/event",
+                name: "event",
+                component: () => import(/* webpackChunkName: "event" */ "./components/event.vue"),
+                props: (route: Route) => {
+                    const { id, name } = route.query;
+                    return {
+                    id,
+                    name,
+                    };
+                },
+            },
+        
+        路由中props属性：
+            props的属性可以是布尔值、对象、函数。
+            如果props属性为true，那么所有params上的属性都会转换成prop属性传递给组件。如果是对象，那么只有为true的key对应的组件才会有params作为prop传递进来
+
+        
 
      -->
     </body>
@@ -246,6 +270,9 @@
                 store,
                 render: h => h(App),    将app组件渲染
             }).$mount("#app");  替换 index.htnm 中的 #app
+
+-----------------------------------------------------------------------------------------------
+    
 
 
         

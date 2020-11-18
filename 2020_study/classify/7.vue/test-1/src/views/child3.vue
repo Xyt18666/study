@@ -1,9 +1,24 @@
 <template>
-    <h1>333</h1>
+    <div class="contetn">
+        <h3>33</h3>
+        <h4>{{ id }}</h4>
+    </div>
 </template>
 
 <script>
-export default {};
+// <template functional>
+//     <div class="contetn">
+//         <h3>33</h3>
+//         <!-- <h4>{{ id }}</h4> -->
+//     </div>
+// </template>
+
+export default {
+    props: ["id"],
+    mounted() {
+        console.log(this.props);
+    },
+};
 </script>
 
 <style></style>

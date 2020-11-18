@@ -39,6 +39,14 @@ const routes = [
                 path: "child3",
                 name: "child3",
                 component: () => import(/* webpackChunkName: "about" */ "../views/child3.vue"),
+                props: route => {
+                    const { id } = route.query;
+                    console.log(route);
+
+                    return {
+                        id,
+                    };
+                },
             },
         ],
     },

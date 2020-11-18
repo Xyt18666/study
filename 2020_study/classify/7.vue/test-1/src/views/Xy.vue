@@ -11,6 +11,7 @@
    xue-ya(
        v-show="show"
        @getMsg="getMsg"
+       @hook:mounted="getmsg2"
        )
 
 </template>
@@ -20,6 +21,7 @@ import XueYa from "@/components/XueYa.vue";
 import XueYaItem from "@/components/XueYaItem.vue";
 
 export default {
+    // props: ["id"],
     data: function() {
         return {
             show: false,
@@ -34,14 +36,20 @@ export default {
     },
     components: {
         XueYa,
-        XueYaItem
+        XueYaItem,
     },
     methods: {
         getMsg(e) {
             this.show = false;
             console.log(11, e);
-            this.msg.push(e)
+            this.msg.push(e);
         },
+        getmsg2() {
+            console.log("监听子组件的生命周期");
+        },
+    },
+    mounted() {
+        // console.log(this.props.id);
     },
 };
 </script>

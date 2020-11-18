@@ -7,7 +7,7 @@
         li 
           router-link( to="/about3/child2" @click.native="actives=2" :class="[actives==2?'active':'']") 二级路由2
         li 
-          router-link( to="/about3/child3" @click.native="actives=3" :class="[actives==3?'active':'']") 二级路由3
+          router-link( to="/about3/child3?id=001" @click.native="actives=3" :class="[actives==3?'active':'']") 二级路由3
 
 
     router-view

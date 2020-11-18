@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+
+        hook：
+
+            1.同一个组件内，监听生命周期：
+                mounted () {
+                    window.addEventListener('online', this.handleOnline)
+                    this.$once('hook:beforeDestroy', function () {
+                        window.removeEventListener('online', this.handleOnline)
+                    })
+                }
+
+                特点：可以在绑定第三方插件时，同时定义在 beforeDestroy中销毁
+
+
+            2.监听子组件的生命周期
+                父组件中这样写：
+                    <rl-child
+                    :value="40"
+                    @hook:mounted="handleChildMounted"
+                    />
+                
+                子组件中不用写东西：
+                    mounted () {
+                    
+                    },
+
+                特点：无需 $emit()
+
+
+
+        on/off:
+            $on             注册事件
+            $once           只执行一次的事件
+            $off            销毁事件
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+     -->
+    </body>
+</html>
