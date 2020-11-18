@@ -29,3 +29,8 @@ export default {
     },
 };
 </script>
+<style lang="sass">
+// .v-enter,.v-leave-to
+
+// .v-enter-active,.v-leave-active
+</style>
