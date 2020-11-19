@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+
+    笔试：
+        1.不会查找原型的函数 ： Object.prototype.hasOwnProperty()
+            方法会返回一个布尔值，指示对象自身属性中是否具有指定的属性（也就是，是否有指定的键）。
+
+        2.浏览器渲染机制
+            解析HTML，生成DOM树（DOM）
+            解析CSS，生成CSSOM树（CSSOM）
+            将DOM和CSSOM合并，生成渲染树（Render-Tree）
+            计算渲染树的布局（Layout）
+            将布局渲染到屏幕上（Paint）
+        
+        3.自定义指令
+            directives: {
+                focus: {
+                    inserted: function (el) {
+                    el.focus()
+                    }
+                }
+            }
+
+        4.http状态码
+            1**	信息，服务器收到请求，需要请求者继续执行操作
+            2**	成功，操作被成功接收并处理
+            3**	重定向，需要进一步的操作以完成请求
+            4**	客户端错误，请求包含语法错误或无法完成请求
+            5**	服务器错误，服务器在处理请求的过程中发生了错误
+
+
+            获取状态码：
+                try {
+                    xhr = new XMLHttpRequest();
+                } catch (e) {
+                    xhr = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xhr.status
+
+        5.小程序开放能力
+            广告 Banner 广告
+            公众号关注组件。当用户扫小程序码打开小程序时，开发者可在小程序内配置公众号关注组件，方便用户快捷关注公众号，可嵌套在原生组件内。
+            微信开放的数据。
+            承载网页的容器。
+
+        6.调起客户端小程序设置页面
+            wx.openSetting(Object object)
+
+
+
+
+
+
+
+    机试：
+
+        2. tree， transfer 混用
+
+
+        3.小程序
+            
+            分享功能：   open-type="share"
+                <button open-type="share" class='iconfont icon-weixin'></button>
+
+            复制文本：
+                wx.setClipboardData(Object object)
+
+
+        
+     -->
+    </body>
+</html>

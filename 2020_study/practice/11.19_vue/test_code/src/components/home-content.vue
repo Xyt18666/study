@@ -1,6 +1,7 @@
-<template lang="pug">
- .home-content home-content
- 
+<template>
+    <div class="home-content">
+       
+    </div>
 </template>
 
 <script>

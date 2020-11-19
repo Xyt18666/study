@@ -17,6 +17,13 @@ const routes = [
         //  children:[],
         // props:true
     },
+    {
+        path: "/tow",
+        name: "tow",
+        component: () => import(/* webpackChunkName: "about" */ "../views/Tow.vue"),
+        //  children:[],
+        // props:true
+    },
 ];
 
 const router = new VueRouter({
