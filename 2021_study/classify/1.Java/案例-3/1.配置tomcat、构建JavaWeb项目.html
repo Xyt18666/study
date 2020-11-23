@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+    什么是javaWeb:
+        通过java语言编写可以通过浏览器访问的程序的总称
+    
+
+    常用的web服务器：有很多 ，但是 tomcat 最好用
+        tomcat:是由 appache组织提供的一种 web服务器，提供了对jsp和 servlet的支持。
+        jboss：
+        resin：
+        webLogic:
+
+        
+    安装tomcat：
+        下载 -> 解压即可
+
+    解压后目录概述：
+        bin         可执行脚本
+        conf        配置文件
+        lib         依赖的jar包
+        logs        日志信息
+        temp        测试
+        webapps     默认的web部署的应用
+        work        jsp生成的java源码
+
+    配置环境变量以及配置文件：
+
+        环境变量看自己的配置
+
+        setclasspath.bat文件下加入：
+            set JAVA_HOME=C:\Program Files\Java\jdk1.8.0_271
+            set JRE_HOME=C:\Program Files\Java\jdk1.8.0_271\jre
+
+    启动与关闭：
+        bin/...
+            startup.bat         启动
+            shutdown.bat        停止
+
+    命令行启动与停止：
+        catalina run    启动
+        ctrl+c          停止
+
+    xx的默认端口：
+        mysql ：3306
+        tomcat： 8080
+    
+    修改tomcat的默认端口：
+        conf/server.xml
+        我改成了：8088
+        重启tomcat
+
+    解决乱码：
+        Tomcat根目录下面的"logging.properties"文件
+        把所有的encoding=UTF-8的改成encodng=GBK
+
+    如何部署web工程到 tomcat 的两种方式：
+        1. 把项目 拷贝到 webapps 文件夹下
+        2. conf\Catalina\localhost 路径下  创建 xml 文件
+        
+        
+    默认访问的工程以及index:
+        webapps\ROOT
+
+
+    IDEA动态创建web工程：
+        1.添加 tomcat 
+            设置 -> 程序服务器 -> tomcat Server -> 把解压好的路径填入 -> 应用 确定
+
+        2.构建项目
+            1.创建项目不再是Java Enterprise了,而是先New 一个普通Java项目
+            2.创建项目后,选择Run->Edit Configuration->左上角加号->Tomcat Server(注意不是TomEE)->Local
+            3.点击Application右边的Configure,找到你放置的Tomcat的目录,点击OK
+            4.选择你运行项目调试项目的浏览器,然后ok
+            5.回到项目界面,右键项目名称->add framwork support->选中Web Application->默认勾选创建web.xml
+            6.回到刚刚配置Tomcat的页面,选择第二个选项卡Deployment->右边的加号->选择Artifact…
+            7.项目就添加完成了,下面的Application context表示虚拟路径,你可以改成"/",不写项目名,这样在后面开发测试时就不用频繁的填写路径了,当然不一定要改,个人喜好.点击OK,配置部分完成
+
+            具体步骤：
+                https://blog.csdn.net/qq_43441078/article/details/107912291
+
+            !!!!这样就能成功启动 并部署 web 模板!!!!
+
+        项目目录结构解析：
+            src             存放自己编写的java源代码
+            web             web工程资源文件，比如 html、css、js.... 
+                WEB-INF         受服务器保护的目录，浏览器无法直接访问到此目录
+                    web.xml         整个动态web工程的配置文件 ，可以配置很多web工程的组件 ，比如   servlet 、Filter、Listener 、session....
+                    lib             存放第三方 jar包，还需要自己配置导入
+                index.jsp       可运行的模板文件
+                
+            
+        给tomcat添加 jar 包 ：
+            1. 把jar包放入lib文件夹下
+            2. 全选要添加的包,右键,Add as Librry...
+            3. 选项 第二个 module Library
+
+
+        修改 tomcat实例名 ：（顶部工具栏的猫图标）
+            编辑配置，修改名字
+
+        修改访问工程路径：（运行 编辑配置 第二项）
+            把路径改为 /
+
+        修改端口号：（运行 编辑配置）
+            直接改
+
+        修改热部署：
+            更新类和资源
+
+            
+        
+            
+
+        
+
+
+    
+
+
+    
+
+    
+
+
+
+    
+     -->
+    </body>
+</html>
