@@ -39,7 +39,226 @@
         3. 在web.xml 中 配置 servlet 程序访问地址
 
         
+    使用IDEA 创建 Servlet 程序 ： ：实例servlet_3
+        1. 右键包 -> 新建 -> 创建新的servlet 
+        2. 写类名 ，取消勾选
+        3. 修改web.xml 和 新建类
 
+---------------------------------------------------------------------
+
+    ServletConfig 类 ： servlet程序配置信息类
+
+    作用：
+        1. 可以获取servlet的别名 servlet-name
+        2. 获取 初始化参数 init-param （需要在web.xml配置）
+        3. 获取 servletContext对象
+
+    实例在 ：实例servlet_1 的 init函数
+
+    解释：
+        servlet程序 和 servletConfig对象 都是由 Tomcat 负责创建，我们负责使用
+        servlet程序默认第一次访问时创建 ，servletConfig是每个servlet程序创建时就创建一个对应的servletConfig对象
+    
+    ps:
+        只能获取对应的servletContext对象
+        在继承的函数中可以直接使用 （案例在 servlet_2 的 doGet 函数）
+        如果重写了 init方法 ，必须 调用super.init(config)
+
+    servletContext是什么：
+        1. servletContext是一个借口，表示servlet上下文对象
+        2. 一个web工程 ，只有一个 servletContext对象（无论在那个servlet都能访问到）
+        3. servletContent 是在web工程部署启动时创建 ，停止时销毁
+        4. servletContext对象是一个 域对象
+            域对象：
+                可以像Map一样存取数据的对象
+                这里的域表示存取数据的操作范围（范围就是整个web工程）
+
+                方法：
+                    setAttrbute()   存
+                    getAttrbute()   取
+                    removeAttrbute()    删
+
+    servletContext的作用： 实例在 ServletContext_4
+        1. 获取web.xml 中配置的上下文参数 content.param
+        2. 获取当前的工程路径
+        3. 获取工程部署后在服务器硬盘上的绝对路径
+        4. 像Map一样存取数据
+        
+--------------------------------------------------------------------------
+
+    什么是http协议：
+        客户端与服务器之间通信时，发送的数据，需要相互约定遵守的规则，就叫http协议；http协议中的数据又叫报文。
+
+    GET请求：
+        1. 请求行
+            请求方式        "GET"
+            请求资源路径    [?请求参数]
+            请求协议和版本号    HTTP/1.1
+            
+        2. 请求头
+            key:value       不同的键值对表示不同的含义
+
+    POST请求：
+        1. 请求行
+            请求方式        "POST"
+            请求资源路径    [?请求参数]
+            请求协议和版本号    HTTP/1.1
+            
+        2. 请求头
+            key:value       不同的键值对表示不同的含义
+            空行
+        
+        3.请求体(就是发送给服务器的数据)
+            客户端传递的数据    键=值&...
+
+    常用请求头：
+        Accept ： 表示客户端可以接收的数据类型
+        Accept-languege ：表示客户端可以接收的语言类型
+        User-Agent:表示客户端浏览器信息
+        Host: 表示请求时的服务器 ip和端口号
+
+    那些是get,那些是post:
+        get:
+            form get 请求
+            a标签
+            link引入css
+            script引入js
+            img引入图片
+            iframe 引入 html
+            在地址栏中敲击回车
+
+        post:
+            form post 请求
+            
+    响应http协议格式：
+
+        1. 响应行
+            响应协议和版本号    HTTP/1.1
+            响应状态码          200
+            响应状态描述        ok
+
+        2. 响应头
+           key:value       不同的键值对表示不同的含义
+           空行
+        
+        3.响应体(就是发送给客户端的数据)
+     
+        
+
+    MIME类型说明： 他是http协议中的数据类型
+
+    常见的类型：
+        超文本标记语言      html/htm            Text/html
+        普通文本            txt                 text/plain
+        RTF文本             rtf                 applcation/rtf
+        GIF图               gif                 image/gif
+        JPEG图片            jpeg/jpg            image/jpeg
+        au声音文件          au                  audio/au
+        MIDI音乐            mid/midi            audio/midi/x-midi
+        ....
+
+--------------------------------------------------------------------------
+
+    HttpServletRequest类：
+
+    作用：
+        每次只要有请求进入 tomcat 服务器 ，服务器就会把请求过来的http协议信息解析好封装到Request对象中，然后传递到service方法（doGet/doPost）。
+        我们可以通过HttpServletRequest获取到多有请求信息。
+
+    常用方法：
+        getRequestURI()             获取请求资源路径
+        getRequestURL()             获取绝对路径
+        getRemoteHost()            获取客户端ip
+        getHeader()                 获取请求头
+        getParameter()              获取请求参数
+        getParameterValuse()        获取请求参数（多值时使用）
+        getMethod()                 获取请求方式
+        setAttribute(key,value)     设置域数据
+        getAttribute(key)           获取域数据
+        getRequestDispatcher()      获取请求转发对象
+
+        setCharacterEncoding("UTF-8")  设置请求体字符集，解决post请求的中文乱码，要在获取请求前先设置
+
+        实例在 RequesrAPIServlet_5 
+
+    请求转发：
+        服务器收到请求后，从一次资源跳转到另一个资源，叫做请求转发
+        实例在 RequesrAPIServlet_5 的 get 和 servlet_2 的 get
+
+    请求转发的特点：
+        1. 浏览器地址栏不变
+        2. 他们是一次请求
+        3. 他们共享 request域 中的数据
+        4. 无法访问 工程外的地址
+        5. 可以转发到 WEB-INF 目录下
+            ps:WEB-INF无法直接访问，可以通过转发访问
+
+--------------------------------------------------------------------------
+
+    Servlet-base :
+    
+    作用：可以设置当前页面中所有相对路径工作时，参照那个路径进行跳转
+
+    书写位置： html 的 base标签
+
+    解决连接无法正常跳转的问题
+
+    例子在 form.html
+
+-------------------------------------------------------------------------
+    
+    服务器中的 / :代表工程路径
+            
+    特殊情况： 
+        response.sendRediect("/"); 
+        把/发送给浏览器解析 ，得到 http://ip:port/
+
+--------------------------------------------------------------------------
+
+    HttpServletResponse ：实例 在 Servlet_3
+        作用：和HttpServletRequest一样，每次只要有请求进入 tomcat 服务器 ，都会创建一个 Response对象传递给 servlet程序使用；
+
+        HttpServletRequest 表示 请求过来的信息
+        HttpServletResponse 表示 所有响应的信息
+
+        如果我们需要设置返回给客户端的信息，都可以通过HttpServletResponse来设置。
+
+        两种响应流： 2选1 ，否则报错
+
+            字节流：getOutputStream()
+                常用于下载(传递二进制数据)
+
+            字符流：getWriter()
+                常用于传回字符串(常用)
+
+        向客户端返回数据：
+            PrintWriter write =  response.getWriter();
+            write.println("返回信息数据");
+            具体看案例
+
+        解决中文乱码：
+            response.setContentType("text/html;charset=UTF-8");
+            ps:此方法一定要在获取流之前调用才有效
+
+------------------------------------------------------------------------
+
+    请求重定向：示例在  Servlet_3 的 post
+
+    特点：
+        1. 浏览器地址栏变化
+        2. 2此请求
+        3. 不共享 Request域中的 数据
+        4. 不能访问 WEB-INF 下的资源
+        5. 可以访问 工程以外的资源
+
+-------------------------------------------------------------------------
+
+此时已经能够向前端返回数据
+
+
+
+
+            
 
 
 
