@@ -205,6 +205,45 @@
                     
 -----------------------------------------------------------------------------------
 
+        IDEA中使用 maven : (重点)
+
+            IDEA中设置maven,让idea和maven结合使用：
+                idea中内置了maven ，一般不使用内置的，因为修改配置不方便
+
+            配置：
+                settings.... 
+                    构建，执行，部署
+                        构建工具
+                            maven
+                                maven主目录             主目录
+                                设置文件                setting.xml 
+                                仓库                    repository
+
+                                运行程序
+                                    第二项打勾
+                                    vm xx           -DarchetypeCatalog=internal
+                                    选jdk包
+
+                Outher settings
+                    其他设置
+                        新项目设置
+                            以下同 settings....
+                
+            
+            创建javaSE项目： 示例 maven-4 和 case-4
+                创建一个空的项目：
+                    新建项目，最后一项
+                创建模块：
+                    + module 
+                    选择maven 
+                    勾选复选框
+                    使用模板创建项目   quickstart
+
+                    配置坐标
+
+                点击确定：
+                    完成创建
+                    
 
                     
 
