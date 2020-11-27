@@ -66,12 +66,33 @@
             6. 如果出现冲突,需要手动选择需要的代码,然后重新提交到仓库
 
             ps:在分支进行操作文件，主分支不会有任何变化
-        
-    
+
+
+        对比：
+             git diff				工作区和暂存区的对比
+            git diff --cached		暂存区和版本区的对比
+            git diff --staged		同上
+            git diff HEAD           查看已缓存和未缓存的
+            git diff --stat         查看尚未缓存的摘要
+            git diff 分支名			工作区和版本区对比
+                        
+        撤销：
+            git reset HEAD 文件名		暂存区撤回工作区
+            git checkout -- 文件名		将工作区文件还原成暂存区/版本区
+            git commit -m “” --amend	撤回上次提交，合并本次一起提交
+                
+        删除：
+            git rm 文件名	 		    删除暂存区文件（工作区已经删除的情况下）
+            git rm -f	文件名			强制删除暂存区和工作区文件
+            git rm --cached 文件名		只删除暂存区文件
+
         git branch -a  查询以有的分支
         git status  查看本地仓库状态   红色则未放入暂存区   绿色在暂存区
         git remote -v   查看是否与远程有链接
         git remote rm  origin      删除链接
+
+
+
  
 
 ------------------------------------------------------------------------------

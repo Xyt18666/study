@@ -53,7 +53,10 @@
         git checkout xyt
 
     查看所有分支：
-        git branch
+        git branch -a
+
+    删除分支：
+        git branch -d 分支名
     
     在分支下操作:
         修改或者新增
@@ -65,7 +68,7 @@
         
     合并分支2种：
         git merge：合并本地分支
-        git merge origin xyt
+            git merge origin xyt
 
         git pull：取回远程主机某个分支的更新，再与本地的指定分支合并。
             git pull origin xyt
@@ -78,7 +81,7 @@
 
     解决冲突：
         打开冲突文件
-        上是我的====下是别人的
+        上是我的 ====下是别人的
         通过沟通决定删除谁的或者全部保留
 
         或者使用 小乌龟 解决
@@ -120,6 +123,24 @@
             进入组织，选择成员，邀请成员
             输入邮箱
             配置权限
+
+    对比：
+        git diff				工作区和暂存区的对比
+        git diff --cached		暂存区和版本区的对比
+        git diff HEAD           查看已缓存和未缓存的
+        git diff --stat         查看尚未缓存的摘要
+        git diff 分支名			工作区和版本区对比
+
+
+    撤销：
+        git reset HEAD 文件名		暂存区撤回工作区
+        git checkout -- 文件名		将工作区文件还原成暂存区/版本区
+        git commit -m “” --amend	撤回上次提交，合并本次一起提交
+            
+    删除：
+        git rm 文件名	 		    删除暂存区文件（工作区已经删除的情况下）
+        git rm -f	文件名			强制删除暂存区和工作区文件
+        git rm --cached 文件名		只删除暂存区文件
 
 
 
