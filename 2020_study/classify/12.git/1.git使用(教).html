@@ -65,6 +65,10 @@
 
     提交分支：把当前的分支推送到远程
         git push origin xyt
+        git push -f origin master   强制推送，当版本回滚后使用
+
+    拉取远程分支：
+        git fetch xx
         
     合并分支2种：
         git merge：合并本地分支
@@ -72,6 +76,7 @@
 
         git pull：取回远程主机某个分支的更新，再与本地的指定分支合并。
             git pull origin xyt
+            等同于：  git fetch xx   +   git merge origin xx
 
     查询所有命令：
         git
@@ -133,17 +138,50 @@
 
 
     撤销：
+        git reset  --hard 版本号    回滚版本
         git reset HEAD 文件名		暂存区撤回工作区
-        git checkout -- 文件名		将工作区文件还原成暂存区/版本区
-        git commit -m “” --amend	撤回上次提交，合并本次一起提交
+        git commit -m "" --amend	撤回上次提交，合并本次一起提交
             
     删除：
         git rm 文件名	 		    删除暂存区文件（工作区已经删除的情况下）
         git rm -f	文件名			强制删除暂存区和工作区文件
         git rm --cached 文件名		只删除暂存区文件
 
+    
+    拉取报错时：全屏蓝字
+        按esc   
+        输入:q
 
+    查看历史版本：
+        git log 
+        按空格 翻页
+        esc q退出
+        
+    查看版本切换记录：
+        git reflog
 
+    git标签：
+        git tag v1.0.0                  添加
+        git tag -m v1.0.0 ""            添加带注释的
+        git tag -d v1.0.0               删除
+        git tag                         查看标签
+
+    ssh配置：
+        正常配置
+
+    ssh使用：
+        正常
+
+    gitLab：
+        与 githup 一样 ，只不过是局域网内的
+
+    gitee：
+        与 githup 一样  ，国内的
+
+    svn:
+        
+
+        
 
 
 

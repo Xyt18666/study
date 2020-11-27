@@ -11,17 +11,38 @@
 
 
      -->
+        <p>a</p>
+        <div class="box">box</div>
     </body>
     <script>
         /*
-        1. 
+            1. 为某个元素下添加 元素组件
+            2. 传入组件需要的参数
+            3. 传入组件配置
+            4. 为组件配置响应的 css 样式
+            5. 组件能互相引入
+
+            
+
 
 
         */
         !(function ($) {
             $.fn.extend({
-                loading: function (option, param) {},
+                tost: function (option, config) {
+                    console.log(option);
+                    console.log(this);
+                    $(this).append(`<p>${option}</p>`);
+                    return $(this);
+                },
+                tip: function (option, config) {
+                    $(".box").tost("22");
+                    return $(this);
+                },
             });
         })(jQuery);
+
+        $("p").tost("输出");
+        $(".box").tip();
     </script>
 </html>
