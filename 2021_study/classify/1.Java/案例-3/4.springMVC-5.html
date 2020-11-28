@@ -27,6 +27,136 @@
 
         完成第一个springMVC
 
+-------------------------------------------------------------------------------
+
+    入门案例的流程:
+        1.启动服务器，加载以希望配置文件
+            DispatcherSerulet对象
+            springmvc.xml被加载了
+                开启注解扫描
+                配置视图解析器
+                开启springMVC框架注解支持
+            某某Controller创建成对象
+
+        2.发送请求，后台处理
+            经过DispatcherServlet(控制作用，指挥中心，前端控制器)
+            根据注解 找到对应的 sayHello 方法 ，执行方法 return 一个值，并返回给DispatcherServlet
+            DispatcherServlet 找到视图解析器 ，把return 的值给到视图解析器
+            视图解析器根据配置，跳转到 对应的.jsp ，并返回给DispatcherServlet
+            DispatcherServlet 响应给客户端，然后显示
+----------------------------------------------------------------------------------
+
+     @RequestMapping： 实例 HelloController.java
+        作用：用于建立请求 URL 和处理请求方法之间的对应关系
+
+        放置位置：
+            类上 ： 分模块 home/hello
+            方法上 : /hello
+
+        注解的属性：
+            path/value : 映射路径的，只有一个属性时，可以省略
+            method: 接收什么样的请求方式 ，可以传 多值
+            params: 用于指定限制请求参数的条件，可以是单值，或者键值对（要求键值对完全相等）
+            headers：用于指定限制请求头的条件，必须有某个请求头
+
+--------------------------------------------------------------------------------
+
+    请求参数的绑定：就是接收客户端发送的参数
+
+        接收方式： 实例 在 param.jsp 和 paramController.java
+            在响应的函数中，设定形参
+            当前端发送请求时，形参与他传递的参数名相符时，就能在执行函数中获取
+
+        请求参数绑定实体类：account.java 和 paramController.java 
+            
+        包含引用类型的类:  paramController.java 和User.java 
+
+        解决中文乱码：配置过滤器 在 web.xml中
+
+        请求参数绑定集合： paramController.java 
+        
+        ps:根据规定的参数类型 传递数据
+
+        自定义类型转换器：
+            自定义类 StringToDateConverter.java 配置
+            配置 springMVC 文件
+
+        获取原生的Servlet 的 API ：
+            
+--------------------------------------------------------------------------------
+
+    常用注解：实例 在 anno.jsp 和  annoController.java
+        @RequestParams : 把请求中指定名称的参数给控制器中的形参赋值 ， 请求参数绑定到形参
+            属性：
+                value/name:  请求参数中的名称
+                required:   请求参数是否必须提供此参数，值为布尔值 ,默认值是 true
+
+        @RequestBody:获取请求体内容，获取键值对结构的数据，get方式不适用 
+            属性：
+                required: 默认值是true
+
+            例子：获取值 => username=dfs&age=123
+
+        @RequestVaribale :用于绑定url中的占位符 ，类似于路由传参
+            属性：
+                value/name:  名
+                required: 值为布尔值 ,默认值是 true
+
+            关于REST风格：
+                看资料图
+
+        @RequestHeader ：用于获取请求头消息
+            属性：
+                value/name:  提供消息头名称
+                required: 值为布尔值 ,默认值是 true
+
+        @CookieValue ：用于把 指定cookie名称的值传入控制器方法的参数
+             属性：
+                value/name:  指定cookie的名称
+                required: 值为布尔值 ,默认值是 true
+
+        @ModelAttribute ：
+            可以作用在方法上：表示当前方法会在控制器的方法执行前，先执行
+            也可以作用在参数上：获取指定的数据参数给参数赋值
+
+             属性：
+                value/name: 用于获取数据的 key
+
+            应用场景：
+                当表单提交数据不是完整的实体类数据时，
+                保证没有提交数据的字段使用数据库对象原来的数据
+
+                例如：
+                    我们在编辑一个用户时，用户有一个创建信息字段，该字段值不允许被修改，
+                    在提交表单数据是肯定没有此字段的内容的，一旦更新会把该字段内容置为 null，
+                    此时就可以使用这个注解
+
+        @SessionAttributes：用于多次执行控制器方法间的参数共享 ，只能作用在类上
+            属性：
+                value: 用于指定存入的属性名
+                type:用于指定存入的数据类型
+            
+
+
+
+----------------------------------------------------------------------------
+        
+
+
+    
+
+            
+
+        
+        
+            
+
+
+
+                
+            
+        
+
 
 
 
