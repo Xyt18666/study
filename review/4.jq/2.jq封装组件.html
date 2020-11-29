@@ -12,8 +12,9 @@
 
      -->
         <p>a</p>
-        <div class="box">box
-            <p>sdf </p>
+        <div class="box">
+            box
+            <p>sdf</p>
         </div>
     </body>
     <script>
@@ -24,7 +25,7 @@
             4. 为组件配置响应的 css 样式
             5. 组件能互相引入
 
-            
+
 
 
 
@@ -46,5 +47,28 @@
 
         $("p").tost("输出");
         $(".box").tip();
+
+        {
+            class RoundButton {
+                constructor(url, color, icon, title) {
+                    this.url = url;
+                    this.color = color;
+                    this.icon = icon;
+                    this.title = title;
+                }
+                init() {
+                    this.creatEle();
+                }
+                creatEle() {
+                    $(this).append(`
+                    <a href=${this.url} target="_blank">
+                    <div class="round-button ${this.color}">
+                        <i class="fa ${this.icon} fa-5x"></i>
+                        <p>${this.title}</p>
+                    </div>
+                    </a>`);
+                }
+            }
+        }
     </script>
 </html>
