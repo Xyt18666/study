@@ -133,6 +133,8 @@
         ,: 逗号运算符，执行顺序从左到右，返回逗号右侧的运算
 
 
+
+
                                 
 
 
@@ -240,6 +242,63 @@
 
             let data = { a: { b: { c: 2 } } };
             console.log(parsePath("a.b.c")(data));
+        }
+
+        // ----------------------------------------------
+
+        {
+            // 偶遇的面试题
+            // function test() {
+            //     for (var i = 0; i < 5; i++) {
+            //         // let与var结果不同
+            //         console.log("循环内" + i);
+            //         setTimeout(function timer() {
+            //             console.log("定时器内" + i);
+            //         }, 1000 * i);
+            //     }
+            //     console.log("函数" + i);
+            // }
+            // test();
+            /*
+            循环  0-4
+            函数 5
+            定时器 5
+            定时器 间隔 1秒输出一次 5 ，重复4次
+            
+            */
+        }
+        {
+            // const obj = { 1: "a", 2: "b", 3: "c" };
+            // const set = new Set([1, 2, 3, 4, 5]);
+            // // hasOwnProperty方法返回一个布尔值，判断对象是否包含特定的自身（非继承）属性
+            // console.log(obj.hasOwnProperty("1"), obj.hasOwnProperty(3), set.has("1"), set.has(1));
+            // // true true false true
+        }
+        {
+            // let i = null;
+            // i = setInterval(() => {
+            //     console.log(i);
+
+            //     // i && (clearInterval(i), (i = null));
+            // }, 1000);
+
+            console.log(1 && 3); //3
+            console.log(0 && 2); //0
+            console.log(1 || 3); //1
+            console.log(0 || 2); //2
+
+            console.log(1 + (2, 1 + 4)); //1+5 ,逗号运算符，返回右边的值
+
+            // “~”运算符（位非）用于对一个二进制操作数逐位进行取反操作。
+            // 第 1 步：把运算数转换为 32 位的二进制整数。
+            // 第 2 步：逐位进行取反操作。
+            // 第 3 步：把二进制反码转换为十进制浮点数。
+
+            console.log(~-122);
+            console.log(~122);
+
+            // “^”运算符（位异或）用于对两个二进制操作数逐位进行比较，并根据如表格所示的换算表返回结果。
+            console.log(12 ^ 5); //12 和 5 进行位异或运算，则返回值为 9。
         }
     </script>
 </html>

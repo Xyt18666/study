@@ -39,55 +39,52 @@ let datas = [];
 
 app.post("/code", (req, res) => {
     let tel = req.body.tel;
+    if (!tel) res.send({ code: "-1", msg: "请输入手机号" });
+    // 判断是否输入手机号
+    if (tel.length != 11) res.send({ code: "-1", msg: "请输入正确的手机号格式" });
+    // 手机号的校验，这里是大概模拟一下
 
-    if (datas.findIndex((i, d) => i.tel == tel) != -1) {
-        res.send({
-            code: -1,
-            data: "已发送过了",
-        });
-    } else {
-        let codes = getCode();
-        datas.push({
-            tel: tel,
-            codes: codes,
-        });
-        console.log(datas);
+    if (datas.findIndex((i, d) => i.tel == tel) != -1)
+        res.send({ code: -1, data: "已发送过了，请在倒计时结束后重新获取" });
 
-        setTimeout(() => {
-            let index = datas.findIndex((i, d) => i.tel == tel);
-            datas.splice(index, 1);
-        }, 10000);
-        res.send({
-            code: 0,
-            data: codes,
-        });
-    }
+    let codes = getCode();
+    datas.push({
+        tel: tel,
+        codes: codes,
+    });
+    console.log(datas);
+
+    setTimeout(() => {
+        let index = datas.findIndex((i, d) => i.tel == tel);
+        datas.splice(index, 1);
+    }, 10000);
+    res.send({
+        code: 0,
+        data: codes,
+    });
+
 });
 
 app.post("/login", (req, res) => {
     let { tel, codeding } = req.body;
+    if (!tel || !codeding) res.send({ code: "-1", msg: "请输入完整信息" });
+
     console.log(tel, codeding);
 
-    if (tel == "" || codeding == "") {
+    let index = datas.findIndex((i, d) => i.tel == tel);
+
+    if (datas[index].codes != codeding)
         res.send({
             code: -2,
-            data: "请输入手机号和验证码",
+            data: "登陆失败，请输入正确的验证码",
         });
-    } else {
-        let index = datas.findIndex((i, d) => i.tel == tel);
-        if (datas[index].codes == codeding) {
-            res.send({
-                code: 0,
-                data: "登陆成功",
-                token: codeding + new Date().getTime(),
-            });
-        } else {
-            res.send({
-                code: -2,
-                data: "登陆失败，请输入正确的验证码",
-            });
-        }
-    }
+    res.send({
+        code: 0,
+        data: "登陆成功",
+        token: codeding + new Date().getTime(),
+    });
+
+   
 });
 
 app.listen(8088, () => {

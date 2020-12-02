@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./public/1.css" />
+        <script src="./public/test.js"></script>
+
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>7.同源获取index</h1>
+        <img
+            src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=163254791,3881271639&fm=26&gp=0.jpg"
+            alt=""
+        />
+        <h2>网络资源不受影响，静态资源受影响</h2>
+    </body>
+    <script>
+        let divs = document.createElement("div");
+        divs.innerHTML = "动态创建";
+        document.body.append(divs);
+    </script>
+</html>
