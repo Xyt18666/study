@@ -38,13 +38,17 @@ export default {
                     ps: this.password,
                 })
                 .then(res => {
-                    console.log(res);
+                    if (res.data.code == 0) {
+                        localStorage.setItem("token", res.data.token.userinfo);
+                        this.$store.commit("setUser", res.data.token.userinfo);
+                        this.$router.push({
+                            name: "Main",
+                            params: {},
+                        });
+                    } else {
+                        alert("用户名密码错误");
+                    }
                 });
-
-            // this.$router.push({
-            //     name: "Main",
-            //     params: {},
-            // });
         },
     },
 };

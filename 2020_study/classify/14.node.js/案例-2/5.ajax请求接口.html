@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>test</h1>
+        <p>发送验证码</p>
+        <h3>登陆</h3>
+        <!-- 
+            使用ajax发送请求并返回数据
+
+
+
+
+
+
+         -->
+    </body>
+    <script>
+        let code = "";
+        $("p").click(function () {
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8088/code",
+                data: {
+                    tel: 18733678267,
+                },
+                dataType: "json",
+                success: function (data) {
+                    code = data;
+                    console.log(data);
+                },
+            });
+        });
+        $("h3").click(function () {
+            console.log(code);
+
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8088/login",
+                data: {
+                    tel: 18733678267,
+                    codeding: code,
+                },
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                },
+            });
+        });
+
+        // let arr = [5, 46, 846, 54, 5, 65, 46, 55];
+
+        // console.log(arr.findIndex((i, d) => i == 46));
+    </script>
+</html>

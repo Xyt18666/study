@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>content</h1>
+        <!-- 
+    
+            使用jsonp获取数据：
+
+                req.query  简洁版获取get参数
+
+                以字符串的形式返回 ，函数调用,函数名是获取到的,参数是要返回的值
+
+
+
+
+
+
+
+         -->
+    </body>
+    <!-- <script src="后端请求路径?callBack=xx">
+        function ajaxJsonp(data) {
+            return data;
+        }
+    </script> -->
+
+    <script>
+        $.ajax({
+            url: "http://localhost:8088/list",
+            type: "GET",
+            callback: "ajaxJsonp", //辅助的作用，不写也行
+            dataType: "jsonp",
+            success: function (data) {
+                console.log(data);
+
+                // $(data).each((i,d)=>{
+                //     console.log(i,d);
+                // })
+            },
+        });
+
+        $.ajax({
+            url:
+                "https://www.baidu.com/sugrec?pre=1&p=3&ie=utf-8&json=1&prod=pc&from=pc_web&sugsid=33213,1429,32854,33059,33113,33099,33101,33183,33181,32938,32846,33198,33217,33216,33215,33185&wd=感冒了，好难受&req=2&csor=1",
+            type: "GET",
+            dataType: "jsonp",
+            success: function (data) {
+                console.log(data);
+            },
+        });
+        // jsonpCallback: "callback", //规定了回调函数的名字，同样什么都不写，一样能获取
+    </script>
+</html>

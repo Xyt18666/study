@@ -50,6 +50,7 @@ app.get("/list", (req, res) => {
     });
     //
 });
+
 app.get("/user", (req, res) => {
     // get方式，通过路径传递参数给后端
     let datas = qs.parse(url.parse(req.url).query);
@@ -81,6 +82,9 @@ app.post("/login", (req, res) => {
         res.json({
             code: 0,
             msg: "登陆成功",
+            token: {
+                userinfo: us,
+            },
         });
     } else {
         res.json({
