@@ -21,6 +21,9 @@ app.get("/index", (req, res) => {
         }
     });
 });
+
+
+
 app.listen(8088, () => {
     // 开启服务器
     console.log("服务器启动成功,8088");
