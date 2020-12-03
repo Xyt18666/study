@@ -88,9 +88,45 @@
         原有上添加属性：
             db.集合名.update({条件}，{$set:{xx:xx}})
 
-        原有上添加属性：
+        原有上添加属性：$unset
             db.集合名.update({条件}，{$unset:{xx:xx}})
+
+        原有基础上增减：$inc
+            db.class1801.update({"code":6},{$inc:{"code":-2}})
+
+        $push：
+            { $push : { field : value } }
+            把value追加到field里面去，field一定要是数组类型才行，如果field不存在，会新增一个数组类型加进去。
+
+        $pushAll：
+            { $pushAll : { field : value_array } }
+            同$push,只是一次可以追加多个值到一个数组字段内。
+            
+        $pull：
+            { $pull : { field : _value } }
+            从数组field内删除一个等于value值。
+
+        $addToSet：
+            增加一个值到数组内，而且只有当这个值不在数组内才增加。
+
+        $pop：
+            { $pop : { field : 1 } }
+            删除数组的第一个或最后一个元素
+
+            
+        $rename：
+            { $rename : { old_field_name : new_field_name } }
+            修改字段名称
+
         
+        $bit：
+            {$bit : { field : {and : 5}}}
+            位操作，integer类型
+
+            
+
+            
+                                
 
         条件:
             等于	{<key>:<value>}
@@ -111,6 +147,7 @@
 
             例子：
                 db.class1801.find({age : {$gt :10}})
+                db.class1801.find({"code":{$gt:3,$lt:7}})
 
 
         $type 操作符： 同样用于查找数据
