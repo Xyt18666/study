@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+        node 操作 mongodb ：使用 mongoose
+
+        mongoose的优点：
+            可以为文档创建 模式结构  Schema
+            规定 字段 、类型、 长度...
+
+        安装：
+            npm i mongoose --save
+
+        引入包：
+            const mongoose = require("mongoose");
+
+        定义Schema: 约定属性 和 类型 
+            let Schema_1 = mongoose.Schema
+            let sche_1 = new Schema_1({
+                name: String,
+                age: Number,
+                sex: String,
+                love: {
+                    type: Array,
+                    default: [],
+                },
+                address: {
+                    a: {
+                        type: String,
+                        default: "北京",
+                    },
+                    b: String,
+                },
+            });
+
+
+            允许使用的 SchemaTypes 有:
+                String
+                Number
+                Date
+                Buffer
+                Boolean
+                Mixed
+                ObjectId
+                Array
+
+
+        连接数据库：
+            mongoose.connect("mongodb://localhost:27017/case");
+            const con = mongoose.connection;
+            con.on("error", console.error.bind(console, "连接数据库失败"));
+            con.once("open", () => {
+                console.log("成功连接");             
+            });
+
+            
+        创建集合：
+            let Model = mongoose.model("mongoose", sche_2);
+
+        增加：
+            Model.create({ category: "apple", name: "apple" }, (err, d) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log(d);
+                }
+            });
+
+        查找：
+            Model.find({条件},"显示那些字段",{显示与跳过},fn)
+            Model.findOne()
+            Model.findMany()
+            Model.findById("id")
+
+
+        修改：
+            Model.update({name:"钱森"}, {$set: {age:96}},{multi: true}, (err) => {
+            });
+
+            Model.updateOne()
+            Model.updateMany()
+
+
+        删除：
+            Model.deleteMany()
+            Model.deleteOne()
+            Model.remove()
+
+        统计：
+            Model.countDocuments({}, (err, count) => {
+            });
+
+        排序：
+            Model.find({}).sort({'age': 1}).exec(function (err, docus) {
+            })
+
+
+        其他方法：
+            更多方法与小黑框代码相同，前缀不同  db.xx 替换为 Model.xx
+
+                
+
+
+
+        
+            
+
+
+
+
+
+
+
+
+     -->
+    </body>
+</html>

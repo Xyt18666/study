@@ -66,13 +66,21 @@
             db.集合名.find({}).count() 
 
         从查询的一组值中取一个：
-            db.集合名.find({})[0]
+            db.集合名.find({})[0]、
+
+        删除数据库：
+            db.dropDatabase()
 
         删除整个集合：
             db.集合名.drop()
 
         条件删除某些数据：
-            db.集合名.remove({条件})
+            db.集合名.remove({条件},可选true)  
+                只删第一个
+
+             db.集合名.deleteOne({})  删除一个
+             db.集合名.deleteMany({}) 删除一组
+
 
         替换：
             db.集合名.update({条件}，新对象)
@@ -88,7 +96,7 @@
         原有上添加属性：
             db.集合名.update({条件}，{$set:{xx:xx}})
 
-        原有上添加属性：$unset
+        原有上删除属性：$unset
             db.集合名.update({条件}，{$unset:{xx:xx}})
 
         原有基础上增减：$inc
@@ -176,6 +184,19 @@
                 64-bit integer	18	 
                 Min key	255	Query with -1.
                 Max key	127	 
+
+            逻辑操作符:
+                $or :满足一个条件就行
+                    db.product1.find({$or:[{"category":"食品"},{"category":"饮料"}]})
+
+                $and:逻辑与
+                    db.product1.find({$and:[{"category":"手机"},{"price":{$gt:2000,$lt:5000}}]})
+
+                $not:取反查询条件
+                   db.product1.find({category:{$not:{$eq:"手机"}}})
+
+                $nor:逻辑或原理取反
+                     db.product1.find({$nor:[{"category":"书籍"},{"category":"手机"}]})
 
 
 
