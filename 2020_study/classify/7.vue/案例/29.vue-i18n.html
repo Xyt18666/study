@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+        安包：
+            npm i vue-i18n --save
+
+        引入：
+            import VueI18n from 'vue-i18n'
+            Vue.use(VueI18n)
+
+        书写 ：对应的对象
+            
+
+        实例化并写入vue：
+            const i18n = new VueI18n({
+                locale: "en", // 语言标识
+                messages:{
+                      zh: require("./assets/i18n_c"),
+                      en: require("./assets/i18n_e"),
+                }
+            });
+
+            new Vue({
+                router,
+                store,
+                i18n,
+                render: h => h(App),
+            }).$mount("#app");
+
+        获取值：
+            $t("message.hello")
+
+        修改语言：
+            this.$i18n.locale = xx
+        
+        实现自动识别语言：
+            window.navigator.language  获取当前浏览器的语言
+            根据语言动态切换
+        
+
+
+
+     -->
+    </body>
+</html>
