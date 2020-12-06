@@ -64,12 +64,12 @@ con.once("open", () => {
 // 前端发送信息到后端是无约束的，除非前端限制
 // 后端存入数据库时是有限制的
 
-// let Schema_1 = mongoose.Schema;
-// let sche_1 = new Schema_1({
-//     us: String,
-//     ps: String,
-// });
-// var Model = mongoose.model("userAll", sche_1);
+let Schema_1 = mongoose.Schema;
+let sche_1 = new Schema_1({
+    us: String,
+    ps: String,
+});
+var Model = mongoose.model("userAll", sche_1);
 
 // 将约束绑定到指定的表
 
@@ -79,19 +79,50 @@ con.once("open", () => {
 
 /*--------------------接口模板---------------------*/
 
-// app.post("/login", (req, res) => {
-//     // req请求
-//     // res响应
-//     // post获取 参数 req.body
-//     // res.send({
-//     //     code: 0,
-//     //     data: "登陆成功",
-//     //     token: codeding + new Date().getTime(),
-//     // });
-// });
+app.post("/register", (req, res) => {
+    // req请求
+    // res响应
+    // post获取 参数 req.body
 
-// app.get("/user", (req, res) => {
-//     // get方式 获取 参数 req.query
-// });
+    Model.create(req.body, (err, d) => {
+        // 增加
+        console.log(d, "储存成功");
+    });
+});
+
+app.get("/getuser", (req, res) => {
+    // get方式 获取 参数 req.query
+
+    Model.find({}, "-_id us", (err, d) => {
+        // 查找
+        console.log(d, "查询成功");
+    });
+    res.send({
+        code: 0,
+        data: "查询成功",
+    });
+});
+
+app.post("/setps", (req, res) => {
+    Model.update(req.body, { $set: { ps: 7988 } }, { multi: true }, (err, d) => {
+        // 修改
+        console.log(d, "修改成功");
+    });
+    res.send({
+        code: 0,
+        data: "修改成功",
+    });
+});
+
+app.post("/deluser", (req, res) => {
+    Model.remove(req.body, (err, d) => {
+        // 删除
+        console.log(d, "删除成功");
+    });
+    res.send({
+        code: 0,
+        data: "删除成功",
+    });
+});
 
 /*--------------------接口模板 end---------------------*/

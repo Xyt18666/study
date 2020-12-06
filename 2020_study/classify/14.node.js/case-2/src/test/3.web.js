@@ -43,15 +43,15 @@ serve.on("request", (request, res) => {
     //   path: '/a=aa&b=46',
     //   href: '/a=aa&b=46'
     // }
-    let u = newurl.query.split("&");
-    let r = {};
-    console.log(u);
-    for (let a = 0; a < u.length; a++) {
-        r[u[a].split("=")[0]] = u[a].split("=")[1];
-        // console.log(u[a].split("=")[0]);
-        // console.log(u[a].split("=")[1]);
-    }
-    console.log(r);
+    // let u = newurl.query.split("&");
+    // let r = {};
+    // console.log(u);
+    // for (let a = 0; a < u.length; a++) {
+    //     r[u[a].split("=")[0]] = u[a].split("=")[1];
+    //     // console.log(u[a].split("=")[0]);
+    //     // console.log(u[a].split("=")[1]);
+    // }
+    // console.log(r);
 
     // -------------------------------------------------
     // 优化写法

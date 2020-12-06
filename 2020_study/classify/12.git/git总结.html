@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+
+
+        查看所有命令： git
+
+        配置个人信息：
+            git config --global user.name "用户名"
+            git config --global user.email "邮箱"
+
+            作用：和远程关联，提交免验证
+            期限：全局的，配置过一次，以后都存在
+
+        查看个人信息：
+            git config user.name
+　　        git config user.email 
+
+
+        克隆：
+            git clone 地址
+
+            ps:克隆后要进入克隆好的文件夹内 在进行操作
+            
+        添加到暂存区：git add .
+
+        添加到版本库： git commit -m "信息文字"
+
+        推送到远程： 
+            git push origin 分支名
+            强制推送 ：git push -f origin 分支名
+
+        查看是否有修改： git status
+
+        创建分支: git branch 分支名
+
+        切换分支: git checkout 分支名
+
+        查看所有分支 : git branch -a
+
+        删除分支： git branch -d 分支名
+
+        拉取远程分支： git fetch 分支名
+
+        合并本地分支 ：git merge origin 分支名
+
+        拉取远程并合并： git pull origin 分支名
+
+        版本回滚： 
+            git reset --hard 版本号
+            git reset --hard Head~0  (尾数字可以改,退回多个版本,数字是几就是退回几个版本)
+
+        暂存区撤回工作区：git reset HEAD 文件名 或者 .
+
+        撤回上次提交，合并本次一起提交：git commit -m "" --amend
+
+        查看历史版本： git log
+
+        查看版本切换记录: git reflog
+
+        对比：
+            git diff				对比
+            更多参数 看百度
+          
+
+        删除：
+            git rm 文件名	            删除暂存区文件（工作区已经删除的情况下）
+            git rm -f	文件名			强制删除暂存区和工作区文件
+            git rm --cached 文件名		只删除暂存区文件
+
+        标签：
+            git tag v1.0.0                  添加
+            git tag -m v1.0.0 ""            添加带注释的
+            git tag -d v1.0.0               删除
+            git tag                         查看标签
+
+        
+        免输入的2种方式：
+            1.配置ssl
+            2.建立 "桥梁"
+        
+        push 和 pull 简写 :(建立 "桥梁" ，同时简写 https 和 ssh)
+            1. 先配置 git remote add origin 仓库地址  (添加一个远程地址)（相当于用 origin 当做一个变量存储了 地址）
+            2. git push origin -u master  (关联)
+            3. 在下次 拉取时 直接 git pull origin master 就可以了
+            4. 在下次 上传时 直接 git push origin master 就可以了
+            
+            查看是否与远程有链接：git remote -v
+            删除链接 ：git remote rm  origin
+
+        SSH配置：
+            1. 公钥 和 私钥 两者之间是有关联的。
+            2. 生成公钥和私钥： ssh-keygen -t rsa -C "419473930@qq.com"
+            3. 此时C盘用户目录下生成 .ssh 文件    里面有两个 id文件   id_rsa 是公钥   .pub是私钥
+            4. 在GitHub上 点击右上角 Settings  SSH and GPG 选项
+            5. 点击 New SSH key   粘贴公钥 到key上 写个名字 my_window
+                在 .ssh 父级文件 目录下 ， 运行cmd
+                cat ~/.ssh/id_rsa.pub  ， 必须使用命令复制秘钥
+
+
+        整体流程：
+            克隆项目
+            创建分支
+            操作分支
+            分支推送到本地
+            拉取远程合并
+            分支推送到 远程 分支
+
+            别人整合master后
+
+            我们git pull origin master 获取最新的项目
+            在分支操作我们的项目
+            拉取远程合并
+            推送到自己的远程分支
+
+        正确的操作过程：
+            每天工作前 pull
+            每天工作结束 commit->pull->push
+        
+        关于commit:
+            在本地修改或者新增后，不commit的情况下，在哪里都能看到
+            当在某分支commit后，切换到其他分支，将无法看到修改
+            commit后 提交到 本地版本库
+
+        什么情况下会发生合并冲突：
+            修改了相同位置的代码
+
+        解决冲突：
+            使用工具查看冲突位置：
+                vsCode   有对比树木
+                小乌龟   自己的====别人的 ，=====分割
+
+        退出二级界面：
+            q
+
+
+        创建组织：
+            拉取成员
+            配置权限
+
+        更多基于git的版本管理工具：
+
+            gitHub:我们学的就是
+            
+            gitLab：
+                与 githup 一样 ，只不过是局域网内的
+
+            gitee：
+                与 githup 一样  ，国内的
+
+            svn:
+                更安全的版本控制
+
+    
+                
+
+
+            
+            
+
+
+
+
+
+
+
+
+
+     -->
+    </body>
+</html>

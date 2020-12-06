@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>添加用户</h1>
+        <h2>查找</h2>
+        <h3>改</h3>
+        <h4>删</h4>
+    </body>
+    <script>
+        $("h1").click(function () {
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8088/register",
+                data: {
+                    us: 18733678267,
+                    ps: 123,
+                },
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                },
+            });
+        });
+
+        $("h2").click(function () {
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:8088/getuser",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                },
+            });
+        });
+        $("h3").click(function () {
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8088/setps",
+                data: {
+                    us: 18733678267,
+                },
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                },
+            });
+        });
+        $("h4").click(function () {
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8088/deluser",
+                data: {
+                    us: 18733678267,
+                },
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                },
+            });
+        });
+    </script>
+</html>

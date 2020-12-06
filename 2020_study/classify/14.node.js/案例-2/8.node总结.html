@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+
+    导入：
+        require('./xx.js');
+
+    导出：
+        exports.x = x;
+        module.exports.x = {};
+
+    文件读取：
+         require("fs");
+        同步：fs.readFileSync("../json/1.json")
+        异步：fs.readFile("../json/1.json",fn)
+
+    文件写入：
+        fs.writeFile('xx文本.txt','xx写入值',{flag:'a',encoding:'utf-8'},(err,data)=>{
+        })
+
+        flag:
+            a 追加内容    
+            w 写入   
+            r 读  
+            a 读取
+
+    buffer：
+        字符串 转为 buffer : var buf = Buffer.from("str")
+        buffer 转 字符串 : buf.toString()
+
+    全局属性: global.xx
+
+    路径：
+        __filename          绝对路径
+        __dirname           相对路径
+
+    服务器模块:
+        let http = require("http");
+
+        let serve = http.createServer();
+        serve.on("listening", () => {
+            //服务连接启动
+            console.log("listening");
+        });
+
+        serve.on("request", (req, res) => {
+            // 访问地址后触发
+
+             res.write("dd");
+             //返回
+
+        })
+
+        serve.listen(8088, () => {
+            //服务启动成功
+            console.log("启动成功");
+        });
+
+            
+    路径模块:
+        let url = require("url");
+        url.parse(request.url);  获取url的值，包含路径内的所有信息
+
+    操作路径的模块:
+        let qs = require("querystring");
+        qs.parse(newurl.query);  获取路径传递的参数
+        qs.stringify({ k: "aaa", g: "gg2" }); 把对象转换为路径样式
+    
+    
+-----------------------------------------------------------------------------------------------------
+
+    express：
+
+    
+        const express = require("express");   引入
+
+        const bodyParser = require("body-parser");  引入解析post参数的包
+
+        let app = express(); 实例化
+
+        //node解决跨域
+        app.all("*", function (req, res, next) {
+            //设置允许跨域的域名，*代表允许任意域名跨域
+            res.header("Access-Control-Allow-Origin", "*");
+            //允许的header类型
+            res.header("Access-Control-Allow-Headers", "content-type");
+            //跨域允许的请求方式
+            res.header("Access-Control-Allow-Methods", "DELETE,PUT,POST,GET,OPTIONS");
+            if (req.method.toLowerCase() == "options") res.send(200);
+            //让options尝试请求快速结束
+            else next();
+        });
+
+        app.use(bodyParser.urlencoded({ extended: false })); 配置
+        app.use(bodyParser.json());
+
+        app.get("/user", (req, res) => {
+            get方式，通过路径传递参数给后端
+            let datas = req.query
+            res.json({
+                msg: "xx",
+            });
+        });
+
+        app.post("/login", (req, res) => {
+            let { us, ps } = req.body;
+            res.json({
+                code: 1,
+                msg: "登陆失败",
+            });
+        });
+
+        app.listen(8088, () => {
+            console.log("服务器启动成功");
+        });
+
+
+    同源获取：
+        启动后台服务器
+        将前端页面放入后台目录下
+        后端通过文件读取获取index页面并展示
+
+    获取静态资源：
+        新建/public目录，内部存放静态资源
+
+        配置
+        app.use("/public", express.static(path.join(__dirname, "/public")));
+
+        使用
+        index.html中以 ./public 使用静态资源
+
+
+
+
+
+        
+    --></body>
+</html>

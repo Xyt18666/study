@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+    终端操作：
+
+        查看版本：mongod --version
+        启动：mongod
+        进入希尔模式 ：mongo
+
+        创建/切换数据库：use admin
+            
+        查看以有数据库： show dbs(不显示空的数据库)
+           
+        查看当前数据库：db
+            
+        创建集合:db.集合名
+            
+        插入值：db.集合名.insert({a:"aa"})
+        插入一条 ：db.xx.insertOne({})
+        插入多条记录:db.xx.insertMany([{},...])
+
+        查看集合： show tables
+           
+        查询： db.集合名.find()
+        查找一个：db.集合名.findOne({})
+            
+        查询表中的记录条数： db.集合名.find({}).count() 
+           
+        从查询的一组值中取一个： db.集合名.find({})[0]
+           
+        删除数据库： db.dropDatabase()
+           
+        删除整个集合：db.集合名.drop()
+
+        条件删除某些数据：db.集合名.remove({条件},可选true)  (true只删第一个)
+
+        替换： db.集合名.update({条件}，新对象)
+           
+        修改：db.集合名.update({条件}，{$set:{xx:xx}})
+
+        原有上添加属性：db.集合名.update({条件}，{$set:{xx:xx}})
+
+        原有上删除属性： db.集合名.update({条件}，{$unset:{xx:xx}})
+           
+        原有基础上增减：db.class1801.update({"code":6},{$inc:{"code":-2}})
+            
+        条件:
+            等于	{<key>:<value>}
+            不等于	{<key>:{$ne:<value>}}
+            大于   $gt
+            小于   $lt
+            大于等于   $gte
+            小于等于   $lte
+
+        正则的方式查找：
+            db.xx.find({age :/正则/})
+
+            包含某某：  db.xx.find({age :/x/})
+            以某某开头： db.xx.find({age :/^x/})
+            以某某结尾： db.xx.find({age :/x$/})
+        
+        逻辑操作符:
+            $or :满足一个条件就行
+                db.product1.find({$or:[{"category":"食品"},{"category":"饮料"}]})
+
+            $and:逻辑与
+                db.product1.find({$and:[{"category":"手机"},{"price":{$gt:2000,$lt:5000}}]})
+
+            $not:取反查询条件
+                db.product1.find({category:{$not:{$eq:"手机"}}})
+
+            $nor:逻辑或原理取反
+                    db.product1.find({$nor:[{"category":"书籍"},{"category":"手机"}]})
+
+        跳过指定数量的数据：
+            db.xx.find().limit(10).skip(2)
+
+        投影：显示隐藏某属性，1显示 ，0 不显示
+            db.xx.find({},{属性:1,属性:1})
+
+        排序：
+            db.xx.find().sort({属性:1,属性:1})
+        
+
+        关系：关系表示多个文档之间在逻辑上的相互联系
+            1 : 1 (1对1)   ，一个数据下 ，有一个数据
+            1 : N (1对多)   ，一个数据下 ，有一个数组，数组内是 一些id
+            N : 1 (多对1)   , 一个数组数据下 ， 有一个 id 
+            N : N (多对多) ，一个数组数据下，有一个数组
+
+
+---------------------------------------------------------------------------------------------------
+
+        mongoose:
+            
+        安装：
+            npm i mongoose --save
+
+        引入包：
+            const mongoose = require("mongoose");
+
+        定义Schema: 约定属性 和 类型 
+            let Schema_1 = mongoose.Schema
+
+             let sche_1 = new Schema_1({
+                name: String,
+                age: Number,
+                sex: String,
+            });
+
+        允许使用的 SchemaTypes 有:
+            String
+            Number
+            Date
+            Buffer
+            Boolean
+            Mixed
+            ObjectId
+            Array
+
+        连接数据库：
+            mongoose.connect("mongodb://localhost:27017/case");
+            const con = mongoose.connection;
+            con.on("error", console.error.bind(console, "连接数据库失败"));
+            con.once("open", () => {
+                console.log("成功连接");             
+            });
+
+        创建/连接 集合并绑定Schema：
+            let Model = mongoose.model("mongoose", sche_2);
+            
+        
+        增加：
+            Model.create({新增的键值对}, (err, d) => {});
+
+        查找：
+            Model.find({条件},"显示那些字段",{显示与跳过},fn)
+            Model.findOne()
+            Model.findMany()
+            Model.findById("id")
+
+
+        修改：
+            Model.update({name:"钱森"}, {$set: {age:96}},{multi: true}, (err) => {});
+
+            Model.updateOne()
+            Model.updateMany()
+
+
+        删除：
+            Model.deleteMany()
+            Model.deleteOne()
+            Model.remove()
+
+        统计：
+            Model.countDocuments({}, (err, count) => {});
+
+        排序：
+            Model.find({}).sort({'age': 1}).exec(function (err, docus) {})
+
+        其他方法：
+            更多方法与小黑框代码相同，前缀不同  db.xx 替换为 Model.xx
+            差异部分百度
+
+        node.js 连接 mongoose 示例 ：
+            2.nodeConnectMongoose.js
+
+           
+
+    
+    
+
+
+
+        
+     -->
+    </body>
+</html>
