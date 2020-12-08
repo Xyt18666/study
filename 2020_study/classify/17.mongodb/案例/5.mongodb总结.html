@@ -114,6 +114,10 @@
                 sex: String,
             });
 
+        为Schema添加动态属性：https://www.jianshu.com/p/babc20d20215
+            方法1： ToySchema.add({ name: 'string', color: 'string', price: 'number' });
+            方法2： { strict: false }
+
         允许使用的 SchemaTypes 有:
             String
             Number
@@ -145,6 +149,9 @@
             Model.findMany()
             Model.findById("id")
 
+            无法读取数组，不知为何：
+                解决 ：d[0].toJSON()
+
 
         修改：
             Model.update({name:"钱森"}, {$set: {age:96}},{multi: true}, (err) => {});
@@ -170,6 +177,9 @@
 
         node.js 连接 mongoose 示例 ：
             2.nodeConnectMongoose.js
+
+
+        
 
            
 
