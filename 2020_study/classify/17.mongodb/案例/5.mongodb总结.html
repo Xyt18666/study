@@ -11,6 +11,10 @@
 
         查看版本：mongod --version
         启动：mongod
+
+        启动并设定数据存放地址和端口号 ：
+            mongod --dbpath=xx --port=27017
+
         进入希尔模式 ：mongo
 
         创建/切换数据库：use admin
@@ -114,10 +118,6 @@
                 sex: String,
             });
 
-        为Schema添加动态属性：https://www.jianshu.com/p/babc20d20215
-            方法1： ToySchema.add({ name: 'string', color: 'string', price: 'number' });
-            方法2： { strict: false }
-
         允许使用的 SchemaTypes 有:
             String
             Number
@@ -143,15 +143,15 @@
         增加：
             Model.create({新增的键值对}, (err, d) => {});
 
+
+            let xx =  new Model({新增内容})
+            xx.sacv()
+
         查找：
             Model.find({条件},"显示那些字段",{显示与跳过},fn)
             Model.findOne()
             Model.findMany()
             Model.findById("id")
-
-            无法读取数组，不知为何：
-                解决 ：d[0].toJSON()
-
 
         修改：
             Model.update({name:"钱森"}, {$set: {age:96}},{multi: true}, (err) => {});
@@ -178,8 +178,37 @@
         node.js 连接 mongoose 示例 ：
             2.nodeConnectMongoose.js
 
-
         
+        问题总结：
+            find后无法读取数组或者什么数据不知为何：
+                解决 ：d[0].toJSON()
+
+            修改数据库深层对象内容：
+                 classAll.update(
+                    { 条件查询 },
+                    { $set: { [`${req.body.section}.${req.body.index}.commentList`]: req.body.data } },   
+                    (err, d) => {
+                        console.log(d);
+                    }
+                );
+                这个例子是修改 某个对象中某个数组的某项中的某个数组 
+                格式 ：$set: { a.b.c.2.d: xx}
+            
+            为Schema添加动态属性：https://www.jianshu.com/p/babc20d20215
+                方法1： ToySchema.add({ name: 'string', color: 'string', price: 'number' });
+                方法2： { strict: false }
+
+            分页动态获取数据：
+                mainListAll.find({}).skip((req.body.pages - 1) * 3).limit(3).exec((i, d) => {});
+                查找数据.跳过((页数-1)*每页的个数).获取(每页的个数).回调((i,d)=>{d是获取的数据})
+
+            为数组添加值，重复不添加：
+                xx.update({条件}, {$addToSet:{student:"zhaoliu"}});
+
+            深层查找：
+                xx.find({
+                    'payments.body.orderno': {}
+                })
 
            
 

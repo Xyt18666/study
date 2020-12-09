@@ -74,7 +74,7 @@ export default {
                 })
                 .then(d => {
                     this.$router.push({
-                        name: "main",
+                        name: "home",
                         params: d.data,
                     });
                     console.log(d);

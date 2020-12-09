@@ -6,11 +6,10 @@
             </el-col>
             <el-col :span="24" class="nav">
                 <el-row class="nav_content">
-                    <el-link>首页</el-link>
-                    <el-link>HTML5</el-link>
-                    <el-link>CSS</el-link>
-                    <el-link>JAVASCRIPT</el-link>
-                    <el-link>PHP</el-link>
+                    <el-link @click="toIndex">首页</el-link>
+                    <el-link v-for="(d, i) in $store.state.allData" :key="i" @click="toMain(i, d)">
+                        {{ i }}
+                    </el-link>
                 </el-row>
             </el-col>
         </el-row>
@@ -18,7 +17,36 @@
 </template>
 
 <script>
-export default {};
+export default {
+    created() {},
+    methods: {
+        toIndex() {
+            this.$store.commit("setIsPage", true);
+            this.$store.commit("setMainList", this.$store.state.homeList);
+            this.$router.push({
+                name: "home",
+                params: {},
+            });
+        },
+        toMain(i, data) {
+            this.$store.commit("setIsPage", false);
+            this.$store.commit("setMainList", data);
+            console.log(i, data);
+
+            this.$store.commit("setSection", i);
+
+            this.$router.push({
+                name: "home",
+                params: {
+                    id: i,
+                    length: data.length,
+                },
+            });
+
+            // 切换分页数据
+        },
+    },
+};
 </script>
 
 <style lang="sass">

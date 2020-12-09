@@ -5,11 +5,35 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        user: "",
+        mainList: null,
+        homeList: null,
+        isPage: true,
+        allData: null,
+        userId: null,
+        section: null,
+        listindex: null,
     },
     mutations: {
-        setUser(state, val) {
-            state.user = val;
+        setMainList(state, val) {
+            state.mainList = val;
+        },
+        setHomeList(state, val) {
+            state.homeList = val;
+        },
+        setAllData(state, val) {
+            state.allData = val;
+        },
+        setIsPage(state, val) {
+            state.isPage = val;
+        },
+        setUserId(state, val) {
+            state.userId = val;
+        },
+        setSection(state, val) {
+            state.section = val;
+        },
+        setListIndex(state, val) {
+            state.listindex = val;
         },
     },
     actions: {},
