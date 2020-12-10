@@ -25,15 +25,19 @@ export default {
   created() {},
   watch: {
     $route: "routerCheck",
+    // $store: "resetNav",
   },
   methods: {
+    // resetNav() {
+    //   this.$forceUpdate();
+    // },
     routerCheck() {
-    //   console.log(
-    //     "路由切换触发",
-    //     this.$route,
-    //     this.$route.params.id,
-    //     this.$store.state.allData[this.$route.params.id]
-    //   );
+      //   console.log(
+      //     "路由切换触发",
+      //     this.$route,
+      //     this.$route.params.id,
+      //     this.$store.state.allData[this.$route.params.id]
+      //   );
       if (this.$route.path == "/home") {
         this.$store.commit("setIsPage", true);
         this.$store.commit("setMainList", this.$store.state.homeList);

@@ -743,6 +743,11 @@ app.post("/setread", (req, res) => {
 
 app.post("/releasemsg", (req, res) => {
   if (req.body.section == "mainList") {
+    console.log("首页操作");
+
+    mainListAll.update({}, { $set: req.body.datas }, (err, d) => {
+      console.log(d);
+    });
   } else {
     classAll.update(
       { userId: req.body.id },
@@ -756,16 +761,29 @@ app.post("/releasemsg", (req, res) => {
       }
     );
   }
-
-  // classAll.find({ userId: req.body.id }, (err, d) => {
-  //     console.log(d, "查找到的数据");
-  // });
-
-  // 要获取对应 的数据库的数据，然后进行添加，
-  // 不会找对象深层，使用笨方法替换
-  // 现在搞成单独用户单独评论了，不对
 });
 
+app.post("/creartaction", (req, res) => {
+  console.log(req.body.id);
+  console.log(req.body.datas);
+  userAll.update(
+    {
+      _id: req.body.id,
+    },
+    { $addToSet: { jurisdiction: req.body.datas } },
+    (err, state) => {
+      console.log(state);
+    }
+  );
+
+  classAll.update(
+    { userId: req.body.id },
+    { $set: { [req.body.datas]: [] } },
+    (err, state) => {
+      console.log(state);
+    }
+  );
+});
 /*--------------------分割线----------------------*/
 
 // app.get("/getuser", (req, res) => {

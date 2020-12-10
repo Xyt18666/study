@@ -32,7 +32,7 @@
               </div>
             </div>
             <p class="article">
-              内容
+              {{ d.text }}
             </p>
             <el-button type="warning" @click="toDetails(d, i)"
               >阅读全文</el-button
@@ -53,7 +53,7 @@
         </el-row>
       </el-col>
       <el-col :span="8" class="aside">
-        <div class="longin">
+        <div class="longin" v-show="isShow == 1">
           <h3><p>登陆</p></h3>
           <el-form
             :model="ruleForm"
@@ -111,10 +111,18 @@
           </p>
         </div>
         <el-row>
+          <el-col :span="24" class="longOk" v-show="isShow == 2">
+            <el-button type="text">登录成功</el-button>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="24" class="creatAction">
+            <el-button type="text" @click="showCreatAction">添加版块</el-button>
+          </el-col>
+        </el-row>
+        <el-row>
           <el-col :span="24" class="sendMsg">
-            <el-button type="text" @click="dialogFormVisible = true"
-              >发布信息</el-button
-            >
+            <el-button type="text" @click="showBox">发布信息</el-button>
           </el-col>
         </el-row>
       </el-col>
@@ -137,6 +145,19 @@
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
         <el-button type="primary" @click="releaseMsg">确 定</el-button>
+      </div>
+    </el-dialog>
+
+    <!-- 添加版块 -->
+    <el-dialog title="添加版块" :visible.sync="dialogFormVisible2">
+      <el-form :model="form2">
+        <el-form-item label="版块标题" :label-width="formLabelWidth">
+          <el-input v-model="form2.name" autocomplete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible2 = false">取 消</el-button>
+        <el-button type="primary" @click="creartAction">确 定</el-button>
       </div>
     </el-dialog>
   </el-container>
@@ -203,7 +224,12 @@ export default {
         name: "",
         textarea: "",
       },
+      form2: {
+        name: "",
+      },
       formLabelWidth: "120px",
+      dialogFormVisible2: false,
+      isShow: 1,
     };
   },
   created() {
@@ -216,6 +242,37 @@ export default {
     $route: "routerCheck",
   },
   methods: {
+    creartAction() {
+      this.dialogFormVisible2 = false;
+      console.log(this.$store.state.userId);
+      this.$http
+        .post("http://localhost:8088/creartaction", {
+          id: this.$store.state.userId,
+          datas: this.form2.name,
+        })
+        .then((d) => {
+          console.log(d);
+        });
+      let old = JSON.parse(JSON.stringify(this.$store.state.allData));
+      old[this.form2.name] = [];
+      console.log(old);
+
+      this.$store.commit("setAllData", old);
+    },
+    showCreatAction() {
+      if (this.$store.state.userId) {
+        this.dialogFormVisible2 = true;
+      } else {
+        alert("先登录");
+      }
+    },
+    showBox() {
+      if (this.$store.state.allData) {
+        this.dialogFormVisible = true;
+      } else {
+        alert("先登录");
+      }
+    },
     releaseMsg() {
       this.dialogFormVisible = false;
       console.log("发布信息");
@@ -250,16 +307,18 @@ export default {
             console.log(d);
           });
       } else {
+        old.pop();
+        this.$store.commit("setMainList", old);
         //   首页无需任何参数，直接添加
-        //  this.$http
-        //   .post("http://localhost:8088/releasemsg", {
-        //     id: this.$route.params._id,
-        //     section:"mainList",
-        //     datas: oneMsg,
-        //   })
-        //   .then((d) => {
-        //     console.log(d);
-        //   });
+        this.$http
+          .post("http://localhost:8088/releasemsg", {
+            id: null,
+            section: "mainList",
+            datas: oneMsg,
+          })
+          .then((d) => {
+            console.log(d);
+          });
       }
     },
     routerCheck() {
@@ -308,7 +367,10 @@ export default {
         .then((d) => {
           this.$store.commit("setAllData", d.data.data);
           console.log(this.$store.state.allData);
+          this.$router.push("/home");
           this.$refs.ruleForm.resetFields();
+
+          this.isShow = 2;
         });
     },
     getMsg() {
@@ -401,8 +463,12 @@ export default {
 .longin > p {
   text-align: right;
 }
-.sendMsg {
+.sendMsg,
+.creatAction,
+.longOk {
   background: #fff;
   padding: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 </style>
