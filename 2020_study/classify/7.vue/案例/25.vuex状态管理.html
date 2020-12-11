@@ -101,7 +101,8 @@
                                 getters,
                                 actions
                             },
-                        mod2name:xx.js   也可以导入文件 ，该文件导出的是 一个 对象 ，包含 states, mutatons, getters,  actions 。
+                        mod2name:xx.js   
+                        也可以导入文件 ，该文件导出的是 一个 对象 ，包含  namespaced:true,states, mutatons, getters,  actions 。
                     }
             });
 
@@ -131,30 +132,40 @@
             this.$store.commit('模块名/方法名',参数)
             this.$store.dispatch('模块名/方法名',参数)
 
+        模块 B 调用 模块 A 的 commit/dispatch,
+        或者调用全局的 commit/dispatch ：
+           commit/dispatch("app/delAllCachedViews", {}, { root: true }) 
+            有 3 个参数：
+                第一个参数是其他模块/函数 , 或者直接写全局的函数
+                第二个是传的数据, 如果不需要传数据, 也必须预留为{}, 
+                第三个参数是配置选项, 申明这个 acitons 不是当前模块的
+
+
         模块化后使用辅助函数：
             import { mapState,mapGetters,mapMutations,mapActions } from "vuex"
             同样的引入方式
 
-            ...mapActions('module1', ['foo', 'bar'])
-            使用时的区别：...mapActions("模块路径",["方法名"...])
+            获取属性的多种方式：
+                ...mapState('模块路径', ['属性'...])
+                ...mapState('模块路径', {key:"属性",...})
+                ...mapState({
+                    x : state => state.命名空间.属性
+                    y : "属性"
+                })
+                同时写入多个...mapState
 
-            ps：同样有对象的写法
+            方法的多种方式：（mapMutations和mapActions一样）
+                ...mapMutations('模块路径', ['方法名'...])
+                ...mapMutations('模块路径', {key:"方法名",...})
+                ...mapMutations({
+                    x : '模块名/方法名'
+                    y: '方法名' 
+                })
+                同时写入多个...mapMutations
+                
+                    
 
-        使用辅助函数同时获取全局和模块下的属性：（或者写多个...mapState）
-        
-            ...mapState({
-                x : state => state.命名空间.属性
-                y : b:"b"   全局的
-            })
-
-
-        使用其他模块的内容或者全局的：(就是在模块 B 调用 模块 A 的 actions，或者调用全局的)
-            dispatch("app/delAllCachedViews", {}, { root: true }) 
-            有 3 个参数：
-                第一个参数是其他模块的 actions 路径, 
-                第二个是传给 actions 的数据, 如果不需要传数据, 也必须预留为{}, 
-                第三个参数是配置选项, 申明这个 acitons 不是当前模块的
-
+    
             
         
         
