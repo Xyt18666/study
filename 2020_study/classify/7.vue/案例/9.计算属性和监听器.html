@@ -140,7 +140,20 @@
       可以使用数组的方法 splice 修改数组 触发
       Object.assign()({},old,new) 为对象新增
       this.$set( 要修改的属性, key, value )  ，可以添加对象 和 修改数组
+
     
+    监听 $store ：
+        watch: {
+            "$store.state.xx"(old, news) {
+                console.log(old, news);
+            },
+        }
+
+    监听路由：
+        watch: {
+            $route: "methods中的函数",
+        },
+            
 
 
 

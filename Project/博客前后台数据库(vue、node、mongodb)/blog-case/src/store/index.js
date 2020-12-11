@@ -12,8 +12,38 @@ export default new Vuex.Store({
     userId: null,
     section: null,
     listindex: null,
+    vuexTest: [
+      {
+        title: "任务一",
+        isComplete: false,
+      },
+      {
+        title: "任务二",
+        isComplete: true,
+      },
+      {
+        title: "任务三",
+        isComplete: true,
+      },
+      {
+        title: "任务四",
+        isComplete: false,
+      },
+    ],
+  },
+  getters: {
+    overActive: (state) => {
+      return state.vuexTest.filter((d) => d.isComplete);
+    },
+    noteActive: (state) => {
+      return state.vuexTest.filter((d) => !d.isComplete);
+    },
   },
   mutations: {
+    setVuexTest(state, val) {
+      state.vuexTest = val;
+    },
+
     setMainList(state, val) {
       state.mainList = val;
     },

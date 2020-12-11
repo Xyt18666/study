@@ -4,6 +4,9 @@ import Longin from "../views/Longin.vue";
 import Main from "../views/Main.vue";
 import Home from "../components/Home.vue";
 import Details from "../components/Details.vue";
+import Vuex from "../components/Vuex.vue";
+
+
 
 Vue.use(VueRouter);
 
@@ -37,6 +40,11 @@ const routes = [
     path: "/longin",
     name: "longin",
     component: Longin,
+  },
+  {
+    path: "/vuex",
+    name: "vuex",
+    component: Vuex,
   },
 ];
 
