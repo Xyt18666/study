@@ -17,7 +17,6 @@
                 实际项目开发，要将其中的子项 设立单独文件
 
 
-
             关于异步：
                 mutation是同步操作，不能再内容写异步，会发生数据不吻合
                 actions是异步的，必须使用actions操作异步
@@ -38,7 +37,6 @@
         state :    类似于 data 保存数据
             定义： {}
             使用 ：直接使用
-        
 
         getters :   以有属性的，衍生 属性 ，对象里是方法，也可以理解为 计算属性  
             定义： son(state){}
@@ -65,6 +63,9 @@
                 1. import { mapState,mapGetters,mapMutations,mapActions } from "vuex"
                 2. 在computed 中  ...mapState(["name"]),  ...mapGetters(["值"]) ,在matheds中    ...mapMutations(["setindex"]), ...mapActions(["setni"]),
                 3. 在使用时 属性就直接使用就可以了 ，函数 直接调用函数
+
+                ps：还有对象的方式 ：...mapState({name:"name"})
+                    对象的形式可以对其重新命名
             
             
         mutations 事件类型使用常量：
@@ -92,17 +93,69 @@
             使用模块属性 ，配合单文件 ，使得项目更清晰
 
             export default new vuex.Store({
-                               modules:{
-                                        mod1name:{
-                                              states,
-                                              mutatons,
-                                              getters,
-                                              actions
-                                            },
-                                        mod2name:xx.js   也可以导入文件 ，该文件导出的是 一个 对象 ，包含 states, mutatons, getters,  actions 。
-                                    }
-                  });
-                    
+                modules:{
+                        mod1name:{
+                                namespaced:true,
+                                states,
+                                mutatons,
+                                getters,
+                                actions
+                            },
+                        mod2name:xx.js   也可以导入文件 ，该文件导出的是 一个 对象 ，包含 states, mutatons, getters,  actions 。
+                    }
+            });
+
+
+        定义模块：
+            在sotre文件夹下创建一个独立的js 
+            内部写  {
+                        namespaced:true,
+                        states,
+                        mutatons,
+                        getters,
+                        actions
+                    }
+            导出 export default 这个对象
+
+        使用模块：
+            在sotre文件夹下index.js
+            引入 xx from "xx.js"
+            将xx挂载到 Vue.Store实例中的 module
+                
+            
+
+        模块化后的获取以及使用：
+            this.$store.state.模块名.属性  
+
+            为模块定义命名空间：namespaced:true      
+            this.$store.commit('模块名/方法名',参数)
+            this.$store.dispatch('模块名/方法名',参数)
+
+        模块化后使用辅助函数：
+            import { mapState,mapGetters,mapMutations,mapActions } from "vuex"
+            同样的引入方式
+
+            ...mapActions('module1', ['foo', 'bar'])
+            使用时的区别：...mapActions("模块路径",["方法名"...])
+
+            ps：同样有对象的写法
+
+        使用辅助函数同时获取全局和模块下的属性：（或者写多个...mapState）
+        
+            ...mapState({
+                x : state => state.命名空间.属性
+                y : b:"b"   全局的
+            })
+
+
+        使用其他模块的内容或者全局的：(就是在模块 B 调用 模块 A 的 actions，或者调用全局的)
+            dispatch("app/delAllCachedViews", {}, { root: true }) 
+            有 3 个参数：
+                第一个参数是其他模块的 actions 路径, 
+                第二个是传给 actions 的数据, 如果不需要传数据, 也必须预留为{}, 
+                第三个参数是配置选项, 申明这个 acitons 不是当前模块的
+
+            
         
         
         */
