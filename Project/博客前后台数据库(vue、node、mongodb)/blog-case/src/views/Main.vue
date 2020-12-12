@@ -52,10 +52,6 @@ export default {
       
       */
     // this.getMsg();
-
- 
-
- 
   },
 
   methods: {
@@ -65,7 +61,6 @@ export default {
     //         console.log(d);
     //     });
     // },
-   
   },
   mounted() {},
 };

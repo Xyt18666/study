@@ -16,7 +16,7 @@ let app = express();
 /*实例化*/
 
 let api = require("./router/api");
-// let admin = require("./router/admin");
+let admin = require("./router/admin");
 /*引入路由 客户端 和 后台管理*/
 
 /*
@@ -78,7 +78,7 @@ con.once("open", () => {
 app.use("/api", api);
 // 输注入所有前端博客接口
 
-// app.use("/admin", admin);
+app.use("/admin", admin);
 
 /*引入路由 end*/
 
