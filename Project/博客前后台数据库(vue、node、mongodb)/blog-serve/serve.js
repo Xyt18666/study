@@ -470,9 +470,12 @@ app.post("/getmainlist", (req, res) => {
   console.log(req.body.pages);
   mainListAll
     .find({})
+    .sort({ _id: -1 })
     .skip((req.body.pages - 1) * 3)
     .limit(3)
     .exec((i, d) => {
+      console.log("获取分页数据", d);
+
       res.send({
         code: 0,
         data: d,
@@ -744,9 +747,11 @@ app.post("/setread", (req, res) => {
 app.post("/releasemsg", (req, res) => {
   if (req.body.section == "mainList") {
     console.log("首页操作");
-
-    mainListAll.update({}, { $set: req.body.datas }, (err, d) => {
+    mainListAll.create(req.body.datas, (err, d) => {
       console.log(d);
+      mainListAll.find({}, (err, d2) => {
+        console.log(d2, "添加后的新首页列表");
+      });
     });
   } else {
     classAll.update(

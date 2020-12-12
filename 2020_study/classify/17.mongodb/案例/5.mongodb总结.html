@@ -202,6 +202,9 @@
                 mainListAll.find({}).skip((req.body.pages - 1) * 3).limit(3).exec((i, d) => {});
                 查找数据.跳过((页数-1)*每页的个数).获取(每页的个数).回调((i,d)=>{d是获取的数据})
 
+            按时间排序：添加数据时，默认添加到最后，所以需要排序
+                 mainListAll.find({}).sort({ _id: -1 }).limit(3).exec((i, d) => {});
+
             为数组添加值，重复不添加：
                 xx.update({条件}, {$addToSet:{student:"zhaoliu"}});
 
