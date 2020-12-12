@@ -51,7 +51,7 @@ export default {
     methods: {
         toRegister() {
             this.$http
-                .post("http://localhost:8088/register", {
+                .post("http://localhost:8088/api/register", {
                     rUserNmae: this.rUserNmae,
                     rPassWord: this.rPassWord,
                 })
@@ -68,7 +68,7 @@ export default {
         },
         toLongin() {
             this.$http
-                .post("http://localhost:8088/longin", {
+                .post("http://localhost:8088/api/longin", {
                     rUserNmae: this.userNmae,
                     rPassWord: this.passWord,
                 })

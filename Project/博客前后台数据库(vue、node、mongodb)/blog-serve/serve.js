@@ -15,7 +15,7 @@ const bodyParser = require("body-parser");
 let app = express();
 /*实例化*/
 
-// let api = require("./router/api");
+let api = require("./router/api");
 // let admin = require("./router/admin");
 /*引入路由 客户端 和 后台管理*/
 
@@ -71,15 +71,18 @@ con.once("open", () => {
   });
 });
 
+/*---------------------mongoose部分 end-----------------------*/
+
 /*引入路由*/
 
-// app.use("/api", api);
+app.use("/api", api);
+// 输注入所有前端博客接口
 
 // app.use("/admin", admin);
 
 /*引入路由 end*/
 
-/*---------------------mongoose部分 end-----------------------*/
+// ------------ ↓↓↓↓↓以下为  未模块化时的 代码↓↓↓↓↓------------------
 
 /*---------------------约束参数部分-----------------------*/
 
@@ -87,62 +90,62 @@ con.once("open", () => {
 前端发送信息到后端是无约束的，除非前端限制
 后端存入数据库时是有限制的
 */
-let Schema = mongoose.Schema;
+// let Schema = mongoose.Schema;
 /*获取Schema*/
 
-let schemaUserAll = new Schema({
-  rUserNmae: String,
-  rPassWord: String,
-  jurisdiction: {
-    type: Array,
-    default: [],
-  },
-  landingStatus: {
-    type: String,
-    default: "0",
-  },
-  identity: {
-    type: String,
-    default: "用户",
-  },
-});
+// let schemaUserAll = new Schema({
+//   rUserNmae: String,
+//   rPassWord: String,
+//   jurisdiction: {
+//     type: Array,
+//     default: [],
+//   },
+//   landingStatus: {
+//     type: String,
+//     default: "0",
+//   },
+//   identity: {
+//     type: String,
+//     default: "用户",
+//   },
+// });
 /*注册用户约束*/
-var userAll = mongoose.model("userAll", schemaUserAll);
+// var userAll = mongoose.model("userAll", schemaUserAll);
 
 /*将约束绑定到指定的表*/
 
 /*--------------------分割线----------------------*/
-let classIfication = new Schema(
-  {
-    userId: String,
-  },
-  { strict: false }
-);
+// let classIfication = new Schema(
+//   {
+//     userId: String,
+//   },
+//   { strict: false }
+// );
 // 注册导航列表约束
-var classAll = mongoose.model("classIfication", classIfication);
+// var classAll = mongoose.model("classIfication", classIfication);
 /*--------------------分割线----------------------*/
-let mainList = new Schema({
-  title: String,
-  msg: {
-    type: Object,
-    author: String,
-    times: Date,
-    read: Number,
-    comment: Number,
-  },
-  text: String,
-  commentList: {
-    type: [
-      {
-        nuser: String,
-        times: String,
-        text: String,
-      },
-    ],
-  },
-});
+// let mainList = new Schema({
+//   title: String,
+//   msg: {
+//     type: Object,
+//     author: String,
+//     times: Date,
+//     read: Number,
+//     comment: Number,
+//   },
+//   text: String,
+//   commentList: {
+//     type: [
+//       {
+//         nuser: String,
+//         times: String,
+//         text: String,
+//       },
+//     ],
+//   },
+// });
 // 首页列表
-var mainListAll = mongoose.model("mainList", classIfication);
+// var mainListAll = mongoose.model("mainList", classIfication);
 
 /*---------------------约束参数部分 end-----------------------*/
 
@@ -466,329 +469,330 @@ var mainListAll = mongoose.model("mainList", classIfication);
 
 /*--------------------分割线----------------------*/
 
-app.post("/getmainlist", (req, res) => {
-  console.log(req.body.pages);
-  mainListAll
-    .find({})
-    .sort({ _id: -1 })
-    .skip((req.body.pages - 1) * 3)
-    .limit(3)
-    .exec((i, d) => {
-      console.log("获取分页数据", d);
+// app.post("/getmainlist", (req, res) => {
+//   console.log(req.body.pages);
+//   mainListAll
+//     .find({})
+//     .sort({ _id: -1 })
+//     .skip((req.body.pages - 1) * 3)
+//     .limit(3)
+//     .exec((i, d) => {
+//       console.log("获取分页数据", d);
 
-      res.send({
-        code: 0,
-        data: d,
-      });
-    });
-});
+//       res.send({
+//         code: 0,
+//         data: d,
+//       });
+//     });
+// });
 
-app.post("/getlistlength", (req, res) => {
-  mainListAll.countDocuments({}, (err, count) => {
-    res.send({
-      code: 0,
-      data: count,
-    });
-  });
-});
-
-/*--------------------分割线----------------------*/
-
-app.post("/register", (req, res) => {
-  // 注册接口
-
-  userAll.find({ rUserNmae: req.body.rUserNmae }, "rUserNmae", (err, d) => {
-    // 查找是否有此用户，没有就添加，有就返回
-    console.log(d, "查询成功");
-    if (d.length != 0) {
-      res.send({
-        code: 1,
-        data: "用户已存在",
-      });
-    } else {
-      userAll.create(
-        { jurisdiction: ["HTML5", "CSS3"], ...req.body },
-        (err, d2) => {
-          // 添加用户
-          console.log(d2, "储存成功");
-          classAll.create(
-            {
-              userId: d2._id,
-              HTML5: [
-                {
-                  title: "title1",
-                  msg: {
-                    author: "作者",
-                    times: new Date().toLocaleDateString(),
-                    read: 0,
-                    comment: 0,
-                  },
-                  text: "文章内容1",
-                  commentList: [
-                    {
-                      nuser: "xx用户",
-                      times: new Date().toLocaleDateString(),
-                      text: "写的真好，自己都看不懂",
-                    },
-                  ],
-                },
-              ],
-              CSS3: [
-                {
-                  title: "title1",
-                  msg: {
-                    author: "作者",
-                    times: new Date().toLocaleDateString(),
-                    read: 0,
-                    comment: 0,
-                  },
-                  text: "文章内容1",
-                  commentList: [
-                    {
-                      nuser: "xx用户",
-                      times: new Date().toLocaleDateString(),
-                      text: "写的真好，自己都看不懂",
-                    },
-                  ],
-                },
-                {
-                  title: "title1",
-                  msg: {
-                    author: "作者",
-                    times: new Date().toLocaleDateString(),
-                    read: 0,
-                    comment: 0,
-                  },
-                  text: "文章内容1",
-                  commentList: [
-                    {
-                      nuser: "xx用户",
-                      times: new Date().toLocaleDateString(),
-                      text: "写的真好，自己都看不懂",
-                    },
-                  ],
-                },
-              ],
-            },
-            (err, d3) => {
-              // 添加用户对应的列表
-              console.log(d3, "储存成功");
-            }
-          );
-          res.send({
-            code: 0,
-            data: "注册成功",
-          });
-        }
-      );
-    }
-  });
-});
+// app.post("/getlistlength", (req, res) => {
+//   mainListAll.countDocuments({}, (err, count) => {
+//     res.send({
+//       code: 0,
+//       data: count,
+//     });
+//   });
+// });
 
 /*--------------------分割线----------------------*/
-app.post("/longin", (req, res) => {
-  // 登陆
-  let { rUserNmae, rPassWord } = req.body;
-  // console.log(req.body);
-  userAll.find(
-    { rUserNmae: rUserNmae },
-    "_id rPassWord identity jurisdiction commentList",
-    (err, d) => {
-      // console.log(d, "查询成功");
-      if (d[0].rPassWord != rPassWord)
-        res.send({
-          code: 1,
-          data: "密码错误",
-        });
 
-      if (d[0].identity == "用户") {
-        // console.log(11, req.body);
+// app.post("/register", (req, res) => {
+//   // 注册接口
 
-        userAll.update(
-          req.body,
-          { $set: { landingStatus: "1" } },
-          (err, state) => {
-            // console.log(state, "修改成功", d);
-            res.send({
-              code: 0,
-              msg: "登陆成功",
-              data: {
-                id: d[0]._id,
-                jurisdiction: d[0].jurisdiction,
-              },
-            });
-          }
-        );
-      } else if (d[0].identity == "管理员") {
-        userAll.update(
-          req.body,
-          { $set: { landingStatus: "1" } },
-          (err, state) => {
-            // console.log(state, "修改成功");
-            res.send({
-              code: 0,
-              data: "管理登陆成功",
-            });
-          }
-        );
-      }
-    }
-  );
-});
+//   userAll.find({ rUserNmae: req.body.rUserNmae }, "rUserNmae", (err, d) => {
+//     // 查找是否有此用户，没有就添加，有就返回
+//     console.log(d, "查询成功");
+//     if (d.length != 0) {
+//       res.send({
+//         code: 1,
+//         data: "用户已存在",
+//       });
+//     } else {
+//       userAll.create(
+//         { jurisdiction: ["HTML5", "CSS3"], ...req.body },
+//         (err, d2) => {
+//           // 添加用户
+//           console.log(d2, "储存成功");
+//           classAll.create(
+//             {
+//               userId: d2._id,
+//               HTML5: [
+//                 {
+//                   title: "title1",
+//                   msg: {
+//                     author: "作者",
+//                     times: new Date().toLocaleDateString(),
+//                     read: 0,
+//                     comment: 0,
+//                   },
+//                   text: "文章内容1",
+//                   commentList: [
+//                     {
+//                       nuser: "xx用户",
+//                       times: new Date().toLocaleDateString(),
+//                       text: "写的真好，自己都看不懂",
+//                     },
+//                   ],
+//                 },
+//               ],
+//               CSS3: [
+//                 {
+//                   title: "title1",
+//                   msg: {
+//                     author: "作者",
+//                     times: new Date().toLocaleDateString(),
+//                     read: 0,
+//                     comment: 0,
+//                   },
+//                   text: "文章内容1",
+//                   commentList: [
+//                     {
+//                       nuser: "xx用户",
+//                       times: new Date().toLocaleDateString(),
+//                       text: "写的真好，自己都看不懂",
+//                     },
+//                   ],
+//                 },
+//                 {
+//                   title: "title1",
+//                   msg: {
+//                     author: "作者",
+//                     times: new Date().toLocaleDateString(),
+//                     read: 0,
+//                     comment: 0,
+//                   },
+//                   text: "文章内容1",
+//                   commentList: [
+//                     {
+//                       nuser: "xx用户",
+//                       times: new Date().toLocaleDateString(),
+//                       text: "写的真好，自己都看不懂",
+//                     },
+//                   ],
+//                 },
+//               ],
+//             },
+//             (err, d3) => {
+//               // 添加用户对应的列表
+//               console.log(d3, "储存成功");
+//             }
+//           );
+//           res.send({
+//             code: 0,
+//             data: "注册成功",
+//           });
+//         }
+//       );
+//     }
+//   });
+// });
 
 /*--------------------分割线----------------------*/
-app.post("/getmsg", (req, res) => {
-  classAll.find({ userId: req.body.id }, (err, d) => {
-    // 查找某某模块
-    let obj = {};
+// app.post("/longin", (req, res) => {
+//   // 登陆
+//   let { rUserNmae, rPassWord } = req.body;
+//   // console.log(req.body);
+//   userAll.find(
+//     { rUserNmae: rUserNmae },
+//     "_id rPassWord identity jurisdiction commentList",
+//     (err, d) => {
+//       // console.log(d, "查询成功");
+//       if (d[0].rPassWord != rPassWord)
+//         res.send({
+//           code: 1,
+//           data: "密码错误",
+//         });
 
-    req.body.jurisdiction.map((e, i) => {
-      // console.log(e, i, "jurisdiction");
+//       if (d[0].identity == "用户") {
+//         // console.log(11, req.body);
 
-      // console.log("获取的数据库信息", d[0].toJSON());
+//         userAll.update(
+//           req.body,
+//           { $set: { landingStatus: "1" } },
+//           (err, state) => {
+//             // console.log(state, "修改成功", d);
+//             res.send({
+//               code: 0,
+//               msg: "登陆成功",
+//               data: {
+//                 id: d[0]._id,
+//                 jurisdiction: d[0].jurisdiction,
+//               },
+//             });
+//           }
+//         );
+//       } else if (d[0].identity == "管理员") {
+//         userAll.update(
+//           req.body,
+//           { $set: { landingStatus: "1" } },
+//           (err, state) => {
+//             // console.log(state, "修改成功");
+//             res.send({
+//               code: 0,
+//               data: "管理登陆成功",
+//             });
+//           }
+//         );
+//       }
+//     }
+//   );
+// });
 
-      if (d[0].toJSON()[e]) {
-        obj[e] = d[0].toJSON()[e];
-      }
-    });
-    // console.log("获取的数据库信息obj", obj);
+/*--------------------分割线----------------------*/
+// app.post("/getmsg", (req, res) => {
+//   classAll.find({ userId: req.body.id }, (err, d) => {
+//     // 查找某某模块
+//     let obj = {};
 
-    res.send({
-      code: 0,
-      data: obj,
-    });
-  });
+//     req.body.jurisdiction.map((e, i) => {
+//       // console.log(e, i, "jurisdiction");
 
-  // req.body
-});
+//       // console.log("获取的数据库信息", d[0].toJSON());
 
-app.post("/addcomment", (req, res) => {
-  // console.log(req.body);
-  //   console.log(req.body.section, req.body.index, req.body.data);
-  // req.body.id不需要找用户的表,需要找到某一条
-  // req.body.data是评论列表
-  // req.body.index是操作的下标
-  // commentList
+//       if (d[0].toJSON()[e]) {
+//         obj[e] = d[0].toJSON()[e];
+//       }
+//     });
+//     // console.log("获取的数据库信息obj", obj);
 
-  if (req.body.section == "mainList") {
-    mainListAll.find({ _id: req.body.id }, (err, d) => {
-      console.log(d);
-    });
-    mainListAll.update(
-      { _id: req.body.id },
-      {
-        $set: {
-          commentList: req.body.data,
-        },
-      },
-      (err, d) => {
-        console.log(d);
-      }
-    );
-  } else {
-    classAll.update(
-      { userId: req.body.id },
-      {
-        $set: {
-          [`${req.body.section}.${req.body.index}.commentList`]: req.body.data,
-        },
-      },
-      (err, d) => {
-        console.log(d);
-      }
-    );
-  }
+//     res.send({
+//       code: 0,
+//       data: obj,
+//     });
+//   });
 
-  // classAll.find({ userId: req.body.id }, (err, d) => {
-  //     console.log(d, "查找到的数据");
-  // });
+//   // req.body
+// });
 
-  // 要获取对应 的数据库的数据，然后进行添加，
-  // 不会找对象深层，使用笨方法替换
-  // 现在搞成单独用户单独评论了，不对
-});
+// app.post("/addcomment", (req, res) => {
+//   // console.log(req.body);
+//   //   console.log(req.body.section, req.body.index, req.body.data);
+//   // req.body.id不需要找用户的表,需要找到某一条
+//   // req.body.data是评论列表
+//   // req.body.index是操作的下标
+//   // commentList
 
-app.post("/setread", (req, res) => {
-  if (req.body.section == "mainList") {
-    mainListAll.update(
-      { _id: req.body.id },
-      {
-        $set: {
-          msg: req.body.data,
-        },
-      },
-      (err, d) => {
-        console.log(d);
-      }
-    );
-  } else {
-    classAll.update(
-      { userId: req.body.id },
-      {
-        $set: {
-          [`${req.body.section}.${req.body.index}.msg`]: req.body.data,
-        },
-      },
-      (err, d) => {
-        console.log(d);
-      }
-    );
-  }
+//   if (req.body.section == "mainList") {
+//     mainListAll.find({ _id: req.body.id }, (err, d) => {
+//       console.log(d);
+//     });
+//     mainListAll.update(
+//       { _id: req.body.id },
+//       {
+//         $set: {
+//           commentList: req.body.data,
+//         },
+//       },
+//       (err, d) => {
+//         console.log(d);
+//       }
+//     );
+//   } else {
+//     classAll.update(
+//       { userId: req.body.id },
+//       {
+//         $set: {
+//           [`${req.body.section}.${req.body.index}.commentList`]: req.body.data,
+//         },
+//       },
+//       (err, d) => {
+//         console.log(d);
+//       }
+//     );
+//   }
 
-  // classAll.find({ userId: req.body.id }, (err, d) => {
-  //     console.log(d, "查找到的数据");
-  // });
+//   // classAll.find({ userId: req.body.id }, (err, d) => {
+//   //     console.log(d, "查找到的数据");
+//   // });
 
-  // 要获取对应 的数据库的数据，然后进行添加，
-  // 不会找对象深层，使用笨方法替换
-  // 现在搞成单独用户单独评论了，不对
-});
+//   // 要获取对应 的数据库的数据，然后进行添加，
+//   // 不会找对象深层，使用笨方法替换
+//   // 现在搞成单独用户单独评论了，不对
+// });
 
-app.post("/releasemsg", (req, res) => {
-  if (req.body.section == "mainList") {
-    console.log("首页操作");
-    mainListAll.create(req.body.datas, (err, d) => {
-      console.log(d);
-      mainListAll.find({}, (err, d2) => {
-        console.log(d2, "添加后的新首页列表");
-      });
-    });
-  } else {
-    classAll.update(
-      { userId: req.body.id },
-      {
-        $push: {
-          [req.body.section]: { $each: [req.body.datas], $position: 0 },
-        },
-      },
-      (err, d) => {
-        console.log(d);
-      }
-    );
-  }
-});
+// app.post("/setread", (req, res) => {
+//   if (req.body.section == "mainList") {
+//     mainListAll.update(
+//       { _id: req.body.id },
+//       {
+//         $set: {
+//           msg: req.body.data,
+//         },
+//       },
+//       (err, d) => {
+//         console.log(d);
+//       }
+//     );
+//   } else {
+//     classAll.update(
+//       { userId: req.body.id },
+//       {
+//         $set: {
+//           [`${req.body.section}.${req.body.index}.msg`]: req.body.data,
+//         },
+//       },
+//       (err, d) => {
+//         console.log(d);
+//       }
+//     );
+//   }
 
-app.post("/creartaction", (req, res) => {
-  console.log(req.body.id);
-  console.log(req.body.datas);
-  userAll.update(
-    {
-      _id: req.body.id,
-    },
-    { $addToSet: { jurisdiction: req.body.datas } },
-    (err, state) => {
-      console.log(state);
-    }
-  );
+//   // classAll.find({ userId: req.body.id }, (err, d) => {
+//   //     console.log(d, "查找到的数据");
+//   // });
 
-  classAll.update(
-    { userId: req.body.id },
-    { $set: { [req.body.datas]: [] } },
-    (err, state) => {
-      console.log(state);
-    }
-  );
-});
+//   // 要获取对应 的数据库的数据，然后进行添加，
+//   // 不会找对象深层，使用笨方法替换
+//   // 现在搞成单独用户单独评论了，不对
+// });
+
+// app.post("/releasemsg", (req, res) => {
+//   if (req.body.section == "mainList") {
+//     console.log("首页操作");
+//     mainListAll.create(req.body.datas, (err, d) => {
+//       console.log(d);
+//       mainListAll.find({}, (err, d2) => {
+//         console.log(d2, "添加后的新首页列表");
+//       });
+//     });
+//   } else {
+//     classAll.update(
+//       { userId: req.body.id },
+//       {
+//         $push: {
+//           [req.body.section]: { $each: [req.body.datas], $position: 0 },
+//         },
+//       },
+//       (err, d) => {
+//         console.log(d);
+//       }
+//     );
+//   }
+// });
+
+// app.post("/creartaction", (req, res) => {
+//   console.log(req.body.id);
+//   console.log(req.body.datas);
+//   userAll.update(
+//     {
+//       _id: req.body.id,
+//     },
+//     { $addToSet: { jurisdiction: req.body.datas } },
+//     (err, state) => {
+//       console.log(state);
+//     }
+//   );
+
+//   classAll.update(
+//     { userId: req.body.id },
+//     { $set: { [req.body.datas]: [] } },
+//     (err, state) => {
+//       console.log(state);
+//     }
+//   );
+// });
+
 /*--------------------分割线----------------------*/
 
 // app.get("/getuser", (req, res) => {

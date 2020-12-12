@@ -199,9 +199,9 @@ export default {
     return {
       // 表单双向绑定属性
       ruleForm: {
-        user: "18733678267",
-        pass: "123456",
-        checkPass: "123456",
+        user: "18666142570",
+        pass: "654321",
+        checkPass: "654321",
       },
       // 绑定验证规则
       rules: {
@@ -246,7 +246,7 @@ export default {
       this.dialogFormVisible2 = false;
       console.log(this.$store.state.userId);
       this.$http
-        .post("http://localhost:8088/creartaction", {
+        .post("http://localhost:8088/api/creartaction", {
           id: this.$store.state.userId,
           datas: this.form2.name,
         })
@@ -298,7 +298,7 @@ export default {
         //   非首页，获取到是哪个用户，哪个分组，并为他添加
         console.log(this.$store.state.userId, this.$store.state.section);
         this.$http
-          .post("http://localhost:8088/releasemsg", {
+          .post("http://localhost:8088/api/releasemsg", {
             id: this.$store.state.userId,
             section: this.$store.state.section,
             datas: oneMsg,
@@ -311,7 +311,7 @@ export default {
         this.$store.commit("setMainList", old);
         //   首页无需任何参数，直接添加
         this.$http
-          .post("http://localhost:8088/releasemsg", {
+          .post("http://localhost:8088/api/releasemsg", {
             id: null,
             section: "mainList",
             datas: oneMsg,
@@ -356,27 +356,31 @@ export default {
       }
     },
     async getDatas() {
-      let ids = await this.$http.post("http://localhost:8088/longin", {
+      let ids = await this.$http.post("http://localhost:8088/api/longin", {
         rUserNmae: this.ruleForm.user,
         rPassWord: this.ruleForm.pass,
       });
       this.$store.commit("setUserId", ids.data.data.id);
 
-      this.$http
-        .post("http://localhost:8088/getmsg", ids.data.data)
-        .then((d) => {
-          this.$store.commit("setAllData", d.data.data);
-          console.log(this.$store.state.allData);
-          this.$router.push("/home");
-          this.$refs.ruleForm.resetFields();
+      if (ids.data.data.identity == 1) {
+        this.$http
+          .post("http://localhost:8088/api/getmsg", ids.data.data)
+          .then((d) => {
+            this.$store.commit("setAllData", d.data.data);
+            console.log(this.$store.state.allData);
+            this.$router.push("/home");
+            this.$refs.ruleForm.resetFields();
 
-          this.isShow = 2;
-        });
+            this.isShow = 2;
+          });
+      } else {
+        this.$router.push("/administration");
+      }
     },
     getMsg() {
       if (this.$route.params.data) {
         this.$http
-          .post("http://localhost:8088/getmsg", this.$route.params.data)
+          .post("http://localhost:8088/api/getmsg", this.$route.params.data)
           .then((d) => {
             this.$store.commit("setAllData", d.data.data);
             console.log(d.data.data);
@@ -385,7 +389,7 @@ export default {
     },
     getMainList(page = 1) {
       this.$http
-        .post("http://localhost:8088/getmainlist", { pages: page })
+        .post("http://localhost:8088/api/getmainlist", { pages: page })
         .then((d) => {
           console.log(d);
           this.$store.commit("setMainList", d.data.data);
@@ -393,7 +397,7 @@ export default {
         });
     },
     getListLength() {
-      this.$http.post("http://localhost:8088/getlistlength").then((d) => {
+      this.$http.post("http://localhost:8088/api/getlistlength").then((d) => {
         this.listLength = d.data.data;
         console.log(this.listLength);
       });

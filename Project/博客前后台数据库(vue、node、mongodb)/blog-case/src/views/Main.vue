@@ -26,14 +26,14 @@ export default {
     return {};
   },
   created() {
-    // this.$http.post("http://localhost:8088/creat").then(d => {
+    // this.$http.post("http://localhost:8088/api/creat").then(d => {
     //     console.log(d);
     // });
     console.log(this.$route.params);
 
     console.log(new Date().toLocaleDateString());
 
-    this.$http.post("http://localhost:8088/getmainlist").then((d) => {
+    this.$http.post("http://localhost:8088/api/getmainlist").then((d) => {
       console.log(d);
       this.$store.commit("setHomeList", d.data.data);
 
@@ -61,7 +61,7 @@ export default {
   methods: {
     // getMsg() {
     //     console.log(this.$route.params.data);
-    //     this.$http.post("http://localhost:8088/getmsg", this.$route.params.data).then(d => {
+    //     this.$http.post("http://localhost:8088/api/getmsg", this.$route.params.data).then(d => {
     //         console.log(d);
     //     });
     // },

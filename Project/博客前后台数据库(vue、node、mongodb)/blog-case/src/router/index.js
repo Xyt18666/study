@@ -6,7 +6,7 @@ import Home from "../components/Home.vue";
 import Details from "../components/Details.vue";
 import Vuex from "../components/Vuex.vue";
 
-
+import adnmin from "./model/administration";
 
 Vue.use(VueRouter);
 
@@ -41,11 +41,13 @@ const routes = [
     name: "longin",
     component: Longin,
   },
+
   {
     path: "/vuex",
     name: "vuex",
     component: Vuex,
   },
+  ...adnmin,
 ];
 
 const router = new VueRouter({

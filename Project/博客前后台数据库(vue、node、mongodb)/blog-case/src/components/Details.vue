@@ -91,7 +91,7 @@ export default {
 
       if (this.$store.state.section) {
         this.$http
-          .post("http://localhost:8088/setread", {
+          .post("http://localhost:8088/api/setread", {
             id: this.$store.state.userId,
             section: this.$store.state.section,
             index: this.$store.state.listindex,
@@ -102,7 +102,7 @@ export default {
           });
       } else {
         this.$http
-          .post("http://localhost:8088/setread", {
+          .post("http://localhost:8088/api/setread", {
             id: this.$route.params._id,
             section: "mainList",
             index: this.$store.state.listindex,
@@ -132,7 +132,7 @@ export default {
         // this.$store.state.userId  this.$store.state.section  this.$store.state.listindex
 
         this.$http
-          .post("http://localhost:8088/addcomment", {
+          .post("http://localhost:8088/api/addcomment", {
             id: this.$store.state.userId,
             section: this.$store.state.section,
             index: this.$store.state.listindex,
@@ -142,7 +142,7 @@ export default {
             console.log(d);
           });
         this.$http
-          .post("http://localhost:8088/setread", {
+          .post("http://localhost:8088/api/setread", {
             id: this.$store.state.userId,
             section: this.$store.state.section,
             index: this.$store.state.listindex,
@@ -160,7 +160,7 @@ export default {
         );
 
         this.$http
-          .post("http://localhost:8088/addcomment", {
+          .post("http://localhost:8088/api/addcomment", {
             id: this.$route.params._id,
             section: "mainList",
             index: this.$store.state.listindex,
@@ -170,7 +170,7 @@ export default {
             console.log(d);
           });
         this.$http
-          .post("http://localhost:8088/setread", {
+          .post("http://localhost:8088/api/setread", {
             id: this.$route.params._id,
             section: "mainList",
             index: this.$store.state.listindex,
