@@ -97,6 +97,24 @@ router.post("/dletemanagement", (req, res) => {
     });
   });
 });
+
+router.post("/modifymsg", (req, res) => {
+  mainListModel.update(
+    { _id: req.body.id },
+    {
+      $set: {
+        title: req.body.name,
+        text: req.body.textarea,
+      },
+    },
+    (err, data) => {
+      res.send({
+        code: 0,
+        datas: data,
+      });
+    }
+  );
+});
 /*定义接口 end*/
 
 module.exports = router;
