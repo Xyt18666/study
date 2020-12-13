@@ -24,7 +24,8 @@ router.post("/regist", (req, res) => {
 /*定义接口*/
 
 router.post("/getuserall", (req, res) => {
-  userAllModel.find({}, (err, data) => {
+  // 获取用户信息
+  userAllModel.find({ identity: { $not: { $eq: "管理员" } } }, (err, data) => {
     console.log(data);
 
     res.send({
@@ -34,6 +35,68 @@ router.post("/getuserall", (req, res) => {
   });
 });
 
+router.post("/checkjurisdiction", (req, res) => {
+  // 操作用户展示的权限
+  userAllModel.findOne({ _id: req.body.id }, (err, data) => {
+    if (data.jurisdiction[req.body.index] == null) {
+      userAllModel.update(
+        { _id: req.body.id },
+        {
+          $set: {
+            [`jurisdiction.${req.body.index}`]: data.jurisdictionOld[
+              req.body.index
+            ],
+          },
+        },
+        (err, data) => {
+          console.log(data);
+        }
+      );
+    } else {
+      userAllModel.update(
+        { _id: req.body.id },
+        {
+          $unset: { [`jurisdiction.${req.body.index}`]: 1 },
+        },
+        (err, data) => {
+          console.log(data);
+        }
+      );
+    }
+  });
+});
+
+router.post("/getdetails", (req, res) => {
+  // 获取用户信息
+  classIficationModel.findOne({ userId: req.body.id }, (err, data) => {
+    console.log(data);
+    res.send({
+      code: 0,
+      datas: data,
+    });
+  });
+});
+
+router.post("/getmanagement", (req, res) => {
+  // 获取用户信息
+  mainListModel.find({}, (err, data) => {
+    console.log(data);
+    res.send({
+      code: 0,
+      datas: data,
+    });
+  });
+});
+
+router.post("/dletemanagement", (req, res) => {
+  mainListModel.remove({ _id: req.body.id }, (err, data) => {
+    console.log(data);
+    res.send({
+      code: 0,
+      datas: data,
+    });
+  });
+});
 /*定义接口 end*/
 
 module.exports = router;

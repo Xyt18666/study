@@ -203,6 +203,11 @@ export default {
         pass: "654321",
         checkPass: "654321",
       },
+      // ruleForm: {
+      //   user: "18733678267",
+      //   pass: "123456",
+      //   checkPass: "123456",
+      // },
       // 绑定验证规则
       rules: {
         user: [
@@ -355,27 +360,32 @@ export default {
         alert("请先登录");
       }
     },
-    async getDatas() {
-      let ids = await this.$http.post("http://localhost:8088/api/longin", {
-        rUserNmae: this.ruleForm.user,
-        rPassWord: this.ruleForm.pass,
-      });
-      this.$store.commit("setUserId", ids.data.data.id);
+    getDatas() {
+      this.$http
+        .post("http://localhost:8088/api/longin", {
+          rUserNmae: this.ruleForm.user,
+          rPassWord: this.ruleForm.pass,
+        })
+        .then((ids) => {
+          this.$store.commit("setUserId", ids.data.data.id);
 
-      if (ids.data.data.identity == 1) {
-        this.$http
-          .post("http://localhost:8088/api/getmsg", ids.data.data)
-          .then((d) => {
-            this.$store.commit("setAllData", d.data.data);
-            console.log(this.$store.state.allData);
-            this.$router.push("/home");
-            this.$refs.ruleForm.resetFields();
+          if (ids.data.data.id) {
+            this.$http
+              .post("http://localhost:8088/api/getmsg", ids.data.data)
+              .then((d) => {
+                console.log("头部信息", d.data.data);
 
-            this.isShow = 2;
-          });
-      } else {
-        this.$router.push("/administration");
-      }
+                this.$store.commit("setAllData", d.data.data);
+                console.log(this.$store.state.allData);
+                this.$router.push("/home");
+                this.$refs.ruleForm.resetFields();
+
+                this.isShow = 2;
+              });
+          } else {
+            this.$router.push("/administration");
+          }
+        });
     },
     getMsg() {
       if (this.$route.params.data) {

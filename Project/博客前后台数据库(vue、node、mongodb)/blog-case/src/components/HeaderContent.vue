@@ -27,6 +27,7 @@ export default {
     $route: "routerCheck",
     // $store: "resetNav",
   },
+
   methods: {
     // resetNav() {
     //   this.$forceUpdate();

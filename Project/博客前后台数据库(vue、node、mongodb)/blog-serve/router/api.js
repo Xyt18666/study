@@ -39,7 +39,11 @@ router.post("/register", (req, res) => {
         });
       } else {
         userAllModel.create(
-          { jurisdiction: ["HTML5", "CSS3"], ...req.body },
+          {
+            jurisdiction: ["HTML5", "CSS3"],
+            jurisdictionOld: ["HTML5", "CSS3"],
+            ...req.body,
+          },
           (err, d2) => {
             // 添加用户
             console.log(d2, "储存成功");
@@ -316,7 +320,12 @@ router.post("/creartaction", (req, res) => {
     {
       _id: req.body.id,
     },
-    { $addToSet: { jurisdiction: req.body.datas } },
+    {
+      $addToSet: {
+        jurisdiction: req.body.datas,
+        jurisdictionOld: req.body.datas,
+      },
+    },
     (err, state) => {
       console.log(state);
     }

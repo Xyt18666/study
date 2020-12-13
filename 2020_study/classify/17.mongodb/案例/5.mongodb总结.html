@@ -224,7 +224,14 @@
             更新数据:旧的已经废弃
                 updateOne、updateMany
 
-                
+            删除数组中的某值：
+                删除interests中的第3个元素：
+                    db.lists.update({_id:id}, {$unset : {"interests.2" : 1 }})
+                    
+                删除interests中的gadgets值：
+                    db.lists.update({_id:id}, {$pull:{"interests":"gadgets"}})
+
+                                
 
     
     
