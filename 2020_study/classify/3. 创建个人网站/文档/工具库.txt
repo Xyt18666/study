@@ -1,0 +1,23 @@
+uni-app              	vue下的跨平台框架      
+Ant Design           	react下的ui框架      
+Go                   	谷歌开发的       
+typeStript           	JavaScript超集      
+vite                 	打包工具
+flutter            	框架               
+electron框架    	可以把页面放到桌面
+socket.io     	及时通讯
+Snap.svg      	svg插件
+https://uigradients.com/    			渐变色
+https://regexper.com/       			正则观察
+https://www.showdoc.com.cn/		接口文档
+https://www.caniuse.com/    			浏览器兼容查询
+https://daneden.github.io/animate.css/ 		动画库
+https://www.echartsjs.com/zh/index.html      	图表绘制插件
+https://babeljs.io/repl/                     		在线ES6转ES5
+https://www.iconfont.cn/                     		iconfont字体图标
+https://lanhuapp.com/             		蓝湖 ，与axure相同
+http://youmightnotneedjquery.com/   		查看 jq的方法封装
+better-scroll                        			滚动插件
+https://www.teambition.com/   		调bug，项目测试
+i18n					中英文切换
+Nuxt.js                    				Vue后端渲染
