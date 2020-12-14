@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+    为何vue3快？
+        diff算法优化：
+            vue2是虚拟dom全量对比
+            vue3在创建虚拟dom时，会根据dom中的内容会不会发生变换，添增静态标记，只对比标记的dom,更新dom
+
+            观察vue3优化：
+                https://vue-next-template-explorer.netlify.app
+                右上工具栏有一些功能
+
+            标记含义：
+                  TEXT = 1, // 动态文本节点
+                    CLASS = 1 << 1, // 2 动态class
+                    STYLE = 1 << 2, // 4 动态style
+                    PROPS = 1 << 3, // 8 动态属性，但不包含类名和样式
+                    FULL_PROPS = 1 << 4, // 16 具有动态 key 属性，当 key 改变时，需要进行完整的 diff 比较
+                    HYDRATE_EVENTS = 1 << 5, // 32 带有监听事件的节点
+                    STABLE_FRAGMENT = 1 << 6, // 64 一个不会改变子节点顺序的 fragment
+                    KEYED_FRAGMENT = 1 << 7, // 128 带有key属性的 fragment 或部分带有 key
+                    UNKEYED_FRAGMENT = 1 << 8, // 256 子节点没有 key 的 fragment
+                    NEED_PATCH = 1 << 9, // 512 一个节点只会进行非 props 比较
+                    DYNAMIC_SLOTS = 1 << 10, // 1024
+                    HOISTED = -1,
+                    BAIL = -2
+
+        静态提升：hoistStatic
+            Vue2中无论元素是否参与更新，每次都会重新创建，然后再渲染
+            Vue3中对于不参与更新的元素，会做静态提升，只会被创建一次，在渲染时直接复用即可
+
+        事件监听缓存器：cacheHandlers
+            默认情况下onClick会被视为动态绑定，所以每次都会去追踪它的变化
+            但是因为是同一个函数，所以没有追踪变化，直接缓存起来复用即可
+            因为我们知道在Vue3的diff算法中，只有有静态标记的才会进行比较，才会进行追踪
+
+        ssr渲染：
+            当有大量静态内容时候，这些内容会被当做纯字符串推进一个buffer里面，
+            即使存在动态绑定，会通过模板插值嵌入进去。这样会比通过虚拟dom来渲染的快上很多很多。
+            
+            当静态内容大到一定量级时候，会用_createStaticVNode方法在客户端生成一个static node，这些静态node，会被直接innerHTML，就不需要创建对象，然后根据对象渲染。
+
+
+
+
+
+     -->
+    </body>
+</html>
