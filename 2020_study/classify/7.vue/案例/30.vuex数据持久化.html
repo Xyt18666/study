@@ -23,6 +23,22 @@
                 })]
         })
 
+------------------------------------------------------------------------------------------
+
+    原生的本地存储方式： 
+        实现功能的主要方式：sessionStorage 本地存储
+
+
+    获取和储存的例子：
+        const KEY = "state";
+        const set = val => {
+            window.sessionStorage.setItem(KEY, JSON.stringify(val));
+        };
+        const get = () => {
+            return JSON.parse(window.sessionStorage.getItem(KEY) || "[]");
+        };
+
+
 
 
 
