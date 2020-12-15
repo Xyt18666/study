@@ -13,7 +13,130 @@
         为什么要使用组合api？
             vue2数据和业务逻辑分散，不利于管理维护 (案例 App.vue)
 
+            组合api，将数据和业务逻辑抽离，能够使项目更清晰，更容易维护
             使用组合api优化以上的案例 (案例 App2.vue、 App3.vue)
+
+----------------------------------------------------------------------------
+
+        被抽离的组合api的结构：
+            import { reactive } from "vue";
+            引入 reactive ，用于监听复杂数据，响应视图
+
+            组合api函数
+            function useAddStudent(state) {
+                let state2 = reactive({});
+                创建reactive，内部对象为，该模块需要的属性
+
+                function addStu(e) {}
+                组合api中的方法
+
+                return { state2, addStu };
+                返回属性和方法
+            }
+            export default useAddStudent;
+            导出函数
+
+
+        使用组合api :
+            import useAddStudent from "./js/add";
+            引入上面定义的组合api
+            
+            setup() {
+            组合api的入口函数
+                let { state2, addStu } = useAddStudent(state);
+                实例方法功能
+                
+                return {
+                    导出属性和方法
+                    state2,
+                    addStu,
+                };
+            }
+
+        理解：所有的功能都可以放到独立的模块中去管理，形成了多文件的组合api,提高了可读性、维护性
+            
+----------------------------------------------------------------------------
+
+
+        Composition API：组合api
+        Option API: vue2中的 数据和函数存放的方式，属性和函数分离
+
+        Composition API本质（组合API/注入API）:
+            Composition API的本质就是在运行的时候将暴露出去的数据注入到option api中，如将数据注入到data中，将方法注入到methods中。
+
+----------------------------------------------------------------------------
+
+
+        setup的执行时机：
+            setup在beforeCreate和created两个生命周期之间执行
+
+            beforeCreate: 表示组件刚刚被创建出来，组件的data和methods还没有初始化好
+            setup：执行了
+            created: data和methods已经初始化好
+
+        setup的注意点：
+            由于在执行setup函数的时候，还没有执行created生命周期方法，所以在setup函数中，是无法使用data和methods
+
+            由于我们不能在setup函数中无法使用data和methods，所以Vue为了避免我们错误的使用，它直接将函数中的this修改成了undefined
+
+            setup函数只能是同步的，不能是异步的
+
+---------------------------------------------------------------------------   
+        什么是reactive：
+            reactive是Vue3中提供的实现响应式数据的方法
+            在Vue2中响应式数据是通过defineProperty来实现的，而在Vue3中响应式数据是通过ES6的Proxy来实现的
+
+        reactiv注意点：
+            reactive参数必须是对象（json/arr），才能实现数据响应
+
+            如果给reactive传递了其他对象，默认情况下修改对象，界面不会自动更新，如果想更新，可以通过重新赋值的方式
+
+----------------------------------------------------------------------------
+        
+        什么是ref：
+            ref和reactive一样，也是用来实现响应式数据的方法
+
+            由于reactive必须传递一个对象，所以导致在企业开发中如果我们只想让某个变量实现响应式的时候会非常麻烦，所以Vue3就给我们提供了ref方法，实现对简单值的监听
+
+        ref本质：
+            ref底层的本质其实还是reactive，系统会自动根据我们给ref传入的值将它转换成ref(xx) -> reactive({value: xx})
+
+        ref注意点：
+            在template中使用ref的值不用通过value获取
+            在js中使用ref的值必须通过value获取
+            在模板中使用时不需要使用 value
+
+----------------------------------------------------------------------------
+
+        ref和reactive区别：
+
+            Vue在处理的时候会先判断数据是什么类型的：
+                如果在template里面使用的是ref类型的数据，那么Vue会自动帮我们添加.value
+
+                如果template里使用的是reactive类型的数据，那么Vue不会自动帮我们添加.value
+
+            Vue是如何判断数据类型的呢？
+                Vue在解析数据之前，会自动判断这个数据是否是 ref 类型的，如果是就自动添加 .value ，如果不是就不自动添加 .value
+
+                通过当前数据的 __v_isRef 来判断，如果有这个私有属性，并且取值为true，那么就代表是一个ref类型的数据
+
+                例子：打印ref数据的结果
+                    
+                    RefImpl {_rawValue: 18, _shallow: false, __v_isRef: true, _value: 18}
+                    __v_isRef: true
+                    _rawValue: 18
+                    _shallow: false
+                    _value: 18
+                    value: 18
+
+            自己判断是什么类型 ：(isRef和isReactive)
+                通过 isRef 和 isReactive 可以判断数据是 ref 还是 reactive
+
+                例子： 
+                    console.log(isRef(state))
+                    console.log(isReactive(age))
+                        
+
 
 
 

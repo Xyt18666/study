@@ -32,6 +32,12 @@
 
                     <!-- 
                     router 开启路由模式，点击导航 切换路由
+                    index 就是要跳转的地址
+
+                    动态路由创建：
+                        $route.path   当前路由路径
+                        $router.options.routes[0].children  有那些子路由
+
 
 
                   -->
