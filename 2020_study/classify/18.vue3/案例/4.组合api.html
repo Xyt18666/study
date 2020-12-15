@@ -79,7 +79,7 @@
 
             由于我们不能在setup函数中无法使用data和methods，所以Vue为了避免我们错误的使用，它直接将函数中的this修改成了undefined
 
-            setup函数只能是同步的，不能是异步的
+            setup函数只能是同步的，不能是异步的,不能写 async
 
 ---------------------------------------------------------------------------   
         什么是reactive：
@@ -104,7 +104,7 @@
         ref注意点：
             在template中使用ref的值不用通过value获取
             在js中使用ref的值必须通过value获取
-            在模板中使用时不需要使用 value
+           
 
 ----------------------------------------------------------------------------
 
@@ -135,9 +135,277 @@
                 例子： 
                     console.log(isRef(state))
                     console.log(isReactive(age))
+
+
+        
                         
+-------------------------------------------------------------------------
+
+        递归监听:
+            默认情况下，无论是通过ref还是通过reactive都是递归监听
+
+        递归监听存在的问题:
+            如果数据量比较大，非常消耗性能
+            因为递归监听将使每一层都被包装成一个Proxy
+
+        非递归监听：
+            只能监听第一层，不能监听其他层，
+            也就是说，只要第一层数据改变，就会刷新视图，
+            但是第一层不改变，修改其他层，是不会改变的
+            
+            import { shallowReactive } from 'vue'
+            import { shallowRef } from 'vue'
+
+            ps：如果是通过shallowRef创建数据，Vue监听的是.value的变化，并不是第一层的变化
+
+        triggerRef：triggerRef(state)
+            采用非递归监听，可以使用triggerRef根据传入的数据主动更新界面
+
+            ps: Vue3只提供了triggerRef方法，没有提供triggerReactive方法，所以如果是reactive类型的数据，那么是无法主动触发界面更新的
+
+        shallowRef本质:
+            ref->reactive
+            ref(10)->reactive({value: 10})
+            shallowRef->shallowReactive
+            shallowRef(10)->shallowReactive({value: 10})
+
+            所以如果是通过shallowRef创建的数据，它监听的是.value的变化，因为底层本质上value才是第一层
+
+        应用场景：
+            一般情况我们使用 ref和 reactive 即可
+            只有在需要监听的数据量比较大的时候，我们才使用 shallowRef() 和 shallowReactive()
+
+            ref：
+                递归监听
+                可以监听简单数据类型（复杂数据类型也可以，必须是 实例的ref名.value.xx）
+                在js中使用ref的值必须通过value获取
+                在template中使用ref的值不用通过value获取
+                
+            reactive：
+                递归监听
+                只能监听复杂数据类型（包括 {} 、[]）
+                在js中使用reactive的值 ，实例的reactive名.xx
+                在template中使用，直接使用
+                如果给reactive传递了其他类型的对象，默认情况下修改对象，界面不会自动更新，如果想更新，可以通过重新赋值的方式
+
+            shallowRef：
+                非递归监听
+                可以监听简单数据类型（复杂数据类型也可以，必须是 实例的ref名.value.xx）
+                Vue监听的是.value的变化，并不是第一层的变化
+                triggerRef(state),根据传入的数据主动更新界面
+
+            shallowReactive：
+                非递归监听
+                只能监听复杂数据类型（包括 {} 、[]）
+                Vue监听的是第一层的变化，如果第一层变了则刷新(会连带刷新)，反之不刷新
+
+        什么是连带刷新？（自己定义的名字，官方叫法不知道）
+            数据层：
+                只监听第一层的数据，第一层修改，内部其他层也修改，检测到第一层数据修改后，会将整个 proxy 的数据 一起刷新
+
+                例子：在vue3中，修改第一层的数据，内部其他属性一同跟随刷新
+
+            视图层：
+                有一个dom元素需要刷新，此dom中有2个数据，修改2个数据，只有其中一个触发了视图刷新，该元素内的数据将全部刷新
+
+                例子：在vue2中，使用下标修改数组，不会刷新视图，此时绑定一个其他属性进入元素，只要触发绑定的其他属性，就能刷新使用下标修改数组后的值
+
+            关于据图联动范围：不太清楚
 
 
+----------------------------------------------------------------------------
+
+        使用reactive包装后的数据与原始数据的关系：
+            引用关系，使用reactive封装成的state的本质是一个Proxy对象，在这个Proxy对象引用了原始数据
+
+            封装后的数据 不等于 原始数据
+
+            如果直接修改原始数据，那么是无法触发界面更新的，只有通过包装之后的对象来修改，才会触发界面的更新
+
+
+        ref和reactive数据类型的特点：
+            每次修改都会被追踪，都会更新ui界面，但是非常消耗性能
+            所以我们可以使toRaw
+        
+        toRaw:
+            从reactive或ref中得到原始数据
+
+            import { reactive, toRaw } from 'vue'
+            let state = reactive(obj)
+            let obj2 = toRaw(state)
+            console.log(obj === obj2) //true
+
+        作用：做一些不想被监听的事情（提升性能）
+            当我们的不需要修改ui界面时，就可以使用toRow获取原始数据，操作数据，这样就不会刷新视图，能够提升性能
+
+        ref的toRaw：
+            如果想通过toRaw拿到ref类型的原始数据（创建时传入的那个数据），那么就必须明确告诉toRaw方法，要获取的是.value的值，因为经过Vue处理之后.value中保存的才是当初创建时传入的那个原始数据
+
+            例子：  
+                let state = ref(obj)
+                let obj2 = toRaw(state.value)
+
+
+        markRaw：markRaw标记某个数据永远不会被追踪
+            
+            例子：
+                import { markRaw, reactive } from 'vue'
+                obj = markRaw(obj)
+                let state = reactive(obj)
+
+            
+        toRef的理解:
+            如果利用ref将某一个对象中的属性变成响应式的数据， 我们修改响应式数据是不会影响到原始数据的
+
+            如果利用toRef将某一个对象中的属性变成响应式的数据，我们修改响应式数据是会影响到原始数据的
+
+            但是如果响应式数据是通过toRef创建的，那么修改了数据并不会触发UI界面的更新
+
+            例子： let state = toRef(obj,'name')
+
+
+        ref和toRef区别：
+            ref->复制，修改响应式数据不会影响以前的数据
+            toRef->引用，修改响应式数据会影响以前的数据
+            ref->数据发生改变，界面就会自动更新
+            toRef->数据发生改变，界面也不会自动更新
+
+
+        toRef引用场景：
+            如果想让响应式数据和以前的数据关联起来，并且更新响应式数据之后还不想更新UI， 就可以使用toRef。
+
+        toRefs：将对象中所有的属性全部追踪
+            let state = toRefs(obj)
+
+
+        customRef:返回一个ref对象，可以显式地控制依赖追踪和触发响应
+
+            作用：一个使用customRef的场景，根据数据的请求路径进行追踪
+        
+            自定义ref:
+                function myRef(value) {
+                    return customRef((track, trigger) => {
+                        return {
+                            get() {
+                                track() // 告诉Vue这个数据需要追踪变化
+                                console.log('get', value)
+                                return value
+                            },
+                            set(newValue) {
+                                console.log('set', newValue)
+                                value = newValue
+                                trigger() // 告诉Vue触发界面更新
+                            },
+                        }
+                    })
+                }
+
+            封装获取数据的方式：
+                
+                function myRef(path, initValue) {
+                    let value = initValue
+                    return customRef((track, trigger) => {
+                        fetch(path)
+                        .then((res) => res.json())
+                        .then((data) => {
+                            value = data
+                            trigger()
+                        })
+                        .catch((err) => {
+                            console.log(err)
+                        })
+                        return {
+                        get() {
+                            // 这个数据是需要追中变化的
+                            track()
+                            console.log('get', value)
+                            return value
+                        },
+                        set(newValue) {
+                            console.log('set', newValue)
+                            value = newValue
+                            // 告诉Vue触发界面更新
+                            trigger()
+                        },
+                        }
+                    })
+                }
+                
+            
+                
+            fetch()函数：请求数据的函数，原生js的方法
+                fetch 接收两个参数：
+                    第一个参数是 URL 地址
+                    第二个参数是请求的配置信息，包含headers、请求类型（GET/POST）、是否跨域等信息
+
+                例子：
+                    fetch(url, {
+                    body: JSON.stringify(data), // must match 'Content-Type' header
+                    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+                    credentials: "same-origin", // include, same-origin, *omit
+                    headers: {
+                        "user-agent": "Mozilla/4.0 MDN Example",
+                        "content-type": "application/json"
+                    },
+                    method: "POST", // *GET, POST, PUT, DELETE, etc.
+                    mode: "cors", // no-cors, cors, *same-origin
+                    redirect: "follow", // manual, *follow, error
+                    referrer: "no-referrer" // *client, no-referrer
+                    })
+                    .then(response => response.json()) // parses response to JSON
+                    .then(function(myJson) {
+                        console.log(myJson);
+                    });
+
+                资料地址：https://blog.csdn.net/hbiao68/article/details/103974899
+
+-------------------------------------------------------------------------
+
+        ref获取元素：
+            <template>
+                <div ref="box">
+                    我是div
+                </div>
+            </template>
+
+            <script>
+                import { ref, onMounted } from 'vue'
+                export default {
+                    name: 'App',
+                    setup() {
+                        let box = ref(null) // reactive({value: null})
+
+                        onMounted(() => {      //监听生命周期
+                        console.log('onMounted', box.value)
+                        })
+
+                        return {
+                        box,
+                        }
+                    },
+                }
+            </script>
+
+-----------------------------------------------------------------------------
+
+        readonly:用于创建一个只读的数据，并且是递归只读
+
+            例子：
+                let state = readonly({
+                    name: 'lnj',
+                    attr: {
+                        age: 18,
+                        height: 1.88,
+                    },
+                })
+
+        shallowReadonly：用于创建一个只读的数据，但不是递归只读的
+
+        isReadonly：判断一个数据是否是只读的
+
+        readonly 和 const 的区别：
+            const：赋值保护，不能给变量重新赋值
+            readonly：属性保护，不能给属性重新赋值
 
 
 
