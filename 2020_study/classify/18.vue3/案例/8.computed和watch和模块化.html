@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+
+    以下虽有属性均为组合api中的方法，vue2中的同名方法不影响使用
+
+
+    computed：同样需要引入，写在 setup中
+
+        let newdata = computed(()=>{
+            return oldData + xx
+        })
+        
+
+----------------------------------------------------------
+
+
+    watch : 同样需要引入，写在 setup中
+        
+        watch(监听的值,(newData,oldData)=>{})
+
+
+    watchEffect:同样需要引入，写在 setup中
+        watchEffect(()=>{里面使用那些参数，那些参数改变才会触发})
+
+----------------------------------------------------------
+
+    模块化：(就是组合apic抽离模块)
+        hooks文件夹，建立到src下
+
+        创建：建立一个文件
+            import {} from "vue"
+            模块代码
+            export {导出值}
+
+        引入：
+            import {上面导出的值} from "xxx路径/刚才定义的文件"
+            setup(){
+                return {上面引入的值}
+            }
+            
+
+     -->
+    </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+    suspense 异步组件 ：用于在 没有请求到数据前 后的展示
+
+        使用 ：
+            <suspense>
+                <template #default>
+                    请求成功后展示的组件或者内容
+                </template>
+
+                <template #fallback>
+                    请求失败后展示的组件或者内容
+                </template>     
+            <suspense>
+
+        作用：用于在为获取到数据时展示不同的状态
+
+        定义一个请求的组件： .vue
+                
+            import { defineComponent } from "vue"
+
+            export default defineComponent({
+                setup(){
+                    async ...await 获取数据
+                }
+            })
+                
+        两个教程不符：这个setup可以是 async 异步函数 ，有待测试
+            
+            
+            
+
+
+
+
+
+
+     -->
+    </body>
+</html>
