@@ -11,6 +11,7 @@
                 {{ stu.name }} -- {{ stu.age }}
             </li>
         </ul>
+        
     </div>
 </template>
 
