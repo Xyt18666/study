@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+    获取元素标线黑科技：
+        [].forEach.call($$("*"),function(a){
+            a.style.outline="1px solid #"+(~~(Math.random()*(1<<24))).toString(16)
+        })
+
+        解析：
+            $$("*") 谷歌浏览器独有获取所有元素
+        
+    parseInt的另类：
+        parseInt(0.000008)//0
+        parseInt(0.0000008)//8
+
+        解析：
+            String(0.000008);  // '0.000008'
+            String(0.0000008); // '8e-7'
+
+            从上面的程式码可以看出，小于 0.0000001（1e-7） 的数字转换成 String 时，会变成科学记号法，再对这个数进行 parseInt 操作就会导致这个问题发生。
+        
+    js的另类：
+        (!(~+[])+{})[--[~+""][+[]]*[~+[]] + ~~!+[]]+({}+[])[[~!+[]]*~+[]]  //sb
+
+        解析：
+            Javascript 按位取反运算符 (~) ，对一个表达式执行位非（求非）运算。
+            对象、数组、布尔值的运算
+
+    运算符：
+        []：参数是对象时，调用 toString()方法，否则 调用ValueOf()
+        ,: 逗号运算符，执行顺序从左到右，返回逗号右侧的运算
+        +：绝大多数情况它是加法运算符，比如1+1，'a'+'b',[]+[]等
+            但是+前面没有值或者前面的值是空对象，后面有值的时候，它是一个一元运算符，作用是将它后面的操作数转换成数字。
+
+    性能检测：
+        console.time("检测耗时开始");
+        console.timeEnd("检测耗时结束");
+
+
+    浅拷贝拷贝数组： slice(0)
+
+    伪深拷贝：JSON.parse(JSON.stringify(obj))
+       
+        1. 如果obj里面有时间对象，则JSON.stringify后再JSON.parse的结果，时间将只是字符串的形式。而不是时间对象；
+        2. 如果obj里有RegExp、Error对象，则序列化的结果将只得到空对象
+        3. 如果obj里有函数，undefined，则序列化的结果会把函数或 undefined丢失
+        4. 如果obj里有NaN、Infinity和-Infinity，则序列化的结果会变成null
+        5. JSON.stringify()只能序列化对象的可枚举的自有属性，例如 如果obj中的对象是有构造函数生成的，  则使用JSON.parse(JSON.stringify(obj))深拷贝后，会丢弃对象的constructor；
+        6. 如果对象中存在循环引用的情况也无法正确实现深拷贝
+
+    ...对象 ：解构一个对象的所有属性到某处
+
+    obj[]:  []读取变量，可以通过他动态获取 对象中的某值
+
+    Object.assign() ： 不算深拷贝 也不算浅拷贝 一级拷贝 如果内层还有引用类型 就是浅拷贝了
+    ... :扩展和 assign 一样
+
+    == 与 ===的深入分析：
+        D:\Study\2020_study\classify\4. es6\练习题\==运算符深入解析.html
+
+    从数组中随机获取成员: 
+        var arr = [12, 548 , 'a' , 2 , 5478 , 'foo' , 8852, , 'Doe' , 2145 , 119];
+        var  randomItem = arr[Math.floor(Math.random() * arr.length)]
+
+    获取指定范围内的随机数:
+        var x = Math.floor(Math.random() * (max - min + 1)) + min;     
+        
+    生成从0到指定值的数字数组:
+        var numbersArray = [] , max = 100;
+        for( var i=1; numbersArray.push(i++) < max;);  
+
+    生成随机的字母数字字符串:
+        function generateRandomAlphaNum(len) {
+            var rdmString = "";
+            for( ; rdmString.length < len; rdmString  += Math.random().toString(36).substr(2));
+            return  rdmString.substr(0, len);
+        }
+
+    打乱数字数组的顺序:
+        var numbers = [5, 458 , 120 , -215 , 228 , 400 , 122205, -85411];
+        numbers = numbers.sort(function(){ return Math.random() - 0.5});
+
+    set map 数组的 互相转换：
+        数组转set: Set(数组)
+        set转数组:  [...set]  、 Array.from(set)
+
+        数组转 map:  for遍历  map.set(i, arr[i])
+        map转数组：[...map] 
+    
+    对象 和 map 的互相转换：
+        map转obj : Object.fromEntries(map)
+        obj转map : for of  Object.keys(obj)遍历obj ,map.set(k,obj[k])
+
+    数组排序：
+        sort:
+            arr.sort((a, b) => a - b)
+
+        冒泡:
+            for (let i = 0; i < arr.length - 1; i++) {
+                for (let j = 0; j < arr.length - 1 - i; j++) {
+                // 相邻元素两两对比，元素交换，大的元素交换到后面
+                if (arr[j] > arr[j + 1]) {
+                    [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+                }
+                }
+            }
+
+        选择:
+            for (let a = 0; a < arr.length; a++) {
+                for (let q = a + 1; q < arr.length; q++) {
+                console.log(a, q);
+                if (arr[a] > arr[q]) {
+                    [arr[a], arr[q]] = [arr[q], arr[a]];
+                }
+                }
+            }
+    
+    碰撞检测： D:\Study\review\3.js\练习题\碰撞检测.html
+
+
+     -->
+    </body>
+</html>

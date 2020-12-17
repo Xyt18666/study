@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+    1、排序算法如何实现
+        1）快速排序（nlogn）
+        2）选择排序（n^2）
+     -->
+    </body>
+    <script>
+        /*
+            快速排序（nlogn）
+            1、选择数组中间数作为基数，并从数组中取出此基数；
+            2、准备两个数组容器，遍历数组，逐个与基数比对，较小的放左边容器，较大的放右边容器；
+            3、递归处理两个容器的元素，并将处理后的数据与基数按大小合并成一个数组，返回。
+        */
+        {
+            let arr = [1, 13, 23, 35, 3, 4, 67, 89, 900, 16]; //定义数组
+            function quckNum(arr) {
+                let numJz = arr[0]; //取基准数 随便取就好了 我取第一个
+                let arrLfet = [],
+                    arrRight = []; //定义2个数组 用于存放比较的值
+                for (let i = 1; i < arr.length; i++) {
+                    if (arr[i] < numJz) {
+                        arrLfet.push(arr[i]); //比基准数小的放左边数组
+                    } else {
+                        arrRight.push(arr[i]); //比基准数大或者等于基准数的放右边数组
+                    }
+                    console.log(arrLfet, arrRight);
+                }
+                if (arrLfet.length >= 2) arrLfet = quckNum(arrLfet); //比对后的数组的个数大于等于2才有意义 然后再次对数组进行比对操作
+                if (arrRight.length >= 2) arrRight = quckNum(arrRight);
+                return arrLfet.concat(numJz, arrRight); //合并左边数组，基准数，右边数组并返回
+            }
+            console.log(quckNum(arr));
+        }
+        {
+            /*
+            选择排序,用从第一个 a 依次和后面的q比 ，
+            0 1
+            0 2
+            0 3
+            0 4
+            0 5
+            0 6
+            0 7
+            1 2
+            1 3
+            1 4
+            1 5
+            1 6
+            1 7
+            2 3
+            2 4
+            2 5
+            2 6
+            2 7
+            3 4
+            3 5
+            3 6
+            3 7
+            4 5
+            4 6
+            4 7
+            5 6
+            5 7
+            6 7
+            
+
+            */
+            var arr = [8, 94, 15, 88, 55, 76, 21, 39];
+            for (let a = 0; a < arr.length; a++) {
+                for (let q = a + 1; q < arr.length; q++) {
+                    console.log(a, q);
+                    if (arr[a] > arr[q]) {
+                        [arr[a], arr[q]] = [arr[q], arr[a]];
+                    }
+                }
+            }
+            console.log(arr);
+        }
+    </script>
+</html>
