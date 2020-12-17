@@ -2,6 +2,7 @@
   <div class="test">
     <h1>综合测试</h1>
     <test-component></test-component>
+    <custom-ref></custom-ref>
   </div>
 </template>
 
@@ -9,6 +10,7 @@
 import { defineComponent } from 'vue';
 
 import TestComponent from './components/TestComponent.vue';
+
 
 export default defineComponent({
   name: 'App5',

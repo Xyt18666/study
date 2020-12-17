@@ -17,7 +17,7 @@
             onBeforeUpdate ：组件更新之前
             onUpdated：组件更新之后
             onBeforeUnmount：组件卸载前执行
-            onUnmount：组件销毁后
+             onUnmounted：组件销毁后
             onActivated:动态组件激活
             onDeActivated:动态组件失活时
             onErrorCaptured:错误时
@@ -33,6 +33,20 @@
 
         
         两个教程不符：setup执行时机，应该是最先执行
+
+
+        官方文档：
+            beforeCreate -> use setup()
+            created -> use setup()
+            beforeMount -> onBeforeMount
+            mounted -> onMounted
+            beforeUpdate -> onBeforeUpdate
+            updated -> onUpdated
+            beforeUnmount -> onBeforeUnmount
+            unmounted -> onUnmounted
+            errorCaptured -> onErrorCaptured
+            renderTracked -> onRenderTracked
+            renderTriggered -> onRenderTriggered
 
 
 

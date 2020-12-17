@@ -7,7 +7,81 @@
     </head>
     <body>
         <!-- 
-    入口： App5.vue
+    入口文件： App5.vue
+
+    组合api:
+        未分离的组合api 定义属性和方法
+        分离的组合api 定义属性和方法
+
+        reactive 监听属性
+        ref 监听属性
+
+        isRef 判断是否为 ref 
+        isReactive 判断是否为 rea
+
+        shallowReactive 监听属性
+        shallowRef 监听属性
+
+        triggerRef 主动刷新Ref视图
+
+        toRaw  获取原始数据
+
+        markRaw 标记某个数据永远不会被追踪
+
+        toRef 将某一个对象中的属性变成响应式的数据，会影响到原始数据，但是并不会触发ui更新
+        toRefs 将对象中所有的属性全部追踪
+
+        customRef 自定义的 ref ，返回一个ref对象，可以显式、控制依赖追踪和触发响应
+
+        ref获取元素 在setup中获取方式与vue2不同
+
+        readonly 递归只读
+        shallowReadonly 第一层只读
+        isReadonly  是不是只读
+
+        computed 计算属性
+        watch   监听器
+        watchEffect 监听器
+
+        provide：祖先向后代传值 provide(key,val)
+        inject：接收祖先传递的值 let xx = inject("key")
+        
+
+
+    es7原生数据请求：
+        fetch(path)
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+
+    生命周期：
+        setup,
+        onBeforeMount,
+        onMounted,
+        onBeforeUpdate,
+        onUpdated,
+        onBeforeUnmount,
+        onUnmounted,
+        onActivated,
+        onDeactivated,
+        onErrorCaptured,
+        onRenderTracked,
+        onRenderTriggered,
+                
+    
+    瞬移组件：teleport 可以将元素挂载到指定位置
+
+    异步组件 ： Suspense 异步加载数据时，的两种状态
+
+
+ 
+
+
+
 
 
 
