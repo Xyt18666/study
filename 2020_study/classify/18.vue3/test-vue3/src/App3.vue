@@ -11,17 +11,22 @@
                 {{ stu.name }} -- {{ stu.age }}
             </li>
         </ul>
+        <Home />
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
-import { reactive, onBeforeMount, onRenderTracked, onRenderTriggered } from "vue";
+import { reactive, onBeforeMount, onRenderTracked, onRenderTriggered, defineComponent } from "vue";
 import useAddStudent from "./js/add";
 import useRemoveStudent from "./js/remove";
 // 抽离方法后，引入
 
-export default {
+import Home from "/src/components/Home.vue";
+
+export default defineComponent({
     name: "App",
+    components: { Home },
     setup() {
         let { state, remStu } = useRemoveStudent();
         let { state2, addStu } = useAddStudent(state);
@@ -53,5 +58,11 @@ export default {
     created() {
         console.log("created");
     },
-};
+    mounted() {
+        console.log("vuex的数据", this.$store.state.title);
+    },
+});
+// export default {
+
+// };
 </script>

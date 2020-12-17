@@ -1,14 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <!-- 
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+        不同的构建枸橘有不同的方法，我使用的是vue3官方推荐的 vite
 
-        vue add typescript
+        安装：npm i --dev typescript
+
+        创建配置文件：tsconfig.json
+
+        优化TS类型推断：
+            创建 shims.d.ts 文件：(让ts认识.vue)
+                declare module "*.vue" {
+                    import { ComponentOptions } from "vue";
+                    const componentOptions: ComponentOptions;
+                    export default componentOptions;
+                }
+
+            创建 source.d.ts文件：(优化编译器提示，声明静态资源文件)
+                declare const React: string;
+                declare module '*.json';
+                declare module '*.png';
+                declare module '*.jpg';
+
+
+
+        vite引入路径时不能使用 ：@/xx   
+            改为 ：/src
+                import Home from "/src/components/Home.vue";
+
+        规定使用ts与定义：
+            <script lang="ts">
+                import {defineComponent} from "vue"
+                export default defineComponent({
+                
+                })
+            </script>
+
+        在内部可以直接使用ts语法
+        更多的ts语法看 ts 学习
+
+        组合api中使用 ts ：
+            let data:User = reactive({})
+            let data<User> = reactive({})
+            let data = reactive({}) as User
+
+        
+
+        
+
+
+        
+
 
 
 
@@ -16,5 +63,5 @@
 
 
      -->
-</body>
+    </body>
 </html>
