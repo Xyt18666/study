@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+        icon图 ： public 下的 favicon.ico
+
+        修改title:
+            路由加 
+                meta: {
+                    title: "街声",
+                },
+
+            配置路由守卫
+                router.beforeEach((to, from, next) => {
+                    if (to.meta.title) {
+                        document.title = to.meta.title;
+                    }
+                    next();
+                });
+
+
+
+
+     -->
+    </body>
+</html>
