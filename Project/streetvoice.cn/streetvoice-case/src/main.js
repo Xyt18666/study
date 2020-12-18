@@ -3,9 +3,13 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import axios from "axios"; //引入 axios
+
+import i18n from './assets/lang/index.js'
 import "normalize.css";
 Vue.config.productionTip = false;
 Vue.prototype.$http = axios; //将 axios 挂载到 vue实例
+
+
 
 router.beforeEach((to, from, next) => {
   if (to.meta.title) {
@@ -16,5 +20,6 @@ router.beforeEach((to, from, next) => {
 new Vue({
   router,
   store,
+  i18n,
   render: (h) => h(App),
 }).$mount("#app");

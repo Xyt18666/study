@@ -1,17 +1,22 @@
 <template>
   <div class="home">
-    <h1>HOME</h1>
-    <!-- <van-button plain type="primary">朴素按钮</van-button> -->
+    <top-bar></top-bar>
+    <router-view></router-view>
+    <bottom-navigation></bottom-navigation>
   </div>
 </template>
 
 <script>
-// import { Button } from "vant";
+
+import TopBar from "@/components/TopBar.vue";
+import BottomNavigation from "@/components/BottomNavigation.vue";
 
 export default {
   name: "Home",
   components: {
-    // vanButton: Button,
+    TopBar,
+    BottomNavigation,
+ 
   },
 };
 </script>
