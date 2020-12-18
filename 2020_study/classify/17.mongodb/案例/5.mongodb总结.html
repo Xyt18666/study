@@ -232,6 +232,16 @@
                     db.lists.update({_id:id}, {$pull:{"interests":"gadgets"}})
 
                                 
+            关联：
+                Schema定义：
+                    users:{
+                        type:mongoose.Schema.Types.ObjectId ,
+                        ref:"表名"  
+                    }
+
+                后端查询：
+                    xx.find().populate([]).then()
+                
 
     
     
