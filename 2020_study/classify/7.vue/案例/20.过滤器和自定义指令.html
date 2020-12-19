@@ -40,7 +40,17 @@
                 modifiers：修饰符对象
 
             vnode vue编译生成的 虚拟dom
-            
+
+        例子：
+            directives:{
+                指令名:{
+                    inserted: function (el,binding) {
+                    },
+                    bind: function (el, binding, vnode) {
+                    }
+                }
+            }
+                        
            
 
 

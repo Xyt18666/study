@@ -94,15 +94,6 @@
     事件修饰词：
         v-on:事件.prevent
         告知 触发的事件调用 event.preventDefault()
-
-        lazy这个修饰符会在光标离开input框才会更新数据
-        <input type="text" v-model.lazy="value">
-        
-        trim是输入框过滤首尾的空格
-        <input type="text" v-model.trim="value">
-        
-        number的功能是先输入数字就会限制输入只能是数字
-        <input type="text" v-model.number="value">
         
         stop是阻止事件冒泡
         <button @click.stop="test">test</button>
@@ -115,6 +106,16 @@
         
         once 只能用一次，无论点击几次，执行一次之后都不会再执行
         <div @click.once="test"></div>
+
+    v-mode修饰符：
+        lazy这个修饰符会在光标离开input框才会更新数据
+        <input type="text" v-model.lazy="value">
+        
+        trim是输入框过滤首尾的空格
+        <input type="text" v-model.trim="value">
+        
+        number的功能是先输入数字就会限制输入只能是数字
+        <input type="text" v-model.number="value">
 
 
     */
