@@ -1,11 +1,15 @@
 <template>
   <div class="find">
-    <p>find{{ $t("hello") }}</p>
+    <p>find</p>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {};
+  },
+};
 </script>
 
 <style></style>

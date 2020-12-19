@@ -42,7 +42,30 @@
         实现自动识别语言：
             window.navigator.language  获取当前浏览器的语言
             根据语言动态切换
+
+
+
+        vue组件模板的使用:
+            <div>{{$t('message.zh')}}</div>
+ 
+        vue组件模板数据绑定的使用:  
+            <input :placeholder="$t('message.zh')"></input>
+ 
+        vue组件data中赋值的使用:
+            data:{
+                msg:this.$t('message.zh');
+            }
+            ps:绑定到data切换不会刷新视图，放到 computed中
         
+        获取数组值：$t('message.下标') 或者 $t('message[下标]')
+
+
+        二次引用的数据如何切换？
+            使用 watch 监听
+
+
+    
+                
 
 
 

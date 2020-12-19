@@ -25,49 +25,61 @@ export default {
   },
   computed: {
     ...mapState(["sectionName"]),
-  },
-  data() {
-    return {
-      navList: [
+    navList() {
+      return [
         {
-          text: "发现",
+          text: this.$t("navList.0"),
           to: "/",
           icon: "wap-home",
           isActive: 0,
         },
         {
-          text: "热门",
+          text: this.$t("navList.1"),
           to: "/hot",
           icon: "fire",
           isActive: 1,
         },
         {
-          text: "专辑",
+          text: this.$t("navList.2"),
           to: "/album",
           icon: "audio",
           isActive: 2,
         },
         {
-          text: "搜索",
+          text: this.$t("navList.3"),
           to: "/search",
           icon: "comment",
           isActive: 3,
         },
         {
-          text: "我的",
+          text: this.$t("navList.4"),
           to: "/my",
           icon: "manager",
           isActive: 4,
         },
-      ],
+      ];
+    },
+  },
+  data() {
+    return {
       isActive: 0,
     };
   },
+
   methods: {
     ...mapMutations(["setSectionName"]),
     toSection(i) {
       this.setSectionName(this.navList[i].text);
       this.isActive = i;
+    },
+  },
+  watch: {
+    navList: {
+      handler(newa) {
+        this.setSectionName(newa[this.isActive].text);
+      },
+      immediate: true,
+      deep: true,
     },
   },
 };
