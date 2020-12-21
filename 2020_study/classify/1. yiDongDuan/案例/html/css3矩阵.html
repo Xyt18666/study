@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            div {
+                width: 50px;
+                height: 50px;
+                margin: 20px;
+                background: #191;
+                position: relative;
+            }
+            .box1 {
+                transform: matrix(1, 0, 0, 1, 50, 50);
+
+                /* transform: matrix(1, 0, 0, 1, X, Y); */
+                /* X 横向平移, Y 纵向平移 */
+            }
+            .box2 {
+                /* 将 X 轴缩放 A 倍
+                将 Y 轴缩放 B 倍 */
+                /* transform:  matrix(A, 0, 0, B, 0,0); */
+
+                transform: matrix(1.5, 0, 0, 1.5, 0, 0);
+            }
+            .box3 {
+                /* rotate 矩阵 */
+                /* matrix(cosθ,sinθ,-sinθ,cosθ,0,0)  就是 cs-sc */
+                transform: matrix(1, -2, 2, 1, 0, 0);
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 
+            假定matrix的六个参数用字母表示如下：transform: matrix(a,b,c,d,e,f);
+
+            e和f 代表着偏移量translate，x和y轴
+
+            a和d 代表着缩放比例scale,x 和y轴
+
+            b和c 代表着斜切skew（具体参数和角度关系为, b->tanθ y轴 c->tanθ x轴 ,我们具体操作的时候还是要使用小数的）
+
+            abcd 中的ad代表缩放(scale),bc代表者斜切(skew); abcd四个参数代表着旋转，这你可能难以理解，请继续往下看。
+
+            旋转是可以理解为, 旋转=规律的缩放+规律的斜切 这里的意思是旋转可以用缩放和斜切一起用来得到, 两者联系在于这个角度θ。具体如下：
+            matrix(cosθ,sinθ,-sinθ,cosθ,0,0)
+
+            缩放x、斜切、斜切、缩放y、平移x、平移y
+
+
+            总结：
+                平移、缩放、斜切比较简单。都是2个参数
+                旋转是 4个
+
+            matrix3d：
+                transform: matrix3d(sx, 0, 0, 0, 0, sy, 0, 0, 0, 0, sz, 0, 0, 0, 0, 1)
+
+
+
+
+
+
+
+         -->
+        <div class="box1">box1</div>
+        <div class="box2">box2</div>
+        <div class="box3">box3</div>
+        <div class="box4">box4</div>
+        <div class="box5">box5</div>
+        <div class="box6">box6</div>
+        <div class="box7">box7</div>
+        <div class="box8">box8</div>
+        <div class="box9">box9</div>
+        <div class="box10">box10</div>
+    </body>
+</html>

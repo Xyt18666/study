@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+    elementui默认样式覆盖:
+
+        方案一：在样式外新增一个样式不添加scoped 的style标签 （建议使用）
+
+        方案二：使用样式穿透 2种 (不建议使用)
+                stylus : .my /deep/ .el-input__inner{
+                }
+
+                sass/less : .my >>> .el-input__inner{        
+                }
+
+        方案三： !important（第一种无效时，使用这种）
+
+        不要使用原始的类名，使用自定义的类名
+
+    按需导入：https://www.jianshu.com/p/a7390a989a84
+        1. 借助 babel-plugin-component，我们可以只引入需要的组件，以达到减小项目体积的目的
+            npm install babel-plugin-component -D
+
+        2. 更改.babelrc文件
+            "plugins": [
+                [
+                "component",
+                {
+                    "libraryName": "element-ui",
+                    "styleLibraryName": "theme-chalk"
+                }
+                ]
+            ]
+
+        3.创建index.js并引入
+            1.在 src 文件夹中新建我们的 element 文件夹，并在里面新建一个 index.js 文件
+            2.在index文件中去书写我们需要引入的部分组件
+            3.在 main.js 中使用该文件，就大功告成了
+
+
+
+
+
+
+
+     -->
+    </body>
+</html>
