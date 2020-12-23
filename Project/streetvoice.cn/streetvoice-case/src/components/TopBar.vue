@@ -43,6 +43,13 @@ export default {
   display: flex;
   justify-content: space-between;
   padding: 15px 25px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  box-sizing: border-box;
+  background: #fff;
   p {
     font: bold 26px/50px "";
     margin: 0;

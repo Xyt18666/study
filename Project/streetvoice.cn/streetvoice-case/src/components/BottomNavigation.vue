@@ -99,5 +99,6 @@ export default {
   position: fixed;
   bottom: 0px;
   left: 0px;
+  background: #fff;
 }
 </style>
