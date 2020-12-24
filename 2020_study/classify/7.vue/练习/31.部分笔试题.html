@@ -56,10 +56,35 @@
             在js封装过程中，尽量做到低耦合高内聚。减少页面的冗余代码
             尽量减少使用递归。避免死递归
             减少网路请求次数
+
+
+    1.
+        常见的状态码： 
+          200:操作成功
+          304:缓存
+          404:Not found 文件未找到
+          403:没有权限 
+          501:服务器识别错误
+        总结：  
+          1**：请求消息收到，继续处理         
+          2**：操作成功
+          3**：完成此请求必须进一步处理（重定向）
+          4**：客户端错误
+          5**：服务器错误
+
+    2. xhr.abort();
+
+    3.
+        target是事件触发的真实元素
+        currentTarget是事件绑定的元素
+    
+    4. 边框
+
+    5. 创建 挂载 更新 销毁  ， 创建
+
+    6. 看下边代码
             
-
-
-
+            
 
 
 
@@ -80,6 +105,45 @@
         //     setTimeout(() => {
         //         console.log(i);
         //     }, i * 1000);
+        // }
+
+        // {
+        //     function getSize(n) {
+        //         let arr = [1, 2];
+        //         for (let a = 0; a < n - 2; a++) {
+        //             arr.push(arr[arr.length - 1] + arr[arr.length - 2]);
+        //         }
+        //         console.log(arr);
+        //         console.log(arr[n - 1]);
+        //         // 1 2 3 5 8 13 21 34
+        //     }
+
+        //     getSize(8);
+        // }
+
+        // {
+        //     function sum(n) {
+        //         if (n === 0) return 0;
+        //         if (n === 1) return 1;
+        //         if (n === 2) return 2;
+        //         return sum(n - 2) + sum(n - 1);
+        //     }
+        //     sum(8);
+        // }
+
+        // {
+        //     function getNum(n) {
+        //         let n1 = 1;
+        //         let n2 = 2;
+        //         let n3;
+        //         for (var i = 2; i < n; i++) {
+        //             n3 = n1 + n2;
+        //             n1 = n2;
+        //             n2 = n3;
+        //         }
+        //         console.log(n3);
+        //     }
+        //     getNum(8);
         // }
     </script>
 </html>
