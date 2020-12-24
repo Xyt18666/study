@@ -52,10 +52,15 @@
     <van-row>
       <van-col span="24" class="song_recommend">
         <ul class="recommend_list" v-if="recommendList">
-          <li v-for="(d, i) in recommendList" :key="i">
+          <li
+            v-for="(d, i) in recommendList"
+            :key="i"
+            @click="$store.commit('setGlobalPlayerIsShow', true)"
+          >
             <img :src="d.picUrl" alt="" />
             <p>{{ d.name }}</p>
             <p class="song_name">{{ d.song.artists[0].name }}</p>
+            <div class="recommend_play_button"></div>
           </li>
         </ul>
       </van-col>
@@ -185,11 +190,14 @@ html {
   overflow: scroll;
   .recommend_list {
     display: flex;
+    width: fit-content;
+
     li {
       margin: 0 20px;
       background: rgb(243, 241, 241);
       box-shadow: 0 0 5px 1px #ccc;
       border-radius: 0.4rem;
+      position: relative;
       img {
         width: 40vw;
         border-radius: 0.4rem 0.4rem 0 0;
@@ -200,6 +208,29 @@ html {
       }
       .song_name {
         font: 12px/16px "";
+      }
+      .recommend_play_button {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        background: red;
+        border-radius: 40px;
+        top: 35vw;
+        left: 25vw;
+      }
+      .recommend_play_button::before {
+        content: "";
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-left: 10px solid #fff;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-25%, -50%);
       }
     }
   }

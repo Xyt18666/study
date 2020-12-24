@@ -8,10 +8,14 @@ export default new Vuex.Store({
     sectionName: "发现",
     userAvatarImgUrl:
       "https://img.nga.178.com/attachments/mon_202004/02/g6Q5-bt6yK2ToS3w-46.jpg",
+    globalPlayerIsShow: false,
   },
   mutations: {
     setSectionName(state, val) {
       state.sectionName = val;
+    },
+    setGlobalPlayerIsShow(state, val) {
+      state.globalPlayerIsShow = val;
     },
   },
   actions: {},
