@@ -52,15 +52,12 @@
     <van-row>
       <van-col span="24" class="song_recommend">
         <ul class="recommend_list" v-if="recommendList">
-          <li
-            v-for="(d, i) in recommendList"
-            :key="i"
-            @click="$store.commit('setGlobalPlayerIsShow', true)"
-          >
+          <li v-for="(d, i) in recommendList" :key="i" @click="setThisMusic(d)">
             <img :src="d.picUrl" alt="" />
             <p>{{ d.name }}</p>
             <p class="song_name">{{ d.song.artists[0].name }}</p>
-            <div class="recommend_play_button"></div>
+
+            <play-button class="play_button"></play-button>
           </li>
         </ul>
       </van-col>
@@ -70,12 +67,16 @@
 
 <script>
 import { Col, Row, Swipe, SwipeItem } from "vant";
+import { mapMutations } from "vuex";
+import PlayButton from "@/components/PlayButton.vue";
+
 export default {
   components: {
     VanRow: Row,
     VanCol: Col,
     VanSwipe: Swipe,
     VanSwipeItem: SwipeItem,
+    PlayButton,
   },
   created() {
     this.getBanner();
@@ -90,6 +91,8 @@ export default {
     };
   },
   methods: {
+    ...mapMutations(["setGlobalPlayerIsShow", "setCurrentMusic"]),
+
     getBanner() {
       this.$http.get("http://localhost:3000/banner?type=2").then((d) => {
         this.bannerList = d.data.banners;
@@ -107,6 +110,12 @@ export default {
         this.recommendList = d.data.result;
         console.log(this.recommendList);
       });
+    },
+    setThisMusic(d) {
+      this.setCurrentMusic(d);
+      console.log(this.$store.state);
+      
+      this.setGlobalPlayerIsShow(true);
     },
   },
 };
@@ -209,28 +218,9 @@ html {
       .song_name {
         font: 12px/16px "";
       }
-      .recommend_play_button {
-        position: absolute;
-        width: 40px;
-        height: 40px;
-        background: red;
-        border-radius: 40px;
+      .play_button {
         top: 35vw;
         left: 25vw;
-      }
-      .recommend_play_button::before {
-        content: "";
-        display: block;
-        width: 0;
-        height: 0;
-        border-top: 10px solid transparent;
-        border-right: 10px solid transparent;
-        border-bottom: 10px solid transparent;
-        border-left: 10px solid #fff;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-25%, -50%);
       }
     }
   }
