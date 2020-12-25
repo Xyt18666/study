@@ -57,7 +57,10 @@
             <p>{{ d.name }}</p>
             <p class="song_name">{{ d.song.artists[0].name }}</p>
 
-            <play-button class="play_button"></play-button>
+            <play-button
+              class="play_button"
+              @click.native.stop="toPlayer(d)"
+            ></play-button>
           </li>
         </ul>
       </van-col>
@@ -118,8 +121,13 @@ export default {
     setThisMusic(d) {
       this.setCurrentMusic(d);
       console.log(this.$store.state);
+      this.setGlobalPlayerIsShow(true);
+    },
+    toPlayer(d) {
+      // 展示页面
+      this.setCurrentMusic(d);
 
-      // this.setGlobalPlayerIsShow(true);
+      this.setPlayerIsShow(true);
     },
   },
 };
