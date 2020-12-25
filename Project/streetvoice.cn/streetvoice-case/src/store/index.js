@@ -9,6 +9,7 @@ export default new Vuex.Store({
     userAvatarImgUrl:
       "https://img.nga.178.com/attachments/mon_202004/02/g6Q5-bt6yK2ToS3w-46.jpg",
     globalPlayerIsShow: false,
+
     currentMusic: null,
   },
   mutations: {

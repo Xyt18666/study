@@ -91,7 +91,11 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(["setGlobalPlayerIsShow", "setCurrentMusic"]),
+    ...mapMutations([
+      "setGlobalPlayerIsShow",
+      "setPlayerIsShow",
+      "setCurrentMusic",
+    ]),
 
     getBanner() {
       this.$http.get("http://localhost:3000/banner?type=2").then((d) => {
@@ -114,8 +118,8 @@ export default {
     setThisMusic(d) {
       this.setCurrentMusic(d);
       console.log(this.$store.state);
-      
-      this.setGlobalPlayerIsShow(true);
+
+      // this.setGlobalPlayerIsShow(true);
     },
   },
 };
