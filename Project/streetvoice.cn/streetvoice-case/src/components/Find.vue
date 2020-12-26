@@ -71,6 +71,8 @@
 <script>
 import { Col, Row, Swipe, SwipeItem } from "vant";
 import { mapMutations } from "vuex";
+import Lyric from "lyric-parser";
+
 import PlayButton from "@/components/PlayButton.vue";
 
 export default {
@@ -115,18 +117,29 @@ export default {
     getRecommendList() {
       this.$http.get("http://localhost:3000/personalized/newsong").then((d) => {
         this.recommendList = d.data.result;
-        console.log(this.recommendList);
+        // console.log(this.recommendList);
       });
     },
     setThisMusic(d) {
       this.setCurrentMusic(d);
-      console.log(this.$store.state);
+      // console.log(this.$store.state);
       this.setGlobalPlayerIsShow(true);
     },
+    hanlder() {
+      // this hanlder called when lineNum change
+    },
     toPlayer(d) {
-      // 展示页面
-      this.setCurrentMusic(d);
+      this.$http.get("http://localhost:3000/song/url?id=" + d.id).then((t) => {
+        d.musicUrl = t.data.data[0];
+        this.setCurrentMusic(d);
+      });
+      this.$http.get("http://localhost:3000/lyric?id=" + d.id).then((t) => {
+        let lyric = new Lyric(t.data.lrc.lyric, this.handler);
+        // console.log(lyric);
+        d.lyric = lyric;
 
+        this.setCurrentMusic(d);
+      });
       this.setPlayerIsShow(true);
     },
   },

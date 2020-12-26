@@ -11,6 +11,14 @@ export default new Vuex.Store({
     globalPlayerIsShow: false,
     playerIsShow: false,
     currentMusic: null,
+    playerData: {
+      value: 0,
+      total: 0,
+      curr: 0,
+      duration: 0,
+      currentTime: 0,
+      isplay:false
+    },
   },
   mutations: {
     setSectionName(state, val) {
@@ -24,6 +32,9 @@ export default new Vuex.Store({
     },
     setCurrentMusic(state, val) {
       state.currentMusic = val;
+    },
+    setPlayerData(state, val) {
+      state.playerData = val;
     },
   },
   actions: {},

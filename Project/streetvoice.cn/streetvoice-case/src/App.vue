@@ -3,6 +3,11 @@
     <home></home>
     <global-player></global-player>
     <player></player>
+
+    <audio
+      v-if="$store.state.currentMusic"
+      :src="$store.state.currentMusic.musicUrl.url"
+    ></audio>
   </div>
 </template>
 
