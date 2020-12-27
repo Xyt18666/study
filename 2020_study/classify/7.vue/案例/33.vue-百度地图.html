@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+    文档：https://dafrok.github.io/vue-baidu-map
+    案例在 ： D:\Study\2020_study\classify\7.vue\knowledg-practice\src\components\7.map.vue
+
+    安包 ：npm install vue-baidu-map --save
+
+    引入并挂载：
+        import BaiduMap from "vue-baidu-map";
+
+        Vue.use(BaiduMap, {
+            // ak 是在百度地图开发者平台申请的密钥 详见 http://lbsyun.baidu.com/apiconsole/key */
+            ak: "qbRzfojGT8HYWlGlfNuGguyGGSnUbsns",
+        });
+
+    基础使用：
+        <baidu-map class="bm-view" :center="center" :zoom="zoom" @ready="handler"></baidu-map>
+
+        data() {
+            return {
+                center: { lng: 0, lat: 0 },
+                zoom: 15,
+            };
+        },
+        methods: {
+            handler({ BMap, map }) {
+                console.log(BMap, map);
+                this.center.lng = 116.404;
+                this.center.lat = 39.915;
+                this.zoom = 15;
+            },
+        },
+
+        BmView标签 ： 
+            是用于渲染百度地图实例可视化区域的容器，通常与 LocalSearch 等会输出其它视图的组件结合使用。
+            当 BaiduMap 组件中没有挂载 BmView 组件时，百度地图实例将渲染在 <baidu-map> 节点上。
+            当 BaiduMap 挂载了 BmView 组件时，百度地图实例将渲染在 <bm-view> 节点上。
+            每个 BaiduMap 组件应对应唯一一个 BmView 组件，如果声明了多个 BmView 组件，只有第一个能被正常渲染。 该组件主要用于控制布局。除了能够渲染地图视图以外，没有任何其它用途。
+
+        center： 经纬度
+        zoom：缩放大小
+
+        @ready：地图组件渲染完毕时触发，返回一个百度地图的核心类和地图实例。百度地图组件是异步加载，请不要尝试在组件的生命周期中访问 BMap 核心类和 map 实例，如有需要，请在所需组件的 ready 事件回调函数的参数中获取。
+
+        :scroll-wheel-zoom="true"   开启滚轮缩放
+        :mapStyle="mapStyle"        自定义主题
+        mapType="BMAP_SATELLITE_MAP"   设置地图类型
+        属性双向绑定            看实例
+
+
+        基础控件：文档案例，直接复制
+            比例尺
+            缩放
+            地图类型
+            定位
+            版权
+            城市列表
+            全景
+
+        自定义控件（配合第三方实现测距）： 看实例
+            npm i bmaplib.new-distancetool
+                
+
+        覆盖物：
+            点
+            多点
+            折线
+            多边形
+            圆形
+            地面
+            标签
+            信息窗体
+            自定义覆盖物
+
+        图层：
+            瓦片图层
+            交通流量图层
+
+        检索：
+            地区检索
+            公交路线规划
+            驾车路线规划
+            步行路线规划
+            公交路线规划
+
+        右键菜单
+        第三方组件库
+
+        
+
+
+
+
+     -->
+    </body>
+</html>
