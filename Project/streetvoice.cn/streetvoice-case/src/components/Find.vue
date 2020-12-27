@@ -70,8 +70,8 @@
 
 <script>
 import { Col, Row, Swipe, SwipeItem } from "vant";
-import { mapMutations } from "vuex";
-import Lyric from "lyric-parser";
+import { mapMutations, mapActions } from "vuex";
+// import Lyric from "lyric-parser";
 
 import PlayButton from "@/components/PlayButton.vue";
 
@@ -90,9 +90,9 @@ export default {
   },
   data() {
     return {
-      bannerList: null,
-      songDay: null,
-      recommendList: null,
+      bannerList: "",
+      songDay: "",
+      recommendList: "",
     };
   },
   methods: {
@@ -101,6 +101,7 @@ export default {
       "setPlayerIsShow",
       "setCurrentMusic",
     ]),
+    ...mapActions(["getMusicUrl", "getLyric", "setCurrentMusicAction"]),
 
     getBanner() {
       this.$http.get("http://localhost:3000/banner?type=2").then((d) => {
@@ -121,26 +122,14 @@ export default {
       });
     },
     setThisMusic(d) {
-      this.setCurrentMusic(d);
-      // console.log(this.$store.state);
+      this.setCurrentMusicAction(d);
       this.setGlobalPlayerIsShow(true);
     },
-    hanlder() {
-      // this hanlder called when lineNum change
-    },
-    toPlayer(d) {
-      this.$http.get("http://localhost:3000/song/url?id=" + d.id).then((t) => {
-        d.musicUrl = t.data.data[0];
-        this.setCurrentMusic(d);
-      });
-      this.$http.get("http://localhost:3000/lyric?id=" + d.id).then((t) => {
-        let lyric = new Lyric(t.data.lrc.lyric, this.handler);
-        // console.log(lyric);
-        d.lyric = lyric;
 
-        this.setCurrentMusic(d);
-      });
-      this.setPlayerIsShow(true);
+    toPlayer(d) {
+      this.setCurrentMusicAction(d);
+      this.getMusicUrl(d);
+      this.getLyric(d);
     },
   },
 };

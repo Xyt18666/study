@@ -13,7 +13,7 @@
         <p>歌词</p>
       </van-col>
     </van-row>
-    <van-row type="flex" justify="center">
+    <van-row type="flex" justify="center" v-if="currentMusic && playerData">
       <van-col span="24">
         <van-swipe
           class="my-swipe player_swiper"
@@ -21,7 +21,6 @@
           :show-indicators="false"
           :style="{ height: '100%', width: '100%' }"
           initial-swipe="1"
-          v-if="currentMusic"
         >
           <van-swipe-item>1</van-swipe-item>
           <van-swipe-item>
@@ -58,25 +57,23 @@
             </div>
           </van-swipe-item>
 
-          <van-swipe-item v-if="currentMusic.lyric">
+          <van-swipe-item>
             <div class="wrapper" ref="wrapper">
               <ul class="lyric_text content">
                 <li
-                  v-for="(d, i) in currentMusic.lyric.lines"
+                  v-for="(d, i) in playerData.lyric.lines"
                   :key="i"
                   class="items"
                   ref="items"
                   :class="[
-                    currentMusic.lyric.lines[i].time / 1000 <
+                    playerData.lyric.lines[i].time / 1000 <
                       parseInt(playerData.currentTime) &&
-                    currentMusic.lyric.lines[i + 1].time / 1000 >
+                    playerData.lyric.lines[i + 1].time / 1000 >
                       parseInt(playerData.currentTime)
-                      ? 'active'
+                      ? 'active_lyric'
                       : '',
                   ]"
                 >
-                  {{ d.time / 1000 }}
-                  {{ parseInt(playerData.currentTime) }}
                   {{ d.txt }}
                 </li>
               </ul>
@@ -92,6 +89,7 @@
 import { Popup, Col, Row, Swipe, SwipeItem, Slider, Icon } from "vant";
 import { mapState, mapMutations } from "vuex";
 import BScroll from "@better-scroll/core";
+
 export default {
   components: {
     VanPopup: Popup,
@@ -106,66 +104,48 @@ export default {
   data() {
     return {
       scrollTop: [],
-      scroll: null,
+      scroll: "",
+      audio: "",
+      items: "",
+      indexs: "",
     };
   },
   computed: {
     ...mapState(["playerIsShow", "currentMusic", "playerData"]),
   },
   methods: {
-    ...mapMutations(["setPlayerIsShow", "setPlayerData"]),
+    ...mapMutations([
+      "setPlayerIsShow",
+      "setPlayerData",
+      "setPlayerDataIsplay",
+      "setPlayerDataCurrentTime",
+      "setPlayerDataTotal",
+      "setPlayerDataValueAndCurr",
+      "setPlayerDataDuration",
+    ]),
 
     checkPlay() {
-      try {
-        this.setPlayerData({
-          value: this.playerData.value,
-          total: this.playerData.total,
-          curr: this.playerData.curr,
-          duration: this.playerData.duration,
-          currentTime: this.playerData.currentTime,
-          isplay: !this.playerData.isplay,
-        });
-        let audio = document.querySelector("audio");
-        if (audio.paused) {
-          audio.play();
-        } else {
-          audio.pause();
-        }
-      } catch {
-        console.log("xx");
+      if (this.audio.paused) {
+        this.ondragEnd();
+      } else {
+        this.ondragStart();
       }
     },
     onChange(values) {
-      try {
-        let audio = document.querySelector("audio");
-        audio.currentTime = (parseInt(this.playerData.duration) * values) / 100;
-        this.setPlayerData({
-          value: values,
-          total: this.playerData.total,
-          curr: this.playerData.curr,
-          duration: this.playerData.duration,
-          currentTime: (parseInt(this.playerData.duration) * values) / 100,
-          isplay: this.playerData.isplay,
-        });
-      } catch {
-        console.log("xx");
-      }
+      this.audio.currentTime =
+        (parseInt(this.playerData.duration) * values) / 100;
+
+      this.setPlayerDataCurrentTime(
+        (parseInt(this.playerData.duration) * values) / 100
+      );
     },
     ondragStart() {
-      try {
-        let audio = document.querySelector("audio");
-        audio.pause();
-      } catch {
-        console.log("xx");
-      }
+      this.audio.pause();
+      this.setPlayerDataIsplay(true);
     },
     ondragEnd() {
-      try {
-        let audio = document.querySelector("audio");
-        audio.play();
-      } catch {
-        console.log("xx");
-      }
+      this.audio.play();
+      this.setPlayerDataIsplay(false);
     },
     getSML(data) {
       let s = Math.floor(data / 3600);
@@ -177,37 +157,61 @@ export default {
       return s + ":" + f + ":" + m;
     },
     initPlayer() {
-      let audio = document.querySelector("audio");
-      console.log(audio);
+      this.audio = document.querySelector("audio");
+      this.ondragStart();
+      this.ondragEnd();
 
-      try {
-        audio.play();
-        audio.oncanplay = () => {
-          this.setPlayerData({
-            value: this.playerData.value,
-            total: this.getSML(audio.duration),
-            curr: this.playerData.curr,
-            duration: audio.duration,
-            currentTime: this.playerData.currentTime,
-            isplay: false,
-          });
-        };
+      this.audio.oncanplay = () => {
+        this.setPlayerDataDuration(this.audio.duration);
+        this.setPlayerDataTotal(this.getSML(this.audio.duration));
+      };
 
-        audio.ontimeupdate = () => {
-          this.setPlayerData({
-            value:
-              (this.playerData.currentTime / this.playerData.duration) * 100,
-            total: this.playerData.total,
-            curr: this.getSML(audio.currentTime),
-            duration: this.playerData.duration,
-            currentTime: audio.currentTime,
-            isplay: this.playerData.isplay,
-          });
-          //   console.log(audio.currentTime);
-        };
-      } catch {
-        console.log("未获取audio");
-      }
+      this.audio.ontimeupdate = () => {
+        this.setPlayerDataCurrentTime(this.audio.currentTime);
+        this.setPlayerDataValueAndCurr({
+          value: (this.playerData.currentTime / this.playerData.duration) * 100,
+          curr: this.getSML(this.audio.currentTime),
+        });
+
+        // this.items = document.querySelector(".active_lyric").offsetTop;
+
+        // this.scroll.scrollTo(0, -this.items + 300, 300);
+
+        // console.log(this.playerData.currentTime);
+
+        try {
+          this.scroll.scrollToElement(
+            document.querySelector(".active_lyric"),
+            300,
+            0,
+            -300
+          );
+        } catch {
+          console.log("dom加载未成功");
+        }
+      };
+
+      this.audio.onended = () => {
+        this.ondragStart();
+      };
+    },
+    initmusicLyric() {
+      this.scroll = new BScroll(this.$refs.wrapper, {
+        probeType: 3,
+        click: true,
+      });
+      // this.items = this.$refs.items;
+      // console.log(this.items);
+      // this.items.forEach((element) => {
+      //   this.scrollTop.push(element.offsetTop);
+      // });
+      // console.log(this.scrollTop);
+      // this.scroll = new BScroll(this.$refs.wrapper, {
+      //   probeType: 3,
+      //   click: true,
+      // });
+      // if()
+      // this.scroll.scrollTo(0, -18.4, 300);
     },
   },
   watch: {
@@ -215,14 +219,16 @@ export default {
       handler() {
         this.initPlayer();
       },
-      deep: true,
+    },
+    "playerData.lyric": {
+      handler() {
+        this.$nextTick(function() {
+          this.initmusicLyric();
+        });
+      },
     },
   },
-  created() {
-    // this.$nextTick(() => {
-    //
-    // });
-  },
+  created() {},
   mounted() {},
   updated() {
     // let items = this.$refs.items;
@@ -231,11 +237,10 @@ export default {
     //   this.scrollTop.push(element.offsetTop);
     // });
     // console.log(this.scrollTop);
-    this.scroll = new BScroll(this.$refs.wrapper, {
-      probeType: 3,
-      click: true,
-    });
-
+    // this.scroll = new BScroll(this.$refs.wrapper, {
+    //   probeType: 3,
+    //   click: true,
+    // });
     // this.scroll.scrollTo(0, -18.4, 300)
   },
 };
@@ -290,14 +295,14 @@ export default {
 }
 .lyric_text {
   li {
-    margin: 5px 0;
+    margin: 20px 0;
   }
-  li.active {
+  li.active_lyric {
     color: #0f0;
   }
 }
 .wrapper {
   height: 80vh;
-  //   overflow: scroll;
+  // overflow: scroll;
 }
 </style>
