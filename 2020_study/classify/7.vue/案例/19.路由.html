@@ -103,23 +103,82 @@
             redirect: "/about",  把某个路径重新定向到 某路由 
             alias: "/index",   使用 某某路径 访问  固定的 路由
 
+------------------------------------------------------------------------------           
+
         导航守卫：
-            全局守卫：
-                router.beforeEach((to, from, next) => {})
+            作用：在页面进入前等其他操作中，判断数据信息，进行不同的处理方式
+
+            全局守卫：只要路由改变就触发，写在 main.js中
+                router.beforeEach((to, from, next) => {})    路由进入前
+                    to   去哪里
+                    from  来自于哪里
                     next(false)   中断当前导航
 
-                后置路由钩子 ：router.afterEach((to, form) => {})   
+                    next({          跳转到某处
+                        path: "/longin",
+                    });
 
-           路由独享守卫：
-                beforeEnter:()=>{}
+                router.afterEach((to, form) => {})   路由进入后
 
-            组件内守卫：
-                beforeRouteEnter(to, from, next) {进入前}
-                beforeRouteUpdate(to, from, next) {更新}
-                beforeRouteLeave(to, from, next) {离开}
+           路由独享守卫：只要进入当前路由就触发，写在router/index.js中
+                beforeEnter:(to, from, next)=>{}  路由进入前
+
+            组件内守卫：只要进入当前组件就触发，写在组件中
+                beforeRouteEnter(to, from, next) {进入前}  路由进入前
+                beforeRouteUpdate(to, from, next) {更新} 路由更新时，但是该组件被复用
+                beforeRouteLeave(to, from, next) {离开} 路由离开后
+
+                beforeRouteEnter (to, from, next) {
+                    // 在渲染该组件的对应路由被 confirm 前调用
+                    // 不！能！获取组件实例 `this`
+                    // 因为当守卫执行前，组件实例还没被创建
+                },
+                beforeRouteUpdate (to, from, next) {
+                    // 在当前路由改变，但是该组件被复用时调用
+                    // 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，
+                    // 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
+                    // 可以访问组件实例 `this`
+                },
+                beforeRouteLeave (to, from, next) {
+                    // 导航离开该组件的对应路由时调用
+                    // 可以访问组件实例 `this`
+                }
+
+        路由钩子执行顺序：
+            全局
+            独享
+            组件内
+
+        路由钩子和生命周期的执行顺序：
+            先执行路由钩子
+            后执行生命周期
+
+        条件判断，进行鉴权，是否跳转:
+            to 和 from 可以获取 meta以及路由的信息
+            可以获取 store 中的数据
         
         路由额外信息：
                 meta: {}
+
+
+        进入页面，鉴权，需要登录，跳转到登陆，点击登陆，跳转到要进入的页面（小效果）：
+            进入页面，路由拦截，通过 next({}) 跳转到登录页，并携带 to.fullPath信息
+            登录页，登陆 ，点击登陆 ，跳转到 传过来的 路径信息 
+        
+        更多的权限判断（小效果）：分情况，在路由守卫中判断
+
+        在main.js配置文件中使用elementUi的提示信息组件（小效果）：
+            ElementUI.Message("使用element的提示信息");       直接使用ele的
+            Vue.prototype.$message("使用element的提示信息");  使用挂载到vue上的
+
+        跳转到路由后提示（小效果）：
+            watch监听一下路由，通过路由信息，提示对应的信息
+
+        跳转后不能回退（小效果）：
+            this.$router.replace("路径") 通过替换路径实现，不可回退
+            
+
+
 
 ----------------------------------------------------------------------
     传参：

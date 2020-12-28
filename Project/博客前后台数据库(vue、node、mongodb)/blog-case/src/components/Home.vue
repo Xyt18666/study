@@ -293,7 +293,6 @@ export default {
         commentList: [],
       };
       console.log(oneMsg);
-     
 
       let old = JSON.parse(JSON.stringify(this.$store.state.mainList));
       old.unshift(oneMsg);
