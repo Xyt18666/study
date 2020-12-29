@@ -242,7 +242,10 @@ export default {
     this.getListLength();
     this.routerCheck();
   },
-  mounted() {},
+  mounted() {
+    console.log(this);
+    
+  },
   watch: {
     $route: "routerCheck",
   },

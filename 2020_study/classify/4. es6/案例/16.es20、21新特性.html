@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body></body>
+
+    <script>
+        /*  es2020 */
+        {
+            /*
+                                可选链操作符（Optional Chaining） ： ?.
+                                    作用：让我们在查询具有多个层级对象时，不再需要进行冗余的各种前置校验
+
+
+                                */
+            let obj = {
+                a: { b: { c: "this c" }, d: { e: "this e" } },
+                q: { w: { r: "this r" }, s: { t: "this t" } },
+            };
+
+            let nestedProp = obj && obj.a && obj.a.d; //旧的方式需要进行判断是否有前面的值，才能获取
+            // let nestedProp2 = obj.c.d.e; // 获取报错，因为没又该值，也没有判断
+            let nestedProp3 = obj && obj.e && obj.e.d; // 有判断 ，不会报错 ，会返回 undefined
+
+            let nestedProp4 = obj?.a?.b;
+            let nestedProp5 = obj?.e?.b; //可选链式操作，即使没有，只会返回undefined
+
+            console.log(nestedProp, nestedProp3);
+            console.log(nestedProp4, nestedProp5);
+        }
+
+        {
+            /*
+                                    空位合并操作符: ??
+                                        作用：用??表示，如果表达式在??的左侧运算符求值为undefined或null，就返回其右侧默认值
+
+                                    */
+            let a = undefined;
+            let b = "33";
+
+            let c = a ?? b;
+
+            console.log(c);
+        }
+
+        {
+            /*
+                            Promise.allSettled :
+                                作用：并发执行异步任务，并且多个任务之间互不干扰，与promise.all相比，promise.all有个缺点就是，只要其中有一个异步操作失败，其他异步操作就会停止，而promise.allSettled不会。
+
+                            */
+            const promise = [
+                Promise.resolve(1),
+                Promise.resolve(2),
+                Promise.resolve(3),
+                Promise.reject("error"),
+            ];
+            Promise.all(promise)
+                .then(responses => console.log(responses))
+                .catch(e => console.log(e)); // "error"
+
+            Promise.allSettled(promise)
+                .then(responses => console.log(responses))
+                .catch(e => console.log(e));
+        }
+
+        {
+            /*
+                            BigInt:
+                                作用：就是让js能够表示-(2^53-1)至 2^53-1范围之外的数。
+                                用法：使用BigInt创建或者直接在数字后面加上n
+
+                            */
+            const Num = 111n;
+            const aBigInt = BigInt(111);
+            console.log(Num === aBigInt);
+        }
+
+        {
+            /*
+                        globalThis:
+                            globalThis 是一个全新的标准方法用来获取全局 this 。之前开发者会通过如下的一些方法获取：
+
+                                全局变量 window：是一个经典的获取全局对象的方法。但是它在 Node.js 和 Web Workers 中并不能使用
+                                全局变量 self：通常只在 Web Workers 和浏览器中生效。但是它不支持 Node.js。一些人会通过判断 self 是否存在识别代码是否运行在 Web Workers 和浏览器中
+                                全局变量 global：只在 Node.js 中生效
+
+                        */
+            globalThis.v = { value: "vvv" };
+        }
+        console.log("获取globalThis v", v);
+
+        {
+            /*
+                        类私有属性: #xx
+
+
+                        */
+            class Message {
+                #message = "Howdy";
+
+                greet() {
+                    console.log(this.#message);
+                }
+            }
+
+            const greeting = new Message();
+
+            greeting.greet(); // Howdy
+            // console.log(greeting.#message); // Private name #message is not defined
+        }
+
+        {
+            /*
+                        String.matchAll:返回一个包含了所有匹配结果以及其捕获组的迭代器。
+
+                        match和matchAll的区别:
+                            1、match返回值是一个数组，如果没有任何匹配项则返回null；matchAll返回迭代器，要想查看其结果需要遍历迭代器。
+                            2、match匹配到第一个匹配项后即停止匹配；matchAll会匹配出字符串中所有的匹配项。
+
+                        */
+            const tweet = "#JavaScript is full of #surprises. Both good and bad ones #TIL";
+
+            for (h of tweet.matchAll(/([a-z-A-Z]+)/g)) {
+                console.log("matchAll:" + h);
+            }
+        }
+
+        {
+            /*
+                        动态导入：
+                            先导出：
+                                export
+                                export default
+
+                            导入：
+                                import("./16.module.js")
+
+
+                    */
+
+            import("./16.module.js").then(
+                model => {
+                    console.log(model);
+
+                    console.log(model.num(1, 2));
+                },
+                e => {
+                    console.log(e);
+                }
+            );
+
+            let fun = async (num1, num2) => {
+                // 动态导入,不调用，将不导入
+                let model = await import("./16.module.js");
+                console.log(model.num(1, 2));
+            };
+
+            fun(1, 2);
+        }
+        // ------------------------------------------------------------------------------------
+
+        /*  es2021 */
+        {
+            /*
+            replaceAll:替换所有匹配，不在需要正则
+            
+            */
+            const str = "I like frontend. I like JavaScript.";
+            const newStr = str.replace("like", "love");
+
+            const newStr2 = str.replaceAll("like", "love");
+            console.log(newStr, newStr2);
+        }
+
+        {
+            /*
+            数字分隔符 : _
+                增强可读性
+            */
+            let x = 2_3333_3333;
+            console.log(x);
+        }
+
+        {
+            /*
+            运算符简写：
+                ||=
+                &&=
+                ??=
+            
+            */
+            let a = 1;
+            let b = 2;
+            a ||= b;
+            console.log(a);
+        }
+
+        {
+            /*
+            Intl.ListFormat : 是一个构造函数，用来处理和多语言相关的对象格式化操作。
+            */
+            const list = ["Apple", "Orange", "Banana"];
+            let en = new Intl.ListFormat("en-GB", { style: "long", type: "conjunction" }).format(
+                list
+            );
+
+            let cn = new Intl.ListFormat("zh-cn", { style: "short", type: "conjunction" }).format(
+                list
+            );
+            console.log(en, cn);
+        }
+
+        {
+            /*
+                Intl.DateTimeFormat 是一个用来处理多语言下的时间日期格式化的函数。
+            */
+            let c = new Intl.DateTimeFormat("zh", {
+                timeStyle: "medium",
+                dateStyle: "short",
+                // 可以通过同时传入 timeStyle 和 dateStyle 这两个参数来获取更完整的格式化时间的字符串
+            });
+            let o = new Intl.DateTimeFormat("en", {
+                timeStyle: "medium",
+                dateStyle: "short",
+                // 可以通过同时传入 timeStyle 和 dateStyle 这两个参数来获取更完整的格式化时间的字符串
+            });
+            console.log(c.format(Date.now()));
+            console.log(o.format(Date.now()));
+        }
+    </script>
+</html>
