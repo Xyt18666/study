@@ -57,10 +57,20 @@
             使用 keep-alive 标签 包含的组件 就会实现 组件的数据缓存
 
         组件缓存的钩子函数：
-            activated       激活时调用
-            deactivated     停用时调用
+            activated       缓存组件激活时调用
+            deactivated     缓存组件停用时调用
 
         如果 不使用 组件缓存 想保留数据 ，就不能销毁元素，但是会降低性能
+
+
+    activated 和 deactivated 和 其他生命周期执行的顺序：
+        beforeCreate ->  created  ->beforeMount -> mounted  -> activated -> beforeUpdate -> updated
+
+        activated 在 mounted 之后被调用
+
+        只有在 keep-alive 中的 组件 激活和失活 时触发
+            
+    
 
 ---------------------------------------------------------------------------------------------------------------
 

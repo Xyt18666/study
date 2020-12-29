@@ -42,6 +42,9 @@
 
                 通过设置meta元素中content的initial-scale值达到移动端适配
 
+        测试结果：
+            还是很不错的，他会自动根据屏幕进行缩放
+
 
     第二种方法：借助media实现rem适配
         原理：html的 font-size属性.
@@ -58,23 +61,17 @@
 
             document.documentElement.style.fontSize = scale*remPx + 'px';
                 根据屏幕宽度 动态计算根元素的 字体大小
-
-
-    第三种方法： px2rem-loader 配合 lib-flexible
-
-        适配过程：https://blog.csdn.net/weixin_45087036/article/details/103580083
-
-        npm install px2rem-loader -s  
-        npm install lib-flexible -s 
-
-        import 'lib-flexible/flexible'
-
-        更详细的看网址配置
         
+          测试结果：
+            书写比较复杂，效果还可以
 
 
+    第三种方法： vw vh
+        原理：1vw表示1%的屏幕宽度， 即屏幕宽度被分为100份vw
 
-    其他方法： vw  %  栅格
+    
+
+    其他方法： %  ui框架
 
 
 

@@ -53,7 +53,23 @@
         console.timeEnd("检测耗时结束");
 
     结构输出：
-        console.group：用于查看分组信息，能够更清晰的看到执行的顺序
+        console.group("")：用于查看分组信息，能够更清晰的看到执行的顺序
+	    console.groupEnd('');
+
+    进阶输出方式：
+        console.assert(false,'判断为false才显示的信息');
+        console.table([['中国','传入的对象或数组以表格方式显示'],['好']]);
+        console.trace(); 打印 函数调用链
+        console.count('hello world');  统计次数
+        console.memory  查看内存使用情况，不加(),他是属性
+        console.log("%c%s", "color:red", "值");   格式化输出
+            console.log支持的格式标志有:
+                %s       占位符
+                %d 或 %i    整数
+                %f       浮点数
+                %o%O     object对象
+                %c       css样式
+
 
     浅拷贝拷贝数组： slice(0)
 

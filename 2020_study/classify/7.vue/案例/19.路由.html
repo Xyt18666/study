@@ -301,6 +301,31 @@
         能够通过 this.$route 获取到切换到的 路由信息
 
 
+------------------------------------------------------------------------------
+
+    通过 路由 配置属性 配合 keep-alive 实现缓存：
+
+        在路由 meta: {} 中书写 自定义属性 keepAlive，表示是否缓存
+
+        在页面中写2个  router-view  ，通过 keepAlive 属性 决定 是否 缓存
+
+        <keep-alive>
+            <router-view v-if="$route.meta.keepAlive"/>
+        </keep-alive>
+            <router-view v-if="!$route.meta.keepAlive"/>
+
+    根据不同的页面跳转，决定页面是否缓存（小案例）：
+        首页是A页面
+        B页面跳转到A，A页面需要缓存
+        C页面跳转到A，A页面不需要被缓存
+
+        beforeRouteLeave(to, from, next) {
+            to.meta.keepAlive = true;   设置下一个路由的 meta
+            next();
+        }
+            
+
+
      -->
     </body>
     <script>
