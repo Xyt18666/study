@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+
+    jsx:
+        Vue 推荐在绝大多数情况下使用模板来创建你的 HTML。然而在一些场景中，你真的需要 JavaScript 的完全编程的能力。这时你可以用渲染函数，它比模板更接近编译器。
+    
+        了解 jsx 之前 ，最好是要了解 vue实例的 property 。
+
+
+
+        createElement 参数：
+            createElement(
+                // {String | Object | Function}
+                // 一个 HTML 标签名、组件选项对象，或者
+                // resolve 了上述任何一种的一个 async 函数。必填项。
+                'div',
+
+                // {Object}
+                // 一个与模板中 attribute 对应的数据对象。可选。
+                {
+                    // (深入数据对象，详情见下一节)
+                },
+
+                // {String | Array}
+                // 子级虚拟节点 (VNodes)，由 `createElement()` 构建而成，
+                // 也可以使用字符串来生成“文本虚拟节点”。可选。
+                [
+                    '先写一些文字',
+                    createElement('h1', '一则头条'),
+                    createElement(MyComponent, {
+                    props: {
+                        someProp: 'foobar'
+                    }
+                    })
+                ]
+            )
+
+            深入数据对象：
+                {
+                    // 与 `v-bind:class` 的 API 相同，
+                    // 接受一个字符串、对象或字符串和对象组成的数组
+                    'class': {
+                        foo: true,
+                        bar: false
+                    },
+                    // 与 `v-bind:style` 的 API 相同，
+                    // 接受一个字符串、对象，或对象组成的数组
+                    style: {
+                        color: 'red',
+                        fontSize: '14px'
+                    },
+                    // 普通的 HTML attribute
+                    attrs: {
+                        id: 'foo'
+                    },
+                    // 组件 prop
+                    props: {
+                        myProp: 'bar'
+                    },
+                    // DOM property
+                    domProps: {
+                        innerHTML: 'baz'
+                    },
+                    // 事件监听器在 `on` 内，
+                    // 但不再支持如 `v-on:keyup.enter` 这样的修饰器。
+                    // 需要在处理函数中手动检查 keyCode。
+                    on: {
+                        click: this.clickHandler
+                    },
+                    // 仅用于组件，用于监听原生事件，而不是组件内部使用
+                    // `vm.$emit` 触发的事件。
+                    nativeOn: {
+                        click: this.nativeClickHandler
+                    },
+                    // 自定义指令。注意，你无法对 `binding` 中的 `oldValue`
+                    // 赋值，因为 Vue 已经自动为你进行了同步。
+                    directives: [
+                        {
+                        name: 'my-custom-directive',
+                        value: '2',
+                        expression: '1 + 1',
+                        arg: 'foo',
+                        modifiers: {
+                            bar: true
+                        }
+                        }
+                    ],
+                    // 作用域插槽的格式为
+                    // { name: props => VNode | Array<VNode> }
+                    scopedSlots: {
+                        default: props => createElement('span', props.text)
+                    },
+                    // 如果组件是其它组件的子组件，需为插槽指定名称
+                    slot: 'name-of-slot',
+                    // 其它特殊顶层 property
+                    key: 'myKey',
+                    ref: 'myRef',
+                    // 如果你在渲染函数中给多个元素都应用了相同的 ref 名，
+                    // 那么 `$refs.myRef` 会变成一个数组。
+                    refInFor: true
+                }
+
+
+        使用 JavaScript 代替模板功能：
+            v-if v-for : (模板写法)
+
+                <ul v-if="items.length">
+                    <li v-for="item in items">{{ item.name }}</li>
+                </ul>
+                <p v-else>No items found.</p>
+
+            使用 jsx 的 render函数 ： (使用 if/else 和 map 来重写)
+                render: function (createElement) {
+                    if (this.items.length) {
+                        return createElement('ul', this.items.map(function (item) {
+                        return createElement('li', item.name)
+                        }))
+                    } else {
+                        return createElement('p', 'No items found.')
+                    }
+                }
+
+            jsx 方式写 v-model :
+                render: function (createElement) {
+                    var self = this
+                    return createElement('input', {
+                        domProps: {
+                        value: self.value
+                        },
+                        on: {
+                        input: function (event) {
+                            self.$emit('input', event.target.value)
+                        }
+                        }
+                    })
+                }
+
+            jsx 方式写 事件修饰符：
+                修饰符	前缀
+                .passive	&
+                .capture	!
+                .once	~
+                .capture.once 或 .once.capture	~!
+
+                例子：
+                    on: {
+                        '!click': this.doThisInCapturingMode,
+                    }
+
+            jsx 方式写 插槽：
+                this.$slots 访问静态插槽的内容
+                this.$scopedSlots 访问作用域插槽
+                scopedSlots  渲染函数向子组件中传递作用域插槽
+
+        使用插件 优化以上复杂写法：
+
+            安包：
+                npm install @vue/babel-preset-jsx @vue/babel-helper-vue-jsx-merge-props --save
+
+            配置：
+                babel.config.js：
+                    module.exports = {
+                        presets: ['@vue/babel-preset-jsx'],
+                    }
+
+                .babelrc：
+                    {
+                        "presets": ["@vue/babel-preset-jsx"]
+                    }
+                        
+            使用：就像react的jsx一样
+
+            在 vue3中 优化了ts的使用 ，从而出现 tsx
+            
+                                                                    
+
+
+
+
+
+
+
+
+        
+     -->
+    </body>
+</html>

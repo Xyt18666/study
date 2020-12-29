@@ -5,6 +5,7 @@ node_modules
 /华尔街
 /express-socket
 /streetvoice.cn
+
 # local env files
 .env.local
 .env.*.local

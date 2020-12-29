@@ -16,6 +16,8 @@
             box
             <p>sdf</p>
         </div>
+        <div class="test">testTab</div>
+        <div class="test2">testTab2</div>
     </body>
     <script>
         /*
@@ -47,33 +49,42 @@
                     $(".box").tost("22");
                     return $(this);
                 },
+                testTab: function (size) {
+                    this.ul = $(`<ul></ul>`);
+                    this.ol = $(`<ol></ol>`);
+
+                    for (let a = 0; a < size; a++) {
+                        this.li = $(`<li>${a}</li>`);
+                        this.oli = $(`<li>ol${a}</li>`);
+
+                        this.ul.append(this.li);
+                        this.ol.append(this.oli);
+
+                        let that = this;
+                        this.li.click(function () {
+                            $(this)
+                                .css({ background: "red" })
+                                .siblings()
+                                .css({ background: "#0f0" });
+
+                            // console.log(that.ol.children().eq($(this).index()));
+
+                            that.ol.children().eq($(this).index()).show().siblings().hide();
+
+                            console.log($(this).index());
+                        });
+                    }
+
+                    $("body").append(this.ul);
+                    $("body").append(this.ol);
+                },
             });
         })(jQuery);
 
-        $("p").tost("输出");
-        $(".box").tip();
+        // $("p").tost("输出");
+        // $(".box").tip();
 
-        {
-            class RoundButton {
-                constructor(url, color, icon, title) {
-                    this.url = url;
-                    this.color = color;
-                    this.icon = icon;
-                    this.title = title;
-                }
-                init() {
-                    this.creatEle();
-                }
-                creatEle() {
-                    $(this).append(`
-                    <a href=${this.url} target="_blank">
-                    <div class="round-button ${this.color}">
-                        <i class="fa ${this.icon} fa-5x"></i>
-                        <p>${this.title}</p>
-                    </div>
-                    </a>`);
-                }
-            }
-        }
+        $(".test").testTab(3);
+        $(".test2").testTab(4);
     </script>
 </html>

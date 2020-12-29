@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+
+
+
+
+
+
+-->
+    </body>
+    <script>
+        /*
+
+
+关于移动端适配方案：
+
+    第一种：viewport适配
+        原理：通过设置 initial-scale , 将所有设备布局视口的宽度调整为设计图的宽度.
+
+        适配过程：（逻辑相同，不同的技术书写方法有区别）
+
+            var metaNode = document.querySelector('meta[name=viewport]');
+                获取  meta viewport 标签
+
+            var designWidth = 375;
+                定义设计稿宽度为375
+
+            var scale = document.documentElement.clientWidth/designWidth;
+                计算当前屏幕的宽度与设计稿比例，比例=可视区/设计稿
+
+            
+            meta.content="initial-scale="+scale+",minimum-scale="+scale+",maximum-scale="+scale+",user-scalable=no";
+
+            meta.content=`initial-scale=${scale},minimum-scale=${scale},maximum-scale=${scale},user-scalable=no`
+
+                通过设置meta元素中content的initial-scale值达到移动端适配
+
+
+    第二种方法：借助media实现rem适配
+        原理：html的 font-size属性.
+
+        适配过程：
+            var designWidth = 375;  		
+                设计稿宽度
+
+            var remPx = 100;               
+                在屏幕宽度375px，的时候，设置根元素字体大小 100px
+
+            var scale = window.innerWidth / designWidth；
+                计算当前屏幕的宽度与设计稿比例
+
+            document.documentElement.style.fontSize = scale*remPx + 'px';
+                根据屏幕宽度 动态计算根元素的 字体大小
+
+
+    第三种方法： px2rem-loader 配合 lib-flexible
+
+        适配过程：https://blog.csdn.net/weixin_45087036/article/details/103580083
+
+        npm install px2rem-loader -s  
+        npm install lib-flexible -s 
+
+        import 'lib-flexible/flexible'
+
+        更详细的看网址配置
+        
+
+
+
+    其他方法： vw  %  栅格
+
+
+
+
+
+
+
+*/
+    </script>
+</html>

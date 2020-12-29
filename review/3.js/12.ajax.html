@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Document</title>
-  </head>
-  <body></body>
-  <script>
-    /*
+    <head>
+        <meta charset="UTF-8" />
+        <title>Document</title>
+    </head>
+    <body></body>
+    <script>
+        /*
     JSON:
         （1）定义：JSON(JavaScript Object Notation)JS对象标记，是一种数据交换格式。
         （2）格式：JSON 数据的书写格式是：键/值对，键必须用双引号括起来
@@ -135,46 +135,65 @@
                     向另一个服务器发送需求，代理的服务器会找到你想要的数据（服务器向服务器请交换数据，因为不通过浏览器，所以不受同源策略约束），然后返回给你
 
 
+
+-----------------------------------------------------------------------------------------------------
+
+        终止ajax:
+          xhr.abort() 调用abort方法
+
+        在axios里边:
+          this.source = this.axios.CancelToken.source(); // 这里初始化source对象
+          this.axios.get(url, {
+            cancelToken: this.source.token // 这里声明的cancelToken其实相当于是一个标记，
+            // 当我们要取消请求的时候，可以通过这个找到该请求
+          })
+            .then(res => {
+              // 你的逻辑
+            })
+            .catch(res => {
+              // 如果调用了cancel方法，那么这里的res就是cancel传入的信息
+              // 你的逻辑
+            })
+
+          this.source.cancel('这里你可以输出一些信息，可以在catch中拿到')  调用终止函数
+
       */
-    function ajax(method, url, data, fn) {
-      var xhr = null;
-      let date = new Date();
-      //定义时间戳
+        function ajax(method, url, data, fn) {
+            var xhr = null;
+            let date = new Date();
+            //定义时间戳
 
-      try {
-        //创建请求对象
-        xhr = new XMLHttpRequest();
-      } catch (e) {
-        xhr = new ActiveXObject("Microsoft.XMLHTTP");
-      }
-      //判断请求方式
-      if (method == "get" && data) {
-        url += "?" + data + "&" + date.getTime();
-      }
-      xhr.open(method, url, true);
+            try {
+                //创建请求对象
+                xhr = new XMLHttpRequest();
+            } catch (e) {
+                xhr = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            //判断请求方式
+            if (method == "get" && data) {
+                url += "?" + data + "&" + date.getTime();
+            }
+            xhr.open(method, url, true);
 
-      //监测响应状态
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-          var json = JSON.parse(xhr.responseText);
-          console.log(json);
-          fn(json);
-        } else {
-          console.log("请求错误");
+            //监测响应状态
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var json = JSON.parse(xhr.responseText);
+                    console.log(json);
+                    fn(json);
+                } else {
+                    console.log("请求错误");
+                }
+            };
+
+            //发送请求
+            if (method == "get") {
+                xhr.send();
+            } else {
+                //设置请求头
+                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhr.send(data);
+            }
         }
-      };
-
-      //发送请求
-      if (method == "get") {
-        xhr.send();
-      } else {
-        //设置请求头
-        xhr.setRequestHeader(
-          "Content-type",
-          "application/x-www-form-urlencoded"
-        );
-        xhr.send(data);
-      }
-    }
-  </script>
+    </script>
 </html>

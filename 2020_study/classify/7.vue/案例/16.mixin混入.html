@@ -34,7 +34,57 @@
             同名钩子函数都将被调用，混入的钩子先调用
             值为对象的选项会合并，键名冲突时，以组件为准
     
-    
+
+    全局混入：
+        混入也可以进行全局注册。使用时格外小心！一旦使用全局混入，它将影响每一个之后创建的 Vue 实例。
+        使用恰当时，这可以用来为自定义选项注入处理逻辑。
+
+        Vue.mixin({             定义全局混入
+            mounted() {
+                console.log(this.$options.myOption);           获取自定义属性
+            },
+        });
+
+        new Vue({
+            myOption: "hello Word",         定义自定义属性
+            router,
+            store,
+            render: h => h(App),
+        }).$mount("#app");
+
+
+    自定义选项合并策略：
+        Vue.config.optionMergeStrategies.myOption = function (toVal, fromVal) {
+            return xx           返回合并后的值
+        }
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     --------------------------------------------------------------------
 
     实例上的 name 属性 ：非自定义属性
