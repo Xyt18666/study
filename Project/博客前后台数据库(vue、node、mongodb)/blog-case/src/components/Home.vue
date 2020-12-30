@@ -165,9 +165,7 @@
 
 <script>
 // import { login, login2 } from "@/api/login/index.js";
-// import testApi from "@/api/login/index.js";
-
-
+import testApi from "@/api/login/index.js";
 
 export default {
   data() {
@@ -264,14 +262,14 @@ export default {
     //   console.log("login2", d);
     // });
 
-    // testApi
-    //   .login({
-    //     rUserNmae: this.ruleForm.user,
-    //     rPassWord: this.ruleForm.pass,
-    //   })
-    //   .then((d) => {
-    //     console.log(d);
-    //   });
+    testApi
+      .login({
+        rUserNmae: this.ruleForm.user,
+        rPassWord: this.ruleForm.pass,
+      })
+      .then((d) => {
+        console.log(d);
+      });
   },
   watch: {
     $route: "routerCheck",

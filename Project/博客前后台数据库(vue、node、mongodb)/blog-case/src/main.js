@@ -12,12 +12,29 @@ Vue.use(ElementUI);
 Vue.prototype.$http = axios;
 Vue.config.productionTip = false;
 
+console.log("process====", process.env.NODE_ENV);
 
+// if (process.env.NODE_ENV === "development") {
+//   axios.defaults.baseURL = "/api";
+//   console.log("开发环境");
+// }
+// if (process.env.NODE_ENV === "production") {
+//   axios.defaults.baseURL = "http://localhost:8088";
+//   console.log("生产环境");
+// }
 
+axios.interceptors.request.use((data) => {
+  console.log("请求拦截", data);
+  return data;
+});
 
-
-
-
+axios.interceptors.response.use(
+  //接收数据的 拦截器
+  (data) => {
+    console.log("响应拦截", data);
+    return data;
+  }
+);
 
 router.beforeEach((to, from, next) => {
   console.log(to, from, "全局beforeEach");

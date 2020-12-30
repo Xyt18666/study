@@ -132,7 +132,7 @@
                 return new Promise((res, rej) => {
                     setInterval(function () {
                         res(a);
-                    }, 1000);
+                    }, 5000);
                 });
             }
             async function g() {
@@ -154,6 +154,11 @@
                     console.log(e, "执行reject错误的回调");
                 }
             );
+
+            console.log(123);
+            setTimeout(() => {
+                console.log("set");
+            }, 3000);
         }
         {
             // 错误处理
