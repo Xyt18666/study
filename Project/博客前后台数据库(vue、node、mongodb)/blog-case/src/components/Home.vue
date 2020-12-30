@@ -164,6 +164,11 @@
 </template>
 
 <script>
+// import { login, login2 } from "@/api/login/index.js";
+// import testApi from "@/api/login/index.js";
+
+
+
 export default {
   data() {
     // 自定义表单验证方式
@@ -244,7 +249,29 @@ export default {
   },
   mounted() {
     console.log(this);
-    
+
+    // 测试封装的api
+    // login({
+    //   rUserNmae: this.ruleForm.user,
+    //   rPassWord: this.ruleForm.pass,
+    // }).then((d) => {
+    //   console.log(d);
+    // });
+    // login2({
+    //   rUserNmae: this.ruleForm.user,
+    //   rPassWord: this.ruleForm.pass,
+    // }).then((d) => {
+    //   console.log("login2", d);
+    // });
+
+    // testApi
+    //   .login({
+    //     rUserNmae: this.ruleForm.user,
+    //     rPassWord: this.ruleForm.pass,
+    //   })
+    //   .then((d) => {
+    //     console.log(d);
+    //   });
   },
   watch: {
     $route: "routerCheck",

@@ -301,6 +301,10 @@
             exclude - 字符串或正则表达式。任何名称匹配的组件都不会被缓存。
             max - 数字。最多可以缓存多少组件实例。
 
+        
+        解决组件缓存不能拿到新的数据：
+            在vuex中设置状态，动态绑定 include 值
+
         例子：
             首先需要为 组件 添加 name属性
 
@@ -308,6 +312,8 @@
             <keep-alive include="a,b">
                 <component :is="view"></component>
             </keep-alive>
+
+        
 
         
         根据不同的页面跳转，决定页面是否缓存（小案例）：

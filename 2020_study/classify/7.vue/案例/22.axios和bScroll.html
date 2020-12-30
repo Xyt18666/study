@@ -82,8 +82,142 @@
             }
         );
 
+    请求封装：
+        封装：
+            建立新的文件夹 api ，进行模块化分配文件夹
+
+            引入: import axios from "axios";
+
+
+            导出的方式有2种：
+                export 封装的函数：
+
+                    export const login = (data) => {
+                    return axios.post("http://localhost:8088/api/longin", data).then(
+                        (res) => res,
+                        (e) => e
+                    );
+                    };
+
+                    export const login2 = async (data) => {
+                    return await axios.post("http://localhost:8088/api/longin", data);
+                    };
+
+                export default 封装的函数：
+                    export default {
+                        login: (data) => {
+                            return axios.post("http://localhost:8088/api/longin", data).then(
+                            (res) => res,
+                            (e) => e
+                            );
+                        },
+                        login2: async (data) => {
+                            return await axios.post("http://localhost:8088/api/longin", data);
+                        },
+                    };
+
+
+
+
+        使用：
+            引入创建的文件
+
+            导入的方式也有两种一一对应：
+                export:
+                    import { login, login2 } from "@/api/login/index.js";
+
+                    login({参数}).then((d) => {
+                        console.log(d);
+                    });
+
+                export default:
+                    import testApi from "@/api/login/index.js";
+
+                    testApi.login({参数}).then((d) => {
+                        console.log(d);
+                    });
+
+
+        打包的配置：
+            1.配置路径 vue.config.js
+                publicPath:"./"
+
+            ps:项目开发时不要写绝对路径
+
+
+        export 与 export defaul的区别：
+            1.export与export default均可用于导出常量、函数、文件、模块等
+            2.在一个文件或模块中，export、import可以有多个，export default仅有一个
+            3.通过export方式导出，在导入时要加{ }，export default则不需要
+            
+
+        使用 async await请求接口的作用：
+            await 等待异步请求的返回值， async函数返回 promise 
+
+
+        多种模块化的区别：
+
+            CommonJS：
+                exports.xxx = value
+                module.exports = value
+
+                var module = require('模块名/模块相对路径')
+
+            ES6：
+                export var xxx = value1
+                export default 对象
+
+                import {xxx, yyy} from '模块路径/模块名'
+                import xxx  from '模块路径/模块名'
+
+            AMD:浏览器端 require.js
+
+                定义暴露模块: define([依赖模块名], function(){return 模块对象})
+                引入模块: require([‘模块1’, ‘模块2’, ‘模块3’], function(m1, m2){//使用模块对象})
+
+            CMD：浏览器端 sea.js
+                定义暴露模块:
+                    define(function(require, module, exports){
+                    通过require引入依赖模块
+                    通过module/exports来暴露模块
+                    exports.xxx = value
+                    })
+
+                使用模块：seajs.use([‘模块1’, ‘模块2’])
+                                    
+                    
+                    
+                    
+        
+                    
+
+
+
+
+
+
+        
+
+    
+    
+        
+
 
 ---------------------------------------------------------------------------------------
+
+    安包并导入：
+        npm install better-scroll --save
+        import BScroll from "better-scroll";
+
+    dom结构：
+        .wrapper
+            .content
+
+    实例化：
+        this.bs = new BScroll(".wrapper", {
+            probeType: 3,
+        });
+
 
     this.bs.refresh();//重载  BScroll  ，解决 dom未生成问题
 

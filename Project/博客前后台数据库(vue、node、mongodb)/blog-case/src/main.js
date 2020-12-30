@@ -12,6 +12,13 @@ Vue.use(ElementUI);
 Vue.prototype.$http = axios;
 Vue.config.productionTip = false;
 
+
+
+
+
+
+
+
 router.beforeEach((to, from, next) => {
   console.log(to, from, "全局beforeEach");
   next();
