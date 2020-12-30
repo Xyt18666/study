@@ -152,20 +152,29 @@
         根据环境配置不同的 .baseURL ：
             目的：在开发和生产模式时，配置不同的默认基础路径
 
-            ps:他会把baseURL的路径直接拼接到请求时的路径上
-                    
-
             if (process.env.NODE_ENV === "development") {
                 axios.defaults.baseURL = "/api";
+                console.log("开发环境");
             }
-
             if (process.env.NODE_ENV === "production") {
                 axios.defaults.baseURL = "http://localhost:8088";
+                console.log("生产环境");
             }
 
-        
 
+            ps:
+                请求地址，直接写 http://localhost:8088 后面的路径
+                他会把baseURL的路径直接拼接到请求时的路径上
 
+                开发环境 ：
+                    配置代理
+                    配置baseURL
+                    此时就会拼上 代理的 /api 字段 ，就会走，代理
+                
+                生产环境：
+                    配置baseURL
+                    此时就会拼接 全路径的 请求地址
+                    
 
         export 与 export defaul的区别：
             1.export与export default均可用于导出常量、函数、文件、模块等

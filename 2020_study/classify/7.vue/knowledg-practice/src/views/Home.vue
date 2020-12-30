@@ -38,6 +38,16 @@ export default {
         MapBaidu,
         AnimateCss,
     },
+    mounted() {
+        this.$http.post("/admin/getuserall").then(
+            d => {
+                console.log(d);
+            },
+            e => {
+                console.log(e);
+            }
+        );
+    },
 };
 </script>
 <style lang="sass" scoped>
