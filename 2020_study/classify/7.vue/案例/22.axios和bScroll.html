@@ -75,15 +75,61 @@
             return data;
         })
 
-        axios.interceptors.response.use(
-            响应拦截器，
-            (data) => {
+        小效果：
+            开启 loading  效果:
+                let loding;
+
+                loding = ElementUI.Loading.service({
+                    lock: true,
+                    text: "Loading",
+                    spinner: "el-icon-loading",
+                    background: "rgba(0, 0, 0, 0.7)",
+                });
+
+            在请求拦截器中的 header 中添加 token 信息:
+                全部接口配置：后端需要配置,允许添加请求头
+                    data.headers.token = 79;
+                    
+            
+                单个接口配置:
+                     this.$http
+                        .post("地址", {
+                        传入参数
+                        },{
+                            headers:{}
+                        })
+                        .then((d) => {
+                        console.log(d);
+                        });
+                            
+            对post请求的参数进行处理:
+                使用 qs 插件
+                npm i qs --save
+                let qs = require("querystring");
+                if (data.method == "post") {
+                    data.data = qs.stringify(data.data);
+                    console.log(data.data);
+                }
+
+
+        axios.interceptors.response.use((data) => {
+                响应拦截器，
                 return data;
             },
             error => {
                 return Promise.reject(error);
             }
         );
+
+        小效果：
+            结束 loading :
+                loding.close();
+
+            根据不同的状态码跳转：
+                if(data.status == 404){
+                    router.push("/404")
+                }
+
 
     请求封装（模块化api）：
         封装：

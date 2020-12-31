@@ -6,6 +6,7 @@ import "normalize.css";
 import axios from "axios";
 import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
+import qs from "querystring";
 
 Vue.use(ElementUI);
 
@@ -23,18 +24,42 @@ console.log("process====", process.env.NODE_ENV);
 //   console.log("生产环境");
 // }
 
+let loding;
+
 axios.interceptors.request.use((data) => {
   console.log("请求拦截", data);
+
+  // data.headers.token = 79;
+  // 后端需要配置,允许添加请求头
+
+  loding = ElementUI.Loading.service({
+    lock: true,
+    text: "Loading",
+    spinner: "el-icon-loading",
+    background: "rgba(0, 0, 0, 0.7)",
+  });
+
+  console.log(qs);
+
+  // if (data.method == "post") {
+  //   data.data = qs.stringify(data.data);
+  //   console.log(data.data);
+  // }
+
   return data;
 });
 
-axios.interceptors.response.use(
+axios.interceptors.response.use((data) => {
   //接收数据的 拦截器
-  (data) => {
-    console.log("响应拦截", data);
-    return data;
+  console.log("响应拦截", data);
+  loding.close();
+  
+  if (data.status == 404) {
+    router.push("/404");
   }
-);
+
+  return data;
+});
 
 router.beforeEach((to, from, next) => {
   console.log(to, from, "全局beforeEach");
