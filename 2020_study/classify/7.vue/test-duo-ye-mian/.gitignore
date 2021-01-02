@@ -1,11 +1,7 @@
 .DS_Store
-node_modules
+/node_modules
 /dist
-/博客前后台数据库(vue、node、mongodb)
-/华尔街
-/express-socket
-/streetvoice.cn
-/vue项目基础架构
+
 
 # local env files
 .env.local
