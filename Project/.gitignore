@@ -5,7 +5,8 @@ node_modules
 /华尔街
 /express-socket
 /streetvoice.cn
-/vue项目基础架构
+/vue项目基础架构（伪代码）
+/collegeMall.cn
 
 # local env files
 .env.local
