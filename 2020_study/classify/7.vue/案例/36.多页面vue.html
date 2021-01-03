@@ -36,6 +36,32 @@
     问题：
         每个页面都要重新引用虽有配置，是否可以优化
 
+    优化多页面书写：
+        https://blog.csdn.net/gcDdblue/article/details/100171988?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control
+        
+        const glob = require("glob");
+        function getEntry(url) {
+            let entrys = {};
+            glob.sync(url).forEach((item) => {
+                let urlArr = item
+                .split("/")
+                .splice(-2)
+                .map((item) => item.split(".")[0]);
+
+                entrys[urlArr[1]] = {
+                entry: "src/pages/" + urlArr[1] + "/" + "main.js",
+                template: "public/" + urlArr[1] + ".html",
+                filename: urlArr[1] + ".html",
+                title: urlArr[1],
+                };
+            });
+            return entrys;
+        }
+        let pages = getEntry("./public/*.html");
+
+        原理：获取路径，切割 封装函数，遍历
+
+
 
     服务端渲染框架：Nuxt.js 
 
