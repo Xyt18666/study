@@ -5,6 +5,8 @@ module.exports = {
             template: "public/index.html", //应用的模板 ，相当于，单页面的 index.html
             filename: "index.html", //编译后的文件名
             title: "index", //template 中的 title 标签
+            // inject: true, //是否开启注入
+            // chunks: ["App"],
         },
         page1: {
             entry: "src/pages/page1/main.js",
@@ -13,12 +15,24 @@ module.exports = {
             title: "index2",
             // 在这个页面中包含的块，默认情况下会包含
             // 提取出来的通用 chunk 和 vendor chunk。
-            // chunks: ["chunk-vendors", "chunk-common", "index"],
+            // inject: true, //是否开启注入
+            // chunks: ["App"], //需要引入的Chunk，不配置就会引入所有页面的资源
+            // chunk [ 'app' ] 中的app对应的是上面配置中entry设置的入口文件
         },
         page2: {
             entry: "src/pages/page2/main.js",
             template: "public/page2.html",
             filename: "page2.html",
+            // inject: true, //是否开启注入
+            // chunks: ["App"],
+        },
+    },
+    publicPath: "./",
+    css: {
+        loaderOptions: {
+            sass: {
+                prependData: `@import "@/assets/scss/test.scss";`,
+            },
         },
     },
 };

@@ -6,8 +6,14 @@
         <router-view />
         <p>index</p>
         <p>{{ $store.state.indexNum }}</p>
-        <a href="/page1">to page1</a>
+        <a href="./page1.html">to page1</a>
     </div>
 </template>
-
-<style lang="scss"></style>
+<script>
+export default {};
+</script>
+<style lang="scss">
+p {
+    color: $color;
+}
+</style>
