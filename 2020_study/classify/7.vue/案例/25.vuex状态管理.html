@@ -73,6 +73,34 @@
         mutations 事件类型使用常量：
             • mutations 函数名使用常量
             • 所有常量放在单独文件中
+
+        就是使用常量来替代 mutation 事件的名字:
+
+            // mutation-types.js
+            export const SOME_MUTATION = 'SOME_MUTATION'
+
+            // store.js
+            import Vuex from 'vuex'
+            import { SOME_MUTATION } from './mutation-types'
+
+            const store = new Vuex.Store({
+            state: { ... },
+                mutations: {
+                    // 使用 ES2015 风格的计算属性命名功能来使用一个常量作为函数名
+                    [SOME_MUTATION] (state) {
+                    // mutate state
+                    }
+                }
+            })
+
+作者：大宏说
+链接：https://www.jianshu.com/p/64727454f151
+来源：简书
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+
+
         
         单文件vuex:
             通过定义单独文件，然后 引入
