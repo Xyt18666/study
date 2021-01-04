@@ -17,12 +17,25 @@
 
     配置： vue.config.js
         css: {
-        loaderOptions: {
-            sass: {
-                prependData: `@import "@/assets/scss/test.scss";`,
+            loaderOptions: {
+                sass: {
+                    prependData: `@import "@/assets/scss/test.scss";`,
+                },
             },
         },
-    },
+
+
+    在js中调用scss的变量名:
+
+        第一步在scss文件中写上：
+            :export {
+                键: $theme-text-color-colorful;
+            }
+        第二步在要用到变量的js中:
+            import styles from 'scss文件路径名';
+
+        第三步使用：
+            styles.键
 
      -->
     </body>
