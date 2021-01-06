@@ -39,6 +39,29 @@
         使用axios调用刚才定义的接口路径
 
 
+    传参：
+        axios正常传参
+
+        this.axios.post("./xx",{参数对象})
+        this.axios.get("./xx",{data:参数对象})
+
+
+    mock接收参数：
+
+        Mock.mock("/api/test","post",options=>{
+            options获取的参数
+            return datas.data
+        })
+        
+        Mock.mock("/api/test","get",options=>{
+            options.body获取的参数
+            return datas.data
+        })
+        
+        
+        
+
+
         
     数据模板定义规范：
         'name|rule' : value
