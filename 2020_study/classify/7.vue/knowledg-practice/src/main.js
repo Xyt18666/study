@@ -14,14 +14,14 @@ Vue.use(BaiduMap, {
     ak: "qbRzfojGT8HYWlGlfNuGguyGGSnUbsns",
 });
 
-if (process.env.NODE_ENV === "development") {
-    axios.defaults.baseURL = "/api";
-    console.log("开发环境");
-}
-if (process.env.NODE_ENV === "production") {
-    axios.defaults.baseURL = "http://localhost:8088";
-    console.log("生产环境");
-}
+// if (process.env.NODE_ENV === "development") {
+//     axios.defaults.baseURL = "/api";
+//     console.log("开发环境");
+// }
+// if (process.env.NODE_ENV === "production") {
+//     axios.defaults.baseURL = "http://localhost:8088";
+//     console.log("生产环境");
+// }
 
 Vue.config.productionTip = false;
 

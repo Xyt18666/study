@@ -22,6 +22,7 @@ import ZuJianDong from "@/components/6.组件动画.vue";
 import MapBaidu from "@/components/7.map.vue";
 import AnimateCss from "@/components/8.animate动画库.vue";
 
+import Mock from "@/mock";
 export default {
     data() {
         return {
@@ -39,7 +40,26 @@ export default {
         AnimateCss,
     },
     mounted() {
-        this.$http.post("/admin/getuserall").then(
+        // this.$http.post("/admin/getuserall").then(
+        //     d => {
+        //         console.log(d);
+        //     },
+        //     e => {
+        //         console.log(e);
+        //     }
+        // );
+
+        console.log(Mock);
+
+        this.$http.get("/api/test").then(
+            d => {
+                console.log(d);
+            },
+            e => {
+                console.log(e);
+            }
+        );
+        this.$http.get("/api/test2").then(
             d => {
                 console.log(d);
             },

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+
+    模拟生成数据 :例子 knowledg-practice
+
+    安包： npm i mockjs --save-dev
+
+    创建文件： src 下 mock/index.js
+
+        导入： import  Mock from "mockjs"
+
+
+        使用：
+            const data = {
+                'name|7-9' : "@name"
+
+            }
+
+            Mock.mock(data)                     直接抛出数据
+
+            使用下面这种
+
+            Mock.mock("/api/test","get",data)    以接口的方式抛出
+
+            export default Mock; 
+
+    引入：
+        main.js中 引入：
+            import Mock from "@/mock"
+
+    调用接口：
+        使用axios调用刚才定义的接口路径
+
+
+        
+    数据模板定义规范：
+        'name|rule' : value
+        属性名|规则 : 值
+
+
+    规则：
+        'name|7-9' : "@name"    
+            7-9             自动生成  7-9 个 
+            "@name"         随机英文名
+            "@cname"        随机中文名
+
+        
+        'name|count': string
+            count           重复多少次
+
+----------------------------------------------            
+
+        'id|+1' : 1
+            +1              自增1，从1开始
+
+
+        'name|min-max.dmin-dmax': number
+            min、max                生成一个浮点数，整数部分大于等于 min、小于等于 max
+            dmin 、 dmax            小数部分保留 x位
+
+------------------------------------------------
+
+        'name|1': boolean
+            随机生成一个布尔值，值为 true 的概率是 1/2，值为 false 的概率同样是 1/2
+
+        'name|min-max': value
+            随机生成一个布尔值，值为 value 的概率是 min / (min + max)，值为 !value 的概率是 max / (min + max)
+
+
+-------------------------------------------------
+
+        'name|count': object
+
+            从属性值 object 中随机选取 count 个属性
+
+        'name|min-max': object
+
+            从属性值 object 中随机选取 min 到 max 个属性
+
+------------------------------------------------
+
+        'name|1': array
+
+            从属性值 array 中随机选取 1 个元素，作为最终值。
+
+        'name|+1': array
+
+            从属性值 array 中顺序选取 1 个元素，作为最终值。
+
+        'name|min-max': array
+
+            通过重复属性值 array 生成一个新数组，重复次数大于等于 min，小于等于 max。
+
+        'name|count': array
+
+            通过重复属性值 array 生成一个新数组，重复次数为 count。
+
+----------------------------------------------------------
+        
+        'name': function
+
+            执行函数 function，取其返回值作为最终的属性值，函数的上下文为属性 'name' 所在的对象。
+
+------------------------------------------------------------
+
+        'name': regexp
+
+        根据正则表达式 regexp 反向生成可以匹配它的字符串。用于生成自定义格式的字符串。
+
+
+
+============================================================
+
+    占位符： @xx
+        可以使用 Mock.Random 的方法
+
+        Basic：	boolean, natural, integer, float, character, string, range, date, time, datetime, now
+        Image：	image, dataImage
+        Color：	color
+        Text：	paragraph, sentence, word, title, cparagraph, csentence, cword, ctitle
+        Name：	first, last, name, cfirst, clast, cname
+        Web：	url, domain, email, ip, tld
+        Address：	area, region
+        Helper：	capitalize, upper, lower, pick, shuffle
+        Miscellaneous：	guid, id
+            
+
+======================================================================
+        
+    模块化 ：
+        正常创建 mock/index.js
+
+            import Mock from "mockjs";
+            import "@/api/webMock/home/index";
+            export default Mock;
+
+        在 api文件夹中 ，创建 webMock接口 文件夹：
+
+            一个 data.js 数据文件：
+                let data = {
+                    "name|7-9": "@name",
+                };
+                let data2 = {
+                    "name|7-9": "@cname",
+                };
+                export default {
+                    data,
+                    data2,
+                };
+
+            一个 接口定义文件：
+                import Mock from "mockjs";
+                import data from "./data";
+                Mock.mock("/api/test", "get", data.data);
+                Mock.mock("/api/test2", "get", data.data2);
+
+
+
+
+        
+     -->
+    </body>
+</html>
