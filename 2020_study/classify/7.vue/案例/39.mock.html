@@ -50,12 +50,12 @@
 
         Mock.mock("/api/test","post",options=>{
             options获取的参数
-            return datas.data
+             return Mock.mock(data.lecturer);
         })
         
         Mock.mock("/api/test","get",options=>{
             options.body获取的参数
-            return datas.data
+             return Mock.mock(data.lecturer);
         })
         
         
@@ -161,10 +161,10 @@
         正常创建 mock/index.js
 
             import Mock from "mockjs";
-            import "@/api/webMock/home/index";
+            import "@/mock/webMock/home/index";
             export default Mock;
 
-        在 api文件夹中 ，创建 webMock接口 文件夹：
+        创建 webMock接口 文件夹：
 
             一个 data.js 数据文件：
                 let data = {
