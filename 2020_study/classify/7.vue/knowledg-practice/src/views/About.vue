@@ -10,6 +10,7 @@
             :ishljs="true"
         ></mavon-editor>
         <div id="div1"></div>
+        <VueUeditorWrap v-model="msg" :config="myConfig" />
     </div>
 </template>
 
@@ -27,12 +28,15 @@ const editor = new E("#div1");
 
 // ---------------------------------------------------
 
+import VueUeditorWrap from "vue-ueditor-wrap";
+
 export default {
     name: "Create",
-    components: { mavonEditor },
+    components: { mavonEditor, VueUeditorWrap },
     data() {
         return {
             doc: "",
+
             markdownOption: {
                 bold: true, // 粗体
                 italic: true, // 斜体
@@ -67,6 +71,10 @@ export default {
                 /* 2.2.1 */
                 subfield: true, // 单双栏模式
                 preview: true, // 预览
+            },
+            msg: "",
+            myConfig: {
+                UEDITOR_HOME_URL: "/UEditor/",
             },
         };
     },
