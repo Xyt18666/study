@@ -262,8 +262,209 @@
         }
     }
 
-
+-----------------------------------------------------------------------------------------
             
+
+1、slot的作用， 应用场景是什么？
+    插槽，其实就相当于占位符。它在组件中给你的HTML模板占了一个位置，让你来传入一些东西。插槽又分为 匿名插槽、具名插槽、作用域插槽
+
+
+2、如何定义插槽， 和使用插槽？
+
+    定义插槽 ： 在定义组件时 ，在需要插入内容的 地方放置 slot 标签
+        <slot name="xx"></slot>
+
+    使用插槽 ： 使用组件时 ， 把需要插入 的 内容写到 组件标签子级（可嵌套元素）
+        <template #xx={接收属性}>
+            ss
+        </template>
+
+3、父子组件更新时，钩子执行的顺序？
+    父包子
+
+4、transition 组件实现动画的必备条件是什么？
+    包裹以下其中一种：
+        条件渲染 (使用 v-if)
+        条件展示 (使用 v-show)
+        动态组件／router-view
+        组件根节点(包裹组件即可)
+
+5、transition 通过类名如何实现动画？
+    .v-enter      进入的开始状态
+    .v-leave-to   出去结束的 状态
+    
+    .v-enter-active   过程中的状态
+    .v-leave-active   过程中的状态
+
+    .v-enter-to   进入结束
+    .v-leave    出去的开始状态
+
+6、transition 如何使用第三方库实现动画？    
+
+    transition( 
+        enter-active-class="animate__想要的动画种类"
+        leave-active-class="animate__想要的动画种类"
+    )
+        div(v-show="show" class="animate__animated") 这是添加动画的元素
+
+7、transition-group实现群组动画需要具备的条件？
+    添加 key
+
+    transition-group(
+        enter-active-class="animate__fadeInRight"
+        leave-active-class="animate__fadeOutRight"
+    )
+        h1(v-show="show" class="animate__animated" :key="1") Animate.css
+        h2(v-show="show" class="animate__animated" :key="2") Just-add-water CSS animations
+
+
+8、父子组件销毁时，钩子执行的顺序？
+    父包子
+
+9、路由传参的方式？
+    第一种：使用标签 拼接 路径 直接传参
+    第二种： push path 拼字符串 ，这里只是传入了 一个值
+    第三种：name + params 传参
+    第四种： 使用 path + query
+
+10、路由的模式都有哪些？有什么特点？
+
+hash路由和history路由的区别：
+    1.hash路由在地址栏URL上有#，而history路由没有会好看一点
+    2.我们进行回车刷新操作，hash路由会加载到地址栏对应的页面，而history路由一般就404报错了（刷新是网络请求，没有后端准备时会报错）。
+    3.hash路由支持低版本的浏览器，而history路由是HTML5新增的API。
+    4.hash的特点在于它虽然出现在了URL中，但是不包括在http请求中，所以对于后端是没有一点影响的，所以改变hash不会重新加载页面，所以这也是单页面应用的必备。
+    5.history运用了浏览器的历史记录栈，之前有back,forward,go方法，之后在HTML5中新增了pushState（）和replaceState（）方法（需要特定浏览器的支持），它们提供了对历史记录进行修改的功能，不过在进行修改时，虽然改变了当前的URL，但是浏览器不会马上向后端发送请求。
+
+11、route与 router区别是什么？ 属性分别有哪些？
+    route就是一个路由（路由就是url到函数的映射），它可以将url路径和一个函数进行映射。route也可以相当于当前正在跳转的对象，可以从里面获取name，path，params。query等等。
+
+    router是route的实例，相当于一个全局的路由器对象，里面含有许多属性和字对象。
+
+12、路由钩子的执行顺序？
+    全局 独享 组件内
+
+13、如何实现路由拦截， 拦截的代码过程？
+    router.beforeEach((to, from, next) => {
+        if(){
+            next();
+        }else{
+        }
+    })
+
+14、路由懒加载的实现方式？
+    component: () => import("../views/About.vue")
+
+15、vue单页面应用，首屏加载过慢，或出现白屏怎么解决？   
+    1、路由懒加载
+    2、骨屏架构加载
+    3、首屏采用服务端渲染
+    4、使用cdn引入第三方库、静态资源oss减小服务器压力
+    5、开启gzip
+
+16、什么是骨架屏？如何实现？
+    page-skeleton-webpack-plugin 插件
+
+17、axios的请求方式有？
+    　put       对数据全部进行更新
+　　  patch     只对更改过的数据进行更新
+　　　delete    删除请求(参数可以放在url上也可以和post一样放在请求体中)
+
+18、axios如何实现多个并发请求,2种？
+    Promise.all(arr).then(res=>{ })
+
+    axios.all([getUserAccount(), getUserPermissions()])
+    .then(axios.spread(function (acct, perms) {
+        //acct表示请求返回后数组中的第一条数据，perms表示第二条数据
+    }));
+
+19、axios如何进行全局配置？
+    axios.defaults.timeout = 30000; // 请求超时时间
+    axios.defaults.baseURL = "/api/"; //公共前缀
+
+20、axios如何实现数据拦截， 拦截时都有哪些逻辑处理
+    
+    axios.interceptors.request.use((data)=>{
+        请求拦截器 ，data是请求的数据
+        return data;
+    })
+
+    axios.interceptors.response.use((data) => {
+            响应拦截器，
+            return data;
+        }
+    );
+
+21、数据过滤
+    filters:{}
+    过滤器的作用：格式化 文本
+    使用：{{ val | 过滤器名(可传参) | 可传多个过滤器 }} 过滤了 xx 文本
+    过滤器 从左向右 执行
+
+22、如何自定义指令
+
+    directives:{
+        指令名:{
+            inserted: function (el,binding) {
+            },
+            bind: function (el, binding, vnode) {
+            }
+        }
+    }
+
+    属性：
+        bind(){ 指令 绑定到元素时 调用},   
+        inserted(){被绑定元素 插入到 父节点时 },
+        update(){所在组件 VNode 更新时调用 },
+        componentUpdated(){ 更新结束调用 },
+        unbind(){解绑时调用 },
+
+     默认参数：
+        el 绑定的元素
+
+        binding 一个对象，包含以下属性
+            name：指令名，
+            value：绑定值，
+            oldValue：绑定的前一个值，
+            expression：指令表达式，
+            arg：指令参数，
+            modifiers：修饰符对象
+
+        vnode vue编译生成的 虚拟dom
+
+23、如何实现mixin？mixin的原则
+    mixins:[]
+
+24、keep-alive 组件缓存
+
+    keep-alive的属性 ：
+        include - 字符串或正则表达式。只有名称匹配的组件会被缓存，匹配的是组件的name属性。
+        exclude - 字符串或正则表达式。任何名称匹配的组件都不会被缓存。
+        max - 数字。最多可以缓存多少组件实例。
+
+
+25、vuex
+    state :    类似于 data 保存数据
+        定义： {}
+        使用 ：直接使用
+
+    getters :   以有属性的，衍生 属性 ，对象里是方法，也可以理解为 计算属性  
+        定义： son(state){}
+        使用 ：直接使用
+    
+    mutations : 定义修改数据的方法，对象里是方法  , 必须是同步
+        定义： setindex(state, val){}
+        使用 ：commit :  修改属性值  this.$store.commit("修改数据的方法名",传入的值);
+
+
+    actions: 定义修改多个数据的方法，对象里是方法 ， 方法内是多个 commit  , 还可以调用 异步 api
+        定义：  setni({commit},list){}  第一参数 对象中包含和 store 实例相同的属性和方法
+        使用 ：dispatch:  修改一组属性值 this.$store.dispatch("修改组的函数名"，传入的值值)
+
+
+
+
+
 
 
 
