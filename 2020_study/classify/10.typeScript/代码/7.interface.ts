@@ -34,3 +34,19 @@ interface Jichen extends Girl {
     say(): string;
 }
 // 接口的继承
+
+interface Person {
+    // 只读属性
+    readonly id: number;
+    name: string;
+    age?: number;
+    [propName: string]: any;
+}
+
+let tom: Person = {
+    id: 89757,
+    name: "Tom",
+    gender: "male",
+};
+
+// tom.id = 9527;  报错

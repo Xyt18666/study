@@ -43,7 +43,11 @@
 
             let c = a ?? b;
 
-            console.log(c);
+            console.log(c); //33
+
+            console.log(a || b); //33
+            console.log(a && b); //undefined
+            console.log(0 && b); //0
         }
 
         {

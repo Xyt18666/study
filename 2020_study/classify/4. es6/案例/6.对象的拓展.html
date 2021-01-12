@@ -1,125 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body></body>
-  <script>
-    {
-      // 对象的简介写法
-      let a = "aaa";
-      let b = "bbb";
-      let obj = {
-        a,
-        b,
-        fun() {
-          console.log(a, b);
-        },
-      };
-      obj.fun();
-    }
-    {
-      // 伪属性,不能和普通属性重名
-      let obj = {
-        get a() {
-          //获取a时，触发事件
-          console.log("Sdfasfas");
-          return "a143243";
-        },
-        set a(val) {
-          //设置a时，触发事件
-          console.log("设置了a" + val);
-        },
-      };
-      console.log(obj.a);
-      obj.a = "佩奇";
-    }
-    {
-      // 允许字面量定义对象
-      let a = "bb";
-      let g = "sdfd8888";
-      let obj = {
-        ["s" + "f"]: "sssfff",
-        [a]: "bbb",
-        g: "gg", //es5之前的键，本质就是一个字符串
-      };
-      console.log(obj); //{sf: "sssfff", bb: "bbb", g: "gg"}
-    }
-    {
-      // Object.defineProperty(需要定义属性的对象,属性名，{属性描述对象})对
-      let obj = {};
-      Object.defineProperty(obj, "data", {
-        value: "hksdf", //值
-        writable: true, //是否可写
-        configurable: false, //描述属性是否可以配置，以及是否可以删除
-        enumerable: true, //是否可枚举(遍历)
-      });
-      console.log(obj);
-      for (i in obj) {
-        console.log(obj[i]);
-      }
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body></body>
+    <script>
+        {
+            // 对象的简介写法
+            let a = "aaa";
+            let b = "bbb";
+            let obj = {
+                a,
+                b,
+                fun() {
+                    console.log(a, b);
+                },
+            };
+            obj.fun();
+        }
+        {
+            // 伪属性,不能和普通属性重名
+            let obj = {
+                get a() {
+                    //获取a时，触发事件
+                    console.log("Sdfasfas");
 
-      obj.data = "dssss";
-      console.log(obj.data);
-      //   writable: true,configurable: false,  可以重新赋值
-      //   writable: false,configurable:true,  不可以重新赋值,但是可以使用defineProperty()重新定义
-    }
-    {
-      //Object.defineProperty定义 伪属性 get set
-      let obj = {};
-      Object.defineProperty(obj, "data", {
-        get() {
-          console.log("输出值");
-          return "值";
-        },
-        set(val) {
-          obj.data = val;
-          console.log("设置了" + val);
-        },
-      });
-      console.log(obj.data);
-    }
-    {
-      //Object.is()  用来判断两个值是否严格相等 ===
-      console.log(Object.is(NaN, NaN)); //true  结果与===不同
-      console.log(Object.is(+0, -0)); //false   结果与===不同
-      console.log(Object.is("7", 7)); //false
-    }
-    {
-      // Object.assign(目标对象，源对象) 合并对象
-      let a = {
-        a: "ddsaf",
-      };
-      let d = {
-        r: "df",
-      };
-      let s = {
-        t: "ddf",
-      };
-      Object.assign(a, s, d);
-      console.log(a);
-      a.a = "56";
-      console.log(a);
-    }
-    {
-      // Object.getOwnPropertyDescriptors(对象) 返回指定对象的所有自身属性的描述对象
-    }
-    {
-      // Object.keys()  返回对象的键    数组形式，不含继承
-      // Object.values()  值  数组形式，不含继承
-      // Object.entries()  键值  数组形式，不含继承
-      //Object.fromEntries() 数组转对象 ，与Object.entries() 相反
-      let obj = {
-        a: "879",
-        b: 741,
-        c: true,
-      };
-      console.log(Object.keys(obj), Object.values(obj), Object.entries(obj));
-      let newArray = Object.entries(obj);
+                    return "a143243";
+                },
+                set a(val) {
+                    //设置a时，触发事件
+                    console.log("设置了a" + val);
+                },
+            };
+            console.log(obj.a);
+            obj.a = "佩奇";
+        }
+        {
+            // 允许字面量定义对象
+            let a = "bb";
+            let g = "sdfd8888";
+            let obj = {
+                ["s" + "f"]: "sssfff",
+                [a]: "bbb",
+                g: "gg", //es5之前的键，本质就是一个字符串
+            };
+            console.log(obj); //{sf: "sssfff", bb: "bbb", g: "gg"}
+        }
+        {
+            // Object.defineProperty(需要定义属性的对象,属性名，{属性描述对象})对
+            let obj = {};
+            Object.defineProperty(obj, "data", {
+                value: "hksdf", //值
+                writable: true, //是否可写
+                configurable: false, //描述属性是否可以配置，以及是否可以删除
+                enumerable: true, //是否可枚举(遍历)
+            });
+            console.log(obj);
+            for (i in obj) {
+                console.log(obj[i]);
+            }
 
-      console.log(Object.fromEntries(newArray));
-    }
-  </script>
+            obj.data = "dssss";
+            console.log(obj.data);
+            //   writable: true,configurable: false,  可以重新赋值
+            //   writable: false,configurable:true,  不可以重新赋值,但是可以使用defineProperty()重新定义
+        }
+        {
+            //Object.defineProperty定义 伪属性 get set
+            let obj = {};
+            Object.defineProperty(obj, "data", {
+                get() {
+                    console.log("输出值");
+                    return "值";
+                },
+                set(val) {
+                    obj.data = val;
+                    console.log("设置了" + val);
+                },
+            });
+            console.log(obj.data);
+        }
+        {
+            //Object.is()  用来判断两个值是否严格相等 ===
+            console.log(Object.is(NaN, NaN)); //true  结果与===不同
+            console.log(Object.is(+0, -0)); //false   结果与===不同
+            console.log(Object.is("7", 7)); //false
+        }
+        {
+            // Object.assign(目标对象，源对象) 合并对象
+            let a = {
+                a: "ddsaf",
+            };
+            let d = {
+                r: "df",
+            };
+            let s = {
+                t: "ddf",
+            };
+            Object.assign(a, s, d);
+            console.log(a);
+            a.a = "56";
+            console.log(a);
+        }
+        {
+            // Object.getOwnPropertyDescriptors(对象) 返回指定对象的所有自身属性的描述对象
+        }
+        {
+            // Object.keys()  返回对象的键    数组形式，不含继承
+            // Object.values()  值  数组形式，不含继承
+            // Object.entries()  键值  数组形式，不含继承
+            //Object.fromEntries() 数组转对象 ，与Object.entries() 相反
+            let obj = {
+                a: "879",
+                b: 741,
+                c: true,
+            };
+            console.log(Object.keys(obj), Object.values(obj), Object.entries(obj));
+            let newArray = Object.entries(obj);
+
+            console.log(Object.fromEntries(newArray));
+        }
+    </script>
 </html>

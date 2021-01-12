@@ -614,10 +614,10 @@ hash路由和history路由的区别：
 
     [...Object.values(obj)]
 
-    obj.forEach(item=>{
-        arr.push(item)
-    })
-
+    let arr = [];
+    for (val of Object.values(obj)) {
+        arr.push(val);
+    }
 
 
 18、如何判断数组是否包含某个给定的值 ？
@@ -639,7 +639,8 @@ hash路由和history路由的区别：
     过滤、映射
 
 21、 some、 ervery  有什么区别
-    所有、只要有一个
+    some();  只有一个真，就是真 ，返回布尔值  , ||
+    every();  所有都是真，才是真， 返回布尔值  &
 
 22、reduce 的使用语法， 都能实现哪些功能
     arr.reduce((vl, item) => {
@@ -649,7 +650,6 @@ hash路由和history路由的区别：
 
 23、Set 作用
     数组去重
-
 
 24、Map 在作用
     高级对象，以键值对的形式存储
@@ -756,10 +756,10 @@ hash路由和history路由的区别：
         //     };
         //     let obj2 = [...Object.values(obj)];
 
-        //     let arr = [];
-        //     for (val of Object.values(obj)) {
-        //         arr.push(val);
-        //     }
+        // let arr = [];
+        // for (val of Object.values(obj)) {
+        //     arr.push(val);
+        // }
         //     console.log(obj, obj2, arr);
         // }
     </script>

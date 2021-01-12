@@ -34,4 +34,4 @@ class Person {}
 
 let xxx:Person = new Person
 
-let xiaohei:()=>string =()=>{return "小黑"}
+let xiaohei:()=>string = ()=>{return "小黑"}
