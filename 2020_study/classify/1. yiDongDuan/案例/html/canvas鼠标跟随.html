@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0;padding: 0;}
+		#canvasId{border:1px solid black;}
+	</style>
+</head>
+<body>
+	<canvas id="canvasId" width="500" height="500"></canvas>
+</body>
+<script>
+var canvas = document.getElementById("canvasId");
+var ctx = canvas.getContext("2d");
+const [X,Y] = [20,10];
+const [w,h] = [canvas.width,canvas.height];
+let timer = null;
+canvas.onmousemove=function(e){
+	//节流
+	if(!timer){
+		timer = setTimeout(()=>{
+			move(e.pageX,e.pageY)
+			clearTimeout(timer)
+			timer = null
+		},30)
+	}
+}
+move(10,250)
+function move(x,y){
+	//清除画布
+	ctx.clearRect(0,0,canvas.width,canvas.height);
+	for(let i=0;i<Y; i++){
+		for(let j=0;j<X;j++){
+			let x0 = j*w/X+10,y0 = i*h/Y+10;
+			//计算获取角度
+			let deg = Math.atan((y-y0)/(x-x0))
+			//获取结束点位置
+			let x1 = x0 + 10*Math.cos(deg),y1 = y0 + 10*Math.sin(deg)
+			//绘线
+			ctx.beginPath();
+	        ctx.moveTo(x0,y0);
+	        ctx.lineTo(x1,y1);
+	        ctx.stroke();
+	        ctx.closePath();
+		}
+	}
+}
+
+</script>
+
+
+
+</html>
