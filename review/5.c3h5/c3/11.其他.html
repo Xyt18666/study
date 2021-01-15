@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            /* p {
+                color: #f55;
+                background: yellow;
+                width: 200px;
+                line-height: 100px;
+                text-align: center;
+                margin: 30px;
+            }
+            div {
+                overflow: hidden;
+            } */
+            body {
+                width: 100%;
+                position: relative;
+                height: 100vh;
+            }
+
+            .left {
+                width: 100px;
+                height: 150px;
+                float: left;
+                background: rgb(139, 214, 78);
+            }
+
+            .right {
+                overflow: hidden;
+                height: 300px;
+                background: rgb(170, 54, 236);
+            }
+
+            p {
+                color: #0f0;
+            }
+            a {
+                color: inherit;
+            }
+            .yc {
+                width: 200px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+            }
+            .yc2 {
+                width: 200px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+            .g-container {
+                display: flex;
+            }
+
+            .g-box {
+                margin: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 
+        伪类:   
+            a:link       未访问的链接
+            a:visited    已访问的链接
+            a:hover      鼠标划过链接
+            a:active     已选中的链接
+
+            :active
+            :focus
+
+            :enabled
+            :disabled
+            :checked
+
+            :not()
+            :target()
+
+            :first-child
+            :last-child
+            :nth-child()
+            :nth-of-type()
+            :only-child
+            :only-of-type
+
+            ::before
+            ::after
+
+        属性选择器：
+            [attribute]	        用于选取带有指定属性的元素。
+            [attribute=value]	用于选取带有指定属性和值的元素。
+            [attribute~=value]	用于选取属性值中包含指定词汇的元素。
+            [attribute|=value]	用于选取带有以指定值开头的属性值的元素，该值必须是整个单词。
+            [attribute^=value]	匹配属性值以指定值开头的每个元素。
+            [attribute$=value]	匹配属性值以指定值结尾的每个元素。
+            [attribute*=value]	匹配属性值中包含指定值的每个元素。
+
+
+
+        色彩:
+            一、最简单、最古老的颜色类型在CSS颜色的关键词，如red blue等。
+
+            二、十六进制值，如#0000。
+
+            三、RGB: rgb(255,0,0),这是给定的三个参数表示的红色，绿色和蓝色通道的颜色值每个通道不是由两个十六进制数字表示的，而是由0到255之间的十进制数表示的。
+
+            四、HSL:该hsl( )函数接受色相、饱和度以及明度值
+
+                色调：颜色的底色调。这个值在0到360之间，表示色轮周围的角度。
+
+                饱和度：饱和度是多少？这需要一个价值从0-100%，其中0是没有颜色（它将显示为灰色），100%是全彩色饱和度。
+
+                明度：颜色有多亮或明亮？这需要一个价值从0-100%，其中0是无光（它会出现全黑的），100%是充满光的(它会出现全白)。
+
+            五、RGBA 和 HSLA:不仅允许您设置想要显示的颜色,还有此颜色的透明度（transparency）。(rgba(255,0,0,0.5),hsla(240,100%,50%,0.5))，第四个值，范围在0 - 1——设置透明度（Opacity）。0是完全透明的,1是完全不透明的。
+
+
+        怪异盒模型:
+            box-sizing:
+
+        过滤:
+            filter:
+
+        计算:
+            calc()
+
+        倒影:
+            box-reflect:方向 间隔 效果;
+
+            第一个值：倒影方向
+                none:此值为box-reflect默认值，表示无倒影效果；
+
+                生成倒影的方向，主要包括以下几个值：
+                    above:表示生成的倒影在对象（原图）的上方；
+                    below:表示生成的倒影在对象（原图）的下方；
+                    left:表示生成的倒影在对象(原图)的左侧；
+                    right:表示生成的倒影在对象(原图)的右侧；
+            第二个值（可有可无）：
+                用来设置生成倒影与对象（原图）之间的间距，其取值可以是固定的像素值，也可以是百分比值，此值可以使用负值
+
+            第三个值（可有可无）：
+                用来设置倒影的遮罩效果，可以是背景图片，也可以是渐变生成的背景图像。
+
+        BFC:
+            BFC也是HTML中的一个盒子（看不见而已）
+            BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此。
+
+            只有满足至少下列条件之一才能形成BFC:
+                根元素（html就是根元素，整个html就是一个独立的BFC）
+                float属性不为none（如：left | right）
+                overflow的值不为visible（如：hidden | auto | scroll）
+                display属性值为inline-block | flex | inline-flex | table-cell | table-caption
+                position为absolute或fixed
+
+            BFC的作用：
+                1.利用BFC避免margin重叠
+                2.自适应两栏布局
+                3.清浮动
+
+        字体图标：
+            @font-face {
+                font-family:"";
+                src:url();
+            }
+
+        单位:
+            px、em、rem、%、vw
+
+        样式继承:
+            默认继承的属性：
+                azimuth, border-collapse, border-spacing,
+                caption-side, color, cursor, direction, elevation,
+                empty-cells, font-family, font-size, font-style,
+                font-variant, font-weight, font, letter-spacing,
+                line-height, list-style-image, list-style-position,
+                list-style-type, list-style, orphans, pitch-range,
+                pitch, quotes, richness, speak-header, speaknumeral,
+                speak-punctuation, speak, speechrate,
+                stress, text-align, text-indent, texttransform,
+                visibility, voice-family, volume, whitespace,
+                widows, word-spacing
+
+
+            手动继承属性：inherit
+
+
+        css函数:
+            https://www.runoob.com/cssref/css-functions.html
+
+        兼容:
+            
+            -webkit-属性:值; /*为Chrome/Safari*/
+            -moz-属性:值; /*为Firefox*/
+            -ms-属性:值; /*为IE*/
+            -o-属性:值; /*为Opera*/
+            属性:值; 
+
+
+        鼠标样式:
+            cursor : auto | crosshair | default | hand | move | help | wait | text | w-resize |s-resize | n-resize |e-resize | ne-resize |sw-resize | se-resize | nw-resize |pointer | url (url)
+
+        三角形:
+            https://www.jianshu.com/p/9a463d50e441
+
+        蜂窝型:
+            D:\Study\2020_study\classify\1. yiDongDuan\案例\蜂窝效果\css3-image-grid-layout
+
+
+        单多行文本溢出：
+
+            多行：
+                overflow : hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+
+        css引入：
+            @import url(xx/style.css);
+
+        新大小属性：
+            c3新增宽高属性值：
+                fill-available  表示撑满可用空间
+                fit-content     表示将元素宽度收缩为内容宽度
+                min-content     表示采用内部元素宽度值最小的那个元素的宽度作为最终容器的宽度
+                max-content     表示采用内部元素宽度值最大的那个元素的宽度作为最终容器的宽度。如果出现文本，则相当于文本不换行
+
+
+            元素最大最小的设置：
+                min-width/height : 设置最小值
+                max-widht/height : 设置最大值
+
+        改变默认样式：
+            滚动条样式
+            input样式
+
+        flex中的margin：
+            在空余位置中居中
+
+        flex-grow:
+            当flex-grow之和小于1时，只能按比例分配部分剩余空间，而不是全部
+
+        实时编辑CSS：
+            给style标签加属性，让css可见可编辑，具体属性找不到了
+
+        海市蜃楼：
+            pointer-events: none
+
+
+     -->
+
+        <!-- <p>看看我的 margin是多少</p>
+        <p>看看我的 margin是多少</p> -->
+        <!-- 重叠了 ↑ -->
+        <!-- 没重叠 ↓ -->
+        <!-- <p>看看我的 margin是多少</p>
+        <div>
+            <p>看看我的 margin是多少</p>
+        </div> -->
+
+        <div class="left">LEFT</div>
+        <div class="right">RIGHT</div>
+        <p>
+            释放到
+            <a href="#">123</a>
+        </p>
+        <div class="yc">释放到 释放到 释放到 释放到 释放到 释放到 释放到 释放到 释放到</div>
+        <div class="yc2">
+            释放到 释放到 释放到 释放到 释放到 释放到 释放到 释放到 释放到 释放到 释放到
+        </div>
+        <div class="test_div">
+            123
+            <style contenteditable>
+                .test_div {
+                    background: green;
+                }
+            </style>
+        </div>
+        <div class="g-container">
+            <p>违法</p>
+            <div class="g-box">213</div>
+            <p>违法</p>
+            <div class="g-box">213</div>
+            <div class="g-box">213</div>
+        </div>
+    </body>
+</html>

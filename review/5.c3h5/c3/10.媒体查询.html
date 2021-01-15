@@ -1,13 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <!-- 
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            .box {
+                width: 100%;
+                background: rgb(98, 156, 214);
+            }
+            @media (min-width: 768px) {
+                .box {
+                    width: 50%;
+                    background: rgb(98, 214, 175);
+                }
+            }
+            @media (min-width: 992px) {
+                .box {
+                    width: 30%;
+                    background: rgb(214, 197, 98);
+                }
+            }
+            @media (min-width: 1200px) {
+                .box {
+                    width: 10%;
+                    background: rgb(214, 98, 195);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box">123</div>
+        <!-- 
         @media screen and (max-width: 699px) and (min-width: 520px) {}
+
+        简化 ： @media (min-width: 520px){}
+
+        书写顺序，从小向大兼容
      -->
-  </body>
+    </body>
 </html>
