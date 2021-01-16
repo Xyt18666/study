@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+    安包：
+        npm i  @nuxtjs/axios @nuxtjs/proxy --save
+  
+    配置：
+        nuxt.config 中的 modules中 配置
+
+    使用：
+        async asyncData(context) {
+            let res = await context.$axios({ url: "/test.json" });
+            console.log("读取同域静态资源", res.data);
+
+            // 合并到组件内容部
+            return {
+            title: res.data.title
+            };
+        },
+
+        fetch(context) {
+            添加到 vuex 状态树
+        },
+
+    读取跨域资源：
+        配置：nuxt.config 中 axios 和 proxy
+
+        然后正常调用跨域接口
+
+    
+    拦截器配置：
+        在plugins中创建 axios.js 模块
+        添加到 配置文件
+
+
+
+                
+
+
+
+
+     -->
+    </body>
+</html>

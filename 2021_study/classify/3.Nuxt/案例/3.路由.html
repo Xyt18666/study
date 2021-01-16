@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+        约定式路由，无需进行配置
+
+        pages下的 vue文件 ，默认一级路由
+
+
+        layouts 下的 default 是默认展示页面
+            
+
+            <nuxt-link to="/login"> login</nuxt-link>       路由跳转
+
+            <Nuxt />        等同于 router-view
+
+
+        子路由：
+            pages下 创建 子路由文件夹
+                _xx.vue  动态路由
+                xx.vue      路由
+
+            跳转：跳转动态路由时 注意name的书写
+                <nuxt-link
+                :to="{ name: 'goods-code', params: { code: 79 }, query: { a: 77, b:99 } }"
+                >code</nuxt-link>        这种方式传参的话，传什么就是什么
+                
+
+                <nuxt-link to="/goods/common">去common</nuxt-link>   这种方式传参的话是字符串
+
+                <Nuxt />
+        
+        路由参数获取：
+            正常像vue一样获取 
+
+    展示区层级：
+        把2级页面放到一级展示区
+        把pages中的2级页面文件放入对应的文件夹内，并改名为index.vue
+
+        点击二级路由，如果没有在文件夹内定义index.vue,就会找一个页面，默认展示，
+        如果不想展示，就需要写一个空的 index.vue
+
+    层级结构图：
+        pages/一级页面/二级页面
+                     /index.vue   会在一级页面展示
+                     /index.vue    空文档代表有默认页面，不会寻找 其他详情页
+
+
+
+    抽离结构：
+        把layouts下的 默认文件 抽离成组件组合样式
+    
+    路由选中的默认样式类： active-class
+
+
+    扩展路由：nuxt.config.js
+        内部定义其他的路由
+
+
+    参数校验：
+        validate({ params, query }) {
+            return 布尔值;
+        },
+
+    错误路由订制：
+        error.vue  固定的
+
+    统一路由动画：
+        创建全局样式，设定动画样式
+
+        配置 nuxt.config.js
+        css: ["assets/transform.css"], 
+        
+
+    独享路由动画：
+        页面组件添加属性：transition: "test",
+        添加动画 css
+        
+
+    路由守卫：
+        前置：依赖中间键 middleware，插件
+            全局守卫：
+                nuxt.config 指向 middleware
+                layouts 定义 middleware
+
+            独享守卫：
+                组件内 定义 middleware
+
+            插件全局前置守卫
+                在plugins下创建router文件
+                配置nuxt.config
+
+        后置：使用 vue beforeRouterLeave ，插件
+
+            组件内部的后置
+                同 vue 独享后置
+
+            插件全局前后守卫
+                在plugins下创建router文件
+                配置nuxt.config
+
+
+
+
+    
+     -->
+    </body>
+</html>
