@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<!-- 
+ 
+globalStyle 全局外观配置（pages.json中）：
+	"navigationBarBackgroundColor": "#0f0", 顶部背景色
+	"navigationBarTextStyle": "white",		顶部标题颜色（黑白）
+	"navigationBarTitleText": "测试项目",	顶部标题文字
+	"enablePullDownRefresh":true,			开启下拉
+	"backgroundColor": "#F8F8F8",			背景色（下拉后可见）
+	"backgroundTextStyle":"light",			loding样式（亮暗）
+	"onReachBottomDistance":50			页面下拉触底距离
+ 
+ 创建新页面：
+	pages 下 创建文件夹
+	pages.json 中 填入页面对象 （第一个默认显示，同 小程序）
+ 
+ 
+ 页面配置：
+	与全局样式相同
+	不同的端，可以分别设置，有对应的属性
+	
+	
+	
+
+tabbar配置(pages.json中)：
+	"tabBar":{		
+		"list":[		最少2项，最多5项
+			{
+				"text":"首页",	文字
+				"pagePath":"pages/index/index",	导航到某个页面
+				"iconPath":"./static/logo.png",	默认图
+				"selectedIconPath":"static/logo.png"	选中图
+			},
+			{
+				"text":"信息",
+				"pagePath":"pages/msg/msg"
+			}
+		],
+		"color":"#2C405A",			未选中颜色
+		"selectedColor":"#007AFF",	选中颜色
+		"backgroundColor":"#2C405A",  背景色
+		"borderStyle":"blank",		上边框颜色
+		"position":"top"			仅支持小程序，并且图标消失
+	}
+	
+	
+	
+启动模式配置(仅在开发中生效，用于模拟直达页面的场景)(pages.json中)：
+	"condition":{
+		"current":0,
+		"list":[
+			{
+				"name":"xx",
+				"path":"pages/msg/msg",
+				"query":"id=80"
+			}
+		]
+	}
+	
+	小程序中顶部编译模式 可直达
+	web页面中输入地址可直达（无需配置）
+	
+	
+	
+	
+	
+	
+	
+ -->
+</body>
+</html>
