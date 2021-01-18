@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<!-- 
+声明式跳转：
+	跳转普通页面：
+		<navigator url="/pages/xx/xx">toxx</navigator>
+
+	跳转到tabBar,并关闭其他非tabBar页面:
+		<navigator url="/pages/msg/msg" open-type="switchTab">tomsg</navigator>
+
+	跳转页面（没有返回上一个页面的箭头，并且会触发卸载生命周期）：
+		open-type="redirect"
+
+编程式跳转：
+	跳转普通页面：
+		uni.navigateTo({
+			url:"/page/xx/xx"
+		})
+
+	跳转到tabBar,并关闭其他非tabBar页面:
+		uni.switchTab({
+			url:"/page/xx/xx"
+		})
+			
+	跳转页面（没有返回上一个页面的箭头，并且会触发卸载生命周期）：
+		uni.redirectTo({
+			url:"/page/xx/xx"
+		})
+
+传参:
+	路径?key=val&...
+
+	
+获取参数:
+	onLoad(options) {
+		console.log(options,"获取的参数");
+	},
+	
+
+ -->
+</body>
+</html>
