@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+下载 : 
+    npm i --save-dev html-webpack-plugin@next
+
+引入 : 
+    const HtmlWebpackPlugin = require('html-webpack-plugin');//引入
+
+配置:看下面的注释内容
+
+打包多个html：plugins数组中 new 多个  HtmlWebpackPlugin
+    
+
+关于报错： webpack5 使用 html 压缩插件时，要使用最新版
+
+
+     -->
+    </body>
+    <script>
+        /*
+
+module.exports = {
+    entry: "./src/index.js",
+    output: {
+        filename: "build.js",
+        path: resolve(__dirname, "build"),
+    },
+    module: {
+        rules: [],
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: "./src/index.html", //使用自己的模板 html
+            filename: "index.html", // 命名 ，默认就是index.html
+            minify: {
+                collapseWhitespace: true, //去除空格 ，默认就是去除，无需配置
+                removeComments: true, //去除注释，默认就是去除，无需配置
+            },
+        }),
+    ],
+    mode: "development",
+};
+
+-------------------------------------------------------------------
+
+打包多个html:
+
+module.exports = {
+    entry: {     
+        one:"./src/index.js",
+        tow:"./src/index2.js",
+    },
+    output: {
+        filename: "[name].js", //输出动态name
+        path: resolve(__dirname, "build"), 
+
+    },
+    module: {
+        rules: [],
+    }, 
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: "./src/index.html",    //使用不同的模板
+            filename: "index.html",         //输出不同的名字
+            chunks:["one"],                
+            //使用哪些 js 包（上面entry定义的），ps:顺序从右向左执行，所以，最初依赖包写到最右侧
+            
+            minify: {
+                collapseWhitespace: true,
+                removeComments: true, 
+            },
+        }),
+         new HtmlWebpackPlugin({
+            template: "./src/index2.html", 
+            filename: "index2.html", 
+            chunks:["tow"],
+            minify: {
+                collapseWhitespace: true, 
+                removeComments: true, 
+            },
+        }),
+    ],
+    mode: "development", 
+};
+
+
+
+
+*/
+    </script>
+</html>

@@ -1,11 +1,10 @@
-import './font_6nzanaidj2u/iconfont.css'
-import './child.js'
-import './a.css'
-function nesfn(){
-    console.log("new fn")
+import "./font_6nzanaidj2u/iconfont.css";
+import "./child.js";
+import "./a.css";
+function nesfn() {
+  console.log("new fn");
 }
-nesfn()
-
+nesfn();
 
 /*
 npx webpack-dev-server  开发环境 启动指令
@@ -39,12 +38,12 @@ html:默认没有HMR功能，同时导致一个问题，不能热更新了  （�
 
 // js: 默认没有HMR功能（需要修改js代码，添加支持HMR的代码,如下）
 
-// 一旦 有此值 ，就说明，开启了 HMR 
-if(module.hot){
-    module.hot.accept('./child.js',function(){
-        // 方法会监听 xx 文件 ，一旦发生变化，其他默认不会重新打包构建
-        
-        //会执行后面的回调函数
-        print()
-    })
+// 一旦 有此值 ，就说明，开启了 HMR
+if (module.hot) {
+  module.hot.accept("./child.js", function () {
+    // 方法会监听 xx 文件 ，一旦发生变化，其他默认不会重新打包构建
+
+    //会执行后面的回调函数
+    print();
+  });
 }
