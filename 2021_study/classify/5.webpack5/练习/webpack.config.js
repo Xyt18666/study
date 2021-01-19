@@ -1,12 +1,14 @@
 const { resolve, join } = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin"); //引入html打包插件
-// const MiniCssExtractPlugin = require("mini-css-extract-plugin"); //引入提起css插件
+const MiniCssExtractPlugin = require("mini-css-extract-plugin"); //引入提起css插件
 const OptimizeCssAssetsWebpackPlugin = require("optimize-css-assets-webpack-plugin"); //压缩css
 const PurgecssPlugin = require("purgecss-webpack-plugin"); //去除无用css
 const glob = require("glob");
 const PATHS = {
     src: join(__dirname, "src"),
 };
+
+console.log(MiniCssExtractPlugin);
 
 module.exports = {
     entry: ["./src/index.js", "./src/index.html"],
@@ -20,6 +22,11 @@ module.exports = {
                 test: /\.css$/, //匹配哪些文件
                 use: ["style-loader", "css-loader", "postcss-loader"], //使用提取单文件的loader
             },
+            // {
+            //     test: /\.css$/, //匹配哪些文件
+            //     use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"], //使用提取单文件的loader
+            // },
+
             {
                 test: /\.(jpg|png|gif|)$/, //处理 img loader  , 处理不了 html 中的img
                 loader: "url-loader",
@@ -91,7 +98,9 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: "./src/index.html", //使用自己的模板 html
         }),
-        // new MiniCssExtractPlugin(),
+        // new MiniCssExtractPlugin({
+        //     filename: "build.css", // 提取css文件，命名
+        // }),
         new OptimizeCssAssetsWebpackPlugin(),
         new PurgecssPlugin({
             paths: glob.sync(`${PATHS.src}/**/*`, {

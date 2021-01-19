@@ -86,21 +86,29 @@
                 componentDidMount(){
                 
                 }
+                render(){
+                    let {value,onadd,ondec} = this.props;
+                     //等同于 vuex  mupMutation ,获取 state中的属性 和方法
+                    return(
+                        
+                        <section>
+                            <div>home</div>
+                            <h2 >size：{value}</h2>
+                            <h1 onClick={onadd}>++</h1>
+                            <h1 onClick={ondec}>--</h1>
+                            {/* <Router> 
+                                {renderRoutes(this.props.route.childrens)}
+                            </Router>  */}
+                        </section>
+                    )
+                }
             
-             return(
-                let {value,onadd,ondec} = this.props
-                //等同于 vuex  mupMutation ,获取 state中的属性 和方法
-
-                <section>
-                    <h2 >size：{value}</h2>
-                    <h1 onClick={onadd}>++</h1>
-                    <h1 onClick={ondec}>--</h1>
-                </section>
+          
 
                 这样就能够  获取 修改的 store属性了
 
        
-            )
+            
 
 
         }

@@ -1,6 +1,17 @@
 import { createStore } from "redux";
 //引入 redux
 
+import { persistStore, persistReducer } from "redux-persist";
+import storageSession from "redux-persist/lib/storage/session";
+import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
+
+// 我要对哪些 reduce 的 state 做数据持久化
+const persistConfig = {
+    key: "root",
+    storage: storageSession,
+    stateReconciler: autoMergeLevel2,
+};
+
 // let actionFn = {
 //     add: function (state, action) {
 //         state.num++;
@@ -42,8 +53,13 @@ function reducer(state = states, action) {
     return { ...state };
 }
 
-const store = createStore(reducer);
+// const store = createStore(reducer);
 //创建商店
+const myPersistReducer = persistReducer(persistConfig, reducer);
+
+const store = createStore(myPersistReducer);
+
+export const persistor = persistStore(store);
 
 export default store;
 //导出商店

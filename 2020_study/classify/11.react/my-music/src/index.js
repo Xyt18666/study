@@ -13,7 +13,9 @@ React.Component.prototype.axios = axios;
 
 ReactDOM.render(
     <Provider store={Store}>
-        <App />
+   
+            <App />
+     
     </Provider>,
     document.getElementById("root")
 );
