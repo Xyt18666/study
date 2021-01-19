@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+    第一种：
+        1.引入三个模块
+            npm install style-loader css-loader babel-plugin-react-html-attrs --save
+    
+        2.组件中引入css
+            css命名：xx.module.css
+            引入：import style from 'xxx.module.css'
+        
+        3.使用
+            <div className={style.box}>你好，世界</div>
+        
+        
+    第二种修改webpack(模块化scss，不好使)：
+         {
+            test: sassModuleRegex,
+            exclude: /node_modules/,  //排除其他包
+            use: getStyleLoaders(
+            {
+                importLoaders: 3,
+                sourceMap: isEnvProduction
+                ? shouldUseSourceMap
+                : isEnvDevelopment,
+                localIdentName: "[path][name]-[local]-[hash:5]",  //开启模块化
+            },
+            "sass-loader"
+            ),
+        },
+
+    :local() 和 :global()：
+        :local() 包裹的类名，是被模块化的类名，只能通过 className={cssobj.类名} 来使用同时，:local 默认可以不写，这样，默认在样式表中定义的类名，都是被模块化的类名；
+        :global() 包裹的类名，是全局生效的，不会被 css-modules 控制，定义的类名是什么，就是使用定义的类名 className='类名'
+
+
+
+
+
+     -->
+    </body>
+</html>
