@@ -1,10 +1,15 @@
-const { resolve } = require("path");
+const { resolve, join } = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin"); //引入html打包插件
 // const MiniCssExtractPlugin = require("mini-css-extract-plugin"); //引入提起css插件
 const OptimizeCssAssetsWebpackPlugin = require("optimize-css-assets-webpack-plugin"); //压缩css
+const PurgecssPlugin = require("purgecss-webpack-plugin"); //去除无用css
+const glob = require("glob");
+const PATHS = {
+    src: join(__dirname, "src"),
+};
 
 module.exports = {
-    entry: ["./index.js", "./index.html"],
+    entry: ["./src/index.js", "./src/index.html"],
     output: {
         filename: "build.js",
         path: resolve(__dirname, "build"),
@@ -49,9 +54,35 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/, //只检查自己的 js 不检查 模块下的
+                enforce: "pre", //优先执行
                 loader: "eslint-loader",
                 options: {
                     fix: true, //自动修复
+                },
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: "babel-loader", //兼容js
+                options: {
+                    presets: [
+                        [
+                            "@babel/preset-env",
+                            {
+                                useBuiltIns: "usage", //按需加载
+                                corejs: {
+                                    //指定版本
+                                    version: 3,
+                                },
+                                targets: {
+                                    chrome: "60",
+                                    firefox: "60",
+                                    ie: "9",
+                                    safari: "10",
+                                }, //指定兼容器做到那个版本
+                            },
+                        ],
+                    ],
                 },
             },
         ],
@@ -62,6 +93,11 @@ module.exports = {
         }),
         // new MiniCssExtractPlugin(),
         new OptimizeCssAssetsWebpackPlugin(),
+        new PurgecssPlugin({
+            paths: glob.sync(`${PATHS.src}/**/*`, {
+                nodir: true,
+            }),
+        }),
     ],
     mode: "development",
     devServer: {

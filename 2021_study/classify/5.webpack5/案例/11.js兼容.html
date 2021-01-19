@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!--
+        npm i babel-loader @babel/core @babel/preset-env -D 
+        npm i core-js -D  按需加载兼容
+
+
+
+        关于 检查2个 .sj:
+            给eslint加属性：
+                enforce: "pre", //优先执行
+
+            默认从向下向上执行，如果不加属性，需要把eslint放到下面
+              
+
+
+
+      -->
+    </body>
+    <script>
+        /*
+
+{
+    test: /\.js$/,
+    exclude: /node_modules/,
+    loader: "babel-loader", //兼容js
+    options: {
+        presets: [
+            [
+                "@babel/preset-env",
+                {
+                    useBuiltIns: "usage", //按需加载
+                    corejs: {
+                        //指定版本
+                        version: 3,
+                    },
+                    targets: {
+                        chrome: "60",
+                        firefox: "60",
+                        ie: "9",
+                        safari: "10",
+                    }, //指定兼容器做到那个版本
+                },
+            ],
+        ],
+    },
+},
+
+*/
+    </script>
+</html>
