@@ -129,6 +129,95 @@
 
 ----------------------------------------------------------------------
 
+二次加固：
+    正常路由：
+        配置 router/index
+
+        配置根路由：
+            import { HashRouter as Router, Link} from "react-router-dom";
+            import { renderRoutes } from "react-router-config";
+            //  router工具,用于嵌套路由
+            import routes from "./router/index";
+            // 引入 router
+
+            <Router>
+                <div className="App">
+                    <Link to="/"> to 1</Link>
+                    <Link to="/tow"> to 2</Link>
+                    {renderRoutes(routes)}
+                    {/* 使用工具 直接承载 路由 ，就像 vue的 router-view */}
+                </div>
+            </Router>
+
+    嵌套路由：
+        import routes from  '../router/index'
+        import {renderRoutes} from 'react-router-config';
+        import {HashRouter as Router,Link} from 'react-router-dom'
+    
+    
+        <Link to="/"  style={{display:'block'}}>to child  </Link>
+        {renderRoutes(this.props.route.children),{data:"向子路由传递的参数"}}   此处的routers是主路由文件定义的 子路由名
+    
+
+        子路由获取属性： props.xx
+
+    动态路由：
+        设定规则： 在 router/index中 
+            xx/:key    必须传递key属性才能跳转（key是自定义的属性名）
+            xx/:key?    不传也行
+
+        传参方式：
+            link 标签中 拼接 路径
+            this.props.history.push("路径") （编程式路由）
+
+        接收参数：
+            this.props.match.params.xx
+
+        
+    路由传参：query 和 state (路径该拼配什么就匹配什么，路径错了，不能跳)
+        区别：state是加密的
+        
+        link方式:
+            <Link to={{
+                    pathname:"/loginfor",
+                    state:{                     (属性名换成query 就是 query方式)
+                        islog:'success'
+                    }
+            }}>xx</Link>
+
+            
+
+        js操作的路由：
+            this.props.history.push({
+                path:"路径",
+                state:{}
+            })
+
+        接收路由传参：
+            this.props.location.state          (或者query)
+
+
+    重定向：
+        
+        import {Redirect} from 'react-router-dom'
+        <Redirect to="/tow"></Redirect> (只要渲染该标签就会重定向)
+
+        编程式重定向：
+            this.props.history.push("路径")
+            
+        
+      
+    
+
+
+
+    
+
+    
+    
+
+
+
      
 
 
