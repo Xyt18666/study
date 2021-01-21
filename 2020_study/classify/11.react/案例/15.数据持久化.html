@@ -30,16 +30,17 @@ import { createStore } from "redux";
 
 import { persistStore, persistReducer } from "redux-persist";
 import storageSession from "redux-persist/lib/storage/session";     
-import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
+
 
 
 
 
 // 我要对哪些 reduce 的 state 做数据持久化
 const persistConfig = {
-    key: "root",
-    storage: storageSession,            //使用什么方式存储
-    stateReconciler: autoMergeLevel2,
+    key: 'root', // 必须有的
+    storage:storageSession, // 缓存机制
+    blacklist: ['name','age'] // reducer 里不持久化的数据,除此外均为持久化数据
+
 };
 
 

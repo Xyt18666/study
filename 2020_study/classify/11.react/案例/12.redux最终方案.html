@@ -121,6 +121,10 @@
         export default NewRedux
         // 导出新的组件
 
+
+
+
+
 ------------------------------------- 下面是学习时报错的时候的解决，是错误的 ----------------------------------------------------------
 
         ps:不能再 app.js中使用 connect ，报错
@@ -149,11 +153,75 @@
         }
 
         
-            
+-------------------------------------错误结束----------------------------------------------------
+
+二次加固： my-react-2
+    
+    安装 谷歌 插件  ： redux dev  （可视化数据）
+
+        配置：
+            const store = createStore(
+                myPersistReducer,
+                window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()   //添加这就话
+            );
+
+    重点知识：
+        无法在reducer函数中 直接修改 state 值 ，需要拷贝一份，在return 出去
+        reducer必须是纯函数（return值是由参数决定的函数，不能在这个函数中调取ajax）
+
+
+    redux结合axios获取数据：
+        模拟接口 ： easy-mock 网站  
+
+    redux-thunk 、redux-saga 中间键 ： 
+        两种都可以 
+
+
+
+    使用  react-redux  最终方案：
+        
+        store目录：
+            index.js        入口文件
+            reducer.js      方法函数
+            states.js       数据
+            actions.js      存放action
+            actionTypes.js  存放常量函数名
+
+        配置：
+            Provider    根目录绑定
+            connect     组件使用
+
+        获取数据：
+            connect 内部映射属性
+
+        修改参数：  
+            connect 内部映射方法
+            方法调用dispatch ，传入action
+
+        ps: 分了很多文件，就是抽离，根据需求抽离
+
+
+        配置中间键：据体代码看实例文件
+            npm i --save redux-thunk
+
+            作用：（就像vuex中的actions）
+                拓展 action
+                原有action 返回 对象 ，
+                使用中间键后 可以返回函数，在函数中调用接口... 
+                中间键也是一个 action
+
+        配置数据持久化：
+            见 15.数据持久化（未配置action中间键的）
+            实战练习 my-react-2 中有完美配置
+
+
+
+
+
+
+
 
     
-
-
 
 
         
