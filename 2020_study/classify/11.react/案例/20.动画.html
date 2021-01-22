@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+    实例：my-react-2\src\components\router1.jsx
+
+    方式一：
+        使用原生 css + 类名
+
+    方式二：使用插件
+        npm i react-transition-group 
+
+        官方提供的组件 ：
+            Transition
+                1.该组件是一个和平台无关的组件(不一定要结合css)
+                2.在前端开发中，我们一般是结合css来完成样式,所以比较常用的是CSSTransition
+
+            CSSTransition
+                1.在前端开发中，通常使用CSSTransition来完成过渡动画效果
+
+            SwitchTransition
+                1.两个组件显示和隐藏切换时,使用该组件
+
+            TransitionGroup
+                1.将多个动画组件包裹在其中,一般用于列表中元素的动画
+
+        属性：
+           
+            in              来控制动画的执行，动画状态
+            timeout         是动画时间 
+
+                timeout 属性可以指定对应值的动画时间
+                timeout={{
+                    enter: 300,
+                    exit: 500,
+                }}
+
+      
+            classNames	css动画名称
+                {{
+                appear: 'my-appear',
+                appearActive: 'my-active-appear',   
+                enter: 'my-enter',                   *
+                enterActive: 'my-active-enter',          *
+                enterDone: 'my-done-enter,
+                exit: 'my-exit',                         *
+                exitActive: 'my-active-exit',                *
+                exitDone: 'my-done-exit,
+            }}
+
+
+            mountOnEnter	默认情况下，子组件与父转换组件一起立即挂载。如果你想“延迟挂载”第一个in={true}上的组件，你可以设置mountOnEnter。在第一次进入转换之后，组件将保持挂载状态，即使在“退出”状态下也是如此，除非你还指定unmountOnExit
+            unmountOnExit	默认情况下，子组件在达到“退出”状态后仍然挂载。如果你希望在组件退出后卸载组件，请设置unmountOnExit
+            appear	如果组件挂载时显示组件，则该组件不进行转换。如果您希望在第一个挂载集上进行转换，则显示为true，并且组件将在< transition >挂载后立即进行转换，注意:没有特定的“显示”状态。appear只添加一个额外的enter转换
+            enter	启用或禁用enter转换
+            exit	启用或禁用exit转换
+            addEndListener	添加自定义转换结束触发器。使用正在转换的DOM节点和done回调调用。允许更细粒度的转换结束逻辑。注意:如果提供超时，仍将其用作回退
+            onEnter	在应用‘Enter’或‘出现’类后立即触发回调
+            onEntering	在应用‘Enter-Active’或‘出现-活动’类后立即触发回调
+            onEntered	在“Enter”或“出现”类之后立即触发回调移除而done类添加到DOM节点
+            onExit	在应用“Exit”类后立即触发回调
+            onExiting	在应用“Exit-Active”之后立即触发回调
+            onExited	在“退出”类之后立即触发回调。移除而exit-done类添加到DOM节点
+                     
+        css动画属性：
+            .xxx-enter	入场前加载动画
+            .xxx-enter-active	入场后到入场结束的过程
+            .xxx-enter-done	入场动画执行完毕后
+            .xxx-exit	出场前加载动画
+            .xxx-exit-active	出场后到入场结束的过程
+            .xxx-exit-done	出场动画执行完毕后
+
+
+    均可使用动画库：
+        cnpm i animate.css
+
+
+    组件动画：
+        没找到答案
+
+    路由动画：
+        没找到答案
+            
+            
+
+
+
+
+     -->
+    </body>
+</html>

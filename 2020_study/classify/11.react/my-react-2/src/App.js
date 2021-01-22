@@ -16,6 +16,8 @@ import { renderRoutes } from "react-router-config";
 import routes from "./router/index";
 // 引入 router
 
+
+
 function mapStateToProps(state) {
     // 映射属性
     return {
@@ -73,7 +75,10 @@ class App extends React.Component {
                     <Hooks></Hooks>
                     <Link to="/"> to 1</Link>
                     <Link to="/tow"> to 2</Link>
+
+                  
                     {renderRoutes(routes)}
+                    
                     {/* 使用工具 直接承载 路由 ，就像 vue的 router-view */}
                 </div>
             </Router>

@@ -1,0 +1,61 @@
+.show {
+    /* opacity: 1;
+    transition: all 1s; */
+    animation: show-item 1s ease-in forwards;
+}
+.hide {
+    /* opacity: 0;
+    transition: all 1s; */
+    animation: hide-item 1s ease-in forwards;
+    /* forwards 能够保存动画最后一帧的样式 必写 */
+}
+/* 动画效果 */
+@keyframes hide-item {
+    0% {
+        opacity: 1;
+        color: red;
+    }
+    50% {
+        opacity: 0.5;
+        color: green;
+    }
+    100% {
+        opacity: 0;
+        color: blue;
+    }
+}
+
+@keyframes show-item {
+    0% {
+        opacity: 0;
+        color: red;
+    }
+    50% {
+        opacity: 0.5;
+        color: green;
+    }
+    100% {
+        opacity: 1;
+        color: blue;
+    }
+}
+/* ----------------------------- */
+
+.alert-enter {
+    opacity: 0;
+    transform: translateX(100%);
+}
+.alert-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 2000ms, transform 2000ms;
+}
+.alert-exit {
+    opacity: 1;
+    transform: translateX(0);
+}
+.alert-exit-active {
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 2000ms, transform 2000ms;
+}
