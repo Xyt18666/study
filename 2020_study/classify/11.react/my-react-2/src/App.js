@@ -8,7 +8,9 @@ import { add, setVal, getData } from "./store/actions";
 import TestSlot from "./components/testSlot";
 // 引入插槽
 
-import { HashRouter as Router, Link} from "react-router-dom";
+import Hooks from "./components/hooks";
+
+import { HashRouter as Router, Link } from "react-router-dom";
 import { renderRoutes } from "react-router-config";
 //  router工具,用于嵌套路由
 import routes from "./router/index";
@@ -68,6 +70,7 @@ class App extends React.Component {
                             footer: <button onClick={() => alert(" react真好")}>确定</button>,
                         }}
                     </TestSlot>
+                    <Hooks></Hooks>
                     <Link to="/"> to 1</Link>
                     <Link to="/tow"> to 2</Link>
                     {renderRoutes(routes)}

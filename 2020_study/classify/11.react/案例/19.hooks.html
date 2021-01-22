@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+    使用hook的优点：
+        简化书写
+        提升可维护性
+
+    useState(初始值) :状态控制器
+        例子：
+            const [num ,setNum] = useState(0);
+            const [names,setName] = useState("阿离(不知火)");
+            [属性，修改属性的方法] = useState(初始值);
+
+        ps：
+            useState() 不能放到条件语句中，因为他是通过顺序来和界面的数据关联的
+        
+
+    useEffect()：代替DidMount 和 UpDate生命周期
+        例子：
+            useEffect(()=>{
+                console.log("num的值是",{num})
+            })
+        
+        
+
+        解绑函数：代替 UnMount 生命周期
+            例子：
+                useEffect(()=>{
+                    console.log("num的值是",{num})
+                    return ()=>{
+                        console.log("解绑函数")
+                    }
+                },[])
+
+            含义：
+                [] ：内部是参数，如果不写，就代表useEffect解绑时触发
+                    如果写参数，就代表，写的参数改变时就会触发
+
+        ps：异步执行的
+
+    createContext()、useContext() : 父子组件传值 (很像 provide 和 inject)
+
+        在父组件定义传输组件：     
+            const CreateContext = createContext()    //定义组件， createContext()函数需要引入
+
+            <CreateContext.Provider value={num}>  //创建组件，并传入参数 value
+                <Child></Child>
+            </CreateContext.Provider>
+
+        在子组件接收：
+            let num = useContext(CreateContext)   // useContext(某个组件)接收器函数
+
+            然后可以直接使用
+        
+
+    useReducer() : 定义属性 和 多个方法
+        例子：
+            const [count,dispatch] = useReducer((state,action)=>{
+                switch(action){
+                    case "add":
+                        return state+1 
+                    case "sub":
+                        return state-1 
+                    default:
+                        return state
+
+                }
+            },0)
+
+            <p onClick={()=>{dispatch("add")}}>使用useReducer +++</p>
+            <p onClick={()=>{dispatch("sub")}}>使用useReducer --</p>
+    
+
+    createContext()、useContext()、useReducer()结合使用，实现redux全局数据管理：
+        看实例：replaceRedux文件夹
+
+
+    useMemo：  解决 hooks的性能问题 （缓存状态，属性）
+        问题是：父组件里任何一个状态发生变化，子组件的方法或者是代码，都会重新渲染
+
+        例子：用法与useEffect相同
+            useMemo(()=>{
+                changeNames()// 当names发生改变时执行
+            },[names])
+                
+    
+    useRef : 获取dom和保存变量
+        获取dom例子：
+            const inputEl = useRef(null)
+            <input type="text" ref={inputEl}/>
+
+        保存变量：
+            const textRef = useRef()
+            textRef.current = num
+
+    
+    useCallback(): 缓存方法
+        useCallback(()=>{
+            
+        },[])
+            
+
+    自定义hooks函数：
+        ps： 命名必须使用 use开头
+            
+
+     -->
+    </body>
+</html>
