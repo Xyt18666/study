@@ -7,13 +7,13 @@
     </head>
     <body>
         <!-- 
-        不同的构建枸橘有不同的方法，我使用的是vue3官方推荐的 vite
+        不同的构建有不同的方法，我使用的是vue3官方推荐的 vite
 
-        安装：npm i --dev typescript
+        安装：npm install typescript --save-dev
 
         创建配置文件：tsconfig.json
 
-        优化TS类型推断：
+        优化TS类型推断：(写在src目录下)
             创建 shims.d.ts 文件：(让ts认识.vue)
                 declare module "*.vue" {
                     import { ComponentOptions } from "vue";
@@ -52,7 +52,35 @@
         
 
         
+-------------------------------------------------------------------------
 
+二次加固：
+    项目构建：
+        create-vite-app projectName 
+        项目目录下 npm i 
+
+    修改文件后缀以及引入：
+        将 main.js 改为 main.ts，并将 index.html 中引入的 main.js 改为 main.ts
+
+    创建配置文件：
+        tsconfig.json
+
+    优化TS类型推断：
+        创建 shims.d.ts 文件：(让ts认识.vue)
+            declare module "*.vue" {
+                import { ComponentOptions } from "vue";
+                const componentOptions: ComponentOptions;
+                export default componentOptions;
+            }
+
+        创建 source.d.ts文件：(优化编译器提示，声明静态资源文件)
+            declare const React: string;
+            declare module '*.json';
+            declare module '*.png';
+            declare module '*.jpg';
+
+    项目中使用：
+        script 标签 lang="ts"
 
         
 
