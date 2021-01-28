@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+
+    教程：
+        https://segmentfault.com/a/1190000020416483?utm_source=tag-newest
+    安包：
+       cnpm install --save-dev page-skeleton-webpack-plugin
+
+       它是饿了么团队开发的一款webpack插件，这个插件可以根据不同的页面生成不同的骨架屏页面。
+
+    配置：
+        vue.config.js
+        在项目的跟模板中添加注释： < !-- shell -- >
+
+    解决报错（端口问题）：
+        修改node_modules/page-skeleton-webpack-plugin/src/skeletonPlugin.js
+
+        if (!this.server) {
+            const server = this.server = new Server(this.options) // eslint-disable-line no-multi-assign
+            server.listen().catch(err => server.log.warn(err))
+        }
+
+    生成骨架屏：
+        启动项目
+        控制台输出表示成功： 😄 -> "[PSG] connected"
+        ctrl+回车生成骨架屏页面
+        右上角蓝色笔（按一下，保存，可以手动调整样式）
+        shell文件夹下会生成文件
+
+    使用：
+        正常开发中无法显示，，也不需要显示，在生成前调整好样式即可
+        项目打包后自动应用骨架屏
+
+        
+        
+     -->
+    </body>
+</html>

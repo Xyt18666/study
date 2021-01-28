@@ -7,7 +7,13 @@ import echarts from "echarts";
 import dayjs from "dayjs";
 import BScroll from "better-scroll";
 
+
+
 Vue.config.productionTip = false;
+
+import VueAwesomeSwiper from "vue-awesome-swiper";
+Vue.use(VueAwesomeSwiper);
+import "swiper/css/swiper.css";
 
 console.log(echarts);
 

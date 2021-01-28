@@ -3,6 +3,7 @@
         <Echarts />
         <Day />
         <BetterScroll />
+        <Swiper/>
     </div>
 </template>
 
@@ -10,6 +11,10 @@
 import Echarts from "@/components/Echarts.vue";
 import Day from "@/components/Day.vue";
 import BetterScroll from "@/components/BetterScroll.vue";
+import Swiper from "@/components/Swiper.vue";
+
+
+
 
 export default {
     name: "Home",
@@ -17,6 +22,7 @@ export default {
         Echarts,
         Day,
         BetterScroll,
+        Swiper
     },
 };
 </script>
