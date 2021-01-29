@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+
+    URL Scheme 方式（比较简单）:如果你单纯为了能让H5打开App，Schema就能做到了
+
+        例子：
+            <a href="前缀">打开xx</a>
+
+                        行为(应用的某个功能)
+                                  |
+            scheme://host:port/[path][?query]
+              |                         |
+            应用标识                功能需要的参数
+
+
+        前缀：
+            QQ： mqq://
+            微信： weixin://
+            腾讯微博： TencentWeibo://
+            淘宝： taobao://
+            支付宝： alipay://
+            微博： sinaweibo://
+
+
+    Intent方式：
+        
+        例子：
+            <a href="intent://scan/#Intent;scheme=zxing;package=com.google.zxing.client.android;S.browser_fallback_url=http%3A%2F%2Fzxing.org;end"> Take a QR code </a>
+        
+        语法：
+            intent:
+                HOST/URI-path // Optional host
+                #Intent;
+                    package=[string];
+                    action=[string];
+                    category=[string];
+                    component=[string];
+                    scheme=[string];
+                end;
+
+
+    Universal Link方式：
+
+        为什么要使用 Universal Link:
+            传统的 Scheme 链接有以下几个痛点：
+                在 ios 上会有确认弹窗提示用户是否打开，对于用户来说唤端，多出了一步操作。若用户未安装 APP ，也会有一个提示窗，告知我们 “打不开该网页，因为网址无效”
+                传统 Scheme 跳转无法得知唤端是否成功，Universal Link 唤端失败可以直接打开此链接对应的页面
+                Scheme 在微信、微博、QQ浏览器、手百中都已经被禁止使用，使用 Universal Link 可以避开它们的屏蔽（ 截止到 18年8月21日，微信和QQ浏览器已经禁止了 Universal Link，其他主流APP未发现有禁止 ）
+
+        使用方法：未知
+                    
+
+    使用第三方库：
+        npm install --save callapp-lib
+
+
+     -->
+    </body>
+</html>
