@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+        冻结对象 ：Object.freeze() 
+        
+
+
+
+
+     -->
+    </body>
+    <script>
+        {
+            function Test() {
+                this.a = "A";
+                this.b = "B";
+            }
+            Test.prototype.c = "C";
+
+            const test = new Test();
+
+            test.e = "E";
+            // 冻结前可以增
+
+            // const NewTest = Object.freeze(test);
+            // 重新赋值后是原对象的引用，不会重新生成一个对象
+
+            // console.log(test === NewTest); //true
+
+            Object.freeze(test);
+            //冻结某个对象
+
+            console.log(test.a);
+            // 冻结后可以获取
+
+            test.d = "D";
+            console.log(test);
+            // 冻结后不可以增
+
+            test.a = "aaa";
+            console.log(test);
+            // 冻结后不可以修改
+
+            delete test.a;
+            // 冻结后不可以删除
+
+            Test.prototype.c = "333";
+            console.log(test);
+            //  冻结后 通过构造函数原型更改其属性是可以改的
+
+            test.__proto__.c = "CCCCC";
+            console.log(test);
+            //  冻结后 通过对象的__proto__ 更改原型上的属性是可以改的
+
+            console.log(Test.prototype);
+            Test.prototype = { q: "qq", c: "qwe123" };
+            console.dir(Test);
+            console.dir(test, "---test");
+            // 冻结后 原型对象是不可更改的
+
+            // test.__proto__ = { q: "qq", c: "qwe123" };
+            // <Test> is not extensible
+            // 报错，不可以重写原型
+
+            /*
+                    简单总结：
+                        浅冻结，第一层的属性不可改，内部属性可改
+                        结果就是 a,b,e,__proto__ 是不能改的，但是__proto__内的c可改
+
+
+                    例子：
+                        Test {
+                            a: "A"
+                            b: "B"
+                            e: "E"
+                            __proto__:
+                                c: "CCCCC"
+                                constructor: ƒ Test()
+
+                        }
+
+
+
+
+                */
+        }
+
+        {
+            let obj = {
+                _a: "a",
+                b: "b",
+                c: {
+                    d: "DD",
+                },
+                get a() {
+                    return this._a;
+                },
+                set a(newVal) {
+                    this._a = newVal;
+                },
+            };
+            Object.freeze(obj);
+
+            console.log(Object.isFrozen(obj));
+            // 判断是否为冻结对象
+
+            obj.b = 1;
+            console.log(obj);
+            // 在严格模式下会报错， 不可以给只读属性 b 赋值
+
+            obj.c.d = 4;
+            console.log(obj);
+            // 可以改 ,所以是浅冻结
+
+            obj.a = 1;
+            // 通过 set函数 同样无法修改冻结对象
+        }
+        {
+            const res = Object.freeze(123);
+            //    es6环境下，放入什么返回什么
+            //    es5环境下，放入非对象，会报错说，这不是一个对象
+
+            const arr = Object.freeze([1, 2, 5]);
+            // arr.push(4);
+            // Cannot add property 3, object is not extensible
+            // 报错 ， 对象不可拓展 ，数组本质也是对象
+
+            // 结果： 数组一样可以冻结
+        }
+        {
+            // 深度冻结封装
+            Object.deepFreeze = o => {
+                const _keys = Object.getOwnPropertyNames(o);
+                /*
+
+                 Object.getOwnPropertyNames(o) 与 Obje.keys(o)的区别 ：
+                    Object.getOwnPropertyNames(o) 可以获取到不可枚举属性
+
+                */
+
+                if (_keys.length) {
+                    _keys.forEach(function (i) {
+                        let _value = o[i];
+                        if (typeof _value === "object" && _value != null) {
+                            Object.deepFreeze(_value);
+                        }
+                    });
+                }
+                return Object.freeze(o);
+            };
+
+            let obj2 = {
+                a: { b: { c: "cc" } },
+                d: "dd",
+            };
+            Object.deepFreeze(obj2);
+            obj2.a.b.c = 33;
+            console.log(obj2);
+        }
+    </script>
+</html>
