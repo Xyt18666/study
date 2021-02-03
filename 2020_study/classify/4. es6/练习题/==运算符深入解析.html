@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body></body>
-  <script>
-    console.log([] == 0); //true
-    /*
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body></body>
+    <script>
+        console.log([] == 0); //true
+        /*
     Number([].valueOf().toString())==0 
     Number([].toString())==0
     Number("")==0
     0==0
     */
 
-    console.log(![] == 0); //true
-    /*
+        console.log(![] == 0); //true
+        /*
     “!” 为逻辑非，在操作非布尔值类型的数据时，会将该数据类型先转换为布尔值后再取反
     !优先级 大于 == ，所以先执行 ![]
 
@@ -25,16 +25,16 @@
     false == 0     
     */
 
-    console.log([] == ![]); //true
-    /*
+        console.log([] == ![]); //true
+        /*
     [] == !Boolean([])
     [] == false
     Number([].valueOf().toString()) == Number(false)
     0 == 0
     */
 
-    console.log([] == []); //false
-    /*
+        console.log([] == []); //false
+        /*
     在 JavaScript 中，Object、Array、Function、RegExp、Date 都是引用类型
     声明引用类型的时候，变量名保存在 js 的栈内存里面，而对应的值保存在堆内存里面
     而这个变量在栈内存中实际保存的是：这个值在堆内存中的地址，也就是指针
@@ -44,8 +44,8 @@
     
     */
 
-    console.log({} == !{}); //false
-    /*
+        console.log({} == !{}); //false
+        /*
     {} == !Boolean({}) 
     {} == false
     Number({}) == Number(false) 
@@ -53,9 +53,9 @@
 
     */
 
-    console.log({} == {}); //false
+        console.log({} == {}); //false
 
-    /*
+        /*
     ==    先强制转换数据类型 在 比较
     ===   仅比较，不转换
 
@@ -121,5 +121,5 @@
 
     
     */
-  </script>
+    </script>
 </html>

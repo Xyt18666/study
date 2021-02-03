@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body></body>
+    <script>
+        {
+            /*
+            加运算的隐式转换 ：
+            
+                数字+数字 =  数字
+                数字+字符串 =  字符串
+                数字+NaN或者undefined = NaN  （Number()转数字 ，NaN 数字类型 ，undefined undefined类型）
+                字符串 + 任意 = 字符串  
+                数字 + null  = 数字    （null转数字 0  ,null 是Object类型）
+                数字 + 布尔值 = 数字 （布尔值转换成了数字）
+
+
+
+                转数字类型 : Number()
+
+            
+            */
+
+            let len = {} + {};
+            console.log(len); //[object Object][object Object]
+            /*
+                当对象遇到 + 运算 会执行 toString() 
+                所以结果是 [object Object][object Object]
+            
+            
+            */
+
+            let len2 = [] + [];
+            console.log(len2); // 空
+
+            /*
+                当数组遇到 + 运算 会执行 toString() 
+                空数组执行 toString 是空字符串
+                两个空字符串相加等于空
+
+            
+            
+            */
+
+            let len4 = function () {} + function () {};
+            console.log(len4); // function () {}function () {}
+            /*
+                当函数遇到 + 运算 会执行 toString() 
+            
+            */
+
+            let len3 = function () {}.length;
+            console.log(len3); // 0
+            /*
+                函数的length 是 形参个数
+            
+            */
+        }
+
+        {
+            /*
+             其他算数运算的隐式转换 ：
+                符号两边的值都会转 Number 
+                如果转换失败 就是 NaN
+                运算结果自然NaN
+            
+            
+            
+            */
+            console.log(true - 10);
+            console.log(true - "10qwe");
+            console.log([] - 10);
+            console.log([99] - 10);
+
+            console.log({} - 10);
+
+            console.log(
+                Number(true),
+                Number(false),
+                Number(null),
+                Number([]),
+                Number([99]),
+                Number([1, 2]),
+                Number({}),
+                Number(function () {}),
+                Number(undefined),
+                Number(NaN),
+                Number("qwe")
+            );
+        }
+
+        {
+            /*
+            ps: === 不隐式转换，直接比较
+
+             ==  != 比较运算符隐式转换 ：
+                有一方为 布尔值 ，另一方则会转为数字类型
+                有一方是 对象，则调用对象的 valueOf() 方法，用得到的基本类型值后，在比较
+                有一方是 NaN，无论另一个操作数是什么，相等操作符都返回 false
+                如果两个操作数都是对象，则比较它们是不是同一个对象。如果指向同一个对象，则相等操作符返回 true；
+                如果两方都是 字符串 ，逐一比较   阿丝卡 码值
+                null==undefined为true
+                null和undefined不会进行数据转换
+                NaN不与任何值相等，甚至包括它自己
+
+            
+            */
+
+            console.log("qwe" == true);
+            console.log([1] == true);
+            console.log(1 == "qwe");
+            console.log(1 == {});
+        }
+    </script>
+</html>
