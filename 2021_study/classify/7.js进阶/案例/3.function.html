@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+
+     -->
+    </body>
+    <script>
+        // 标签函数：
+
+        function label(x) {
+            console.log("标签函数", x);
+        }
+        label`参数`;
+
+        // ------------------------------------------------------------------------
+        let test = new Function("a", "b", "console.log(a+b)");
+        let test2 = new Function("a ,b", "console.log(a+b)");
+        // new Function 的写法 ，写函数
+
+        /*
+        应用场景：
+            1. 当 执行字符串代码时 可以使用   new Function
+            
+        
+        
+        
+        */
+
+        // 形参，函数体
+        test(1, 2);
+        test2(1, 2);
+
+        // 一个面试题：
+
+        var a = 1,
+            b = 2;
+
+        function test4() {
+            var b = 3;
+            return new Function("c", `console.log(a+b+c,"输出结果")`);
+        }
+        var t = new test4();
+
+        t(4);
+        //浏览器环境输出 7
+        //node 环境下 报错 ，因为获取不到 global 下的 a 属性
+        /*
+            解释：
+                new Function 的作用域在全局
+                所以  a=1，b=2， c=4
+                结果是 7
+
+
+            ps:
+                使用 new Function 不会创建闭包，而是在全局，
+                他们只能访问自己的作用域 和 全局作用域
+                无法访问创建他的函数的 作用域
+                他不同于 eval()  ,eval 和 function(){}相同，会找当前所在作用域
+        
+        
+        */
+        // -----------------------------------------------------------------
+        let t1 = new Function("console.log('t1')");
+        let t2 = Function("console.log('t2')");
+        t1();
+        t2();
+        console.log(t1.__proto__ === Function.prototype); //tue
+        console.log(Function.__proto__ === Function.prototype); //true
+
+        // 使用  new Function 与  Function 的区别 ：没有区别
+
+        // -----------------------------------------------------------------
+        // eval() 的使用
+
+        // 他可以把字符串 转化为 js 代码执行，
+        // 但是它存在 安全问题 ，不要滥用
+
+        // -----------------------------------------------------------------
+
+        // 一个面试题：
+
+        console.log(getName()); //5 ，变量提升， 函数提升，函数大于变量
+
+        function Foo() {
+            //Foo构造函数
+            getName = function () {
+                //构造函数不执行，他也不会执行
+                //全局变量赋值一个函数
+                console.log(1);
+            };
+
+            this.Xxx = function () {
+                //实例方法
+                console.log("xx");
+            };
+
+            return this; // 不实例化是 window ，实例化后是 实例本身
+        }
+
+        // Foo构造函数 的 静态方法 ，一个函数对象上的方法
+        Foo.getName = function () {
+            console.log(2);
+            console.log(this, "===");
+        };
+
+        // 扩展函数原型上的方法
+        Foo.prototype.getName = function () {
+            console.log(3);
+        };
+
+        //全局 变量赋值为 匿名函数
+        var getName = function () {
+            console.log(4);
+        };
+
+        //函数声明
+        function getName() {
+            console.log(5);
+        }
+
+        console.log(Foo.getName()); // 2  ,访问的是静态方法
+        /* 这个很简单，没什么争议   */
+
+        console.log(getName()); //  4 ， 重新赋值的，字面量声明的函数
+        /*
+            解释：
+                在全局预编译过程中,会有一个对象，GO 
+                在调用函数后，首先找到的是变量声明，赋值为 undefined
+                然后找到函数声明，getName,替代undefined
+                然后发现有一个赋值，所以重新赋值
+
+                GO{
+                    getName  ：undefined  -> function getName(){}
+
+                }
+
+            简单梳理过程：
+                第一步预编译：
+                    找 getName ，变量提升 ，函数提升
+                    变量提升是 undefined ，函数优先级大于变量，所以 undefined被替换成 函数
+
+                第二步代码执行：
+                    getName被赋值为一个函数
+                    此时的 getName 就是 4
+
+                    调用的时机是在代码执行后，所以是4 ，
+                    如果在变量声明前 ，就是 5
+            
+            知识点：变量提升 函数提升
+                JavaScript 代码的执行分为两个阶段，
+                第一个阶段在当前词法环境中注册所有的变量和函数声明，简单说就是，解析，解析完成之后，
+                第二个阶段的 JavaScript 执行就开始了。
+
+                JS中创建函数有两种方式：
+                    函数声明式和函数字面量式。
+                    只有函数声明才存在函数提升。
+
+                JavaScript 仅提升声明，而不提升初始化。
+                如果你先使用的变量，再声明并初始化它，变量的值将是 undefined。
+
+
+                1:所有的声明都会提升到作用域的最顶上去。
+                2:同一个变量只会声明一次，其他的会被忽略掉。
+                3:函数声明的优先级高于变量申明的优先级，并且函数声明和函数定义的部分一起被提升。
+
+
+
+            ps: 不能使用 严格模式 ，不能使用 {} 块级作用域
+
+
+            
+            
+            
+        */
+
+        console.log(Foo().getName()); // 1
+        /*
+        解释 ：
+            构造函数调用
+            全局getName重新赋值
+            返回 this ，window
+            window.getName()执行
+            此时输出 1
+        
+        */
+
+        console.log(getName()); // 1
+        /*
+        解释：
+            由于上面的构造函数调用，改变了 全局的getNmae,所以还是1
+        
+        */
+
+        console.log(new Foo.getName()); //2
+        /*
+        解释：
+            看到new 很容易别迷惑 ，此时并不是实例化 Foo 
+            而是  new 了一个 Foo.getName() 静态方法
+            静态方法执行 
+            所以输出 2
+
+            注意：此时的this 指向一个新的 {} 对象
+        
+        */
+
+        console.log("实例化对象", new Foo(), new Foo().getName()); //3
+        /*
+            实例化 Foo() 
+            实例化对象 的 getName()
+            实例对象本身并没有，所以去找原型
+            所以输出 3 
+
+        
+        */
+
+        // console.log(new new Foo()); //报错
+        /*
+            Uncaught TypeError: (intermediate value) is not a constructor
+            （中间值）不是构造函数
+
+            过程：
+                先执行 new Foo() ，返回一个对象
+                在执行 new 对象 
+                报错
+
+        */
+
+        console.log(new new Foo().getName()); //3
+        /*
+            同样的执行顺序
+            他new 的是 函数 ，不报错
+            但是也不会有任何结果
+            只是执行了 原型的 函数 
+            还是输出 3 
+
+            注意 ：此时  Foo().getName()的this 指向一个新的 {} 对象
+        
+        
+        
+        */
+    </script>
+</html>

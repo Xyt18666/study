@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+         扁平结构 -> 树形结构
+    
+
+     -->
+    </body>
+    <script>
+        {
+            let data = [
+                { id: "node1", pid: "root", content: "test" },
+                { id: "node2", pid: "root", content: "test" },
+                { id: "node3", pid: "node1", content: "test" },
+                { id: "node4", pid: "node2", content: "test" },
+                { id: "node5", pid: "node3", content: "test" },
+                { id: "node6", pid: "node1", content: "test" },
+            ];
+
+            /*
+             root是顶层数据
+             pid 对应 id
+
+
+            所有书写代码的思路:
+                我有什么
+                我要得到什么
+                有什么规律
+
+
+
+            */
+            //    递归的方式  ：
+            function dataToTree(parent, children) {
+                parent.map(p => {
+                    children.map((c, i) => {
+                        if (c.pid == p.id) {
+                            let _children = JSON.parse(JSON.stringify(children));
+                            _children.splice(i, 1);
+                            dataToTree([c], _children);
+                            if (p.children) {
+                                p.children.push(c);
+                            } else {
+                                p.children = [c];
+                            }
+                        }
+                    });
+                });
+            }
+
+            function formDataTree(data) {
+                let parent = data.filter(p => p.pid === "root");
+                let children = data.filter(p => p.pid != "root");
+                dataToTree(parent, children);
+                return parent;
+            }
+
+            formDataTree(data);
+
+            console.log(formDataTree(data));
+
+            // 非递归方式 ：
+
+            function formDataTree2(data) {
+                let _data = JSON.parse(JSON.stringify(data));
+
+                return _data.filter(p => {
+                    const _arr = data.filter(c => c.pid === p.id);
+                    _arr.length && (p.children = _arr);
+
+                    return p.pid === "root";
+                });
+            }
+            console.log(formDataTree2(data), "非递归方式");
+        }
+    </script>
+</html>

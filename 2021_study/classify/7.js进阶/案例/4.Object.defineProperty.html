@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+    Object.defineProperty : 
+        通过 get set 包装 某个值
+
+    语法：
+        Object.defineProperty(包装某个对象,某个值,{
+            enumerable:true,            是否可枚举
+            writable:true,              是否可写
+            configurable:true           是否可删除
+            get(){},                    获取包装
+            set(){}                     设置包装
+        })
+
+
+    应用场景：
+        
+
+
+
+     -->
+    </body>
+
+    <script>
+        var _default = 0;
+
+        Object.defineProperty(window, "a", {
+            // get() {
+            //     return ++_default;
+            // },
+
+            get() {
+                return _default;
+            },
+
+            set(newVal) {
+                console.log(newVal);
+
+                switch (newVal) {
+                    case "Object":
+                    case "Array":
+                        _default = {
+                            type: newVal,
+                            length: newVal.length,
+                        };
+                        break;
+                    default:
+                        throw new TypeError("类型错误");
+                }
+            },
+        });
+
+        // if (a == 1 && a == 2 && a == 3) {
+        //     console.log("hello");
+        // }
+
+        // console.log(a); //4
+        // console.log(a); //5
+        // console.log(a); //6
+
+        a = "Object";
+        console.log(a);
+
+        a = "Array";
+        console.log(a);
+    </script>
+</html>
