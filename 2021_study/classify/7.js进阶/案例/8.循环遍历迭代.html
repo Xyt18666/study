@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+
+    循环：语言层面的语法，重复执行一段代码
+    遍历：业务层面的做法，观察或者获取集合中的元素
+    迭代： 实际层面的概念，实现效果的底层方案
+
+
+        
+     -->
+    </body>
+    <script>
+        /*
+
+
+*/
+        let arr = [7, 8, 9];
+        for (let a = 0; a < arr.length; a++) {
+            console.log(arr[a], a, arr);
+            // 重复执行一段代码
+        }
+
+        // ECMAScript3 没有针对可迭代对象的具体遍历方法
+
+        // es5 新增 7个针对数组的遍历方法 和 for in 对象的遍历方法
+
+        /*
+        es5的 7个遍历数组的方法：
+            forEach
+            map
+            filter
+            reduce
+            reduceRight
+            some
+            every
+        
+        for in :
+            以任意顺序遍历一个对象的可枚举属性，key是键
+            同样可以遍历数组，key是下标,不建议使用在数组中
+            不可以遍历，set map 对象
+
+
+        for of ：
+            在可迭代对象上创建一个迭代循环，调用自定义迭代钩子，并为每个不同属性的值执行语句
+            value 是 键值 ，或者是 值 ，map数据结构返回的是键值格式的数组
+            
+            可迭代对象：
+                Array，Map，Set，String，TypedArray，arguments...
+                只要有 [Symbol.iterator] 属性就可以使用
+                无序对象不可使用
+
+
+        G 函数：
+            生成器，返回一个迭代器
+
+        */
+
+        let obj = {
+            a: "aa",
+            b: "bb",
+            c: "cc",
+        };
+
+        for (key in obj) {
+            console.log(key, obj[key]);
+        }
+
+        let mapT = new Map([
+            ["第一项", "q"],
+            ["第二项", "w"],
+        ]);
+        let setT = new Set([7, 8, 9, 10]);
+
+        console.log(mapT);
+        console.log(setT);
+
+        for (let value of setT) {
+            console.log(value);
+        }
+
+        for (let [key, value] of mapT) {
+            console.log(key, value);
+        }
+        // ----------------------------------------------
+        function* genrator() {
+            yield "我";
+            yield "是";
+            yield "G函数";
+        }
+
+        const iterator = genrator();
+        console.log(iterator.next());
+        console.log(iterator.next());
+        console.log(iterator.next());
+        console.log(iterator.next());
+
+        function myGenrator(arr) {
+            // 手动实现 G 函数
+            let nextIndex = 0;
+
+            return {
+                next() {
+                    return nextIndex < arr.length
+                        ? {
+                              value: arr[nextIndex++],
+                              done: false,
+                          }
+                        : {
+                              value: undefined,
+                              done: true,
+                          };
+                },
+            };
+        }
+
+        const iterator2 = myGenrator(arr);
+        console.log(iterator2.next());
+        console.log(iterator2.next());
+        console.log(iterator2.next());
+        console.log(iterator2.next());
+
+        // ------------------------------------------------
+
+        const o = {
+            0: "q",
+            1: "w",
+            2: "e",
+            length: 3,
+        };
+
+        // 为无序对象定义 迭代器 ，使其可以使用  for of
+
+        function iteratorMy() {
+            let index = 0;
+            let _this = this;
+            return {
+                next() {
+                    return index < _this.length
+                        ? {
+                              value: _this[index++],
+                              done: false,
+                          }
+                        : {
+                              value: undefined,
+                              done: true,
+                          };
+                },
+            };
+        }
+        Object.prototype[Symbol.iterator] = iteratorMy;
+
+        for (let i of o) {
+            console.log(i);
+        }
+    </script>
+</html>

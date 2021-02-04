@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+
+            this:
+                当前环境 执行期 上下文对象 的 一个属性
+                this在 不同的 环境中 、不同作用下 ，变现是不同的
+            
+            ------------------------------------------------------
+
+            全局作用域下的this： 全局对象
+                window 和 this的关系 :
+                    全局作用域下，完全相等  ===
+
+                在 浏览器 和 node环境下的区别：
+                    node 中 没有 window
+
+                获取全局对象：
+                    浏览器 ：  window ，self ，frames ，this
+                    node ： global
+                    workey ： self
+                    通用：  globalThis  （在任何环境下都能获取到全局对象）
+
+                严格模式 函数中的this：
+                    谁调用方法，函数内部的this就指向谁
+
+
+            ---------------------------------------------------
+
+            类中的this：
+                类与 构造 函数的 区别：
+                    类： 
+                        本质是一个函数 ，可以把他看做一个壳子 ，他综合了构造函数的所有特征
+                        类中是严格模式
+
+                    构函函数： 
+                        就是一个普通的 函数 ，首字母大写
+                        构造函数默认return this ，或者手动返回this ，都可以正常使用
+                        如果手动返回一个新对象，this指向的这个对象就被忽略了，就等同于 没有 new
+
+
+                new以后发生了什么：
+                    创建了一个新的空对象
+                    constructor 中 使用this定义的属性 和方法将放入这个对象
+                    而定义在 constructor 外的 方法将挂载到 __proto__ 原型上
+
+                在继承中 super做了什么：
+                    调用了 父类的 constructor
+                    生成 this 绑定 
+                    this -> new 父类 -> {}
+
+            --------------------------------------------------------
+
+            call、apply、bind ：
+                都是改变this指向 
+
+                区别：
+                    .call(改到哪里,参数)
+                    .apply(改到哪里,[参数])
+                    .bind(改到哪里,参数)()  
+                        ps : bind只执行一次
+
+
+            --------------------------------------------------------
+
+            箭头函数的 this：
+                箭头函数忽略任何形式的this指向的改变，也就是不能改变this
+                箭头函数 不能 new 
+                箭头函数中的this 不是谁绑定就指向谁
+                箭头函数中的this 指向是 外层作用域 非箭头函数的this
+
+
+            --------------------------------------------------------------
+
+            对象的this指向：
+                基本原则：
+                    谁调用this的宿主，this就指向谁，指向最近的引用
+                
+            -------------------------------------------------------------
+
+            Object.defineProperty 中的 this ： 指向被包装的对象
+
+            ------------------------------------------------------------
+
+            事件处理函数中的 this ：指向被绑定dom元素
+                
+            ----------------------------------------------------------
+
+            实战开发中，构造函数 或者 类中 绑定事件 ：
+                this 指向一般 会指向 dom 元素 ，而非 构造函数本身
+
+                常见的解决方法 ：
+                   fn.bind(this)
+                   ()=>{}
+                   使用变量保存 this
+
+            ------------------------------------------------------------
+
+            行内标签绑定事件时的this： 
+                正常情况下是dom元素
+                如果写一个 立即执行 函数 ，那么this 指向window
+
+            ------------------------------------------------------------
+            
+
+                
+
+
+
+-->
+    </body>
+    <script>
+        /*
+
+
+        */
+
+        console.log(this === window);
+        var a = "a";
+        console.log(window.a === a);
+        console.log(this.a === a);
+        console.log(this.a === window.a);
+
+        var obj = {
+            a: "obj  - > a",
+            test() {
+                console.log(this.a);
+                console.log(window.a);
+                console.log(self.a);
+                console.log(frames.a);
+                console.log(globalThis.a);
+            },
+        };
+        obj.test();
+
+        // --------------------------------------------------
+
+        class Test {
+            constructor() {
+                this.test = function () {
+                    console.log("非静态方法", this);
+                };
+            }
+
+            test() {
+                console.log("静态方法", this);
+            }
+        }
+
+        const test = new Test();
+        test.test();
+
+        // -------------------------------------------------
+
+        var obj2 = {
+            l: "aa",
+        };
+        var l = "ll";
+
+        function test3(b, c) {
+            console.log(this.l, b, c);
+        }
+        test3(); //  "ll"  this默认是window，所以是 ll
+        test3.call(obj2, 7, 8); //"aa" 7 8 改变this指向
+        test3.apply(obj2, [7, 8]); //"aa" 7 8 改变this指向
+
+        let bindT = test3.bind(obj2, 7, 8); //需要返回一个变量接收
+        bindT();
+
+        // --------------------------------------------------
+
+        const testFn = () => {
+            console.log("箭头函数", this);
+        };
+
+        let obj4 = {
+            a: "a",
+            fn: function () {
+                console.log(this);
+                let fn3 = () => {
+                    console.log("fn3", this);
+                };
+                fn3();
+            },
+            fn2: () => {
+                console.log(this);
+            },
+        };
+
+        testFn();
+        obj4.fn();
+        obj4.fn2();
+
+        // -------------------------------------------------------------------
+    </script>
+</html>
