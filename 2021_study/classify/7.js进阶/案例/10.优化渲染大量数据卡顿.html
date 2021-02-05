@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!--
+            document.createDocumentFragment()：
+                用来创建一个虚拟的节点对象，在创建之初是空的
+
+                他像占位符一样，不会将自身放入dom节点中，有利于实现剪切、复制、粘贴
+
+                当需要添加多个 dom 元素时 ，如果先将这些元素添加到 DocumentFragment 中 ，再将他们统一添加到页面，会减少渲染次数，提升效率
+
+
+
+            window.requestAnimationFrame()：
+                请求动画帧 ，相比定时器有优势
+
+                他会把每一帧的素有dom操作集中起来，在一次重绘或者回流中完成，并且重绘和回流的时间间隔紧紧跟随浏览器的刷新频率，一般是每秒 60帧
+
+                在隐藏或者不可见的元素中， 他不会进行 重绘 或者 回流 ，就意味着 减少了 cpu 和 gpu 和 内存的使用 ，进一步提升性能
+
+
+
+
+          -->
+        <ul></ul>
+    </body>
+    <script>
+        const total = 100000;
+        // 模拟10w条数据
+
+        const once = 20;
+        // 每次20条
+
+        const loopSize = Math.ceil(total / once);
+        // 插入数据需要的次数
+
+        let countRender = 0;
+        // 渲染次数
+
+        const ul = document.querySelector("ul");
+        // 获取 要 写入的 dom 元素
+
+        function add() {
+            const fragment = document.createDocumentFragment();
+            // 创建虚拟dom 节点
+
+            for (let i = 0; i < once; i++) {
+                const li = document.createElement("li");
+                li.innerHTML = Math.floor(Math.random() * 10000);
+                fragment.appendChild(li);
+            }
+            ul.appendChild(fragment);
+            countRender++;
+
+            loop();
+        }
+
+        function loop() {
+            if (countRender < loopSize) {
+                window.requestAnimationFrame(add);
+                // 请求动画帧
+            }
+        }
+
+        loop();
+
+        // ---------------------------------------------------
+
+        // 非优化情况下对比 ↓ ↓
+        function contrast() {
+            for (let i = 0; i < once; i++) {
+                const li = document.createElement("li");
+                li.innerHTML = Math.floor(Math.random() * 10000);
+                ul.appendChild(li);
+            }
+            countRender++;
+            if (countRender < loopSize) {
+                contrast();
+            }
+        }
+        // contrast();
+
+        /*
+
+        对比结果：
+            优化后，不影响dom其他操作，数据持续加载
+            优化前， 不会渲染dom ，一直加载，等全部渲染完才能操作
+
+            
+        
+        
+        
+        
+        */
+    </script>
+</html>

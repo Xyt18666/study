@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+
+     -->
+    </body>
+    <script>
+        {
+            /*
+        1.打家劫舍，取数组中的值，不能取 相邻的值 ，如何取到最高值
+            动态规划
+
+        */
+            function rob(nums) {
+                const len = nums.length;
+                if (!len) return 0;
+
+                const dp = new Array(len + 1);
+
+                dp[0] = 0;
+                dp[1] = nums[0];
+
+                for (let i = 2; i <= len; i++) {
+                    dp[i] = Math.max(dp[i - 1], nums[i - 1] + dp[i - 2]);
+                    // 以有数组中的第2个 =  数组中的第0个和 数组中的第1个+以有数组中的第0个
+                    console.log(dp[i], "=", dp[i - 1], "比较取最大", nums[i - 1], "+", dp[i - 2]);
+                }
+                console.log(dp);
+
+                return dp[len];
+            }
+
+            let arr = [20, 4, 6, 8, 10, 12];
+            console.log(rob(arr));
+        }
+    </script>
+</html>

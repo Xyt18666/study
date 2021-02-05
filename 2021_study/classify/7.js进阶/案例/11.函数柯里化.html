@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+        不定参数，无限调用函数
+
+        知识点：
+            函数的 隐式转换 调用 toString
+
+        逻辑过程：
+            调用函数，获取参数 ，返回一个递归函数，用于不断获取参数
+            由于返回的 是 一个函数体，所以可以一直调用
+            并且 ，当不调用时 ，他返回的是这个函数体，默认调用 toString方法
+            我们通过重写 toString 实现 累计 并返回
+
+
+
+
+     -->
+    </body>
+
+    <script>
+        // 目标：  将一个接受多个参数的函数 变为接受一个或者多个参数，返回一个函数的形式
+        // 例子 : add(4,3)(2)(1)   // 10
+
+        function add() {
+            let _arguments = [...arguments];
+            // 获取 不定参数
+
+            let _adder = function () {
+                // 每次调用返回这个函数，并将不定参数添加到 全部数组中
+                _arguments.push(...arguments);
+
+                console.log("调用后获取", arguments);
+
+                return _adder;
+            };
+
+            _adder.toString = function () {
+                // 重写 toString
+                console.log("调用了 toString");
+                return _arguments.reduce((old, b) => old + b, 0);
+            };
+
+            return _adder;
+        }
+
+        let a = add(4, 3)(2)(1);
+        console.log(a);
+        console.log(typeof a);
+    </script>
+</html>
