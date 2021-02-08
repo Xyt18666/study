@@ -39,5 +39,66 @@
             let arr = [20, 4, 6, 8, 10, 12];
             console.log(rob(arr));
         }
+
+        {
+            // 数组扁平化
+            let arr = [8, 7, [7, 5, [21, 65, [8]]]];
+            console.log(arr.flat(Infinity));
+        }
+
+        {
+            // 目标： 输入一个数字 ，返回所有 相邻数相加等于这个值的可能性。
+            // 例子 ： 15  ：   12345 ， 345 ， 78
+
+            function createArr(n, len) {
+                let arr = new Array(len).fill(null),
+                    temp = [];
+                arr[0] = n;
+
+                console.log(arr, temp);
+
+                arr = arr.map((item, index) => {
+                    if (item === null) {
+                        item = temp[index - 1] + 1;
+                        console.log( temp, "下标", index-1);
+                    }
+                    temp.push(item);
+                    console.log(temp);
+
+                    return item;
+                });
+                return arr;
+            }
+
+            function getClass(num) {
+                let res = [];
+                middle = Math.ceil(num / 2);
+                // 取到中值，中值以后不会符合要求
+
+                for (let i = 1; i < middle; i++) {
+                    for (let j = 2; ; j++) {
+                        // 控制累加多少次
+                        let total = (i + (i + j - 1)) * (j / 2);
+                        // 求出累加次数的和
+                        // console.log(` (${i} + (${i} + ${j} - 1)) * (${j} / 2)`);
+
+                        // console.log(total);
+
+                        if (total > num) {
+                            break;
+                        } else if (total === num) {
+                            console.log(i, j);
+                            // 从某个数字开始，几次
+
+                            res.push(createArr(i, j));
+                            break;
+                        }
+                    }
+                    console.log("----");
+                }
+                return res;
+            }
+            console.log(getClass(15));
+        }
     </script>
 </html>
