@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+            堆与栈：
+                栈：基本数据类型，指针
+                堆：复杂数据类型
+            
+            js执行过程：
+                编译，变量提升，函数提升
+                执行，顺序执行
+
+
+         -->
+        <script>
+            {
+                let a = {},
+                    b = 0,
+                    c = "0";
+
+                a[b] = "1";
+                a[c] = "2";
+                console.log(a); //2
+
+                // 数字属性名 == 字符串属性名 ，所以被覆盖
+            }
+
+            {
+                let a = {},
+                    b = Symbol("1"),
+                    c = Symbol("1");
+
+                a[b] = "1";
+                a[c] = "2";
+                console.log(a); //2
+
+                // Symbol唯一值
+            }
+
+            {
+                let a = {},
+                    b = {
+                        q: "qq",
+                        toString: function () {
+                            console.log("toString called");
+                            return "toString";
+                        },
+                    },
+                    c = {
+                        w: "ww",
+                        toString: function () {
+                            console.log("toString called");
+                            return "toString";
+                        },
+                    };
+
+                a[b] = "1";
+                a[c] = "2";
+
+                console.log(a); //toString: "2"
+                //将对象作为属性时，会默认调用对象的toString方法
+            }
+
+            {
+                var i = 2;
+                var test = (function (i) {
+                    console.log("自执行函数，无需调用直接执行了");
+
+                    return function () {
+                        console.log((i *= 2)); // 8
+                    };
+                })(4);
+                console.log(test);
+                // 返回的函数
+
+                test(5);
+                // 这里传参无意义
+            }
+            {
+                var a = 0,
+                    b = 0;
+                // 干扰性变量，无用
+
+                function A(a) {
+                    A = function (b) {
+                        //重写A函数
+                        console.log(a + b++);
+                        console.log("b++后", b);
+                    };
+                    console.log("函数中的a和b", a, b);
+
+                    console.log(a++);
+                    console.log("a++后", a);
+
+                    // 后++ 输出显示++前的值
+                }
+                A(1);
+                // console.log(a++);  1
+
+                A(2);
+                //  console.log(a + b++);  4
+            }
+        </script>
+    </body>
+</html>

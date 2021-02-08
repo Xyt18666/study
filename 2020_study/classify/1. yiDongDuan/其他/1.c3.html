@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+            }
+            body,
+            html {
+                height: 100%;
+                /* overflow: hidden; */
+            }
+            .sheng_bei {
+                padding: 0 200px;
+                height: 100%;
+                clear: both;
+            }
+
+            .left,
+            .right {
+                width: 200px;
+                height: 200px;
+                background: #741;
+                float: left;
+            }
+            .center {
+                width: 100%;
+                height: 400px;
+                background: #789;
+                float: left;
+            }
+            .left {
+                margin-right: -100%;
+                position: relative;
+                left: -200px;
+            }
+            .right {
+                margin-right: -200px;
+            }
+
+            .content {
+                width: 100%;
+                float: left;
+            }
+            .cen {
+                background: #789;
+                padding: 0 200px;
+            }
+            .le {
+                width: 200px;
+                height: 200px;
+                background: red;
+                margin-left: -100%;
+                float: left;
+            }
+            .ri {
+                float: left;
+                width: 200px;
+                height: 200px;
+                background: red;
+                margin-left: -200px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="sheng_bei">
+            <div class="left">left</div>
+            <div class="center">123</div>
+            <div class="right">right</div>
+        </div>
+
+        <div class="shuangfeiyi">
+            <div class="content">
+                <div class="cen">cen</div>
+            </div>
+            <div class="le">le</div>
+            <div class="ri">ri</div>
+        </div>
+        <!-- 
+
+    盒子水平垂直居中的方案：
+        定位
+        flex
+        js  (可视区-盒子)/2
+        table-cell  + vertival-align + text-align
+
+    盒子模型与布局：
+        普通盒模型
+        怪异盒模型
+
+        弹性盒子
+        多列布局
+        网格布局
+
+    圣杯、双飞翼：
+        区别：html结构不同
+        相同：左右固定，中间自适应
+
+        解决方案：
+            calc()
+            flex
+
+    BFC:
+        BFC也是HTML中的一个盒子（看不见而已）
+
+        
+        
+
+    ps：
+        js中：通过id可以直接作为dom元素对象
+
+        面试技巧：
+            回答问题，不单单只回答问题本身，而掺杂一些工作中的话题，问题，解决方案..
+            沟通 不好 ，写成剧本
+
+
+
+        
+     -->
+    </body>
+</html>
