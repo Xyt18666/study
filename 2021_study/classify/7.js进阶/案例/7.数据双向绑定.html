@@ -6,12 +6,13 @@
         <title>Document</title>
     </head>
     <body>
-        <!-- 
-
-     -->
         <div id="app">
+            <!-- 入口 dom元素  -->
+
             <div class="from">
+                <!-- 表单 -->
                 <input type="text" v-model="name" placeholder="姓名" />
+                <!-- 输入框,自定义属性 v-model  -->
                 <input type="text" v-model="age" placeholder="年龄" />
                 <input type="text" v-model="sex" placeholder="性别" />
                 <input type="text" v-model="email" placeholder="邮箱" />
@@ -20,6 +21,7 @@
                 <p>
                     姓名
                     <span>{{name}}</span>
+                    <!-- 使用{{}}实现数据绑定 -->
                 </p>
                 <p>
                     年龄
@@ -39,58 +41,101 @@
     </body>
     <script>
         class MVVM {
+            // 封装类
+
             constructor(el, data) {
+                // 形参 dom元素 和 属性
                 this.el = document.querySelector(el);
+
                 // this._data = data;
 
                 this.data = data;
 
                 this.domPool = {};
+                // 储存对应的dom
 
                 this.init();
+                // 调用初始化函数
+
+                // console.log(this.data, this.domPool);
             }
             init() {
+                // 初始化函数
+
                 this.initData();
+                // 初始化数据，完成数据响应
+
                 this.initDom();
+                // 初始化dom
             }
+
             initDom() {
                 this.bindDom(this.el);
+                // dom绑定属性
+
                 this.bindInput(this.el);
+                // 绑定 input 事件
                 // console.log(this.domPool);
             }
             bindDom(el) {
                 //属性 绑定dom
                 const childNodes = el.childNodes;
+                // 获取 App顶级dom元素下的 所有子节点
+
                 childNodes.forEach(item => {
+                    // 遍历子节点
                     if (item.nodeType === 3) {
+                        // 如果是文本节点
                         const _value = item.nodeValue;
+                        // 拿到文本
                         if (_value.trim().length) {
+                            // 判断是否为空 ，如果不是空，就执行
+
                             let _isValid = /\{\{(.+?)\}\}/.test(_value);
+                            // 通过正则 拿到 使用 {{}} 包裹的 文本
+
+                            // console.log(_value, _isValid);
+
                             if (_isValid) {
                                 // console.log(item.nodeValue);
                                 const _key = _value.match(/\{\{(.+?)\}\}/)[1].trim();
+                                // 通过正则去除{{}} 取出绑定的字符
+                                // console.log(_key);
+
                                 this.domPool[_key] = item.parentNode;
-                                item.parentNode.innerText = this.data[_key] || undefined;
+                                // 通过名字，绑定对应元素
+
+                                // console.log(item.parentNode, this.data[_key]);
+                                item.parentNode.innerText = this.data[_key] || "未输入";
+                                // dom元素中的文本 ，赋值为 实例化绑定的值
                             }
                         }
                     }
                     item.childNodes && this.bindDom(item);
+                    // 判断是否有子级元素，如果有就递归调用
                 });
             }
 
             initData() {
                 // 完成数据响应
-                // vue3d的数据绑定
+                // vue3的数据绑定
                 const _this = this;
+                // console.log(this.data);
+
                 this.data = new Proxy(this.data, {
+                    // 使用 proxy 包装
                     get(target, key) {
+                        // 获取时，正常获取
                         return Reflect.get(target, key);
                     },
                     set(target, key, value) {
+                        // 修改时，修改对用的dom值 ，并修改 data
                         _this.domPool[key].innerHTML = value;
                         return Reflect.set(target, key, value);
                     },
                 });
+
+                // console.log(this.data);
 
                 // vue2的数据绑定
                 // const _this = this;
@@ -113,25 +158,37 @@
             bindInput(el) {
                 // 绑定事件处理函数
                 const _allInputs = el.querySelectorAll("input");
+                // 获取所有 input
+
                 _allInputs.forEach(input => {
+                    // 遍历input
                     const _vModel = input.getAttribute("v-model");
+                    // 获取自定义属性值
+                    // console.log(_vModel);
 
                     if (_vModel) {
+                        // 如果有值
                         input.addEventListener(
                             "input",
                             this.handleInput.bind(this, _vModel, input, false)
                         );
+                        // 绑定事件，更改数据的函数，由于this指向有问题，所以bind一下this
+                        // 传入 绑定的 属性 以及对应的  input元素
                     }
                 });
             }
             handleInput(key, input) {
                 // 更改数据
                 const _value = input.value;
+                // console.log(key, input.value);
+
                 this.data[key] = _value;
-                console.log(this.data);
+                // 修改传入属性的 传入值 ，同时触发 set更新dom
+                // console.log(this.data);
             }
             setData(key, val) {
                 this.data[key] = val;
+                // 修改传入属性的 传入值 ，同时触发 set更新dom
             }
         }
         /*
@@ -149,9 +206,12 @@
             sex: "",
             email: "",
         });
+        // 实例化 轮子 ，传入顶级dom元素 ，绑定一个对应的对象
+
 
         document.querySelector("#but").addEventListener("click", function () {
             app.setData("name", "薛翼腾");
+            // 通过事件触发 修改 
         });
     </script>
 </html>
