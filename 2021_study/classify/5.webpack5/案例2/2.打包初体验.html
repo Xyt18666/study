@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+    
+    初始化：
+        npm init -y   初始化npm
+        npm i webpack webpack-cli -g    全局安装 （如果已经全局安装了，就不用了）
+        npm i webpack webpack-cli -D    项目内安装
+
+        webpack -v                      查看 版本信息
+
+    创建测试文件以及目录：
+        src
+            index.js    入口文件  （手动引入所需模块）
+            index.html    入口文件  
+            其他文件
+
+    配置命令：
+        在 package.json 文件中 的 script对象内配置
+
+        "scripts": {
+            "dev":"webpack"
+        }
+
+    创建 webpack.config.js ：
+
+        const { resolve } = require("path");
+        // node js  此方法 用来拼接绝对路径
+
+        module.exports = {
+            entry: "./src/index.js", // 入口起点，以哪个文件开始打包
+            output: {
+                // 输出到哪里
+                filename: "built.js", //输出文件名
+                path: resolve(__dirname, "build"), // 输出路径
+                //__dirname 代表 当前文件 目录 的 绝对路径 ，就是  练习 这个文件夹
+            },
+            module: {
+                rules: [],
+            }, //编译一些 不能识别的资源
+            plugins: [], //插件配置,
+            mode: "development", //模式
+        };
+
+
+    打包测试：
+        npm run dev
+
+
+
+     -->
+    </body>
+</html>
