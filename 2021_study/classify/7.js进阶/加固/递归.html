@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body></body>
+    <script>
+        {
+            function recursion(a) {
+                // console.log(a);
+                if (a >= 10) return;
+                recursion(a + 1);
+            }
+            recursion(0);
+        }
+        {
+            // 斐波那契数列计算 第 n 位的值
+
+            function feiBo(n) {
+                if (n == 0) return 0;
+                if (n == 1) return 1;
+                // if (n == 2)  console.log("2-------");
+                // if (n == 3)  console.log("3-------");
+                // if (n == 4)  console.log("4-------");
+                // if (n == 5)  console.log("5-------");
+
+                // console.log(feiBo(n - 1), feiBo(n - 2), feiBo(n - 1) + feiBo(n - 2));
+
+                return feiBo(n - 1) + feiBo(n - 2);
+                // 规律就是：1+2=3 ，前两个相加等于第三个
+                // 所以 计算 ，第n位前一位 和 前两位的值
+            }
+            console.log(feiBo(5));
+
+            /*
+                通过断点查看他的执行过程：
+                    n=5 调用进入
+                    直到 n==1 n==0
+                    然后向上反馈
+                    0+1
+                    1+1
+                    1+2
+                    2+3
+            
+            
+            */
+        }
+        {
+            // 细胞分裂 有一个细胞 每一个小时分裂一次，一次分裂一个子细胞，第三个小时后会死亡。那么n个小时候有多少细胞？
+
+            function cell(hour) {
+                // 活着的细胞
+                function livecell(hour) {
+                    if (hour < 4) {
+                        // 前三个小时没有死亡的细胞 成2的n-1次方增长
+                        return Math.pow(2, hour - 1);
+                    } else {
+                        // 从第四个小时开始有死亡的细胞
+                        // 活着的细胞 = 前一个小时活着的细胞 - 这个小时死去的细胞
+                        return livecell(hour - 1) * 2 - diecell(hour);
+                    }
+                }
+                // 死亡的细胞
+                function diecell(hour) {
+                    if (hour < 4) {
+                        // 前三个小时没有死亡的细胞
+                        return 0;
+                    } else {
+                        // 因为三个小时一个周期
+                        // 也就是每三个小时,(n-3)时的细胞就会死完
+                        // 那么 这个小时(n)死去的细胞 + 上个小时(n-1)死去的细胞 + 前两个小时(n-2)死去的细胞 = 前三个小时(n-3)活着的细胞
+                        return livecell(hour - 3) - diecell(hour - 1) - diecell(hour - 2);
+                    }
+                }
+                return livecell(hour);
+            }
+
+            console.log(cell(4));
+        }
+    </script>
+</html>

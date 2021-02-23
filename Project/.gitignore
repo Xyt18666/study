@@ -3,6 +3,7 @@ node_modules
 /dist
 /博客前后台数据库(vue、node、mongodb)
 /华尔街
+/学院商城
 /express-socket
 /streetvoice.cn
 /vue项目基础架构（伪代码）
