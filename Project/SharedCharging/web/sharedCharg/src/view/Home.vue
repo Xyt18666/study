@@ -1,7 +1,8 @@
 <template>
     <div class="home">
         <h1>home</h1>
-        <div id="container"></div>
+        <!-- <div id="container"></div> -->
+        <van-button type="default">默认按钮</van-button>
     </div>
 </template>
 
@@ -14,15 +15,15 @@ export default defineComponent({
 
         // console.log(obj);
     },
-    methods: {
-        init() {
-            var map = new globalThis.AMap.Map("container");
-            globalThis.map = map;
-        },
-    },
-    mounted() {
-        this.init();
-    },
+    // methods: {
+    //     init() {
+    //         var map = new globalThis.AMap.Map("container");
+    //         globalThis.map = map;
+    //     },
+    // },
+    // mounted() {
+    //     this.init();
+    // },
 });
 </script>
 
@@ -30,7 +31,7 @@ export default defineComponent({
 h1 {
     color: red;
 }
-#container {
-    height: 300px;
-}
+// #container {
+//     height: 300px;
+// }
 </style>
