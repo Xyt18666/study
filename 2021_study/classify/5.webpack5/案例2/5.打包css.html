@@ -26,7 +26,82 @@
         },
 
 
-        
+    配置 scss 或者 less ：
+
+        下载对应的npm ：
+            less  less-loader
+            cnpm i node-sass  sass-loader -D
+
+        配置：
+            {
+                test: /\.scss$/,
+                use: ["style-loader", "css-loader", "sass-loader"],
+                //转css
+            },
+
+
+    提取 css为单独文件：
+        cnpm i mini-css-extract-plugin -D
+
+        const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+        {
+            test: /\.scss$/,
+            use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+            // 生产环境配置 MiniCssExtractPlugin.loader   代替 style-loader  因为提取成单独文件了
+        },
+
+        new MiniCssExtractPlugin({
+            filename: "css/built.css", // 对输出文件重命名
+        }),
+
+
+    css兼容：
+        cnpm i postcss-loader postcss-preset-env -D
+
+
+        创建 ostcss.config.js 配置文件:
+            module.exports = {
+                plugins: [require("postcss-preset-env")()],
+            };
+
+
+        在 package.json 添加配置：
+
+            "browserslist":[   //开发环境配置
+                "last 1 chrome version",  //兼容 最近的 xx 浏览器 版本
+                "last 1 firefox version",
+                "last 1 safari version"
+            ],
+            "production":[ //生产环境配置
+                ">0.2%",   //大于 99.8的浏览器
+                "not deat",  //排除死的
+                "not op_mini all" //排除  op_mini 这个浏览器
+            ]
+
+
+
+        添加 loader ： 最后面 ，最先执行
+            "postcss-loader"
+
+
+
+
+    css压缩：
+        cnpm i optimize-css-assets-webpack-plugin -D
+
+        const OptimizeCssAssetsWebpackPlugin = require("optimize-css-assets-webpack-plugin"); 
+
+        new OptimizeCssAssetsWebpackPlugin(),
+
+
+
+    
+
+
+
+
+
      -->
     </body>
 </html>

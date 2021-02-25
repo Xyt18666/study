@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+        安包：
+            cnpm i url-loader file-loader -D  处理css中的img 
+            cnpm i html-loader -D   处理html中的img
+
+            ps :  url-loader file-loader 是两种 ，都可以用
+
+        配置：
+            {
+                test: /\.(jpg|png|gif|)$/, //处理 img loader  , 处理不了 html 中的img
+                loader: "url-loader",
+                options: {
+                    // publicPath:"./images/",前缀
+                    // outputPath:"images/",//输出路径
+
+                    //图片大小小于 8kb , 就会被解析为 base64 字符串 ，进行处理
+                    //优势：减少请求次数，减轻服务器压力
+                    //缺点：图片体积大，请求速度慢
+                    limit: 8 * 1024, //限制大小
+                    //问题：url-loader 使用es6模块化解析，而html-loader,引入图片是 commonjs,所以解析时会报错
+                    //解决：关闭 es6
+                    esModule: false,
+                    name: "[name][hash:8].[ext]",
+                    // 取图片 hash 的前8位    .    取文件原来扩展名
+                },
+            },
+            {
+                test: /\.html$/, //处理html 中 img ，从而能显示
+                loader: "html-loader",
+            },
+
+        问题：
+            使用提取css文件后，css中的图片路径不正确，所以导致无法显示
+            解决：publicPath: "../images/", //修改前缀
+
+
+            html中图片错误，版本太新导致 
+            同时出现新问题，html中的图片找不到路径，因为改了 publicPath
+
+
+     -->
+    </body>
+</html>

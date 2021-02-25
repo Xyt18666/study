@@ -3,6 +3,8 @@ require("./js/1");
 require("./js/2");
 
 import "./css/1.css";
+import "./css/2.scss";
+
 
 console.log("a1s");
 // if (module.hot) {
