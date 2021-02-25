@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+
+
+
+        
+        安包 ：
+            npm i webpack-dev-server -D
+
+        配置命令：package.json中
+            "start":"webpack serve"
+
+        配置：
+            devServer: {
+                //特点： 只会在内存中打包，不会在本地输出，也就是说 无法看到打包后的文件
+                contentBase: resolve(__dirname, "build"),
+                compress: true, //启动 gzip 压缩  提升速度
+                port: 8080, //端口号
+                open: true, //自动打开浏览器
+                hot: true, //开启时时刷新
+
+            },
+
+
+        启动：
+            npm run start
+
+        目前的问题：
+            修改 htnml  不刷新页面
+            修改 js ，刷新页面，但是 不确定是否局部刷新
+            
+
+
+        HMR：hot module replacement 热模块替换
+            作用：一个模块发生变化，只会打一个模块(而不是打包所有内容) 极大的提升了编译的速度
+
+            样式文件 : 可以使用HMR，因为style-loader内部实现了热更新
+            js文件 ：默认不能使用HMR功能
+            html文件 : 默认不能使用HMR功能，同时会导致问题：html文件不能热更新了
+                解决方法：修改 entry 改成一个数组 ['js文件','html文件'] （报错，不生效）
+
+
+        热更新监听方法:
+            if (module.hot) {
+                //一旦 module.hot 为true ，说明开启了hrm 功能 ->让HMR功能代码生效
+                module.hot.accept("./js/1.js", function () {
+                    //监听方法 1.js 文件画布，一旦发生变化，其他文件件不回打包构建
+                    console.log("1.js重新打包执行了");
+                });
+            }
+
+     -->
+    </body>
+</html>

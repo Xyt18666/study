@@ -38,6 +38,17 @@
         实例在: test-vue3
 
 
+    路由跳转：（setup函数中）
+        import { useRouter } from "vue-router";
+        const router = useRouter();
+        router.push({
+            path: "/",
+            query: {
+                isLog: "true",
+            },
+        });
+
+
 
 
 

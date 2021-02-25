@@ -31,6 +31,17 @@ html:默认没有HMR功能，同时导致一个问题，不能热更新了  （�
     <script>
         /*
 
+        // 一旦 有此值 ，就说明，开启了 HMR
+        if (module.hot) {
+        module.hot.accept("./child.js", function () {
+            // 方法会监听 xx 文件 ，一旦发生变化，其他默认不会重新打包构建
+
+            //会执行后面的回调函数
+            print();
+        });
+        }
+
+
 
 
 
