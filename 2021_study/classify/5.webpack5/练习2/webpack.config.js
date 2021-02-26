@@ -58,6 +58,10 @@ module.exports = {
                 test: /\.html$/, //处理html 中 img ，从而能显示
                 loader: "html-loader",
             },
+            {
+                test: /\.vue$/, //配置vue-loader
+                use: ["url-loader", "vue-loader"],
+            },
         ],
     }, //编译一些 不能识别的资源
     plugins: [
@@ -84,6 +88,12 @@ module.exports = {
         port: 8080, //端口号
         open: true, //自动打开浏览器
         hot: true, //开启时时刷新
+    },
+    resolve: {
+        //配置别名
+        alias: {
+            vue$: "vue/dist/vue.esm.js",
+        },
     },
     mode: "development", //模式
 };

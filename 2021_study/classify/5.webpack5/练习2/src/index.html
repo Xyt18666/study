@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
     </head>
+
     <style>
         h1 {
             color: #777;
@@ -17,5 +18,12 @@
         <div class="scss">qwer</div>
         <img src="./images/123.jpg" alt="阿琳" />
         <img src="./images/download.jpg" alt="234" />
+        <div id="app">
+            <p>获取信息vue：{{msg}}</p>
+            <div>
+                vue动态加载图
+                <img :src="pic" alt="" />
+            </div>
+        </div>
     </body>
 </html>

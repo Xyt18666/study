@@ -5,6 +5,19 @@ require("./js/2");
 import "./css/1.css";
 import "./css/2.scss";
 
+import Vue from "vue";
+
+
+
+import pic from "./images/123.jpg";
+
+new Vue({
+    el: "#app",
+    data: {
+        msg: "测试",
+        pic: pic,
+    },
+});
 
 console.log("a1s");
 // if (module.hot) {

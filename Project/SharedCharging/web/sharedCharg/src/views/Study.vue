@@ -5,25 +5,26 @@
         <p>输出vuex :{{ $store.state.size }} 和 {{ $store.state.title }}</p>
         <p @click="addSize">size++</p>
         <p @click="setDatas">调用action</p>
+        <p>{{ size }}</p>
     </div>
 </template>
 
 <script>
 import { defineComponent } from "vue";
 import ListItem from "../components/ListItem.vue";
-// import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
+import { mapState, mapGetters, mapMutations, mapActions } from "vuex"; //vue2 中的方式依旧可用
 import { useStore } from "vuex";
 
 export default defineComponent({
     components: { ListItem },
-    // computed: {
-    //     ...mapState([]),
-    //     ...mapGetters([]),
-    // },
-    // methods: {
-    //     ...mapMutations([]),
-    //     ...mapActions([]),
-    // },
+    computed: {
+        ...mapState(["size"]),
+        ...mapGetters([]),
+    },
+    methods: {
+        ...mapMutations([]),
+        ...mapActions([]),
+    },
     setup() {
         const store = useStore(); // 使用useStore方法
 
