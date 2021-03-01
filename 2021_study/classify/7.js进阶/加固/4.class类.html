@@ -63,7 +63,19 @@
             constructor(age, name, key) {
                 super(age, name);
                 // 继承必须调用 super ，而且必须写到最上面 ，用于构建 this
+                // super作为函数调用时，代表父类的构造函数。ES6 要求，子类的构造函数必须执行一次super函数
                 this._key = key;
+            }
+
+            get name() {
+                super.eat();
+                return super._name;
+                // super作为对象时，在普通方法中，指向父类的原型对象
+            }
+
+            static staticFn() {
+                super.staticFn();
+                // super在静态方法中，指向父类。
             }
         }
 
@@ -76,5 +88,7 @@
         console.log(Child.staticDate); //继承父类静态属性和方法
         console.log(child._name); //继承父类实例属性和方法
         console.log(child.sex); //继承父类原型属性和方法
+
+        Child.staticFn();
     </script>
 </html>
