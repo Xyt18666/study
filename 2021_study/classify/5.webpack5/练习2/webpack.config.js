@@ -3,7 +3,9 @@ const { resolve } = require("path");
 // const webpack = require("webpack");
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 
+;
 const MiniCssExtractPlugin = require("mini-css-extract-plugin"); //引入 提取css的插件
 
 const OptimizeCssAssetsWebpackPlugin = require("optimize-css-assets-webpack-plugin"); //压缩css
@@ -78,6 +80,7 @@ module.exports = {
             filename: "css/built.css", // 对输出文件重命名
         }),
         new OptimizeCssAssetsWebpackPlugin(),
+        new CleanWebpackPlugin(),
         // HMR 特性所需要的插件
         // new webpack.HotModuleReplacementPlugin(),
     ], //插件配置,

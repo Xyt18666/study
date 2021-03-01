@@ -1,16 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <!-- 
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
 
 
         
      -->
-</body>
+    </body>
+    <script>
+        class Test {
+            constructor(age, name = "实例属性") {
+                //构造器constructor
+                this._name = name;
+                this._age = age;
+                this.lick = () => {
+                    console.log("实例方法");
+                };
+                // 实例属性和方法，在类实例化后将这些属性添加打实例对象中
+            }
+
+            #privateDate = "私有属性";
+            #privateFn() {
+                console.log("私有方法");
+            }
+            // 私有属性和方法 ，只能在 这个类中使用，要不然会报错
+
+            eat() {
+                console.log("原型方法");
+            }
+            // 原型属性和方法 , 将挂载到 原型中 prototype， 等同于 实例中的 __proto__
+
+            static staticDate = "静态属性";
+            static staticFn() {
+                console.log("静态方法");
+            }
+            // 静态属性和方法,不会被实例继承，而是直接通过类来调用
+
+            get name() {
+                return this._name + "取值器";
+            }
+            set name(dish) {
+                this._name = dish + "赋值器";
+            }
+        }
+        Test.prototype.sex = "原型属性";
+        //class本身 没有 实例方法 和 原型属性 的优化写法，也不是实用的属性
+
+        console.dir(Test);
+
+        const test = new Test(18, "亚");
+
+        console.log(test);
+        // -----------------------------------------------------------------
+
+        class Child extends Test {
+            constructor(age, name, key) {
+                super(age, name);
+                // 继承必须调用 super ，而且必须写到最上面 ，用于构建 this
+                this._key = key;
+            }
+        }
+
+        console.dir(Child);
+
+        const child = new Child("继承的子类", 8, "val");
+
+        console.log(child);
+
+        console.log(Child.staticDate); //继承父类静态属性和方法
+        console.log(child._name); //继承父类实例属性和方法
+        console.log(child.sex); //继承父类原型属性和方法
+    </script>
 </html>

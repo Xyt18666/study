@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+
+            安包：
+                cnpm i file-loader -D
+
+
+
+            配置：
+                {
+                    exclude: /\.(css|js|html|less)$/, //打包其他资源除了 css js html
+                    loader: "file-loader",
+                    options: {
+                        name: "[hash:8].[ext]",
+                        // publicPath:"font/",前缀
+                        // outputPath:"font/",//输出路径
+                    },
+                },
+
+
+            使用第三方字体库：
+                cnpm i font-awesome -S 
+                    某个字体图标库 安装到生产环境
+
+                
+                在 入口文件中 import 引入即可 （就像vue中引入库）
+
+
+            自动清除以前打包的 build 包 插件：
+
+                安包： cnpm i clean-webpack-plugin -D
+
+                配置：
+                    const {CleanWebpackPlugin} = require("clean-webpack-plugin");
+
+
+
+                
+
+
+
+
+         -->
+    </body>
+</html>
