@@ -3,9 +3,8 @@ const { resolve } = require("path");
 // const webpack = require("webpack");
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const {CleanWebpackPlugin} = require("clean-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
-;
 const MiniCssExtractPlugin = require("mini-css-extract-plugin"); //引入 提取css的插件
 
 const OptimizeCssAssetsWebpackPlugin = require("optimize-css-assets-webpack-plugin"); //压缩css
@@ -14,8 +13,8 @@ module.exports = {
     entry: "./src/index.js", // 入口起点，以哪个文件开始打包,配置 html 热更新
     output: {
         // 输出到哪里
+        path: resolve(__dirname, "build/assets"), // 输出路径
         filename: "built.js", //输出文件名
-        path: resolve(__dirname, "build"), // 输出路径
         //__dirname 代表 当前文件 目录 的 绝对路径 ，就是  练习 这个文件夹
     },
     module: {
