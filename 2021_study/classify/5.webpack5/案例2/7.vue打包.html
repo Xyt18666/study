@@ -13,6 +13,8 @@
             vue 模板    loader  样式loader
 
 
+
+
         案例：
             import Vue from "Vue";
 
@@ -39,7 +41,7 @@
 
             {
                 test: /\.vue$/, //配置vue-loader
-                use: ["url-loader", "vue-loader"],
+                loader: "vue-loader",
             },
 
 
@@ -52,10 +54,36 @@
             
 
 
-        单文件vue配置：
-            暂时还没学
+        
 
 
+        模拟vue项目：
+            1. npm init 
+            2. 创建 src 、 index.html ... 基础的文件
+            3. cnpm i webpack webpack-cli -D
+            4. 配置命令
+            5. cnpm i vue vue-template-compiler vue-loader vue-style-loader -D
+            6. 配置 webpack.config.js
+            7. 安装其他依赖包
+
+
+            完成功能有：
+                css
+                图片
+                热更新
+
+        遇到的的问题：
+            VueLoaderPlugin 报错
+            因为 loader 顺序配置错误 
+
+            vue-loader作用：
+                解析和转换.vue文件。提取出其中的逻辑代码 script,样式代码style,以及HTML 模板template，再分别把他们交给对应的loader去处理
+
+            所以需要其他loader，所以执行顺序有问题
+
+
+        loader执行顺序：从下至上，从右至左
+            
 
      -->
     </body>
