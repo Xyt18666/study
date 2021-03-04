@@ -71,10 +71,58 @@
         // console.log(a); //5
         // console.log(a); //6
 
-        a = "Object";
-        console.log(a);
+        // a = "Object";
+        // console.log(a);
 
-        a = "Array";
-        console.log(a);
+        // a = "Array";
+        // console.log(a);
+
+        {
+            // 方法1：
+            // let a = {
+            //     i: 0,
+            //     valueOf() {
+            //         return ++this.i;
+            //     },
+            // };
+
+            // 方法2：
+            // let a = {
+            //     i: 0,
+            //     toString() {
+            //         return ++this.i;
+            //     },
+            // };
+
+            // 方法3：
+            // let i = 0;
+            // Object.defineProperty(window, "b", {
+            //     get() {
+            //         return ++i;
+            //     },
+            // });
+
+            //方法4：
+            // let a = new Proxy(
+            //     {},
+            //     {
+            //         i: 1,
+            //         get: function () {
+            //             return () => this.i++;
+            //         },
+            //     }
+            // );
+
+            // 方法5：数组的toString接口默认调用数组的join方法，重写join方法
+            let a = [1,2,3];
+            a.join = a.shift;
+
+            if (a == 1 && a == 2 && a == 3) {
+                console.log("hello");
+            }
+            // if (b == 1 && b == 2 && b == 3) {
+            //     console.log("hello");
+            // }
+        }
     </script>
 </html>

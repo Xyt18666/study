@@ -88,6 +88,31 @@ module.exports = {
                 loader: "html-loader",
                 // enforce: "post",
             },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: "babel-loader", //兼容js
+                options: {
+                    presets: [
+                        [
+                            "@babel/preset-env",
+                            {
+                                useBuiltIns: "usage", //按需加载
+                                corejs: {
+                                    //指定版本
+                                    version: 3,
+                                },
+                                targets: {
+                                    chrome: "60",
+                                    firefox: "60",
+                                    ie: "9",
+                                    safari: "10",
+                                }, //指定兼容器做到那个版本
+                            },
+                        ],
+                    ],
+                },
+            },
         ],
     }, //编译一些 不能识别的资源
     plugins: [
@@ -125,4 +150,5 @@ module.exports = {
         extensions: [".js", ".vue", ".json"],
     },
     mode: "development", //模式
+    devtool: "source-map",
 };

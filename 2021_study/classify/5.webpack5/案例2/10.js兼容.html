@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+
+        老师教的：（我没试过）
+
+        安包：
+            cnpm install babel-core babel-loader babel-plugin-transform-runtime --save-dev 
+            cnpm install babel-preset-stage-0 babel-runtime babel-preset-es2015 --save-dev 
+            cnpm i babel-loader@7 -D
+
+        项目根目录新建.babelrc文件、配置：
+            {
+            "presets": ["es2015", "stage-0"],
+            "plugins": ["transform-runtime"]
+            }
+
+---------------------------------------------------------------------
+
+        js兼容：
+            1.第一种 ： cnpm i babel-loader @babel/core @babel/preset-env -D
+                    只能转换基本语法 promise 等不能转换
+
+            2.全部的js兼容性处理 安装 ： cnpm i @babel/polyfill -D
+                然后在 index.js中直接引入即可 import '@babel/polyfill'  会一次性将所有兼容性问题，放入
+            
+            3.按需下载：  cnpm i core-js -D
+
+
+
+        配置：
+            {
+                test:/\.js$/,
+                exclude:/node_modules/, 
+                loader:'babel-loader', //兼容js
+                options:{
+                    presets:[
+                        [
+                            '@babel/preset-env',
+                            {
+                                useBuiltIns:'usage',//按需加载
+                                corejs:{//指定版本
+                                    version:3
+                                },
+                                targets:{
+                                    chrome:'60',
+                                    firefox:'60',
+                                    ie:'9',
+                                    safari:'10'
+                                }//指定兼容器做到那个版本
+                            }
+                        ]
+                    ]
+                }
+            }
+
+
+
+     -->
+    </body>
+</html>

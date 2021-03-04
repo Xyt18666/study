@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+        闭包 ：满足，内部的函数被保存到外部，就是闭包
+
+        闭包经典案例：
+            防抖
+            节流
+            单例模式
+     -->
+        <button id="but">button</button>
+        <button id="but2">button2</button>
+
+        <input type="text" id="inp" placeholder="防抖" />
+        <button id="butt">节流</button>
+    </body>
+    <script>
+        // 单例模式： 多种操作，执行同一个模块
+
+        const creactLogin = a => {
+            let div = document.createElement("div");
+            div.innerHTML = "登陆弹窗";
+            div.style.display = "none";
+            document.body.appendChild(div);
+
+            console.log("点击第一次输出了，以后点击不在输出", a);
+
+            return div;
+        };
+
+        const getSingle = fn => {
+            let res;
+
+            console.log("立即执行了 getSinggle");
+
+            return function () {
+                console.log(
+                    res || "res无值",
+                    "若res有值，值则是creactLogin函数的return出的dom元素"
+                );
+                return res || (res = fn.apply(this, arguments));
+            };
+        };
+
+        const create = getSingle(creactLogin);
+
+        console.log(create);
+
+        document.getElementById("but").onclick = () => {
+            let loginLay = create("传参");
+            loginLay.style.display = "block";
+        };
+
+        document.getElementById("but2").onclick = () => {
+            let loginLay = create("参数");
+            loginLay.style.display = "none";
+        };
+        /*
+            执行过程：
+                点击按钮，调用 create
+                create  是 getSingle函数 return 的 函数
+                getSingle 函数 接收了一个参数 creactLogin dom元素
+
+                所以，进入页面，闭包被调用， 返回 函数
+                第一次点击 res 无值，并 res被赋值为 dom元素
+                然后这个 dom被 return出去
+                多次操作，只操作同一个 dom
+                
+
+        */
+
+        // -------------------------------------------------------------
+
+        // 防抖 ：当持续出发一个事件，一定时间内内有在触发，该函数执行，否则刷新定时器
+
+        function debounce(fn, delay) {
+            let timer;
+            return function (args) {
+                clearTimeout(timer);
+                timer = setTimeout(function () {
+                    fn(args);
+                }, delay);
+            };
+        }
+
+        function inputFn(val) {
+            console.log(val);
+        }
+        const inp = document.getElementById("inp");
+        const debounceInput = debounce(inputFn, 1000);
+        inp.addEventListener(
+            "input",
+            function (e) {
+                debounceInput(e.target.value);
+            },
+            false
+        );
+
+        /*
+            执行过程：
+               输入内容执行 debounceInput，传入值
+                debounce函数调用 ，传入 inputFn函数 和执行时间 ，返回 return的函数
+                返回的函数 ，接收的 参数值 ，定时 输出值
+                
+
+        */
+
+        // -------------------------------------------------------
+
+        // 节流： 一段时间内只执行一次
+
+        function throttle(fn, wiait) {
+            let timerOut;
+            return function () {
+                if (!timerOut) {
+                    fn();
+                    timerOut = setTimeout(function () {
+                        timerOut = null;
+                    }, wiait);
+                }
+            };
+        }
+
+        function handle() {
+            console.log(Math.random());
+        }
+        document.getElementById("butt").onclick = throttle(handle, 2000);
+
+        /*
+            执行过程：
+               第一次执行，无值，直接输出，并开启定时器
+               第二次执行，定时器为结束，还有值，所以不进入if
+
+        */
+    </script>
+</html>

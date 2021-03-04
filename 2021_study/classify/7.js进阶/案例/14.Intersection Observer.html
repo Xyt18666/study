@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            img {
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 
+            简介：交叉观察器
+                提供了一种异步观察目标元素与其祖先元素或顶级文档视窗(viewport)交叉状态的方法。
+                祖先元素与视窗(viewport)被称为根(root)。
+
+                通俗来说就是某个元素是否进入了"视口"（viewport），就是用户能不能看到它。
+
+
+            常用途：
+                懒加载
+                瀑布流
+
+            用法：
+                var io = new IntersectionObserver(callback, option);
+
+                接受两个参数：
+                    callback是可见性变化时的回调函数，进入可视区即可触发 ：
+                        entries ： 数组，每个成员都是一个IntersectionObserverEntry对象
+
+                            IntersectionObserverEntry对象的属性：
+                                time：可见性发生变化的时间，是一个高精度时间戳，单位为毫秒
+                                target：被观察的目标元素，是一个 DOM 节点对象
+                                rootBounds：根元素的矩形区域的信息，getBoundingClientRect()方法的返回值，如果没有根元素（即直接相对于视口滚动），则返回null
+                                boundingClientRect：目标元素的矩形区域的信息
+                                intersectionRect：目标元素与视口（或根元素）的交叉区域的信息
+                                intersectionRatio：目标元素的可见比例，即intersectionRect占boundingClientRect的比例，完全可见时为1，完全不可见时小于等于0
+
+
+
+                        observer：当前IntersectionObserverEntry对象
+
+                        
+
+                    option是配置对象（该参数可选）：
+                        threshold ： 性决定了什么时候触发回调函数。它是一个数组，每个成员都是一个门槛值，默认为[0]，即交叉比例（intersectionRatio）达到0时触发回调函数。
+                        root ：指定目标元素所在的容器节点（即根元素）。注意，容器元素必须是目标元素的祖先节点
+                        rootMargin ：定义根元素的margin，用来扩展或缩小rootBounds这个矩形的大小，从而影响intersectionRect交叉区域的大小
+                
+                方法： 
+                    开始观察：io.observe(document.getElementById('example'));
+                    停止观察：io.unobserve(element);
+                    关闭观察器: io.disconnect();
+                    返回所有观察目标的对象数组： io.takeRecords()
+
+                
+
+
+
+         -->
+        <p>qwe</p>
+        <img
+            src="https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3604760354,4228825792&fm=26&gp=0.jpg"
+            data-src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2350771342,806604690&fm=26&gp=0.jpg"
+        />
+        <img
+            src="https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3604760354,4228825792&fm=26&gp=0.jpg"
+            data-src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2350771342,806604690&fm=26&gp=4.jpg"
+        />
+
+        <img
+            src="https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3604760354,4228825792&fm=26&gp=0.jpg"
+            data-src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2350771342,806604690&fm=26&gp=3.jpg"
+        />
+
+        <img
+            src="https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3604760354,4228825792&fm=26&gp=0.jpg"
+            data-src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2350771342,806604690&fm=26&gp=2.jpg"
+        />
+
+        <img
+            src="https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3604760354,4228825792&fm=26&gp=0.jpg"
+            data-src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2350771342,806604690&fm=26&gp=1.jpg"
+        />
+
+        <img
+            src="https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3604760354,4228825792&fm=26&gp=0.jpg"
+            data-src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1556006735,1595858428&fm=26&gp=0.jpg"
+        />
+    </body>
+    <script>
+        /*
+    
+    
+    */
+        const imgs = [...document.getElementsByTagName("img")];
+        // 获取元素
+
+        if (IntersectionObserver) {
+            // 判断是否有此api
+            let lazyLoadObserver = new IntersectionObserver((entries, observer) => {
+                console.log(entries);
+                // console.log(observer);
+                // console.log("执行");
+
+                entries.forEach((entry, index) => {
+                    // 遍历所有的 IntersectionObserverEntry对象
+                    let letlazyImage = entry.target;
+                    // 获取对应的dom元素
+
+                    console.log(entry.intersectionRatio);
+
+                    if (entry.intersectionRatio > 0) {
+                        // 只要可见，就把图片路径替换，并且 卸载当前的 observe
+                        letlazyImage.src = letlazyImage.getAttribute("data-src");
+                        lazyLoadObserver.unobserve(letlazyImage);
+                    }
+                });
+            });
+            for (let i = 0; i < imgs.length; i++) {
+                // 遍历监听所有图片
+                lazyLoadObserver.observe(imgs[i]);
+            }
+            // console.log(lazyLoadObserver);
+        }
+    </script>
+</html>

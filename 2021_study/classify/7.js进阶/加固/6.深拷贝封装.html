@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body></body>
+    <script>
+        function deepClone(obj) {
+            // let cloneObj = new obj.constructor();
+            let cloneObj = {}; //和上面的那就话一样
+            if (obj === null) return obj;
+            if (obj instanceof Date) return new Date(obj);
+            if (obj instanceof RegExp) return new RegExp(obj);
+            // 排除特殊情况 ↑
+
+            if (typeof obj !== "object") return obj;
+            for (var i in obj) {
+                if (obj.hasOwnProperty(i)) {
+                    // 使用hasOwnProperty遍历 不可枚举属性
+                    cloneObj[i] = deepClone(obj[i]);
+                    console.log(
+                        cloneObj[i],
+                        "-------",
+                        obj[i],
+                        // "--------",
+                        // cloneObj,
+                        // "--------",
+                        // obj,
+                        "--------",
+                        i
+                    );
+                    // 递归调用
+                }
+            }
+            return cloneObj;
+        }
+
+        let data = {
+            a: "a",
+            b: 123,
+            c: new RegExp(/^{1,2,3}$/),
+            d: new Date().toString(),
+            e: [23, 435],
+            f: {
+                q: "q",
+            },
+        };
+
+        let copy = deepClone(data);
+
+        console.log(data, copy, JSON.parse(JSON.stringify(data)));
+    </script>
+</html>

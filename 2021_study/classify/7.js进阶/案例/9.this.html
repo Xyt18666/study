@@ -107,6 +107,14 @@
                 如果写一个 立即执行 函数 ，那么this 指向window
 
             ------------------------------------------------------------
+
+
+            简单判断 this的方法：
+                直接调用的函数： fun().call(window)  ->  window
+                当函数作为对象的方法: obj.fn().call(obj) -> obj
+                ps:只看最终在哪里调用
+
+
             
 
                 
@@ -198,5 +206,31 @@
         obj4.fn2();
 
         // -------------------------------------------------------------------
+
+        // 阿里笔试题
+
+        var name = 22;
+
+        var a = {
+            name: 11,
+            say: function () {
+                console.log(this.name);
+            },
+        };
+
+        var fun = a.say;
+
+        fun(); // 22
+        a.say(); // 11
+
+        var b = {
+            name: 33,
+            say: function (fun) {
+                fun();
+            },
+        };
+        b.say(a.say); //22
+        b.say = a.say;
+        b.say(); //33
     </script>
 </html>
