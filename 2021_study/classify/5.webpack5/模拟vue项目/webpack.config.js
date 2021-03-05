@@ -8,6 +8,7 @@ const OptimizeCssAssetsWebpackPlugin = require("optimize-css-assets-webpack-plug
 const { VueLoaderPlugin } = require("vue-loader");
 
 module.exports = {
+    devtool: "source-map",
     entry: "./src/main.js", // 入口起点，以哪个文件开始打包,配置 html 热更新
     output: {
         path: resolve(__dirname, "build/assets"), // 输出路径
@@ -150,5 +151,4 @@ module.exports = {
         extensions: [".js", ".vue", ".json"],
     },
     mode: "development", //模式
-    devtool: "source-map",
 };

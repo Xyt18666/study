@@ -6,7 +6,15 @@
 </template>
 
 <script>
-export default {};
+export default {
+    mounted() {
+        console.log("123");
+    },
+};
 </script>
 
-<style></style>
+<style>
+p {
+    color: #785;
+}
+</style>

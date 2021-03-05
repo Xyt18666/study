@@ -21,6 +21,62 @@
             filename: "js/built.js"
 
 
+        开发环境优化：
+
+            热更新：
+                hot: true, //开启热更新
+
+                不对html和js进行热更新
+
+                style-loader 内部实现了 css热更新
+                html，在单文件 vue中不需要热更新，因为是.vue文件，如果不是vue，就需要配置入口
+                开启 js 热更新 ：
+                    if (module.hot) {
+                        //一旦 module.hot 为true ，说明开启了hrm 功能 ->让HMR功能代码生效
+                        module.hot.accept(["./assets/js/1.js", "./assets/js/2.js"], () => {
+                            //监听方法 1.js 文件画布，一旦发生变化，其他文件件不会打包构建
+                            console.log("js热更新");
+                        });
+                    }
+
+            报错溯源：devtool
+                是一种 提供源代码 到构建后代码 映射 技术 （如果出错了，通过映射关系，可以追踪到源代码的错误）
+
+                source-map            外部 生成 map文件  (提供错误代码的准确信息 和 源位置)
+                inline-source-map     内部的 base64 码的 source-map (只有一个大的) (提供错误代码的准确信息 和 源位置)
+                hidden-source-map     外部生成 map文件 (提供错误原因，没有源代码的错误位置)
+                eval-source-map       内部的 base64 码的 每个文件都生成对应的 source-map  ，都在eval中  (提供错误代码的准确信息 和 源位置，有hash值)
+                nosources-source-map  外部  （没有源代码的信息）
+                cheap-source-map      外部  (提供错误代码的 信息 和 源位置，只能精确到行)
+                cheap-module-source-map      外部  (提供错误代码的 信息 和 源位置，只能精确到行)
+
+
+                开发环境：速度快，调试友好
+                速度快（eval>inline>cheap）
+
+                eval-cheap-source-map    最快
+
+                source-map   最友好
+
+                eval-source-map  综合方案
+                eval-cheap-module-source-map
+
+
+                生成环境：源代码是否要隐藏，调试要不要更友好
+                内联会让文件体积变大，所以不考虑内联
+
+                nosources-source-map 全隐藏
+                hidden-source-map 只隐藏源代码
+
+                source-map   综合
+                cheap-module-source-map
+
+
+
+        生成环境优化：
+
+
+
 
 
 
