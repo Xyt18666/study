@@ -90,5 +90,35 @@
         console.log(child.sex); //继承父类原型属性和方法
 
         Child.staticFn();
+
+        // ---------------------------------------------------------------
+
+        /*
+        装饰器（Decorator）是一种与类（class）相关的语法，用来注释或修改类和类方法。许多面向对象的语言都有这项功能。
+        
+        装饰器是一种函数，写成@ + 函数名。它可以放在类、类属性、类方法的定义前面。
+
+        报错原因：需要配置 tsconfig.json
+             "compilerOptions": {
+                "experimentalDecorators": true
+            }
+        
+        
+        */
+        @testable
+        class MyTestableClass {
+            constructor(data) {
+                this.data = data;
+            }
+        }
+
+        function testable(target, name, descriptor) {
+            target.isTestable = true;
+            // MyTestableClass === target
+
+            console.log(target, name, descriptor);
+            // 类，装饰的属性，属性的描述对象
+        }
+        console.log(MyTestableClass.isTestable); // true
     </script>
 </html>
