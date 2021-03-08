@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+
+    fetch:
+        浏览器提供的api，底层api
+
+        特点：
+            1. 语法简单，更语义化
+            2. 支持 async/await 
+            3. 脱离 XMLHttpRequest 
+
+        缺点：
+            1. fetch只对网络请求报错，服务器返回 400、500当做成功
+            2. 默认不会带 cookie ，需要添加配置项 ： fetch(url,{credentilals:"include"}) 
+            3. 不支持 abort ，不支持超时控制
+            4. 没办法监听请求的进度
+
+
+
+    axios:
+        社区封装的库
+
+        特点：
+            1. 浏览器和node都可用
+            2.  浏览器端底层使用XMLHttpRequest 实现 ，node底层使用 原生 http模块
+            3. 支持  XMLHttpRequest 
+            4. 客户端防止 CSRF ，提升安全度
+            5. 提供并发请求接口 ，promise.all
+            6. 请求和响应拦截
+            7. 取消请求
+            8. 自动转换json
+            9. 转换请求和响应数据
+
+
+        缺点：
+            几乎没有，axions是目前最优的请求选择
+    
+    w3c 与 whatwg ：
+        网页超文本应用技术工作小组是一个以推动网络HTML 5 标准为目的而成立的组织。在2004年，由Opera、Mozilla基金会和苹果这些浏览器厂商组成。
+
+        未来 whatwg 有望替代 w3c
+
+
+
+
+        
+     -->
+    </body>
+</html>

@@ -98,7 +98,7 @@
         
         装饰器是一种函数，写成@ + 函数名。它可以放在类、类属性、类方法的定义前面。
 
-        报错原因：需要配置 tsconfig.json
+        报错原因：需要配置 tsconfig.json , 还要把项目放到编辑器首位
              "compilerOptions": {
                 "experimentalDecorators": true
             }
@@ -110,6 +110,12 @@
             constructor(data) {
                 this.data = data;
             }
+
+            @testable(1, 2, 3)
+            fn() {}
+
+            @testable
+            keys = 123;
         }
 
         function testable(target, name, descriptor) {

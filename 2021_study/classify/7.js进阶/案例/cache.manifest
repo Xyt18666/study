@@ -1,0 +1,18 @@
+CACHE MANIFEST
+# 井号是注释，第一行必写
+# :后面写 对应为文件路径
+
+
+CACHE:
+
+# CACHE需要缓存 
+
+
+NETWORK:
+
+# NETWORK不需要缓存
+
+
+FALLBACK:
+
+# 如果访问 xx 失败了 ，就去访问 xx
