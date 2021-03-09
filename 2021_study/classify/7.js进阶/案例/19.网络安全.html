@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 
+
+    xss:跨站脚本攻击
+        
+        特点：网站恶意注入客户端代码，攻击浏览器，篡改浏览器内容，窃取用户信息
+
+        分类：
+            反射型（非持久性）：发出请求时，xss代码出现在url中，作为输入提交到 服务器，改变了服务器响应，从而得到一些不应该得到的信息
+
+            存储型（持久性）：发出请求时，xss代码出现在url中，作为输入提交到 服务器，并存储到数据库，造成更大的危险
+
+            基于dom：发出请求时，xss代码出现在url中，作为输入提交到 服务器，将恶意代码注入dom，从而改变展示
+
+
+        防范措施：
+            输入过滤：对提交的信息进行验证
+            输出转义：对接收到的数据 转义 排查
+            添加请求头：将cookie标记为 httponly，在js中就不能访问 这个 cookie了
+
+            
+
+    csrf:跨站请求伪造
+
+        特点：在不安全的网站b，点击了xx链接，跳转到网站a，网站b伪造请求，从而获取数据
+
+         防范措施：
+            验证HTTP Referer：利用请求头判断，请求来源是否合法
+            请求地址中添加token并验证：csrf之所以能攻击成功是因为黑客可以完全伪造用户的请求，更安全，主流
+            加验证码： 成本高，高并发性能下降
+
+
+
+
+
+     -->
+    </body>
+</html>

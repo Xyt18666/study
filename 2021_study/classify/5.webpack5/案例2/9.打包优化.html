@@ -74,17 +74,19 @@
             oneOf：优化生成环境打包速度
                 不进行  oneOf  优化 所有的文件会被所有的 loader 过一遍 
 
+                配置 oneOf
+
             缓存：
                 babel 缓存：
-                presets 后 新增 属性  cacheDirectory:true 
+                    presets 后 新增 属性  cacheDirectory:true 
 
                 文件资源缓存： 给文件名增加 hash 值
-                问题： 因为 js 和 css 同时使用 一个 hash值
-                如果重新打包，会导致所有缓存失效，
+                    问题： 因为 js 和 css 同时使用 一个 hash值
+                    如果重新打包，会导致所有缓存失效，
 
                 所以引入 chunkhash : 根据 chunk生成的hash,如果打包源于同一个 chunk ,那么hash值一样，则反之
-                hash还一样：原因：因为 css是在 js中被引入的，所以属于同一个 chunk,
-                一个入口文件 ，只有一个chunk
+                    hash还一样：原因：因为 css是在 js中被引入的，所以属于同一个 chunk,
+                    一个入口文件 ，只有一个chunk
 
                 最后引入 contenthash  :根据内容生成 hash 
                                     
